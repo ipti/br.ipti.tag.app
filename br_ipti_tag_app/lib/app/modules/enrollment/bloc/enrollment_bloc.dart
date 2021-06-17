@@ -1,16 +1,17 @@
 import 'package:br_ipti_tag_app/app/domain/data/entities/student.dart';
 import 'package:br_ipti_tag_app/app/domain/domain/usecases/fast_enrollment_usecase.dart';
-import 'package:br_ipti_tag_app/app/modules/student/enrollment/bloc/enrollment_events.dart';
-import 'package:br_ipti_tag_app/app/modules/student/enrollment/bloc/enrollment_states.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+
+import 'enrollment_events.dart';
+import 'enrollment_states.dart';
 
 class EnrollmentBloc extends Bloc<EnrollmentEvent, EnrollmentState> {
-  EnrollmentBloc() : super(const EnrollmentState());
+  EnrollmentBloc(
+    this._enrollmentUsecase,
+  ) : super(const EnrollmentState());
 
-  FastEnrollmentUsecase _enrollmentUsecase = Modular.get();
-
-  final modulo = Modular.get<FastEnrollmentUsecase>();
+  final FastEnrollmentUsecase _enrollmentUsecase;
 
   Student student = Student();
 

@@ -9,10 +9,10 @@ import 'enrollment_page.dart';
 class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => new EnrollmentBloc()),
-    Bind.singleton((i) => new StudentRepository(i.get())),
-    Bind.singleton((i) => new StudentService(i.get())),
-    Bind.singleton((i) => new FastEnrollmentUsecase(i.get())),
+    Bind.lazySingleton((i) => new StudentRepository(i.get())),
+    Bind.lazySingleton((i) => new StudentService(i.get())),
+    Bind.lazySingleton((i) => new FastEnrollmentUsecase(i.get())),
+    Bind.singleton((i) => new EnrollmentBloc(i.get())),
   ];
 
   @override

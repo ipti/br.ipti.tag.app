@@ -1,5 +1,5 @@
 {
-  "dart.flutterSdkPath": "tag_domain/.fvm/flutter_sdk",
+  
   // Remove .fvm files from search
   "search.exclude": {
     "**/.fvm": true

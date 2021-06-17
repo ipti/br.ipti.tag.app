@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class TagBorderColor {
-  static const borderColorInput = Color(0xFFBAC7D5);
+  static const borderColorInput = Color(0xFFEBECF3);
   static const borderColorInputHover = Color(0xFFA6B6C8);
   static const borderColorInputActive = Color(0xFF94A8BE);
   static const borderColorInputFocus = Color(0xFF0172CB);

@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/modules/student/student_module.dart';
+import 'package:br_ipti_tag_app/app/modules/enrollment/enrollment_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,6 +13,6 @@ class AppModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ModuleRoute("/login", module: LoginModule()),
-    ModuleRoute("/", module: StudentModule())
+    ModuleRoute("/", module: EnrollmentModule())
   ];
 }

@@ -1,12 +1,20 @@
 //  app_widget.dart
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:device_preview/device_preview.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: "/",
-    ).modular();
+    return DevicePreview(
+      isToolbarVisible: true,
+      enabled: !kReleaseMode,
+      builder: (context) => MaterialApp(
+        locale: DevicePreview.locale(context), // Add the locale here
+        builder: DevicePreview.appBuilder,
+        initialRoute: "/",
+      ).modular(),
+    );
   }
 }

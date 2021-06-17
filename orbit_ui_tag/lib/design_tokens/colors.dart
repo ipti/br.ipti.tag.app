@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 class TagColors {
+  static const colorTabIndicator = const Color(0xFF222C64);
 // Text
   static const colorTextPrimary = const Color(0xFF252A31);
   static const colorTextSecondary = const Color(0xFF5F738C);

@@ -1,6 +1,4 @@
 import 'package:br_ipti_tag_app/app/domain/data/entities/student.dart';
-import 'package:br_ipti_tag_app/app/domain/data/repositories/student_repository.dart';
-import 'package:br_ipti_tag_app/app/domain/domain/services/student_service.dart';
 import 'package:dartz/dartz.dart';
 
 class FastEnrollmentUsecase {
