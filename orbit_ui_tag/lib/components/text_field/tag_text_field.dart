@@ -9,6 +9,7 @@ import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 class TagTextField extends StatefulWidget {
   TagTextField({
     Key key,
+    @required this.label,
     this.hint,
     this.controller,
     this.inputType,
@@ -18,8 +19,9 @@ class TagTextField extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.onEditingComplete,
-    @required this.label,
     this.value,
+    this.maxLines,
+    this.minLines = 1,
   }) : super(key: key);
 
   final String hint;
@@ -29,6 +31,8 @@ class TagTextField extends StatefulWidget {
   final TextInputType inputType;
   final bool obscureText;
   final int maxLength;
+  final int maxLines;
+  final int minLines;
   final List<TextInputFormatter> formatters;
   final Function validator;
   final Function onChanged;
@@ -57,6 +61,8 @@ class _TagTextFieldState extends State<TagTextField> {
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             initialValue: widget?.value ?? "",
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
             controller: widget.controller,
             inputFormatters: widget.formatters,
             maxLength: widget.maxLength,

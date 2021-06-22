@@ -84,3 +84,12 @@ class ResidenceZoneChanged extends EnrollmentEvent {
   @override
   List<Object> get props => [residenceZone];
 }
+
+class StudentClassChanged extends EnrollmentEvent {
+  const StudentClassChanged(this.classId);
+
+  final int classId;
+
+  @override
+  List<Object> get props => [classId];
+}

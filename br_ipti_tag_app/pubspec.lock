@@ -7,7 +7,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   auto_size_text:
     dependency: transitive
     description:
@@ -152,7 +152,7 @@ packages:
     source: hosted
     version: "1.0.1"
   flutter_svg:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
@@ -182,13 +182,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  formz:
-    dependency: "direct main"
-    description:
-      name: formz
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -265,7 +258,7 @@ packages:
       path: "../orbit_ui_tag"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.12.1"
   path:
     dependency: transitive
     description:
@@ -424,7 +417,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   stack_trace:
     dependency: transitive
     description:
@@ -459,7 +452,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   triple:
     dependency: transitive
     description:

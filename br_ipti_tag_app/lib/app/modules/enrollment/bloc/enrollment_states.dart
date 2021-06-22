@@ -10,6 +10,7 @@ class EnrollmentState extends Equatable {
     this.nationality,
     this.deficiency,
     this.residenceZone,
+    this.studentClass,
   });
 
   final String name;
@@ -20,6 +21,7 @@ class EnrollmentState extends Equatable {
   final int nationality;
   final bool deficiency;
   final int residenceZone;
+  final int studentClass;
 
   EnrollmentState copyWith({
     String name,
@@ -30,16 +32,19 @@ class EnrollmentState extends Equatable {
     int nationality,
     bool deficiency,
     int residenceZone,
+    int studentClass,
   }) {
     return new EnrollmentState(
-        name: name ?? this.name,
-        birthday: birthday ?? this.birthday,
-        sex: sex ?? this.sex,
-        colorRace: colorRace ?? this.colorRace,
-        filiation: filiation ?? this.filiation,
-        nationality: nationality ?? this.nationality,
-        deficiency: deficiency ?? this.deficiency,
-        residenceZone: residenceZone);
+      name: name ?? this.name,
+      birthday: birthday ?? this.birthday,
+      sex: sex ?? this.sex,
+      colorRace: colorRace ?? this.colorRace,
+      filiation: filiation ?? this.filiation,
+      nationality: nationality ?? this.nationality,
+      deficiency: deficiency ?? this.deficiency,
+      residenceZone: residenceZone ?? this.residenceZone,
+      studentClass: studentClass ?? this.studentClass,
+    );
   }
 
   @override
@@ -51,5 +56,7 @@ class EnrollmentState extends Equatable {
         filiation,
         nationality,
         deficiency,
+        residenceZone,
+        studentClass
       ];
 }
