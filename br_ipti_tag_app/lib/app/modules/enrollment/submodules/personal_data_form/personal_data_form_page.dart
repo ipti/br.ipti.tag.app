@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/shared/widgets/row_to_column/row_to_column.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,40 +101,69 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     final heading = Heading(text: "Dados Pessoais", type: HeadingType.Title2);
 
-    final buttonSubmit = TagButton(
-      text: "Enviar",
+    final buttonSubmitAndGo = TagButton(
+      text: "Salvar e prosseguir",
       onPressed: () => _formKey.currentState.validate(),
     );
 
-    return BlocConsumer<PersonalFormBloc, PersonalFormState>(
-        bloc: controller,
-        listener: (_, state) => print(state.toString()),
-        builder: (context, state) {
-          if (state is PersonalFormState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    heading,
-                    inputName(state.name),
-                    inputBirthday(state.birthday),
-                    selectSex(state.sex),
-                    selectColorRace(state.colorRace),
-                    selectFiliation(state.filiation),
-                    selectNationality(state.nationality),
-                    inputFoodRestriction(state.foodRestrictions),
-                    deficiencyCheck(state.deficiency),
-                    buttonSubmit,
-                  ].map(withPadding).toList(),
+    final buttonSubmitAndStay = TagLinkButton(
+      text: "Salvar e continuar na página",
+      onPressed: () => _formKey.currentState.validate(),
+    );
+
+    return Form(
+      key: _formKey,
+      child: BlocConsumer<PersonalFormBloc, PersonalFormState>(
+          bloc: controller,
+          listener: (_, state) => print(state.toString()),
+          builder: (context, state) {
+            if (state is PersonalFormState) {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      heading,
+                      RowToColumn(
+                        numColumns: 3,
+                        children: [
+                          Flexible(child: inputName(state.name)),
+                          Flexible(child: inputBirthday(state.birthday)),
+                        ],
+                      ),
+                      RowToColumn(numColumns: 3, children: [
+                        Flexible(flex: 1, child: selectSex(state.sex)),
+                        Flexible(
+                            flex: 1, child: selectColorRace(state.colorRace)),
+                        Flexible(
+                            flex: 3,
+                            child: selectNationality(state.nationality)),
+                      ]),
+                      RowToColumn(numColumns: 3, children: [
+                        Flexible(child: selectFiliation(state.filiation)),
+                        Flexible(
+                            child:
+                                inputFoodRestriction(state.foodRestrictions)),
+                      ]),
+                      deficiencyCheck(state.deficiency),
+                      RowToColumn(
+                        numColumns: 2,
+                        children: [
+                          Spacer(),
+                          Flexible(child: buttonSubmitAndStay),
+                          Flexible(child: buttonSubmitAndGo),
+                        ],
+                      ),
+                    ].map((w) => withPadding(w)).toList(),
+                  ),
                 ),
-              ),
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+          }),
+    );
   }
 }

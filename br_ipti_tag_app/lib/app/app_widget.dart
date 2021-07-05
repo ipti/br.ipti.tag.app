@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -14,6 +15,7 @@ class AppWidget extends StatelessWidget {
         locale: DevicePreview.locale(context), // Add the locale here
         builder: DevicePreview.appBuilder,
         initialRoute: "/",
+        color: TagBackgroundColors.backgroundBody,
       ).modular(),
     );
   }
