@@ -10,7 +10,7 @@ workflows:
         xcode: latest
         cocoapods: default
       scripts:
-        - cd br_ipti_tag_app 
+        - cd br_ipti_tag_app && ls -la
         - flutter packages pub get
         - flutter config --enable-web
         - |
