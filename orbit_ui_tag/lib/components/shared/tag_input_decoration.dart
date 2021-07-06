@@ -4,6 +4,7 @@ import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 final borderSide = BorderSide(
   color: TagBorderColor.borderColorInput,
   width: TagBorderStyle.borderWidthInput,
+  style: BorderStyle.solid,
 );
 
 final border = OutlineInputBorder(
@@ -24,9 +25,9 @@ final buildInputDecoration = (String hint) => InputDecoration(
       filled: true,
       fillColor: TagBackgroundColors.backgroundInput,
       contentPadding: TagSpancing.paddingInputNormal,
-      focusedBorder: border.copyWith(
+      enabledBorder: border.copyWith(
         borderSide: borderSide.copyWith(
-          color: TagBorderColor.borderColorInputFocus,
+          color: TagBorderColor.borderColorInput,
         ),
       ),
       border: border,

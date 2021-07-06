@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class TagBackgroundColors {
   static const backgroundAppbar = const Color(0xFF222C64);
-  static const backgroundBody = const Color(0xFFF5F7F9);
+  static const backgroundBody = const Color(0xFFF8F8FB);
   static const backgroundModal = const Color(0xFFFFFFFF);
   static const backgroundCard = const Color(0xFFFFFFFF);
   static final backgroundCarrierLogo = Color(0xFFFFFFFF).withOpacity(1);

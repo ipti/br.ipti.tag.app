@@ -48,6 +48,7 @@ class Heading extends StatelessWidget {
     final TextStyle textStyleTitle2 = textStyleDefault.copyWith(
       fontSize: TagFontSize.fontSizeHeadingTitle2,
       fontWeight: TagFontWeight.fontWeightHeadingTitle2,
+      color: TagColors.colorTextSecondary,
     );
     final TextStyle textStyleTitle3 = textStyleDefault.copyWith(
       fontSize: TagFontSize.fontSizeHeadingTitle3,

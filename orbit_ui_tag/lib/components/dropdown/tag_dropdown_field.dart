@@ -77,6 +77,7 @@ class _TagDropdownFieldState extends State<TagDropdownField> {
           child: DropdownButtonFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             isExpanded: true,
+            isDense: false,
             value: widget.value,
             items: dropdownItens,
             style: textStyle,

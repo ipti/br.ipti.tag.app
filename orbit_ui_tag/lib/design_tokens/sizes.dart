@@ -5,7 +5,7 @@ class TagSizes {
   static const double heightIconMedium = 24;
   static const double widthIconLarge = 32;
   static const double heightIconLarge = 32;
-  static const double heightInputNormal = 44;
+  static const double heightInputNormal = 40;
   static const double heightInputLarge = 52;
   static const double heightInputSmall = 32;
   static const double heightButtonNormal = 44;
