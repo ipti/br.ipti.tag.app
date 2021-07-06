@@ -13,12 +13,13 @@ workflows:
         - sh build.sh
         - |
           # build web
+          cd br_ipti_tag_app
           flutter build web --release
           cd build/web
           7z a -r ../web.zip ./*
       artifacts:
-        - build/web.zip
-        - flutter_drive.log
+        - br_ipti_tag_app/build/web.zip
+        - br_ipti_tag_app/flutter_drive.log
       publishing:
         email:
           recipients:
