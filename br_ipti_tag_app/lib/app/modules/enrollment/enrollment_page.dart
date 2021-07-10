@@ -18,7 +18,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
   @override
   void initState() {
     controller.add(StartEditing());
-    Modular.to.navigate('../personal');
+    Modular.to.navigate('/turmas/matricula-rapida/personal');
     super.initState();
   }
 

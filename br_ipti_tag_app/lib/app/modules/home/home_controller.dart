@@ -1,19 +1,16 @@
 import 'dart:async';
 
 import 'package:br_ipti_tag_app/app/domain/data/entities/user.dart';
-import 'package:br_ipti_tag_app/app/domain/domain/services/student_service.dart';
 import 'package:br_ipti_tag_app/app/modules/home/home_events.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeController extends Disposable {
-  StudentService _service = Modular.get();
   List<User> users = [];
 
   StreamController<HomeEvent> states = StreamController.broadcast();
 
   fetchUsers() async {
     states.add(HomeLoading());
-    final list = await _service.listAll();
   }
 
   filterUsers(String filterName) {

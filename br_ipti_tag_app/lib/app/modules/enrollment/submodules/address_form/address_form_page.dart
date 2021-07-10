@@ -33,27 +33,30 @@ class _AddressFormPageState extends State<AddressFormPage> {
           onChanged: controller.setResidenceZone,
         );
 
-    return BlocConsumer<AddressFormBloc, AddressFormState>(
-        bloc: controller,
-        listener: (_, state) => print(state.toString()),
-        builder: (context, state) {
-          if (state is AddressFormState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    withPadding(selectResidenceZone(state.residenceZone)),
-                  ],
+    return Form(
+      key: _formKey,
+      child: BlocConsumer<AddressFormBloc, AddressFormState>(
+          bloc: controller,
+          listener: (_, state) => print(state.toString()),
+          builder: (context, state) {
+            if (state is AddressFormState) {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      withPadding(heading),
+                      withPadding(selectResidenceZone(state.residenceZone)),
+                    ],
+                  ),
                 ),
-              ),
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+          }),
+    );
   }
 }

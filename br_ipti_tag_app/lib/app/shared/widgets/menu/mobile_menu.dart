@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
 
 class TagMobileMenu extends StatelessWidget {
@@ -7,6 +8,7 @@ class TagMobileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagMenu(
+      initialRoute: ModalRoute.of(context).settings.name,
       items: [
         TagMenuGroup(
           icon: TagIconPersons(),
@@ -14,8 +16,9 @@ class TagMobileMenu extends StatelessWidget {
           submenus: [
             TagMenuItem(
               title: "Ver turmas",
-              onTap: () {},
-            )
+              route: 'turmas/',
+              onTap: (route) {},
+            ),
           ],
         ),
         TagMenuGroup(
@@ -23,8 +26,18 @@ class TagMobileMenu extends StatelessWidget {
           title: "Alunos",
           submenus: [
             TagMenuItem(
+              title: "Matricula",
+              route: '/turmas/matricula',
+              onTap: (route) {
+                Modular.to.popAndPushNamed("/login");
+              },
+            ),
+            TagMenuItem(
               title: "Matricula Rápida",
-              onTap: () {},
+              route: '/turmas/matricula-rapida',
+              onTap: (route) {
+                Modular.to.popAndPushNamed(route);
+              },
             )
           ],
         ),
@@ -34,6 +47,7 @@ class TagMobileMenu extends StatelessWidget {
           submenus: [
             TagMenuItem(
               title: "Ver turmas",
+              route: '/',
               onTap: () {},
             )
           ],
@@ -44,6 +58,7 @@ class TagMobileMenu extends StatelessWidget {
           submenus: [
             TagMenuItem(
               title: "Ver turmas",
+              route: '/',
               onTap: () {},
             )
           ],
@@ -54,6 +69,7 @@ class TagMobileMenu extends StatelessWidget {
           submenus: [
             TagMenuItem(
               title: "Ver turmas",
+              route: '/',
               onTap: () {},
             )
           ],

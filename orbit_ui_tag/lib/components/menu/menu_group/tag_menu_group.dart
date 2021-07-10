@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/components/menu/menu_controller.dart';
 import 'package:orbit_ui_tag/components/menu/menu_item/tag_menu_item.dart';
 import 'package:orbit_ui_tag/design_tokens/colors.dart';
 import 'package:orbit_ui_tag/design_tokens/tokens.dart';
@@ -13,16 +12,14 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
     @required this.title,
     @required this.submenus,
     this.icon,
-    this.indexActiveItem = -1,
+    this.routeActiveItem = "/",
     this.isActive = false,
-    this.menuGroupId,
   }) : super(key: key);
 
   final String title;
   final Widget icon;
   final bool isActive;
-  final int indexActiveItem;
-  final int menuGroupId;
+  final String routeActiveItem;
   final List<TagMenuItem> submenus;
 
   @override
@@ -33,6 +30,7 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
     );
 
     return ExpansionTile(
+      initiallyExpanded: isActive,
       iconColor: Colors.transparent,
       collapsedIconColor: Colors.transparent,
       leading: icon,
@@ -46,10 +44,7 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
       children: [
         for (var i = 0; i < submenus.length; i++)
           submenus[i].copyWith(
-            menuGroupId: menuGroupId,
-            menuItemId: i,
-            isActive: i == menuController.indexMenuItem.value &&
-                menuController.indexMenuGroup.value == menuGroupId,
+            isActive: routeActiveItem == submenus[i].route,
           )
       ],
       childrenPadding: EdgeInsets.only(left: 16),
@@ -60,7 +55,7 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
     String title,
     Widget icon,
     bool isActive,
-    int indexActiveItem,
+    String routeActiveItem,
     int menuGroupId,
     List<TagMenuItem> submenus,
   }) {
@@ -69,8 +64,7 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
       icon: icon ?? this.icon,
       submenus: submenus ?? this.submenus,
       isActive: isActive ?? this.isActive,
-      indexActiveItem: indexActiveItem ?? this.indexActiveItem,
-      menuGroupId: menuGroupId ?? this.menuGroupId,
+      routeActiveItem: routeActiveItem ?? this.routeActiveItem,
     );
   }
 }

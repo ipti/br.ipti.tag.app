@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       builder: (context) => MaterialApp(
         locale: DevicePreview.locale(context), // Add the locale here
         builder: DevicePreview.appBuilder,
-        initialRoute: "/",
+        initialRoute: "/turmas",
         color: TagBackgroundColors.backgroundBody,
       ).modular(),
     );

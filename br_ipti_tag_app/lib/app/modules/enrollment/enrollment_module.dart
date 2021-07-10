@@ -35,7 +35,7 @@ class EnrollmentModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute,
+    ChildRoute("/matricula-rapida",
         child: (_, args) => EnrollmentPage(),
         children: [
           ModuleRoute('/personal', module: PersonalDataFormModule()),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/components/menu/menu_controller.dart';
 import 'package:orbit_ui_tag/design_tokens/colors.dart';
 import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 
@@ -10,17 +9,15 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
   const TagMenuItem({
     Key key,
     @required this.title,
+    @required this.route,
     @required this.onTap,
     this.icon,
     this.isActive = false,
-    this.menuGroupId,
-    this.menuItemId,
   }) : super(key: key);
 
   final String title;
+  final String route;
   final Widget icon;
-  final int menuGroupId;
-  final int menuItemId;
   final bool isActive;
   final Function onTap;
 
@@ -41,9 +38,7 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
           style: textStyle,
         ),
         onTap: () {
-          menuController.indexMenuGroup.value = menuGroupId;
-          menuController.indexMenuItem.value = menuItemId;
-          onTap.call();
+          onTap.call(route);
         },
       ),
     );
@@ -53,15 +48,12 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
     String title,
     Function onTap,
     bool isActive,
-    int menuGroupId,
-    int menuItemId,
   }) {
     return TagMenuItem(
       title: title ?? this.title,
+      route: route ?? this.route,
       onTap: onTap ?? this.onTap,
       isActive: isActive ?? this.isActive,
-      menuGroupId: menuGroupId ?? this.menuGroupId,
-      menuItemId: menuItemId ?? this.menuItemId,
     );
   }
 }
