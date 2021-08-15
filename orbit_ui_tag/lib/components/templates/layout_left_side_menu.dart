@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
@@ -22,7 +21,11 @@ class LayoutLeftSideMenu extends StatelessWidget {
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: _LayoutPages(left: TagVerticalMenu(), center: body),
+        child: _LayoutPages(
+          left: left,
+          center: body,
+          right: right,
+        ),
       ),
     );
   }
@@ -42,7 +45,7 @@ class _LayoutPages extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Flexible(flex: 3, child: left ?? const TagVerticalMenu()),
+          Flexible(flex: 3, child: left ?? Container()),
           Flexible(
             flex: 12,
             child: Padding(

@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/templates/main_layout_adaptativy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';

@@ -1,15 +1,14 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/templates/main_layout_adaptativy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
 
-class TagBasicDesktopLayout extends StatelessWidget {
+class TagDefaultPage extends StatelessWidget {
   final String title;
   final List<String> path;
   final String description;
   final List<Widget> body;
 
-  const TagBasicDesktopLayout({
+  const TagDefaultPage({
     Key key,
     @required this.title,
     @required this.path,

@@ -1,7 +1,6 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/templates/layout_topbar_and_body.dart';
 import 'package:flutter/material.dart';
-
 import 'layout_left_side_menu.dart';
+import 'layout_topbar_and_body.dart';
 
 class MainLayoutAdaptativy extends StatelessWidget {
   const MainLayoutAdaptativy({Key key, this.left, this.body, this.right})
@@ -23,7 +22,10 @@ class MainLayoutAdaptativy extends StatelessWidget {
             right: right,
           );
         }
-        return LayoutTopBarAndBody(body: body);
+        return LayoutTopBarAndBody(
+          body: body,
+          drawer: left,
+        );
       },
     );
   }

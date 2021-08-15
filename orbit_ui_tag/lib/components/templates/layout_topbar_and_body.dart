@@ -1,18 +1,19 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
 
 class LayoutTopBarAndBody extends StatelessWidget {
-  const LayoutTopBarAndBody({Key key, @required this.body}) : super(key: key);
+  const LayoutTopBarAndBody({Key key, @required this.body, this.drawer})
+      : super(key: key);
 
   final Widget body;
+  final Widget drawer;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TagBackgroundColors.backgroundBody,
-      drawer: TagVerticalMenu(),
+      drawer: drawer,
       appBar: TagAppBar(),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
