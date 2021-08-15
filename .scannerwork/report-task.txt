@@ -1,6 +1,0 @@
-projectKey=igorgoncalves_br.ipti.tag.app
-serverUrl=http://localhost:9000
-serverVersion=8.9.1.44547
-dashboardUrl=http://localhost:9000/dashboard?id=igorgoncalves_br.ipti.tag.app
-ceTaskId=AXoYaWDjVVm5k5BYd4nr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXoYaWDjVVm5k5BYd4nr
