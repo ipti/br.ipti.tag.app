@@ -24,30 +24,57 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = isActive
+        ? TagColors.colorTextLinkPrimaryHover
+        : TagColors.colorTextLinkPrimary;
+
+    final indicatorColor =
+        isActive ? TagColors.colorTextLinkPrimaryHover : Colors.transparent;
+
     final textStyle = TextStyle(
-      color: TagColors.colorTextButtonPrimary,
+      color: textColor,
       fontSize: TagFontSize.fontSizeHeadingTitle3,
+      fontWeight: FontWeight.w500,
     );
 
-    return ExpansionTile(
-      initiallyExpanded: isActive,
-      iconColor: Colors.transparent,
-      collapsedIconColor: Colors.transparent,
-      leading: icon,
-      title: Opacity(
-        opacity: isActive ? 1 : 0.64,
-        child: Text(
-          title,
-          style: textStyle,
-        ),
-      ),
+    return Stack(
       children: [
-        for (var i = 0; i < submenus.length; i++)
-          submenus[i].copyWith(
-            isActive: routeActiveItem == submenus[i].route,
-          )
+        Container(
+          height: 48,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              height: 24,
+              width: 4,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.horizontal(right: Radius.circular(8)),
+                color: indicatorColor,
+              ),
+            ),
+          ),
+        ),
+        Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: ExpansionTile(
+            initiallyExpanded: isActive,
+            iconColor: Colors.transparent,
+            collapsedIconColor: Colors.transparent,
+            leading: icon,
+            title: Text(
+              title,
+              style: textStyle,
+            ),
+            children: [
+              for (var i = 0; i < submenus.length; i++)
+                submenus[i].copyWith(
+                  isActive: routeActiveItem == submenus[i].route,
+                )
+            ],
+            childrenPadding: const EdgeInsets.only(left: 16),
+          ),
+        ),
       ],
-      childrenPadding: EdgeInsets.only(left: 16),
     );
   }
 

@@ -38,9 +38,21 @@ class EnrollmentModule extends Module {
     ChildRoute("/matricula-rapida",
         child: (_, args) => EnrollmentPage(),
         children: [
-          ModuleRoute('/personal', module: PersonalDataFormModule()),
-          ModuleRoute('/address', module: AddressFormModule()),
-          ModuleRoute('/classes', module: ClassesFormModule()),
+          ModuleRoute(
+            '/personal',
+            module: PersonalDataFormModule(),
+            transition: TransitionType.rightToLeft,
+          ),
+          ModuleRoute(
+            '/address',
+            module: AddressFormModule(),
+            transition: TransitionType.rightToLeft,
+          ),
+          ModuleRoute(
+            '/classes',
+            module: ClassesFormModule(),
+            transition: TransitionType.rightToLeft,
+          ),
         ])
   ];
 }

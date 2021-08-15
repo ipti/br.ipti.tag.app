@@ -17,7 +17,7 @@ class TagBreadcrumb extends StatelessWidget {
       separatorBuilder: (BuildContext context, int index) {
         return Container(
           alignment: Alignment.center,
-          child: Icon(
+          child: const Icon(
             Icons.chevron_right,
             size: 18,
           ),

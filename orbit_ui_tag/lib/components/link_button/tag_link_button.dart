@@ -11,7 +11,7 @@ class TagLinkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(
+    const textStyle = TextStyle(
       color: TagColors.colorTextButtonLinkPrimary,
       decoration: TextDecoration.underline,
       fontWeight: FontWeight.bold,

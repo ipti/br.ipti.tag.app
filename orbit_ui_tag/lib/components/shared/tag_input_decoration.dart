@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 
-final borderSide = BorderSide(
+const borderSide = BorderSide(
   color: TagBorderColor.borderColorInput,
   width: TagBorderStyle.borderWidthInput,
   style: BorderStyle.solid,
@@ -14,7 +14,7 @@ final border = OutlineInputBorder(
   ),
 );
 
-final textStyle = TextStyle(
+const textStyle = TextStyle(
   fontSize: TagFontSize.fontSizeInputNormal,
   color: TagColors.colorTextInput,
 );

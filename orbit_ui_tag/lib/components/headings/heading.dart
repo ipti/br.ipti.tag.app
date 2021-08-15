@@ -30,35 +30,41 @@ class Heading extends StatelessWidget {
       color: TagColors.colorHeading,
     );
 
-    final TextStyle textStyleDisplayTitle = textStyleDefault.copyWith(
+    const TextStyle textStyleDisplayTitle = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingDisplay,
       fontWeight: TagFontWeight.fontWeightHeadingDisplay,
     );
 
-    final TextStyle textStyleDisplaySubtitle = textStyleDefault.copyWith(
+    const TextStyle textStyleDisplaySubtitle = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingDisplaySubtitle,
       fontWeight: TagFontWeight.fontWeightHeadingDisplaySubtitle,
     );
 
-    final TextStyle textStyleTitle1 = textStyleDefault.copyWith(
+    const TextStyle textStyleTitle1 = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingTitle1,
       fontWeight: TagFontWeight.fontWeightHeadingTitle1,
     );
 
-    final TextStyle textStyleTitle2 = textStyleDefault.copyWith(
+    const TextStyle textStyleTitle2 = TextStyle(
+      color: TagColors.colorTextSecondary,
       fontSize: TagFontSize.fontSizeHeadingTitle2,
       fontWeight: TagFontWeight.fontWeightHeadingTitle2,
-      color: TagColors.colorTextSecondary,
     );
-    final TextStyle textStyleTitle3 = textStyleDefault.copyWith(
+    const TextStyle textStyleTitle3 = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingTitle3,
       fontWeight: TagFontWeight.fontWeightHeadingTitle3,
     );
-    final TextStyle textStyleTitle4 = textStyleDefault.copyWith(
+    const TextStyle textStyleTitle4 = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingTitle4,
       fontWeight: TagFontWeight.fontWeightHeadingTitle4,
     );
-    final TextStyle textStyleTitle5 = textStyleDefault.copyWith(
+    const TextStyle textStyleTitle5 = TextStyle(
+      color: TagColors.colorHeading,
       fontSize: TagFontSize.fontSizeHeadingTitle5,
       fontWeight: TagFontWeight.fontWeightHeadingTitle5,
     );

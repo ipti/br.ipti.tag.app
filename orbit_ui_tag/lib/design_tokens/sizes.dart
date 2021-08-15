@@ -21,8 +21,8 @@ class TagSizes {
   static const double heightIllustrationSmall = 90;
   static const double heightIllustrationMedium = 200;
   static const double heightServiceLogoSmall = 12;
-  static const double heightServiceLogoMedium = 24;
-  static const double heightServiceLogoLarge = 48;
+  static const double heightServiceLogoMedium = 28;
+  static const double heightServiceLogoLarge = 56;
   static const double heightSeparator = 1;
   static const double heightInputGroupSeparatorSmall = 16;
   static const double heightInputGroupSeparatorNormal = 24;

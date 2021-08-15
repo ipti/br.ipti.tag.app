@@ -7,6 +7,6 @@ class TagIconPencil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TagIcon(path: FilePaths.ICON_PENCIL_SVG);
+    return const TagIcon(path: FilePaths.ICON_PENCIL_SVG);
   }
 }

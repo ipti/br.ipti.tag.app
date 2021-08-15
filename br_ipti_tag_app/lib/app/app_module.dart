@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/modules/enrollment/enrollment_module.dart';
+import 'package:br_ipti_tag_app/app/modules/lunch/stock/stock_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -12,7 +13,20 @@ class AppModule extends Module {
   // Provide all the routes for your module
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute("/login", module: LoginModule()),
-    ModuleRoute("/turmas", module: EnrollmentModule())
+    ModuleRoute(
+      "/auth",
+      module: LoginModule(),
+      transition: TransitionType.noTransition,
+    ),
+    ModuleRoute(
+      "/merenda/estoque",
+      module: StockModule(),
+      transition: TransitionType.noTransition,
+    ),
+    ModuleRoute(
+      "/alunos",
+      module: EnrollmentModule(),
+      transition: TransitionType.noTransition,
+    )
   ];
 }

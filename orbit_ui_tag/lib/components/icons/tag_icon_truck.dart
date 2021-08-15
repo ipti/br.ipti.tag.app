@@ -7,6 +7,6 @@ class TagIconTruck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TagIcon(path: FilePaths.ICON_TRUCK_SVG);
+    return const TagIcon(path: FilePaths.ICON_TRUCK_SVG);
   }
 }

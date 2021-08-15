@@ -39,13 +39,13 @@ class TagDatePickerField extends StatefulWidget {
   _TagDatePickerFieldState createState() => _TagDatePickerFieldState();
 }
 
+const textStyle = TextStyle(
+  fontSize: TagFontSize.fontSizeInputNormal,
+);
+
 class _TagDatePickerFieldState extends State<TagDatePickerField> {
   @override
   Widget build(BuildContext context) {
-    final textStyle = TextStyle(
-      fontSize: TagFontSize.fontSizeInputNormal,
-    );
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

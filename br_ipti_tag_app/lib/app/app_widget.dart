@@ -12,9 +12,9 @@ class AppWidget extends StatelessWidget {
       isToolbarVisible: true,
       enabled: !kReleaseMode,
       builder: (context) => MaterialApp(
-        locale: DevicePreview.locale(context), // Add the locale here
+        locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        initialRoute: "/turmas",
+        initialRoute: "/alunos/matricula-rapida/personal",
         color: TagBackgroundColors.backgroundBody,
       ).modular(),
     );

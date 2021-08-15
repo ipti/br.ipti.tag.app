@@ -14,7 +14,7 @@ class TagButton extends StatelessWidget {
     final elevatedButtonTheme = ElevatedButton.styleFrom(
       elevation: 0,
       padding: TagSpancing.paddingButtonNormal,
-      minimumSize: Size(double.infinity, TagSizes.heightButtonNormal),
+      minimumSize: const Size(double.infinity, TagSizes.heightButtonNormal),
       primary: TagBackgroundColors.backgroundButtonPrimary,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(

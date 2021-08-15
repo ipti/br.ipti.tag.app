@@ -22,7 +22,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
+    const padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 16);
 
     final inputName = (name) => TagTextField(
           label: "Nome",
@@ -82,7 +82,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
               value: deficiency ?? false,
               onChanged: controller.setDeficiency,
             ),
-            TagLabel("Deficiência"),
+            const TagLabel("Deficiência"),
           ],
         );
 
@@ -99,7 +99,8 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     final withPadding = (widget) => Padding(padding: padding, child: widget);
 
-    final heading = Heading(text: "Dados Pessoais", type: HeadingType.Title2);
+    const heading =
+        const Heading(text: "Dados Pessoais", type: HeadingType.Title2);
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar e prosseguir",
@@ -150,7 +151,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                       RowToColumn(
                         numColumns: 2,
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           Flexible(child: buttonSubmitAndStay),
                           Flexible(child: buttonSubmitAndGo),
                         ],
@@ -160,7 +161,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                 ),
               );
             }
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }),

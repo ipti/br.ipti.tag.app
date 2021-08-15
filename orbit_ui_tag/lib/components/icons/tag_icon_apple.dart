@@ -7,6 +7,6 @@ class TagIconApple extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TagIcon(path: FilePaths.ICON_APPLE_SVG);
+    return const TagIcon(path: FilePaths.ICON_APPLE_SVG);
   }
 }

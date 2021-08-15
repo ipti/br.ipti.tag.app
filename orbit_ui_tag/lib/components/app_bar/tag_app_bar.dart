@@ -3,16 +3,50 @@ import 'package:flutter/widgets.dart';
 import 'package:orbit_ui_tag/components/logo/logo.dart';
 import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 
-class TagAppBar extends AppBar {
-  final IconThemeData iconTheme = IconThemeData(
-    color: TagBackgroundColors.backgroundAppbar,
-  );
-  final double elevation = 0;
-  final Color backgroundColor = TagBackgroundColors.backgroundBody;
-  final Widget title = Container(
-    height: TagSizes.heightServiceLogoMedium,
-    child: LogoTag(
-      alignment: Alignment.centerLeft,
-    ),
-  );
+class TagAppBar extends StatelessWidget implements PreferredSize {
+  const TagAppBar({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final IconThemeData iconTheme = const IconThemeData(
+      color: TagColors.colorIconPrimary,
+      size: 24,
+    );
+
+    final Widget leading = new IconButton(
+      icon: new Icon(
+        Icons.menu,
+        size: 24.0,
+      ),
+      onPressed: () => Scaffold.of(context).openDrawer(),
+    );
+
+    final Widget title = Container(
+      width: 54,
+      margin: EdgeInsets.all(14),
+      height: TagSizes.heightServiceLogoMedium,
+      child: const Center(
+        child: LogoTag(
+          alignment: Alignment.centerLeft,
+        ),
+      ),
+    );
+
+    return AppBar(
+      toolbarHeight: TagSizes.heightServiceLogoMedium + 28,
+      iconTheme: iconTheme,
+      elevation: 0,
+      centerTitle: true,
+      title: title,
+      leading: leading,
+      backgroundColor: TagBackgroundColors.backgroundAppbar,
+    );
+  }
+
+  @override
+  Widget get child => this;
+
+  @override
+  Size get preferredSize =>
+      Size.fromHeight(TagSizes.heightServiceLogoMedium + 28);
 }

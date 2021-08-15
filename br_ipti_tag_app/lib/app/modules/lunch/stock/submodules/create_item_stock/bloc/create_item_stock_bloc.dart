@@ -1,14 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'enrollment_events.dart';
-import 'enrollment_states.dart';
+import 'create_item_stock_events.dart';
+import 'create_item_stock_states.dart';
 
-class EnrollmentBloc extends Bloc<EnrollmentEvent, EnrollmentState> {
-  EnrollmentBloc() : super(const EnrollmentState());
+class CreateItemStockBloc
+    extends Bloc<CreateItemStockEvent, CreateItemStockState> {
+  CreateItemStockBloc() : super(const CreateItemStockState());
 
   @override
-  Stream<EnrollmentState> mapEventToState(EnrollmentEvent event) async* {
+  Stream<CreateItemStockState> mapEventToState(
+      CreateItemStockEvent event) async* {
     yield state;
   }
 

@@ -7,6 +7,6 @@ class TagIconPersons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TagIcon(path: FilePaths.ICON_PERSONS_SVG);
+    return const TagIcon(path: FilePaths.ICON_PERSONS_SVG);
   }
 }

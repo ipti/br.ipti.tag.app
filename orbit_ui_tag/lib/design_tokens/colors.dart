@@ -25,8 +25,8 @@ class TagColors {
   static const colorHeading = const Color(0xFF252A31);
   static const colorHeadingInverted = const Color(0xFFFFFFFF);
 // TextLink
-  static const colorTextLinkPrimary = const Color(0xFF007F6D);
-  static const colorTextLinkPrimaryHover = const Color(0xFF00A991);
+  static const colorTextLinkPrimary = const Color(0xFF5F738C);
+  static const colorTextLinkPrimaryHover = const Color(0xFF272B96);
   static const colorTextLinkSecondary = const Color(0xFF252A31);
   static const colorTextLinkSecondaryHover = const Color(0xFF00A991);
 // Alert

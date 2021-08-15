@@ -23,9 +23,13 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = isActive
+        ? TagColors.colorTextLinkPrimaryHover
+        : TagColors.colorTextLinkPrimary;
+
     final textStyle = TextStyle(
-      color: TagColors.colorTextButtonPrimary,
-      // fontWeight: TagFontWeight.fontWeightLinks,
+      color: textColor,
+      fontWeight: TagFontWeight.fontWeightLinks,
       fontSize: TagFontSize.fontSizeHeadingTitle3,
     );
 

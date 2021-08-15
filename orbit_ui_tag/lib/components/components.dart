@@ -11,6 +11,8 @@ export 'menu/tag_menu.dart';
 export 'menu/menu_item/tag_menu_item.dart';
 export 'menu/menu_group/tag_menu_group.dart';
 export 'logo/logo.dart';
+export 'logo/logo_grey.dart';
+export 'logo/logo_light.dart';
 export 'icons/tag_icon.dart';
 export 'icons/tag_icon_truck.dart';
 export 'icons/tag_icon_apple.dart';
