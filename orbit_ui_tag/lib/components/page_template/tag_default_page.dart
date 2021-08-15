@@ -7,6 +7,7 @@ class TagDefaultPage extends StatelessWidget {
   final List<String> path;
   final String description;
   final List<Widget> body;
+  final Widget menu;
 
   const TagDefaultPage({
     Key key,
@@ -14,12 +15,14 @@ class TagDefaultPage extends StatelessWidget {
     @required this.path,
     @required this.description,
     @required this.body,
+    @required this.menu,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: MainLayoutAdaptativy(
+        left: menu,
         body: SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height,

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'modules/enrollment/enrollment_module.dart';
+import 'modules/food/submodules/stock/stock_module.dart';
 import 'modules/login/login_module.dart';
-import 'modules/lunch/submodules/stock/stock_module.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project

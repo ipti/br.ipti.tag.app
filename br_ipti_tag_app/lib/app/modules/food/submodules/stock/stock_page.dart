@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
@@ -23,6 +24,7 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
   @override
   Widget build(BuildContext context) {
     return TagDefaultPage(
+      menu: TagVerticalMenu(),
       title: widget.title,
       path: ["Merenda Escolar", widget.title],
       description: "",
