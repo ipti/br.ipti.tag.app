@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       builder: (context) => MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        initialRoute: "/alunos/matricula-rapida/personal",
+        initialRoute: "/turmas",
         color: TagBackgroundColors.backgroundBody,
       ).modular(),
     );

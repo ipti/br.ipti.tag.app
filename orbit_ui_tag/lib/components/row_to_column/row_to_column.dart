@@ -1,12 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class RowToColumn extends StatelessWidget {
-  const RowToColumn({Key key, this.children, @required this.numColumns})
-      : super(key: key);
+  const RowToColumn({Key key, this.children}) : super(key: key);
 
   final List<Widget> children;
-
-  final int numColumns;
 
   @override
   Widget build(BuildContext context) {

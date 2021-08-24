@@ -5,4 +5,13 @@ class TagMasks {
     mask: '##\/##\/####',
     filter: {"#": RegExp(r'[0-9]')},
   );
+
+  static final maskTime = new MaskTextInputFormatter(
+    mask: '2#:5#',
+    filter: {
+      "#": RegExp(r'[0-9]'),
+      "5": RegExp(r'[0-5]'),
+      "2": RegExp(r'[0-2]'),
+    },
+  );
 }

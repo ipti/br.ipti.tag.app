@@ -23,11 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_modular: 3.3.1
+  flutter_modular: 3.4.0
   flutter_bloc: ^7.0.1
   meta: ^1.1.6
   equatable: ^1.0.0    
   form_field_validator: any
+  dartz:
   dio: any  
 
   # device_preview: ^0.7.3
@@ -42,6 +43,7 @@ dependencies:
 dev_dependencies:
   device_preview: 
   flutter_modular_test:
+  mockito:
   flutter_test:
     sdk: flutter
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'layout_left_side_menu.dart';
+import 'layout_left_body_right.dart';
 import 'layout_topbar_and_body.dart';
 
 class MainLayoutAdaptativy extends StatelessWidget {
@@ -16,7 +16,7 @@ class MainLayoutAdaptativy extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         var isDesktop = constraints.maxWidth > 600;
         if (isDesktop) {
-          return LayoutLeftSideMenu(
+          return LayoutLeftBodyRight(
             body: body,
             left: left,
             right: right,

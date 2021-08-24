@@ -8,6 +8,7 @@ class TagDefaultPage extends StatelessWidget {
   final String description;
   final List<Widget> body;
   final Widget menu;
+  final Widget aside;
 
   const TagDefaultPage({
     Key key,
@@ -16,6 +17,7 @@ class TagDefaultPage extends StatelessWidget {
     @required this.description,
     @required this.body,
     @required this.menu,
+    this.aside,
   }) : super(key: key);
 
   @override
@@ -24,8 +26,9 @@ class TagDefaultPage extends StatelessWidget {
       child: MainLayoutAdaptativy(
         left: menu,
         body: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+          child: ConstrainedBox(
+            constraints:
+                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -58,6 +61,7 @@ class TagDefaultPage extends StatelessWidget {
             ),
           ),
         ),
+        right: aside,
       ),
     );
   }
