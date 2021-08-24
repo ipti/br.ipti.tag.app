@@ -82,7 +82,7 @@ class TagVerticalMenu extends StatelessWidget {
               submenus: [
                 TagMenuItem(
                   title: "Estoque",
-                  route: '/merenda/estoque/',
+                  route: '/merenda/estoque',
                   onTap: (route) {
                     Modular.to.navigate(route);
                   },
