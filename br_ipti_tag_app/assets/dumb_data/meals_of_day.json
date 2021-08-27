@@ -1,0 +1,46 @@
+[
+  {
+    "fullnameDay": "Segunda-Feira",
+    "currentDate": "09/11",
+    "meals": [
+      {
+        "hour": "07:00",
+        "tacoCode": "C0004K",
+        "foodName": "Mingau de milho",
+        "turn": "Manhã",
+        "studentType": "Fundamental",
+        "ingredients": "12 Leite, 15 fubá, 17 canela"
+      },
+      {
+        "hour": "19:00",
+        "tacoCode": "C0004K",
+        "foodName": "Mingau de milho",
+        "turn": "Noite",
+        "studentType": "EJA",
+        "ingredients": "12 Leite, 15 fubá, 17 canela"
+      }
+    ]
+  },
+  {
+    "fullnameDay": "Terça-Feira",
+    "currentDate": "10/11",
+    "meals": [
+      {
+        "hour": "07:00",
+        "tacoCode": "C0004K",
+        "foodName": "Mingau de puba",
+        "turn": "Manhã",
+        "studentType": "Fundamental",
+        "ingredients": "12 Leite, 15 fubá, 17 canela"
+      },
+      {
+        "hour": "19:00",
+        "tacoCode": "C0004K",
+        "foodName": "Mingau de puba",
+        "turn": "Noite",
+        "studentType": "EJA",
+        "ingredients": "12 Leite, 15 fubá, 17 canela"
+      }
+    ]
+  }
+]

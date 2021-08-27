@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 
 import '../../domain/entities/student.dart';
 import 'package:dartz/dartz.dart';
