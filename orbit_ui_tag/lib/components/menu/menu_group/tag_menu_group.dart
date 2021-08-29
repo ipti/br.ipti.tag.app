@@ -66,10 +66,10 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
               style: textStyle,
             ),
             children: [
-              for (var i = 0; i < submenus.length; i++)
-                submenus[i].copyWith(
-                  isActive: routeActiveItem == submenus[i].route,
-                )
+              // for (var i = 0; i < submenus.length; i++)
+              //   submenus[i].copyWith(
+              //     isActive: routeActiveItem == submenus[i].route,
+              //   )
             ],
             childrenPadding: const EdgeInsets.only(left: 16),
           ),

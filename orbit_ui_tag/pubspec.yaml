@@ -27,11 +27,7 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/icons/truck_tag.svg
-    - assets/icons/apple_tag.svg
-    - assets/icons/pencil_tag.svg
-    - assets/icons/persons_tag.svg
+  assets:    
     - assets/logo/logo_grey_tag.svg
     - assets/logo/logo_light_tag.svg
   # For details regarding assets in packages, see

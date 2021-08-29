@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.3.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -62,6 +62,14 @@ flutter:
   assets:
     - assets/logo/logo_tag.svg
     - assets/dumb_data/meals_of_day.json
+    - assets/icons/pessoas/azul.svg
+    - assets/icons/pessoas/cinza.svg
+    - assets/icons/lapis/azul.svg
+    - assets/icons/lapis/cinza.svg
+    - assets/icons/onibus/azul.svg
+    - assets/icons/onibus/cinza.svg
+    - assets/icons/maca/azul.svg
+    - assets/icons/maca/cinza.svg
     # - assets/icons/truck_tag.svg
     # - assets/icons/apple_tag.svg
     # - assets/icons/_tag.svg

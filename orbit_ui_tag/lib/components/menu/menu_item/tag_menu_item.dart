@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:orbit_ui_tag/components/components.dart';
 import 'package:orbit_ui_tag/design_tokens/colors.dart';
 import 'package:orbit_ui_tag/design_tokens/tokens.dart';
 
 import '../i_tag_menu_item.dart';
+
+enum MenuItemState { Normal, Hover, Click, Disabled }
 
 class TagMenuItem extends StatelessWidget implements ITagMenuItem {
   const TagMenuItem({
@@ -13,13 +16,15 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
     @required this.onTap,
     this.icon,
     this.isActive = false,
+    this.menuItemState,
   }) : super(key: key);
 
   final String title;
   final String route;
-  final Widget icon;
+  final TagIcon icon;
   final bool isActive;
   final Function onTap;
+  final MenuItemState menuItemState;
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +37,63 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
       fontWeight: TagFontWeight.fontWeightLinks,
       fontSize: TagFontSize.fontSizeHeadingTitle3,
     );
+    final indicatorColor =
+        isActive ? TagColors.colorTextLinkPrimaryHover : Colors.transparent;
 
-    return Opacity(
-      opacity: isActive ? 1 : 0.64,
-      child: ListTile(
-        leading: icon,
-        title: Text(
-          title,
-          style: textStyle,
-        ),
-        onTap: () {
-          onTap.call(route);
-        },
-      ),
-    );
-  }
-
-  copyWith({
-    String title,
-    Function onTap,
-    bool isActive,
-  }) {
-    return TagMenuItem(
-      title: title ?? this.title,
-      route: route ?? this.route,
-      onTap: onTap ?? this.onTap,
-      isActive: isActive ?? this.isActive,
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return Stack(
+        alignment: Alignment.centerLeft,
+        children: [
+          Container(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                height: 24,
+                width: 4,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.horizontal(right: Radius.circular(8)),
+                  color: indicatorColor,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(8),
+              onTap: () {
+                onTap.call(route);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+                child: ConstrainedBox(
+                  constraints: constraints,
+                  child: Row(
+                    children: [
+                      icon..disabled = !isActive,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            title,
+                            style: textStyle,
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.chevron_right)
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    });
   }
 }

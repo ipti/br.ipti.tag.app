@@ -46,7 +46,7 @@ class _LayoutPages extends StatelessWidget {
         children: [
           Flexible(flex: 3, child: left ?? Container()),
           Flexible(
-            flex: 15,
+            flex: 9,
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: center,

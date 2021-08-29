@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:orbit_ui_tag/orbit_ui_tag.dart';
@@ -7,95 +8,74 @@ class TagVerticalMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = ModalRoute.of(context).settings.name;
+    final items = [
+      TagMenuItem(
+        title: "Turmas",
+        route: '/turmas',
+        isActive: currentRoute == '/turmas/',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
+        ),
+        onTap: (route) {
+          Modular.to.navigate(route);
+        },
+      ),
+      TagMenuItem(
+        title: "Alunos",
+        route: '/alunos',
+        isActive: currentRoute == '/alunos/',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
+        ),
+        onTap: (route) {
+          Modular.to.navigate(route);
+        },
+      ),
+      TagMenuItem(
+        title: "Professores",
+        route: '/teacher',
+        isActive: currentRoute == '/teacher/',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
+        ),
+        onTap: (route) {
+          Modular.to.navigate(route);
+        },
+      ),
+      TagMenuItem(
+        title: "Transporte",
+        route: '/transporte',
+        isActive: currentRoute == '/transporte/',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
+        ),
+        onTap: (route) {
+          Modular.to.navigate(route);
+        },
+      ),
+      TagMenuItem(
+        title: "Merenda",
+        route: '/merenda',
+        isActive: currentRoute == '/merenda/',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
+        ),
+        onTap: (route) {
+          Modular.to.navigate(route);
+        },
+      ),
+    ];
+
     return Stack(
       children: [
         TagMenu(
-          initialRoute: ModalRoute.of(context).settings.name,
-          items: [
-            TagMenuGroup(
-              icon: TagIconPersons(),
-              title: "Início",
-              submenus: [
-                TagMenuItem(
-                  title: "Ver turmas",
-                  route: 'turmas/',
-                  onTap: (route) {},
-                ),
-              ],
-            ),
-            TagMenuGroup(
-              icon: TagIconPersons(),
-              title: "Turmas",
-              submenus: [
-                TagMenuItem(
-                  title: "Ver turmas",
-                  route: 'turmas/',
-                  onTap: (route) {},
-                ),
-              ],
-            ),
-            TagMenuGroup(
-              icon: TagIconPersons(),
-              title: "Alunos",
-              submenus: [
-                TagMenuItem(
-                  title: "Matricula",
-                  route: '/auth/login',
-                  onTap: (route) {
-                    Modular.to.navigate(route);
-                  },
-                ),
-                TagMenuItem(
-                  title: "Matricula Rápida",
-                  route: '/alunos/matricula-rapida',
-                  onTap: (route) {
-                    Modular.to.navigate(route);
-                  },
-                )
-              ],
-            ),
-            TagMenuGroup(
-              icon: TagIconPencil(),
-              title: "Professores",
-              submenus: [
-                TagMenuItem(
-                  title: "Ver turmas",
-                  route: '/',
-                  onTap: () {},
-                )
-              ],
-            ),
-            TagMenuGroup(
-              icon: TagIconTruck(),
-              title: "Transportes",
-              submenus: [
-                TagMenuItem(
-                  title: "Ver turmas",
-                  route: '/',
-                  onTap: () {},
-                )
-              ],
-            ),
-            TagMenuGroup(
-              icon: TagIconApple(),
-              title: "Merenda",
-              submenus: [
-                TagMenuItem(
-                  title: "Estoque",
-                  route: '/merenda/estoque',
-                  onTap: (route) {
-                    Modular.to.navigate(route);
-                  },
-                ),
-                TagMenuItem(
-                  title: "Cardápio",
-                  route: '/merenda/cardapio',
-                  onTap: () {},
-                )
-              ],
-            ),
-          ],
-        ),
+            initialRoute: ModalRoute.of(context).settings.name, items: items),
         SizedBox(
           width: double.infinity,
           child: Row(

@@ -135,7 +135,12 @@ class _FilterTurn extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttons = controller.turns.map((turn) {
       return _FilterButton(
-          child: Text(turn),
+          child: Text(
+            turn,
+            style: TextStyle(
+              color: TagColors.colorTextPrimary,
+            ),
+          ),
           onPressed: (isActive) {
             if (isActive) {
               controller.add(FilterByTurnEvent(turn));

@@ -11,7 +11,6 @@ class ListMealsOfDayUsecase implements Usecase<List<MealsOfDay>, NoParams> {
 
   @override
   Future<Either<Exception, List<MealsOfDay>>> call(NoParams params) async {
-    await Future.delayed(Duration(seconds: 2));
     final result = await _repositoryMealsOfDay.list();
     return result;
   }

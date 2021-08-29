@@ -45,15 +45,15 @@ class _LayoutPages extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Flexible(flex: 3, child: left ?? Container()),
+          Flexible(flex: 4, child: left ?? Container()),
           Flexible(
-            flex: 12,
+            flex: right != null ? 12 : 16,
             child: Padding(
               padding: const EdgeInsets.all(32),
               child: center,
             ),
           ),
-          if (right != null) Flexible(flex: 3, child: right ?? Container()),
+          if (right != null) Flexible(flex: 4, child: right ?? Container()),
         ],
       ),
     );
