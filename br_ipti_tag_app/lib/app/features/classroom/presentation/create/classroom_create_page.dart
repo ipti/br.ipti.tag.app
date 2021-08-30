@@ -42,8 +42,8 @@ class ClassroomCreatePageState
           Container(
             child: TabBar(
               isScrollable: true,
-              labelColor: TagColors.colorTabIndicator,
-              indicatorColor: TagColors.colorTabIndicator,
+              labelColor: TagColors.colorBaseProductDark,
+              indicatorColor: TagColors.colorBaseProductDark,
               labelPadding: const EdgeInsets.symmetric(horizontal: 8),
               tabs: const [
                 Tab(

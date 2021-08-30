@@ -25,11 +25,11 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
   @override
   Widget build(BuildContext context) {
     final textColor = isActive
-        ? TagColors.colorTextLinkPrimaryHover
-        : TagColors.colorTextLinkPrimary;
+        ? TagColors.colorBaseProductDark
+        : TagColors.colorBaseProductNormal;
 
     final indicatorColor =
-        isActive ? TagColors.colorTextLinkPrimaryHover : Colors.transparent;
+        isActive ? TagColors.colorBaseProductDark : Colors.transparent;
 
     final textStyle = TextStyle(
       color: textColor,

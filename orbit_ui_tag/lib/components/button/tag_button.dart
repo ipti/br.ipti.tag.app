@@ -15,11 +15,11 @@ class TagButton extends StatelessWidget {
       elevation: 0,
       padding: TagSpancing.paddingButtonNormal,
       minimumSize: const Size(double.infinity, TagSizes.heightButtonNormal),
-      primary: TagBackgroundColors.backgroundButtonPrimary,
+      primary: TagColors.colorBaseProductNormal,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(
-            TagBorderRadiusValues.borderRadiusLarge,
+            TagBorderRadiusValues.borderRadiusNormal,
           ),
         ),
       ),

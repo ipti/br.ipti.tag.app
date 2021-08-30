@@ -12,7 +12,7 @@ class TagLinkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const textStyle = TextStyle(
-      color: TagColors.colorTextButtonLinkPrimary,
+      color: TagColors.colorBaseProductNormal,
       decoration: TextDecoration.underline,
       fontWeight: FontWeight.bold,
     );
@@ -22,11 +22,11 @@ class TagLinkButton extends StatelessWidget {
       textStyle: textStyle,
       padding: TagSpancing.paddingButtonNormal,
       minimumSize: Size(double.infinity, TagSizes.heightButtonNormal),
-      primary: TagBackgroundColors.backgroundButtonPrimary,
+      primary: TagColors.colorBaseProductNormal,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(
-            TagBorderRadiusValues.borderRadiusLarge,
+            TagBorderRadiusValues.borderRadiusNormal,
           ),
         ),
       ),

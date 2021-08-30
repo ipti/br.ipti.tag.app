@@ -20,7 +20,7 @@ class TagMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        canvasColor: TagBackgroundColors.backgroundMenu,
+        canvasColor: TagColors.colorBaseProductLight,
       ),
       child: Drawer(
         elevation: 0,
@@ -37,7 +37,7 @@ class TagMenu extends StatelessWidget {
                   ),
                 ),
                 child: const LogoTag(
-                  width: 40,
+                  width: 64,
                 ),
               ),
               ...items

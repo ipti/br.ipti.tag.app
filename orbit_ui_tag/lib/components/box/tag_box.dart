@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../orbit_ui_tag.dart';
+
 class TagBox extends StatelessWidget {
   const TagBox(
       {Key key,
@@ -23,7 +25,9 @@ class TagBox extends StatelessWidget {
         padding: padding ?? EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: background,
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(
+            TagBorderRadiusValues.borderRadiusNormal,
+          ),
         ),
         child: child);
   }

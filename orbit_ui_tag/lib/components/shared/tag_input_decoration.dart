@@ -10,20 +10,20 @@ const borderSide = BorderSide(
 final border = OutlineInputBorder(
   borderSide: borderSide,
   borderRadius: BorderRadius.circular(
-    TagBorderRadiusValues.borderRadiusLarge,
+    TagBorderRadiusValues.borderRadiusNormal,
   ),
 );
 
 const textStyle = TextStyle(
   fontSize: TagFontSize.fontSizeInputNormal,
-  color: TagColors.colorTextInput,
+  color: TagColors.colorBaseInkNormal,
 );
 
 final buildInputDecoration = (String hint) => InputDecoration(
       floatingLabelBehavior: FloatingLabelBehavior.never,
       hintText: hint,
       filled: true,
-      fillColor: TagBackgroundColors.backgroundInput,
+      fillColor: TagColors.colorBaseWhiteNormal,
       contentPadding: TagSpancing.paddingInputNormal,
       enabledBorder: border.copyWith(
         borderSide: borderSide.copyWith(

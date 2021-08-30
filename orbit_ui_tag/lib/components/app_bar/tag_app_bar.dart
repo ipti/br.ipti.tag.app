@@ -9,7 +9,7 @@ class TagAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     final IconThemeData iconTheme = const IconThemeData(
-      color: TagColors.colorIconPrimary,
+      color: TagColors.colorBaseProductDark,
       size: 24,
     );
 
@@ -39,7 +39,7 @@ class TagAppBar extends StatelessWidget implements PreferredSize {
       centerTitle: true,
       title: title,
       leading: leading,
-      backgroundColor: TagBackgroundColors.backgroundAppbar,
+      backgroundColor: TagColors.colorBaseWhiteNormal,
     );
   }
 

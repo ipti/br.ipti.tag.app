@@ -49,7 +49,7 @@ class TagDefaultPage extends StatelessWidget {
                   Text(
                     description,
                     style: TextStyle(
-                      color: TagColors.colorTextSecondary,
+                      color: TagColors.colorBaseInkLight,
                     ),
                   ),
                   const SizedBox(

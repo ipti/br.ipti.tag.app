@@ -33,7 +33,7 @@ class MealsItemDay extends StatelessWidget {
               Text(
                 " $currentDate",
                 style: TextStyle(
-                  color: TagColors.colorTextSecondary,
+                  color: TagColors.colorBaseProductLight,
                 ),
               ),
             ],

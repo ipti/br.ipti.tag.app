@@ -23,20 +23,20 @@ class _TagBreadcrumbItemState extends State<TagBreadcrumbItem> {
   final textStyle = TextStyle(
     fontWeight: TagFontWeight.fontWeightLinks,
     fontSize: TagFontSize.fontSizeTextNormal,
-    color: TagColors.colorTextButtonLinkSecondary,
+    color: TagColors.colorBaseProductNormal,
     // decoration: TextDecoration.underline,
   );
 
   final textStyleHover = TextStyle(
     fontWeight: TagFontWeight.fontWeightLinks,
     fontSize: TagFontSize.fontSizeTextNormal,
-    color: TagColors.colorTextButtonLinkPrimaryHover,
+    color: TagColors.colorBaseProductNormal,
   );
 
   final textStylActive = TextStyle(
     fontWeight: TagFontWeight.fontWeightBold,
     fontSize: TagFontSize.fontSizeTextNormal,
-    color: TagColors.colorTextButtonLinkPrimaryActive,
+    color: TagColors.colorBaseProductNormal,
   );
 
   TextStyle style;

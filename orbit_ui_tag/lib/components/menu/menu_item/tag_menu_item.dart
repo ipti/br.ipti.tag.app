@@ -28,9 +28,8 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = isActive
-        ? TagColors.colorTextLinkPrimaryHover
-        : TagColors.colorTextLinkPrimary;
+    final textColor =
+        isActive ? TagColors.colorBaseProductDark : TagColors.colorBaseInkLight;
 
     final textStyle = TextStyle(
       color: textColor,
@@ -38,7 +37,7 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
       fontSize: TagFontSize.fontSizeHeadingTitle3,
     );
     final indicatorColor =
-        isActive ? TagColors.colorTextLinkPrimaryHover : Colors.transparent;
+        isActive ? TagColors.colorBaseProductDark : Colors.transparent;
 
     return LayoutBuilder(builder: (context, constraints) {
       return Stack(
@@ -61,13 +60,17 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(
+                TagBorderRadiusValues.borderRadiusLarge,
+              ),
               onTap: () {
                 onTap.call(route);
               },
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(
+                    TagBorderRadiusValues.borderRadiusLarge,
+                  ),
                 ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),

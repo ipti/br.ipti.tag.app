@@ -37,8 +37,8 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
           Container(
             child: TabBar(
               isScrollable: true,
-              labelColor: TagColors.colorTabIndicator,
-              indicatorColor: TagColors.colorTabIndicator,
+              labelColor: TagColors.colorBaseProductDark,
+              indicatorColor: TagColors.colorBaseProductDark,
               onTap: controller.tabNavigation,
               labelPadding: const EdgeInsets.symmetric(horizontal: 8),
               tabs: const [

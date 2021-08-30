@@ -63,7 +63,7 @@ class _Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return TagBox(
       minHeight: 100,
-      background: TagColors.colorTextTagSelected,
+      background: TagColors.colorBaseCloudLight,
       padding: const EdgeInsets.only(left: 40, top: 22, bottom: 24),
       child: Column(
         children: [
@@ -74,11 +74,14 @@ class _Card extends StatelessWidget {
                 Text(
                   tacoCode,
                   style: TextStyle(
-                    color: TagColors.colorTextSecondary,
+                    color: TagColors.colorBaseInkLight,
                   ),
                 ),
                 Text(" $foodName"),
-                _LabelInfoTurnAndType(text: turn),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: _LabelInfoTurnAndType(text: turn),
+                ),
                 _LabelInfoTurnAndType(text: studentType)
               ],
             ),
@@ -90,14 +93,14 @@ class _Card extends StatelessWidget {
                 Text(
                   "Ingredientes ",
                   style: TextStyle(
-                    color: TagColors.colorTextSecondary,
+                    color: TagColors.colorBaseInkLight,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 Text(
                   ingredients,
                   style: TextStyle(
-                    color: TagColors.colorTextInfo,
+                    color: TagColors.colorBaseProductNormal,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -122,11 +125,11 @@ class _LabelInfoTurnAndType extends StatelessWidget {
   Widget build(BuildContext context) {
     return TagBox(
       minHeight: 28,
-      background: TagBackgroundColors.backgroundAlertInfo,
+      background: TagColors.colorBaseProductSecondary,
       child: Text(
         text,
         style: TextStyle(
-          color: TagColors.colorTabIndicator,
+          color: TagColors.colorBaseProductDark,
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -149,7 +152,7 @@ class _HourLabel extends StatelessWidget {
       child: TagBox(
         minHeight: 28,
         padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        background: TagColors.colorIconInput,
+        background: TagColors.colorBaseProductLightActive,
         child: Text(
           hour,
           style: TextStyle(fontSize: 14, height: 1.44),

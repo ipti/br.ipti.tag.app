@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         initialRoute: "/turmas",
-        color: TagBackgroundColors.backgroundBody,
+        color: TagColors.colorBaseWhiteNormal,
       ).modular(),
     );
   }

@@ -135,13 +135,13 @@ class _NumberFieldButton extends StatelessWidget {
         child: TextButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
-              TagBackgroundColors.backgroundButtonWhiteHover,
+              TagColors.colorBaseProductLight,
             ),
           ),
           onPressed: onPressed,
           child: Icon(
             icon,
-            color: TagColors.colorTextTag,
+            color: TagColors.colorBaseInkNormal,
           ),
         ),
       ),

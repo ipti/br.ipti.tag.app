@@ -58,7 +58,7 @@ class CreateItemStockPageState
                     child: Text(
                       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis orci ligula, a viverra augue semper in. Quisque vulputate lobortis feugiat.",
                       style: TextStyle(
-                        color: TagColors.colorTextSecondary,
+                        color: TagColors.colorBaseProductLight,
                       ),
                     ),
                   ),
@@ -68,8 +68,8 @@ class CreateItemStockPageState
                   Container(
                     child: TabBar(
                       isScrollable: true,
-                      labelColor: TagColors.colorTabIndicator,
-                      indicatorColor: TagColors.colorTabIndicator,
+                      labelColor: TagColors.colorBaseProductDark,
+                      indicatorColor: TagColors.colorBaseProductDark,
                       onTap: controller.tabNavigation,
                       labelPadding: const EdgeInsets.symmetric(horizontal: 8),
                       tabs: const [

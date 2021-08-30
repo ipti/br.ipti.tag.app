@@ -27,44 +27,44 @@ class Heading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyleDefault = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
     );
 
     const TextStyle textStyleDisplayTitle = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingDisplay,
       fontWeight: TagFontWeight.fontWeightHeadingDisplay,
     );
 
     const TextStyle textStyleDisplaySubtitle = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingDisplaySubtitle,
       fontWeight: TagFontWeight.fontWeightHeadingDisplaySubtitle,
     );
 
     const TextStyle textStyleTitle1 = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingTitle1,
       fontWeight: TagFontWeight.fontWeightHeadingTitle1,
     );
 
     const TextStyle textStyleTitle2 = TextStyle(
-      color: TagColors.colorTextSecondary,
+      color: TagColors.colorBaseProductLight,
       fontSize: TagFontSize.fontSizeHeadingTitle2,
       fontWeight: TagFontWeight.fontWeightHeadingTitle2,
     );
     const TextStyle textStyleTitle3 = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingTitle3,
       fontWeight: TagFontWeight.fontWeightHeadingTitle3,
     );
     const TextStyle textStyleTitle4 = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingTitle4,
       fontWeight: TagFontWeight.fontWeightHeadingTitle4,
     );
     const TextStyle textStyleTitle5 = TextStyle(
-      color: TagColors.colorHeading,
+      color: TagColors.colorBaseInkNormal,
       fontSize: TagFontSize.fontSizeHeadingTitle5,
       fontWeight: TagFontWeight.fontWeightHeadingTitle5,
     );

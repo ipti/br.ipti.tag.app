@@ -36,19 +36,19 @@ class ClassroomPageState
       path: ["Turmas", widget.title],
       body: <Widget>[
         SizedBox(
-          height: 80,
           child: Row(
             children: [
               SizedBox(
                 width: 100,
                 child: TagButton(
-                  text: "Cadastrar",
+                  text: "Criar turma",
                   onPressed: () => Modular.to.pushNamed("create"),
                 ),
               )
             ],
           ),
         ),
+        SizedBox(height: 30),
         BlocConsumer<ClassroomListBloc, ClassroomListState>(
           bloc: controller,
           listener: (context, state) => print(state.toString()),
@@ -58,6 +58,7 @@ class ClassroomPageState
                 columns: [
                   DataColumn(label: Text("Nome")),
                   DataColumn(label: Text("Etapa")),
+                  DataColumn(label: Text("")),
                 ],
                 source: ClassroomDatatable(
                   data: state.classrooms,
@@ -68,6 +69,7 @@ class ClassroomPageState
                 columns: [
                   DataColumn(label: Text("Nome")),
                   DataColumn(label: Text("Etapa")),
+                  DataColumn(label: Text("")),
                 ],
                 source: ClassroomDatatable(
                   data: [],
@@ -95,13 +97,19 @@ class TagDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataTableTheme = DataTableThemeData(
-      headingRowColor: MaterialStateProperty.all(
-        TagColors.colorTabIndicator,
-      ),
       headingTextStyle: TextStyle(
-        color: TagColors.colorTextWhite,
+        color: TagColors.colorBaseInkLight,
+        fontWeight: FontWeight.bold,
       ),
-      dividerThickness: 0,
+      dataTextStyle: TextStyle(
+        color: TagColors.colorBaseInkNormal,
+        fontWeight: FontWeight.w500,
+      ),
+      dividerThickness: 1,
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        border: Border.all(width: 1),
+      ),
     );
 
     return LayoutBuilder(
@@ -109,12 +117,13 @@ class TagDataTable extends StatelessWidget {
         constraints: BoxConstraints(minWidth: constraints.maxWidth),
         child: Theme(
           data: ThemeData(
-            dividerColor: TagColors.colorTextWhite,
+            dividerColor: TagColors.colorBaseCloudDark,
             dataTableTheme: dataTableTheme,
+            cardTheme: CardTheme(elevation: 0, margin: EdgeInsets.zero),
           ),
           child: PaginatedDataTable(
-            headingRowHeight: 42,
-            dataRowHeight: 35,
+            headingRowHeight: 32,
+            dataRowHeight: 32,
             columns: columns,
             source: source,
           ),
@@ -136,6 +145,7 @@ class ClassroomDatatable extends DataTableSource {
     return DataRow(cells: [
       DataCell(Text(data[index].name.toUpperCase())),
       DataCell(Text(data[index].stageId.toString())),
+      DataCell(Icon(Icons.edit)),
     ]);
   }
 

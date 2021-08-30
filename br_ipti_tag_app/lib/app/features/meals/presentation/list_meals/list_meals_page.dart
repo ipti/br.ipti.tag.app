@@ -55,12 +55,15 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
               Text(
                 "Cardápio",
                 style: TextStyle(
-                    fontSize: 16, height: 1.4, fontWeight: FontWeight.w500),
+                  fontSize: 16,
+                  height: 1.4,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Text(
                 "Cardápio semanal da sua escola",
                 style: TextStyle(
-                  color: TagColors.colorTextSecondary,
+                  color: TagColors.colorBaseInkLight,
                 ),
               ),
             ],
@@ -138,7 +141,7 @@ class _FilterTurn extends StatelessWidget {
           child: Text(
             turn,
             style: TextStyle(
-              color: TagColors.colorTextPrimary,
+              color: TagColors.colorBaseInkNormal,
             ),
           ),
           onPressed: (isActive) {
@@ -187,10 +190,9 @@ class __FilterButtonState extends State<_FilterButton> {
 
   @override
   Widget build(BuildContext context) {
-    Color backgroundColor = TagBackgroundColors.backgroundButtonWhiteHover;
+    Color backgroundColor = TagColors.colorBaseCloudLight;
 
-    if (isSelected)
-      backgroundColor = TagBackgroundColors.backgroundButtonWhiteActive;
+    if (isSelected) backgroundColor = TagColors.colorBaseCloudLightActive;
 
     return TextButton(
       style: ButtonStyle(
