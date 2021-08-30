@@ -18,8 +18,8 @@ class TagVerticalMenu extends StatelessWidget {
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
-        onTap: (route) {
-          Modular.to.navigate(route);
+        onTap: (String routeName) {
+          Modular.to.navigate(routeName);
         },
       ),
       TagMenuItem(
@@ -30,8 +30,8 @@ class TagVerticalMenu extends StatelessWidget {
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
-        onTap: (route) {
-          Modular.to.navigate(route);
+        onTap: (String routeName) {
+          Modular.to.navigate(routeName);
         },
       ),
       TagMenuItem(
@@ -42,8 +42,8 @@ class TagVerticalMenu extends StatelessWidget {
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
         ),
-        onTap: (route) {
-          Modular.to.navigate(route);
+        onTap: (String routeName) {
+          Modular.to.navigate(routeName);
         },
       ),
       TagMenuItem(
@@ -54,8 +54,8 @@ class TagVerticalMenu extends StatelessWidget {
           defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
         ),
-        onTap: (route) {
-          Modular.to.navigate(route);
+        onTap: (String routeName) {
+          Modular.to.navigate(routeName);
         },
       ),
       TagMenuItem(
@@ -66,8 +66,8 @@ class TagVerticalMenu extends StatelessWidget {
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
         ),
-        onTap: (route) {
-          Modular.to.navigate(route);
+        onTap: (String routeName) {
+          Modular.to.navigate(routeName);
         },
       ),
     ];
@@ -83,25 +83,25 @@ class TagVerticalMenu extends StatelessWidget {
               Flexible(
                 child: Container(
                   height: 4,
-                  color: Color(0xFF667DF4),
+                  color: const Color(0xFF667DF4),
                 ),
               ),
               Flexible(
                 child: Container(
                   height: 4,
-                  color: Color(0xFFF45A5A),
+                  color: const Color(0xFFF45A5A),
                 ),
               ),
               Flexible(
                 child: Container(
                   height: 4,
-                  color: Color(0xFF66D654),
+                  color: const Color(0xFF66D654),
                 ),
               ),
               Flexible(
                 child: Container(
                   height: 4,
-                  color: Color(0xFFEADA48),
+                  color: const Color(0xFFEADA48),
                 ),
               ),
             ],

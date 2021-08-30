@@ -14,7 +14,7 @@ class HomeModule extends Module {
 
   // Provide all the routes for your module
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => HomePage())
+  final List<ModularRoute<void>> routes = [
+    ChildRoute('/', child: (_, args) => const HomePage())
   ];
 }

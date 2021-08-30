@@ -13,20 +13,21 @@ class ClassroomModule extends Module {
     // Datasources
 
     // Repositories
-    Bind.singleton((i) => new ClassroomRepositoryImpl()),
+    Bind.singleton((i) => ClassroomRepositoryImpl()),
 
     // List
-    Bind.singleton((i) => new ListClassroomsUsecase(i.get())),
-    Bind.singleton((i) => new ClassroomListBloc(i.get())),
+    Bind.singleton((i) => ListClassroomsUsecase(i.get())),
+    Bind.singleton((i) => ClassroomListBloc(i.get())),
 
     // Create
-    Bind.singleton((i) => new CreateClassroomUsecase(i.get())),
-    Bind.singleton((i) => new ClassroomCreateBloc(i.get())),
+    Bind.singleton((i) => CreateClassroomUsecase(i.get())),
+    Bind.singleton((i) => ClassroomCreateBloc(i.get())),
   ];
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => ClassroomPage()),
-    ChildRoute("create", child: (_, args) => ClassroomCreatePage()),
+  final List<ModularRoute<void>> routes = [
+    ChildRoute<ClassroomPage>("/", child: (_, args) => const ClassroomPage()),
+    ChildRoute<ClassroomCreatePage>("create",
+        child: (_, args) => const ClassroomCreatePage()),
   ];
 }

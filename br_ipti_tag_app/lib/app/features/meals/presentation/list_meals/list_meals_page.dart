@@ -28,7 +28,7 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
   @override
   Widget build(BuildContext context) {
     return TagDefaultPage(
-      menu: TagVerticalMenu(),
+      menu: const TagVerticalMenu(),
       aside: Container(),
       title: widget.title,
       description: "Acompanhe o calendário e o estoqueda merenda da sua escola",
@@ -48,10 +48,10 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "Cardápio",
                 style: TextStyle(
@@ -72,11 +72,12 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
         BlocBuilder<ListMealsBloc, ListMealsState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is LoadedState)
+            if (state is LoadedState) {
               return DailyMealsList(
                 mealsOfDay: state.mealsOfDay,
               );
-            return CircularProgressIndicator();
+            }
+            return const CircularProgressIndicator();
           },
         )
       ],
@@ -94,15 +95,15 @@ class _FilterStudentType extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
           child: Text("Filtrar tipo de aluno"),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 338),
+          constraints: const BoxConstraints(minWidth: 338),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Placeholder(
                 fallbackHeight: 40,
                 fallbackWidth: 70,
@@ -138,29 +139,30 @@ class _FilterTurn extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttons = controller.turns.map((turn) {
       return _FilterButton(
-          child: Text(
-            turn,
-            style: TextStyle(
-              color: TagColors.colorBaseInkNormal,
-            ),
+        onPressed: (bool isActive) {
+          if (isActive) {
+            controller.add(FilterByTurnEvent(turn));
+          } else {
+            controller.add(CleanFilterByTurnEvent(turn));
+          }
+        },
+        child: Text(
+          turn,
+          style: const TextStyle(
+            color: TagColors.colorBaseInkNormal,
           ),
-          onPressed: (isActive) {
-            if (isActive) {
-              controller.add(FilterByTurnEvent(turn));
-            } else {
-              controller.add(CleanFilterByTurnEvent(turn));
-            }
-          });
+        ),
+      );
     }).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
           child: Text("Mostrar turnos"),
         ),
         ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 200),
+          constraints: const BoxConstraints(minWidth: 200),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: buttons,
@@ -198,16 +200,16 @@ class __FilterButtonState extends State<_FilterButton> {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(backgroundColor),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: widget.child,
-      ),
       onPressed: () {
         setState(() {
           isSelected = !isSelected;
         });
         widget.onPressed(isSelected);
       },
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: widget.child,
+      ),
     );
   }
 }
@@ -222,12 +224,12 @@ class _StudentCounter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0),
           child: Text("Quantidade de alunos"),
         ),
         TagNumberField(
-          onChanged: (value) => print(value),
+          onChanged: (value) => {},
         ),
       ],
     );

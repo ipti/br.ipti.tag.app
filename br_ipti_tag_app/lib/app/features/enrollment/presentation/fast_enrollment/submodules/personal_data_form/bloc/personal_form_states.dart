@@ -32,7 +32,7 @@ class PersonalFormState extends Equatable {
     int studentClass,
     String foodRestrictions,
   }) {
-    return new PersonalFormState(
+    return PersonalFormState(
       name: name ?? this.name,
       birthday: birthday ?? this.birthday,
       sex: sex ?? this.sex,

@@ -29,7 +29,7 @@ class ParamsCreateClassroom extends Equatable {
   final String endTime;
   final int modalityId;
   final int stageId;
-  ParamsCreateClassroom({
+  const ParamsCreateClassroom({
     @required this.name,
     @required this.startTime,
     @required this.endTime,

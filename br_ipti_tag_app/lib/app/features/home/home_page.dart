@@ -4,14 +4,14 @@ import 'package:br_ipti_tag_app/app/features/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeController _controller = Modular.get();
+  final HomeController _controller = Modular.get();
 
   @override
   void initState() {
@@ -30,14 +30,14 @@ class _HomePageState extends State<HomePage> {
               child: StreamBuilder<HomeEvent>(
                   stream: _controller.states.stream,
                   builder: (context, AsyncSnapshot<HomeEvent> snapshot) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }),
             ),
             TextButton(
-              child: Text("Me leve para outro modulo"),
               onPressed: () => _controller.fetchUsers(),
+              child: const Text("Me leve para outro modulo"),
             ),
           ],
         ),

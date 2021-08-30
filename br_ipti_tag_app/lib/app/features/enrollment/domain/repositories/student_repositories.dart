@@ -1,6 +1,7 @@
+import 'package:dartz/dartz.dart';
+
 import '../../domain/entities/student.dart';
 import '../../domain/usecases/fast_enrollment_usecase.dart';
-import 'package:dartz/dartz.dart';
 
 class StudentService implements IStudentService {
   final IStudentRepository _repository;

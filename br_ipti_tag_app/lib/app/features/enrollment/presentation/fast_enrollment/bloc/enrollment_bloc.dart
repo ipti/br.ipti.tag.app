@@ -12,7 +12,7 @@ class EnrollmentBloc extends Bloc<EnrollmentEvent, EnrollmentState> {
     yield state;
   }
 
-  void tabNavigation(index) {
+  void tabNavigation(int index) {
     switch (index) {
       case 0:
         Modular.to.navigate('/alunos/matricula-rapida/personal');

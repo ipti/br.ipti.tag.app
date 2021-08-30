@@ -32,11 +32,11 @@ class ClassroomCreateBloc
     2: "Teste 3",
   };
 
-  setName(String name) => add(NameChanged(name));
-  setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
-  setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
-  setModality(num modalityId) => add(ModalityChanged(modalityId));
-  setStage(num stageId) => add(StageChanged(stageId));
+  void setName(String name) => add(NameChanged(name));
+  void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
+  void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
+  void setModality(int modalityId) => add(ModalityChanged(modalityId));
+  void setStage(int stageId) => add(StageChanged(stageId));
 
   @override
   Stream<ClassroomCreateFormState> mapEventToState(

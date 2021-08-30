@@ -26,33 +26,30 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 0,
       length: 3,
       child: TagDefaultPage(
-        menu: TagVerticalMenu(),
+        menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],
         body: [
-          Container(
-            child: TabBar(
-              isScrollable: true,
-              labelColor: TagColors.colorBaseProductDark,
-              indicatorColor: TagColors.colorBaseProductDark,
-              onTap: controller.tabNavigation,
-              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-              tabs: const [
-                Tab(
-                  child: Text("Dados do aluno"),
-                ),
-                Tab(
-                  child: Text("Endereço"),
-                ),
-                Tab(
-                  child: Text("Turma"),
-                ),
-              ],
-            ),
+          TabBar(
+            isScrollable: true,
+            labelColor: TagColors.colorBaseProductDark,
+            indicatorColor: TagColors.colorBaseProductDark,
+            onTap: controller.tabNavigation,
+            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+            tabs: const [
+              Tab(
+                child: Text("Dados do aluno"),
+              ),
+              Tab(
+                child: Text("Endereço"),
+              ),
+              Tab(
+                child: Text("Turma"),
+              ),
+            ],
           ),
           Expanded(
             child: RouterOutlet(),

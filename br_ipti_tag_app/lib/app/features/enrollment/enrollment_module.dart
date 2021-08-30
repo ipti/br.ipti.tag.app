@@ -18,26 +18,26 @@ import 'presentation/fast_enrollment/submodules/personal_data_form/personal_data
 class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => new StudentRepository(i.get())),
-    Bind.lazySingleton((i) => new StudentService(i.get())),
-    Bind.lazySingleton((i) => new FastEnrollmentUsecase(i.get())),
-    Bind.singleton((i) => new EnrollmentBloc()),
+    Bind.lazySingleton((i) => StudentRepository(i.get())),
+    Bind.lazySingleton((i) => StudentService(i.get())),
+    Bind.lazySingleton((i) => FastEnrollmentUsecase(i.get())),
+    Bind.singleton((i) => EnrollmentBloc()),
     // PersonalForm
-    Bind.singleton((i) => new PersonalFormState()),
-    Bind.singleton((i) => new PersonalFormBloc(i.get())),
+    Bind.singleton((i) => const PersonalFormState()),
+    Bind.singleton((i) => PersonalFormBloc(i.get())),
     // AddressForm
-    Bind.singleton((i) => new AddressFormState()),
-    Bind.singleton((i) => new AddressFormBloc(i.get())),
+    Bind.singleton((i) => const AddressFormState()),
+    Bind.singleton((i) => AddressFormBloc(i.get())),
     // ClassesForm
-    Bind.singleton((i) => new ClassesFormState()),
-    Bind.singleton((i) => new ClassesFormBloc(i.get())),
+    Bind.singleton((i) => const ClassesFormState()),
+    Bind.singleton((i) => ClassesFormBloc(i.get())),
   ];
 
   @override
-  final List<ModularRoute> routes = [
+  final List<ModularRoute<void>> routes = [
     ChildRoute(
       "/matricula-rapida",
-      child: (_, args) => EnrollmentPage(),
+      child: (_, args) => const EnrollmentPage(),
       children: [
         ModuleRoute(
           '/personal',

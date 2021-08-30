@@ -25,14 +25,14 @@ class MealsItemDay extends StatelessWidget {
             children: [
               Text(
                 fullnameDay,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),
               Text(
                 " $currentDate",
-                style: TextStyle(
+                style: const TextStyle(
                   color: TagColors.colorBaseProductLight,
                 ),
               ),

@@ -9,7 +9,6 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      isToolbarVisible: true,
       enabled: !kReleaseMode,
       builder: (context) => MaterialApp(
         locale: DevicePreview.locale(context),

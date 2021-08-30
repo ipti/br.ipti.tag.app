@@ -7,7 +7,7 @@ class CreateItemStockModule extends Module {
   final List<Bind> binds = [];
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => CreateItemStockPage())
+  final List<ModularRoute<void>> routes = [
+    ChildRoute("/", child: (_, args) => const CreateItemStockPage())
   ];
 }

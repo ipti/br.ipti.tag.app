@@ -5,11 +5,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 class HomeController extends Disposable {
   StreamController<HomeEvent> states = StreamController.broadcast();
 
-  fetchUsers() async {
+  Future<void> fetchUsers() async {
     states.add(HomeLoading());
   }
 
-  navigateToLogin() {
+  void navigateToLogin() {
     Modular.to.pushNamed("/login");
   }
 

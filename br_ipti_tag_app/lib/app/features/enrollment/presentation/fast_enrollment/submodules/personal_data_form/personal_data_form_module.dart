@@ -7,8 +7,8 @@ class PersonalDataFormModule extends Module {
   final List<Bind> binds = [];
 
   @override
-  final List<ModularRoute> routes = [
+  final List<ModularRoute<void>> routes = [
     ChildRoute(Modular.initialRoute,
-        child: (_, args) => PersonalDataFormPage()),
+        child: (_, args) => const PersonalDataFormPage()),
   ];
 }

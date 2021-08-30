@@ -24,7 +24,7 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
   @override
   Widget build(BuildContext context) {
     return TagDefaultPage(
-      menu: TagVerticalMenu(),
+      menu: const TagVerticalMenu(),
       title: widget.title,
       path: ["Merenda Escolar", widget.title],
       description: "",

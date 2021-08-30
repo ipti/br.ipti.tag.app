@@ -10,7 +10,7 @@ class ClassesFormState extends Equatable {
   ClassesFormState copyWith({
     int studentClass,
   }) {
-    return new ClassesFormState(
+    return ClassesFormState(
       studentClass: studentClass ?? this.studentClass,
     );
   }

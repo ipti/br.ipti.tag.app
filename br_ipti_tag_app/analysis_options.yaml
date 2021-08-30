@@ -1,0 +1,23 @@
+include: package:lint/analysis_options.yaml
+
+
+analyzer:
+  exclude: [build/**]
+  language:
+    strict-raw-types: true
+  strong-mode:
+    implicit-casts: false
+      
+    # implicit-dynamic: false
+
+
+linter:
+  rules:
+    constant_identifier_names: false
+    cancel_subscriptions: true
+    type_annotate_public_apis: true
+    lines_longer_than_80_chars: true
+    use_setters_to_change_properties: true
+    avoid_classes_with_only_static_members: true
+
+    

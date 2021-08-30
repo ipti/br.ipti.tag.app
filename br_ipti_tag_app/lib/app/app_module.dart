@@ -12,7 +12,7 @@ class AppModule extends Module {
 
   // Provide all the routes for your module
   @override
-  final List<ModularRoute> routes = [
+  final List<ModularRoute<void>> routes = [
     ModuleRoute(
       "/merenda",
       module: MealsModule(),

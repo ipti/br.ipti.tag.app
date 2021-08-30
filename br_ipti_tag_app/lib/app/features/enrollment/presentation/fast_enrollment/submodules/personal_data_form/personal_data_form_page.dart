@@ -9,7 +9,7 @@ import 'bloc/personal_form_bloc.dart';
 import 'bloc/personal_form_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
-  PersonalDataFormPage({Key key}) : super(key: key);
+  const PersonalDataFormPage({Key key}) : super(key: key);
 
   @override
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
@@ -21,9 +21,9 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    const padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 16);
+    const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
 
-    final inputName = (name) => TagTextField(
+    Widget inputName(String name) => TagTextField(
           label: "Nome",
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
@@ -31,7 +31,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final inputBirthday = (birthday) => TagDatePickerField(
+    Widget inputBirthday(String birthday) => TagDatePickerField(
           label: "Data nascimento",
           hint: "__/__/____",
           onChanged: controller.setBirthday,
@@ -39,7 +39,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final selectSex = (sex) => TagDropdownField(
+    Widget selectSex(int sex) => TagDropdownField(
           label: 'Sexo',
           hint: "Selecione o sexo",
           items: controller.sexItems,
@@ -48,7 +48,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final selectColorRace = (colorRace) => TagDropdownField(
+    Widget selectColorRace(int colorRace) => TagDropdownField(
           label: 'Cor/Raça',
           hint: "Selecione a cor/raça",
           items: controller.colorRaceItems,
@@ -57,7 +57,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final selectFiliation = (filiation) => TagDropdownField(
+    Widget selectFiliation(int filiation) => TagDropdownField(
           label: 'Filiação',
           hint: "Selecione a filiação",
           items: controller.filiationItems,
@@ -66,7 +66,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final selectNationality = (nationality) => TagDropdownField(
+    Widget selectNationality(int nationality) => TagDropdownField(
           label: 'Nacionalidade',
           hint: "Selecione a nacionalidade",
           items: controller.nationalityItems,
@@ -75,31 +75,30 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    final deficiencyCheck = (deficiency) => Row(
+    Widget deficiencyCheck({bool deficiency}) => Row(
           children: [
             Checkbox(
               value: deficiency ?? false,
-              onChanged: controller.setDeficiency,
+              onChanged: (value) => controller.setDeficiency(value: value),
             ),
             const TagLabel("Deficiência"),
           ],
         );
 
-    final inputFoodRestriction = (foodRestriction) => TagTextField(
+    Widget inputFoodRestriction(String foodRestriction) => TagTextField(
           label: "Restrição Alimentar / Alergia",
           inputType: TextInputType.multiline,
           hint: "",
           onChanged: controller.setFoodRestriction,
           value: foodRestriction,
           validator: requiredValidator,
-          minLines: 1,
           maxLines: 5,
         );
 
-    final withPadding = (widget) => Padding(padding: padding, child: widget);
+    Widget withPadding(Widget widget) =>
+        Padding(padding: padding, child: widget);
 
-    const heading =
-        const Heading(text: "Dados Pessoais", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados Pessoais", type: HeadingType.Title2);
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar e prosseguir",
@@ -113,9 +112,8 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     return Form(
       key: _formKey,
-      child: BlocConsumer<PersonalFormBloc, PersonalFormState>(
+      child: BlocBuilder<PersonalFormBloc, PersonalFormState>(
           bloc: controller,
-          listener: (_, state) => print(state.toString()),
           builder: (context, state) {
             if (state is PersonalFormState) {
               return SingleChildScrollView(
@@ -132,9 +130,8 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         ],
                       ),
                       RowToColumn(children: [
-                        Flexible(flex: 1, child: selectSex(state.sex)),
-                        Flexible(
-                            flex: 1, child: selectColorRace(state.colorRace)),
+                        Flexible(child: selectSex(state.sex)),
+                        Flexible(child: selectColorRace(state.colorRace)),
                         Flexible(
                             flex: 3,
                             child: selectNationality(state.nationality)),
@@ -145,7 +142,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                             child:
                                 inputFoodRestriction(state.foodRestrictions)),
                       ]),
-                      deficiencyCheck(state.deficiency),
+                      deficiencyCheck(deficiency: state.deficiency),
                       RowToColumn(
                         children: [
                           const Spacer(),

@@ -6,11 +6,11 @@ import 'stock_page.dart';
 class StockModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => new StockBloc()),
+    Bind.lazySingleton((i) => StockBloc()),
   ];
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => StockPage()),
+  final List<ModularRoute<void>> routes = [
+    ChildRoute("/", child: (_, args) => const StockPage()),
   ];
 }

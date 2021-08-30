@@ -26,7 +26,6 @@ class CreateItemStockPageState
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        initialIndex: 0,
         length: 3,
         child: MainLayoutAdaptativy(
           body: SingleChildScrollView(
@@ -42,7 +41,7 @@ class CreateItemStockPageState
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: TagBreadcrumb(
                         rootItem: "Tag",
-                        paths: const ["Alunos", "Matricula Rápida"],
+                        paths: ["Alunos", "Matricula Rápida"],
                       ),
                     ),
                   ),
@@ -56,7 +55,11 @@ class CreateItemStockPageState
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis orci ligula, a viverra augue semper in. Quisque vulputate lobortis feugiat.",
+                      """
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Morbi sagittis orci ligula, a viverra augue semper in. 
+                        Quisque vulputate lobortis feugiat.
+                      """,
                       style: TextStyle(
                         color: TagColors.colorBaseProductLight,
                       ),
@@ -65,25 +68,23 @@ class CreateItemStockPageState
                   const SizedBox(
                     height: 28,
                   ),
-                  Container(
-                    child: TabBar(
-                      isScrollable: true,
-                      labelColor: TagColors.colorBaseProductDark,
-                      indicatorColor: TagColors.colorBaseProductDark,
-                      onTap: controller.tabNavigation,
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                      tabs: const [
-                        Tab(
-                          child: Text("Dados do aluno"),
-                        ),
-                        Tab(
-                          child: Text("Endereço"),
-                        ),
-                        Tab(
-                          child: Text("Turma"),
-                        ),
-                      ],
-                    ),
+                  TabBar(
+                    isScrollable: true,
+                    labelColor: TagColors.colorBaseProductDark,
+                    indicatorColor: TagColors.colorBaseProductDark,
+                    onTap: controller.tabNavigation,
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                    tabs: const [
+                      Tab(
+                        child: Text("Dados do aluno"),
+                      ),
+                      Tab(
+                        child: Text("Endereço"),
+                      ),
+                      Tab(
+                        child: Text("Turma"),
+                      ),
+                    ],
                   ),
                   Expanded(
                     child: RouterOutlet(),

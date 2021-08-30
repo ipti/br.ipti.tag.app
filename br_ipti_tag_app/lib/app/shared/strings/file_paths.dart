@@ -1,3 +1,8 @@
+/// Paths to files in assets bundle
+///
+///
+///
+// ignore: constant_identifier_names
 class FilePaths {
   static const LOGO_PATH_SVG = 'assets/logo/logo_tag.svg';
   // Persons Icon

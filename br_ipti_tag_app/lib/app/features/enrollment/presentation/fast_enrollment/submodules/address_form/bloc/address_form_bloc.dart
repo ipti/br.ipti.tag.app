@@ -15,11 +15,10 @@ class AddressFormBloc extends Bloc<AddressFormEvent, AddressFormState> {
     2: "RURAL",
   };
 
-  setResidenceZone(int value) => add(ResidenceZoneChanged(value));
+  void setResidenceZone(int value) => add(ResidenceZoneChanged(value));
 
   @override
   void onTransition(Transition<AddressFormEvent, AddressFormState> transition) {
-    print(transition);
     super.onTransition(transition);
   }
 

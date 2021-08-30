@@ -30,27 +30,24 @@ class ClassroomCreatePageState
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 0,
       length: 1,
       child: TagDefaultPage(
-        menu: TagVerticalMenu(),
+        menu: const TagVerticalMenu(),
         aside: Container(),
         title: widget.title,
         description: "",
         path: ["Turmas", widget.title],
-        body: <Widget>[
-          Container(
-            child: TabBar(
-              isScrollable: true,
-              labelColor: TagColors.colorBaseProductDark,
-              indicatorColor: TagColors.colorBaseProductDark,
-              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-              tabs: const [
-                Tab(
-                  child: Text("Dados da Turma"),
-                ),
-              ],
-            ),
+        body: const <Widget>[
+          TabBar(
+            isScrollable: true,
+            labelColor: TagColors.colorBaseProductDark,
+            indicatorColor: TagColors.colorBaseProductDark,
+            labelPadding: EdgeInsets.symmetric(horizontal: 8),
+            tabs: [
+              Tab(
+                child: Text("Dados da Turma"),
+              ),
+            ],
           ),
           ClassroomBasicDataForm()
         ],
@@ -60,7 +57,7 @@ class ClassroomCreatePageState
 }
 
 class ClassroomBasicDataForm extends StatefulWidget {
-  ClassroomBasicDataForm({Key key}) : super(key: key);
+  const ClassroomBasicDataForm({Key key}) : super(key: key);
 
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
@@ -74,18 +71,20 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
 
-    final withPadding = (widget) => Padding(padding: padding, child: widget);
+    Widget withPadding(Widget widget) =>
+        Padding(padding: padding, child: widget);
 
-    final heading = Heading(text: "Turma", type: HeadingType.Title2);
+    const heading = Heading(text: "Turma", type: HeadingType.Title2);
 
-    final inputName = (name) => TagTextField(
+    Widget inputName(String name) => TagTextField(
           label: "Nome",
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
           validator: requiredValidator,
         );
-    final inputStartTime = (TimeOfDay startTime) => TagTextField(
+
+    Widget inputStartTime(TimeOfDay startTime) => TagTextField(
           label: "Horário Inicial",
           hint: "Digite o nome do aluno",
           formatters: [TagMasks.maskTime],
@@ -96,7 +95,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           validator: requiredTimeValidator,
         );
 
-    final inputEndTime = (TimeOfDay endTime) => TagTextField(
+    Widget inputEndTime(TimeOfDay endTime) => TagTextField(
           label: "Horário Final",
           hint: "Digite o nome do aluno",
           formatters: [TagMasks.maskTime],
@@ -106,15 +105,15 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           value: endTime.format(context),
           validator: requiredTimeValidator,
         );
-    final selectModality = (nationality) => TagDropdownField(
+    Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
           hint: "Selecione a modalidade",
           items: controller.modalitiesList,
           onChanged: controller.setModality,
-          value: nationality,
+          value: modality,
           validator: requiredValidator,
         );
-    final selectStage = (nationality) => TagDropdownField(
+    Widget selectStage(int nationality) => TagDropdownField(
           label: 'Etapa de Ensino',
           hint: "Selecione a etapa",
           items: controller.stagesList,
@@ -125,9 +124,8 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
 
     return Form(
       key: _formKey,
-      child: BlocConsumer<ClassroomCreateBloc, ClassroomCreateState>(
+      child: BlocBuilder<ClassroomCreateBloc, ClassroomCreateState>(
           bloc: controller,
-          listener: (_, state) => print(state.toString()),
           builder: (context, state) {
             if (state is ClassroomCreateFormState) {
               return SingleChildScrollView(
@@ -164,7 +162,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                 ),
               );
             }
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }),

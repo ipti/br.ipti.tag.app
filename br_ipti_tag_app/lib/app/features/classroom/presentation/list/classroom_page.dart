@@ -30,7 +30,7 @@ class ClassroomPageState
   @override
   Widget build(BuildContext context) {
     return TagDefaultPage(
-      menu: TagVerticalMenu(),
+      menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
       path: ["Turmas", widget.title],
@@ -48,14 +48,13 @@ class ClassroomPageState
             ],
           ),
         ),
-        SizedBox(height: 30),
-        BlocConsumer<ClassroomListBloc, ClassroomListState>(
+        const SizedBox(height: 30),
+        BlocBuilder<ClassroomListBloc, ClassroomListState>(
           bloc: controller,
-          listener: (context, state) => print(state.toString()),
           builder: (context, state) {
             if (state is LoadedState) {
               return TagDataTable(
-                columns: [
+                columns: const [
                   DataColumn(label: Text("Nome")),
                   DataColumn(label: Text("Etapa")),
                   DataColumn(label: Text("")),
@@ -66,7 +65,7 @@ class ClassroomPageState
               );
             } else if (state is EmptyState) {
               return TagDataTable(
-                columns: [
+                columns: const [
                   DataColumn(label: Text("Nome")),
                   DataColumn(label: Text("Etapa")),
                   DataColumn(label: Text("")),
@@ -76,7 +75,7 @@ class ClassroomPageState
                 ),
               );
             }
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           },
         )
       ],
@@ -96,7 +95,7 @@ class TagDataTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dataTableTheme = DataTableThemeData(
+    const dataTableTheme = DataTableThemeData(
       headingTextStyle: TextStyle(
         color: TagColors.colorBaseInkLight,
         fontWeight: FontWeight.bold,
@@ -106,10 +105,6 @@ class TagDataTable extends StatelessWidget {
         fontWeight: FontWeight.w500,
       ),
       dividerThickness: 1,
-      decoration: BoxDecoration(
-        color: Colors.amber,
-        border: Border.all(width: 1),
-      ),
     );
 
     return LayoutBuilder(
@@ -119,7 +114,7 @@ class TagDataTable extends StatelessWidget {
           data: ThemeData(
             dividerColor: TagColors.colorBaseCloudDark,
             dataTableTheme: dataTableTheme,
-            cardTheme: CardTheme(elevation: 0, margin: EdgeInsets.zero),
+            cardTheme: const CardTheme(elevation: 0, margin: EdgeInsets.zero),
           ),
           child: PaginatedDataTable(
             headingRowHeight: 32,
@@ -145,7 +140,7 @@ class ClassroomDatatable extends DataTableSource {
     return DataRow(cells: [
       DataCell(Text(data[index].name.toUpperCase())),
       DataCell(Text(data[index].stageId.toString())),
-      DataCell(Icon(Icons.edit)),
+      const DataCell(Icon(Icons.edit)),
     ]);
   }
 

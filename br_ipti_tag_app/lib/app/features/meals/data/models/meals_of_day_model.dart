@@ -6,34 +6,31 @@ import 'package:meta/meta.dart';
 import 'meal_model.dart';
 
 class MealsOfDayModel extends MealsOfDay {
-  final List<MealModel> meals;
-  final String fullnameDay;
-  final String currentDate;
   MealsOfDayModel({
-    @required this.meals,
-    @required this.fullnameDay,
-    @required this.currentDate,
+    @required List<MealModel> meals,
+    @required String fullnameDay,
+    @required String currentDate,
   }) : super(meals, fullnameDay, currentDate);
 
   Map<String, dynamic> toMap() {
     return {
-      'meals': meals?.map((x) => x.toMap())?.toList(),
+      'meals': meals?.map((x) => (x as MealModel).toMap())?.toList(),
       'fullnameDay': fullnameDay,
       'currentDate': currentDate,
     };
   }
 
   factory MealsOfDayModel.fromMap(Map<String, dynamic> map) {
+    final meals = map['meals'] as List<Map<String, dynamic>>;
     return MealsOfDayModel(
-      meals:
-          List<MealModel>.from(map['meals']?.map((x) => MealModel.fromMap(x))),
-      fullnameDay: map['fullnameDay'],
-      currentDate: map['currentDate'],
+      meals: List<MealModel>.from(meals?.map((x) => MealModel.fromMap(x))),
+      fullnameDay: map['fullnameDay'] as String,
+      currentDate: map['currentDate'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory MealsOfDayModel.fromJson(String source) =>
-      MealsOfDayModel.fromMap(json.decode(source));
+      MealsOfDayModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

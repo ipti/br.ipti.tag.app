@@ -19,8 +19,8 @@ class TimeValidator extends TextFieldValidator {
   @override
   bool isValid(String value) {
     try {
-      var hour = num.parse(value.split(":")[0]);
-      var minute = num.parse(value.split(":")[1]);
+      final int hour = int.parse(value.split(":")[0]);
+      final int minute = int.parse(value.split(":")[1]);
       TimeOfDay(hour: hour, minute: minute);
       return hour < 24 && minute < 60 && hour >= 0 && minute >= 0;
     } catch (e) {

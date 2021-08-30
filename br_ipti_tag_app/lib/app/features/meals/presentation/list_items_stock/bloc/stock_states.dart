@@ -34,7 +34,7 @@ class StockState extends Equatable {
     int residenceZone,
     int studentClass,
   }) {
-    return new StockState(
+    return StockState(
       name: name ?? this.name,
       birthday: birthday ?? this.birthday,
       sex: sex ?? this.sex,

@@ -8,7 +8,7 @@ import 'bloc/address_form_bloc.dart';
 import 'bloc/address_form_states.dart';
 
 class AddressFormPage extends StatefulWidget {
-  AddressFormPage({Key key}) : super(key: key);
+  const AddressFormPage({Key key}) : super(key: key);
 
   @override
   _AddressFormPageState createState() => _AddressFormPageState();
@@ -18,26 +18,24 @@ class _AddressFormPageState extends State<AddressFormPage> {
   final controller = Modular.get<AddressFormBloc>();
   final _formKey = GlobalKey<FormState>();
 
+  Widget _withPadding(Widget widget) =>
+      Padding(padding: const EdgeInsets.all(8.0), child: widget);
+
+  Widget _buildResidenceZoneDropdown(int residenceZoneId) => TagDropdownField(
+        label: 'Localização / Zona de residência',
+        items: controller.residenceZoneItems,
+        value: residenceZoneId,
+        onChanged: controller.setResidenceZone,
+      );
+
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.all(8.0);
-
-    final withPadding = (widget) => Padding(padding: padding, child: widget);
-
-    final heading = Heading(text: "Turma", type: HeadingType.Title2);
-
-    final selectResidenceZone = (initialValue) => TagDropdownField(
-          label: 'Localização / Zona de residência',
-          items: controller.residenceZoneItems,
-          value: initialValue,
-          onChanged: controller.setResidenceZone,
-        );
+    const heading = Heading(text: "Turma", type: HeadingType.Title2);
 
     return Form(
       key: _formKey,
-      child: BlocConsumer<AddressFormBloc, AddressFormState>(
+      child: BlocBuilder<AddressFormBloc, AddressFormState>(
           bloc: controller,
-          listener: (_, state) => print(state.toString()),
           builder: (context, state) {
             if (state is AddressFormState) {
               return SingleChildScrollView(
@@ -46,14 +44,16 @@ class _AddressFormPageState extends State<AddressFormPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      withPadding(heading),
-                      withPadding(selectResidenceZone(state.residenceZone)),
+                      _withPadding(heading),
+                      _withPadding(
+                        _buildResidenceZoneDropdown(state.residenceZone),
+                      ),
                     ],
                   ),
                 ),
               );
             }
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }),

@@ -12,20 +12,18 @@ class DailyMealsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        shrinkWrap: true, //just set this property
-        padding: const EdgeInsets.all(8.0),
-        itemCount: mealsOfDay.length,
-        itemBuilder: (context, index) {
-          final current = mealsOfDay[index];
-          return MealsItemDay(
-            fullnameDay: current.fullnameDay,
-            currentDate: current.currentDate,
-            meals: current.meals,
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true, //just set this property
+      padding: const EdgeInsets.all(8.0),
+      itemCount: mealsOfDay.length,
+      itemBuilder: (context, index) {
+        final current = mealsOfDay[index];
+        return MealsItemDay(
+          fullnameDay: current.fullnameDay,
+          currentDate: current.currentDate,
+          meals: current.meals,
+        );
+      },
     );
   }
 }

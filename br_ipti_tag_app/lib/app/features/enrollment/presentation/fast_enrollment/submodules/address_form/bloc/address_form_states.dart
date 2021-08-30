@@ -10,7 +10,7 @@ class AddressFormState extends Equatable {
   AddressFormState copyWith({
     int residenceZone,
   }) {
-    return new AddressFormState(
+    return AddressFormState(
       residenceZone: residenceZone ?? this.residenceZone,
     );
   }

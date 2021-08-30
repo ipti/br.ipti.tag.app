@@ -7,7 +7,8 @@ class ClassesFormModule extends Module {
   final List<Bind> binds = [];
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => ClassesFormPage())
+  final List<ModularRoute<void>> routes = [
+    ChildRoute(Modular.initialRoute,
+        child: (_, args) => const ClassesFormPage())
   ];
 }

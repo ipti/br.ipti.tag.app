@@ -73,7 +73,7 @@ class _Card extends StatelessWidget {
               children: [
                 Text(
                   tacoCode,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: TagColors.colorBaseInkLight,
                   ),
                 ),
@@ -90,7 +90,7 @@ class _Card extends StatelessWidget {
             height: 30,
             child: Row(
               children: [
-                Text(
+                const Text(
                   "Ingredientes ",
                   style: TextStyle(
                     color: TagColors.colorBaseInkLight,
@@ -99,7 +99,7 @@ class _Card extends StatelessWidget {
                 ),
                 Text(
                   ingredients,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: TagColors.colorBaseProductNormal,
                     fontWeight: FontWeight.w400,
                   ),
@@ -128,7 +128,7 @@ class _LabelInfoTurnAndType extends StatelessWidget {
       background: TagColors.colorBaseProductSecondary,
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           color: TagColors.colorBaseProductDark,
           fontWeight: FontWeight.w500,
         ),
@@ -151,11 +151,11 @@ class _HourLabel extends StatelessWidget {
       width: 55,
       child: TagBox(
         minHeight: 28,
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         background: TagColors.colorBaseProductLightActive,
         child: Text(
           hour,
-          style: TextStyle(fontSize: 14, height: 1.44),
+          style: const TextStyle(fontSize: 14, height: 1.44),
         ),
       ),
     );

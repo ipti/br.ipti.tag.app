@@ -8,32 +8,32 @@ import 'bloc/classes_form_bloc.dart';
 import 'bloc/classes_form_states.dart';
 
 class ClassesFormPage extends StatefulWidget {
-  ClassesFormPage({Key key}) : super(key: key);
+  const ClassesFormPage({Key key}) : super(key: key);
 
   @override
   ClassesFormPageState createState() => ClassesFormPageState();
 }
 
-const padding = EdgeInsets.all(8.0);
-
-final withPadding = (widget) => Padding(padding: padding, child: widget);
-
-final heading = Heading(text: "Endereço", type: HeadingType.Title2);
+const heading = Heading(text: "Endereço", type: HeadingType.Title2);
 
 class ClassesFormPageState extends State<ClassesFormPage> {
   ClassesFormBloc controller = Modular.get<ClassesFormBloc>();
   @override
   Widget build(BuildContext context) {
-    final selectClass = (initialValue) => TagDropdownField(
+    const padding = EdgeInsets.all(8.0);
+
+    Widget withPadding(Widget widget) =>
+        Padding(padding: padding, child: widget);
+
+    Widget selectClass(int classId) => TagDropdownField(
           label: 'Turma',
           items: controller.classesItems,
-          value: initialValue,
+          value: classId,
           onChanged: controller.setStudentClass,
         );
 
-    return BlocConsumer<ClassesFormBloc, ClassesFormState>(
+    return BlocBuilder<ClassesFormBloc, ClassesFormState>(
         bloc: controller,
-        listener: (_, state) => print(state.toString()),
         builder: (context, state) {
           if (state is ClassesFormState) {
             return SingleChildScrollView(
@@ -49,7 +49,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
               ),
             );
           }
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         });

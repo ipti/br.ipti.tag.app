@@ -9,17 +9,17 @@ import 'presentation/list_meals/list_meals_page.dart';
 class MealsModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => new MealsOfDayDumbDataSourceImpl()),
-    Bind.singleton((i) => new MealsOfDayRepositoryImpl(
+    Bind.singleton((i) => MealsOfDayDumbDataSourceImpl()),
+    Bind.singleton((i) => MealsOfDayRepositoryImpl(
           dumbDataSource: i.get(),
         )),
-    Bind.singleton((i) => new ListMealsOfDayUsecase(i.get())),
-    Bind.singleton((i) => new ListMealsBloc(i.get())),
+    Bind.singleton((i) => ListMealsOfDayUsecase(i.get())),
+    Bind.singleton((i) => ListMealsBloc(i.get())),
   ];
 
   @override
-  final List<ModularRoute> routes = [
-    ChildRoute("/estoque", child: (_, args) => ListMealsPage()),
+  final List<ModularRoute<void>> routes = [
+    ChildRoute("/estoque", child: (_, args) => const ListMealsPage()),
     // ChildRoute("/cardapio", child: (_, args) => Meal());
   ];
 }

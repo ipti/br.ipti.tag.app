@@ -11,15 +11,15 @@ class GetListMealsEvent extends ListMealsEvent {}
 
 class CleanFilterByTurnEvent extends ListMealsEvent {
   final String turn;
-  CleanFilterByTurnEvent(this.turn);
+  const CleanFilterByTurnEvent(this.turn);
 }
 
 class FilterByTurnEvent extends ListMealsEvent {
   final String turn;
-  FilterByTurnEvent(this.turn);
+  const FilterByTurnEvent(this.turn);
 }
 
 class FilterByStudentTypeEvent extends ListMealsEvent {
   final String studentType;
-  FilterByStudentTypeEvent(this.studentType);
+  const FilterByStudentTypeEvent(this.studentType);
 }

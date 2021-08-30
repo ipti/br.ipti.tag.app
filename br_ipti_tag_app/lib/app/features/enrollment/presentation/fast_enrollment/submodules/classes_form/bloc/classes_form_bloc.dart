@@ -15,11 +15,10 @@ class ClassesFormBloc extends Bloc<ClassesFormEvent, ClassesFormState> {
     2: "Turma 2",
   };
 
-  setStudentClass(int value) => add(StudentClassChanged(value));
+  void setStudentClass(int value) => add(StudentClassChanged(value));
 
   @override
   void onTransition(Transition<ClassesFormEvent, ClassesFormState> transition) {
-    print(transition);
     super.onTransition(transition);
   }
 

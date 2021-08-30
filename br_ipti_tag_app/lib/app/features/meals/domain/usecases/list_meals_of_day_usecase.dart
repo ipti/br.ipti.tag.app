@@ -1,8 +1,8 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:dartz/dartz.dart';
+
 import '../entities/meals_of_day.dart';
 import '../repositories/meals_of_day_repository.dart';
-
-import 'package:dartz/dartz.dart';
 
 class ListMealsOfDayUsecase implements Usecase<List<MealsOfDay>, NoParams> {
   final MealsOfDayRepository _repositoryMealsOfDay;

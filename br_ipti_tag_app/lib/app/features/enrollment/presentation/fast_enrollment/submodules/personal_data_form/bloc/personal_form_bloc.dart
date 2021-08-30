@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/enrollment/domain/entities/student.
 import 'package:br_ipti_tag_app/app/features/enrollment/domain/usecases/fast_enrollment_usecase.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meta/meta.dart';
 
 import 'personal_form_events.dart';
 import 'personal_form_states.dart';
@@ -47,19 +48,19 @@ class PersonalFormBloc extends Bloc<PersonalFormEvent, PersonalFormState> {
     2: "Turma 2",
   };
 
-  setName(String value) => add(NameChanged(value));
-  setBirthday(String value) => add(BirthdayChanged(value));
-  setSex(int value) => add(SexChanged(value));
-  setColorRace(int value) => add(ColorRaceChanged(value));
-  setFiliation(int value) => add(FiliationChanged(value));
-  setNationality(int value) => add(NationalityChanged(value));
-  setDeficiency(bool value) => add(DeficiencyChanged(value));
-  setFoodRestriction(String value) => add(FoodRestrictionChanged(value));
+  void setName(String value) => add(NameChanged(value));
+  void setBirthday(String value) => add(BirthdayChanged(value));
+  void setSex(int value) => add(SexChanged(value));
+  void setColorRace(int value) => add(ColorRaceChanged(value));
+  void setFiliation(int value) => add(FiliationChanged(value));
+  void setNationality(int value) => add(NationalityChanged(value));
+  void setDeficiency({@required bool value}) =>
+      add(DeficiencyChanged(deficiency: value));
+  void setFoodRestriction(String value) => add(FoodRestrictionChanged(value));
 
   @override
   void onTransition(
       Transition<PersonalFormEvent, PersonalFormState> transition) {
-    print(transition);
     super.onTransition(transition);
   }
 
@@ -82,7 +83,7 @@ class PersonalFormBloc extends Bloc<PersonalFormEvent, PersonalFormState> {
     } else if (event is FoodRestrictionChanged) {
       yield state.copyWith(foodRestrictions: event.foodRestrictions);
     } else if (event is SubmitPersonalForm) {
-      Student student = Student(
+      final student = Student(
         name: state.name,
         birthday: state.birthday,
         sex: state.sex,
