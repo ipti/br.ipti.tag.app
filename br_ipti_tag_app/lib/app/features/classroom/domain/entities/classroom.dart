@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 
 class Classroom {
   final String name;
-  final DateTime startTime;
-  final DateTime endTime;
+  final String startTime;
+  final String endTime;
   final int modalityId;
   final int stageId;
   final int typePedagogicMediationId;

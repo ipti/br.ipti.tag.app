@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/crate_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'classroom_create_events.dart';
 import 'classroom_states.dart';
 
@@ -54,7 +55,16 @@ class ClassroomCreateBloc
     } else if (event is TypePedagogicalMediationChanged) {
       newState = state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId);
-    } else if (event is SubmitClassroom) {}
+    } else if (event is SubmitClassroom) {
+      final params = ParamsCreateClassroom(
+          name: state.name,
+          startTime: state.startTime.toString(),
+          endTime: state.endTime.toString(),
+          modalityId: state.modalityId,
+          stageId: state.stageId);
+
+      _usecaseCreateClassroom.call(params);
+    }
 
     yield newState;
   }
