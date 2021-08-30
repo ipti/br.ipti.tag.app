@@ -16,22 +16,22 @@ class LoadingState extends ClassroomListState {
 }
 
 class LoadedState extends ClassroomListState {
-  final List<Classroom> classrooms;
-
   LoadedState({
     @required this.classrooms,
   });
+
+  final List<Classroom> classrooms;
 
   @override
   List<Object> get props => [];
 }
 
 class FailedState extends ClassroomListState {
-  final String message;
-
   FailedState({
     @required this.message,
   });
+
+  final String message;
 
   @override
   List<Object> get props => [message];

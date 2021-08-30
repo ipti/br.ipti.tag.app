@@ -4,9 +4,9 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/class
 import 'package:dartz/dartz.dart';
 
 class ListClassroomsUsecase implements Usecase<List<Classroom>, NoParams> {
-  final ClassroomRepository _repositoryClassroom;
-
   ListClassroomsUsecase(this._repositoryClassroom);
+
+  final ClassroomRepository _repositoryClassroom;
 
   @override
   Future<Either<Exception, List<Classroom>>> call(NoParams params) async {

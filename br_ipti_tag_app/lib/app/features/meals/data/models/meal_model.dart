@@ -12,17 +12,6 @@ class MealModel extends Meal {
     final String ingredients,
   }) : super(hour, tacoCode, foodName, turn, studentType, ingredients);
 
-  Map<String, dynamic> toMap() {
-    return {
-      'hour': hour,
-      'tacoCode': tacoCode,
-      'foodName': foodName,
-      'turn': turn,
-      'studentType': studentType,
-      'ingredients': ingredients,
-    };
-  }
-
   factory MealModel.fromMap(Map<String, dynamic> map) {
     return MealModel(
       hour: map['hour'] as String,
@@ -34,8 +23,19 @@ class MealModel extends Meal {
     );
   }
 
-  String toJson() => json.encode(toMap());
-
   factory MealModel.fromJson(String source) =>
       MealModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'hour': hour,
+      'tacoCode': tacoCode,
+      'foodName': foodName,
+      'turn': turn,
+      'studentType': studentType,
+      'ingredients': ingredients,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
 }

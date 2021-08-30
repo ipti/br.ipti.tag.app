@@ -7,8 +7,10 @@ import 'bloc/stock_bloc.dart';
 import 'bloc/stock_events.dart';
 
 class StockPage extends StatefulWidget {
-  final String title;
   const StockPage({Key key, this.title = 'Estoque'}) : super(key: key);
+
+  final String title;
+
   @override
   StockPageState createState() => StockPageState();
 }

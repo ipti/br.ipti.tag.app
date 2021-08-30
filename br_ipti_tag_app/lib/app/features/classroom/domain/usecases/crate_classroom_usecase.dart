@@ -6,9 +6,9 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class CreateClassroomUsecase extends Usecase<bool, ParamsCreateClassroom> {
-  final ClassroomRepository _repositoryClassroom;
-
   CreateClassroomUsecase(this._repositoryClassroom);
+
+  final ClassroomRepository _repositoryClassroom;
 
   @override
   Future<Either<Exception, bool>> call(ParamsCreateClassroom params) async {
@@ -24,11 +24,6 @@ class CreateClassroomUsecase extends Usecase<bool, ParamsCreateClassroom> {
 }
 
 class ParamsCreateClassroom extends Equatable {
-  final String name;
-  final String startTime;
-  final String endTime;
-  final int modalityId;
-  final int stageId;
   const ParamsCreateClassroom({
     @required this.name,
     @required this.startTime,
@@ -36,6 +31,12 @@ class ParamsCreateClassroom extends Equatable {
     @required this.modalityId,
     @required this.stageId,
   });
+
+  final String name;
+  final String startTime;
+  final String endTime;
+  final int modalityId;
+  final int stageId;
 
   @override
   List<Object> get props {

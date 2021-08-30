@@ -11,9 +11,11 @@ import 'bloc/list_meals_bloc.dart';
 import 'bloc/list_meals_events.dart';
 
 class ListMealsPage extends StatefulWidget {
-  final String title;
   const ListMealsPage({Key key, this.title = 'Merenda escolar'})
       : super(key: key);
+
+  final String title;
+
   @override
   ListMealsPageState createState() => ListMealsPageState();
 }

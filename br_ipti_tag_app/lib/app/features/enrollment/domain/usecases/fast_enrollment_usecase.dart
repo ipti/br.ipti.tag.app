@@ -5,17 +5,18 @@ import 'package:equatable/equatable.dart';
 import '../../domain/entities/student.dart';
 
 class EnroolmentParams extends Equatable {
+  const EnroolmentParams(this.student);
+
   final Student student;
 
-  const EnroolmentParams(this.student);
   @override
   List<Object> get props => [student];
 }
 
 class FastEnrollmentUsecase implements Usecase<bool, EnroolmentParams> {
-  final IStudentService _service;
-
   FastEnrollmentUsecase(this._service);
+
+  final IStudentService _service;
 
   @override
   Future<Either<Exception, bool>> call(EnroolmentParams params) async {

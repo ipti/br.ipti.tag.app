@@ -3,11 +3,11 @@ import 'package:br_ipti_tag_app/app/features/enrollment/domain/repositories/stud
 import 'package:dio/dio.dart';
 
 class StudentRepository implements IStudentRepository {
+  StudentRepository(this.httpClient);
+
   String Function(String) get _baseUrl => (String localUrl) => "/$localUrl";
 
   final Dio httpClient;
-
-  StudentRepository(this.httpClient);
 
   @override
   Future<List<Student>> listAll() async {

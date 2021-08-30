@@ -1,13 +1,6 @@
 import 'package:meta/meta.dart';
 
 class Classroom {
-  final String name;
-  final String startTime;
-  final String endTime;
-  final int modalityId;
-  final int stageId;
-  final int typePedagogicMediationId;
-
   Classroom({
     @required this.name,
     @required this.startTime,
@@ -16,4 +9,11 @@ class Classroom {
     @required this.stageId,
     this.typePedagogicMediationId,
   });
+
+  final String name;
+  final String startTime;
+  final String endTime;
+  final int modalityId;
+  final int stageId;
+  final int typePedagogicMediationId;
 }

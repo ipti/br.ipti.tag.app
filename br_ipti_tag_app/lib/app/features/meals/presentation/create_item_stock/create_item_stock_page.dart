@@ -7,9 +7,11 @@ import 'bloc/create_item_stock_bloc.dart';
 import 'bloc/create_item_stock_events.dart';
 
 class CreateItemStockPage extends StatefulWidget {
-  final String title;
   const CreateItemStockPage({Key key, this.title = 'Matrícula rápida'})
       : super(key: key);
+
+  final String title;
+
   @override
   CreateItemStockPageState createState() => CreateItemStockPageState();
 }

@@ -4,9 +4,9 @@ import '../../domain/entities/student.dart';
 import '../../domain/usecases/fast_enrollment_usecase.dart';
 
 class StudentService implements IStudentService {
-  final IStudentRepository _repository;
-
   StudentService(this._repository);
+
+  final IStudentRepository _repository;
 
   @override
   Future<Either<Exception, List<Student>>> listAll() async {

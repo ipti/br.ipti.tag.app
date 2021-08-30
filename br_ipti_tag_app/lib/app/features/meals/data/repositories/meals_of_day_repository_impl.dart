@@ -5,11 +5,11 @@ import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
 class MealsOfDayRepositoryImpl implements MealsOfDayRepository {
-  final MealsOfDayDumbDataSource dumbDataSource;
-
   MealsOfDayRepositoryImpl({
     @required this.dumbDataSource,
   });
+
+  final MealsOfDayDumbDataSource dumbDataSource;
 
   @override
   Future<Either<Exception, List<MealsOfDay>>> list() async {

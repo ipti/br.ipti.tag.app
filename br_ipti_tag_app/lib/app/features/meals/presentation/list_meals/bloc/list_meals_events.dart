@@ -10,16 +10,16 @@ abstract class ListMealsEvent extends Equatable {
 class GetListMealsEvent extends ListMealsEvent {}
 
 class CleanFilterByTurnEvent extends ListMealsEvent {
-  final String turn;
   const CleanFilterByTurnEvent(this.turn);
+  final String turn;
 }
 
 class FilterByTurnEvent extends ListMealsEvent {
-  final String turn;
   const FilterByTurnEvent(this.turn);
+  final String turn;
 }
 
 class FilterByStudentTypeEvent extends ListMealsEvent {
-  final String studentType;
   const FilterByStudentTypeEvent(this.studentType);
+  final String studentType;
 }

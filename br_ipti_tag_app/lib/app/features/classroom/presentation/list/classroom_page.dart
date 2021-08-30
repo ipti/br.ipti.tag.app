@@ -12,9 +12,11 @@ import 'bloc/classroom_list_events.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
-  final String title;
   const ClassroomPage({Key key, this.title = 'Listagem de Turmas'})
       : super(key: key);
+
+  final String title;
+
   @override
   ClassroomPageState createState() => ClassroomPageState();
 }
@@ -129,11 +131,11 @@ class TagDataTable extends StatelessWidget {
 }
 
 class ClassroomDatatable extends DataTableSource {
-  final List<Classroom> data;
-
   ClassroomDatatable({
     @required this.data,
   });
+
+  final List<Classroom> data;
 
   @override
   DataRow getRow(int index) {

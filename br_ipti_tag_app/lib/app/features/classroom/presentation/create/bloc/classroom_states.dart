@@ -5,13 +5,6 @@ import 'package:meta/meta.dart';
 abstract class ClassroomCreateState extends Equatable {}
 
 class ClassroomCreateFormState extends ClassroomCreateState {
-  final String name;
-  final TimeOfDay startTime;
-  final TimeOfDay endTime;
-  final int modalityId;
-  final int stageId;
-  final int typePedagogicMediationId;
-
   ClassroomCreateFormState({
     @required this.name,
     @required this.startTime,
@@ -20,6 +13,13 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     @required this.stageId,
     @required this.typePedagogicMediationId,
   });
+
+  final String name;
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
+  final int modalityId;
+  final int stageId;
+  final int typePedagogicMediationId;
 
   ClassroomCreateFormState copyWith({
     String name,

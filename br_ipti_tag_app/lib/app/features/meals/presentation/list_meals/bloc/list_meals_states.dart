@@ -16,22 +16,22 @@ class LoadingState extends ListMealsState {
 }
 
 class LoadedState extends ListMealsState {
-  final List<MealsOfDay> mealsOfDay;
-
   LoadedState({
     @required this.mealsOfDay,
   });
+
+  final List<MealsOfDay> mealsOfDay;
 
   @override
   List<Object> get props => [];
 }
 
 class FailedState extends ListMealsState {
-  final String message;
-
   FailedState({
     @required this.message,
   });
+
+  final String message;
 
   @override
   List<Object> get props => [message];

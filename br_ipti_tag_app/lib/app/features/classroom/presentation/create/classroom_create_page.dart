@@ -12,9 +12,11 @@ import 'bloc/classroom_create_events.dart';
 import 'bloc/classroom_states.dart';
 
 class ClassroomCreatePage extends StatefulWidget {
-  final String title;
   const ClassroomCreatePage({Key key, this.title = 'Adicionar Turma'})
       : super(key: key);
+
+  final String title;
+
   @override
   ClassroomCreatePageState createState() => ClassroomCreatePageState();
 }

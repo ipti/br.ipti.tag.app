@@ -12,14 +12,6 @@ class MealsOfDayModel extends MealsOfDay {
     @required String currentDate,
   }) : super(meals, fullnameDay, currentDate);
 
-  Map<String, dynamic> toMap() {
-    return {
-      'meals': meals?.map((x) => (x as MealModel).toMap())?.toList(),
-      'fullnameDay': fullnameDay,
-      'currentDate': currentDate,
-    };
-  }
-
   factory MealsOfDayModel.fromMap(Map<String, dynamic> map) {
     final meals = map['meals'] as List<Map<String, dynamic>>;
     return MealsOfDayModel(
@@ -29,8 +21,16 @@ class MealsOfDayModel extends MealsOfDay {
     );
   }
 
-  String toJson() => json.encode(toMap());
-
   factory MealsOfDayModel.fromJson(String source) =>
       MealsOfDayModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'meals': meals?.map((x) => (x as MealModel).toMap())?.toList(),
+      'fullnameDay': fullnameDay,
+      'currentDate': currentDate,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
 }
