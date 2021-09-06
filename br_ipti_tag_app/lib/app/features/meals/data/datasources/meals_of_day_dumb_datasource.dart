@@ -13,9 +13,9 @@ class MealsOfDayDumbDataSourceImpl implements MealsOfDayDumbDataSource {
     final data = await rootBundle.loadString(
       "assets/dumb_data/meals_of_day.json",
     );
-    final jsonResult = jsonDecode(data) as List<Map<String, dynamic>>;
+    final jsonResult = jsonDecode(data) as List;
     return jsonResult
-        .map((Map<String, dynamic> e) => MealsOfDayModel.fromMap(e))
+        .map((e) => MealsOfDayModel.fromMap(e as Map<String, dynamic>))
         .toList();
   }
 }

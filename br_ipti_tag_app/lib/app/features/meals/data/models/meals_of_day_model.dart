@@ -13,9 +13,11 @@ class MealsOfDayModel extends MealsOfDay {
   }) : super(meals, fullnameDay, currentDate);
 
   factory MealsOfDayModel.fromMap(Map<String, dynamic> map) {
-    final meals = map['meals'] as List<Map<String, dynamic>>;
+    final meals = map['meals'] as List;
     return MealsOfDayModel(
-      meals: List<MealModel>.from(meals?.map((x) => MealModel.fromMap(x))),
+      meals: List<MealModel>.from(meals?.map(
+        (x) => MealModel.fromMap(x as Map<String, dynamic>),
+      )),
       fullnameDay: map['fullnameDay'] as String,
       currentDate: map['currentDate'] as String,
     );
