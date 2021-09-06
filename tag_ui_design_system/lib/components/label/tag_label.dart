@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/design_tokens/font_size.dart';
-import 'package:orbit_ui_tag/design_tokens/font_weight.dart';
-import 'package:orbit_ui_tag/design_tokens/line_height.dart';
+import 'package:tag_ui_design_system/design_tokens/font_size.dart';
+import 'package:tag_ui_design_system/design_tokens/font_weight.dart';
+import 'package:tag_ui_design_system/design_tokens/line_height.dart';
 
 class TagLabel extends StatelessWidget {
   const TagLabel(

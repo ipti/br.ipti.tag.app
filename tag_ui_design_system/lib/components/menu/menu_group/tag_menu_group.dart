@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/components/menu/menu_item/tag_menu_item.dart';
-import 'package:orbit_ui_tag/design_tokens/colors.dart';
-import 'package:orbit_ui_tag/design_tokens/tokens.dart';
+import 'package:tag_ui_design_system/components/menu/menu_item/tag_menu_item.dart';
+import 'package:tag_ui_design_system/design_tokens/colors.dart';
+import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 import '../i_tag_menu_item.dart';
 

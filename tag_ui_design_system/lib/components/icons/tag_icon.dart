@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:orbit_ui_tag/design_tokens/tokens.dart';
+import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 // ignore: must_be_immutable
 class TagIcon extends StatefulWidget {

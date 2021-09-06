@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../orbit_ui_tag.dart';
+import '../../tag_ui_design_system.dart';
 
 class TagBox extends StatelessWidget {
   const TagBox(

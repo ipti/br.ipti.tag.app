@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:orbit_ui_tag/strings/file_paths.dart';
+import 'package:tag_ui_design_system/strings/file_paths.dart';
 
 class LogoGreyTag extends StatelessWidget {
   const LogoGreyTag({

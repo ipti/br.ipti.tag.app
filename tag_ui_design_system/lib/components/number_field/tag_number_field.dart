@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:orbit_ui_tag/design_tokens/tokens.dart';
+import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagNumberField extends StatefulWidget {
   const TagNumberField({

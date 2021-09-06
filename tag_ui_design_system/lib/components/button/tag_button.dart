@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/design_tokens/tokens.dart';
+import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagButton extends StatelessWidget {
   const TagButton({Key key, @required this.text, @required this.onPressed})

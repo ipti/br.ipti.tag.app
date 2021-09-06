@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd orbit_ui_tag
+cd tag_ui_design_system
 flutter packages pub get
 cd ../br_ipti_tag_app
 flutter packages pub get

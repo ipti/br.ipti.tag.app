@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/orbit_ui_tag.dart';
+import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class LayoutLeftBodyRight extends StatelessWidget {
   const LayoutLeftBodyRight({

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/components/label/tag_label.dart';
-import 'package:orbit_ui_tag/components/shared/field_constraints.dart';
-import 'package:orbit_ui_tag/components/shared/tag_input_decoration.dart';
+import 'package:tag_ui_design_system/components/label/tag_label.dart';
+import 'package:tag_ui_design_system/components/shared/field_constraints.dart';
+import 'package:tag_ui_design_system/components/shared/tag_input_decoration.dart';
 
 class TagDropdownField extends StatefulWidget {
   TagDropdownField({

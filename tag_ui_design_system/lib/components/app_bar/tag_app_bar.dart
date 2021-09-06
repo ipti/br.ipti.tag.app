@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:orbit_ui_tag/components/logo/logo.dart';
-import 'package:orbit_ui_tag/design_tokens/tokens.dart';
+import 'package:tag_ui_design_system/components/logo/logo.dart';
+import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagAppBar extends StatelessWidget implements PreferredSize {
   const TagAppBar({Key key}) : super(key: key);

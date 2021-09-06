@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:orbit_ui_tag/orbit_ui_tag.dart';
+import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 import 'bloc/create_item_stock_bloc.dart';
 import 'bloc/create_item_stock_events.dart';
