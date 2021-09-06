@@ -10,7 +10,6 @@ class ListClassroomsUsecase implements Usecase<List<Classroom>, NoParams> {
 
   @override
   Future<Either<Exception, List<Classroom>>> call(NoParams params) async {
-    await Future<void>.delayed(const Duration(seconds: 2));
     final result = await _repositoryClassroom.list();
     return result;
   }

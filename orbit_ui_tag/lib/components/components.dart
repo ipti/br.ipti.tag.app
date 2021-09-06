@@ -2,6 +2,7 @@ export 'app_bar/tag_app_bar.dart';
 export 'breadcrumb/tag_breadcrumb.dart';
 export 'button/tag_button.dart';
 export 'box/tag_box.dart';
+export 'data_table/tag_data_table.dart';
 export 'datepicker/tag_datepicker_field.dart';
 export 'dropdown/tag_dropdown_field.dart';
 export 'text_field/tag_text_field.dart';

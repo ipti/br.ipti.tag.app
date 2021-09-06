@@ -6,26 +6,25 @@ import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 
 import 'package:meta/meta.dart';
 
-import '../../domain/entities/classroom.dart';
-import 'bloc/classroom_list_bloc.dart';
-import 'bloc/classroom_list_events.dart';
-import 'bloc/classroom_list_states.dart';
+import '../../domain/entities/student.dart';
+import 'bloc/student_list_bloc.dart';
+import 'bloc/student_list_events.dart';
+import 'bloc/student_list_states.dart';
 
-class ClassroomPage extends StatefulWidget {
-  const ClassroomPage({Key key, this.title = 'Listagem de Turmas'})
+class StudentPage extends StatefulWidget {
+  const StudentPage({Key key, this.title = 'Listagem de Alunos'})
       : super(key: key);
 
   final String title;
 
   @override
-  ClassroomPageState createState() => ClassroomPageState();
+  StudentPageState createState() => StudentPageState();
 }
 
-class ClassroomPageState
-    extends ModularState<ClassroomPage, ClassroomListBloc> {
+class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
   @override
   void initState() {
-    controller.add(GetListClassroomsEvent());
+    controller.add(GetListStudentsEvent());
     super.initState();
   }
 
@@ -35,7 +34,7 @@ class ClassroomPageState
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
-      path: ["Turmas", widget.title],
+      path: ["Alunos", widget.title],
       body: <Widget>[
         SizedBox(
           child: Row(
@@ -43,7 +42,7 @@ class ClassroomPageState
               SizedBox(
                 width: 100,
                 child: TagButton(
-                  text: "Criar turma",
+                  text: "Matricula",
                   onPressed: () => Modular.to.pushNamed("create"),
                 ),
               )
@@ -51,7 +50,7 @@ class ClassroomPageState
           ),
         ),
         const SizedBox(height: 30),
-        BlocBuilder<ClassroomListBloc, ClassroomListState>(
+        BlocBuilder<StudentListBloc, StudentListState>(
           bloc: controller,
           builder: (context, state) {
             if (state is LoadedState) {
@@ -61,19 +60,15 @@ class ClassroomPageState
                   DataColumn(label: Text("Etapa")),
                   DataColumn(label: Text("")),
                 ],
-                source: ClassroomDatatable(
-                  data: state.classrooms,
+                source: StudentDatatable(
+                  data: state.students,
                 ),
               );
-            } else if (state is EmptyState) {
-              return TagDataTable(
-                columns: const [
-                  DataColumn(label: Text("Nome")),
-                  DataColumn(label: Text("Etapa")),
-                  DataColumn(label: Text("")),
-                ],
-                source: ClassroomDatatable(
-                  data: [],
+            } else if (state is FailedState) {
+              return SizedBox(
+                height: 200,
+                child: Center(
+                  child: Text(state.message),
                 ),
               );
             }
@@ -85,18 +80,18 @@ class ClassroomPageState
   }
 }
 
-class ClassroomDatatable extends DataTableSource {
-  ClassroomDatatable({
+class StudentDatatable extends DataTableSource {
+  StudentDatatable({
     @required this.data,
   });
 
-  final List<Classroom> data;
+  final List<Student> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stageId.toString())),
+      DataCell(Text(data[index].scholarity.toString())),
       const DataCell(Icon(Icons.edit)),
     ]);
   }

@@ -1,17 +1,18 @@
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/student_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/entities/student.dart';
-import '../../domain/usecases/fast_enrollment_usecase.dart';
 
-class StudentService implements IStudentService {
-  StudentService(this._repository);
+class StudentRepositoryImpl implements StudentRepository {
+  StudentRepositoryImpl(this._studentDataSource);
 
-  final IStudentRepository _repository;
+  final StudentDataSource _studentDataSource;
 
   @override
   Future<Either<Exception, List<Student>>> listAll() async {
     try {
-      final results = await _repository.listAll();
+      final results = await _studentDataSource.listAll();
       return Right(results);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
@@ -21,7 +22,7 @@ class StudentService implements IStudentService {
   @override
   Future<Either<Exception, Student>> getById(int id) async {
     try {
-      final results = await _repository.getById(id);
+      final results = await _studentDataSource.getById(id);
       return Right(results);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
@@ -31,16 +32,10 @@ class StudentService implements IStudentService {
   @override
   Future<Either<Exception, bool>> create(Student student) async {
     try {
-      final results = await _repository.create(student);
+      final results = await _studentDataSource.create(student);
       return Right(results);
     } catch (e) {
       return Left(Exception("Não foi possível adicionar estudantes"));
     }
   }
-}
-
-abstract class IStudentRepository {
-  Future<List<Student>> listAll();
-  Future<Student> getById(int id);
-  Future<bool> create(Student student);
 }
