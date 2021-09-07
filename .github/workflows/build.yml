@@ -33,17 +33,14 @@ jobs:
         with:
           flutter-version: '2.2.1'
       - run: sh build-web.sh
-      - run: flutter analyze   
-      
-      - name: Build
-        run: flutter build web
+      - run: flutter analyze             
       
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          publish_dir: ./br_ipti_tag_app/build/web
 
 
       
