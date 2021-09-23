@@ -98,7 +98,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    const heading = Heading(text: "Dados Pessoais", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados do Aluno", type: HeadingType.Title2);
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar e prosseguir",
@@ -155,9 +155,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                 ),
               );
             }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const CircularProgressIndicator();
           }),
     );
   }

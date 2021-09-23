@@ -30,7 +30,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    const heading = Heading(text: "Turma", type: HeadingType.Title2);
+    const heading = Heading(text: "Endereço", type: HeadingType.Title2);
 
     return Form(
       key: _formKey,

@@ -1,8 +1,7 @@
 name: tag_ui_design_system
-description: A new Flutter package project.
-version: 0.12.1
-author:
-homepage:
+description: Componentes de interface de usuário do TAG (Tecnologia de apoio a gestão).
+version: 0.18.0
+repository: https://github.com/igorgoncalves/br.ipti.tag.app
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

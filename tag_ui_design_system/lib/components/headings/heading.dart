@@ -49,7 +49,7 @@ class Heading extends StatelessWidget {
     );
 
     const TextStyle textStyleTitle2 = TextStyle(
-      color: TagColors.colorBaseProductLight,
+      color: TagColors.colorBaseCloudLightActive,
       fontSize: TagFontSize.fontSizeHeadingTitle2,
       fontWeight: TagFontWeight.fontWeightHeadingTitle2,
     );

@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meal_item/meal_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class MealsItemDay extends StatelessWidget {
@@ -26,14 +27,15 @@ class MealsItemDay extends StatelessWidget {
               Text(
                 fullnameDay,
                 style: const TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               Text(
                 " $currentDate",
                 style: const TextStyle(
-                  color: TagColors.colorBaseProductLight,
+                  color: TagColors.colorBaseInkLight,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -44,16 +46,12 @@ class MealsItemDay extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           itemCount: meals.length,
           itemBuilder: (context, index) {
-            final currentMeal = meals[index];
+            final meal = meals[index];
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
-              child: MealItem(
-                tacoCode: currentMeal.tacoCode,
-                foodName: currentMeal.foodName,
-                turn: currentMeal.turn,
-                studentType: currentMeal.studentType,
-                ingredients: currentMeal.ingredients,
-                hour: currentMeal.hour,
+              child: InkWell(
+                onTap: () => Modular.to.pushNamed("details", arguments: meal),
+                child: MealItem(meal: meal),
               ),
             );
           },

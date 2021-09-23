@@ -28,7 +28,7 @@ class MealModel extends Meal {
 
   Map<String, dynamic> toMap() {
     return {
-      'hour': hour,
+      'mealType': mealType,
       'tacoCode': tacoCode,
       'foodName': foodName,
       'turn': turn,

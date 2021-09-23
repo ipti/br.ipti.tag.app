@@ -25,10 +25,10 @@ class TagDefaultPage extends StatelessWidget {
     return SafeArea(
       child: MainLayoutAdaptativy(
         left: menu,
-        body: SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints:
-                BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+        body: ConstrainedBox(
+          constraints:
+              BoxConstraints(minHeight: MediaQuery.of(context).size.height),
+          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(

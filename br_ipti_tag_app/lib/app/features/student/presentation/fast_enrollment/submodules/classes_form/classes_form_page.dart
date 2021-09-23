@@ -14,7 +14,7 @@ class ClassesFormPage extends StatefulWidget {
   ClassesFormPageState createState() => ClassesFormPageState();
 }
 
-const heading = Heading(text: "Endereço", type: HeadingType.Title2);
+const heading = Heading(text: "Turma", type: HeadingType.Title2);
 
 class ClassesFormPageState extends State<ClassesFormPage> {
   ClassesFormBloc controller = Modular.get<ClassesFormBloc>();

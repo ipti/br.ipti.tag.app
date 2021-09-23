@@ -1,44 +1,27 @@
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
     Key key,
-    @required this.hour,
-    @required this.tacoCode,
-    @required this.foodName,
-    @required this.turn,
-    @required this.studentType,
-    @required this.ingredients,
+    this.meal,
   }) : super(key: key);
 
-  final String hour;
-  final String tacoCode;
-  final String foodName;
-  final String turn;
-  final String studentType;
-  final String ingredients;
+  final Meal meal;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.centerLeft,
-      children: [
-        SizedBox(
-          width: 500,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 32),
-            child: _Card(
-              tacoCode: tacoCode,
-              foodName: foodName,
-              turn: turn,
-              studentType: studentType,
-              ingredients: ingredients,
-            ),
-          ),
-        ),
-        _HourLabel(hour: hour),
-      ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 500),
+      child: _Card(
+        mealType: meal.mealType,
+        tacoCode: meal.tacoCode,
+        foodName: meal.foodName,
+        turn: meal.turn,
+        studentType: meal.studentType,
+        ingredients: meal.ingredients,
+      ),
     );
   }
 }
@@ -49,6 +32,7 @@ class _Card extends StatelessWidget {
     @required this.tacoCode,
     @required this.foodName,
     @required this.turn,
+    @required this.mealType,
     @required this.studentType,
     @required this.ingredients,
   }) : super(key: key);
@@ -57,6 +41,7 @@ class _Card extends StatelessWidget {
   final String foodName;
   final String turn;
   final String studentType;
+  final String mealType;
   final String ingredients;
 
   @override
@@ -64,49 +49,68 @@ class _Card extends StatelessWidget {
     return TagBox(
       minHeight: 100,
       background: TagColors.colorBaseCloudLight,
-      padding: const EdgeInsets.only(left: 40, top: 22, bottom: 24),
-      child: Column(
+      padding: const EdgeInsets.all(24),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 30,
-            child: Row(
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  tacoCode,
-                  style: const TextStyle(
-                    color: TagColors.colorBaseInkLight,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: _MealTypeLabel(
+                        mealType: mealType,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: _LabelInfoTurnAndType(text: turn),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: _LabelInfoTurnAndType(text: studentType),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    " $foodName",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: TagColors.colorBaseInkNormal,
+                      fontSize: 14,
+                    ),
                   ),
                 ),
-                Text(" $foodName"),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: _LabelInfoTurnAndType(text: turn),
-                ),
-                _LabelInfoTurnAndType(text: studentType)
+                SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Ingredientes ",
+                        style: TextStyle(
+                          color: TagColors.colorBaseInkLight,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Text(
+                        ingredients,
+                        style: const TextStyle(
+                          color: TagColors.colorBaseProductNormal,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
-          SizedBox(
-            height: 30,
-            child: Row(
-              children: [
-                const Text(
-                  "Ingredientes ",
-                  style: TextStyle(
-                    color: TagColors.colorBaseInkLight,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                Text(
-                  ingredients,
-                  style: const TextStyle(
-                    color: TagColors.colorBaseProductNormal,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          )
+          const Icon(Icons.arrow_forward_ios)
         ],
       ),
     );
@@ -137,25 +141,24 @@ class _LabelInfoTurnAndType extends StatelessWidget {
   }
 }
 
-class _HourLabel extends StatelessWidget {
-  const _HourLabel({
+class _MealTypeLabel extends StatelessWidget {
+  const _MealTypeLabel({
     Key key,
-    @required this.hour,
+    @required this.mealType,
   }) : super(key: key);
 
-  final String hour;
+  final String mealType;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 55,
-      child: TagBox(
-        minHeight: 28,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        background: TagColors.colorBaseProductLightActive,
-        child: Text(
-          hour,
-          style: const TextStyle(fontSize: 14, height: 1.44),
+    return TagBox(
+      minHeight: 28,
+      background: TagColors.colorBaseProductLightActive,
+      child: Text(
+        mealType,
+        style: const TextStyle(
+          color: TagColors.colorBaseProductLogo,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

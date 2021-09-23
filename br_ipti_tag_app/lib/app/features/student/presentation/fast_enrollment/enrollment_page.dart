@@ -53,8 +53,11 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
               ),
             ],
           ),
-          Expanded(
-            child: RouterOutlet(),
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Expanded(
+              child: RouterOutlet(),
+            ),
           ),
         ],
       ),

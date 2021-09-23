@@ -19,7 +19,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.navigate(routeName);
+          Modular.to.pushReplacementNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -31,7 +31,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.navigate(routeName);
+          Modular.to.pushReplacementNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -43,7 +43,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.navigate(routeName);
+          Modular.to.pushReplacementNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -55,7 +55,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.navigate(routeName);
+          Modular.to.pushReplacementNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -67,7 +67,8 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.navigate(routeName);
+          Modular.to.pushReplacementNamed(routeName);
+          // Modular.to.pushReplacementNamed(routeName);
         },
       ),
     ];

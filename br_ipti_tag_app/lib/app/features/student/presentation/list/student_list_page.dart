@@ -43,7 +43,7 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
                 width: 100,
                 child: TagButton(
                   text: "Matricula",
-                  onPressed: () => Modular.to.pushNamed("create"),
+                  onPressed: () => Modular.to.pushNamed("matricula-rapida"),
                 ),
               )
             ],

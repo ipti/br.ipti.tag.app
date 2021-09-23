@@ -14,8 +14,11 @@ class TagColors {
   static const Color colorBaseInkNormal = const Color(0XFF252A31);
 
   static const Color colorBaseCloudLightActive = const Color(0XFFD6DEE6);
+  static const Color colorBaseCloudNormal = const Color(0XFFEFF2F5);
   static const Color colorBaseCloudLight = const Color(0XFFF5F7F9);
   static const Color colorBaseCloudDark = const Color(0XFFE8EDF1);
 
   static const Color colorBaseWhiteNormal = const Color(0XFFFFFFFF);
+
+  static const Color colorBaseBlueNormal = const Color(0XFF0172CB);
 }

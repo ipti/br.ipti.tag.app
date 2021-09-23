@@ -1,18 +1,18 @@
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/list_meals/bloc/list_meals_states.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
+import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-import '../widgets/daily_meals_list/daily_meals_list.dart';
 
 import 'bloc/list_meals_bloc.dart';
 import 'bloc/list_meals_events.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({Key key, this.title = 'Merenda escolar'})
-      : super(key: key);
+  const ListMealsPage({Key key, this.title = 'Refeições'}) : super(key: key);
 
   final String title;
 
@@ -29,60 +29,79 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
 
   @override
   Widget build(BuildContext context) {
+    final pageController = PageController();
+
+    const labelStyle = TextStyle(
+        color: TagColors.colorBaseInkNormal,
+        fontWeight: FontWeight.w600,
+        fontSize: 14);
+
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
       aside: Container(),
       title: widget.title,
-      description: "Acompanhe o calendário e o estoqueda merenda da sua escola",
-      path: ["Merenda", widget.title],
+      description: "Cardápio semanal da sua escola",
+      path: ["Merenda Escolar", widget.title],
       body: <Widget>[
-        SizedBox(
-          height: 100,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const _StudentCounter(),
-              _FilterTurn(
-                controller: controller,
-              ),
-              const _FilterStudentType(),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Cardápio",
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Text(
-                "Cardápio semanal da sua escola",
-                style: TextStyle(
-                  color: TagColors.colorBaseInkLight,
-                ),
-              ),
-            ],
-          ),
-        ),
         BlocBuilder<ListMealsBloc, ListMealsState>(
           bloc: controller,
           builder: (context, state) {
             if (state is LoadedState) {
-              return DailyMealsList(
-                mealsOfDay: state.mealsOfDay,
+              return DefaultTabController(
+                length: state.mealsOfDay.length,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TabBar(
+                      isScrollable: true,
+                      labelColor: TagColors.colorBaseProductDark,
+                      indicatorColor: TagColors.colorBaseProductDark,
+                      labelStyle: labelStyle,
+                      onTap: (index) => pageController.animateToPage(index,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.easeIn),
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                      tabs: state.mealsOfDay
+                          .map((e) => Tab(child: Text(e.fullnameDay)))
+                          .toList(),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      child: TabBarView(
+                        children: state.mealsOfDay
+                            .map((e) => _DailyMeals(mealsOfDay: e))
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
               );
             }
             return const CircularProgressIndicator();
           },
-        )
+        ),
       ],
+    );
+  }
+}
+
+class _DailyMeals extends StatelessWidget {
+  const _DailyMeals({
+    Key key,
+    @required this.mealsOfDay,
+  }) : super(key: key);
+
+  final MealsOfDay mealsOfDay;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 34),
+      child: MealsItemDay(
+        fullnameDay: mealsOfDay.fullnameDay,
+        currentDate: mealsOfDay.currentDate,
+        meals: mealsOfDay.meals,
+      ),
     );
   }
 }
@@ -212,28 +231,6 @@ class __FilterButtonState extends State<_FilterButton> {
         padding: const EdgeInsets.all(12.0),
         child: widget.child,
       ),
-    );
-  }
-}
-
-class _StudentCounter extends StatelessWidget {
-  const _StudentCounter({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text("Quantidade de alunos"),
-        ),
-        TagNumberField(
-          onChanged: (value) => {},
-        ),
-      ],
     );
   }
 }
