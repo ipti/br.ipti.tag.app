@@ -564,7 +564,7 @@ packages:
       path: "../tag_ui_design_system"
       relative: true
     source: path
-    version: "0.12.1"
+    version: "0.18.0"
   term_glyph:
     dependency: transitive
     description:

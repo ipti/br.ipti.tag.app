@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +27,8 @@ class DetailsMealPageState extends State<DetailsMealPage> {
   Widget build(BuildContext context) {
     const labelText = TextStyle(color: TagColors.colorBaseInkLight);
     const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
-    const itemSectionTitle = TextStyle(
-      color: TagColors.colorBaseProductNormal,
-      fontSize: 14,
-      fontWeight: FontWeight.bold,
-    );
 
-    final ingredients = widget.meal.ingredients.split(',');
+    final ingredients = widget.meal.ingredients;
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
       aside: Container(),
@@ -50,14 +46,17 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                     children: [
                       const TextSpan(text: "Consistência ", style: labelText),
                       TextSpan(
-                          text: "${widget.meal.foodName} ", style: infoText),
+                          text: "${widget.meal.consistence} ", style: infoText),
                     ],
                   ),
                 ),
                 RichText(
                   text: TextSpan(children: [
                     const TextSpan(text: "Data e hora  ", style: labelText),
-                    TextSpan(text: "${widget.meal.turn} ", style: infoText),
+                    TextSpan(
+                      text: "${widget.meal.turn} ",
+                      style: infoText,
+                    ),
                   ]),
                 ),
                 RichText(
@@ -68,45 +67,9 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                 ),
               ]),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Text(
-                "Item",
-                style: itemSectionTitle,
-              ),
-            ),
-            Container(
-              height: 1,
-              color: TagColors.colorBaseProductNormal,
-            ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
-              child: ListView.builder(
-                itemCount: ingredients.length,
-                itemBuilder: (context, index) {
-                  return TagBox(
-                    minHeight: 48,
-                    background: TagColors.colorBaseProductLighter,
-                    padding: EdgeInsets.zero,
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(12),
-                      dense: true,
-                      horizontalTitleGap: 8,
-                      title: Text(ingredients[index]),
-                      trailing: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: TagColors.colorBaseInkNormal,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        )
+        IngredientsList(
+          ingredients: ingredients,
+        ),
       ],
     );
   }

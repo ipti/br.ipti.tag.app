@@ -20,7 +20,7 @@ class MealItem extends StatelessWidget {
         foodName: meal.foodName,
         turn: meal.turn,
         studentType: meal.studentType,
-        ingredients: meal.ingredients,
+        ingredients: meal.ingredients.toString(),
       ),
     );
   }

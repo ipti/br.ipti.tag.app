@@ -1,5 +1,6 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:flutter/material.dart';
+
 import '../meals_item_per_day/meals_item_per_day.dart';
 
 class DailyMealsList extends StatelessWidget {
@@ -8,7 +9,7 @@ class DailyMealsList extends StatelessWidget {
     @required this.mealsOfDay,
   }) : super(key: key);
 
-  final List<MealsOfDay> mealsOfDay;
+  final List<MealsMenu> mealsOfDay;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/list_meals/bloc/list_meals_states.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
@@ -91,7 +91,7 @@ class _DailyMeals extends StatelessWidget {
     @required this.mealsOfDay,
   }) : super(key: key);
 
-  final MealsOfDay mealsOfDay;
+  final MealsMenu mealsOfDay;
 
   @override
   Widget build(BuildContext context) {

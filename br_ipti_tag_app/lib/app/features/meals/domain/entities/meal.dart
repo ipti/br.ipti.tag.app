@@ -1,3 +1,5 @@
+import 'ingredient.dart';
+
 class Meal {
   Meal(
     this.mealType,
@@ -6,11 +8,13 @@ class Meal {
     this.turn,
     this.studentType,
     this.ingredients,
+    this.consistence,
   );
   final String mealType;
   final String tacoCode;
   final String foodName;
   final String turn;
   final String studentType;
-  final String ingredients;
+  final List<Ingredient> ingredients;
+  final String consistence;
 }

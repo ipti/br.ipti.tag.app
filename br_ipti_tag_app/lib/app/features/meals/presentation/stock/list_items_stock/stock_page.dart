@@ -1,10 +1,13 @@
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 import 'bloc/stock_bloc.dart';
 import 'bloc/stock_events.dart';
+import 'bloc/stock_states.dart';
 
 class StockPage extends StatefulWidget {
   const StockPage({Key key, this.title = 'Estoque'}) : super(key: key);
@@ -18,8 +21,7 @@ class StockPage extends StatefulWidget {
 class StockPageState extends ModularState<StockPage, StockBloc> {
   @override
   void initState() {
-    controller.add(StartEditing());
-    // Modular.to.navigate('/turmas/matricula-rapida/personal');
+    controller.add(GetListStockEvent());
     super.initState();
   }
 
@@ -29,9 +31,18 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
       menu: const TagVerticalMenu(),
       title: widget.title,
       path: ["Merenda Escolar", widget.title],
-      description: "",
+      description: "Verifique o estoque de alimentos da escola",
       body: <Widget>[
-        Text(widget.title),
+        BlocBuilder<StockBloc, ListStockState>(
+          bloc: controller,
+          builder: (context, state) {
+            if (state is LoadedState) {
+              return IngredientsList(ingredients: state.ingredients);
+            } else {
+              return Container();
+            }
+          },
+        )
       ],
     );
   }

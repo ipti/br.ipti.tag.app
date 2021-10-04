@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
+import 'ingredient_model.dart';
 
 class MealModel extends Meal {
   MealModel({
@@ -9,8 +10,17 @@ class MealModel extends Meal {
     final String foodName,
     final String turn,
     final String studentType,
-    final String ingredients,
-  }) : super(hour, tacoCode, foodName, turn, studentType, ingredients);
+    final List<IngredientModel> ingredients,
+    final String consistence,
+  }) : super(
+          hour,
+          tacoCode,
+          foodName,
+          turn,
+          studentType,
+          ingredients,
+          consistence,
+        );
 
   factory MealModel.fromMap(Map<String, dynamic> map) {
     return MealModel(
@@ -19,7 +29,10 @@ class MealModel extends Meal {
       foodName: map['foodName'] as String,
       turn: map['turn'] as String,
       studentType: map['studentType'] as String,
-      ingredients: map['ingredients'] as String,
+      ingredients: (map['ingredients'] as List)
+          .map((e) => IngredientModel.fromMap(e as Map<String, dynamic>))
+          .toList(),
+      consistence: map['consistence'] as String,
     );
   }
 
@@ -34,6 +47,7 @@ class MealModel extends Meal {
       'turn': turn,
       'studentType': studentType,
       'ingredients': ingredients,
+      'consistence': consistence
     };
   }
 

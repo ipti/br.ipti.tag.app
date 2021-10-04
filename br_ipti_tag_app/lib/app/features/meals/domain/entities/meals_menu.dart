@@ -1,7 +1,7 @@
 import 'meal.dart';
 
-class MealsOfDay {
-  MealsOfDay(
+class MealsMenu {
+  MealsMenu(
     this.meals,
     this.fullnameDay,
     this.currentDate,

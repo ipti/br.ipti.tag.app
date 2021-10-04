@@ -1,20 +1,20 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:meta/meta.dart';
 
 import 'meal_model.dart';
 
-class MealsOfDayModel extends MealsOfDay {
-  MealsOfDayModel({
+class MealsMenuModel extends MealsMenu {
+  MealsMenuModel({
     @required List<MealModel> meals,
     @required String fullnameDay,
     @required String currentDate,
   }) : super(meals, fullnameDay, currentDate);
 
-  factory MealsOfDayModel.fromMap(Map<String, dynamic> map) {
+  factory MealsMenuModel.fromMap(Map<String, dynamic> map) {
     final meals = map['meals'] as List;
-    return MealsOfDayModel(
+    return MealsMenuModel(
       meals: List<MealModel>.from(meals?.map(
         (x) => MealModel.fromMap(x as Map<String, dynamic>),
       )),
@@ -23,8 +23,8 @@ class MealsOfDayModel extends MealsOfDay {
     );
   }
 
-  factory MealsOfDayModel.fromJson(String source) =>
-      MealsOfDayModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory MealsMenuModel.fromJson(String source) =>
+      MealsMenuModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   Map<String, dynamic> toMap() {
     return {

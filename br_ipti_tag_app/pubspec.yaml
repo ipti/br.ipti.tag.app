@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/logo/logo_tag.svg
     - assets/dumb_data/meals_of_day.json
+    - assets/dumb_data/stock.json
     - assets/icons/pessoas/azul.svg
     - assets/icons/pessoas/cinza.svg
     - assets/icons/lapis/azul.svg

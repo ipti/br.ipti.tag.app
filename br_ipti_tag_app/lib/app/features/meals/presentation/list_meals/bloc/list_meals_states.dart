@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
@@ -20,7 +20,7 @@ class LoadedState extends ListMealsState {
     @required this.mealsOfDay,
   });
 
-  final List<MealsOfDay> mealsOfDay;
+  final List<MealsMenu> mealsOfDay;
 
   @override
   List<Object> get props => [];

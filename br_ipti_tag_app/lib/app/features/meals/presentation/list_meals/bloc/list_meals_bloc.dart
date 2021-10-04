@@ -1,21 +1,21 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_of_day.dart';
-import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_of_day_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_menu_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'list_meals_events.dart';
 import 'list_meals_states.dart';
 
 class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
-  ListMealsBloc(this.listMealsOfDayUsecase) : super(EmptyState());
+  ListMealsBloc(this.listMealsMenuUsecase) : super(EmptyState());
 
-  final ListMealsOfDayUsecase listMealsOfDayUsecase;
+  final ListMealsMenuUsecase listMealsMenuUsecase;
 
   final List<String> turns = ["Manhã", "Tarde", "Noite"];
 
   final List<String> turnsFilters = [];
 
-  List<MealsOfDay> mealsOfDayCached = [];
+  List<MealsMenu> mealsOfDayCached = [];
 
   @override
   Stream<ListMealsState> mapEventToState(ListMealsEvent event) async* {
@@ -30,7 +30,7 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
   }
 
   Future<ListMealsState> _mapGetListMealsToState() async {
-    final resultEither = await listMealsOfDayUsecase(NoParams());
+    final resultEither = await listMealsMenuUsecase(NoParams());
     return resultEither.fold(
       (failure) {
         return FailedState(message: failure.toString());
@@ -60,14 +60,14 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
     }
   }
 
-  List<MealsOfDay> _applyTurnFilter(List<String> turnsFilters) {
+  List<MealsMenu> _applyTurnFilter(List<String> turnsFilters) {
     return mealsOfDayCached.map((day) {
       final meals = day.meals
           .where(
             (meal) => turnsFilters.contains(meal.turn),
           )
           .toList();
-      return MealsOfDay(meals, day.fullnameDay, day.currentDate);
+      return MealsMenu(meals, day.fullnameDay, day.currentDate);
     }).toList();
   }
 }
