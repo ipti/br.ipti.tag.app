@@ -3,12 +3,12 @@ import 'layout_left_body_right.dart';
 import 'layout_topbar_and_body.dart';
 
 class MainLayoutAdaptativy extends StatelessWidget {
-  const MainLayoutAdaptativy({Key key, this.left, this.body, this.right})
+  const MainLayoutAdaptativy({Key? key, this.left, this.body, this.right})
       : super(key: key);
 
-  final Widget left;
-  final Widget body;
-  final Widget right;
+  final Widget? left;
+  final Widget? body;
+  final Widget? right;
 
   @override
   Widget build(BuildContext context) {

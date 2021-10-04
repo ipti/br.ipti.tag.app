@@ -4,16 +4,16 @@ import 'package:tag_ui_design_system/strings/file_paths.dart';
 
 class LogoLightTag extends StatelessWidget {
   const LogoLightTag({
-    Key key,
+    Key? key,
     this.color,
     this.width,
     this.height,
     this.alignment = Alignment.centerLeft,
   }) : super(key: key);
 
-  final Color color;
-  final double width;
-  final double height;
+  final Color? color;
+  final double? width;
+  final double? height;
   final Alignment alignment;
 
   @override

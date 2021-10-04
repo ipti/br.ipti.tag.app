@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagLinkButton extends StatelessWidget {
-  const TagLinkButton({Key key, @required this.text, @required this.onPressed})
+  const TagLinkButton({Key? key, required this.text, required this.onPressed})
       : super(key: key);
 
   final String text;
@@ -35,7 +35,7 @@ class TagLinkButton extends StatelessWidget {
     return Container(
       child: TextButton(
         child: Text(text),
-        onPressed: onPressed,
+        onPressed: onPressed as void Function()?,
         style: elevatedButtonTheme,
       ),
     );

@@ -5,11 +5,11 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class IngredientsList extends StatelessWidget {
   const IngredientsList({
-    Key key,
-    @required this.ingredients,
+    Key? key,
+    required this.ingredients,
   }) : super(key: key);
 
-  final List<Ingredient> ingredients;
+  final List<Ingredient>? ingredients;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,10 @@ class IngredientsList extends StatelessWidget {
         child: ListView.builder(
           shrinkWrap: true, //just set this property
           padding: const EdgeInsets.all(8.0),
-          itemCount: ingredients.length,
+          itemCount: ingredients!.length,
           itemBuilder: (context, index) {
             return IngredientItem(
-              ingredient: ingredients[index],
+              ingredient: ingredients![index],
             );
           },
         ),

@@ -8,16 +8,16 @@ import '../i_tag_menu_item.dart';
 
 class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
   const TagMenuGroup({
-    Key key,
-    @required this.title,
-    @required this.submenus,
+    Key? key,
+    required this.title,
+    required this.submenus,
     this.icon,
     this.routeActiveItem = "/",
     this.isActive = false,
   }) : super(key: key);
 
   final String title;
-  final Widget icon;
+  final Widget? icon;
   final bool isActive;
   final String routeActiveItem;
   final List<TagMenuItem> submenus;
@@ -79,12 +79,12 @@ class TagMenuGroup extends StatelessWidget implements ITagMenuItem {
   }
 
   copyWith({
-    String title,
-    Widget icon,
-    bool isActive,
-    String routeActiveItem,
-    int menuGroupId,
-    List<TagMenuItem> submenus,
+    String? title,
+    Widget? icon,
+    bool? isActive,
+    String? routeActiveItem,
+    int? menuGroupId,
+    List<TagMenuItem>? submenus,
   }) {
     return TagMenuGroup(
       title: title ?? this.title,

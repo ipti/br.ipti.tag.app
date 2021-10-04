@@ -9,7 +9,7 @@ import 'bloc/personal_form_bloc.dart';
 import 'bloc/personal_form_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
-  const PersonalDataFormPage({Key key}) : super(key: key);
+  const PersonalDataFormPage({Key? key}) : super(key: key);
 
   @override
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
@@ -23,59 +23,59 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
 
-    Widget inputName(String name) => TagTextField(
+    Widget inputName(String? name) => TagTextField(
           label: "Nome",
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget inputBirthday(String birthday) => TagDatePickerField(
+    Widget inputBirthday(String? birthday) => TagDatePickerField(
           label: "Data nascimento",
           hint: "__/__/____",
           onChanged: controller.setBirthday,
           value: birthday,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget selectSex(int sex) => TagDropdownField(
+    Widget selectSex(int? sex) => TagDropdownField(
           label: 'Sexo',
           hint: "Selecione o sexo",
           items: controller.sexItems,
           onChanged: controller.setSex,
           value: sex,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget selectColorRace(int colorRace) => TagDropdownField(
+    Widget selectColorRace(int? colorRace) => TagDropdownField(
           label: 'Cor/Raça',
           hint: "Selecione a cor/raça",
           items: controller.colorRaceItems,
           onChanged: controller.setColorRace,
           value: colorRace,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget selectFiliation(int filiation) => TagDropdownField(
+    Widget selectFiliation(int? filiation) => TagDropdownField(
           label: 'Filiação',
           hint: "Selecione a filiação",
           items: controller.filiationItems,
           onChanged: controller.setFiliation,
           value: filiation,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget selectNationality(int nationality) => TagDropdownField(
+    Widget selectNationality(int? nationality) => TagDropdownField(
           label: 'Nacionalidade',
           hint: "Selecione a nacionalidade",
           items: controller.nationalityItems,
           onChanged: controller.setNationality,
           value: nationality,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
-    Widget deficiencyCheck({bool deficiency}) => Row(
+    Widget deficiencyCheck({bool? deficiency}) => Row(
           children: [
             Checkbox(
               value: deficiency ?? false,
@@ -85,13 +85,13 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           ],
         );
 
-    Widget inputFoodRestriction(String foodRestriction) => TagTextField(
+    Widget inputFoodRestriction(String? foodRestriction) => TagTextField(
           label: "Restrição Alimentar / Alergia",
           inputType: TextInputType.multiline,
           hint: "",
           onChanged: controller.setFoodRestriction,
           value: foodRestriction,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
           maxLines: 5,
         );
 
@@ -102,12 +102,12 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar e prosseguir",
-      onPressed: () => _formKey.currentState.validate(),
+      onPressed: () => _formKey.currentState!.validate(),
     );
 
     final buttonSubmitAndStay = TagLinkButton(
       text: "Salvar e continuar na página",
-      onPressed: () => _formKey.currentState.validate(),
+      onPressed: () => _formKey.currentState!.validate(),
     );
 
     return Form(

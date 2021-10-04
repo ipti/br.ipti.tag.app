@@ -1,11 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 abstract class PersonalFormEvent extends Equatable {
   const PersonalFormEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class StartEditing extends PersonalFormEvent {}
@@ -69,12 +68,12 @@ class NationalityChanged extends PersonalFormEvent {
 }
 
 class DeficiencyChanged extends PersonalFormEvent {
-  const DeficiencyChanged({@required this.deficiency});
+  const DeficiencyChanged({required this.deficiency});
 
-  final bool deficiency;
+  final bool? deficiency;
 
   @override
-  List<Object> get props => [deficiency];
+  List<Object?> get props => [deficiency];
 }
 
 class FoodRestrictionChanged extends PersonalFormEvent {

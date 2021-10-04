@@ -41,7 +41,7 @@ class ClassroomCreateBloc
   @override
   Stream<ClassroomCreateFormState> mapEventToState(
       ClassroomCreateEvent event) async* {
-    var newState = state;
+    ClassroomCreateFormState newState = state;
     if (event is NameChanged) {
       newState = state.copyWith(name: event.name);
     } else if (event is StartTimeChanged) {

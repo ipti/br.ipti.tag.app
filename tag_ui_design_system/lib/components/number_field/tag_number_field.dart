@@ -4,8 +4,8 @@ import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagNumberField extends StatefulWidget {
   const TagNumberField({
-    Key key,
-    @required this.onChanged,
+    Key? key,
+    required this.onChanged,
   }) : super(key: key);
 
   final Function onChanged;
@@ -79,9 +79,9 @@ class _TagNumberFieldState extends State<TagNumberField> {
 
 class _TextNumberField extends StatelessWidget {
   const _TextNumberField({
-    Key key,
-    @required this.controller,
-    @required this.onChanged,
+    Key? key,
+    required this.controller,
+    required this.onChanged,
   }) : super(key: key);
 
   final TextEditingController controller;
@@ -106,16 +106,16 @@ class _TextNumberField extends StatelessWidget {
         errorBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
       ),
-      onChanged: onChanged,
+      onChanged: onChanged as void Function(String)?,
     );
   }
 }
 
 class _NumberFieldButton extends StatelessWidget {
   const _NumberFieldButton({
-    Key key,
-    @required this.onPressed,
-    @required this.icon,
+    Key? key,
+    required this.onPressed,
+    required this.icon,
   }) : super(key: key);
 
   final Function onPressed;
@@ -138,7 +138,7 @@ class _NumberFieldButton extends StatelessWidget {
               TagColors.colorBaseProductLight,
             ),
           ),
-          onPressed: onPressed,
+          onPressed: onPressed as void Function()?,
           child: Icon(
             icon,
             color: TagColors.colorBaseInkNormal,

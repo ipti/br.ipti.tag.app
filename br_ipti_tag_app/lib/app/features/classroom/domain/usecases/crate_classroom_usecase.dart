@@ -3,7 +3,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 class CreateClassroomUsecase extends Usecase<bool, ParamsCreateClassroom> {
   CreateClassroomUsecase(this._repositoryClassroom);
@@ -25,11 +24,11 @@ class CreateClassroomUsecase extends Usecase<bool, ParamsCreateClassroom> {
 
 class ParamsCreateClassroom extends Equatable {
   const ParamsCreateClassroom({
-    @required this.name,
-    @required this.startTime,
-    @required this.endTime,
-    @required this.modalityId,
-    @required this.stageId,
+    required this.name,
+    required this.startTime,
+    required this.endTime,
+    required this.modalityId,
+    required this.stageId,
   });
 
   final String name;

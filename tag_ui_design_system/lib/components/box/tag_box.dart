@@ -4,8 +4,8 @@ import '../../tag_ui_design_system.dart';
 
 class TagBox extends StatelessWidget {
   const TagBox(
-      {Key key,
-      @required this.child,
+      {Key? key,
+      required this.child,
       this.minHeight = 0,
       this.minWidth = 0,
       this.background,
@@ -15,8 +15,8 @@ class TagBox extends StatelessWidget {
   final Widget child;
   final double minHeight;
   final double minWidth;
-  final Color background;
-  final EdgeInsets padding;
+  final Color? background;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {

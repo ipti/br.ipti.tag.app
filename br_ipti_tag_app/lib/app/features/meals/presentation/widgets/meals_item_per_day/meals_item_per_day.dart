@@ -6,15 +6,15 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class MealsItemDay extends StatelessWidget {
   const MealsItemDay({
-    Key key,
-    @required this.meals,
-    @required this.fullnameDay,
-    @required this.currentDate,
+    Key? key,
+    required this.meals,
+    required this.fullnameDay,
+    required this.currentDate,
   }) : super(key: key);
 
   final List<Meal> meals;
-  final String fullnameDay;
-  final String currentDate;
+  final String? fullnameDay;
+  final String? currentDate;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MealsItemDay extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                fullnameDay,
+                fullnameDay!,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

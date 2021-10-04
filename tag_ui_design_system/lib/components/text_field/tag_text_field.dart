@@ -8,8 +8,8 @@ import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagTextField extends StatefulWidget {
   TagTextField({
-    Key key,
-    @required this.label,
+    Key? key,
+    required this.label,
     this.hint,
     this.controller,
     this.inputType,
@@ -24,19 +24,19 @@ class TagTextField extends StatefulWidget {
     this.minLines = 1,
   }) : super(key: key);
 
-  final String hint;
+  final String? hint;
   final String label;
-  final String value;
-  final TextEditingController controller;
-  final TextInputType inputType;
-  final bool obscureText;
-  final int maxLength;
-  final int maxLines;
+  final String? value;
+  final TextEditingController? controller;
+  final TextInputType? inputType;
+  final bool? obscureText;
+  final int? maxLength;
+  final int? maxLines;
   final int minLines;
-  final List<TextInputFormatter> formatters;
-  final Function validator;
-  final Function onChanged;
-  final Function onEditingComplete;
+  final List<TextInputFormatter>? formatters;
+  final Function? validator;
+  final Function? onChanged;
+  final Function? onEditingComplete;
 
   @override
   _TagTextFieldState createState() => _TagTextFieldState();
@@ -60,7 +60,7 @@ class _TagTextFieldState extends State<TagTextField> {
           constraints: fieldBoxConstraints,
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            initialValue: widget?.value ?? "",
+            initialValue: widget.value ?? "",
             maxLines: widget.maxLines,
             minLines: widget.minLines,
             controller: widget.controller,
@@ -68,11 +68,11 @@ class _TagTextFieldState extends State<TagTextField> {
             maxLength: widget.maxLength,
             keyboardType: widget.inputType,
             style: textStyle,
-            validator: widget.validator,
+            validator: widget.validator as String? Function(String?)?,
             decoration: buildInputDecoration(widget.hint),
-            onChanged: widget.onChanged,
-            onEditingComplete: widget.onEditingComplete,
-            onTap: widget.onEditingComplete,
+            onChanged: widget.onChanged as void Function(String)?,
+            onEditingComplete: widget.onEditingComplete as void Function()?,
+            onTap: widget.onEditingComplete as void Function()?,
           ),
         ),
       ],

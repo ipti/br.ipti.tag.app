@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 abstract class EnrollmentEvent extends Equatable {
   const EnrollmentEvent();
@@ -69,7 +68,7 @@ class NationalityChanged extends EnrollmentEvent {
 }
 
 class DeficiencyChanged extends EnrollmentEvent {
-  const DeficiencyChanged({@required this.deficiency});
+  const DeficiencyChanged({required this.deficiency});
 
   final bool deficiency;
 

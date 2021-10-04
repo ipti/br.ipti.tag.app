@@ -5,9 +5,9 @@ import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 // ignore: must_be_immutable
 class TagIcon extends StatefulWidget {
   TagIcon({
-    Key key,
-    @required this.defaultVersionPath,
-    @required this.disabledVersionPath,
+    Key? key,
+    required this.defaultVersionPath,
+    required this.disabledVersionPath,
     this.disabled = false,
   }) : super(key: key);
 

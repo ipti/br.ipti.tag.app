@@ -4,19 +4,23 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.da
 
 class IngredientModel extends Ingredient {
   IngredientModel({
-    final String name,
-    final bool available,
-    final List<IngredientModel> substitutionSuggestion,
+    final String? name,
+    final bool? available,
+    final int? amount,
+    final List<IngredientModel>? substitutionSuggestion,
   }) : super(
-          name: name,
-          available: available,
+          name: name ?? "",
+          available: available ?? false,
+          amount: amount ?? 0,
           substitutionSuggestion: substitutionSuggestion,
         );
 
   factory IngredientModel.fromMap(Map<String, dynamic> map) {
     return IngredientModel(
-      name: map['name'] as String,
-      available: map['available'] as bool,
+      name: map['name'] as String?,
+      available: map['available'] as bool?,
+      amount: map['amount'] as int?,
+      substitutionSuggestion: [],
     );
   }
 

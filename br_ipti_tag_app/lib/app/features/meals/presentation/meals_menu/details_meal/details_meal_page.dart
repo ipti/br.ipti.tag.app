@@ -7,8 +7,8 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class DetailsMealPage extends StatefulWidget {
   const DetailsMealPage({
-    Key key,
-    @required this.meal,
+    Key? key,
+    required this.meal,
   }) : super(key: key);
 
   final Meal meal;
@@ -46,7 +46,9 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                     children: [
                       const TextSpan(text: "Consistência ", style: labelText),
                       TextSpan(
-                          text: "${widget.meal.consistence} ", style: infoText),
+                        text: "${widget.meal.consistence} ",
+                        style: infoText,
+                      ),
                     ],
                   ),
                 ),
@@ -62,7 +64,7 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                 RichText(
                   text: TextSpan(children: [
                     const TextSpan(text: "Tipo de Aluno ", style: labelText),
-                    TextSpan(text: "${widget.meal.studentType ?? ''} "),
+                    TextSpan(text: "${widget.meal.studentType} "),
                   ]),
                 ),
               ]),

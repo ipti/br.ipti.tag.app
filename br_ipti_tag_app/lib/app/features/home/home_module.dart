@@ -1,5 +1,6 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:br_ipti_tag_app/app/features/home/home_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
 import 'home_page.dart';
 
 class HomeModule extends Module {

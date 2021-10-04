@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // ignore: type_annotate_public_apis
 void main() {
-  MealsMenuDumbDataSourceImpl datasource;
+  late MealsMenuDumbDataSourceImpl datasource;
 
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();

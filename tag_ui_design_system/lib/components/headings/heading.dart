@@ -16,9 +16,9 @@ enum HeadingType {
 
 class Heading extends StatelessWidget {
   const Heading({
-    Key key,
-    @required this.text,
-    @required this.type,
+    Key? key,
+    required this.text,
+    required this.type,
   }) : super(key: key);
 
   final String text;

@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class TagVerticalMenu extends StatelessWidget {
-  const TagVerticalMenu({Key key}) : super(key: key);
+  const TagVerticalMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final currentRoute = ModalRoute.of(context).settings.name;
+    final currentRoute = ModalRoute.of(context)!.settings.name;
     final items = [
       TagMenuItem(
         title: "Turmas",
@@ -76,7 +76,7 @@ class TagVerticalMenu extends StatelessWidget {
     return Stack(
       children: [
         TagMenu(
-            initialRoute: ModalRoute.of(context).settings.name, items: items),
+            initialRoute: ModalRoute.of(context)!.settings.name, items: items),
         SizedBox(
           width: double.infinity,
           child: Row(

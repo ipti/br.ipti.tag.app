@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
-import 'package:br_ipti_tag_app/app/features/meals/presentation/list_meals/bloc/list_meals_states.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,9 +9,10 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 import 'bloc/list_meals_bloc.dart';
 import 'bloc/list_meals_events.dart';
+import 'bloc/list_meals_states.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({Key key, this.title = 'Refeições'}) : super(key: key);
+  const ListMealsPage({Key? key, this.title = 'Refeições'}) : super(key: key);
 
   final String title;
 
@@ -62,7 +62,7 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
                           curve: Curves.easeIn),
                       labelPadding: const EdgeInsets.symmetric(horizontal: 8),
                       tabs: state.mealsOfDay
-                          .map((e) => Tab(child: Text(e.fullnameDay)))
+                          .map((e) => Tab(child: Text(e.fullnameDay!)))
                           .toList(),
                     ),
                     SizedBox(
@@ -87,8 +87,8 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
 
 class _DailyMeals extends StatelessWidget {
   const _DailyMeals({
-    Key key,
-    @required this.mealsOfDay,
+    Key? key,
+    required this.mealsOfDay,
   }) : super(key: key);
 
   final MealsMenu mealsOfDay;
@@ -108,7 +108,7 @@ class _DailyMeals extends StatelessWidget {
 
 class _FilterStudentType extends StatelessWidget {
   const _FilterStudentType({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -151,8 +151,8 @@ class _FilterStudentType extends StatelessWidget {
 
 class _FilterTurn extends StatelessWidget {
   const _FilterTurn({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
   }) : super(key: key);
   final ListMealsBloc controller;
 
@@ -196,9 +196,9 @@ class _FilterTurn extends StatelessWidget {
 
 class _FilterButton extends StatefulWidget {
   const _FilterButton({
-    Key key,
-    @required this.onPressed,
-    @required this.child,
+    Key? key,
+    required this.onPressed,
+    required this.child,
   }) : super(key: key);
 
   final Function onPressed;

@@ -1,7 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/fast_enrollment_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 import 'personal_form_events.dart';
 import 'personal_form_states.dart';
@@ -53,7 +52,7 @@ class PersonalFormBloc extends Bloc<PersonalFormEvent, PersonalFormState> {
   void setColorRace(int value) => add(ColorRaceChanged(value));
   void setFiliation(int value) => add(FiliationChanged(value));
   void setNationality(int value) => add(NationalityChanged(value));
-  void setDeficiency({@required bool value}) =>
+  void setDeficiency({required bool? value}) =>
       add(DeficiencyChanged(deficiency: value));
   void setFoodRestriction(String value) => add(FoodRestrictionChanged(value));
 

@@ -4,15 +4,15 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class LayoutLeftBodyRight extends StatelessWidget {
   const LayoutLeftBodyRight({
-    Key key,
-    @required this.body,
+    Key? key,
+    required this.body,
     this.left,
     this.right,
   }) : super(key: key);
 
-  final Widget left;
-  final Widget body;
-  final Widget right;
+  final Widget? left;
+  final Widget? body;
+  final Widget? right;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,12 @@ class LayoutLeftBodyRight extends StatelessWidget {
 }
 
 class _LayoutPages extends StatelessWidget {
-  const _LayoutPages({Key key, this.left, this.center, this.right})
+  const _LayoutPages({Key? key, this.left, this.center, this.right})
       : super(key: key);
 
-  final Widget left;
-  final Widget center;
-  final Widget right;
+  final Widget? left;
+  final Widget? center;
+  final Widget? right;
 
   @override
   Widget build(BuildContext context) {

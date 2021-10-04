@@ -6,7 +6,7 @@ import 'package:tag_ui_design_system/design_tokens/line_height.dart';
 class TagLabel extends StatelessWidget {
   const TagLabel(
     this.text, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   final String text;

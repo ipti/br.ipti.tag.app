@@ -5,14 +5,14 @@ import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagBreadcrumbItem extends StatefulWidget {
   const TagBreadcrumbItem({
-    Key key,
+    Key? key,
     this.title,
     this.action,
     this.isLast = false,
   }) : super(key: key);
 
-  final String title;
-  final Function action;
+  final String? title;
+  final Function? action;
   final bool isLast;
 
   @override
@@ -39,7 +39,7 @@ class _TagBreadcrumbItemState extends State<TagBreadcrumbItem> {
     color: TagColors.colorBaseProductNormal,
   );
 
-  TextStyle style;
+  TextStyle? style;
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class _TagBreadcrumbItemState extends State<TagBreadcrumbItem> {
   Widget build(BuildContext context) {
     final textButton = RichText(
       text: TextSpan(
-        recognizer: TapGestureRecognizer()..onTap = widget.action,
+        recognizer: TapGestureRecognizer()..onTap = widget.action as void Function()?,
         text: widget.title,
         style: widget.isLast ? textStylActive : style,
       ),

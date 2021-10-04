@@ -5,10 +5,10 @@ class ClassesFormState extends Equatable {
     this.studentClass,
   });
 
-  final int studentClass;
+  final int? studentClass;
 
   ClassesFormState copyWith({
-    int studentClass,
+    int? studentClass,
   }) {
     return ClassesFormState(
       studentClass: studentClass ?? this.studentClass,
@@ -16,5 +16,5 @@ class ClassesFormState extends Equatable {
   }
 
   @override
-  List<Object> get props => [studentClass];
+  List<Object?> get props => [studentClass];
 }

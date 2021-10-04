@@ -10,10 +10,10 @@ enum MenuItemState { Normal, Hover, Click, Disabled }
 
 class TagMenuItem extends StatelessWidget implements ITagMenuItem {
   const TagMenuItem({
-    Key key,
-    @required this.title,
-    @required this.route,
-    @required this.onTap,
+    Key? key,
+    required this.title,
+    required this.route,
+    required this.onTap,
     this.icon,
     this.isActive = false,
     this.menuItemState,
@@ -21,10 +21,10 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
 
   final String title;
   final String route;
-  final TagIcon icon;
+  final TagIcon? icon;
   final bool isActive;
   final Function onTap;
-  final MenuItemState menuItemState;
+  final MenuItemState? menuItemState;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class TagMenuItem extends StatelessWidget implements ITagMenuItem {
                   constraints: constraints,
                   child: Row(
                     children: [
-                      icon..disabled = !isActive,
+                      icon!..disabled = !isActive,
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),

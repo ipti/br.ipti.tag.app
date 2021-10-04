@@ -8,7 +8,7 @@ import 'bloc/enrollment_bloc.dart';
 import 'bloc/enrollment_events.dart';
 
 class EnrollmentPage extends StatefulWidget {
-  const EnrollmentPage({Key key, this.title = 'Matrícula rápida'})
+  const EnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
       : super(key: key);
 
   final String title;

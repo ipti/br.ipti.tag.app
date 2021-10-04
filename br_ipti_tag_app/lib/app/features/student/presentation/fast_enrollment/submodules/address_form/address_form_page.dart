@@ -8,7 +8,7 @@ import 'bloc/address_form_bloc.dart';
 import 'bloc/address_form_states.dart';
 
 class AddressFormPage extends StatefulWidget {
-  const AddressFormPage({Key key}) : super(key: key);
+  const AddressFormPage({Key? key}) : super(key: key);
 
   @override
   _AddressFormPageState createState() => _AddressFormPageState();
@@ -21,7 +21,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
   Widget _withPadding(Widget widget) =>
       Padding(padding: const EdgeInsets.all(8.0), child: widget);
 
-  Widget _buildResidenceZoneDropdown(int residenceZoneId) => TagDropdownField(
+  Widget _buildResidenceZoneDropdown(int? residenceZoneId) => TagDropdownField(
         label: 'Localização / Zona de residência',
         items: controller.residenceZoneItems,
         value: residenceZoneId,

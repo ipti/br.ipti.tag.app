@@ -8,15 +8,15 @@ class TagDefaultPage extends StatelessWidget {
   final String description;
   final List<Widget> body;
   final Widget menu;
-  final Widget aside;
+  final Widget? aside;
 
   const TagDefaultPage({
-    Key key,
-    @required this.title,
-    @required this.path,
-    @required this.description,
-    @required this.body,
-    @required this.menu,
+    Key? key,
+    required this.title,
+    required this.path,
+    required this.description,
+    required this.body,
+    required this.menu,
     this.aside,
   }) : super(key: key);
 

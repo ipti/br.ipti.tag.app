@@ -7,7 +7,7 @@ import 'package:tag_ui_design_system/components/shared/tag_input_decoration.dart
 
 class TagDropdownField extends StatefulWidget {
   TagDropdownField({
-    Key key,
+    Key? key,
     this.hint,
     this.controller,
     this.inputType,
@@ -17,23 +17,23 @@ class TagDropdownField extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.onEditingComplete,
-    @required this.label,
+    required this.label,
     this.items,
     this.value,
   }) : super(key: key);
 
-  final String hint;
-  final Map<int, String> items;
+  final String? hint;
+  final Map<int, String>? items;
   final String label;
-  final TextEditingController controller;
-  final TextInputType inputType;
-  final bool obscureText;
-  final int maxLength;
-  final int value;
-  final List<TextInputFormatter> formatters;
-  final Function validator;
-  final Function onChanged;
-  final Function onEditingComplete;
+  final TextEditingController? controller;
+  final TextInputType? inputType;
+  final bool? obscureText;
+  final int? maxLength;
+  final int? value;
+  final List<TextInputFormatter>? formatters;
+  final Function? validator;
+  final Function? onChanged;
+  final Function? onEditingComplete;
 
   @override
   _TagDropdownFieldState createState() => _TagDropdownFieldState();
@@ -52,7 +52,7 @@ class _TagDropdownFieldState extends State<TagDropdownField> {
 
   @override
   Widget build(BuildContext context) {
-    final dropdownItens = widget.items
+    final dropdownItens = widget.items!
         .map((key, value) {
           return MapEntry(
             key,
@@ -82,10 +82,10 @@ class _TagDropdownFieldState extends State<TagDropdownField> {
             items: dropdownItens,
             style: textStyle,
             decoration: buildInputDecoration(widget.hint),
-            validator: (value) => widget.validator != null
-                ? widget.validator(value?.toString() ?? "")
+            validator: (dynamic value) => widget.validator != null
+                ? widget.validator!(value?.toString() ?? "")
                 : null,
-            onChanged: widget.onChanged,
+            onChanged: widget.onChanged as void Function(int?)?,
             onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
           ),
         ),

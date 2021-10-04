@@ -5,10 +5,10 @@ class AddressFormState extends Equatable {
     this.residenceZone,
   });
 
-  final int residenceZone;
+  final int? residenceZone;
 
   AddressFormState copyWith({
-    int residenceZone,
+    int? residenceZone,
   }) {
     return AddressFormState(
       residenceZone: residenceZone ?? this.residenceZone,
@@ -16,5 +16,5 @@ class AddressFormState extends Equatable {
   }
 
   @override
-  List<Object> get props => [residenceZone];
+  List<Object?> get props => [residenceZone];
 }

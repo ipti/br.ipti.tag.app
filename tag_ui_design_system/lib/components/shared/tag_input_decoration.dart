@@ -19,7 +19,7 @@ const textStyle = TextStyle(
   color: TagColors.colorBaseInkNormal,
 );
 
-final buildInputDecoration = (String hint) => InputDecoration(
+final buildInputDecoration = (String? hint) => InputDecoration(
       floatingLabelBehavior: FloatingLabelBehavior.never,
       hintText: hint,
       filled: true,

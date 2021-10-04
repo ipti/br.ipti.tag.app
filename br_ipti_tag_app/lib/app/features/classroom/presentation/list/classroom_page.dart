@@ -1,10 +1,8 @@
+import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-
-import 'package:meta/meta.dart';
 
 import '../../domain/entities/classroom.dart';
 import 'bloc/classroom_list_bloc.dart';
@@ -12,7 +10,7 @@ import 'bloc/classroom_list_events.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
-  const ClassroomPage({Key key, this.title = 'Listagem de Turmas'})
+  const ClassroomPage({Key? key, this.title = 'Listagem de Turmas'})
       : super(key: key);
 
   final String title;
@@ -87,7 +85,7 @@ class ClassroomPageState
 
 class ClassroomDatatable extends DataTableSource {
   ClassroomDatatable({
-    @required this.data,
+    required this.data,
   });
 
   final List<Classroom> data;

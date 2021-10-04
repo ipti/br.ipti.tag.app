@@ -1,11 +1,12 @@
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
-    Key key,
-    this.meal,
+    Key? key,
+    required this.meal,
   }) : super(key: key);
 
   final Meal meal;
@@ -20,28 +21,33 @@ class MealItem extends StatelessWidget {
         foodName: meal.foodName,
         turn: meal.turn,
         studentType: meal.studentType,
-        ingredients: meal.ingredients.toString(),
+        ingredients: _formatIngredients(meal.ingredients),
       ),
     );
+  }
+
+  String _formatIngredients(List<Ingredient> ingredients) {
+    final resultJoin = ingredients.join(',');
+    return resultJoin.substring(0, resultJoin.length - 1);
   }
 }
 
 class _Card extends StatelessWidget {
   const _Card({
-    Key key,
-    @required this.tacoCode,
-    @required this.foodName,
-    @required this.turn,
-    @required this.mealType,
-    @required this.studentType,
-    @required this.ingredients,
+    Key? key,
+    required this.tacoCode,
+    required this.foodName,
+    required this.turn,
+    required this.mealType,
+    required this.studentType,
+    required this.ingredients,
   }) : super(key: key);
 
-  final String tacoCode;
-  final String foodName;
-  final String turn;
-  final String studentType;
-  final String mealType;
+  final String? tacoCode;
+  final String? foodName;
+  final String? turn;
+  final String? studentType;
+  final String? mealType;
   final String ingredients;
 
   @override
@@ -119,11 +125,11 @@ class _Card extends StatelessWidget {
 
 class _LabelInfoTurnAndType extends StatelessWidget {
   const _LabelInfoTurnAndType({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
 
-  final String text;
+  final String? text;
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +137,7 @@ class _LabelInfoTurnAndType extends StatelessWidget {
       minHeight: 28,
       background: TagColors.colorBaseProductSecondary,
       child: Text(
-        text,
+        text!,
         style: const TextStyle(
           color: TagColors.colorBaseProductDark,
           fontWeight: FontWeight.w500,
@@ -143,11 +149,11 @@ class _LabelInfoTurnAndType extends StatelessWidget {
 
 class _MealTypeLabel extends StatelessWidget {
   const _MealTypeLabel({
-    Key key,
-    @required this.mealType,
+    Key? key,
+    required this.mealType,
   }) : super(key: key);
 
-  final String mealType;
+  final String? mealType;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +161,7 @@ class _MealTypeLabel extends StatelessWidget {
       minHeight: 28,
       background: TagColors.colorBaseProductLightActive,
       child: Text(
-        mealType,
+        mealType!,
         style: const TextStyle(
           color: TagColors.colorBaseProductLogo,
           fontWeight: FontWeight.w500,

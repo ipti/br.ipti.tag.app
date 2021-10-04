@@ -13,26 +13,26 @@ class CreateItemStockState extends Equatable {
     this.studentClass,
   });
 
-  final String name;
-  final String birthday;
-  final int sex;
-  final int colorRace;
-  final int filiation;
-  final int nationality;
-  final bool deficiency;
-  final int residenceZone;
-  final int studentClass;
+  final String? name;
+  final String? birthday;
+  final int? sex;
+  final int? colorRace;
+  final int? filiation;
+  final int? nationality;
+  final bool? deficiency;
+  final int? residenceZone;
+  final int? studentClass;
 
   CreateItemStockState copyWith({
-    String name,
-    String birthday,
-    int sex,
-    int colorRace,
-    int filiation,
-    int nationality,
-    bool deficiency,
-    int residenceZone,
-    int studentClass,
+    String? name,
+    String? birthday,
+    int? sex,
+    int? colorRace,
+    int? filiation,
+    int? nationality,
+    bool? deficiency,
+    int? residenceZone,
+    int? studentClass,
   }) {
     return CreateItemStockState(
       name: name ?? this.name,
@@ -49,14 +49,14 @@ class CreateItemStockState extends Equatable {
 
   @override
   List<Object> get props => [
-        name,
-        birthday,
-        sex,
-        colorRace,
-        filiation,
-        nationality,
-        deficiency,
-        residenceZone,
-        studentClass
+        name!,
+        birthday!,
+        sex!,
+        colorRace!,
+        filiation!,
+        nationality!,
+        deficiency!,
+        residenceZone!,
+        studentClass!
       ];
 }

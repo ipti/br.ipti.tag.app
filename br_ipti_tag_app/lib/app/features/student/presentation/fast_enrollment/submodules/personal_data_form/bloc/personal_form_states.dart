@@ -12,25 +12,25 @@ class PersonalFormState extends Equatable {
     this.foodRestrictions,
   });
 
-  final String name;
-  final String birthday;
-  final int sex;
-  final int colorRace;
-  final int filiation;
-  final int nationality;
-  final bool deficiency;
-  final String foodRestrictions;
+  final String? name;
+  final String? birthday;
+  final int? sex;
+  final int? colorRace;
+  final int? filiation;
+  final int? nationality;
+  final bool? deficiency;
+  final String? foodRestrictions;
 
   PersonalFormState copyWith({
-    String name,
-    String birthday,
-    int sex,
-    int colorRace,
-    int filiation,
-    int nationality,
-    bool deficiency,
-    int studentClass,
-    String foodRestrictions,
+    String? name,
+    String? birthday,
+    int? sex,
+    int? colorRace,
+    int? filiation,
+    int? nationality,
+    bool? deficiency,
+    int? studentClass,
+    String? foodRestrictions,
   }) {
     return PersonalFormState(
       name: name ?? this.name,
@@ -45,7 +45,7 @@ class PersonalFormState extends Equatable {
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         name,
         birthday,
         sex,

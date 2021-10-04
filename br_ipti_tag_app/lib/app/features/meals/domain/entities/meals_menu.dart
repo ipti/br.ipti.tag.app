@@ -7,6 +7,6 @@ class MealsMenu {
     this.currentDate,
   );
   final List<Meal> meals;
-  final String fullnameDay;
-  final String currentDate;
+  final String? fullnameDay;
+  final String? currentDate;
 }

@@ -3,9 +3,9 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class TagDataTable extends StatelessWidget {
   const TagDataTable({
-    Key key,
-    @required this.columns,
-    @required this.source,
+    Key? key,
+    required this.columns,
+    required this.source,
   }) : super(key: key);
 
   final List<DataColumn> columns;

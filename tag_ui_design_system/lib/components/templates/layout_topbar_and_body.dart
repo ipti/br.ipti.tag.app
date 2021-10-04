@@ -3,11 +3,11 @@ import 'package:flutter/widgets.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class LayoutTopBarAndBody extends StatelessWidget {
-  const LayoutTopBarAndBody({Key key, @required this.body, this.drawer})
+  const LayoutTopBarAndBody({Key? key, required this.body, this.drawer})
       : super(key: key);
 
-  final Widget body;
-  final Widget drawer;
+  final Widget? body;
+  final Widget? drawer;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +25,12 @@ class LayoutTopBarAndBody extends StatelessWidget {
 }
 
 class _LayoutPages extends StatelessWidget {
-  const _LayoutPages({Key key, this.left, this.center, this.right})
+  const _LayoutPages({Key? key, this.left, this.center, this.right})
       : super(key: key);
 
-  final Widget left;
-  final Widget center;
-  final Widget right;
+  final Widget? left;
+  final Widget? center;
+  final Widget? right;
 
   @override
   Widget build(BuildContext context) {

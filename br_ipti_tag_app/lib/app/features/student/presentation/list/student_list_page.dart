@@ -1,10 +1,8 @@
+import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui_design_system/tag_ui_design_system.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-
-import 'package:meta/meta.dart';
 
 import '../../domain/entities/student.dart';
 import 'bloc/student_list_bloc.dart';
@@ -12,7 +10,7 @@ import 'bloc/student_list_events.dart';
 import 'bloc/student_list_states.dart';
 
 class StudentPage extends StatefulWidget {
-  const StudentPage({Key key, this.title = 'Listagem de Alunos'})
+  const StudentPage({Key? key, this.title = 'Listagem de Alunos'})
       : super(key: key);
 
   final String title;
@@ -82,7 +80,7 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
 
 class StudentDatatable extends DataTableSource {
   StudentDatatable({
-    @required this.data,
+    required this.data,
   });
 
   final List<Student> data;
@@ -90,7 +88,7 @@ class StudentDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
+      DataCell(Text(data[index].name!.toUpperCase())),
       DataCell(Text(data[index].scholarity.toString())),
       const DataCell(Icon(Icons.edit)),
     ]);

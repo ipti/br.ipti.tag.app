@@ -12,7 +12,7 @@ import 'bloc/classroom_create_events.dart';
 import 'bloc/classroom_states.dart';
 
 class ClassroomCreatePage extends StatefulWidget {
-  const ClassroomCreatePage({Key key, this.title = 'Adicionar Turma'})
+  const ClassroomCreatePage({Key? key, this.title = 'Adicionar Turma'})
       : super(key: key);
 
   final String title;
@@ -59,7 +59,7 @@ class ClassroomCreatePageState
 }
 
 class ClassroomBasicDataForm extends StatefulWidget {
-  const ClassroomBasicDataForm({Key key}) : super(key: key);
+  const ClassroomBasicDataForm({Key? key}) : super(key: key);
 
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
@@ -83,7 +83,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
     Widget inputStartTime(TimeOfDay startTime) => TagTextField(
@@ -94,7 +94,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
             controller.setStartTime(stringToTimeOfDay(value));
           },
           value: startTime.format(context),
-          validator: requiredTimeValidator,
+          validator: requiredTimeValidator as Function?,
         );
 
     Widget inputEndTime(TimeOfDay endTime) => TagTextField(
@@ -105,7 +105,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
             controller.setEndTime(stringToTimeOfDay(value));
           },
           value: endTime.format(context),
-          validator: requiredTimeValidator,
+          validator: requiredTimeValidator as Function?,
         );
     Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
@@ -113,7 +113,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           items: controller.modalitiesList,
           onChanged: controller.setModality,
           value: modality,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
     Widget selectStage(int nationality) => TagDropdownField(
           label: 'Etapa de Ensino',
@@ -121,7 +121,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           items: controller.stagesList,
           onChanged: controller.setStage,
           value: nationality,
-          validator: requiredValidator,
+          validator: requiredValidator as Function?,
         );
 
     return Form(

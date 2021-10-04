@@ -17,7 +17,7 @@ class LoadingState extends StudentListState {
 
 class LoadedState extends StudentListState {
   LoadedState({
-    @required this.students,
+    required this.students,
   });
 
   final List<Student> students;
@@ -28,7 +28,7 @@ class LoadedState extends StudentListState {
 
 class FailedState extends StudentListState {
   FailedState({
-    @required this.message,
+    required this.message,
   });
 
   final String message;

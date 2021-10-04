@@ -5,13 +5,13 @@ import 'ingredient_model.dart';
 
 class MealModel extends Meal {
   MealModel({
-    final String hour,
-    final String tacoCode,
-    final String foodName,
-    final String turn,
-    final String studentType,
-    final List<IngredientModel> ingredients,
-    final String consistence,
+    required final String hour,
+    required final String tacoCode,
+    required final String foodName,
+    required final String turn,
+    required final String studentType,
+    required final List<IngredientModel> ingredients,
+    required final String consistence,
   }) : super(
           hour,
           tacoCode,

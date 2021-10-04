@@ -17,7 +17,7 @@ class LoadingState extends ListStockState {
 
 class LoadedState extends ListStockState {
   LoadedState({
-    @required this.ingredients,
+    required this.ingredients,
   });
 
   final List<Ingredient> ingredients;
@@ -28,7 +28,7 @@ class LoadedState extends ListStockState {
 
 class FailedState extends ListStockState {
   FailedState({
-    @required this.message,
+    required this.message,
   });
 
   final String message;

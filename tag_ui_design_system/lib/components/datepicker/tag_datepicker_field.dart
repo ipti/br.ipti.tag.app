@@ -9,7 +9,7 @@ import 'package:tag_ui_design_system/design_tokens/tokens.dart';
 
 class TagDatePickerField extends StatefulWidget {
   TagDatePickerField({
-    Key key,
+    Key? key,
     this.hint,
     this.controller,
     this.inputType,
@@ -19,21 +19,21 @@ class TagDatePickerField extends StatefulWidget {
     this.validator,
     this.onChanged,
     this.onEditingComplete,
-    @required this.label,
+    required this.label,
     this.value,
   }) : super(key: key);
 
-  final String hint;
+  final String? hint;
   final String label;
-  final String value;
-  final TextEditingController controller;
-  final TextInputType inputType;
-  final bool obscureText;
-  final int maxLength;
-  final List<TextInputFormatter> formatters;
-  final Function validator;
-  final Function onChanged;
-  final Function onEditingComplete;
+  final String? value;
+  final TextEditingController? controller;
+  final TextInputType? inputType;
+  final bool? obscureText;
+  final int? maxLength;
+  final List<TextInputFormatter>? formatters;
+  final Function? validator;
+  final Function? onChanged;
+  final Function? onEditingComplete;
 
   @override
   _TagDatePickerFieldState createState() => _TagDatePickerFieldState();
@@ -57,7 +57,7 @@ class _TagDatePickerFieldState extends State<TagDatePickerField> {
           constraints: fieldBoxConstraints,
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
-            initialValue: widget?.value ?? "",
+            initialValue: widget.value ?? "",
             controller: widget.controller,
             inputFormatters: [
               ...(widget.formatters ?? []),
@@ -66,11 +66,11 @@ class _TagDatePickerFieldState extends State<TagDatePickerField> {
             maxLength: widget.maxLength,
             keyboardType: widget.inputType,
             style: textStyle,
-            validator: widget.validator,
+            validator: widget.validator as String? Function(String?)?,
             decoration: buildInputDecoration(widget.hint),
-            onChanged: widget.onChanged,
-            onEditingComplete: widget.onEditingComplete,
-            onTap: widget.onEditingComplete,
+            onChanged: widget.onChanged as void Function(String)?,
+            onEditingComplete: widget.onEditingComplete as void Function()?,
+            onTap: widget.onEditingComplete as void Function()?,
           ),
         ),
       ],

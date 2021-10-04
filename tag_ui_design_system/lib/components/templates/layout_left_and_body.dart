@@ -4,12 +4,12 @@ import 'package:tag_ui_design_system/tag_ui_design_system.dart';
 
 class LayoutLeftAndBody extends StatelessWidget {
   const LayoutLeftAndBody({
-    Key key,
-    @required this.body,
+    Key? key,
+    required this.body,
     this.left,
   }) : super(key: key);
 
-  final Widget left;
+  final Widget? left;
   final Widget body;
 
   @override
@@ -30,12 +30,12 @@ class LayoutLeftAndBody extends StatelessWidget {
 
 class _LayoutPages extends StatelessWidget {
   const _LayoutPages({
-    Key key,
-    @required this.left,
-    @required this.center,
+    Key? key,
+    required this.left,
+    required this.center,
   }) : super(key: key);
 
-  final Widget left;
+  final Widget? left;
   final Widget center;
 
   @override

@@ -8,12 +8,12 @@ import 'i_tag_menu_item.dart';
 
 class TagMenu extends StatelessWidget {
   const TagMenu({
-    Key key,
-    @required this.items,
+    Key? key,
+    required this.items,
     this.initialRoute,
   }) : super(key: key);
 
-  final String initialRoute;
+  final String? initialRoute;
   final List<ITagMenuItem> items;
 
   @override

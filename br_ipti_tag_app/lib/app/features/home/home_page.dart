@@ -1,10 +1,10 @@
+import 'package:br_ipti_tag_app/app/features/home/home_controller.dart';
 import 'package:br_ipti_tag_app/app/features/home/home_events.dart';
 import 'package:flutter/material.dart';
-import 'package:br_ipti_tag_app/app/features/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();

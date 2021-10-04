@@ -17,7 +17,7 @@ class LoadingState extends ListMealsState {
 
 class LoadedState extends ListMealsState {
   LoadedState({
-    @required this.mealsOfDay,
+    required this.mealsOfDay,
   });
 
   final List<MealsMenu> mealsOfDay;
@@ -28,7 +28,7 @@ class LoadedState extends ListMealsState {
 
 class FailedState extends ListMealsState {
   FailedState({
-    @required this.message,
+    required this.message,
   });
 
   final String message;
