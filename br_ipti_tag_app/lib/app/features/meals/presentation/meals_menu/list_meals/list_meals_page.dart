@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_ui_design_system/tag_ui_design_system.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/list_meals_bloc.dart';
 import 'bloc/list_meals_events.dart';

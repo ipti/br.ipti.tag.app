@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_ui_design_system/tag_ui_design_system.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 class TagVerticalMenu extends StatelessWidget {
   const TagVerticalMenu({Key? key}) : super(key: key);

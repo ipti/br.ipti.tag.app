@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredient_item/ingredient_item.dart';
 import 'package:flutter/material.dart';
-import 'package:tag_ui_design_system/tag_ui_design_system.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 class IngredientsList extends StatelessWidget {
   const IngredientsList({

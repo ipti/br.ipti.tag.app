@@ -2,7 +2,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.da
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tag_ui_design_system/tag_ui_design_system.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 class DetailsItemStockPage extends StatefulWidget {
   const DetailsItemStockPage({

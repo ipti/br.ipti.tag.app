@@ -2,7 +2,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meal_item/meal_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_ui_design_system/tag_ui_design_system.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 class MealsItemDay extends StatelessWidget {
   const MealsItemDay({
