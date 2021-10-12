@@ -24,16 +24,13 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
 
   @override
   Widget build(BuildContext context) {
-    const labelText = TextStyle(color: TagColors.colorBaseInkLight);
-    const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
-
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
       aside: Container(),
       title: widget.ingredient.name,
       description: "Estoque de item",
       path: const [],
-      body: <Widget>[],
+      body: const <Widget>[],
     );
   }
 }

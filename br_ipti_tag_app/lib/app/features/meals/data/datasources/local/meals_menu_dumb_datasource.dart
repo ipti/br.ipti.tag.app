@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
-import '../models/meals_menu_model.dart';
+import '../../models/meals_menu_model.dart';
 
 abstract class MealsMenuDumbDataSource {
   Future<List<MealsMenuModel>> list();

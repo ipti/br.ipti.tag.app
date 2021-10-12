@@ -1,4 +1,5 @@
-import 'package:br_ipti_tag_app/app/features/meals/data/datasources/ingredient_dumb_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/ingredient_dumb_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/datasources/remote/stock_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/repositories/ingredient_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_ingredients_stock_usecase.dart';
@@ -12,8 +13,10 @@ class StockModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => IngredientDumbDataSourceImpl()),
+    Bind.lazySingleton((i) => IngredientRemoteDataSourceImpl(i.get())),
     Bind.lazySingleton(
-      (i) => IngredientRepositoryImpl(dumbDataSource: i.get()),
+      (i) => IngredientRepositoryImpl(
+          dumbDataSource: i.get(), remoteDataSource: i.get()),
     ),
     Bind.lazySingleton((i) => ListIngredientUsecase(i.get())),
     Bind.lazySingleton((i) => StockBloc(i.get())),

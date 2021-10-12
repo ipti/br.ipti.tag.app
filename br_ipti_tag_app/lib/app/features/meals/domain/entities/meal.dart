@@ -1,4 +1,4 @@
-import 'ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 
 class Meal {
   Meal(
@@ -15,6 +15,6 @@ class Meal {
   final String foodName;
   final String turn;
   final String studentType;
-  final List<Ingredient> ingredients;
+  final List<InvetoryIngredient> ingredients;
   final String consistence;
 }

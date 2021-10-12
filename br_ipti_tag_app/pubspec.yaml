@@ -1,5 +1,5 @@
 name: br_ipti_tag_app
-description: A new Flutter project.
+description: TAG - Tecnologia de Apoio a gestão
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -22,13 +22,13 @@ environment:
 
 dependencies:   
   dartz:
-  dio: any  
+  dio: any
   equatable: ^2.0.3
   flutter:
     sdk: flutter  
   flutter_bloc: ^7.0.1
   flutter_modular: 3.4.0  
-  form_field_validator: any
+  form_field_validator: any  
   meta: ^1.1.6    
   tag_ui:
     path: ../tag_ui

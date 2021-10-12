@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -26,9 +27,9 @@ class MealItem extends StatelessWidget {
     );
   }
 
-  String _formatIngredients(List<Ingredient> ingredients) {
-    final resultJoin = ingredients.join(',');
-    return resultJoin.substring(0, resultJoin.length - 1);
+  String _formatIngredients(List<InvetoryIngredient> ingredients) {
+    final resultJoin = ingredients.join(', ');
+    return resultJoin;
   }
 }
 

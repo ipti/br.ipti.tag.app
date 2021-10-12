@@ -1,5 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_ingredients_stock_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +12,7 @@ class StockBloc extends Bloc<ListStockEvent, ListStockState> {
   ) : super(EmptyState());
 
   final ListIngredientUsecase listIngredientsUsecase;
-  List<Ingredient> ingredientsCached = [];
+  List<InvetoryIngredient> ingredientsCached = [];
 
   @override
   Stream<ListStockState> mapEventToState(ListStockEvent event) async* {

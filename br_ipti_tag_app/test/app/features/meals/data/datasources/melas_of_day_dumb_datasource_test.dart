@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/data/datasources/meals_menu_dumb_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/meals_menu_dumb_datasource.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // ignore: type_annotate_public_apis
