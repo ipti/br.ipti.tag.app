@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core/network/service/router.dart';
 import 'features/classroom/classroom_module.dart';
+import 'features/login/auth_module.dart';
 import 'features/meals/meals_module.dart';
 import 'features/student/student_module.dart';
 
@@ -18,6 +19,11 @@ class AppModule extends Module {
   // Provide all the routes for your module
   @override
   final List<ModularRoute<void>> routes = [
+    ModuleRoute(
+      "/auth",
+      module: AuthModule(),
+      transition: TransitionType.noTransition,
+    ),
     ModuleRoute(
       "/merenda",
       module: MealsModule(),

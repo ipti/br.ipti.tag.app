@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class IngredientsList extends StatelessWidget {
-  const IngredientsList({Key? key, required this.ingredients, s})
-      : super(key: key);
+  const IngredientsList({
+    Key? key,
+    required this.ingredients,
+  }) : super(key: key);
 
   final List<InvetoryIngredient>? ingredients;
 

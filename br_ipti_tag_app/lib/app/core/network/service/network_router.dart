@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/core/model/model.dart';
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
 import 'package:dio/dio.dart';
 

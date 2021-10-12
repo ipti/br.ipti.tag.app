@@ -13,24 +13,14 @@ class RouterAPI implements NetworkRouter {
   Future<NetworkResponse<Map<String, dynamic>>> request({
     required EndPointAPI route,
   }) async {
-    try {
-      final requestOptions = _buildRequest(route: route);
-      final response = await _client.fetch(requestOptions);
+    final requestOptions = _buildRequest(route: route);
+    final response = await _client.fetch(requestOptions);
 
-      return NetworkResponse(
-        response.data as Map<String, dynamic>,
-        response,
-        null,
-      );
-    } catch (e) {
-      return NetworkResponse(
-        {},
-        null,
-        Exception(
-          "Não foi possível executar consulta, servidor indisponível\n $e",
-        ),
-      );
-    }
+    return NetworkResponse(
+      response.data as Map<String, dynamic>,
+      response,
+      null,
+    );
   }
 
   @override
@@ -61,6 +51,7 @@ class RouterAPI implements NetworkRouter {
   }) {
     final headers = _client.options.headers;
     final queryParameters = _client.options.queryParameters;
+    final data = {};
 
     if (route.headers != null) {
       headers.addAll(route.headers!());
@@ -70,6 +61,10 @@ class RouterAPI implements NetworkRouter {
       queryParameters.addAll(route.urlParameters!());
     }
 
+    if (route.bodyParameters != null) {
+      data.addAll(route.bodyParameters!());
+    }
+
     final request = RequestOptions(
       path: route.path,
       method: route.httpMethod.name,
@@ -77,6 +72,7 @@ class RouterAPI implements NetworkRouter {
       baseUrl: _client.options.baseUrl,
       headers: headers,
       queryParameters: queryParameters,
+      data: data,
     );
 
     return request;

@@ -50,8 +50,10 @@ class FoodModel extends Food implements Model {
   }
 
   @override
-  String toString() =>
-      'FoodModel(tacoId: $tacoId, description: $description, scientificName: $scientificName)';
+  String toString() => '''
+      FoodModel(tacoId: $tacoId, description: $description, 
+      scientificName: $scientificName)
+  ''';
 
   @override
   bool operator ==(Object other) {

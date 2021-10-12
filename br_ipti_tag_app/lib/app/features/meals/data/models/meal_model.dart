@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/ingredient_inventory.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
-import 'ingredient_model.dart';
 
 class MealModel extends Meal {
   MealModel({

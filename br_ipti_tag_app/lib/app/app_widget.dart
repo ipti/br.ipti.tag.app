@@ -13,7 +13,7 @@ class AppWidget extends StatelessWidget {
       builder: (context) => MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
-        initialRoute: "/turmas",
+        initialRoute: "/auth",
         color: TagColors.colorBaseWhiteNormal,
       ).modular(),
     );

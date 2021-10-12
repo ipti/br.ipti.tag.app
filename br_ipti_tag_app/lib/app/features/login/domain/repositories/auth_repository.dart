@@ -1,0 +1,6 @@
+import 'package:br_ipti_tag_app/app/features/login/domain/entities/auth_token.dart';
+import 'package:dartz/dartz.dart';
+
+abstract class AuthRepository {
+  Future<Either<Exception, AuthToken>> login(String email, String password);
+}

@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/ingredient_dumb_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/datasources/remote/stock_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/repositories/ingredient_repository.dart';
 import 'package:dartz/dartz.dart';
