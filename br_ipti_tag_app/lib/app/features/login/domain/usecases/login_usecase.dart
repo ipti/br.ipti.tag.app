@@ -12,6 +12,12 @@ class AuthLoginUsecase implements Usecase<AuthToken, LoginParams> {
   @override
   Future<Either<Exception, AuthToken>> call(LoginParams params) async {
     final result = await _repository.login(params.email, params.password);
+
+    result.fold(
+      id,
+      (authToken) => _repository.cacheAuthToken(authToken),
+    );
+
     return result;
   }
 }

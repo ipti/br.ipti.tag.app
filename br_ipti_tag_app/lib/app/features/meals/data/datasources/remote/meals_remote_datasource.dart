@@ -16,6 +16,6 @@ class MealsMenuRemoteDataSourceImpl implements MealsMenuRemoteDataSource {
     final response = await _httpClient.requestListOf(
       route: ListFoodMenuEndPoint(),
     );
-    return [];
+    return MealsMenuModel.fromList(response.data! as List);
   }
 }

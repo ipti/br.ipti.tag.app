@@ -17,6 +17,7 @@ class AuthLoginPage extends StatefulWidget {
 class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
   @override
   void initState() {
+    controller.verifyAuthToken();
     super.initState();
   }
 
@@ -47,8 +48,6 @@ class _Body extends StatelessWidget {
 
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
-
-    const heading = Heading(text: "Turma", type: HeadingType.Title2);
 
     Widget inputEmail(String email) => TagTextField(
           label: "Email",

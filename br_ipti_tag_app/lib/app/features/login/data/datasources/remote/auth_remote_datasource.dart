@@ -1,10 +1,9 @@
 import 'package:br_ipti_tag_app/app/api/auth/post_auth_login.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/login/data/models/auth_token_model.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/entities/auth_token.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<AuthToken> login(String email, String password);
+  Future<AuthTokenModel> login(String email, String password);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -13,7 +12,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final RouterAPI _httpClient;
 
   @override
-  Future<AuthToken> login(String email, String password) async {
+  Future<AuthTokenModel> login(String email, String password) async {
     final response = await _httpClient.request(
       route: PostAuthLoginEndPoint(email, password),
     );

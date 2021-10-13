@@ -1,8 +1,7 @@
+import 'package:br_ipti_tag_app/app/features/login/data/datasources/local/auth_local_datasource.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-
-const authToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTVlZTZlY2RjZDJkMjQ0NTQwMTkxMzYiLCJpYXQiOjE2MzM5OTk3NTksImV4cCI6MTYzNDAwNjk1OX0.uK9Q0zI25-isQ__K6gUfo6n2gqiuEVdKxYDNmZ2wQYw";
 
 class AuthInterceptor extends InterceptorsWrapper {
   @override
@@ -14,9 +13,13 @@ class AuthInterceptor extends InterceptorsWrapper {
       debugPrint("BaseURL: ${options.baseUrl}");
       debugPrint("Endpoint: ${options.path}");
     }
-
-    options.headers['Authorization'] = 'Bearer $authToken';
-
-    return super.onRequest(options, handler);
+    try {
+      final authRepository = AuthLocalDataSourceImpl();
+      final authToken = await authRepository.getAuthToken();
+      options.headers['Authorization'] = 'Bearer ${authToken.accessToken}';
+      return super.onRequest(options, handler);
+    } catch (e) {
+      return super.onRequest(options, handler);
+    }
   }
 }

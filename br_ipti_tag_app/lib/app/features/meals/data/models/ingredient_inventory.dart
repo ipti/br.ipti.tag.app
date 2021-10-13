@@ -57,7 +57,7 @@ class InvetoryIngredientModel extends InvetoryIngredient implements Model {
       source: source ?? this.source,
       measurementUnit: measurementUnit ?? this.measurementUnit,
       expirationDate: expirationDate ?? this.expirationDate,
-      food: food ?? this.food,
+      food: food,
     );
   }
 

@@ -13,6 +13,11 @@ class AuthTokenModel extends AuthToken {
     );
   }
 
+  factory AuthTokenModel.fromJson(String source) {
+    final mapped = jsonDecode(source);
+    return AuthTokenModel.fromMap(mapped as Map<String, dynamic>);
+  }
+
   AuthToken copyWith({
     String? accessToken,
   }) {
@@ -23,7 +28,7 @@ class AuthTokenModel extends AuthToken {
 
   Map<String, dynamic> toMap() {
     return {
-      'accessToken': accessToken,
+      'access_token': accessToken,
     };
   }
 

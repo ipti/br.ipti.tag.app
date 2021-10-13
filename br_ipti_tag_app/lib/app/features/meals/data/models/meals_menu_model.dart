@@ -25,6 +25,13 @@ class MealsMenuModel extends MealsMenu {
   factory MealsMenuModel.fromJson(String source) =>
       MealsMenuModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
+  static List<MealsMenuModel> fromList(List list) {
+    final result = list
+        .map((e) => MealsMenuModel.fromMap(e as Map<String, dynamic>))
+        .toList();
+    return result;
+  }
+
   Map<String, dynamic> toMap() {
     return {
       'meals': meals.map((x) => (x as MealModel).toMap()).toList(),
