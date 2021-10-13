@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -71,43 +72,28 @@ class TagVerticalMenu extends StatelessWidget {
           // Modular.to.pushReplacementNamed(routeName);
         },
       ),
+      TagMenuItem(
+        title: "Logout",
+        route: '/logout',
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
+        ),
+        onTap: (String routeName) {
+          final authRepository = AuthLocalDataSourceImpl();
+          authRepository.cleanCacheToken();
+          Modular.to.pushReplacementNamed("/auth");
+        },
+      ),
     ];
 
     return Stack(
       children: [
         TagMenu(
-            initialRoute: ModalRoute.of(context)!.settings.name, items: items),
-        SizedBox(
-          width: double.infinity,
-          child: Row(
-            children: [
-              Flexible(
-                child: Container(
-                  height: 4,
-                  color: const Color(0xFF667DF4),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  height: 4,
-                  color: const Color(0xFFF45A5A),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  height: 4,
-                  color: const Color(0xFF66D654),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  height: 4,
-                  color: const Color(0xFFEADA48),
-                ),
-              ),
-            ],
-          ),
+          initialRoute: ModalRoute.of(context)!.settings.name,
+          items: items,
         ),
+        const TagRainbowBar(),
       ],
     );
   }

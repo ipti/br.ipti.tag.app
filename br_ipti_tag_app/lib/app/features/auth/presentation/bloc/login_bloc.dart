@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/entities/auth_token.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/usecases/login_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/usecases/verify_auth_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/verify_auth_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_modular/flutter_modular.dart';

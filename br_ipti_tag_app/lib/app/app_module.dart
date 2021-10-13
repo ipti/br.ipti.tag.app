@@ -3,8 +3,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core/network/service/router.dart';
+import 'features/auth/auth_module.dart';
 import 'features/classroom/classroom_module.dart';
-import 'features/login/auth_module.dart';
+
 import 'features/meals/meals_module.dart';
 import 'features/student/student_module.dart';
 

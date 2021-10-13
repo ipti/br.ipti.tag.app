@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/entities/auth_token.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/repositories/auth_repository.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class VerifyAuthUsecase implements Usecase<AuthToken, NoParams> {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/features/login/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
 
 class AuthTokenModel extends AuthToken {
   AuthTokenModel({

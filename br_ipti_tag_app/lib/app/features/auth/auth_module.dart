@@ -1,8 +1,8 @@
-import 'package:br_ipti_tag_app/app/features/login/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/login/data/repositories/auth_repository_impl.dart';
-import 'package:br_ipti_tag_app/app/features/login/domain/usecases/login_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/login/presentation/bloc/login_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/login/presentation/pages/auth_login_page.dart';
+import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/auth/presentation/pages/auth_login_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'data/datasources/local/auth_local_datasource.dart';

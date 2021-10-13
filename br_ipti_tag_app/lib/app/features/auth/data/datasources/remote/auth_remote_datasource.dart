@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/api/auth/post_auth_login.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
-import 'package:br_ipti_tag_app/app/features/login/data/models/auth_token_model.dart';
+import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_token_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthTokenModel> login(String email, String password);

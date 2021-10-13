@@ -5,6 +5,8 @@
 // ignore: constant_identifier_names
 class FilePaths {
   static const LOGO_PATH_SVG = 'assets/logo/logo_tag.svg';
+  static const TAG_LOGO_FOR_BACKGROUND =
+      'assets/resources/tag_logo_for_background.svg';
   // Persons Icon
   static const ICON_PERSONS_BLUE_SVG = 'assets/icons/pessoas/azul.svg';
   static const ICON_PERSONS_GREY_SVG = 'assets/icons/pessoas/cinza.svg';
