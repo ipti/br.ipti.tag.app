@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Leite",
+    "avaliable": true,
+    "quantity": 12,
+    "sugestionSubstituion": []
+  },
+  {
+    "name": "Fubá",
+    "avaliable": true,
+    "quantity": 17,
+    "sugestionSubstituion": []
+  },
+  {
+    "name": "Canela",
+    "avaliable": true,
+    "quantity": 18,
+    "sugestionSubstituion": []
+  }
+]

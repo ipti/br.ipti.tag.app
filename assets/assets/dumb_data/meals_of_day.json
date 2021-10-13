@@ -4,20 +4,54 @@
     "currentDate": "09/11",
     "meals": [
       {
-        "hour": "07:00",
+        "hour": "Dejejum",
         "tacoCode": "C0004K",
         "foodName": "Mingau de milho",
         "turn": "Manhã",
         "studentType": "Fundamental",
-        "ingredients": "12 Leite, 15 fubá, 17 canela"
+        "ingredients": [
+          {
+            "name": "Leite",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Fubá",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Canela",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          }
+        ],
+        "consistence": "Pastosa"
       },
       {
-        "hour": "19:00",
+        "hour": "Jantar",
         "tacoCode": "C0004K",
         "foodName": "Mingau de milho",
         "turn": "Noite",
         "studentType": "EJA",
-        "ingredients": "12 Leite, 15 fubá, 17 canela"
+        "ingredients": [
+          {
+            "name": "Leite",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Fubá",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Canela",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          }
+        ],
+        "consistence": "Solida"
       }
     ]
   },
@@ -26,20 +60,54 @@
     "currentDate": "10/11",
     "meals": [
       {
-        "hour": "07:00",
+        "hour": "Dejejum",
         "tacoCode": "C0004K",
         "foodName": "Mingau de puba",
         "turn": "Manhã",
         "studentType": "Fundamental",
-        "ingredients": "12 Leite, 15 fubá, 17 canela"
+        "ingredients": [
+          {
+            "name": "Leite",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Fubá",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Canela",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          }
+        ],
+        "consistence": "Pastosa"
       },
       {
-        "hour": "19:00",
+        "hour": "Jantar",
         "tacoCode": "C0004K",
         "foodName": "Mingau de puba",
         "turn": "Noite",
         "studentType": "EJA",
-        "ingredients": "12 Leite, 15 fubá, 17 canela"
+        "ingredients": [
+          {
+            "name": "Leite",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Fubá",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          },
+          {
+            "name": "Canela",
+            "avaliable": true,
+            "sugestionSubstituion": []
+          }
+        ],
+        "consistence": "Liquida"
       }
     ]
   }
