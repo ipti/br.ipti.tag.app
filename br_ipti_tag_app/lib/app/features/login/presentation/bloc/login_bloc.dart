@@ -37,6 +37,7 @@ class LoginBloc extends Cubit<LoginState> {
     if (result is AuthToken) {
       Modular.to.pushReplacementNamed("/turmas");
     } else if (result is RestClientException) {
+      // ignore: avoid_print
       print(result.handledError());
     }
   }

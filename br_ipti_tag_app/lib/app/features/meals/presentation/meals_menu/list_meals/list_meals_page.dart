@@ -106,6 +106,7 @@ class _DailyMeals extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _FilterStudentType extends StatelessWidget {
   const _FilterStudentType({
     Key? key,
@@ -149,6 +150,7 @@ class _FilterStudentType extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _FilterTurn extends StatelessWidget {
   const _FilterTurn({
     Key? key,
