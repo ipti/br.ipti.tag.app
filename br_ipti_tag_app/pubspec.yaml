@@ -35,6 +35,7 @@ dependencies:
   shared_preferences: ^2.0.8
   tag_ui:
     path: ../tag_ui
+  url_launcher: ^6.0.12
   
 
   # The following adds the Cupertino Icons font to your application.

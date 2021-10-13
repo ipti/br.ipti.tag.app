@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
@@ -25,7 +26,11 @@ class AuthModule extends Module {
     Bind.factory((i) => AuthLoginUsecase(i.get())),
     Bind.factory((i) => VerifyAuthUsecase(i.get())),
     // bloc
-    Bind.singleton((i) => LoginBloc(i.get(), i.get())),
+    Bind.singleton((i) => LoginBloc(
+          i.get<AuthLoginUsecase>(),
+          i.get<VerifyAuthUsecase>(),
+          i.get<PackageInfoService>(),
+        )),
   ];
 
   @override

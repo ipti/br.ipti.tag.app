@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
+import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
@@ -13,13 +14,20 @@ class LoginBloc extends Cubit<LoginState> {
   LoginBloc(
     this.authLoginUsecase,
     this.verifyAuthUsecase,
-  ) : super(const LoginInitial());
+    this.servicePkgInfo,
+  ) : super(LoginInitial());
 
   final AuthLoginUsecase authLoginUsecase;
   final VerifyAuthUsecase verifyAuthUsecase;
+  final PackageInfoService servicePkgInfo;
 
   void setEmail(String value) => emit(state.copyWith(email: value));
   void setPassword(String value) => emit(state.copyWith(password: value));
+
+  Future fetchVersion() async {
+    final version = await servicePkgInfo.getVersion();
+    emit(state.copyWith(appVersion: version));
+  }
 
   Future verifyAuthToken() async {
     final result = await verifyAuthUsecase(NoParams());

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'core/network/service/router.dart';
+import 'core/plataform/pkg_info_service.dart';
 import 'features/auth/auth_module.dart';
 import 'features/classroom/classroom_module.dart';
 
@@ -13,6 +14,7 @@ class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
   final List<Bind> binds = [
+    Bind.singleton((i) => PackageInfoServiceImpl()),
     Bind.singleton((i) => ClientHTTPConfiguration.apply(Dio())),
     Bind.singleton((i) => RouterAPI(i.get<Dio>()))
   ];
