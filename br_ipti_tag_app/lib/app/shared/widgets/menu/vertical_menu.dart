@@ -14,7 +14,7 @@ class TagVerticalMenu extends StatelessWidget {
       TagMenuItem(
         title: "Turmas",
         route: '/turmas',
-        isActive: currentRoute == '/turmas/',
+        isActive: currentRoute!.contains('/turmas/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
@@ -26,7 +26,7 @@ class TagVerticalMenu extends StatelessWidget {
       TagMenuItem(
         title: "Alunos",
         route: '/alunos',
-        isActive: currentRoute == '/alunos/',
+        isActive: currentRoute.contains('/alunos/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
@@ -38,7 +38,7 @@ class TagVerticalMenu extends StatelessWidget {
       TagMenuItem(
         title: "Professores",
         route: '/teacher',
-        isActive: currentRoute == '/teacher/',
+        isActive: currentRoute.contains('/teacher/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
@@ -50,7 +50,7 @@ class TagVerticalMenu extends StatelessWidget {
       TagMenuItem(
         title: "Transporte",
         route: '/transporte',
-        isActive: currentRoute == '/transporte/',
+        isActive: currentRoute.contains('/transporte/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
@@ -62,14 +62,13 @@ class TagVerticalMenu extends StatelessWidget {
       TagMenuItem(
         title: "Merenda",
         route: '/merenda',
-        isActive: currentRoute == '/merenda/',
+        isActive: currentRoute.contains('/merenda/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
         ),
         onTap: (String routeName) {
           Modular.to.pushReplacementNamed(routeName);
-          // Modular.to.pushReplacementNamed(routeName);
         },
       ),
       TagMenuItem(

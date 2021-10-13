@@ -83,7 +83,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget inputStartTime(TimeOfDay startTime) => TagTextField(
@@ -94,7 +94,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
             controller.setStartTime(stringToTimeOfDay(value));
           },
           value: startTime.format(context),
-          validator: requiredTimeValidator as Function?,
+          validator: requiredTimeValidator,
         );
 
     Widget inputEndTime(TimeOfDay endTime) => TagTextField(
@@ -105,7 +105,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
             controller.setEndTime(stringToTimeOfDay(value));
           },
           value: endTime.format(context),
-          validator: requiredTimeValidator as Function?,
+          validator: requiredTimeValidator,
         );
     Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
@@ -113,7 +113,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           items: controller.modalitiesList,
           onChanged: controller.setModality,
           value: modality,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
     Widget selectStage(int nationality) => TagDropdownField(
           label: 'Etapa de Ensino',
@@ -121,7 +121,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           items: controller.stagesList,
           onChanged: controller.setStage,
           value: nationality,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     return Form(

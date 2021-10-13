@@ -38,8 +38,11 @@ class ClassroomPageState
         SizedBox(
           child: Row(
             children: [
-              SizedBox(
-                width: 100,
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 120,
+                  minWidth: 100,
+                ),
                 child: TagButton(
                   text: "Criar turma",
                   onPressed: () => Modular.to.pushNamed("create"),
