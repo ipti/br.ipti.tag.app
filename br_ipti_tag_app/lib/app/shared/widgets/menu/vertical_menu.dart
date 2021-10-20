@@ -86,14 +86,9 @@ class TagVerticalMenu extends StatelessWidget {
       ),
     ];
 
-    return Stack(
-      children: [
-        TagMenu(
-          initialRoute: ModalRoute.of(context)!.settings.name,
-          items: items,
-        ),
-        const TagRainbowBar(),
-      ],
+    return TagMenu(
+      initialRoute: ModalRoute.of(context)!.settings.name,
+      items: items,
     );
   }
 }
