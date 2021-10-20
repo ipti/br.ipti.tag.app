@@ -6,12 +6,10 @@ import 'package:tag_ui/tag_ui.dart';
 
 import '../../domain/entities/student.dart';
 import 'bloc/student_list_bloc.dart';
-import 'bloc/student_list_events.dart';
 import 'bloc/student_list_states.dart';
 
 class StudentPage extends StatefulWidget {
-  const StudentPage({Key? key, this.title = 'Listagem de Alunos'})
-      : super(key: key);
+  const StudentPage({Key? key, this.title = 'Alunos'}) : super(key: key);
 
   final String title;
 
@@ -22,7 +20,7 @@ class StudentPage extends StatefulWidget {
 class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
   @override
   void initState() {
-    controller.add(GetListStudentsEvent());
+    controller.fetchListStudentsEvent();
     super.initState();
   }
 
@@ -37,10 +35,27 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
         SizedBox(
           child: Row(
             children: [
-              SizedBox(
-                width: 100,
+              Container(
+                padding: const EdgeInsets.all(8),
+                width: 120,
                 child: TagButton(
                   text: "Matricula",
+                  onPressed: () => Modular.to.pushNamed("matricula-rapida"),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                width: 180,
+                child: TagButton(
+                  text: "Matricula em grupo",
+                  onPressed: () => Modular.to.pushNamed("matricula-rapida"),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(8),
+                width: 180,
+                child: TagLinkButton(
+                  text: "Matricula rápida",
                   onPressed: () => Modular.to.pushNamed("matricula-rapida"),
                 ),
               )
@@ -51,18 +66,9 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
         BlocBuilder<StudentListBloc, StudentListState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is LoadedState) {
-              return TagDataTable(
-                columns: const [
-                  DataColumn(label: Text("Nome")),
-                  DataColumn(label: Text("Etapa")),
-                  DataColumn(label: Text("")),
-                ],
-                source: StudentDatatable(
-                  data: state.students,
-                ),
-              );
-            } else if (state is FailedState) {
+            if (state.loading) {
+              return const CircularProgressIndicator();
+            } else if (state.message.isNotEmpty) {
               return SizedBox(
                 height: 200,
                 child: Center(
@@ -70,7 +76,17 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
                 ),
               );
             }
-            return const CircularProgressIndicator();
+            return TagDataTable(
+              columns: const [
+                DataColumn(label: Text("Nome")),
+                DataColumn(label: Text("Data de Nascimento")),
+                DataColumn(label: Text("Nome completo do responsável")),
+                DataColumn(label: Text("")),
+              ],
+              source: StudentDatatable(
+                data: state.students,
+              ),
+            );
           },
         )
       ],
@@ -88,7 +104,7 @@ class StudentDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name!.toUpperCase())),
+      DataCell(Text(data[index].name.toUpperCase())),
       DataCell(Text(data[index].scholarity.toString())),
       const DataCell(Icon(Icons.edit)),
     ]);

@@ -1,11 +1,10 @@
+import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/enrollment_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
-
-import 'bloc/classes_form_bloc.dart';
-import 'bloc/classes_form_states.dart';
 
 class ClassesFormPage extends StatefulWidget {
   const ClassesFormPage({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class ClassesFormPage extends StatefulWidget {
 const heading = Heading(text: "Turma", type: HeadingType.Title2);
 
 class ClassesFormPageState extends State<ClassesFormPage> {
-  ClassesFormBloc controller = Modular.get<ClassesFormBloc>();
+  final controller = Modular.get<EnrollmentBloc>();
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
@@ -32,10 +31,10 @@ class ClassesFormPageState extends State<ClassesFormPage> {
           onChanged: controller.setStudentClass,
         );
 
-    return BlocBuilder<ClassesFormBloc, ClassesFormState>(
+    return BlocBuilder<EnrollmentBloc, EnrollmentState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is ClassesFormState) {
+          if (state is EnrollmentState) {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),

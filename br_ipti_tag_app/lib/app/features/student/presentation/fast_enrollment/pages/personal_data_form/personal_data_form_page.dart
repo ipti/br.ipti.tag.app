@@ -1,12 +1,11 @@
+import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/enrollment_states.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
-
-import 'bloc/personal_form_bloc.dart';
-import 'bloc/personal_form_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class PersonalDataFormPage extends StatefulWidget {
 }
 
 class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
-  final controller = Modular.get<PersonalFormBloc>();
+  final controller = Modular.get<EnrollmentBloc>();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -28,7 +27,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget inputBirthday(String? birthday) => TagDatePickerField(
@@ -36,7 +35,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           hint: "__/__/____",
           onChanged: controller.setBirthday,
           value: birthday,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget selectSex(int? sex) => TagDropdownField(
@@ -45,7 +44,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           items: controller.sexItems,
           onChanged: controller.setSex,
           value: sex,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget selectColorRace(int? colorRace) => TagDropdownField(
@@ -54,7 +53,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           items: controller.colorRaceItems,
           onChanged: controller.setColorRace,
           value: colorRace,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget selectFiliation(int? filiation) => TagDropdownField(
@@ -63,7 +62,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           items: controller.filiationItems,
           onChanged: controller.setFiliation,
           value: filiation,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget selectNationality(int? nationality) => TagDropdownField(
@@ -72,7 +71,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           items: controller.nationalityItems,
           onChanged: controller.setNationality,
           value: nationality,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
         );
 
     Widget deficiencyCheck({bool? deficiency}) => Row(
@@ -91,7 +90,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           hint: "",
           onChanged: controller.setFoodRestriction,
           value: foodRestriction,
-          validator: requiredValidator as Function?,
+          validator: requiredValidator,
           maxLines: 5,
         );
 
@@ -112,10 +111,10 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     return Form(
       key: _formKey,
-      child: BlocBuilder<PersonalFormBloc, PersonalFormState>(
+      child: BlocBuilder<EnrollmentBloc, EnrollmentState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is PersonalFormState) {
+            if (state is EnrollmentState) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),

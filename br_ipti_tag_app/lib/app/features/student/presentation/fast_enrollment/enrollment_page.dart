@@ -5,30 +5,37 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/enrollment_bloc.dart';
-import 'bloc/enrollment_events.dart';
 
-class EnrollmentPage extends StatefulWidget {
-  const EnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
+class FastEnrollmentPage extends StatefulWidget {
+  const FastEnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
       : super(key: key);
 
   final String title;
 
   @override
-  EnrollmentPageState createState() => EnrollmentPageState();
+  FastEnrollmentPageState createState() => FastEnrollmentPageState();
 }
 
-class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
+class FastEnrollmentPageState
+    extends ModularState<FastEnrollmentPage, EnrollmentBloc> {
   @override
   void initState() {
-    controller.add(StartEditing());
-    // Modular.to.navigate('/turmas/matricula-rapida/personal');
+    Modular.to.navigate('/alunos/matricula-rapida/personal');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    const tabs = [
+      Tab(
+        child: Text("Dados do aluno"),
+      ),
+      Tab(
+        child: Text("Matrícula"),
+      )
+    ];
     return DefaultTabController(
-      length: 3,
+      length: tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
         title: widget.title,
@@ -41,20 +48,13 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
             indicatorColor: TagColors.colorBaseProductDark,
             onTap: controller.tabNavigation,
             labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-            tabs: const [
-              Tab(
-                child: Text("Dados do aluno"),
-              ),
-              Tab(
-                child: Text("Endereço"),
-              ),
-              Tab(
-                child: Text("Turma"),
-              ),
-            ],
+            tabs: tabs,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height,
+              maxWidth: 800,
+            ),
             child: Expanded(
               child: RouterOutlet(),
             ),

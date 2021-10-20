@@ -11,6 +11,7 @@ class EnrollmentState extends Equatable {
     this.deficiency,
     this.residenceZone,
     this.studentClass,
+    this.foodRestrictions,
   });
 
   final String? name;
@@ -22,6 +23,7 @@ class EnrollmentState extends Equatable {
   final bool? deficiency;
   final int? residenceZone;
   final int? studentClass;
+  final String? foodRestrictions;
 
   EnrollmentState copyWith({
     String? name,
@@ -33,6 +35,7 @@ class EnrollmentState extends Equatable {
     bool? deficiency,
     int? residenceZone,
     int? studentClass,
+    String? foodRestrictions,
   }) {
     return EnrollmentState(
       name: name ?? this.name,
@@ -44,6 +47,7 @@ class EnrollmentState extends Equatable {
       deficiency: deficiency ?? this.deficiency,
       residenceZone: residenceZone ?? this.residenceZone,
       studentClass: studentClass ?? this.studentClass,
+      foodRestrictions: foodRestrictions ?? this.foodRestrictions,
     );
   }
 
@@ -57,6 +61,7 @@ class EnrollmentState extends Equatable {
         nationality,
         deficiency,
         residenceZone,
-        studentClass
+        studentClass,
+        foodRestrictions,
       ];
 }

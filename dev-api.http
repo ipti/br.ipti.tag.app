@@ -25,3 +25,24 @@ Authorization: Bearer {{authToken}}
 ### 
 
 
+# @name students
+GET http://{{host}}/students HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+
+# @name school
+GET http://{{host}}/school HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+
+
+# @name edsenso_city
+GET http://{{host}}/edcensoCity HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 

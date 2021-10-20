@@ -1,25 +1,41 @@
+import 'package:br_ipti_tag_app/app/api/students/get_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/students/student_response.dart';
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:dio/dio.dart';
+import 'package:br_ipti_tag_app/app/features/student/mappers/student_json_to_response.dart';
 
-class StudentDataSource {
-  StudentDataSource(this.httpClient);
+class StudentRemoteDataSource {
+  StudentRemoteDataSource(
+    this._httpClient,
+    this._mapperJsonToResponse,
+  );
 
-  String Function(String) get _baseUrl => (String localUrl) => "/$localUrl";
+  final RouterAPI _httpClient;
+  final StudentJsonToMapMapper _mapperJsonToResponse;
 
-  final Dio httpClient;
+  Future<List<StudentResponse>> listAll() async {
+    final response = await _httpClient.requestListOf(
+      route: GetStudentsEndPoint(),
+    );
 
-  Future<List<Student>> listAll() async {
-    final response = await httpClient.get<List<Student>>(_baseUrl(""));
-    return Future.value(response.data);
+    final mappedList = response.data!
+        .map((e) => _mapperJsonToResponse(e as Map<String, dynamic>))
+        .toList();
+
+    return mappedList;
   }
 
-  Future<Student> getById(int id) async {
-    final response = await httpClient.get<Student>(_baseUrl("$id"));
-    return Future.value(response.data);
+  Future<StudentResponse> getById(int id) async {
+    final response = await _httpClient.request(
+      route: GetStudentsEndPoint(id: id.toString()),
+    );
+
+    final mappedValue = _mapperJsonToResponse(response.data!);
+
+    return mappedValue;
   }
 
   Future<bool> create(Student student) async {
-    final response = await httpClient.post<bool>(_baseUrl(""), data: student);
-    return Future.value(response.data);
+    return false;
   }
 }
