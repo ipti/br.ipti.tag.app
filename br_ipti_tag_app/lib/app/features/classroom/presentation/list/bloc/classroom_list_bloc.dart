@@ -2,27 +2,28 @@ import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'classroom_list_events.dart';
 import 'classroom_list_states.dart';
 
-class ClassroomListBloc extends Bloc<ClassroomListEvent, ClassroomListState> {
-  ClassroomListBloc(this._listClassromsUsecase) : super(EmptyState());
+class ClassroomListBloc extends Cubit<ClassroomListState> {
+  ClassroomListBloc(this._listClassromsUsecase) : super(const EmptyState());
 
   final ListClassroomsUsecase _listClassromsUsecase;
 
-  @override
-  Stream<ClassroomListState> mapEventToState(ClassroomListEvent event) async* {
-    if (event is GetListClassroomsEvent) {
-      yield LoadingState();
-      final resultEither = await _listClassromsUsecase(NoParams());
-      yield resultEither.fold(
-        (failure) {
-          return FailedState(message: failure.toString());
-        },
-        (classrooms) {
-          return LoadedState(classrooms: classrooms);
-        },
-      );
-    }
+  void startLoading() {
+    emit(state.copyWith(loading: true));
+  }
+
+  void stopLoading() {
+    emit(state.copyWith(loading: false));
+  }
+
+  Future<void> fetchListClassroomsEvent() async {
+    startLoading();
+    final resultEither = await _listClassromsUsecase(NoParams());
+    resultEither.fold(
+      (Exception failure) => emit(FailedState(message: failure.toString())),
+      (classrooms) => emit(LoadedState(classrooms: classrooms)),
+    );
+    stopLoading();
   }
 }

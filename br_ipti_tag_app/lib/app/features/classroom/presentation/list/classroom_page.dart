@@ -6,7 +6,6 @@ import 'package:tag_ui/tag_ui.dart';
 
 import '../../domain/entities/classroom.dart';
 import 'bloc/classroom_list_bloc.dart';
-import 'bloc/classroom_list_events.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
@@ -23,7 +22,7 @@ class ClassroomPageState
     extends ModularState<ClassroomPage, ClassroomListBloc> {
   @override
   void initState() {
-    controller.add(GetListClassroomsEvent());
+    controller.fetchListClassroomsEvent();
     super.initState();
   }
 
@@ -55,30 +54,19 @@ class ClassroomPageState
         BlocBuilder<ClassroomListBloc, ClassroomListState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is LoadedState) {
-              return TagDataTable(
-                columns: const [
-                  DataColumn(label: Text("Nome")),
-                  DataColumn(label: Text("Etapa")),
-                  DataColumn(label: Text("")),
-                ],
-                source: ClassroomDatatable(
-                  data: state.classrooms,
-                ),
-              );
-            } else if (state is EmptyState) {
-              return TagDataTable(
-                columns: const [
-                  DataColumn(label: Text("Nome")),
-                  DataColumn(label: Text("Etapa")),
-                  DataColumn(label: Text("")),
-                ],
-                source: ClassroomDatatable(
-                  data: [],
-                ),
-              );
+            if (state.loading) {
+              return const Center(child: CircularProgressIndicator());
             }
-            return const CircularProgressIndicator();
+            return TagDataTable(
+              columns: const [
+                DataColumn(label: Text("Nome")),
+                DataColumn(label: Text("Etapa")),
+                DataColumn(label: Text("")),
+              ],
+              source: ClassroomDatatable(
+                data: state.classrooms,
+              ),
+            );
           },
         )
       ],

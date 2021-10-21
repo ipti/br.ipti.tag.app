@@ -50,14 +50,7 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
           bloc: controller,
           builder: (context, state) {
             if (state.loading) {
-              return const CircularProgressIndicator();
-            } else if (state.message.isNotEmpty) {
-              return SizedBox(
-                height: 200,
-                child: Center(
-                  child: Text(state.message),
-                ),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
             return TagDataTable(
               columns: const [
