@@ -132,14 +132,15 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         Flexible(child: selectSex(state.sex)),
                         Flexible(child: selectColorRace(state.colorRace)),
                         Flexible(
-                            flex: 3,
-                            child: selectNationality(state.nationality)),
+                          flex: 3,
+                          child: selectNationality(state.nationality),
+                        ),
                       ]),
                       RowToColumn(children: [
                         Flexible(child: selectFiliation(state.filiation)),
                         Flexible(
-                            child:
-                                inputFoodRestriction(state.foodRestrictions)),
+                          child: inputFoodRestriction(state.foodRestrictions),
+                        ),
                       ]),
                       deficiencyCheck(deficiency: state.deficiency),
                       RowToColumn(

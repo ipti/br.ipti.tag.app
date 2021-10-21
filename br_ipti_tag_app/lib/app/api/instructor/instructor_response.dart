@@ -1,0 +1,60 @@
+class InstructorResponse {
+  InstructorResponse({
+    this.registerType = "",
+    this.schoolInepIdFk = "",
+    this.inepId = "",
+    required this.name,
+    required this.email,
+    this.nis = "",
+    this.birthdayDate = "",
+    this.sex = 0,
+    this.colorRace = 0,
+    this.filiation = false,
+    this.filiation1 = "",
+    this.filiation2 = "",
+    this.nationality = 0,
+    this.edcensoNationFk = 0,
+    this.edcensoUfFk = 0,
+    this.edcensoCityFk = 0,
+    this.deficiency = false,
+    this.deficiencyTypeBlindness = false,
+    this.deficiencyTypeLowVision = false,
+    this.deficiencyTypeDeafness = false,
+    this.deficiencyTypeDisabilityHearing = false,
+    this.deficiencyTypeDeafblindness = false,
+    this.deficiencyTypePhisicalDisability = false,
+    this.deficiencyTypeIntelectualDisability = false,
+    this.deficiencyTypeMultipleDisabilities = false,
+    this.deficiencyTypeAutism = false,
+    this.deficiencyTypeGifted = false,
+    this.hash = 0,
+  });
+  final String registerType;
+  final String schoolInepIdFk;
+  final String inepId;
+  final String name;
+  final String email;
+  final String nis;
+  final String birthdayDate;
+  final int sex;
+  final int colorRace;
+  final bool filiation;
+  final String filiation1;
+  final String filiation2;
+  final int nationality;
+  final int edcensoNationFk;
+  final int edcensoUfFk;
+  final int edcensoCityFk;
+  final bool deficiency;
+  final bool deficiencyTypeBlindness;
+  final bool deficiencyTypeLowVision;
+  final bool deficiencyTypeDeafness;
+  final bool deficiencyTypeDisabilityHearing;
+  final bool deficiencyTypeDeafblindness;
+  final bool deficiencyTypePhisicalDisability;
+  final bool deficiencyTypeIntelectualDisability;
+  final bool deficiencyTypeMultipleDisabilities;
+  final bool deficiencyTypeAutism;
+  final bool deficiencyTypeGifted;
+  final int hash;
+}

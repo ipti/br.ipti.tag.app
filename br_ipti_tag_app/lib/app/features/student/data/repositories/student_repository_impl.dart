@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/student/data/datasources/student_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/student_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/mappers/student_api_to_entity.dart';

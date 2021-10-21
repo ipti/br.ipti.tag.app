@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import 'bloc/enrollment_bloc.dart';
+import '../bloc/enrollment_bloc.dart';
 
 class FastEnrollmentPage extends StatefulWidget {
   const FastEnrollmentPage({Key? key, this.title = 'Matrícula rápida'})

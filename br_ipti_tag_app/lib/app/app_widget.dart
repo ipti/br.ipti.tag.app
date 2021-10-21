@@ -10,7 +10,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) => MaterialApp(
+      builder: (BuildContext context) => MaterialApp(
         locale: DevicePreview.locale(context),
         builder: DevicePreview.appBuilder,
         initialRoute: "/auth",

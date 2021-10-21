@@ -37,8 +37,8 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Professores",
-        route: '/teacher',
-        isActive: currentRoute.contains('/teacher/'),
+        route: '/professores',
+        isActive: currentRoute.contains('/professores/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,

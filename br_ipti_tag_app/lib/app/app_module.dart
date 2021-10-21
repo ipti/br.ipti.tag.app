@@ -9,6 +9,7 @@ import 'features/classroom/classroom_module.dart';
 
 import 'features/meals/meals_module.dart';
 import 'features/student/student_module.dart';
+import 'features/teacher/teacher_module.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
@@ -35,6 +36,11 @@ class AppModule extends Module {
     ModuleRoute(
       "/alunos",
       module: StudentModule(),
+      transition: TransitionType.noTransition,
+    ),
+    ModuleRoute(
+      "/professores",
+      module: TeacherModule(),
       transition: TransitionType.noTransition,
     ),
     ModuleRoute(
