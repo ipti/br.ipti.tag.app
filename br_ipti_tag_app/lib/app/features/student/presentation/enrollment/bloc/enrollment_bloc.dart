@@ -74,7 +74,7 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
       foodRestrictions: state.foodRestrictions,
     );
 
-    final result = await _enrollmentUsecase(EnroolmentParams(student));
+    final result = await _enrollmentUsecase(EnrollmentParams(student));
     result.fold((l) => null, (r) => emit(state));
   }
 

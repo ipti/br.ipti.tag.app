@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/fast_enrollment_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/fast_enrollment_states.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_states.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,9 +14,10 @@ class PersonalDataFormPage extends StatefulWidget {
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
 }
 
-class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
+class _PersonalDataFormPageState
+    extends ModularState<PersonalDataFormPage, EnrollmentBloc> {
   final _formKey = GlobalKey<FormState>();
-  final controller = Modular.get<FastEnrollmentBloc>();
+
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
@@ -110,48 +111,51 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     return Form(
       key: _formKey,
-      child: BlocBuilder<FastEnrollmentBloc, FastEnrollmentState>(
+      child: BlocBuilder<EnrollmentBloc, EnrollmentState>(
           bloc: controller,
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    heading,
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputName(state.name)),
-                        Flexible(child: inputBirthday(state.birthday)),
-                      ],
-                    ),
-                    RowToColumn(children: [
-                      Flexible(child: selectSex(state.sex)),
-                      Flexible(child: selectColorRace(state.colorRace)),
-                      Flexible(
-                        flex: 3,
-                        child: selectNationality(state.nationality),
+            if (state is EnrollmentState) {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      heading,
+                      RowToColumn(
+                        children: [
+                          Flexible(child: inputName(state.name)),
+                          Flexible(child: inputBirthday(state.birthday)),
+                        ],
                       ),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(child: selectFiliation(state.filiation)),
-                      Flexible(
-                        child: inputFoodRestriction(state.foodRestrictions),
+                      RowToColumn(children: [
+                        Flexible(child: selectSex(state.sex)),
+                        Flexible(child: selectColorRace(state.colorRace)),
+                        Flexible(
+                          flex: 3,
+                          child: selectNationality(state.nationality),
+                        ),
+                      ]),
+                      RowToColumn(children: [
+                        Flexible(child: selectFiliation(state.filiation)),
+                        Flexible(
+                          child: inputFoodRestriction(state.foodRestrictions),
+                        ),
+                      ]),
+                      deficiencyCheck(deficiency: state.deficiency),
+                      RowToColumn(
+                        children: [
+                          const Spacer(),
+                          Flexible(child: buttonSubmitAndStay),
+                          Flexible(child: buttonSubmitAndGo),
+                        ],
                       ),
-                    ]),
-                    deficiencyCheck(deficiency: state.deficiency),
-                    RowToColumn(
-                      children: [
-                        const Spacer(),
-                        Flexible(child: buttonSubmitAndStay),
-                        Flexible(child: buttonSubmitAndGo),
-                      ],
-                    ),
-                  ].map((w) => withPadding(w)).toList(),
+                    ].map((w) => withPadding(w)).toList(),
+                  ),
                 ),
-              ),
-            );
+              );
+            }
+            return const CircularProgressIndicator();
           }),
     );
   }

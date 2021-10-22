@@ -5,8 +5,8 @@ import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/student.dart';
 
-class EnroolmentParams extends Equatable {
-  const EnroolmentParams(this.student);
+class EnrollmentParams extends Equatable {
+  const EnrollmentParams(this.student);
 
   final Student student;
 
@@ -14,13 +14,13 @@ class EnroolmentParams extends Equatable {
   List<Object> get props => [student];
 }
 
-class FastEnrollmentUsecase implements Usecase<bool, EnroolmentParams> {
+class FastEnrollmentUsecase implements Usecase<bool, EnrollmentParams> {
   FastEnrollmentUsecase(this._service);
 
   final StudentRepository _service;
 
   @override
-  Future<Either<Exception, bool>> call(EnroolmentParams params) async {
+  Future<Either<Exception, bool>> call(EnrollmentParams params) async {
     return _service.create(params.student);
   }
 }
