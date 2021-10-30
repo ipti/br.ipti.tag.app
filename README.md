@@ -8,8 +8,8 @@
 ***
 #### Pré-Requisitos
 
-Flutter 2.2.1
-Dart 2.13.1
+Flutter 2.5.3
+Dart 2.14.4
 
 ***
 #### Licença
