@@ -26,6 +26,8 @@ jobs:
       FLUTTER_VERSION: '2.5.2'
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
       - uses: actions/setup-java@v1
         with:
           java-version: '11'
