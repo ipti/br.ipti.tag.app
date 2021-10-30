@@ -1,12 +1,9 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/fast_enrollment_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'enrollment_address_states.dart';
 
 class EnrollmentBloc extends Cubit<EnrollmentAddressState> {
-  EnrollmentBloc(this._enrollmentUsecase) : super(EnrollmentAddressState());
-
-  final FastEnrollmentUsecase _enrollmentUsecase;
+  EnrollmentBloc() : super(EnrollmentAddressState());
 
   final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
 

@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/fast_enrollment_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'enrollment_personal_states.dart';
