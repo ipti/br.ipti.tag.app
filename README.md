@@ -1,6 +1,6 @@
 # TAG -  Tecnologia de Apoio a gestão
 
-[![status](https://github.com/igorgoncalves/br.ipti.tag.app/actions/workflows/build.yml/badge.svg)](https://github.com/igorgoncalves/br.ipti.tag.app/actions/workflows/build.yml)
+[![status](https://github.com/ipti/br.ipti.tag.app/actions/workflows/build.yml/badge.svg)](https://github.com/ipti/br.ipti.tag.app/actions/workflows/build.yml)
 
 
 ##### O TAG (Tecnologia de Apoio à Gestão) é uma tecnologia social baseada em um software de gestão gratuito e opensource –código aberto para que qualquer pessoa possa modificar e adaptar.  Desenvolvido inicialmente pelo IPTI em parceria com a Prefeitura Municipal de Santa Luzia do Itanhy/SE essa tecnologia social atende à realidade de escolas de educação básica, com ênfase em escolas de áreas rurais. 
