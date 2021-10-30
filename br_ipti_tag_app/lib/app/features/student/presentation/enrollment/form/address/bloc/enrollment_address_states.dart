@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class EnrollmentState extends Equatable {
+class EnrollmentAddressState extends Equatable {
   @override
   List<Object?> get props => [];
 }

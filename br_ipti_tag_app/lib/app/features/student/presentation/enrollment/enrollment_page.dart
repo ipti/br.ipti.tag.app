@@ -4,23 +4,21 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../bloc/enrollment_bloc.dart';
+import 'bloc/enrollment_bloc.dart';
 
-class FastEnrollmentPage extends StatefulWidget {
-  const FastEnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
-      : super(key: key);
+class EnrollmentPage extends StatefulWidget {
+  const EnrollmentPage({Key? key, this.title = 'Matrícula'}) : super(key: key);
 
   final String title;
 
   @override
-  FastEnrollmentPageState createState() => FastEnrollmentPageState();
+  EnrollmentPageState createState() => EnrollmentPageState();
 }
 
-class FastEnrollmentPageState
-    extends ModularState<FastEnrollmentPage, EnrollmentBloc> {
+class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
   @override
   void initState() {
-    Modular.to.navigate('/alunos/matricula-rapida/personal');
+    Modular.to.navigate('/alunos/matricula/pessoal');
     super.initState();
   }
 
@@ -29,6 +27,15 @@ class FastEnrollmentPageState
     const tabs = [
       Tab(
         child: Text("Dados do aluno"),
+      ),
+      Tab(
+        child: Text("Filiação"),
+      ),
+      Tab(
+        child: Text("Endereço"),
+      ),
+      Tab(
+        child: Text("Social"),
       ),
       Tab(
         child: Text("Matrícula"),

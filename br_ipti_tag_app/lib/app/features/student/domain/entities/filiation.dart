@@ -11,5 +11,9 @@ class StudentFiliation {
   String? rg;
   String? cpf;
   int? scholarity;
+  int? nationality;
+  int? colorRace;
+  String? email;
+  String? phone;
   String? job;
 }

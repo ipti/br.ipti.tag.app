@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_states.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_states.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,13 +14,16 @@ class PersonalDataFormPage extends StatefulWidget {
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
 }
 
-class _PersonalDataFormPageState
-    extends ModularState<PersonalDataFormPage, EnrollmentBloc> {
+class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
   final _formKey = GlobalKey<FormState>();
+  final controller = Modular.get<EnrollmentPersonalBloc>();
 
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
+
+    Widget withPadding(Widget widget) =>
+        Padding(padding: padding, child: widget);
 
     Widget inputName(String? name) => TagTextField(
           label: "Nome",
@@ -78,7 +81,7 @@ class _PersonalDataFormPageState
           children: [
             Checkbox(
               value: deficiency ?? false,
-              onChanged: (value) => controller.setDeficiency(value: value),
+              onChanged: (value) => controller.setDeficiency(value: value!),
             ),
             const TagLabel("Deficiência"),
           ],
@@ -94,10 +97,7 @@ class _PersonalDataFormPageState
           maxLines: 5,
         );
 
-    Widget withPadding(Widget widget) =>
-        Padding(padding: padding, child: widget);
-
-    const heading = Heading(text: "Dados do Aluno", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados do Aluno", type: HeadingType.Title3);
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar e prosseguir",
@@ -111,10 +111,10 @@ class _PersonalDataFormPageState
 
     return Form(
       key: _formKey,
-      child: BlocBuilder<EnrollmentBloc, EnrollmentState>(
+      child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is EnrollmentState) {
+            if (state is EnrollmentPersonalState) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),

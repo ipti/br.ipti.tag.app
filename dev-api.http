@@ -24,11 +24,29 @@ Authorization: Bearer {{authToken}}
 
 ### 
 
+# @name listar_estoque
+GET http://{{host}}/food/inventory HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+###
 
 # @name students
 GET http://{{host}}/students HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+### 
+
+
+# @name create_student
+POST  http://{{host}}/students HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "Aluno teste com mais caracteres"
+}
 
 ### 
 
@@ -39,6 +57,18 @@ Authorization: Bearer {{authToken}}
 
 ### 
 
+
+
+# @name create_school
+POST  http://{{host}}/school HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "name": "Escola modelo"
+}
+
+### 
 
 # @name edsenso_city
 GET http://{{host}}/edcensoCity HTTP/1.1

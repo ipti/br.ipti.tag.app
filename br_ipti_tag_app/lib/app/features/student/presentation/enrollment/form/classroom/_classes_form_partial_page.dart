@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import 'bloc/enrollment_classroom_bloc.dart';
+import 'bloc/enrollment_classroom_states.dart';
+
 class ClassesFormPage extends StatefulWidget {
   const ClassesFormPage({Key? key}) : super(key: key);
 
@@ -13,10 +16,10 @@ class ClassesFormPage extends StatefulWidget {
   ClassesFormPageState createState() => ClassesFormPageState();
 }
 
-const heading = Heading(text: "Turma", type: HeadingType.Title2);
+const heading = Heading(text: "Turma", type: HeadingType.Title3);
 
 class ClassesFormPageState extends State<ClassesFormPage> {
-  final controller = Modular.get<EnrollmentBloc>();
+  final controller = Modular.get<EnrollmentClassroomBloc>();
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
@@ -31,20 +34,18 @@ class ClassesFormPageState extends State<ClassesFormPage> {
           onChanged: controller.setStudentClass,
         );
 
-    return BlocBuilder<EnrollmentBloc, EnrollmentState>(
+    return BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
         bloc: controller,
         builder: (context, state) {
           if (state is EnrollmentState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    withPadding(selectClass(state.studentClass)),
-                  ],
-                ),
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  withPadding(heading),
+                  withPadding(selectClass(state.classroomId)),
+                ],
               ),
             );
           }

@@ -7,6 +7,7 @@ class Student {
     this.registerType,
     this.schoolInepIdFk,
     this.inepId,
+    this.nis,
     required this.name,
     this.birthday,
     this.sex,
@@ -34,6 +35,7 @@ class Student {
   String? registerType;
   String? schoolInepIdFk;
   String? inepId;
+  String? nis;
   String name;
   String? birthday;
   int? sex;
