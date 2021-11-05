@@ -51,7 +51,10 @@ class MealsItemDay extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: InkWell(
                 onTap: () => Modular.to.pushNamed("details", arguments: meal),
-                child: MealItem(meal: meal),
+                child: MealItem(
+                  meal: meal,
+                  mealComponent: meal.components[0],
+                ),
               ),
             );
           },

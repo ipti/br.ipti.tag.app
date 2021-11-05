@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal_component.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +11,7 @@ class DetailsMealPage extends StatefulWidget {
     required this.meal,
   }) : super(key: key);
 
-  final Meal meal;
+  final MealComponent meal;
 
   @override
   DetailsMealPageState createState() => DetailsMealPageState();
@@ -29,10 +29,11 @@ class DetailsMealPageState extends State<DetailsMealPage> {
     const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
 
     final ingredients = widget.meal.ingredients;
+
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
       aside: Container(),
-      title: widget.meal.foodName,
+      title: widget.meal.description,
       description: "Ingredientes para a refeição",
       path: const [],
       body: <Widget>[
@@ -42,29 +43,29 @@ class DetailsMealPageState extends State<DetailsMealPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     children: [
-                      const TextSpan(text: "Consistência ", style: labelText),
+                      TextSpan(text: "Consistência ", style: labelText),
                       TextSpan(
-                        text: "${widget.meal.consistence} ",
+                        text: "{widget.meal.consistence} ",
                         style: infoText,
                       ),
                     ],
                   ),
                 ),
                 RichText(
-                  text: TextSpan(children: [
-                    const TextSpan(text: "Data e hora  ", style: labelText),
+                  text: const TextSpan(children: [
+                    TextSpan(text: "Data e hora  ", style: labelText),
                     TextSpan(
-                      text: "${widget.meal.turn} ",
+                      text: "{widget.meal.turn} ",
                       style: infoText,
                     ),
                   ]),
                 ),
                 RichText(
-                  text: TextSpan(children: [
-                    const TextSpan(text: "Tipo de Aluno ", style: labelText),
-                    TextSpan(text: "${widget.meal.studentType} "),
+                  text: const TextSpan(children: [
+                    TextSpan(text: "Tipo de Aluno ", style: labelText),
+                    TextSpan(text: "{widget.meal.studentType} "),
                   ]),
                 ),
               ]),

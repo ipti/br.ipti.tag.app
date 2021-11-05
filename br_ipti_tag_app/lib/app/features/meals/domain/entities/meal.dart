@@ -1,20 +1,18 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
+import 'meal_component.dart';
 
 class Meal {
-  Meal(
-    this.mealType,
-    this.tacoCode,
-    this.foodName,
-    this.turn,
-    this.studentType,
-    this.ingredients,
-    this.consistence,
-  );
+  Meal({
+    required this.mealType,
+    required this.tacoCode,
+    required this.foodName,
+    required this.turn,
+    required this.studentType,
+    required this.components,
+  });
   final String mealType;
   final String tacoCode;
   final String foodName;
   final String turn;
   final String studentType;
-  final List<InvetoryIngredient> ingredients;
-  final String consistence;
+  final List<MealComponent> components;
 }

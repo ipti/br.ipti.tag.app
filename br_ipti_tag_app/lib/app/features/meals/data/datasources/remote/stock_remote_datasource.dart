@@ -1,11 +1,10 @@
+import 'package:br_ipti_tag_app/app/api/food_inventory/list_food_inventory_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/ingredient_inventory.dart';
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
-
-import '../../../../../api/food_inventory/list_food_inventory_endpoint.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 
 abstract class IngredientRemoteDataSource {
-  Future<List<InvetoryIngredient>> list();
+  Future<List<Ingredient>> list();
 }
 
 class IngredientRemoteDataSourceImpl implements IngredientRemoteDataSource {
@@ -14,7 +13,7 @@ class IngredientRemoteDataSourceImpl implements IngredientRemoteDataSource {
   final RouterAPI _httpClient;
 
   @override
-  Future<List<InvetoryIngredient>> list() async {
+  Future<List<Ingredient>> list() async {
     final response = await _httpClient.requestListOf(
       route: ListFoodInventoryEndPoint(),
     );
@@ -23,6 +22,6 @@ class IngredientRemoteDataSourceImpl implements IngredientRemoteDataSource {
       response.data! as List,
     );
 
-    return ingredients;
+    return [];
   }
 }

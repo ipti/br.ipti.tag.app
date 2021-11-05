@@ -1,14 +1,17 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal_component.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
     Key? key,
+    required this.mealComponent,
     required this.meal,
   }) : super(key: key);
 
+  final MealComponent mealComponent;
   final Meal meal;
 
   @override
@@ -18,15 +21,15 @@ class MealItem extends StatelessWidget {
       child: _Card(
         mealType: meal.mealType,
         tacoCode: meal.tacoCode,
-        foodName: meal.foodName,
+        foodName: mealComponent.description,
         turn: meal.turn,
         studentType: meal.studentType,
-        ingredients: _formatIngredients(meal.ingredients),
+        ingredients: _formatIngredients(mealComponent.ingredients),
       ),
     );
   }
 
-  String _formatIngredients(List<InvetoryIngredient> ingredients) {
+  String _formatIngredients(List<Ingredient> ingredients) {
     final resultJoin = ingredients.join(', ');
     return resultJoin;
   }

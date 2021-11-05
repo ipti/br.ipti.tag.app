@@ -1,21 +1,26 @@
+import 'package:br_ipti_tag_app/app/api/food_menu/food_menu_response.dart';
 import 'package:br_ipti_tag_app/app/api/food_menu/list_food_menu_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
-import 'package:br_ipti_tag_app/app/features/meals/data/models/meals_menu_model.dart';
+import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_menu_json_mapper.dart';
 
-abstract class MealsMenuRemoteDataSource {
-  Future<List<MealsMenuModel>> list();
-}
+class MealsMenuRemoteDataSource {
+  MealsMenuRemoteDataSource({
+    required this.httpClient,
+    required this.mapper,
+  });
 
-class MealsMenuRemoteDataSourceImpl implements MealsMenuRemoteDataSource {
-  MealsMenuRemoteDataSourceImpl(this._httpClient);
+  final RouterAPI httpClient;
 
-  final RouterAPI _httpClient;
+  final MealMenuJsonMapper mapper;
 
-  @override
-  Future<List<MealsMenuModel>> list() async {
-    final response = await _httpClient.requestListOf(
+  Future<List<FoodMenuResponse>> listAll() async {
+    final response = await httpClient.requestListOf(
       route: ListFoodMenuEndPoint(),
     );
-    return MealsMenuModel.fromList(response.data! as List);
+
+    final List<FoodMenuResponse> mappedList =
+        response.data!.map((e) => mapper(e as Map<String, dynamic>)).toList();
+
+    return mappedList;
   }
 }

@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -20,7 +20,7 @@ class LoadedState extends ListStockState {
     required this.ingredients,
   });
 
-  final List<InvetoryIngredient> ingredients;
+  final List<Ingredient> ingredients;
 
   @override
   List<Object> get props => [];

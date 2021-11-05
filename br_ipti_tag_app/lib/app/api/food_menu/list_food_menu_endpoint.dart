@@ -17,5 +17,3 @@ class ListFoodMenuEndPoint extends EndPointAPI {
   @override
   Parameters? get urlParameters => null;
 }
-
-class FoodMenuResponse {}

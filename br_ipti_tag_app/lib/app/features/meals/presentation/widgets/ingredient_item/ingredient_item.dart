@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
+import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -9,7 +9,7 @@ class IngredientItem extends StatelessWidget {
     required this.ingredient,
   }) : super(key: key);
 
-  final InvetoryIngredient ingredient;
+  final Ingredient ingredient;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class IngredientItem extends StatelessWidget {
           contentPadding: const EdgeInsets.all(12),
           dense: true,
           horizontalTitleGap: 8,
-          title: Text(ingredient.food?.description ?? ingredient.foodId),
+          title: Text(ingredient.name),
           trailing: const Icon(
             Icons.arrow_forward_ios,
             color: TagColors.colorBaseInkNormal,

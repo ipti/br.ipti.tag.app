@@ -7,7 +7,7 @@ class Ingredient {
   });
 
   final String name;
-  final int amount;
+  final num amount;
   final bool available;
   final List<Ingredient>? substitutionSuggestion;
 

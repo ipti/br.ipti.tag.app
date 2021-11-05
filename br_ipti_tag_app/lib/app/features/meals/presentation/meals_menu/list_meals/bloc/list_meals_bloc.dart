@@ -67,7 +67,11 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
             (meal) => turnsFilters.contains(meal.turn),
           )
           .toList();
-      return MealsMenu(meals, day.fullnameDay, day.currentDate);
+      return MealsMenu(
+        meals: meals,
+        fullnameDay: day.fullnameDay,
+        currentDate: day.currentDate,
+      );
     }).toList();
   }
 }

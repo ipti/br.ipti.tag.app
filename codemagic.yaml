@@ -9,8 +9,7 @@ workflows:
         flutter: stable
         xcode: latest
         cocoapods: default
-      scripts:
-        - sh build.sh
+      scripts:        
         - |
           # build web
           cd br_ipti_tag_app
