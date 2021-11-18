@@ -1,11 +1,11 @@
-import 'package:br_ipti_tag_app/app/api/students/student_response.dart';
 import 'package:br_ipti_tag_app/app/core/mapper/mapper.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 
 class StudentJsonToMapMapper
-    extends CoreMapper<Map<String, dynamic>, StudentResponse> {
+    extends CoreMapper<Map<String, dynamic>, StudentModel> {
   @override
-  StudentResponse call(Map<String, dynamic> map) {
-    return StudentResponse(
+  StudentModel call(Map<String, dynamic> map) {
+    return StudentModel(
       name: map['name'] as String,
       registerType: map['register_type'] as String,
       schoolInepIdFk: map['schoolInepIdFk'] as String,

@@ -6,17 +6,15 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'data/datasources/remote/teacher_remote_datasource.dart';
 import 'data/repositories/teacher_repository_impl.dart';
 import 'domain/usecases/list_teachers_usecase.dart';
-import 'mappers/teacher_json_to_response.dart';
 
 class TeacherModule extends Module {
   @override
   final List<Bind> binds = [
     // mappers
-    Bind.factory((i) => TeacherJsonToMapMapper()),
     Bind.factory((i) => TeacherApiToEntityMapper()),
 
     // datasources
-    Bind.factory((i) => TeacherRemoteDataSource(i.get(), i.get())),
+    Bind.factory((i) => TeacherRemoteDataSource(i.get())),
 
     // repositories
     Bind.factory((i) => TeacherRepositoryImpl(i.get(), i.get())),

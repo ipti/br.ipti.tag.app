@@ -1,25 +1,23 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/api/food_menu/food_menu_response.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_menu_json_mapper.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/models/food_menu_model.dart';
+
 import 'package:flutter/services.dart' show rootBundle;
 
 abstract class MealsMenuDumbDataSource {
-  Future<List<FoodMenuResponse>> list();
+  Future<List<FoodMenuModel>> list();
 }
 
 class MealsMenuDumbDataSourceImpl implements MealsMenuDumbDataSource {
-  MealsMenuDumbDataSourceImpl({
-    required this.mapper,
-  });
-
-  final MealMenuJsonMapper mapper;
   @override
-  Future<List<FoodMenuResponse>> list() async {
+  Future<List<FoodMenuModel>> list() async {
     final data = await rootBundle.loadString(
       "assets/dumb_data/meals_of_day.json",
     );
     final jsonResult = jsonDecode(data) as List;
-    return jsonResult.map((e) => mapper(e as Map<String, dynamic>)).toList();
+
+    return jsonResult
+        .map((e) => FoodMenuModel.fromMap(e as Map<String, dynamic>))
+        .toList();
   }
 }

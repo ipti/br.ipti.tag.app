@@ -24,7 +24,7 @@ class RouterAPI implements NetworkRouter {
   }
 
   @override
-  Future<NetworkResponse<Iterable>> requestListOf({
+  Future<NetworkResponse<Iterable>> requestListFrom({
     required EndPointAPI route,
   }) async {
     try {

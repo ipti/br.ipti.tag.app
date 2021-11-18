@@ -599,7 +599,7 @@ packages:
       path: "../tag_ui"
       relative: true
     source: path
-    version: "0.19.9"
+    version: "0.19.10"
   term_glyph:
     dependency: transitive
     description:

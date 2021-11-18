@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/api/students/get_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/student_response.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/mappers/student_json_to_response.dart';
 
@@ -13,8 +13,8 @@ class StudentRemoteDataSource {
   final RouterAPI _httpClient;
   final StudentJsonToMapMapper _mapperJsonToResponse;
 
-  Future<List<StudentResponse>> listAll() async {
-    final response = await _httpClient.requestListOf(
+  Future<List<StudentModel>> listAll() async {
+    final response = await _httpClient.requestListFrom(
       route: GetStudentsEndPoint(),
     );
 
@@ -25,7 +25,7 @@ class StudentRemoteDataSource {
     return mappedList;
   }
 
-  Future<StudentResponse> getById(int id) async {
+  Future<StudentModel> getById(int id) async {
     final response = await _httpClient.request(
       route: GetStudentsEndPoint(id: id.toString()),
     );

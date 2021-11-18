@@ -5,11 +5,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_me
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'data/datasources/remote/meals_remote_datasource.dart';
-import 'mappers/meal_component_json_mapper.dart';
-import 'mappers/meal_ingredient_json_mapper.dart';
-import 'mappers/meal_json_mapper.dart';
 import 'mappers/meal_menu_api_to_entity.dart';
-import 'mappers/meal_menu_json_mapper.dart';
 import 'presentation/meals_menu/details_meal/details_meal_page.dart';
 import 'presentation/meals_menu/list_meals/bloc/list_meals_bloc.dart';
 import 'presentation/meals_menu/list_meals/list_meals_page.dart';
@@ -19,16 +15,9 @@ import 'presentation/stock/stock_module.dart';
 class MealsModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => MealIngredientJsonMapper()),
-    Bind.factory((i) => MealComponentJsonMapper(ingredientJsonMapper: i.get())),
-    Bind.factory((i) => MealJsonMapper(componentJsonMapper: i.get())),
-    Bind.factory((i) => MealMenuJsonMapper(mealJsonMapper: i.get())),
     Bind.factory((i) => MealsMenuEntityMapper()),
-    Bind.singleton((i) => MealsMenuDumbDataSourceImpl(mapper: i.get())),
-    Bind.singleton((i) => MealsMenuRemoteDataSource(
-          httpClient: i.get(),
-          mapper: i.get(),
-        )),
+    Bind.singleton((i) => MealsMenuDumbDataSourceImpl()),
+    Bind.singleton((i) => MealsMenuRemoteDataSource(httpClient: i.get())),
     Bind.singleton(
       (i) => MealsMenuRepositoryImpl(
           dumbDataSource: i.get(), remoteDataSource: i.get(), mapper: i.get()),
@@ -42,9 +31,7 @@ class MealsModule extends Module {
     ChildRoute("/", child: (_, args) => const SelectActionMealsPage()),
     ChildRoute(
       "/details",
-      child: (_, args) => DetailsMealPage(
-        meal: args.data as MealComponent,
-      ),
+      child: (_, args) => DetailsMealPage(meal: args.data['mealComponent']),
     ),
     ChildRoute("/refeicoes", child: (_, args) => const ListMealsPage()),
     ModuleRoute("/estoque", module: StockModule())

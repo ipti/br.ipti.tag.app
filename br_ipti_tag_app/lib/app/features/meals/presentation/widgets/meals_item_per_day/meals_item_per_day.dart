@@ -50,7 +50,10 @@ class MealsItemDay extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: InkWell(
-                onTap: () => Modular.to.pushNamed("details", arguments: meal),
+                onTap: () => Modular.to.pushNamed("details", arguments: {
+                  'meal': meal,
+                  'mealComponent': meal.components[0]
+                }),
                 child: MealItem(
                   meal: meal,
                   mealComponent: meal.components[0],

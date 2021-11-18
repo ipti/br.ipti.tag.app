@@ -18,7 +18,7 @@ class PostAuthLoginEndPoint extends EndPointAPI {
 
   @override
   HTTPHeaders? get headers => () => {
-        'Content-tType': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded',
       };
 
   @override

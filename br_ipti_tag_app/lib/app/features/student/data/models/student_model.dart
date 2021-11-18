@@ -1,5 +1,5 @@
-class StudentResponse {
-  StudentResponse({
+class StudentModel {
+  StudentModel({
     this.name = "",
     this.registerType = "",
     this.schoolInepIdFk = "",

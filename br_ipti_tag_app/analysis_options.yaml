@@ -6,7 +6,7 @@ analyzer:
   language:
     strict-raw-types: false
   strong-mode:
-    implicit-casts: false
+    implicit-casts: true
       
     # implicit-dynamic: false
 
@@ -15,7 +15,7 @@ linter:
   rules:
     constant_identifier_names: false
     cancel_subscriptions: true
-    sort_constructors_first: true
+    sort_constructors_first: false
     type_annotate_public_apis: true
     lines_longer_than_80_chars: true
     use_setters_to_change_properties: true

@@ -1,21 +1,25 @@
-import 'package:br_ipti_tag_app/app/api/food_menu/food_menu_response.dart';
 import 'package:br_ipti_tag_app/app/core/mapper/mapper.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/models/component_model.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/models/food_menu_model.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/models/ingredient_model.dart';
+import 'package:br_ipti_tag_app/app/features/meals/data/models/meal_model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal_component.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 
-class MealsMenuEntityMapper extends CoreMapper<FoodMenuResponse, MealsMenu> {
+class MealsMenuEntityMapper extends CoreMapper<FoodMenuModel, MealsMenu> {
   @override
-  MealsMenu call(FoodMenuResponse foodMenuResponse) {
+  MealsMenu call(FoodMenuModel foodMenuResponse) {
     final meals = foodMenuResponse.meals?.map(mapResponseToMeal).toList() ?? [];
     return MealsMenu(
-        meals: meals,
-        fullnameDay: foodMenuResponse.referenceDates?.join(','),
-        currentDate: "");
+      meals: meals,
+      fullnameDay: foodMenuResponse.referenceDates?.join(','),
+      currentDate: "",
+    );
   }
 
-  Meal mapResponseToMeal(MealResponse mealResponse) {
+  Meal mapResponseToMeal(MealModel mealResponse) {
     final meal = Meal(
       mealType: mealResponse.mealType ?? "",
       tacoCode: mealResponse.id ?? "",
@@ -28,7 +32,7 @@ class MealsMenuEntityMapper extends CoreMapper<FoodMenuResponse, MealsMenu> {
     return meal;
   }
 
-  MealComponent mapToMealComponent(ComponentResponse component) {
+  MealComponent mapToMealComponent(ComponentModel component) {
     return MealComponent(
       description: component.description ?? "",
       observation: component.observation ?? "",
@@ -37,7 +41,7 @@ class MealsMenuEntityMapper extends CoreMapper<FoodMenuResponse, MealsMenu> {
     );
   }
 
-  Ingredient mapToIngredient(IngredientResponse ingredient) {
+  Ingredient mapToIngredient(IngredientModel ingredient) {
     return Ingredient(
       name: ingredient.foodId ?? "",
       amount: ingredient.amount ?? 0,

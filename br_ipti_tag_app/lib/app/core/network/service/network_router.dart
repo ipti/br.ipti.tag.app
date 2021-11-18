@@ -18,7 +18,7 @@ abstract class NetworkRouter {
   Future<NetworkResponse> request({
     required EndPointAPI route,
   });
-  Future<NetworkResponse> requestListOf({
+  Future<NetworkResponse> requestListFrom({
     required EndPointAPI route,
   });
 }

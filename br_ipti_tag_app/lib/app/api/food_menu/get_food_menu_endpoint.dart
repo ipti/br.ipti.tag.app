@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
-class ListFoodMenuEndPoint extends EndPointAPI {
+class GetFoodMenuEndPoint extends EndPointAPI {
   @override
   String get path => '/food/menu';
 

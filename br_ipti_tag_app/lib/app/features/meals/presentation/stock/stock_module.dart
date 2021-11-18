@@ -3,7 +3,7 @@ import 'package:br_ipti_tag_app/app/features/meals/data/datasources/remote/stock
 import 'package:br_ipti_tag_app/app/features/meals/data/repositories/ingredient_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_ingredients_stock_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_ingredient_json_mapper.dart';
+
 import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/details_item_stock/details_item_stock_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -13,8 +13,7 @@ import 'list_items_stock/stock_page.dart';
 class StockModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => MealIngredientJsonMapper()),
-    Bind.lazySingleton((i) => IngredientDumbDataSourceImpl(mapper: i.get())),
+    Bind.lazySingleton((i) => IngredientDumbDataSourceImpl()),
     Bind.lazySingleton((i) => IngredientRemoteDataSourceImpl(i.get())),
     Bind.lazySingleton(
       (i) => IngredientRepositoryImpl(

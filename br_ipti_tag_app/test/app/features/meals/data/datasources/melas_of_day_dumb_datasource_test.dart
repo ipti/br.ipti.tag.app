@@ -1,8 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/meals_menu_dumb_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_component_json_mapper.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_ingredient_json_mapper.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_json_mapper.dart';
-import 'package:br_ipti_tag_app/app/features/meals/mappers/meal_menu_json_mapper.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 
 // ignore: type_annotate_public_apis
@@ -11,15 +8,7 @@ void main() {
 
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
-    datasource = MealsMenuDumbDataSourceImpl(
-      mapper: MealMenuJsonMapper(
-        mealJsonMapper: MealJsonMapper(
-          componentJsonMapper: MealComponentJsonMapper(
-            ingredientJsonMapper: MealIngredientJsonMapper(),
-          ),
-        ),
-      ),
-    );
+    datasource = MealsMenuDumbDataSourceImpl();
   });
   test("List Json File", () async {
     final result = await datasource.list();
