@@ -15,7 +15,7 @@ class SocialFormPage extends StatefulWidget {
   SocialFormPageState createState() => SocialFormPageState();
 }
 
-const heading = Heading(text: "Turma", type: HeadingType.Title2);
+const heading = Heading(text: "Dados sociais", type: HeadingType.Title3);
 
 class SocialFormPageState extends State<SocialFormPage> {
   final controller = Modular.get<EnrollmentSocialBloc>();

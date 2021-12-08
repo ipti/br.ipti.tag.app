@@ -33,9 +33,9 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
   };
 
   final nationalityItems = <int, String>{
-    1: "Brasileira",
-    2: "Brasileira: Nascido no exterior ou Naturalizado",
-    3: "Estrangeira"
+    0: "Brasileira",
+    1: "Brasileira: Nascido no exterior ou Naturalizado",
+    2: "Estrangeira"
   };
 
   final residenceZoneItems = <int, String>{

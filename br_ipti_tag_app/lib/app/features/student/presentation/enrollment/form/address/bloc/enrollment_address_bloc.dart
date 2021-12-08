@@ -2,8 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'enrollment_address_states.dart';
 
-class EnrollmentBloc extends Cubit<EnrollmentAddressState> {
-  EnrollmentBloc() : super(EnrollmentAddressState());
+class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
+  EnrollmentAddressBloc() : super(EnrollmentAddressState());
 
   final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
 

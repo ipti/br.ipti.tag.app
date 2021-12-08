@@ -13,7 +13,7 @@ class AddressFormPage extends StatefulWidget {
   AddressFormPageState createState() => AddressFormPageState();
 }
 
-const heading = Heading(text: "Turma", type: HeadingType.Title2);
+const heading = Heading(text: "Endereço", type: HeadingType.Title3);
 
 class AddressFormPageState extends State<AddressFormPage> {
   final controller = Modular.get<EnrollmentBloc>();

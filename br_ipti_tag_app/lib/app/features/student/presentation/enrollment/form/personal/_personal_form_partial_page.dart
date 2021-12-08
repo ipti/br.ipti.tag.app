@@ -41,7 +41,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    Widget selectSex(int? sex) => TagDropdownField(
+    Widget selectSex(int? sex) => TagDropdownField<int>(
           label: 'Sexo',
           hint: "Selecione o sexo",
           items: controller.sexItems,
@@ -50,7 +50,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    Widget selectColorRace(int? colorRace) => TagDropdownField(
+    Widget selectColorRace(int? colorRace) => TagDropdownField<int>(
           label: 'Cor/Raça',
           hint: "Selecione a cor/raça",
           items: controller.colorRaceItems,
@@ -59,7 +59,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    Widget selectFiliation(int? filiation) => TagDropdownField(
+    Widget selectFiliation(int? filiation) => TagDropdownField<int>(
           label: 'Filiação',
           hint: "Selecione a filiação",
           items: controller.filiationItems,
@@ -68,7 +68,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    Widget selectNationality(int? nationality) => TagDropdownField(
+    Widget selectNationality(int? nationality) => TagDropdownField<int>(
           label: 'Nacionalidade',
           hint: "Selecione a nacionalidade",
           items: controller.nationalityItems,

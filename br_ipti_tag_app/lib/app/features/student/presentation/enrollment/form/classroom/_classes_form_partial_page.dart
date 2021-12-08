@@ -19,6 +19,7 @@ const heading = Heading(text: "Turma", type: HeadingType.Title3);
 
 class ClassesFormPageState extends State<ClassesFormPage> {
   final controller = Modular.get<EnrollmentClassroomBloc>();
+
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);

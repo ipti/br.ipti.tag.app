@@ -5,7 +5,7 @@ import 'enrollment_personal_states.dart';
 class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   EnrollmentPersonalBloc() : super(const EmptyEnrollmentPersonalState());
 
-  final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
+  final sexItems = <int, String>{0: "Masculino", 1: "Feminino"};
 
   final colorRaceItems = <int, String>{
     0: "Não declarada",
@@ -33,9 +33,9 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   };
 
   final nationalityItems = <int, String>{
-    1: "Brasileira",
-    2: "Brasileira: Nascido no exterior ou Naturalizado",
-    3: "Estrangeira"
+    0: "Brasileira",
+    1: "Brasileira: Nascido no exterior ou Naturalizado",
+    2: "Estrangeira"
   };
 
   void setName(String value) => emit(state.copyWith(

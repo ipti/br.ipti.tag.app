@@ -10,8 +10,6 @@ import 'presentation/list/classroom_page.dart';
 class ClassroomModule extends Module {
   @override
   final List<Bind> binds = [
-    // Datasources
-
     // Repositories
     Bind.singleton((i) => ClassroomRepositoryImpl()),
 
@@ -26,8 +24,7 @@ class ClassroomModule extends Module {
 
   @override
   final List<ModularRoute<void>> routes = [
-    ChildRoute<ClassroomPage>("/", child: (_, args) => const ClassroomPage()),
-    ChildRoute<ClassroomCreatePage>("create",
-        child: (_, args) => const ClassroomCreatePage()),
+    ChildRoute("/", child: (_, args) => const ClassroomPage()),
+    ChildRoute("create", child: (_, args) => const ClassroomCreatePage()),
   ];
 }
