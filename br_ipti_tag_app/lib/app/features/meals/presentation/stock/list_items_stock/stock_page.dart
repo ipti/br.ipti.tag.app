@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/invetory_ingredient_list%20/inventory_ingredients_list.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +6,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/stock_bloc.dart';
-import 'bloc/stock_events.dart';
 import 'bloc/stock_states.dart';
 
 class StockPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class StockPage extends StatefulWidget {
 class StockPageState extends ModularState<StockPage, StockBloc> {
   @override
   void initState() {
-    controller.add(GetListStockEvent());
+    controller.getListStockToState();
     super.initState();
   }
 
@@ -33,11 +32,28 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
       path: ["Merenda Escolar", widget.title],
       description: "Verifique o estoque de alimentos da escola",
       body: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: Row(
+            children: [
+              SizedBox(
+                  width: 300,
+                  child: TagTextField(
+                    hint: 'Buscar no estoque',
+                    label: '',
+                  )),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.filter_alt),
+              )
+            ],
+          ),
+        ),
         BlocBuilder<StockBloc, ListStockState>(
           bloc: controller,
           builder: (context, state) {
             if (state is LoadedState) {
-              return IngredientsList(ingredients: state.ingredients);
+              return InventoryIngredientsList(ingredients: state.ingredients);
             } else {
               return Container();
             }

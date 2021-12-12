@@ -39,7 +39,8 @@ class IngredientsList extends StatelessWidget {
           itemCount: ingredients!.length,
           itemBuilder: (context, index) {
             return IngredientItem(
-              ingredient: ingredients![index],
+              id: ingredients![index].name,
+              name: ingredients![index].name,
             );
           },
         ),

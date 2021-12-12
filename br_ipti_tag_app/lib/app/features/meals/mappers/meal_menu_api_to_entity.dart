@@ -25,7 +25,7 @@ class MealsMenuEntityMapper extends CoreMapper<FoodMenuModel, MealsMenu> {
       tacoCode: mealResponse.id ?? "",
       foodName: mealResponse.description ?? "",
       turn: mealResponse.weekDays?.join(',') ?? "",
-      studentType: "Nao possui na API",
+      studentType: "Nao possui na API ",
       components:
           mealResponse.components?.map(mapToMealComponent).toList() ?? [],
     );

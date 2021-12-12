@@ -14,6 +14,7 @@ import 'presentation/stock/stock_module.dart';
 class MealsModule extends Module {
   @override
   final List<Bind> binds = [
+    // Meals
     Bind.factory((i) => MealsMenuEntityMapper()),
     Bind.singleton((i) => MealsMenuDumbDataSourceImpl()),
     Bind.singleton((i) => MealsMenuRemoteDataSource(httpClient: i.get())),
@@ -30,7 +31,10 @@ class MealsModule extends Module {
     ChildRoute("/", child: (_, args) => const SelectActionMealsPage()),
     ChildRoute(
       "/details",
-      child: (_, args) => DetailsMealPage(meal: args.data['mealComponent']),
+      child: (_, args) => DetailsMealPage(
+        meal: args.data['meal'],
+        mealComponent: args.data['mealComponent'],
+      ),
     ),
     ChildRoute("/refeicoes", child: (_, args) => const ListMealsPage()),
     ModuleRoute("/estoque", module: StockModule())

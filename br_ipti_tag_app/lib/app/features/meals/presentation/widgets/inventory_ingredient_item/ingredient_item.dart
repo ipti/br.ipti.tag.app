@@ -6,19 +6,17 @@ import 'package:tag_ui/tag_ui.dart';
 class IngredientItem extends StatelessWidget {
   const IngredientItem({
     Key? key,
-    required this.id,
-    required this.name,
+    required this.ingredient,
   }) : super(key: key);
 
-  final String id;
-  final String name;
+  final Ingredient ingredient;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Modular.to.pushNamed(
         "/merenda/estoque/ingrediente",
-        arguments: id,
+        arguments: ingredient,
       ),
       child: TagBox(
         minHeight: 48,
@@ -28,7 +26,7 @@ class IngredientItem extends StatelessWidget {
           contentPadding: const EdgeInsets.all(12),
           dense: true,
           horizontalTitleGap: 8,
-          title: Text(name),
+          title: Text(ingredient.name),
           trailing: const Icon(
             Icons.arrow_forward_ios,
             color: TagColors.colorBaseInkNormal,

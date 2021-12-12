@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ing
 
 class InvetoryIngredientModel extends InvetoryIngredient implements Model {
   InvetoryIngredientModel({
+    required String objectId,
     required String foodId,
     required String schoolId,
     required num amount,
@@ -14,6 +15,7 @@ class InvetoryIngredientModel extends InvetoryIngredient implements Model {
     required DateTime expirationDate,
     FoodModel? food,
   }) : super(
+          objectId: objectId,
           foodId: foodId,
           schoolId: schoolId,
           amount: amount,
@@ -26,6 +28,7 @@ class InvetoryIngredientModel extends InvetoryIngredient implements Model {
   @override
   factory InvetoryIngredientModel.fromMap(Map<String, dynamic> map) {
     return InvetoryIngredientModel(
+      objectId: map['objectId'] as String,
       foodId: map['foodId'] as String,
       schoolId: map['schoolId'] as String,
       amount: num.parse(map['amount'] as String),
@@ -43,6 +46,7 @@ class InvetoryIngredientModel extends InvetoryIngredient implements Model {
   }
 
   InvetoryIngredient copyWith({
+    String? objectId,
     String? foodId,
     String? schoolId,
     num? amount,
@@ -51,6 +55,7 @@ class InvetoryIngredientModel extends InvetoryIngredient implements Model {
     DateTime? expirationDate,
   }) {
     return InvetoryIngredient(
+      objectId: objectId ?? this.objectId,
       foodId: foodId ?? this.foodId,
       schoolId: schoolId ?? this.schoolId,
       amount: amount ?? this.amount,

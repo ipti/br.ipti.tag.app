@@ -3,30 +3,30 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class ListStockState extends Equatable {}
+abstract class DetailItemStockState extends Equatable {}
 
-class EmptyState extends ListStockState {
+class EmptyState extends DetailItemStockState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingState extends ListStockState {
+class LoadingState extends DetailItemStockState {
   @override
   List<Object> get props => [];
 }
 
-class LoadedState extends ListStockState {
+class LoadedState extends DetailItemStockState {
   LoadedState({
-    required this.ingredients,
+    required this.ingredient,
   });
 
-  final List<InvetoryIngredient> ingredients;
+  final InvetoryIngredient ingredient;
 
   @override
   List<Object> get props => [];
 }
 
-class FailedState extends ListStockState {
+class FailedState extends DetailItemStockState {
   FailedState({
     required this.message,
   });
