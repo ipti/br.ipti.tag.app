@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/crate_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ final _initialState = ClassroomCreateFormState(
   modalityId: 0,
   stageId: 0,
   typePedagogicMediationId: 0,
+  registerType: '',
 );
 
 class ClassroomCreateBloc
@@ -37,6 +39,7 @@ class ClassroomCreateBloc
   void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
   void setModality(int modalityId) => add(ModalityChanged(modalityId));
   void setStage(int stageId) => add(StageChanged(stageId));
+  void setMediacao(int mediacao) => add(StageChanged(mediacao));
 
   @override
   Stream<ClassroomCreateFormState> mapEventToState(
@@ -56,12 +59,38 @@ class ClassroomCreateBloc
       newState = state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId);
     } else if (event is SubmitClassroom) {
-      final params = ParamsCreateClassroom(
-          name: state.name,
-          startTime: state.startTime.toString(),
-          endTime: state.endTime.toString(),
-          modalityId: state.modalityId,
-          stageId: state.stageId);
+      final params = ClassroomCreate(
+        name: state.name,
+        startTime: state.startTime,
+        endTime: state.endTime,
+        modalityId: state.modalityId,
+        stageId: state.stageId,
+        registerType: state.registerType,
+        schoolYear: state.schoolYear,
+        typePedagogicMediationId: state.typePedagogicMediationId,
+        complementaryActivity: state.complementaryActivity,
+        aeeCaa: state.aeeCaa,
+        aeeAccessibleTeaching: state.aeeAccessibleTeaching,
+        aee: state.aee,
+        aeeAutonomousLife: state.aeeAutonomousLife,
+        aeeBraille: state.aeeBraille,
+        aeeCognitiveFunctions: state.aeeCognitiveFunctions,
+        aeeCurriculumEnrichment: state.aeeCurriculumEnrichment,
+        aeeLibras: state.aeeLibras,
+        aeeMobilityTechniques: state.aeeMobilityTechniques,
+        aeeOpticalNonOptical: state.aeeOpticalNonOptical,
+        aeePortuguese: state.aeePortuguese,
+        aeeSoroban: state.aeeSoroban,
+        schooling: state.schooling,
+        stageVsModalityFk: state.stageVsModalityFk,
+        weekDaysFriday: state.weekDaysFriday,
+        weekDaysMonday: state.weekDaysMonday,
+        weekDaysSaturday: state.weekDaysSaturday,
+        weekDaysSunday: state.weekDaysSunday,
+        weekDaysThursday: state.weekDaysThursday,
+        weekDaysTuesday: state.weekDaysTuesday,
+        weekDaysWednesday: state.weekDaysWednesday,
+      );
 
       _usecaseCreateClassroom.call(params);
     }

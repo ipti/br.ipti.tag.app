@@ -17,6 +17,8 @@ class AuthInterceptor extends InterceptorsWrapper {
       final authRepository = AuthLocalDataSourceImpl();
       final authToken = await authRepository.getAuthToken();
       options.headers['Authorization'] = 'Bearer ${authToken.accessToken}';
+      debugPrint("data: ${options.data}");
+      debugPrint("headers: ${options.headers}");
       return super.onRequest(options, handler);
     } catch (e) {
       return super.onRequest(options, handler);

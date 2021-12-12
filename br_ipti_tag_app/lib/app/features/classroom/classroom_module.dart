@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/crate_classroom_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
@@ -10,8 +11,18 @@ import 'presentation/list/classroom_page.dart';
 class ClassroomModule extends Module {
   @override
   final List<Bind> binds = [
+    // Datasource
+    Bind.factory(
+      (i) => ClassroomRemoteDataSource(
+        i.get(),
+      ),
+    ),
     // Repositories
-    Bind.singleton((i) => ClassroomRepositoryImpl()),
+    Bind.singleton(
+      (i) => ClassroomRepositoryImpl(
+        classroomRemoteDataSource: i.get(),
+      ),
+    ),
 
     // List
     Bind.singleton((i) => ListClassroomsUsecase(i.get())),

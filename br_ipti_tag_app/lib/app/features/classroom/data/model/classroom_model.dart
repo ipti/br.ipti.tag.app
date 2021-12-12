@@ -1,5 +1,3 @@
-import 'package:br_ipti_tag_app/app/api/classroom/post_classroom_endpoint.dart';
-
 class ClassroomModel {
   const ClassroomModel({
     this.disciplineForeignLanguageEnglish = false,
@@ -15,11 +13,9 @@ class ClassroomModel {
     this.weekDayThursday = false,
     this.weekDayFriday = false,
     this.weekDaySaturday = false,
-    this.edcensoProfessionalEducationCourseFk,
     this.registerType = '',
     this.inepId = '',
     this.name = '',
-    this.schoolFk,
     this.course = 0,
     this.pedagogicalMeditationType = 0,
     this.schooling = false,
@@ -76,11 +72,9 @@ class ClassroomModel {
     this.schoolYear = 0,
     this.turn = '',
     this.hash = 0,
-    this.calendarFk,
   });
   final String registerType;
   final String inepId;
-  final SchoolFk? schoolFk;
   final String name;
   final int pedagogicalMeditationType;
   final String initialHour;
@@ -120,7 +114,6 @@ class ClassroomModel {
   final int modality;
   final String edcensoStageVsModalityFk;
   final int course;
-  final EdcensoFk? edcensoProfessionalEducationCourseFk;
   final bool disciplineChemistry;
   final bool disciplinePhysics;
   final bool disciplineMathematics;
@@ -152,5 +145,4 @@ class ClassroomModel {
   final int schoolYear;
   final String turn;
   final int hash;
-  final CalendarFk? calendarFk;
 }

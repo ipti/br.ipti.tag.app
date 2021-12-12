@@ -53,8 +53,6 @@ class PostClasroomEndPoint extends EndPointAPI {
         "modality": params.modality,
         "edcenso_stage_vs_modality_fk": params.edcensoStageVsModalityFk,
         "course": params.course,
-        "edcenso_professional_education_course_fk":
-            params.edcensoProfessionalEducationCourseFk,
         "discipline_chemistry": params.disciplineChemistry,
         "discipline_physics": params.disciplinePhysics,
         "discipline_mathematics": params.disciplineMathematics,
@@ -95,7 +93,8 @@ class PostClasroomEndPoint extends EndPointAPI {
         "school_year": params.schoolYear,
         "turn": params.turn,
         "hash": params.hash,
-        "calendar_fk": params.calendarFk,
+        "edcenso_professional_education_course_fk": {},
+        "calendar_fk": {},
       };
 
   @override
@@ -123,11 +122,9 @@ class PostClassroomParams {
     required this.weekDayThursday,
     required this.weekDayFriday,
     required this.weekDaySaturday,
-    required this.edcensoProfessionalEducationCourseFk,
     required this.registerType,
     required this.inepId,
     required this.name,
-    required this.schoolFk,
     required this.course,
     required this.pedagogicalMeditationType,
     required this.schooling,
@@ -184,11 +181,9 @@ class PostClassroomParams {
     required this.schoolYear,
     required this.turn,
     required this.hash,
-    required this.calendarFk,
   });
   final String registerType;
   final String inepId;
-  final SchoolFk schoolFk;
   final String name;
   final int pedagogicalMeditationType;
   final String initialHour;
@@ -228,7 +223,6 @@ class PostClassroomParams {
   final int modality;
   final String edcensoStageVsModalityFk;
   final int course;
-  final EdcensoFk edcensoProfessionalEducationCourseFk;
   final bool disciplineChemistry;
   final bool disciplinePhysics;
   final bool disciplineMathematics;
@@ -260,17 +254,4 @@ class PostClassroomParams {
   final int schoolYear;
   final String turn;
   final int hash;
-  final CalendarFk calendarFk;
-}
-
-class SchoolFk {
-  SchoolFk();
-}
-
-class EdcensoFk {
-  EdcensoFk();
-}
-
-class CalendarFk {
-  CalendarFk();
 }

@@ -80,7 +80,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
 
     Widget inputName(String name) => TagTextField(
           label: "Nome",
-          hint: "Digite o nome do aluno",
+          hint: "Nome Completo",
           onChanged: controller.setName,
           value: name,
           validator: requiredValidator,
@@ -88,7 +88,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
 
     Widget inputStartTime(TimeOfDay startTime) => TagTextField(
           label: "Horário Inicial",
-          hint: "Digite o nome do aluno",
+          hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
             controller.setStartTime(stringToTimeOfDay(value));
@@ -99,7 +99,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
 
     Widget inputEndTime(TimeOfDay endTime) => TagTextField(
           label: "Horário Final",
-          hint: "Digite o nome do aluno",
+          hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
             controller.setEndTime(stringToTimeOfDay(value));
@@ -109,7 +109,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
         );
     Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
-          hint: "Selecione a modalidade",
+          hint: "Selecione",
           items: controller.modalitiesList,
           onChanged: controller.setModality,
           value: modality,
@@ -117,10 +117,19 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
         );
     Widget selectStage(int nationality) => TagDropdownField(
           label: 'Etapa de Ensino',
-          hint: "Selecione a etapa",
+          hint: "Selecione",
           items: controller.stagesList,
           onChanged: controller.setStage,
           value: nationality,
+          validator: requiredValidator,
+        );
+
+    Widget selectMediacaoDidaticaPedagogica(int mediacao) => TagDropdownField(
+          label: 'Tipo de Mediação Didático-Pedagógica',
+          hint: "Selecione",
+          items: controller.stagesList,
+          onChanged: controller.setMediacao,
+          value: mediacao,
           validator: requiredValidator,
         );
 
@@ -157,8 +166,22 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                         Flexible(
                           child: withPadding(selectStage(state.stageId)),
                         ),
-                        Flexible(child: Container()),
                       ]),
+                      RowToColumn(children: [
+                        Flexible(
+                          child: withPadding(
+                            selectMediacaoDidaticaPedagogica(
+                              state.typePedagogicMediationId,
+                            ),
+                          ),
+                        ),
+                      ]),
+                      TagButton(
+                        text: "Criar turma",
+                        onPressed: () => controller.add(
+                          SubmitClassroom(),
+                        ),
+                      ),
                     ],
                   ),
                 ),
