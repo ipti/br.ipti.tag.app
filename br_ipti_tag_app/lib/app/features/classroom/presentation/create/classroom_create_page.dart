@@ -1,3 +1,5 @@
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/widgets/left_list_checkbox_classroom_widget.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/widgets/right_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/shared/util/util.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
@@ -76,7 +78,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    const heading = Heading(text: "Turma", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados Básicos", type: HeadingType.Title2);
 
     Widget inputName(String name) => TagTextField(
           label: "Nome",
@@ -172,6 +174,80 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                           child: withPadding(
                             selectMediacaoDidaticaPedagogica(
                               state.typePedagogicMediationId,
+                            ),
+                          ),
+                        ),
+                      ]),
+                      RowToColumn(children: [
+                        Flexible(
+                          child: withPadding(
+                            LeftListClassroomWidget(
+                              onChangedSchooling: (value) =>
+                                  controller.schooling(
+                                value: value!,
+                              ),
+                              onChangedAee: (value) => controller.aee(
+                                value: value!,
+                              ),
+                              onChangedComplementaryActivity: (value) =>
+                                  controller.complementaryActivity(
+                                value: value!,
+                              ),
+                              onChangedMoreEducatorParticipator: (value) =>
+                                  controller.moreEducationParticipator(
+                                value: value!,
+                              ),
+                              state: state,
+                            ),
+                          ),
+                        ),
+                        Flexible(
+                          child: withPadding(
+                            RightListCheckboxWidget(
+                              onChangedAeeBraille: (value) =>
+                                  controller.aeeBraille(
+                                value: value!,
+                              ),
+                              onChangedAeeOpticalNonOptical: (value) =>
+                                  controller.aeeOpticalNonOptical(
+                                value: value!,
+                              ),
+                              state: state,
+                              onChangedAeeCognitiveFunctions: (value) =>
+                                  controller.aeeCognitiveFunctions(
+                                value: value!,
+                              ),
+                              onChangedAeeMobilityTechniques: (value) =>
+                                  controller.aeeMobilityTechniques(
+                                value: value!,
+                              ),
+                              onChangedAeeLibras: (value) =>
+                                  controller.aeeLibras(
+                                value: value!,
+                              ),
+                              onChangedAeeCaa: (value) => controller.aeeCaa(
+                                value: value!,
+                              ),
+                              onChangedAeeCurriculumEnrichment: (value) =>
+                                  controller.aeeCurriculumEnrichment(
+                                value: value!,
+                              ),
+                              onChangedAeeAccessibleTeaching: (value) =>
+                                  controller.aeeAccessibleTeaching(
+                                value: value!,
+                              ),
+                              onChangedAeePortuguese: (value) =>
+                                  controller.aeePortuguese(
+                                value: value!,
+                              ),
+                              onChangedAeeSoroban: (value) =>
+                                  controller.aeeSoroban(
+                                value: value!,
+                              ),
+                              onChangedAeeAutonomousLife: (value) =>
+                                  controller.aeeAutonomousLife(
+                                value: value!,
+                              ),
                             ),
                           ),
                         ),

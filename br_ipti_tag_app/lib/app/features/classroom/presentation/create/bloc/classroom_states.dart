@@ -28,6 +28,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     this.aeePortuguese = false,
     this.aeeSoroban = false,
     this.aeeAutonomousLife = false,
+    this.moreEducationParticipator = false,
     required this.registerType,
     required this.name,
     required this.startTime,
@@ -66,7 +67,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
   final bool aeePortuguese;
   final bool aeeSoroban;
   final bool aeeAutonomousLife;
-
+  final bool moreEducationParticipator;
   ClassroomCreateFormState copyWith({
     String? registerType,
     String? name,
@@ -75,6 +76,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     int? modalityId,
     int? stageId,
     int? typePedagogicMediationId,
+    bool? moreEducationParticipator,
     bool? weekDaysSunday,
     bool? weekDaysMonday,
     bool? weekDaysTuesday,
@@ -100,6 +102,27 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     bool? aeeAutonomousLife,
   }) {
     return ClassroomCreateFormState(
+      aeeSoroban: aeeSoroban ?? this.aeeSoroban,
+      aeePortuguese: aeePortuguese ?? this.aeePortuguese,
+      aeeAutonomousLife: aeeAutonomousLife ?? this.aeeAutonomousLife,
+      aeeAccessibleTeaching:
+          aeeAccessibleTeaching ?? this.aeeAccessibleTeaching,
+      aeeCurriculumEnrichment:
+          aeeCurriculumEnrichment ?? this.aeeCurriculumEnrichment,
+      aeeCaa: aeeCaa ?? this.aeeCaa,
+      aeeLibras: aeeLibras ?? this.aeeLibras,
+      aeeMobilityTechniques:
+          aeeMobilityTechniques ?? this.aeeMobilityTechniques,
+      aeeCognitiveFunctions:
+          aeeCognitiveFunctions ?? this.aeeCognitiveFunctions,
+      aeeOpticalNonOptical: aeeOpticalNonOptical ?? this.aeeOpticalNonOptical,
+      aeeBraille: aeeBraille ?? this.aeeBraille,
+      moreEducationParticipator:
+          moreEducationParticipator ?? this.moreEducationParticipator,
+      aee: aee ?? this.aee,
+      complementaryActivity:
+          complementaryActivity ?? this.complementaryActivity,
+      schooling: schooling ?? this.schooling,
       stageVsModalityFk: stageVsModalityFk ?? this.stageVsModalityFk,
       name: name ?? this.name,
       startTime: startTime ?? this.startTime,
@@ -144,7 +167,8 @@ class ClassroomCreateFormState extends ClassroomCreateState {
       weekDaysSunday,
       weekDaysThursday,
       weekDaysTuesday,
-      weekDaysWednesday
+      weekDaysWednesday,
+      moreEducationParticipator
     ];
   }
 }

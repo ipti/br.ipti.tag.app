@@ -8,7 +8,7 @@ import 'classroom_states.dart';
 
 final _initialState = ClassroomCreateFormState(
   name: "",
-  stageVsModalityFk: '',
+  stageVsModalityFk: 'MN',
   startTime: TimeOfDay.now(),
   endTime: TimeOfDay.now(),
   modalityId: 0,
@@ -40,7 +40,81 @@ class ClassroomCreateBloc
     1: "Mediação 2",
     2: "Mediação 3",
   };
-
+  void aeeBraille({bool value = false}) => add(
+        AeeBrailleChanged(
+          aeeBraille: value,
+        ),
+      );
+  void aeeOpticalNonOptical({bool value = false}) => add(
+        AeeOpticalNonOpticalChanged(
+          aeeOpticalNonOptical: value,
+        ),
+      );
+  void aeeCognitiveFunctions({bool value = false}) => add(
+        AeeCognitiveFunctionsChanged(
+          aeeCognitiveFunctions: value,
+        ),
+      );
+  void aeeMobilityTechniques({bool value = false}) => add(
+        AeeMobilityTechniquesChanged(
+          aeeMobilityTechniques: value,
+        ),
+      );
+  void aeeLibras({bool value = false}) => add(
+        AeeLibrasChanged(
+          aeeLibras: value,
+        ),
+      );
+  void aeeCaa({bool value = false}) => add(
+        AeeCaaChanged(
+          aeeCaa: value,
+        ),
+      );
+  void aeeCurriculumEnrichment({bool value = false}) => add(
+        AeeCurriculumEnrichmentChanged(
+          aeeCurriculumEnrichment: value,
+        ),
+      );
+  void aeeAccessibleTeaching({bool value = false}) => add(
+        AeeAccessibleTeachingChanged(
+          aeeAccessibleTeaching: value,
+        ),
+      );
+  void aeePortuguese({bool value = false}) => add(
+        AeePortugueseChanged(
+          aeePortuguese: value,
+        ),
+      );
+  void aeeSoroban({bool value = false}) => add(
+        AeeSorobanChanged(
+          aeeSoroban: value,
+        ),
+      );
+  void aeeAutonomousLife({bool value = false}) => add(
+        AeeAutonomousLifeChanged(
+          aeeAutonomousLife: value,
+        ),
+      );
+  void aee({bool value = false}) => add(
+        AeeChanged(
+          aee: value,
+        ),
+      );
+  void moreEducationParticipator({bool value = false}) => add(
+        MoreEducationParticipatorChanged(
+          moreEducationParticipator: value,
+        ),
+      );
+  void complementaryActivity({bool value = false}) => add(
+        ComplementaryActivityChanged(
+          complementaryActivity: value,
+        ),
+      );
+  void schooling({bool value = false}) => add(
+        SchoolingChanged(
+          schooling: value,
+        ),
+      );
   void setName(String name) => add(NameChanged(name));
   void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
   void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
@@ -71,8 +145,66 @@ class ClassroomCreateBloc
     } else if (event is TypePedagogicalMediationChanged) {
       newState = state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId);
+    } else if (event is SchoolingChanged) {
+      newState = state.copyWith(
+        schooling: event.schooling,
+      );
+    } else if (event is ComplementaryActivityChanged) {
+      newState = state.copyWith(
+        complementaryActivity: event.complementaryActivity,
+      );
+    } else if (event is AeeChanged) {
+      newState = state.copyWith(
+        aee: event.aee,
+      );
+    } else if (event is MoreEducationParticipatorChanged) {
+      newState = state.copyWith(
+        moreEducationParticipator: event.moreEducationParticipator,
+      );
+    } else if (event is AeeBrailleChanged) {
+      newState = state.copyWith(
+        aeeBraille: event.aeeBraille,
+      );
+    } else if (event is AeeOpticalNonOpticalChanged) {
+      newState = state.copyWith(
+        aeeOpticalNonOptical: event.aeeOpticalNonOptical,
+      );
+    } else if (event is AeeMobilityTechniquesChanged) {
+      newState = state.copyWith(
+        aeeMobilityTechniques: event.aeeMobilityTechniques,
+      );
+    } else if (event is AeeCognitiveFunctionsChanged) {
+      newState =
+          state.copyWith(aeeCognitiveFunctions: event.aeeCognitiveFunctions);
+    } else if (event is AeeLibrasChanged) {
+      newState = state.copyWith(aeeLibras: event.aeeLibras);
+    } else if (event is AeeCaaChanged) {
+      newState = state.copyWith(
+        aeeCaa: event.aeeCaa,
+      );
+    } else if (event is AeeCurriculumEnrichmentChanged) {
+      newState = state.copyWith(
+        aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
+      );
+    } else if (event is AeeAccessibleTeachingChanged) {
+      newState = state.copyWith(
+        aeeAccessibleTeaching: event.aeeAccessibleTeaching,
+      );
+    } else if (event is AeePortugueseChanged) {
+      newState = state.copyWith(
+        aeePortuguese: event.aeePortuguese,
+      );
+    } else if (event is AeeSorobanChanged) {
+      newState = state.copyWith(
+        aeeSoroban: event.aeeSoroban,
+      );
+    } else if (event is AeeAutonomousLifeChanged) {
+      newState = state.copyWith(
+        aeeAutonomousLife: event.aeeAutonomousLife,
+      );
     } else if (event is SubmitClassroom) {
       final params = ClassroomCreateEntity(
+        moreEducationParticipator: state.moreEducationParticipator,
         name: state.name,
         startTime: state.startTime,
         endTime: state.endTime,

@@ -29,7 +29,7 @@ class ClassroomCreateEntity {
   final bool aeePortuguese;
   final bool aeeSoroban;
   final bool aeeAutonomousLife;
-  final bool maisEducacaoParticipator;
+  final bool moreEducationParticipator;
 
   ClassroomCreateEntity({
     this.schooling = false,
@@ -53,7 +53,7 @@ class ClassroomCreateEntity {
     this.weekDaysThursday = true,
     this.weekDaysFriday = false,
     this.weekDaysSaturday = false,
-    this.maisEducacaoParticipator = false,
+    this.moreEducationParticipator = false,
     required this.edcensoStageVsModalityFk,
     required this.name,
     required this.startTime,
@@ -92,7 +92,7 @@ class ClassroomCreateEntity {
       aeeOpticalNonoptical: aeeOpticalNonOptical,
       aeePortuguese: aeePortuguese,
       aeeSoroban: aeeSoroban,
-      maisEducacaoParticipator: maisEducacaoParticipator,
+      moreEducationParticipator: moreEducationParticipator,
     );
   }
 }
