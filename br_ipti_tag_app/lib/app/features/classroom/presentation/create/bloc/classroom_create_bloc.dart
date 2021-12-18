@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/crate_classroom_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ final _initialState = ClassroomCreateFormState(
   modalityId: 0,
   stageId: 0,
   typePedagogicMediationId: 0,
-  registerType: '',
+  registerType: '1230',
 );
 
 class ClassroomCreateBloc
@@ -59,14 +59,11 @@ class ClassroomCreateBloc
       newState = state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId);
     } else if (event is SubmitClassroom) {
-      final params = ClassroomCreate(
+      final params = ClassroomCreateEntity(
         name: state.name,
         startTime: state.startTime,
         endTime: state.endTime,
         modalityId: state.modalityId,
-        stageId: state.stageId,
-        registerType: state.registerType,
-        schoolYear: state.schoolYear,
         typePedagogicMediationId: state.typePedagogicMediationId,
         complementaryActivity: state.complementaryActivity,
         aeeCaa: state.aeeCaa,
@@ -82,7 +79,7 @@ class ClassroomCreateBloc
         aeePortuguese: state.aeePortuguese,
         aeeSoroban: state.aeeSoroban,
         schooling: state.schooling,
-        stageVsModalityFk: state.stageVsModalityFk,
+        edcensoStageVsModalityFk: state.stageVsModalityFk,
         weekDaysFriday: state.weekDaysFriday,
         weekDaysMonday: state.weekDaysMonday,
         weekDaysSaturday: state.weekDaysSaturday,

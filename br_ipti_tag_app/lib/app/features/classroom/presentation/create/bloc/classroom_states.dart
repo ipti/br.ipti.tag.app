@@ -12,7 +12,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     this.weekDaysThursday = true,
     this.weekDaysFriday = true,
     this.weekDaysSaturday = false,
-    this.stageVsModalityFk,
+    this.stageVsModalityFk = 'st',
     this.schoolYear,
     this.schooling = false,
     this.complementaryActivity = false,
@@ -50,7 +50,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
   final bool weekDaysThursday;
   final bool weekDaysFriday;
   final bool weekDaysSaturday;
-  final String? stageVsModalityFk;
+  final String stageVsModalityFk;
   final int? schoolYear;
   final bool schooling;
   final bool complementaryActivity;

@@ -1,12 +1,11 @@
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_create_model.dart';
 import 'package:flutter/material.dart';
 
-class ClassroomCreate {
-  final String registerType;
+class ClassroomCreateEntity {
   final String name;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
   final int modalityId;
-  final int stageId;
   final int typePedagogicMediationId;
   final bool weekDaysSunday;
   final bool weekDaysMonday;
@@ -15,8 +14,7 @@ class ClassroomCreate {
   final bool weekDaysThursday;
   final bool weekDaysFriday;
   final bool weekDaysSaturday;
-  final String? stageVsModalityFk;
-  final int? schoolYear;
+  final String edcensoStageVsModalityFk;
   final bool schooling;
   final bool complementaryActivity;
   final bool aee;
@@ -31,8 +29,9 @@ class ClassroomCreate {
   final bool aeePortuguese;
   final bool aeeSoroban;
   final bool aeeAutonomousLife;
+  final bool maisEducacaoParticipator;
 
-  ClassroomCreate({
+  ClassroomCreateEntity({
     this.schooling = false,
     this.complementaryActivity = false,
     this.aee = false,
@@ -47,7 +46,6 @@ class ClassroomCreate {
     this.aeePortuguese = false,
     this.aeeSoroban = false,
     this.aeeAutonomousLife = false,
-    this.stageVsModalityFk,
     this.weekDaysSunday = true,
     this.weekDaysMonday = true,
     this.weekDaysTuesday = true,
@@ -55,13 +53,46 @@ class ClassroomCreate {
     this.weekDaysThursday = true,
     this.weekDaysFriday = true,
     this.weekDaysSaturday = true,
-    this.schoolYear,
-    required this.registerType,
+    this.maisEducacaoParticipator = false,
+    required this.edcensoStageVsModalityFk,
     required this.name,
     required this.startTime,
     required this.endTime,
     required this.modalityId,
-    required this.stageId,
     required this.typePedagogicMediationId,
   });
+
+  ClassroomCreateModel fromEntity(
+  ) {
+    return ClassroomCreateModel(
+      startTime: startTime,
+      endTime: endTime,
+      edcensoStageVsModalityFk: edcensoStageVsModalityFk,
+      modality: modalityId,
+      name: name,
+      typePedagogicMediationId: typePedagogicMediationId,
+      weekDayFriday: weekDaysFriday,
+      weekDayMonday: weekDaysMonday,
+      weekDaySaturday: weekDaysSaturday,
+      weekDaySunday: weekDaysSunday,
+      weekDayThursday: weekDaysThursday,
+      weekDayTuesday: weekDaysTuesday,
+      weekDayWednesday: weekDaysWednesday,
+      schooling: schooling,
+      complementaryActivity: complementaryActivity,
+      aee: aee,
+      aeeAccessibleTeaching: aeeAccessibleTeaching,
+      aeeAutonomousLife: aeeAutonomousLife,
+      aeeBraille: aeeBraille,
+      aeeCaa: aeeCaa,
+      aeeCognitiveFunction: aeeCognitiveFunctions,
+      aeeCurriculumEnrichment: aeeCurriculumEnrichment,
+      aeeLibras: aeeLibras,
+      aeeMobilityTechniques: aeeMobilityTechniques,
+      aeeOpticalNonoptical: aeeOpticalNonOptical,
+      aeePortuguese: aeePortuguese,
+      aeeSoroban: aeeSoroban,
+      maisEducacaoParticipator: maisEducacaoParticipator,
+    );
+  }
 }

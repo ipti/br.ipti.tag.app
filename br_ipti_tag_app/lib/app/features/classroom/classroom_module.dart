@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/crate_classroom_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_create_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
