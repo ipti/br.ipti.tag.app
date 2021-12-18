@@ -8,6 +8,7 @@ import 'classroom_states.dart';
 
 final _initialState = ClassroomCreateFormState(
   name: "",
+  stageVsModalityFk: '',
   startTime: TimeOfDay.now(),
   endTime: TimeOfDay.now(),
   modalityId: 0,
@@ -28,10 +29,16 @@ class ClassroomCreateBloc
     2: "Educação de Jovens e Adultos (EJA)",
   };
 
-  final stagesList = const <int, String>{
-    0: "Teste 1",
-    1: "Teste 2",
-    2: "Teste 3",
+  final etapaEnsino = const <int, String>{
+    0: "Manhã",
+    1: "Tarde",
+    2: "Noite",
+  };
+
+  final mediacao = const <int, String>{
+    0: "Mediação 1",
+    1: "Mediação 2",
+    2: "Mediação 3",
   };
 
   void setName(String name) => add(NameChanged(name));
@@ -39,7 +46,11 @@ class ClassroomCreateBloc
   void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
   void setModality(int modalityId) => add(ModalityChanged(modalityId));
   void setStage(int stageId) => add(StageChanged(stageId));
-  void setMediacao(int mediacao) => add(StageChanged(mediacao));
+  void setMediacao(int mediacao) => add(
+        TypePedagogicalMediationChanged(
+          mediacao,
+        ),
+      );
 
   @override
   Stream<ClassroomCreateFormState> mapEventToState(
@@ -54,7 +65,9 @@ class ClassroomCreateBloc
     } else if (event is ModalityChanged) {
       newState = state.copyWith(modalityId: event.modalityId);
     } else if (event is StageChanged) {
-      newState = state.copyWith(stageId: event.stageId);
+      newState = state.copyWith(
+        stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
+      );
     } else if (event is TypePedagogicalMediationChanged) {
       newState = state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId);
@@ -93,5 +106,16 @@ class ClassroomCreateBloc
     }
 
     yield newState;
+  }
+
+  String _getEdcensoStage(int idEdcenso) {
+    switch (idEdcenso) {
+      case 0:
+        return "MA";
+      case 1:
+        return "TD";
+      default:
+        return "NT";
+    }
   }
 }

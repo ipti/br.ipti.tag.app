@@ -51,12 +51,12 @@ class ModalityChanged extends ClassroomCreateEvent {
 }
 
 class StageChanged extends ClassroomCreateEvent {
-  const StageChanged(this.stageId);
+  const StageChanged(this.idEdcenso);
 
-  final int stageId;
+  final int idEdcenso;
 
   @override
-  List<Object> get props => [stageId];
+  List<Object> get props => [idEdcenso];
 }
 
 class TypePedagogicalMediationChanged extends ClassroomCreateEvent {
