@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 
 class ClassroomModel extends ClassroomEntity {
   ClassroomModel({
@@ -8,6 +8,7 @@ class ClassroomModel extends ClassroomEntity {
     required int? modalityId,
     required int typePedagogicMeditationId,
     required String stage,
+    required String id,
   }) : super(
           name: name,
           stage: stage,
@@ -15,11 +16,13 @@ class ClassroomModel extends ClassroomEntity {
           endTime: endTime,
           typePedagogicMediationId: typePedagogicMeditationId,
           startTime: startTime,
+          id: id,
         );
 
   factory ClassroomModel.fromJson(Map<String, dynamic> map) {
     return ClassroomModel(
       name: map['name'],
+      id: map['_id'],
       startTime: '${map['initial_hour']}:${map['initial_minute']}',
       endTime: '${map['final_hour']}:${map['final_minute']}',
       modalityId: map['modality'],

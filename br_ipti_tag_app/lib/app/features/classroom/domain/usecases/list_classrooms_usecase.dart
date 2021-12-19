@@ -1,5 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
 import 'package:dartz/dartz.dart';
 

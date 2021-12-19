@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../../domain/entities/classroom.dart';
+import '../../domain/entities/classroom_entity.dart';
 import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
@@ -88,7 +88,14 @@ class ClassroomDatatable extends DataTableSource {
       DataCell(Text(data[index].name.toUpperCase())),
       DataCell(Text(data[index].stage)),
       DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
-      const DataCell(Icon(Icons.edit)),
+      DataCell(
+        GestureDetector(
+          onTap: () => Modular.to.pushNamed("updateDelete"),
+          child: const Icon(
+            Icons.edit,
+          ),
+        ),
+      ),
     ]);
   }
 

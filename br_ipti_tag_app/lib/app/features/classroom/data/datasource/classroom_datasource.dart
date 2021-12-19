@@ -1,5 +1,7 @@
+import 'package:br_ipti_tag_app/app/api/classroom/delete_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/post_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/put_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_create_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_model.dart';
@@ -23,14 +25,47 @@ class ClassroomRemoteDataSource {
     throw response.error ?? "Erro desconhecido";
   }
 
+  Future<bool> update(
+    ClassroomCreateModel classroomModel,
+    String id,
+  ) async {
+    final response = await _httpClient.request(
+      route: PutClasroomEndPoint(
+        classroomModel,
+        id,
+      ),
+    );
+
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
+  }
+
+  Future<bool> delete(
+    String id,
+  ) async {
+    final response = await _httpClient.request(
+      route: DeleteClasroomEndPoint(
+        id,
+      ),
+    );
+
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
+  }
+
   Future<List<ClassroomModel>> listAll() async {
     final response = await _httpClient.requestListFrom(
       route: GetClasroomEndPoint(),
     );
 
-    final mappedList = response.data!
-        .map((e) => ClassroomModel.fromJson(e))
-        .toList();
+    final mappedList =
+        response.data!.map((e) => ClassroomModel.fromJson(e)).toList();
 
     return mappedList;
   }

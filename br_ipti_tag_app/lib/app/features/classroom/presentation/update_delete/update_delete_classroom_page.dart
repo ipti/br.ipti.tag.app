@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_update_widget.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_update_widget.dart';
 import 'package:br_ipti_tag_app/app/shared/util/util.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
@@ -9,28 +9,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/components/shared/masks.dart';
 import 'package:tag_ui/tag_ui.dart';
-import 'bloc/classroom_create_bloc.dart';
-import 'bloc/classroom_create_events.dart';
+
 import 'bloc/classroom_states.dart';
+import 'bloc/classroom_update_bloc.dart';
+import 'bloc/classroom_update_events.dart';
 
-class ClassroomCreatePage extends StatefulWidget {
-  const ClassroomCreatePage({Key? key, this.title = 'Adicionar Turma'})
-      : super(key: key);
-
-  final String title;
+class ClassroomBasicDataForm extends StatefulWidget {
+  const ClassroomBasicDataForm({Key? key}) : super(key: key);
 
   @override
-  ClassroomCreatePageState createState() => ClassroomCreatePageState();
+  _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
 }
 
-class ClassroomCreatePageState
-    extends ModularState<ClassroomCreatePage, ClassroomCreateBloc> {
-  @override
-  void initState() {
-    controller.add(StartEditing());
-    super.initState();
-  }
+class ClassroomUpdateDeletePage extends StatefulWidget {
+  final String title;
 
+  final String id;
+  const ClassroomUpdateDeletePage({
+    Key? key,
+    this.title = 'Atualizar Turma',
+    this.id = '',
+  }) : super(key: key);
+
+  @override
+  ClassroomUpdateDeletePageState createState() =>
+      ClassroomUpdateDeletePageState();
+}
+
+class ClassroomUpdateDeletePageState
+    extends ModularState<ClassroomUpdateDeletePage, ClassroomUpdateDeleteBloc> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -41,34 +48,40 @@ class ClassroomCreatePageState
         title: widget.title,
         description: "",
         path: ["Turmas", widget.title],
-        body: const <Widget>[
+        body: <Widget>[
           TabBar(
             isScrollable: true,
             labelColor: TagColors.colorBaseProductDark,
             indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: EdgeInsets.symmetric(horizontal: 8),
-            tabs: [
+            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+            onTap: controller.tabNavigation,
+            tabs: const [
               Tab(
                 child: Text("Dados da Turma"),
               ),
+              Tab(
+                child: Text("Professor"),
+              ),
+              Tab(
+                child: Text("Alunos"),
+              ),
             ],
           ),
-          ClassroomBasicDataForm()
+          const ClassroomBasicDataForm()
         ],
       ),
     );
   }
-}
-
-class ClassroomBasicDataForm extends StatefulWidget {
-  const ClassroomBasicDataForm({Key? key}) : super(key: key);
 
   @override
-  _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
+  void initState() {
+    controller.add(StartEditing());
+    super.initState();
+  }
 }
 
 class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
-  final controller = Modular.get<ClassroomCreateBloc>();
+  final controller = Modular.get<ClassroomUpdateDeleteBloc>();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -137,10 +150,10 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
 
     return Form(
       key: _formKey,
-      child: BlocBuilder<ClassroomCreateBloc, ClassroomCreateState>(
+      child: BlocBuilder<ClassroomUpdateDeleteBloc, ClassroomUpdateDeleteState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is ClassroomCreateFormState) {
+            if (state is ClassroomUpdateDeleteFormState) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -181,7 +194,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                       RowToColumn(children: [
                         Flexible(
                           child: withPadding(
-                            LeftListClassroomWidget(
+                            LeftListClassroomUpdateWidget(
                               onChangedSchooling: (value) =>
                                   controller.schooling(
                                 value: value!,
@@ -203,7 +216,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                         ),
                         Flexible(
                           child: withPadding(
-                            RightListClasroomWidget(
+                            RightListClassroomUpdateWidget(
                               onChangedAeeBraille: (value) =>
                                   controller.aeeBraille(
                                 value: value!,
@@ -252,11 +265,22 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                           ),
                         ),
                       ]),
-                      TagButton(
-                        text: "Criar turma",
-                        onPressed: () => controller.add(
-                          SubmitClassroom(),
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TagButton(
+                            text: "Salvar Alterações",
+                            onPressed: () => controller.add(
+                              SubmitClassroom(),
+                            ),
+                          ),
+                          TagButton(
+                            text: "Excluir Turma",
+                            onPressed: () => controller.add(
+                              SubmitClassroom(),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

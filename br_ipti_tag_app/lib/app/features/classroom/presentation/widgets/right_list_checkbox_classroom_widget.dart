@@ -1,10 +1,10 @@
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_states.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/widgets/checkbox_widget.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/checkbox_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/components/components.dart';
 
-class RightListCheckboxWidget extends StatelessWidget {
-  const RightListCheckboxWidget({
+class RightListClasroomWidget extends StatelessWidget {
+  const RightListClasroomWidget({
     Key? key,
     required this.onChangedAeeBraille,
     required this.onChangedAeeOpticalNonOptical,
