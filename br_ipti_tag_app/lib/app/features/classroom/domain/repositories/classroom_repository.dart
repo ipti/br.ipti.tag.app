@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class ClassroomRepository {
   Future<Either<Exception, bool>> create(ClassroomCreateEntity classroom);
-  Future<Either<Exception, List<Classroom>>> list();
+  Future<Either<Exception, List<ClassroomEntity>>> list();
 }

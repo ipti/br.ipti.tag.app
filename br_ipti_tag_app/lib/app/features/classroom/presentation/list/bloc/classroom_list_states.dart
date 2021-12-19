@@ -9,7 +9,7 @@ class ClassroomListState extends Equatable {
   });
 
   final bool loading;
-  final List<Classroom> classrooms;
+  final List<ClassroomEntity> classrooms;
   final String message;
 
   @override
@@ -17,7 +17,7 @@ class ClassroomListState extends Equatable {
 
   ClassroomListState copyWith({
     bool? loading,
-    List<Classroom>? classrooms,
+    List<ClassroomEntity>? classrooms,
     String? message,
   }) {
     return ClassroomListState(
@@ -40,7 +40,7 @@ class LoadingState extends ClassroomListState {
 
 class LoadedState extends ClassroomListState {
   const LoadedState({
-    required List<Classroom> classrooms,
+    required List<ClassroomEntity> classrooms,
   }) : super(loading: false, message: "", classrooms: classrooms);
 }
 

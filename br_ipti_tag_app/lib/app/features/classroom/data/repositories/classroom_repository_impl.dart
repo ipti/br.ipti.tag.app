@@ -25,29 +25,12 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<Exception, List<Classroom>>> list() async {
-    return Right(<Classroom>[
-      Classroom(
-          name: "1º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-      Classroom(
-          name: "3º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-      Classroom(
-          name: "4º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-    ]);
+  Future<Either<Exception, List<ClassroomEntity>>> list() async {
+    try {
+      final result = await classroomRemoteDataSource.listAll();
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
   }
 }

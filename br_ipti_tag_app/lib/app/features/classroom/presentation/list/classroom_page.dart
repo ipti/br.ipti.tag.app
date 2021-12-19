@@ -61,6 +61,7 @@ class ClassroomPageState
               columns: const [
                 DataColumn(label: Text("Nome")),
                 DataColumn(label: Text("Etapa")),
+                DataColumn(label: Text("Horário ")),
                 DataColumn(label: Text("")),
               ],
               source: ClassroomDatatable(
@@ -79,13 +80,14 @@ class ClassroomDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Classroom> data;
+  final List<ClassroomEntity> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stageId.toString())),
+      DataCell(Text(data[index].stage)),
+      DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
       const DataCell(Icon(Icons.edit)),
     ]);
   }
