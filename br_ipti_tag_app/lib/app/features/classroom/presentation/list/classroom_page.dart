@@ -90,7 +90,7 @@ class ClassroomDatatable extends DataTableSource {
       DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
       DataCell(
         GestureDetector(
-          onTap: () => Modular.to.pushNamed("updateDelete"),
+          onTap: () => Modular.to.pushNamed("updatePage"),
           child: const Icon(
             Icons.edit,
           ),

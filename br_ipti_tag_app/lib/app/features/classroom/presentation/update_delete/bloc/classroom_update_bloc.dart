@@ -2,8 +2,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
 import 'classroom_states.dart';
 import 'classroom_update_events.dart';
 
@@ -254,16 +252,18 @@ class ClassroomUpdateDeleteBloc
     }
   }
 
+  int value = 0;
+
   void tabNavigation(int index) {
     switch (index) {
       case 0:
-        Modular.to.navigate('/turmas/matricula-rapida/personal');
+        value = 0;
         break;
       case 1:
-        Modular.to.navigate('/alunos/matricula-rapida/classes');
+        value = 1;
         break;
       default:
-        Modular.to.navigate('/');
+        value = 2;
     }
   }
 }
