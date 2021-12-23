@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -65,7 +64,6 @@ class SocialFormPageState extends State<SocialFormPage> {
     return BlocBuilder<EnrollmentSocialBloc, EnrollmentSocialState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is EnrollmentSocialState) {
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -95,10 +93,7 @@ class SocialFormPageState extends State<SocialFormPage> {
                 ),
               ),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+         
         });
   }
 }

@@ -2,7 +2,6 @@ import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/for
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_states.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -114,7 +113,6 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
       child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is EnrollmentPersonalState) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -154,8 +152,8 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                   ),
                 ),
               );
-            }
-            return const CircularProgressIndicator();
+            
+            
           }),
     );
   }

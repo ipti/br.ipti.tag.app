@@ -1,7 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/fast_enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/bloc/fast_enrollment_states.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -35,22 +34,17 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     return BlocBuilder<FastEnrollmentBloc, FastEnrollmentState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is FastEnrollmentState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    withPadding(selectClass(state.studentClass)),
-                  ],
-                ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  withPadding(heading),
+                  withPadding(selectClass(state.studentClass)),
+                ],
               ),
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
+            ),
           );
         });
   }

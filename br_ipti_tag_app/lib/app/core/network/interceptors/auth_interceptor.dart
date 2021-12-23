@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class AuthInterceptor extends InterceptorsWrapper {

@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_clas
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/update_classroom_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_create_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/cubit/tab_controller_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_delete_classroom_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_student_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_teacher_page.dart';
@@ -42,6 +43,7 @@ class ClassroomModule extends Module {
     Bind.singleton((i) => UpdateClassroomUsecase(i.get())),
     Bind.singleton((i) => DeleteClassroomUsecase(i.get())),
     Bind.singleton((i) => ClassroomUpdateDeleteBloc(i.get())),
+    Bind.singleton((i) => TabControllerCubit()),
   ];
 
   @override
@@ -49,7 +51,7 @@ class ClassroomModule extends Module {
     ChildRoute("/", child: (_, args) => const ClassroomPage()),
     ChildRoute("create", child: (_, args) => const ClassroomCreatePage()),
     ChildRoute("updatePage",
-        child: (_, args) => const ClassroomUpdateDeletePage()),
+        child: (_, args) => const UpdateDeleteClassroomPage()),
     ChildRoute("updateTeacher",
         child: (_, args) => const ClassroomTeacherPage()),
     ChildRoute("updateStudent",
