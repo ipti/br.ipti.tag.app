@@ -1,9 +1,17 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'enrollment_personal_states.dart';
 
 class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
-  EnrollmentPersonalBloc() : super(const EmptyEnrollmentPersonalState());
+  EnrollmentPersonalBloc(
+    this._createStudentsUsecase,
+  ) : super(const EmptyEnrollmentPersonalState());
+
+  final CreateStudentsUsecase _createStudentsUsecase;
 
   final sexItems = <int, String>{0: "Masculino", 1: "Feminino"};
 
@@ -49,10 +57,35 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   void setDeficiency({bool value = false}) => emit(state.copyWith(
         deficiency: value,
       ));
+  void setFoodRestriction(String value) => emit(
+        state.copyWith(foodRestrictions: value),
+      );
 
-  void setFoodRestriction(String value) => emit(state.copyWith(
-        foodRestrictions: value,
-      ));
+  Future<void> submitPersonalForm() async {
+    final EnrollmentBloc _enrollmentBloc = Modular.get();
 
-  Future<void> submitPersonalForm() async {}
+    final student = Student(
+      name: state.name,
+      birthday: state.birthday,
+      sex: state.sex,
+      colorRace: state.colorRace,
+      nationality: state.nationality,
+      // deficiency: state.deficiency,
+      foodRestrictions: state.foodRestrictions,
+      filiation: state.filiation,
+      registerType: "rg",
+      sendYear: 2020,
+      edcensoUfFk: "61a92b6dd2b8a11704d7ae6a",
+      edcensoCityFk: "61a92c8ed2b8a11704d813fe",
+      edcensoDistrictFk: "61a93a0781524118745b6314",
+    );
+
+    final result = await _createStudentsUsecase.call(
+      CreateStudentParams(
+        student: student,
+      ),
+    );
+
+    result.fold((l) => print(l), (r) => _enrollmentBloc.setStudent(r.id));
+  }
 }

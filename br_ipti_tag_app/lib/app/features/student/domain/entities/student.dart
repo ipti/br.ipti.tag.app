@@ -4,11 +4,12 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/responsable
 
 class Student {
   Student({
+    this.id,
     this.registerType,
     this.schoolInepIdFk,
     this.inepId,
     this.nis,
-    required this.name,
+    this.name,
     this.birthday,
     this.sex,
     this.colorRace,
@@ -22,6 +23,7 @@ class Student {
     this.edcensoNationFk,
     this.edcensoUfFk,
     this.edcensoCityFk,
+    this.edcensoDistrictFk,
     this.deficiency = false,
     this.deficiencies,
     this.sendYear,
@@ -32,11 +34,12 @@ class Student {
     this.hash,
   });
 
+  String? id;
   String? registerType;
   String? schoolInepIdFk;
   String? inepId;
   String? nis;
-  String name;
+  String? name;
   String? birthday;
   int? sex;
   int? colorRace;
@@ -45,9 +48,10 @@ class Student {
   int? noDocumentDesc;
   int? scholarity;
   String? idEmail;
-  int? edcensoNationFk;
-  int? edcensoUfFk;
-  int? edcensoCityFk;
+  String? edcensoNationFk;
+  String? edcensoUfFk;
+  String? edcensoCityFk;
+  String? edcensoDistrictFk;
   bool deficiency;
   int? sendYear;
   String? lastChange;

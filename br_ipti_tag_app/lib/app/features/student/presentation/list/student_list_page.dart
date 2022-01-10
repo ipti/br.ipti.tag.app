@@ -104,8 +104,9 @@ class StudentDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].scholarity.toString())),
+      DataCell(Text(data[index].name!.toUpperCase())),
+      DataCell(Text(data[index].birthday ?? "")),
+      DataCell(Text(data[index].responsable?.name ?? "")),
       const DataCell(Icon(Icons.edit)),
     ]);
   }

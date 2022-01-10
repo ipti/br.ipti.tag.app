@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

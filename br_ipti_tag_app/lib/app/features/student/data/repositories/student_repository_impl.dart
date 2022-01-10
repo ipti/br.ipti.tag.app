@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/data/datasources/student_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/mappers/student_api_to_entity.dart';
@@ -35,10 +36,24 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> create(Student student) async {
+  Future<Either<Exception, Student>> create(Student student) async {
     try {
-      final results = await _studentDataSource.create(student);
-      return Right(results);
+      final model = StudentModel.fromEntity(student);
+      final result = await _studentDataSource.create(model);
+      final mappedResult = _apiToEntity(result);
+      return Right(mappedResult);
+    } catch (e) {
+      return Left(Exception("Não foi possível adicionar estudantes"));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Student>> update(String id, Student student) async {
+    try {
+      final model = StudentModel.fromEntity(student);
+      final result = await _studentDataSource.update(id, model);
+      final mappedResult = _apiToEntity(result);
+      return Right(mappedResult);
     } catch (e) {
       return Left(Exception("Não foi possível adicionar estudantes"));
     }

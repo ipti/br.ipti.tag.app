@@ -22,7 +22,16 @@ class EnrollmentPersonalState extends Equatable {
   final String foodRestrictions;
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        name,
+        birthday,
+        sex,
+        colorRace,
+        filiation,
+        nationality,
+        deficiency,
+        foodRestrictions,
+      ];
 
   EnrollmentPersonalState copyWith({
     String? name,

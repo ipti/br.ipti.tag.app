@@ -1,6 +1,6 @@
+import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -15,79 +15,57 @@ class FiliationFormPage extends StatefulWidget {
   FiliationFormPageState createState() => FiliationFormPageState();
 }
 
-class FiliationFormPageState extends State<FiliationFormPage> {
-  final controller = Modular.get<EnrollmentFiliationBloc>();
+class FiliationFormPageState
+    extends ModularState<FiliationFormPage, EnrollmentFiliationBloc> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    const heading = Heading(text: "Responsável", type: HeadingType.Title3);
+    const headingResponsable =
+        Heading(text: "Responsável", type: HeadingType.Title3);
+    const headingFiliation1 =
+        Heading(text: "Pai do aluno", type: HeadingType.Title3);
+    const headingFiliation2 =
+        Heading(text: "Mãe do aluno", type: HeadingType.Title3);
 
-    Widget inputName(String? name) => TagTextField(
+    Widget inputName(String? name, Function(String) onChanged) => TagTextField(
           label: "Nome",
           hint: "Nome completo",
-          onChanged: controller.setNameFiliation,
+          onChanged: onChanged,
           value: name,
           validator: requiredValidator,
         );
 
-    Widget inputCPF(String? cpf) => TagTextField(
+    Widget inputCPF(String? cpf, Function(String) onChanged) => TagTextField(
           label: "CPF",
           hint: "digite o CPF",
-          onChanged: controller.setNameFiliation,
+          onChanged: onChanged,
           formatters: [TagMasks.maskCPF],
           value: cpf,
           validator: requiredValidator,
         );
 
-    Widget inputRG(String? rg) => TagTextField(
+    Widget inputRG(String? rg, Function(String) onChanged) => TagTextField(
           label: "RG",
           hint: "digite o número do RG",
-          onChanged: controller.setNameFiliation,
+          onChanged: onChanged,
           value: rg,
           validator: requiredValidator,
         );
 
-    Widget selectNationality(int? classId) => TagDropdownField(
-          label: 'Nacionalidade',
-          items: controller.nationalityItems,
-          value: classId,
-          onChanged: controller.setNationalityFiliation,
-        );
-
-    Widget selectColorRace(int? classId) => TagDropdownField(
-          label: 'Cor/Raça',
-          items: controller.colorRaceItems,
-          value: classId,
-          onChanged: controller.setColorRaceFiliation,
-        );
-
-    Widget selectScholarity(int? classId) => TagDropdownField(
+    Widget selectScholarity(int? classId, Function(int) onChanged) =>
+        TagDropdownField(
           label: 'Escolaridade',
           items: controller.scholatiryItems,
           value: classId,
-          onChanged: controller.setScholarityFiliation,
+          onChanged: onChanged,
         );
 
-    Widget inputJob(String? job) => TagTextField(
+    Widget inputJob(String? job, Function(String) onChanged) => TagTextField(
           label: "Profissão",
           hint: "Digite a profissão",
-          onChanged: controller.setJobFiliation,
+          onChanged: onChanged,
           value: job,
-          validator: requiredValidator,
-        );
-
-    Widget inputEmail(String? email) => TagTextField(
-          label: "Email",
-          hint: "Digite o email",
-          onChanged: controller.setEmailFiliation,
-          value: email,
-          validator: requiredValidator,
-        );
-
-    Widget inputPhone(String? phone) => TagTextField(
-          label: "Telefone",
-          hint: "Digite o telefone",
-          onChanged: controller.setPhoneFiliation,
-          value: phone,
           validator: requiredValidator,
         );
 
@@ -99,53 +77,156 @@ class FiliationFormPageState extends State<FiliationFormPage> {
     return BlocBuilder<EnrollmentFiliationBloc, EnrollmentFiliationState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is EnrollmentFiliationState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Form(
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    heading,
+                    headingResponsable,
+                    // Responsable
                     RowToColumn(
                       children: [
-                        Flexible(child: inputName(state.name)),
-                        Flexible(child: inputCPF(state.cpf)),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputRG(state.rg)),
-                        Flexible(child: selectNationality(state.nationality))
+                        Flexible(
+                            child: inputName(
+                          state.nameResponsable,
+                          controller.setNameResponsable,
+                        )),
+                        Flexible(
+                            child: inputCPF(
+                          state.cpfResponsable,
+                          controller.setCpfResponsable,
+                        )),
                       ],
                     ),
                     RowToColumn(
                       children: [
                         Flexible(
-                          child: selectColorRace(state.colorRace),
+                            child: inputRG(
+                          state.rgResponsable,
+                          controller.setRgResponsable,
+                        )),
+                        Flexible(
+                          child: selectScholarity(
+                            state.scholarityResponsable,
+                            controller.setScholarityResponsable,
+                          ),
                         ),
-                        Flexible(
-                          child: selectScholarity(state.colorRace),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: inputJob(state.job),
-                        )
                       ],
                     ),
                     RowToColumn(
                       children: [
-                        Flexible(child: inputEmail(state.email)),
-                        Flexible(child: inputPhone(state.phone))
+                        Flexible(
+                          child: inputJob(state.jobResponsable,
+                              controller.setJobResponsable),
+                        ),
+                        const Spacer()
                       ],
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    // Filiation1
+                    headingFiliation1,
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                            child: inputName(
+                          state.nameFiliation1,
+                          controller.setNameFiliation1,
+                        )),
+                        Flexible(
+                            child: inputCPF(
+                          state.cpfFiliation1,
+                          controller.setCpfFiliation1,
+                        )),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                            child: inputRG(
+                          state.rgFiliation1,
+                          controller.setRgFiliation1,
+                        )),
+                        Flexible(
+                          child: selectScholarity(
+                            state.scholarityFiliation1,
+                            controller.setScholarityFiliation1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: inputJob(
+                              state.jobFiliation1, controller.setJobFiliation1),
+                        ),
+                        const Spacer()
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    // Filiation2
+                    headingFiliation2,
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                            child: inputName(
+                          state.nameFiliation2,
+                          controller.setNameFiliation2,
+                        )),
+                        Flexible(
+                            child: inputCPF(
+                          state.cpfFiliation2,
+                          controller.setCpfFiliation2,
+                        )),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                            child: inputRG(
+                          state.rgFiliation2,
+                          controller.setRgFiliation2,
+                        )),
+                        Flexible(
+                          child: selectScholarity(
+                            state.scholarityFiliation2,
+                            controller.setScholarityFiliation2,
+                          ),
+                        ),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: inputJob(
+                              state.jobFiliation2, controller.setJobFiliation2),
+                        ),
+                        const Spacer()
+                      ],
+                    ),
+                    SubmitButtonsRow(
+                      onSubmitAndGo: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitFiliationForm();
+                        }
+                      },
+                      onSubmitAndStay: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitFiliationForm();
+                        }
+                      },
                     ),
                   ].map((w) => withPadding(w)).toList(),
                 ),
               ),
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
+            ),
           );
         });
   }

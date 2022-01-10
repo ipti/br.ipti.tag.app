@@ -1,8 +1,8 @@
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_states.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -99,63 +99,55 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     const heading = Heading(text: "Dados do Aluno", type: HeadingType.Title3);
 
-    final buttonSubmitAndGo = TagButton(
-      text: "Salvar e prosseguir",
-      onPressed: () => _formKey.currentState!.validate(),
-    );
-
-    final buttonSubmitAndStay = TagLinkButton(
-      text: "Salvar e continuar na página",
-      onPressed: () => _formKey.currentState!.validate(),
-    );
-
     return Form(
       key: _formKey,
       child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
           bloc: controller,
           builder: (context, state) {
-            if (state is EnrollmentPersonalState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      heading,
-                      RowToColumn(
-                        children: [
-                          Flexible(child: inputName(state.name)),
-                          Flexible(child: inputBirthday(state.birthday)),
-                        ],
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    heading,
+                    RowToColumn(
+                      children: [
+                        Flexible(child: inputName(state.name)),
+                        Flexible(child: inputBirthday(state.birthday)),
+                      ],
+                    ),
+                    RowToColumn(children: [
+                      Flexible(child: selectSex(state.sex)),
+                      Flexible(child: selectColorRace(state.colorRace)),
+                      Flexible(
+                        flex: 3,
+                        child: selectNationality(state.nationality),
                       ),
-                      RowToColumn(children: [
-                        Flexible(child: selectSex(state.sex)),
-                        Flexible(child: selectColorRace(state.colorRace)),
-                        Flexible(
-                          flex: 3,
-                          child: selectNationality(state.nationality),
-                        ),
-                      ]),
-                      RowToColumn(children: [
-                        Flexible(child: selectFiliation(state.filiation)),
-                        Flexible(
-                          child: inputFoodRestriction(state.foodRestrictions),
-                        ),
-                      ]),
-                      deficiencyCheck(deficiency: state.deficiency),
-                      RowToColumn(
-                        children: [
-                          const Spacer(),
-                          Flexible(child: buttonSubmitAndStay),
-                          Flexible(child: buttonSubmitAndGo),
-                        ],
+                    ]),
+                    RowToColumn(children: [
+                      Flexible(child: selectFiliation(state.filiation)),
+                      Flexible(
+                        child: inputFoodRestriction(state.foodRestrictions),
                       ),
-                    ].map((w) => withPadding(w)).toList(),
-                  ),
+                    ]),
+                    deficiencyCheck(deficiency: state.deficiency),
+                    SubmitButtonsRow(
+                      onSubmitAndGo: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitPersonalForm();
+                        }
+                      },
+                      onSubmitAndStay: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitPersonalForm();
+                        }
+                      },
+                    ),
+                  ].map((w) => withPadding(w)).toList(),
                 ),
-              );
-            }
-            return const CircularProgressIndicator();
+              ),
+            );
           }),
     );
   }

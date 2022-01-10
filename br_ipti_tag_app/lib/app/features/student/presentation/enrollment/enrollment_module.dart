@@ -1,6 +1,7 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
 import 'form/address/_address_form_partial_page.dart';
 import 'form/address/bloc/enrollment_address_bloc.dart';
@@ -16,12 +17,13 @@ import 'form/social/bloc/enrollment_social_bloc.dart';
 class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
+    Bind.factory((i) => CreateStudentsUsecase(i.get())),
+    Bind.factory((i) => ChangeFiliationStudentUsecase(i.get())),
     Bind.singleton((i) => EnrollmentSocialBloc()),
-    Bind.singleton((i) => EnrollmentPersonalBloc()),
+    Bind.singleton((i) => EnrollmentPersonalBloc(i.get())),
     Bind.singleton((i) => EnrollmentAddressBloc()),
-    Bind.singleton((i) => EnrollmentFiliationBloc()),
+    Bind.singleton((i) => EnrollmentFiliationBloc(i.get())),
     Bind.singleton((i) => EnrollmentClassroomBloc()),
-    Bind.singleton((i) => EnrollmentBloc(i.get())),
   ];
 
   @override
