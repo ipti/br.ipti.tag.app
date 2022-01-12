@@ -6,4 +6,5 @@ abstract class StudentRepository {
   Future<Either<Exception, Student>> getById(int id);
   Future<Either<Exception, Student>> create(Student student);
   Future<Either<Exception, Student>> update(String id, Student student);
+  Future<Either<Exception, bool>> delete(String id);
 }

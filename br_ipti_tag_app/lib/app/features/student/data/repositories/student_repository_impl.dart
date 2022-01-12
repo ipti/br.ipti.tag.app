@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/student/data/datasources/student_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
@@ -43,7 +43,7 @@ class StudentRepositoryImpl implements StudentRepository {
       final mappedResult = _apiToEntity(result);
       return Right(mappedResult);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudantes"));
+      return Left(Exception("Não foi possível adicionar estudante"));
     }
   }
 
@@ -55,7 +55,17 @@ class StudentRepositoryImpl implements StudentRepository {
       final mappedResult = _apiToEntity(result);
       return Right(mappedResult);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudantes"));
+      return Left(Exception("Não foi possível alterar estudante"));
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> delete(String id) async {
+    try {
+      final result = await _studentDataSource.delete(id);
+      return Right(result);
+    } catch (e) {
+      return Left(Exception("Não foi possível deletar estudante"));
     }
   }
 }

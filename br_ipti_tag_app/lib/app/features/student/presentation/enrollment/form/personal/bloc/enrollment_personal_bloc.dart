@@ -86,6 +86,9 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       ),
     );
 
-    result.fold((l) => print(l), (r) => _enrollmentBloc.setStudent(r.id));
+    result.fold((l) => print(l), (r) {
+      _enrollmentBloc.setStudent(r.id);
+      _enrollmentBloc.nextTab();
+    });
   }
 }

@@ -15,9 +15,9 @@ class FiliationFormPage extends StatefulWidget {
   FiliationFormPageState createState() => FiliationFormPageState();
 }
 
-class FiliationFormPageState
-    extends ModularState<FiliationFormPage, EnrollmentFiliationBloc> {
+class FiliationFormPageState extends State<FiliationFormPage> {
   final _formKey = GlobalKey<FormState>();
+  final controller = Modular.get<EnrollmentFiliationBloc>();
 
   @override
   Widget build(BuildContext context) {

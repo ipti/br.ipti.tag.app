@@ -6,7 +6,7 @@ import 'package:br_ipti_tag_app/app/features/student/presentation/list/bloc/stud
 import 'package:br_ipti_tag_app/app/features/student/presentation/list/student_list_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'data/datasources/student_remote_datasource.dart';
+import 'data/datasources/remote/student_remote_datasource.dart';
 import 'data/repositories/student_repository_impl.dart';
 import 'domain/usecases/fast_enrollment_usecase.dart';
 import 'domain/usecases/list_student_usecase.dart';

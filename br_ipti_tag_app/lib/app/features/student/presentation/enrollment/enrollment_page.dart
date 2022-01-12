@@ -7,6 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/enrollment_bloc.dart';
+import 'bloc/enrollment_states.dart';
 import 'form/personal/_personal_form_partial_page.dart';
 import 'form/social/_social_form_partial_page.dart';
 
@@ -19,54 +20,70 @@ class EnrollmentPage extends StatefulWidget {
   EnrollmentPageState createState() => EnrollmentPageState();
 }
 
-class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
+class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
+    with SingleTickerProviderStateMixin {
+  static const List<Tab> _tabs = [
+    Tab(
+      child: Text("Dados do aluno"),
+    ),
+    Tab(
+      child: Text("Filiação"),
+    ),
+    Tab(
+      child: Text("Endereço"),
+    ),
+    Tab(
+      child: Text("Social"),
+    ),
+    Tab(
+      child: Text("Matrícula"),
+    )
+  ];
+
+  late TabController _tabController;
+
   @override
   void initState() {
-    Modular.to.navigate('/alunos/matricula/pessoal');
+    _tabController = TabController(length: _tabs.length, vsync: this);
+
+    controller.stream.listen((event) {
+      final nextIndex = _tabController.index + 1;
+      final isLastTab = nextIndex == _tabs.length;
+      if (event is NextTabState && !isLastTab) {
+        _tabController.animateTo(nextIndex);
+      }
+    });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    const tabs = [
-      Tab(
-        child: Text("Dados do aluno"),
-      ),
-      Tab(
-        child: Text("Filiação"),
-      ),
-      Tab(
-        child: Text("Endereço"),
-      ),
-      Tab(
-        child: Text("Social"),
-      ),
-      Tab(
-        child: Text("Matrícula"),
-      )
-    ];
     return DefaultTabController(
-      length: tabs.length,
+      length: _tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],
         body: [
-          const TabBar(
+          TabBar(
+            controller: _tabController,
             isScrollable: true,
             labelColor: TagColors.colorBaseProductDark,
             indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: EdgeInsets.symmetric(horizontal: 8),
-            tabs: tabs,
+            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+            onTap: (value) => controller.setTabIndex(value),
+            tabs: _tabs,
           ),
           ConstrainedBox(
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height,
               maxWidth: 800,
             ),
-            child: const TabBarView(
-              children: [
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
                 PersonalDataFormPage(),
                 FiliationFormPage(),
                 AddressFormPage(),

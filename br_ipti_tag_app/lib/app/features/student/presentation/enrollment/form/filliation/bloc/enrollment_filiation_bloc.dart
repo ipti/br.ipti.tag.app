@@ -14,6 +14,8 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     this._changeFiliationStudentUsecase,
   ) : super(const EmptyEnrollmentFiliationState());
 
+  final EnrollmentBloc _enrollmentBloc = Modular.get();
+
   final ChangeFiliationStudentUsecase _changeFiliationStudentUsecase;
 
   final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
@@ -185,5 +187,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     );
 
     await _changeFiliationStudentUsecase(params);
+
+    _enrollmentBloc.nextTab();
   }
 }

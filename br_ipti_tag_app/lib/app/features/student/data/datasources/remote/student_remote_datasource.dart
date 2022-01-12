@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/api/students/delete_students_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/students/get_students_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/students/post_students_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/students/put_students_endpoint.dart';
@@ -51,5 +52,13 @@ class StudentRemoteDataSource {
     final mappedValue = StudentModel.fromMap(response.data!);
 
     return mappedValue;
+  }
+
+  Future<bool> delete(String id) async {
+    final response = await _httpClient.request(
+      route: DeleteStudentsEndPoint(id: id),
+    );
+
+    return response.response?.statusCode == 200;
   }
 }

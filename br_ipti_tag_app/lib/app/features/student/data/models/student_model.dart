@@ -383,8 +383,8 @@ class StudentModel {
       'sex': sex,
       'color_race': colorRace,
       'filiation': filiation,
-      'filiation1': filiation1,
-      'filiation2': filiation2,
+      'filiation_1': filiation1,
+      'filiation_2': filiation2,
       'nationality': nationality,
       'no_document_desc': noDocumentDesc,
       'scholarity': scholarity,
@@ -439,10 +439,10 @@ class StudentModel {
       'filiation1_cpf': filiation1Cpf,
       'filiation1_scholarity': filiation1Scholarity,
       'filiation1_job': filiation1Job,
-      'filiation2_rg': filiation2Rg,
-      'filiation2_cpf': filiation2Cpf,
-      'filiation2_scholarity': filiation2Scholarity,
-      'filiation2_job': filiation2Job,
+      'filiation_2_rg': filiation2Rg,
+      'filiation_2_cpf': filiation2Cpf,
+      'filiation_2_scholarity': filiation2Scholarity,
+      'filiation_2_job': filiation2Job,
     };
   }
 
@@ -607,7 +607,7 @@ class StudentModel {
 
   factory StudentModel.fromMap(Map<String, dynamic> map) {
     return StudentModel(
-      id: map['id'],
+      id: map['_id'],
       name: map['name'],
       registerType: map['register_type'],
       schoolInepIdFk: map['school_inep_id_fk'],
@@ -616,8 +616,8 @@ class StudentModel {
       sex: map['sex']?.toInt(),
       colorRace: map['color_race']?.toInt(),
       filiation: map['filiation']?.toInt(),
-      filiation1: map['filiation1'],
-      filiation2: map['filiation2'],
+      filiation1: map['filiation_1'],
+      filiation2: map['filiation_2'],
       nationality: map['nationality']?.toInt(),
       noDocumentDesc: map['no_document_desc']?.toInt(),
       scholarity: map['scholarity']?.toInt(),
@@ -674,10 +674,10 @@ class StudentModel {
       filiation1Cpf: map['filiation1_cpf'],
       filiation1Scholarity: map['filiation1_scholarity']?.toInt(),
       filiation1Job: map['filiation1_job'],
-      filiation2Rg: map['filiation2_rg'],
-      filiation2Cpf: map['filiation2_cpf'],
-      filiation2Scholarity: map['filiation2_scholarity']?.toInt(),
-      filiation2Job: map['filiation2_job'],
+      filiation2Rg: map['filiation_2_rg'],
+      filiation2Cpf: map['filiation_2_cpf'],
+      filiation2Scholarity: map['filiation_2_scholarity']?.toInt(),
+      filiation2Job: map['filiation_2_job'],
     );
   }
 }
