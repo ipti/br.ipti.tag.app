@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/classroom_update_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/cubit/tab_controller_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_student_page.dart';
@@ -10,8 +11,11 @@ import 'package:tag_ui/components/components.dart';
 import 'package:tag_ui/design_tokens/colors.dart';
 
 class UpdateDeleteClassroomPage extends StatefulWidget {
-  const UpdateDeleteClassroomPage({Key? key}) : super(key: key);
-
+  const UpdateDeleteClassroomPage({
+    Key? key,
+    @required this.classroomEntity,
+  }) : super(key: key);
+  final ClassroomEntity? classroomEntity;
   @override
   _UpdateDeleteClassroomPageState createState() =>
       _UpdateDeleteClassroomPageState();
@@ -54,7 +58,10 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
                   ),
                 ],
               ),
-              _returnPage(state.value),
+              _returnPage(
+                state.value,
+                widget.classroomEntity,
+              ),
             ],
           ),
         );
@@ -63,10 +70,15 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
   }
 }
 
-Widget _returnPage(int index) {
+Widget _returnPage(
+  int index,
+  ClassroomEntity? classroomEntity,
+) {
   switch (index) {
     case 0:
-      return const ClassroomBasicDataForm();
+      return ClassroomBasicDataForm(
+        classroomEntity: classroomEntity,
+      );
     case 1:
       return const ClassroomStudentPage();
     default:

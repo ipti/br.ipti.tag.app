@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 
 abstract class ClassroomUpdateDeleteState extends Equatable {}
 
+class ClassroomUpdateDeleteInitial extends ClassroomUpdateDeleteState {
+  @override
+  List<Object?> get props => [];
+}
+
 class ClassroomUpdateDeleteFormState extends ClassroomUpdateDeleteState {
   ClassroomUpdateDeleteFormState({
     this.weekDaysSunday = false,

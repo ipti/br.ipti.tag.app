@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_states.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_events.dart';
@@ -11,8 +12,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/components/components.dart';
 
 class ClassroomBasicDataForm extends StatefulWidget {
-  const ClassroomBasicDataForm({Key? key}) : super(key: key);
-
+  const ClassroomBasicDataForm({
+    Key? key,
+    @required this.classroomEntity,
+  }) : super(key: key);
+  final ClassroomEntity? classroomEntity;
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
 }
@@ -22,7 +26,52 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    controller.add(StartEditing());
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      if (widget.classroomEntity != null) {
+        controller.add(
+          UpdateClassroom(
+            edcensoStageVsModalityFk:
+                widget.classroomEntity?.edcensoStageVsModalityFk ?? 'MA',
+            name: widget.classroomEntity?.name ?? 'NoName',
+            startTime: stringToTimeOfDay(
+              widget.classroomEntity?.startTime ?? DateTime.now().toString(),
+            ),
+            endTime: stringToTimeOfDay(
+              widget.classroomEntity?.startTime ?? DateTime.now().toString(),
+            ),
+            modalityId: widget.classroomEntity?.modalityId ?? 0,
+            typePedagogicMeditationId:
+                widget.classroomEntity?.typePedagogicMediationId ?? 0,
+            stage: widget.classroomEntity?.stage ?? 'STAGE NOT DEFINED',
+            id: widget.classroomEntity?.id ?? 'ID NOT DEFINED',
+            schooling: widget.classroomEntity?.schooling ?? false,
+            aee: widget.classroomEntity?.aee ?? false,
+            aeeAccessibleTeaching:
+                widget.classroomEntity?.aeeAccessibleTeaching ?? false,
+            aeeAutonomousLife:
+                widget.classroomEntity?.aeeAutonomousLife ?? false,
+            aeeBraille: widget.classroomEntity?.aeeBraille ?? false,
+            aeeCaa: widget.classroomEntity?.aeeCaa ?? false,
+            aeeCognitiveFunction:
+                widget.classroomEntity?.aeeCognitiveFunctions ?? false,
+            aeeCurriculumEnrichment:
+                widget.classroomEntity?.aeeCurriculumEnrichment ?? false,
+            aeeLibras: widget.classroomEntity?.aeeLibras ?? false,
+            aeeMobilityTechniques:
+                widget.classroomEntity?.aeeMobilityTechniques ?? false,
+            aeeOpticalNonoptical:
+                widget.classroomEntity?.aeeOpticalNonOptical ?? false,
+            aeePortuguese: widget.classroomEntity?.aeePortuguese ?? false,
+            aeeSoroban: widget.classroomEntity?.aeeSoroban ?? false,
+            complementaryActivity:
+                widget.classroomEntity?.complementaryActivity ?? false,
+            moreEducationParticipator:
+                widget.classroomEntity?.moreEducationParticipator ?? false,
+          ),
+        );
+        controller.setName('oi');
+      }
+    });
     super.initState();
   }
 

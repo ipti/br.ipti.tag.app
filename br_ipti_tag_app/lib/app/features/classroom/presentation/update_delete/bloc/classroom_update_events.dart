@@ -14,6 +14,85 @@ class SubmitClassroom extends ClassroomUpdateDeleteEvent {}
 
 class SubmitedSuccess extends ClassroomUpdateDeleteEvent {}
 
+class UpdateClassroom extends ClassroomUpdateDeleteEvent {
+  const UpdateClassroom({
+    required this.edcensoStageVsModalityFk,
+    required this.name,
+    required this.startTime,
+    required this.endTime,
+    required this.modalityId,
+    required this.typePedagogicMeditationId,
+    required this.stage,
+    required this.id,
+    this.schooling = false,
+    this.complementaryActivity = false,
+    this.aee = false,
+    this.moreEducationParticipator = false,
+    this.aeeBraille = false,
+    this.aeeOpticalNonoptical = false,
+    this.aeeCognitiveFunction = false,
+    this.aeeMobilityTechniques = false,
+    this.aeeLibras = false,
+    this.aeeCaa = false,
+    this.aeeCurriculumEnrichment = false,
+    this.aeeSoroban = false,
+    this.aeeAccessibleTeaching = false,
+    this.aeePortuguese = false,
+    this.aeeAutonomousLife = false,
+  });
+  final String edcensoStageVsModalityFk;
+  final String name;
+  final TimeOfDay startTime;
+  final TimeOfDay endTime;
+  final int modalityId;
+  final int typePedagogicMeditationId;
+  final String stage;
+  final String id;
+  final bool schooling;
+  final bool complementaryActivity;
+  final bool aee;
+  final bool moreEducationParticipator;
+  final bool aeeBraille;
+  final bool aeeOpticalNonoptical;
+  final bool aeeCognitiveFunction;
+  final bool aeeMobilityTechniques;
+  final bool aeeLibras;
+  final bool aeeCaa;
+  final bool aeeCurriculumEnrichment;
+  final bool aeeSoroban;
+  final bool aeeAccessibleTeaching;
+  final bool aeePortuguese;
+  final bool aeeAutonomousLife;
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [
+        edcensoStageVsModalityFk,
+        name,
+        startTime,
+        endTime,
+        modalityId,
+        typePedagogicMeditationId,
+        stage,
+        id,
+        schooling,
+        complementaryActivity,
+        aee,
+        moreEducationParticipator,
+        aeeBraille,
+        aeeOpticalNonoptical,
+        aeeCognitiveFunction,
+        aeeMobilityTechniques,
+        aeeLibras,
+        aeeCaa,
+        aeeCurriculumEnrichment,
+        aeeSoroban,
+        aeeAccessibleTeaching,
+        aeePortuguese,
+        aeeAutonomousLife,
+      ];
+}
+
 class NameChanged extends ClassroomUpdateDeleteEvent {
   const NameChanged(this.name);
 
@@ -22,6 +101,7 @@ class NameChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [name];
 }
+
 class AeeBrailleChanged extends ClassroomUpdateDeleteEvent {
   const AeeBrailleChanged({
     required this.aeeBraille,
@@ -43,6 +123,7 @@ class AeeOpticalNonOpticalChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeOpticalNonOptical];
 }
+
 class AeeCognitiveFunctionsChanged extends ClassroomUpdateDeleteEvent {
   const AeeCognitiveFunctionsChanged({
     required this.aeeCognitiveFunctions,
@@ -53,6 +134,7 @@ class AeeCognitiveFunctionsChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeCognitiveFunctions];
 }
+
 class AeeMobilityTechniquesChanged extends ClassroomUpdateDeleteEvent {
   const AeeMobilityTechniquesChanged({
     required this.aeeMobilityTechniques,
@@ -63,6 +145,7 @@ class AeeMobilityTechniquesChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeMobilityTechniques];
 }
+
 class AeeLibrasChanged extends ClassroomUpdateDeleteEvent {
   const AeeLibrasChanged({
     required this.aeeLibras,
@@ -73,6 +156,7 @@ class AeeLibrasChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeLibras];
 }
+
 class AeeCaaChanged extends ClassroomUpdateDeleteEvent {
   const AeeCaaChanged({
     required this.aeeCaa,
@@ -83,6 +167,7 @@ class AeeCaaChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeCaa];
 }
+
 class AeeCurriculumEnrichmentChanged extends ClassroomUpdateDeleteEvent {
   const AeeCurriculumEnrichmentChanged({
     required this.aeeCurriculumEnrichment,
@@ -93,6 +178,7 @@ class AeeCurriculumEnrichmentChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeCurriculumEnrichment];
 }
+
 class AeeAccessibleTeachingChanged extends ClassroomUpdateDeleteEvent {
   const AeeAccessibleTeachingChanged({
     required this.aeeAccessibleTeaching,
@@ -103,6 +189,7 @@ class AeeAccessibleTeachingChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeAccessibleTeaching];
 }
+
 class AeePortugueseChanged extends ClassroomUpdateDeleteEvent {
   const AeePortugueseChanged({
     required this.aeePortuguese,
@@ -113,6 +200,7 @@ class AeePortugueseChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeePortuguese];
 }
+
 class AeeSorobanChanged extends ClassroomUpdateDeleteEvent {
   const AeeSorobanChanged({
     required this.aeeSoroban,
@@ -123,6 +211,7 @@ class AeeSorobanChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeSoroban];
 }
+
 class AeeAutonomousLifeChanged extends ClassroomUpdateDeleteEvent {
   const AeeAutonomousLifeChanged({
     required this.aeeAutonomousLife,
@@ -133,6 +222,7 @@ class AeeAutonomousLifeChanged extends ClassroomUpdateDeleteEvent {
   @override
   List<Object> get props => [aeeAutonomousLife];
 }
+
 class MoreEducationParticipatorChanged extends ClassroomUpdateDeleteEvent {
   const MoreEducationParticipatorChanged({
     required this.moreEducationParticipator,

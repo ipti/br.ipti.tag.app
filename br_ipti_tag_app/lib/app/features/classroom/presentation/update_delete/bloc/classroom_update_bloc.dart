@@ -214,6 +214,29 @@ class ClassroomUpdateDeleteBloc
       );
 
       _usecaseCreateClassroom.call(params);
+    } else if (event is UpdateClassroom) {
+      newState = state.copyWith(
+        moreEducationParticipator: event.moreEducationParticipator,
+        name: event.name,
+        startTime: event.startTime,
+        endTime: event.endTime,
+        modalityId: event.modalityId,
+        typePedagogicMediationId: event.typePedagogicMeditationId,
+        complementaryActivity: event.complementaryActivity,
+        aeeCaa: event.aeeCaa,
+        aeeAccessibleTeaching: event.aeeAccessibleTeaching,
+        aee: event.aee,
+        aeeAutonomousLife: event.aeeAutonomousLife,
+        aeeBraille: event.aeeBraille,
+        aeeCognitiveFunctions: event.aeeCognitiveFunction,
+        aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
+        aeeLibras: event.aeeLibras,
+        aeeMobilityTechniques: event.aeeMobilityTechniques,
+        aeeOpticalNonOptical: event.aeeOpticalNonoptical,
+        aeePortuguese: event.aeePortuguese,
+        aeeSoroban: event.aeeSoroban,
+        schooling: event.schooling,
+      );
     }
 
     yield newState;

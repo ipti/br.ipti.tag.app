@@ -50,8 +50,12 @@ class ClassroomModule extends Module {
   final List<ModularRoute<void>> routes = [
     ChildRoute("/", child: (_, args) => const ClassroomPage()),
     ChildRoute("create", child: (_, args) => const ClassroomCreatePage()),
-    ChildRoute("updatePage",
-        child: (_, args) => const UpdateDeleteClassroomPage()),
+    ChildRoute(
+      "updatePage",
+      child: (_, args) => UpdateDeleteClassroomPage(
+        classroomEntity: args.data  ,
+      ),
+    ),
     ChildRoute("updateTeacher",
         child: (_, args) => const ClassroomTeacherPage()),
     ChildRoute("updateStudent",
