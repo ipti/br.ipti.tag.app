@@ -1,25 +1,27 @@
 import 'dart:convert';
 
-class EdCensoCityModel {
-  String? id;
-  String? oldId;
-  String? name;
-  String? cepInitial;
-  String? cepFinal;
-  String? ddd1;
-  String? ddd2;
-  String? edcensoUfId;
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/edcenso_city.dart';
 
+class EdCensoCityModel extends EdCensoCity {
   EdCensoCityModel({
-    this.id,
-    this.oldId,
-    this.name,
-    this.cepInitial,
-    this.cepFinal,
-    this.ddd1,
-    this.ddd2,
-    this.edcensoUfId,
-  });
+    String? id,
+    String? oldId,
+    String? name,
+    String? cepInitial,
+    String? cepFinal,
+    String? ddd1,
+    String? ddd2,
+    String? edcensoUfId,
+  }) : super(
+          id: id,
+          oldId: oldId,
+          name: name,
+          cepInitial: cepInitial,
+          cepFinal: cepFinal,
+          ddd1: ddd1,
+          ddd2: ddd2,
+          edcensoUfId: edcensoUfId,
+        );
 
   EdCensoCityModel copyWith({
     String? id,
@@ -45,27 +47,27 @@ class EdCensoCityModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      '_id': id,
       'old_id': oldId,
       'name': name,
       'cep_initial': cepInitial,
       'cep_final': cepFinal,
       'ddd1': ddd1,
       'ddd2': ddd2,
-      'edcenso_uf_id': edcensoUfId,
+      'edcensoUfId': edcensoUfId,
     };
   }
 
   factory EdCensoCityModel.fromMap(Map<String, dynamic> map) {
     return EdCensoCityModel(
-      id: map['id'],
+      id: map['_id'],
       oldId: map['old_id'],
       name: map['name'],
       cepInitial: map['cep_initial'],
       cepFinal: map['cep_final'],
       ddd1: map['ddd1'],
       ddd2: map['ddd2'],
-      edcensoUfId: map['edcenso_uf_id'],
+      edcensoUfId: map['edcensoUfId'],
     );
   }
 

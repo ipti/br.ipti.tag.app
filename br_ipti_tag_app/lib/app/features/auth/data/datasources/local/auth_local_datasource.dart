@@ -23,8 +23,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<AuthToken> getAuthToken() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
-    final jsonToken = _sharedPreferences.getString("AUTH_TOKEN") ?? "";
-    return AuthTokenModel.fromJson(jsonToken);
+    final jsonToken = _sharedPreferences.getString("AUTH_TOKEN");
+    if (jsonToken != null) return AuthTokenModel.fromJson(jsonToken);
+
+    throw Exception("Token não encontrado");
   }
 
   @override

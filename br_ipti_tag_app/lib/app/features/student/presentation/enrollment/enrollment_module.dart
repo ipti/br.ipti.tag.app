@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -21,10 +22,15 @@ class EnrollmentModule extends Module {
     Bind.factory((i) => ChangeFiliationStudentUsecase(i.get())),
     Bind.singleton((i) => EnrollmentSocialBloc()),
     Bind.singleton((i) => EnrollmentPersonalBloc(i.get())),
-    Bind.singleton((i) => EnrollmentAddressBloc()),
+    Bind.singleton((i) => EnrollmentAddressBloc(i.get(), i.get())),
     Bind.singleton((i) => EnrollmentFiliationBloc(i.get())),
     Bind.singleton((i) => EnrollmentClassroomBloc()),
   ];
+
+  @override
+  List<Module> get imports => [
+        EdcensoLocationsModule(),
+      ];
 
   @override
   final List<ModularRoute<void>> routes = [

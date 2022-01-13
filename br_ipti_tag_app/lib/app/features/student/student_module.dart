@@ -34,7 +34,7 @@ class StudentModule extends Module {
     Bind.factory((i) => StudentListBloc(i.get())),
 
     //enrollment
-    Bind.singleton((i) => EnrollmentBloc(), export: true),
+    Bind.singleton((i) => EnrollmentBloc()),
     Bind.singleton((i) => FastEnrollmentBloc(i())),
   ];
 

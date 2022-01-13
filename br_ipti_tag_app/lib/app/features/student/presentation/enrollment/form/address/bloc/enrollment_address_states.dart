@@ -11,7 +11,7 @@ class EnrollmentAddressState extends Equatable {
   final int residenceZone;
   final String neighborhood;
   final String edcensoUfFk;
-  final String edcensoCityFk;
+  final String? edcensoCityFk;
 
   const EnrollmentAddressState({
     required this.cities,
@@ -22,7 +22,7 @@ class EnrollmentAddressState extends Equatable {
     required this.complement,
     required this.neighborhood,
     required this.edcensoUfFk,
-    required this.edcensoCityFk,
+    this.edcensoCityFk,
     required this.residenceZone,
   });
 
@@ -35,7 +35,7 @@ class EnrollmentAddressState extends Equatable {
       complement,
       neighborhood,
       edcensoUfFk,
-      edcensoCityFk,
+      edcensoCityFk ?? "",
       residenceZone,
       cities.toString(),
       ufs.toString(),
@@ -75,7 +75,7 @@ class EmptyEnrollmentAddressState extends EnrollmentAddressState {
           cep: "",
           address: "",
           complement: "",
-          edcensoCityFk: "",
+          edcensoCityFk: null,
           edcensoUfFk: "",
           neighborhood: "",
           number: "",

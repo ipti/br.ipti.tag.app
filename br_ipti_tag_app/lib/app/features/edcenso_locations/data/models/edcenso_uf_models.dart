@@ -1,17 +1,14 @@
 import 'dart:convert';
 
-class EdCensoUfModel {
-  final String? id;
-  final String? oldId;
-  final String? name;
-  final String? acronym;
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/edcenso_uf.dart';
 
+class EdCensoUfModel extends EdCensoUF {
   EdCensoUfModel({
-    this.id,
-    this.oldId,
-    this.name,
-    this.acronym,
-  });
+    String? id,
+    String? oldId,
+    String? name,
+    String? acronym,
+  }) : super(id: id, oldId: oldId, name: name, acronym: acronym);
 
   EdCensoUfModel copyWith({
     String? id,
@@ -30,7 +27,7 @@ class EdCensoUfModel {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'old_id': oldId,
+      'oldId': oldId,
       'name': name,
       'acronym': acronym,
     };
@@ -38,8 +35,8 @@ class EdCensoUfModel {
 
   factory EdCensoUfModel.fromMap(Map<String, dynamic> map) {
     return EdCensoUfModel(
-      id: map['id'],
-      oldId: map['old_id'],
+      id: map['_id'],
+      oldId: map['oldId'],
       name: map['name'],
       acronym: map['acronym'],
     );
