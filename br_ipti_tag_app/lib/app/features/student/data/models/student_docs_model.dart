@@ -1,91 +1,93 @@
 import 'dart:convert';
 
-class StudentDocsModel {
-  String? registerType;
-  String? schoolInepIdFk;
-  String? studentFk;
-  int? oldId;
-  String? rgNumber;
-  String? rgNumberEdcensoOrganIdEmitterFk;
-  String? rgNumberEdcensoUfFk;
-  String? rgNumberExpedictionDate;
-  int? civilCertification;
-  int? civilCertificationType;
-  String? civilCertificationTermNumber;
-  String? civilCertificationSheet;
-  String? civilCertificationBook;
-  String? civilCertificationDate;
-  String? notaryOfficeUfFk;
-  String? notaryOfficeCityFk;
-  String? edcensoNotaryOfficeFk;
-  String? civilRegisterEnrollmentNumber;
-  String? cpf;
-  String? foreignDocumentOrPassport;
-  String? nis;
-  int? residenceZone;
-  int? diffLocation;
-  String? cep;
-  String? address;
-  String? number;
-  String? complement;
-  String? neighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
-  bool? receivedCc;
-  String? receivedAddress;
-  String? receivedPhoto;
-  String? receivedNis;
-  String? receivedHistory;
-  String? receivedResponsableRg;
-  String? receivedResponsableCpf;
-  String? cns;
-  int? hash;
-  String? justiceRestriction;
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 
-  StudentDocsModel({
-    this.registerType,
-    this.schoolInepIdFk,
-    this.studentFk,
-    this.oldId,
-    this.rgNumber,
-    this.rgNumberEdcensoOrganIdEmitterFk,
-    this.rgNumberEdcensoUfFk,
-    this.rgNumberExpedictionDate,
-    this.civilCertification,
-    this.civilCertificationType,
-    this.civilCertificationTermNumber,
-    this.civilCertificationSheet,
-    this.civilCertificationBook,
-    this.civilCertificationDate,
-    this.notaryOfficeUfFk,
-    this.notaryOfficeCityFk,
-    this.edcensoNotaryOfficeFk,
-    this.civilRegisterEnrollmentNumber,
-    this.cpf,
-    this.foreignDocumentOrPassport,
-    this.nis,
-    this.residenceZone,
-    this.diffLocation,
-    this.cep,
-    this.address,
-    this.number,
-    this.complement,
-    this.neighborhood,
-    this.edcensoUfFk,
-    this.edcensoCityFk,
-    this.receivedCc,
-    this.receivedAddress,
-    this.receivedPhoto,
-    this.receivedNis,
-    this.receivedHistory,
-    this.receivedResponsableRg,
-    this.receivedResponsableCpf,
-    this.cns,
-    this.hash,
-    this.justiceRestriction,
-  });
+class StudentDocumentsAddressModel extends StudentDocuments {
+  StudentDocumentsAddressModel({
+    String? registerType,
+    String? schoolInepIdFk,
+    String? studentFk,
+    int? oldId,
+    String? rgNumber,
+    String? rgNumberEdcensoOrganIdEmitterFk,
+    String? rgNumberEdcensoUfFk,
+    String? rgNumberExpedictionDate,
+    int? civilCertification,
+    int? civilCertificationType,
+    String? civilCertificationTermNumber,
+    String? civilCertificationSheet,
+    String? civilCertificationBook,
+    String? civilCertificationDate,
+    String? notaryOfficeUfFk,
+    String? notaryOfficeCityFk,
+    String? edcensoNotaryOfficeFk,
+    String? civilRegisterEnrollmentNumber,
+    String? cpf,
+    String? foreignDocumentOrPassport,
+    String? nis,
+    int? residenceZone,
+    int? diffLocation,
+    String? cep,
+    String? address,
+    String? number,
+    String? complement,
+    String? neighborhood,
+    String? edcensoUfFk,
+    String? edcensoCityFk,
+    bool? receivedCc,
+    String? receivedAddress,
+    String? receivedPhoto,
+    String? receivedNis,
+    String? receivedHistory,
+    String? receivedResponsableRg,
+    String? receivedResponsableCpf,
+    String? cns,
+    int? hash,
+    String? justiceRestriction,
+  }) : super(
+          registerType: registerType,
+          schoolInepIdFk: schoolInepIdFk,
+          studentFk: studentFk,
+          oldId: oldId,
+          rgNumber: rgNumber,
+          rgNumberEdcensoOrganIdEmitterFk: rgNumberEdcensoOrganIdEmitterFk,
+          rgNumberEdcensoUfFk: rgNumberEdcensoUfFk,
+          rgNumberExpedictionDate: rgNumberExpedictionDate,
+          civilCertification: civilCertification,
+          civilCertificationType: civilCertificationType,
+          civilCertificationTermNumber: civilCertificationTermNumber,
+          civilCertificationSheet: civilCertificationSheet,
+          civilCertificationBook: civilCertificationBook,
+          civilCertificationDate: civilCertificationDate,
+          notaryOfficeUfFk: notaryOfficeUfFk,
+          notaryOfficeCityFk: notaryOfficeCityFk,
+          edcensoNotaryOfficeFk: edcensoNotaryOfficeFk,
+          civilRegisterEnrollmentNumber: civilRegisterEnrollmentNumber,
+          cpf: cpf,
+          foreignDocumentOrPassport: foreignDocumentOrPassport,
+          nis: nis,
+          residenceZone: residenceZone,
+          diffLocation: diffLocation,
+          cep: cep,
+          address: address,
+          number: number,
+          complement: complement,
+          neighborhood: neighborhood,
+          edcensoUfFk: edcensoUfFk,
+          edcensoCityFk: edcensoCityFk,
+          receivedCc: receivedCc,
+          receivedAddress: receivedAddress,
+          receivedPhoto: receivedPhoto,
+          receivedNis: receivedNis,
+          receivedHistory: receivedHistory,
+          receivedResponsableRg: receivedResponsableRg,
+          receivedResponsableCpf: receivedResponsableCpf,
+          cns: cns,
+          hash: hash,
+          justiceRestriction: justiceRestriction,
+        );
 
-  StudentDocsModel copyWith({
+  StudentDocumentsAddressModel copyWith({
     String? registerType,
     String? schoolInepIdFk,
     String? studentFk,
@@ -127,7 +129,7 @@ class StudentDocsModel {
     int? hash,
     String? justiceRestriction,
   }) {
-    return StudentDocsModel(
+    return StudentDocumentsAddressModel(
       registerType: registerType ?? this.registerType,
       schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
       studentFk: studentFk ?? this.studentFk,
@@ -228,8 +230,8 @@ class StudentDocsModel {
     };
   }
 
-  factory StudentDocsModel.fromMap(Map<String, dynamic> map) {
-    return StudentDocsModel(
+  factory StudentDocumentsAddressModel.fromMap(Map<String, dynamic> map) {
+    return StudentDocumentsAddressModel(
       registerType: map['registerType'],
       schoolInepIdFk: map['schoolInepIdFk'],
       studentFk: map['studentFk'],
@@ -275,19 +277,24 @@ class StudentDocsModel {
 
   String toJson() => json.encode(toMap());
 
-  factory StudentDocsModel.fromJson(String source) =>
-      StudentDocsModel.fromMap(json.decode(source));
+  factory StudentDocumentsAddressModel.fromJson(String source) =>
+      StudentDocumentsAddressModel.fromMap(json.decode(source));
+
+  factory StudentDocumentsAddressModel.fromEntity(
+      StudentDocuments studentDocuments) {
+    return studentDocuments as StudentDocumentsAddressModel;
+  }
 
   @override
   String toString() {
-    return '''StudentDocsModel(registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
+    return '''StudentDocumentsAddressModel(registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is StudentDocsModel &&
+    return other is StudentDocumentsAddressModel &&
         other.registerType == registerType &&
         other.schoolInepIdFk == schoolInepIdFk &&
         other.studentFk == studentFk &&

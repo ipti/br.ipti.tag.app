@@ -20,7 +20,7 @@ class EnrollmentModule extends Module {
   final List<Bind> binds = [
     Bind.factory((i) => CreateStudentsUsecase(i.get())),
     Bind.factory((i) => ChangeFiliationStudentUsecase(i.get())),
-    Bind.singleton((i) => EnrollmentSocialBloc()),
+    Bind.singleton((i) => EnrollmentSocialBloc(i.get())),
     Bind.singleton((i) => EnrollmentPersonalBloc(i.get())),
     Bind.singleton((i) => EnrollmentAddressBloc(i.get(), i.get())),
     Bind.singleton((i) => EnrollmentFiliationBloc(i.get())),

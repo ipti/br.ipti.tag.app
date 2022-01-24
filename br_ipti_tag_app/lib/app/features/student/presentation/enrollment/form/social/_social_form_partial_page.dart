@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ const heading = Heading(text: "Dados sociais", type: HeadingType.Title3);
 
 class SocialFormPageState extends State<SocialFormPage> {
   final controller = Modular.get<EnrollmentSocialBloc>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
@@ -67,29 +69,44 @@ class SocialFormPageState extends State<SocialFormPage> {
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  withPadding(heading),
-                  RowToColumn(
-                    children: [
-                      Flexible(child: inputNis(state.nis)),
-                      Flexible(child: inputInepId(state.inepId)),
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: bfParticipatorCheck(
-                          bfParticipator: state.bfParticipator,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    withPadding(heading),
+                    RowToColumn(
+                      children: [
+                        Flexible(child: inputNis(state.nis)),
+                        Flexible(child: inputInepId(state.inepId)),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: bfParticipatorCheck(
+                            bfParticipator: state.bfParticipator,
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        child: posCensoCheck(posCenso: state.posCenso),
-                      ),
-                    ],
-                  ),
-                ],
+                        Flexible(
+                          child: posCensoCheck(posCenso: state.posCenso),
+                        ),
+                      ],
+                    ),
+                    SubmitButtonsRow(
+                      onSubmitAndGo: () {
+                        if (_formKey.currentState!.validate()) {
+                          // controller.submitAddressForm();
+                        }
+                      },
+                      onSubmitAndStay: () {
+                        if (_formKey.currentState!.validate()) {
+                          // controller.submitPersonalForm();
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );

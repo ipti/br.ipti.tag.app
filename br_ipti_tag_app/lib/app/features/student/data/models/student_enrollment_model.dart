@@ -1,98 +1,98 @@
 import 'dart:convert';
 
-class StudentEnrollmentModel {
-  String? id;
-  String? registerType;
-  String? schoolInepIdFk;
-  String? studentFk;
-  int? oldId;
-  String? rgNumber;
-  String? rgNumberEdcensoOrganIdEmitterFk;
-  String? rgNumberEdcensoUfFk;
-  String? rgNumberExpedictionDate;
-  int? civilCertification;
-  int? civilCertificationType;
-  String? civilCertificationTermNumber;
-  String? civilCertificationSheet;
-  String? civilCertificationBook;
-  String? civilCertificationDate;
-  String? notaryOfficeUfFk;
-  String? notaryOfficeCityFk;
-  String? edcensoNotaryOfficeFk;
-  String? civilRegisterEnrollmentNumber;
-  String? cpf;
-  String? foreignDocumentOrPassport;
-  String? nis;
-  int? residenceZone;
-  int? diffLocation;
-  String? cep;
-  String? address;
-  String? number;
-  String? complement;
-  String? neighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
-  bool? receivedCc;
-  bool? receivedAddress;
-  bool? receivedPhoto;
-  bool? receivedNis;
-  bool? receivedHistory;
-  bool? receivedResponsableRg;
-  bool? receivedResponsableCpf;
-  String? cns;
-  int? hash;
-  bool? justiceRestriction;
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
+
+class StudentEnrollmentModel extends StudentEnrollment {
   StudentEnrollmentModel({
-    this.id,
-    this.registerType,
-    this.schoolInepIdFk,
-    this.studentFk,
-    this.oldId,
-    this.rgNumber,
-    this.rgNumberEdcensoOrganIdEmitterFk,
-    this.rgNumberEdcensoUfFk,
-    this.rgNumberExpedictionDate,
-    this.civilCertification,
-    this.civilCertificationType,
-    this.civilCertificationTermNumber,
-    this.civilCertificationSheet,
-    this.civilCertificationBook,
-    this.civilCertificationDate,
-    this.notaryOfficeUfFk,
-    this.notaryOfficeCityFk,
-    this.edcensoNotaryOfficeFk,
-    this.civilRegisterEnrollmentNumber,
-    this.cpf,
-    this.foreignDocumentOrPassport,
-    this.nis,
-    this.residenceZone,
-    this.diffLocation,
-    this.cep,
-    this.address,
-    this.number,
-    this.complement,
-    this.neighborhood,
-    this.edcensoUfFk,
-    this.edcensoCityFk,
-    this.receivedCc,
-    this.receivedAddress,
-    this.receivedPhoto,
-    this.receivedNis,
-    this.receivedHistory,
-    this.receivedResponsableRg,
-    this.receivedResponsableCpf,
-    this.cns,
-    this.hash,
-    this.justiceRestriction,
-  });
+    String? registerType,
+    required String schoolInepIdFk,
+    required String studentFk,
+    required int oldId,
+    int? rgNumber,
+    required String rgNumberEdcensoOrganIdEmitterFk,
+    required String rgNumberEdcensoUfFk,
+    String? rgNumberExpedictionDate,
+    int? civilCertification,
+    int? civilCertificationType,
+    String? civilCertificationTermNumber,
+    String? civilCertificationSheet,
+    String? civilCertificationBook,
+    String? civilCertificationDate,
+    required String notaryOfficeUfFk,
+    required String notaryOfficeCityFk,
+    String? edcensoNotaryOfficeFk,
+    String? civilRegisterEnrollmentNumber,
+    String? cpf,
+    String? foreignDocumentOrPassport,
+    String? nis,
+    required int residenceZone,
+    int? diffLocation,
+    String? cep,
+    String? address,
+    String? number,
+    String? complement,
+    String? neighborhood,
+    required String edcensoUfFk,
+    required String edcensoCityFk,
+    bool? receivedCc,
+    bool? receivedAddress,
+    bool? receivedPhoto,
+    bool? receivedNis,
+    bool? receivedHistory,
+    bool? receivedResponsableRg,
+    bool? receivedResponsableCpf,
+    String? cns,
+    int? hash,
+    bool? justiceRestriction,
+  }) : super(
+          registerType: registerType,
+          schoolInepIdFk: schoolInepIdFk,
+          studentFk: studentFk,
+          oldId: oldId,
+          rgNumber: rgNumber,
+          rgNumberEdcensoOrganIdEmitterFk: rgNumberEdcensoOrganIdEmitterFk,
+          rgNumberEdcensoUfFk: rgNumberEdcensoUfFk,
+          rgNumberExpedictionDate: rgNumberExpedictionDate,
+          civilCertification: civilCertification,
+          civilCertificationType: civilCertificationType,
+          civilCertificationTermNumber: civilCertificationTermNumber,
+          civilCertificationSheet: civilCertificationSheet,
+          civilCertificationBook: civilCertificationBook,
+          civilCertificationDate: civilCertificationDate,
+          notaryOfficeUfFk: notaryOfficeUfFk,
+          notaryOfficeCityFk: notaryOfficeCityFk,
+          edcensoNotaryOfficeFk: edcensoNotaryOfficeFk,
+          civilRegisterEnrollmentNumber: civilRegisterEnrollmentNumber,
+          cpf: cpf,
+          foreignDocumentOrPassport: foreignDocumentOrPassport,
+          nis: nis,
+          residenceZone: residenceZone,
+          diffLocation: diffLocation,
+          cep: cep,
+          address: address,
+          number: number,
+          complement: complement,
+          neighborhood: neighborhood,
+          edcensoUfFk: edcensoUfFk,
+          edcensoCityFk: edcensoCityFk,
+          receivedCc: receivedCc,
+          receivedAddress: receivedAddress,
+          receivedPhoto: receivedPhoto,
+          receivedNis: receivedNis,
+          receivedHistory: receivedHistory,
+          receivedResponsableRg: receivedResponsableRg,
+          receivedResponsableCpf: receivedResponsableCpf,
+          cns: cns,
+          hash: hash,
+          justiceRestriction: justiceRestriction,
+        );
 
   StudentEnrollmentModel copyWith({
-    String? id,
     String? registerType,
     String? schoolInepIdFk,
     String? studentFk,
     int? oldId,
-    String? rgNumber,
+    int? rgNumber,
     String? rgNumberEdcensoOrganIdEmitterFk,
     String? rgNumberEdcensoUfFk,
     String? rgNumberExpedictionDate,
@@ -130,7 +130,6 @@ class StudentEnrollmentModel {
     bool? justiceRestriction,
   }) {
     return StudentEnrollmentModel(
-      id: id ?? this.id,
       registerType: registerType ?? this.registerType,
       schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
       studentFk: studentFk ?? this.studentFk,
@@ -188,93 +187,92 @@ class StudentEnrollmentModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'registerType': registerType,
-      'schoolInepIdFk': schoolInepIdFk,
-      'studentFk': studentFk,
-      'oldId': oldId,
-      'rgNumber': rgNumber,
-      'rgNumberEdcensoOrganIdEmitterFk': rgNumberEdcensoOrganIdEmitterFk,
-      'rgNumberEdcensoUfFk': rgNumberEdcensoUfFk,
-      'rgNumberExpedictionDate': rgNumberExpedictionDate,
-      'civilCertification': civilCertification,
-      'civilCertificationType': civilCertificationType,
-      'civilCertificationTermNumber': civilCertificationTermNumber,
-      'civilCertificationSheet': civilCertificationSheet,
-      'civilCertificationBook': civilCertificationBook,
-      'civilCertificationDate': civilCertificationDate,
-      'notaryOfficeUfFk': notaryOfficeUfFk,
-      'notaryOfficeCityFk': notaryOfficeCityFk,
-      'edcensoNotaryOfficeFk': edcensoNotaryOfficeFk,
-      'civilRegisterEnrollmentNumber': civilRegisterEnrollmentNumber,
+      'register_type': registerType,
+      'school_inep_id_fk': schoolInepIdFk,
+      'student_fk': studentFk,
+      'old_id': oldId,
+      'rg_number': rgNumber,
+      'rg_number_edcenso_organ_id_emitter_fk': rgNumberEdcensoOrganIdEmitterFk,
+      'rg_number_edcenso_uf_fk': rgNumberEdcensoUfFk,
+      'rg_number_expediction_date': rgNumberExpedictionDate,
+      'civil_certification': civilCertification,
+      'civil_certification_type': civilCertificationType,
+      'civil_certification_term_number': civilCertificationTermNumber,
+      'civil_certification_sheet': civilCertificationSheet,
+      'civil_certification_book': civilCertificationBook,
+      'civil_certification_date': civilCertificationDate,
+      'notary_office_uf_fk': notaryOfficeUfFk,
+      'notary_office_city_fk': notaryOfficeCityFk,
+      'edcenso_notary_office_fk': edcensoNotaryOfficeFk,
+      'civil_register_enrollment_number': civilRegisterEnrollmentNumber,
       'cpf': cpf,
-      'foreignDocumentOrPassport': foreignDocumentOrPassport,
+      'foreign_document_or_passport': foreignDocumentOrPassport,
       'nis': nis,
-      'residenceZone': residenceZone,
-      'diffLocation': diffLocation,
+      'residence_zone': residenceZone,
+      'diff_location': diffLocation,
       'cep': cep,
       'address': address,
       'number': number,
       'complement': complement,
       'neighborhood': neighborhood,
-      'edcensoUfFk': edcensoUfFk,
-      'edcensoCityFk': edcensoCityFk,
-      'receivedCc': receivedCc,
-      'receivedAddress': receivedAddress,
-      'receivedPhoto': receivedPhoto,
-      'receivedNis': receivedNis,
-      'receivedHistory': receivedHistory,
-      'receivedResponsableRg': receivedResponsableRg,
-      'receivedResponsableCpf': receivedResponsableCpf,
+      'edcenso_uf_fk': edcensoUfFk,
+      'edcenso_city_fk': edcensoCityFk,
+      'received_cc': receivedCc,
+      'received_address': receivedAddress,
+      'received_photo': receivedPhoto,
+      'received_nis': receivedNis,
+      'received_history': receivedHistory,
+      'received_responsable_rg': receivedResponsableRg,
+      'received_responsable_cpf': receivedResponsableCpf,
       'cns': cns,
       'hash': hash,
-      'justiceRestriction': justiceRestriction,
+      'justice_restriction': justiceRestriction,
     };
   }
 
   factory StudentEnrollmentModel.fromMap(Map<String, dynamic> map) {
     return StudentEnrollmentModel(
-      id: map['id'],
-      registerType: map['registerType'],
-      schoolInepIdFk: map['schoolInepIdFk'],
-      studentFk: map['studentFk'],
-      oldId: map['oldId']?.toInt(),
-      rgNumber: map['rgNumber'],
-      rgNumberEdcensoOrganIdEmitterFk: map['rgNumberEdcensoOrganIdEmitterFk'],
-      rgNumberEdcensoUfFk: map['rgNumberEdcensoUfFk'],
-      rgNumberExpedictionDate: map['rgNumberExpedictionDate'],
-      civilCertification: map['civilCertification']?.toInt(),
-      civilCertificationType: map['civilCertificationType']?.toInt(),
-      civilCertificationTermNumber: map['civilCertificationTermNumber'],
-      civilCertificationSheet: map['civilCertificationSheet'],
-      civilCertificationBook: map['civilCertificationBook'],
-      civilCertificationDate: map['civilCertificationDate'],
-      notaryOfficeUfFk: map['notaryOfficeUfFk'],
-      notaryOfficeCityFk: map['notaryOfficeCityFk'],
-      edcensoNotaryOfficeFk: map['edcensoNotaryOfficeFk'],
-      civilRegisterEnrollmentNumber: map['civilRegisterEnrollmentNumber'],
+      registerType: map['register_type'],
+      schoolInepIdFk: map['school_inep_id_fk'] ?? '',
+      studentFk: map['student_fk'] ?? '',
+      oldId: map['old_id']?.toInt() ?? 0,
+      rgNumber: map['rg_number']?.toInt(),
+      rgNumberEdcensoOrganIdEmitterFk:
+          map['rg_number_edcenso_organ_id_emitter_fk'] ?? '',
+      rgNumberEdcensoUfFk: map['rg_number_edcenso_uf_fk'] ?? '',
+      rgNumberExpedictionDate: map['rg_number_expediction_date'],
+      civilCertification: map['civil_certification']?.toInt(),
+      civilCertificationType: map['civil_certification_type']?.toInt(),
+      civilCertificationTermNumber: map['civil_certification_term_number'],
+      civilCertificationSheet: map['civil_certification_sheet'],
+      civilCertificationBook: map['civil_certification_book'],
+      civilCertificationDate: map['civil_certification_date'],
+      notaryOfficeUfFk: map['notary_office_uf_fk'] ?? '',
+      notaryOfficeCityFk: map['notary_office_city_fk'] ?? '',
+      edcensoNotaryOfficeFk: map['edcenso_notary_office_fk'],
+      civilRegisterEnrollmentNumber: map['civil_register_enrollment_number'],
       cpf: map['cpf'],
-      foreignDocumentOrPassport: map['foreignDocumentOrPassport'],
+      foreignDocumentOrPassport: map['foreign_document_or_passport'],
       nis: map['nis'],
-      residenceZone: map['residenceZone']?.toInt(),
-      diffLocation: map['diffLocation']?.toInt(),
+      residenceZone: map['residence_zone']?.toInt() ?? 0,
+      diffLocation: map['diff_location']?.toInt(),
       cep: map['cep'],
       address: map['address'],
       number: map['number'],
       complement: map['complement'],
       neighborhood: map['neighborhood'],
-      edcensoUfFk: map['edcensoUfFk'],
-      edcensoCityFk: map['edcensoCityFk'],
-      receivedCc: map['receivedCc'],
-      receivedAddress: map['receivedAddress'],
-      receivedPhoto: map['receivedPhoto'],
-      receivedNis: map['receivedNis'],
-      receivedHistory: map['receivedHistory'],
-      receivedResponsableRg: map['receivedResponsableRg'],
-      receivedResponsableCpf: map['receivedResponsableCpf'],
+      edcensoUfFk: map['edcenso_uf_fk'] ?? '',
+      edcensoCityFk: map['edcenso_city_fk'] ?? '',
+      receivedCc: map['received_cc'],
+      receivedAddress: map['received_address'],
+      receivedPhoto: map['received_photo'],
+      receivedNis: map['received_nis'],
+      receivedHistory: map['received_history'],
+      receivedResponsableRg: map['received_responsable_rg'],
+      receivedResponsableCpf: map['received_responsable_cpf'],
       cns: map['cns'],
       hash: map['hash']?.toInt(),
-      justiceRestriction: map['justiceRestriction'],
+      justiceRestriction: map['justice_restriction'],
     );
   }
 
@@ -285,7 +283,7 @@ class StudentEnrollmentModel {
 
   @override
   String toString() {
-    return '''StudentEnrollmentModel(id: $id, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
+    return '''StudentEnrollmentModel(registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
   }
 
   @override
@@ -293,7 +291,6 @@ class StudentEnrollmentModel {
     if (identical(this, other)) return true;
 
     return other is StudentEnrollmentModel &&
-        other.id == id &&
         other.registerType == registerType &&
         other.schoolInepIdFk == schoolInepIdFk &&
         other.studentFk == studentFk &&
@@ -339,8 +336,7 @@ class StudentEnrollmentModel {
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        registerType.hashCode ^
+    return registerType.hashCode ^
         schoolInepIdFk.hashCode ^
         studentFk.hashCode ^
         oldId.hashCode ^

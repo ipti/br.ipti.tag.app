@@ -15,16 +15,17 @@ class SubmitButtonsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return RowToColumn(
       children: [
-        const Spacer(),
         Flexible(
-          child: TagLinkButton(
-            text: "Salvar e continuar na página",
+          child: TagButton(
+            text: "Salvar informações",
             onPressed: onSubmitAndStay,
           ),
         ),
         Flexible(
           child: TagButton(
-            text: "Salvar e prosseguir",
+            primary: TagColors.colorBaseCloudNormal,
+            onPrimary: TagColors.colorBaseInkNormal,
+            text: "Salvar informações e avançar",
             onPressed: onSubmitAndGo,
           ),
         ),

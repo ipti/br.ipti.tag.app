@@ -1,6 +1,3 @@
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/_address_form_partial_page.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/filliation/_filiation_form_partial_page.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/fast_enrollment/pages/_classes_form_partial_page.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,6 +5,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/enrollment_bloc.dart';
 import 'bloc/enrollment_states.dart';
+import 'form/address/_address_form_partial_page.dart';
+import 'form/classroom/_classes_form_partial_page.dart';
+import 'form/filliation/_filiation_form_partial_page.dart';
 import 'form/personal/_personal_form_partial_page.dart';
 import 'form/social/_social_form_partial_page.dart';
 

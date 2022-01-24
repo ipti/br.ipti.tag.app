@@ -7,7 +7,7 @@ class PostStudentDocsEndPoint extends EndPointAPI {
     required this.model,
   });
 
-  final StudentDocsModel model;
+  final StudentDocumentsAddressModel model;
 
   @override
   String get path => '/studentsDocs';
