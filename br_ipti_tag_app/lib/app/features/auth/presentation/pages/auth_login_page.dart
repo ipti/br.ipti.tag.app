@@ -105,11 +105,11 @@ class _Body extends StatelessWidget {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget inputEmail(String email) => TagTextField(
+    Widget inputUsername(String username) => TagTextField(
           label: "Usuário",
-          hint: "Digite seu email",
-          onChanged: controller.setEmail,
-          value: email,
+          hint: "Digite seu usuário",
+          onChanged: controller.setUsername,
+          value: username,
           validator: requiredValidator,
         );
     Widget inputPassword(String password) => TagTextField(
@@ -139,7 +139,7 @@ class _Body extends StatelessWidget {
                       style: helpTextStyle,
                     ),
                   ),
-                  withPadding(inputEmail(state.email)),
+                  withPadding(inputUsername(state.username)),
                   withPadding(inputPassword(state.password)),
                   withPadding(
                     TagButton(

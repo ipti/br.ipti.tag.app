@@ -2,9 +2,9 @@ import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
 class PostAuthLoginEndPoint extends EndPointAPI {
-  PostAuthLoginEndPoint(this.email, this.password);
+  PostAuthLoginEndPoint(this.username, this.password);
 
-  final String email;
+  final String username;
   final String password;
 
   @override
@@ -12,7 +12,7 @@ class PostAuthLoginEndPoint extends EndPointAPI {
 
   @override
   Parameters? get bodyParameters => () => {
-        'username': email,
+        'username': username,
         'password': password,
       };
 

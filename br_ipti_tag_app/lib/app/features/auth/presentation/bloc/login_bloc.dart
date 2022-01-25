@@ -21,8 +21,8 @@ class LoginBloc extends Cubit<LoginState> {
   final VerifyAuthUsecase verifyAuthUsecase;
   final PackageInfoService servicePkgInfo;
 
-  void setEmail(String value) => emit(state.copyWith(email: value));
-  void setPassword(String value) => emit(state.copyWith(password: value));
+  void setUsername(String username) => emit(state.copyWith(username: username));
+  void setPassword(String password) => emit(state.copyWith(password: password));
 
   Future fetchVersion() async {
     final version = await servicePkgInfo.getVersion();
@@ -38,7 +38,8 @@ class LoginBloc extends Cubit<LoginState> {
   }
 
   Future submitLogin() async {
-    final params = LoginParams(email: state.email, password: state.password);
+    final params =
+        LoginParams(username: state.username, password: state.password);
     final option = await authLoginUsecase(params);
     final result = option.fold(id, id);
 
