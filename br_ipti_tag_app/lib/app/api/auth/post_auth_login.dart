@@ -12,7 +12,7 @@ class PostAuthLoginEndPoint extends EndPointAPI {
 
   @override
   Parameters? get bodyParameters => () => {
-        'email': email,
+        'username': email,
         'password': password,
       };
 
