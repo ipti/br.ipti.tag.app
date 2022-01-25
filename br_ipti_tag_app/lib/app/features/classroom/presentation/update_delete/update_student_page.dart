@@ -1,3 +1,5 @@
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/tagbutton_icon.dart';
+import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/material.dart';
 
 class ClassroomStudentPage extends StatelessWidget {
@@ -5,8 +7,17 @@ class ClassroomStudentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Estudantes'),
+    return Center(
+      child: Flexible(
+        child: Row(
+          children: const [
+            TagButtonIcon(
+              icon: FilePaths.ICON_PERSONS_BLUE_SVG,
+              label: 'label',
+            )
+          ],
+        ),
+      ),
     );
   }
 }
