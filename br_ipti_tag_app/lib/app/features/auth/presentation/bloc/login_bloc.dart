@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/verify_auth_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -43,7 +43,7 @@ class LoginBloc extends Cubit<LoginState> {
     final option = await authLoginUsecase(params);
     final result = option.fold(id, id);
 
-    if (result is AuthToken) {
+    if (result is AuthResponse) {
       Modular.to.pushReplacementNamed("/turmas");
     } else if (result is RestClientException) {
       // ignore: avoid_print

@@ -1,8 +1,8 @@
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_token_model.dart';
-import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_model.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -16,7 +16,7 @@ class AuthRespositoryImpl extends AuthRepository {
   AuthLocalDataSource authLocalDataSource;
 
   @override
-  Future<Either<Exception, AuthToken>> login(
+  Future<Either<Exception, AuthResponse>> login(
       String username, String password) async {
     try {
       final result = await authRemoteDataSource.login(username, password);
@@ -27,7 +27,7 @@ class AuthRespositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Exception, AuthToken>> getCachedAuthToken() async {
+  Future<Either<Exception, AuthResponse>> getCachedAuthToken() async {
     try {
       final result = await authLocalDataSource.getAuthToken();
       return Right(result);
@@ -38,10 +38,10 @@ class AuthRespositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Exception, void>> cacheAuthToken(AuthToken token) async {
+  Future<Either<Exception, void>> cacheAuthToken(AuthResponse token) async {
     try {
       final result =
-          await authLocalDataSource.cacheAuthToken(token as AuthTokenModel);
+          await authLocalDataSource.cacheAuthToken(token as AuthModel);
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

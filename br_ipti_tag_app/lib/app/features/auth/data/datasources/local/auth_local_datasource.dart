@@ -1,10 +1,9 @@
-import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_token_model.dart';
-import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_token.dart';
+import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthLocalDataSource {
-  Future<void> cacheAuthToken(AuthTokenModel token);
-  Future<AuthToken> getAuthToken();
+  Future<void> cacheAuthToken(AuthModel token);
+  Future<AuthModel> getAuthToken();
   Future<bool> cleanCacheToken();
 }
 
@@ -12,7 +11,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   AuthLocalDataSourceImpl();
 
   @override
-  Future<void> cacheAuthToken(AuthTokenModel token) async {
+  Future<void> cacheAuthToken(AuthModel token) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
     await _sharedPreferences.setString(
       "AUTH_TOKEN",
@@ -21,10 +20,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   @override
-  Future<AuthToken> getAuthToken() async {
+  Future<AuthModel> getAuthToken() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
     final jsonToken = _sharedPreferences.getString("AUTH_TOKEN") ?? "";
-    return AuthTokenModel.fromJson(jsonToken);
+    return AuthModel.fromJson(jsonToken);
   }
 
   @override
