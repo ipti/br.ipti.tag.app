@@ -17,9 +17,9 @@ class AuthRespositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Exception, AuthToken>> login(
-      String email, String password) async {
+      String username, String password) async {
     try {
-      final result = await authRemoteDataSource.login(email, password);
+      final result = await authRemoteDataSource.login(username, password);
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);

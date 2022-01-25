@@ -11,7 +11,7 @@ class AuthLoginUsecase implements Usecase<AuthToken, LoginParams> {
 
   @override
   Future<Either<Exception, AuthToken>> call(LoginParams params) async {
-    final result = await _repository.login(params.email, params.password);
+    final result = await _repository.login(params.username, params.password);
 
     result.fold(
       id,
@@ -24,11 +24,11 @@ class AuthLoginUsecase implements Usecase<AuthToken, LoginParams> {
 
 class LoginParams extends Equatable {
   const LoginParams({
-    required this.email,
+    required this.username,
     required this.password,
   });
 
-  final String email;
+  final String username;
   final String password;
 
   @override
