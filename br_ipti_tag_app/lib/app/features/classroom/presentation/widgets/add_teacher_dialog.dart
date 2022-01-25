@@ -1,8 +1,7 @@
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tag_ui/components/components.dart';
-import 'package:tag_ui/design_tokens/colors.dart';
+import 'package:tag_ui/tag_ui.dart';
 
 class AddTeacherDialog extends StatefulWidget {
   const AddTeacherDialog({Key? key}) : super(key: key);
@@ -127,6 +126,20 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                     width: 10,
                   ),
                   TagButton(
+                    textStyle: const TextStyle(color: TagColors.colorRedDark),
+                    buttonStyle: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      padding: TagSpancing.paddingButtonNormal,
+                      minimumSize: const Size(40, TagSizes.heightButtonNormal),
+                      primary: TagColors.colorRedLight,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            TagBorderRadiusValues.borderRadiusNormal,
+                          ),
+                        ),
+                      ),
+                    ),
                     text: 'Cancelar',
                     onPressed: () {
                       debugPrint('cancelado');
