@@ -15,10 +15,22 @@ class AuthLoginUsecase implements Usecase<AuthResponse, LoginParams> {
 
     result.fold(
       id,
-      (authToken) => _repository.cacheAuthToken(authToken),
+      (authToken) => _cacheSessionValues(authToken..schoolYear = params.year),
     );
 
     return result;
+  }
+
+  Future _cacheSessionValues(AuthResponse response) async {
+    final token = response.accessToken;
+    final year = response.schoolYear;
+    final schools = response.user?.schools;
+
+    await Future.any([
+      _repository.storeAccessToken(token!),
+      _repository.storeSchoolYear(year!),
+      _repository.storeCurrentUserSchools(schools!),
+    ]);
   }
 }
 
@@ -26,10 +38,12 @@ class LoginParams extends Equatable {
   const LoginParams({
     required this.username,
     required this.password,
+    required this.year,
   });
 
   final String username;
   final String password;
+  final String year;
 
   @override
   List<Object> get props => [];

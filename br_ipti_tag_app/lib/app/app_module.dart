@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/network/custom_dio/custom_dio.dart';
+import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,6 +16,7 @@ class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
   final List<Bind> binds = [
+    Bind.singleton<SessionService>((i) => SessionServiceImpl()),
     Bind.singleton((i) => PackageInfoServiceImpl()),
     Bind.singleton((i) => ClientHTTPConfiguration.apply(Dio())),
     Bind.singleton((i) => RouterAPI(i.get<Dio>()))

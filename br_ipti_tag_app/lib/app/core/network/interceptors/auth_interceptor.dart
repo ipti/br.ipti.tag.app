@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -13,9 +14,9 @@ class AuthInterceptor extends InterceptorsWrapper {
       debugPrint("Endpoint: ${options.path}");
     }
     try {
-      final authRepository = AuthLocalDataSourceImpl();
-      final authToken = await authRepository.getAuthToken();
-      options.headers['Authorization'] = 'Bearer ${authToken.accessToken}';
+      final sessionService = SessionServiceImpl();
+      final token = await sessionService.getToken();
+      options.headers['Authorization'] = 'Bearer $token';
       return super.onRequest(options, handler);
     } catch (e) {
       return super.onRequest(options, handler);
