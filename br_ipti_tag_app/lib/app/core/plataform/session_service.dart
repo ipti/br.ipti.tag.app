@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
 const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
+const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class SessionService {
   Future<String> getToken();
@@ -18,6 +19,10 @@ abstract class SessionService {
   Future<String> getSchoolYear();
   Future<bool> setSchoolYear(String year);
   Future<bool> cleanSchoolYear();
+
+  Future<School> getCurrentSchool();
+  Future<bool> setCurrentSchool(School school);
+  Future<bool> cleanCurrentSchool();
 }
 
 class SessionServiceImpl extends SessionService {
@@ -43,7 +48,7 @@ class SessionServiceImpl extends SessionService {
     final mappedSchools = schools.map((x) => (x as SchoolModel).toJson());
 
     final result = _sharedPreferences.setStringList(
-      KEY_SESSION_SCHOOL_YEAR,
+      KEY_SESSION_USER_SCHOOLS,
       mappedSchools.toList(),
     );
 
@@ -127,6 +132,45 @@ class SessionServiceImpl extends SessionService {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final result = _sharedPreferences.remove(KEY_SESSION_TOKEN);
+
+    return result;
+  }
+
+  @override
+  Future<bool> cleanCurrentSchool() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+
+    final result = _sharedPreferences.remove(KEY_SESSION_CURRENT_SCHOOL);
+
+    return result;
+  }
+
+  @override
+  Future<School> getCurrentSchool() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+
+    final result = _sharedPreferences.getString(KEY_SESSION_CURRENT_SCHOOL);
+
+    if (result != null) {
+      final school = SchoolModel.fromJson(result);
+      return school;
+    }
+
+    final schools = await getCurrentUserSchools();
+
+    if (schools.isNotEmpty) return schools.first;
+
+    throw Exception("Nenhuma escola disponível");
+  }
+
+  @override
+  Future<bool> setCurrentSchool(School school) async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+
+    final result = _sharedPreferences.setString(
+      KEY_SESSION_CURRENT_SCHOOL,
+      (school as SchoolModel).toJson(),
+    );
 
     return result;
   }
