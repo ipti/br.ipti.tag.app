@@ -1,6 +1,7 @@
-import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/school.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/components/components.dart';
 
@@ -12,20 +13,12 @@ class HeaderDesktop extends StatefulWidget {
 }
 
 class _HeaderDesktopState extends State<HeaderDesktop> {
-  final schoolsNotifier = ValueNotifier<List<School>>([]);
-  final currentSchoolNotifier = ValueNotifier<School>(School());
-  final sessionService = Modular.get<SessionService>();
+  final sessionController = Modular.get<SessionBloc>();
 
   @override
   void initState() {
-    sessionService
-        .getCurrentUserSchools()
-        .then((schools) => schoolsNotifier.value = schools);
-
-    sessionService
-        .getCurrentSchool()
-        .then((school) => currentSchoolNotifier.value = school);
-
+    sessionController.fetchSchools();
+    sessionController.fetchCurrentSchool();
     super.initState();
   }
 
@@ -40,26 +33,21 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             children: [
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 350),
-                child: ValueListenableBuilder<List<School>>(
-                  valueListenable: schoolsNotifier,
-                  builder: (context, schools, _) {
-                    if (schools.isEmpty) return Container();
-                    return ValueListenableBuilder<School>(
-                        valueListenable: currentSchoolNotifier,
-                        builder: (context, school, _) {
-                          return TagDropdownField<School>(
-                            label: "",
-                            value: school,
-                            onChanged: (school) =>
-                                sessionService.setCurrentSchool(
-                              school,
-                            ),
-                            items: Map.fromEntries(
-                                schools.map((e) => MapEntry(e, e.name!))),
-                          );
-                        });
-                  },
-                ),
+                child: BlocBuilder<SessionBloc, SessionState>(
+                    bloc: sessionController,
+                    builder: (context, state) {
+                      final schools = state.schools ?? [];
+                      return TagDropdownField<School>(
+                        label: "",
+                        value: state.currentSchool,
+                        onChanged: (school) => sessionController.changeSchool(
+                          school,
+                        ),
+                        items: Map.fromEntries(schools.map(
+                          (e) => MapEntry(e, e.name!),
+                        )),
+                      );
+                    }),
               ),
             ],
           ),
