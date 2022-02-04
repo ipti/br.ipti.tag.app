@@ -1,9 +1,9 @@
 class AuthLogin {
   AuthLogin({
-    required this.email,
+    required this.username,
     required this.password,
   });
 
-  String email;
+  String username;
   String password;
 }
