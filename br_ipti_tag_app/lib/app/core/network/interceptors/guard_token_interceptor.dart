@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
-import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
