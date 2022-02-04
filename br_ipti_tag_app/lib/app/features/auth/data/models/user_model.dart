@@ -53,7 +53,7 @@ class UserModel extends User {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, schools: $schools, username: $username)';
+    return '''UserModel(id: $id, name: $name, schools: $schools, username: $username)''';
   }
 
   @override

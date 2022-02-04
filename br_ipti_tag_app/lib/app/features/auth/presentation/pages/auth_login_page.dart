@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -135,36 +135,30 @@ class _Body extends StatelessWidget {
       child: BlocBuilder<LoginBloc, LoginState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is LoginState) {
-            return ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 332),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 40),
-                    child: Text(
-                      "Entre com as suas credenciais",
-                      style: helpTextStyle,
-                    ),
+          return ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 332),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 40),
+                  child: Text(
+                    "Entre com as suas credenciais",
+                    style: helpTextStyle,
                   ),
-                  withPadding(inputUsername(state.username)),
-                  withPadding(inputPassword(state.password)),
-                  withPadding(dropdownYear(state.year)),
-                  withPadding(
-                    TagButton(
-                      text: "Entrar",
-                      onPressed: () => _submit(_formKey.currentState!),
-                    ),
+                ),
+                withPadding(inputUsername(state.username)),
+                withPadding(inputPassword(state.password)),
+                withPadding(dropdownYear(state.year)),
+                withPadding(
+                  TagButton(
+                    text: "Entrar",
+                    onPressed: () => _submit(_formKey.currentState!),
                   ),
-                ],
-              ),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+                ),
+              ],
+            ),
+          );
         },
       ),
     );
