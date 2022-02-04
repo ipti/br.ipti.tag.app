@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -37,9 +38,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
 
   Future fetchCities([String? uf]) async {
     final result = await _listCitiesUsecase(FilterUFParams(uf: uf));
-    result.fold((e) {
-      print(e);
-    }, (cities) {
+    result.fold(id, (cities) {
       final mappedValues = <String, String>{};
       mappedValues.addEntries(cities.map((e) => MapEntry<String, String>(
             e.id ?? "",
@@ -57,9 +56,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
 
   Future fetchUFs() async {
     final result = await _listUFsUsecase(NoParams());
-    result.fold((e) {
-      print(e);
-    }, (ufs) {
+    result.fold(id, (ufs) {
       final mappedValues = <String, String>{};
       mappedValues.addEntries(ufs.map((e) => MapEntry<String, String>(
             e.id ?? "",

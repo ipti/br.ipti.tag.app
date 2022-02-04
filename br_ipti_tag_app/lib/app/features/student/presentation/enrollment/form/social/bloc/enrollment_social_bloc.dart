@@ -37,5 +37,6 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
       complement: addressState.complement,
       neighborhood: addressState.neighborhood,
     );
+    await _addressToStudentUsecase(params);
   }
 }

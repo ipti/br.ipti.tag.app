@@ -1,9 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_address.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_doc_address_repositories.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:dartz/dartz.dart';
 
 class AddDocumentsAndAddressToStudentUsecase

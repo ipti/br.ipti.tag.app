@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class AuthLocalDataSource {
   Future<void> cacheAuthToken(AuthModel token);
   Future<AuthModel> getAuthToken();
+  Future<bool> cleanCacheToken();
 }
 
 // TODO: Mudar métodos para apenas cache do AuthResponse

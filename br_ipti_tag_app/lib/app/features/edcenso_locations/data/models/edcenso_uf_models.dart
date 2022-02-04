@@ -49,7 +49,7 @@ class EdCensoUfModel extends EdCensoUF {
 
   @override
   String toString() {
-    return 'EdCensoUfModel(id: $id, oldId: $oldId, name: $name, acronym: $acronym)';
+    return '''EdCensoUfModel(id: $id, oldId: $oldId, name: $name, acronym: $acronym)''';
   }
 
   @override

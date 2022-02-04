@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -86,7 +87,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       ),
     );
 
-    result.fold((l) => print(l), (r) {
+    result.fold(id, (r) {
       _enrollmentBloc.setStudent(r.id);
       _enrollmentBloc.nextTab();
     });

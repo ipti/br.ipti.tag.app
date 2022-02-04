@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_city_model.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EdcensoLocationsLocalDatasource {
