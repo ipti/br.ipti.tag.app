@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/auth/data/datasources/local/auth_local_datasource.dart';
+import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -15,10 +15,13 @@ class GuardTokenInterceptor extends InterceptorsWrapper {
     DioError err,
     ErrorInterceptorHandler handler,
   ) {
-    final authRepository = AuthLocalDataSourceImpl();
+    final sessionService = SessionServiceImpl();
     if (err.response!.statusCode == 401) {
       if (!Modular.to.path.contains('auth')) {
-        authRepository.cleanCacheToken();
+        sessionService.cleanToken();
+        sessionService.cleanSchoolYear();
+        sessionService.cleanCurrentUserSchools();
+        sessionService.cleanCurrentSchool();
         Modular.to.pushReplacementNamed('/auth');
       }
     }

@@ -113,47 +113,45 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
       child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
           bloc: controller,
           builder: (context, state) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      heading,
-                      RowToColumn(
-                        children: [
-                          Flexible(child: inputName(state.name)),
-                          Flexible(child: inputBirthday(state.birthday)),
-                        ],
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    heading,
+                    RowToColumn(
+                      children: [
+                        Flexible(child: inputName(state.name)),
+                        Flexible(child: inputBirthday(state.birthday)),
+                      ],
+                    ),
+                    RowToColumn(children: [
+                      Flexible(child: selectSex(state.sex)),
+                      Flexible(child: selectColorRace(state.colorRace)),
+                      Flexible(
+                        flex: 3,
+                        child: selectNationality(state.nationality),
                       ),
-                      RowToColumn(children: [
-                        Flexible(child: selectSex(state.sex)),
-                        Flexible(child: selectColorRace(state.colorRace)),
-                        Flexible(
-                          flex: 3,
-                          child: selectNationality(state.nationality),
-                        ),
-                      ]),
-                      RowToColumn(children: [
-                        Flexible(child: selectFiliation(state.filiation)),
-                        Flexible(
-                          child: inputFoodRestriction(state.foodRestrictions),
-                        ),
-                      ]),
-                      deficiencyCheck(deficiency: state.deficiency),
-                      RowToColumn(
-                        children: [
-                          const Spacer(),
-                          Flexible(child: buttonSubmitAndStay),
-                          Flexible(child: buttonSubmitAndGo),
-                        ],
+                    ]),
+                    RowToColumn(children: [
+                      Flexible(child: selectFiliation(state.filiation)),
+                      Flexible(
+                        child: inputFoodRestriction(state.foodRestrictions),
                       ),
-                    ].map((w) => withPadding(w)).toList(),
-                  ),
+                    ]),
+                    deficiencyCheck(deficiency: state.deficiency),
+                    RowToColumn(
+                      children: [
+                        const Spacer(),
+                        Flexible(child: buttonSubmitAndStay),
+                        Flexible(child: buttonSubmitAndGo),
+                      ],
+                    ),
+                  ].map((w) => withPadding(w)).toList(),
                 ),
-              );
-            
-            
+              ),
+            );
           }),
     );
   }

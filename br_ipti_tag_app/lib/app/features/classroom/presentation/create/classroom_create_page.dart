@@ -2,11 +2,13 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/shared/util/util.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
+
 import 'bloc/classroom_create_bloc.dart';
 import 'bloc/classroom_create_events.dart';
 import 'bloc/classroom_states.dart';
@@ -35,6 +37,7 @@ class ClassroomCreatePageState
       length: 1,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
+        header: const HeaderDesktop(),
         aside: Container(),
         title: widget.title,
         description: "",

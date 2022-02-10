@@ -120,6 +120,15 @@ class _Body extends StatelessWidget {
           obscureText: true,
         );
 
+    Widget dropdownYear(String year) => TagDropdownField<String>(
+          label: "Ano letivo",
+          items: Map.fromEntries(controller.yearSequence),
+          onChanged: controller.setSchoolYear,
+          value: year,
+          validator: requiredValidator,
+          obscureText: true,
+        );
+
     return Form(
       key: _formKey,
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -139,6 +148,7 @@ class _Body extends StatelessWidget {
                 ),
                 withPadding(inputUsername(state.username)),
                 withPadding(inputPassword(state.password)),
+                withPadding(dropdownYear(state.year)),
                 withPadding(
                   TagButton(
                     text: "Entrar",

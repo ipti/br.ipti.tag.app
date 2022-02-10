@@ -64,36 +64,35 @@ class SocialFormPageState extends State<SocialFormPage> {
     return BlocBuilder<EnrollmentSocialBloc, EnrollmentSocialState>(
         bloc: controller,
         builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputNis(state.nis)),
-                        Flexible(child: inputInepId(state.inepId)),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: bfParticipatorCheck(
-                            bfParticipator: state.bfParticipator,
-                          ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  withPadding(heading),
+                  RowToColumn(
+                    children: [
+                      Flexible(child: inputNis(state.nis)),
+                      Flexible(child: inputInepId(state.inepId)),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: bfParticipatorCheck(
+                          bfParticipator: state.bfParticipator,
                         ),
-                        Flexible(
-                          child: posCensoCheck(posCenso: state.posCenso),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      Flexible(
+                        child: posCensoCheck(posCenso: state.posCenso),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            );
-         
+            ),
+          );
         });
   }
 }
