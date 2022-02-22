@@ -1,5 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_bloc.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -11,6 +13,8 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
           const EmptyEnrollmentSocialState(),
         );
 
+  final _session = Modular.get<SessionBloc>();
+  final _enrollmentBloc = Modular.get<EnrollmentBloc>();
   final _addressBloc = Modular.get<EnrollmentAddressBloc>();
 
   final AddDocumentsAndAddressToStudentUsecase _addressToStudentUsecase;
@@ -36,6 +40,12 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
       cep: addressState.cep,
       complement: addressState.complement,
       neighborhood: addressState.neighborhood,
+      edcensoCityFk: addressState.edcensoCityFk!,
+      studentFk: _enrollmentBloc.state.studentId,
+      rgNumber: "12314321",
+      residenceZone: 1,
+      edcensoUfFk: addressState.edcensoUfFk,
+      schoolInepIdFk: _session.state.currentSchool!.id!,
     );
     await _addressToStudentUsecase(params);
   }

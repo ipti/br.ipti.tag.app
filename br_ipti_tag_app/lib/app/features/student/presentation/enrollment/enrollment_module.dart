@@ -1,6 +1,23 @@
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
+
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/classroom_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_doc_address_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_enrollment_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/repositories/classroom_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_docs_addrs_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_enrollment_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/classroom_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_doc_address_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/list_classrooms_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'enrollment_page.dart';
@@ -18,13 +35,95 @@ import 'form/social/bloc/enrollment_social_bloc.dart';
 class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => CreateStudentsUsecase(i.get())),
-    Bind.factory((i) => ChangeFiliationStudentUsecase(i.get())),
-    Bind.singleton((i) => EnrollmentSocialBloc(i.get())),
-    Bind.singleton((i) => EnrollmentPersonalBloc(i.get())),
-    Bind.singleton((i) => EnrollmentAddressBloc(i.get(), i.get())),
-    Bind.singleton((i) => EnrollmentFiliationBloc(i.get())),
-    Bind.singleton((i) => EnrollmentClassroomBloc()),
+    // Datasources
+    Bind.singleton(
+      (i) => StudentDocumentsAndAddressRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => ClassroomRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentEnrollmenrRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+
+    // Repositories
+    Bind.singleton(
+      (i) => ClassroomRepositoryImpl(
+        i.get<ClassroomRemoteDataSource>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentDocumentsAddressRepositoryImpl(
+        i.get<StudentDocumentsAndAddressRemoteDataSource>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentEnrollmentRepositoryImpl(
+        i.get<StudentEnrollmenrRemoteDataSource>(),
+      ),
+    ),
+
+    // Usecases
+    Bind.singleton(
+      (i) => CreateStudentEnrollmentUsecase(
+        i.get<StudentEnrollmentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => ListClassroomsUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => AddDocumentsAndAddressToStudentUsecase(
+        i.get<StudentDocumentsAddressRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => CreateStudentsUsecase(
+        i.get<StudentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => ChangeFiliationStudentUsecase(
+        i.get<StudentRepository>(),
+      ),
+    ),
+
+    // Blocs
+    Bind.singleton(
+      (i) => EnrollmentSocialBloc(
+        i.get<AddDocumentsAndAddressToStudentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentPersonalBloc(
+        i.get<CreateStudentsUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentAddressBloc(
+        i.get<ListCitiesUsecase>(),
+        i.get<ListUFsUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentFiliationBloc(
+        i.get<ChangeFiliationStudentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentClassroomBloc(
+        i.get<ListClassroomsUsecase>(),
+        i.get<CreateStudentEnrollmentUsecase>(),
+      ),
+    ),
   ];
 
   @override

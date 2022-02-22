@@ -7,6 +7,10 @@ enum PreviousStageSituation {
 }
 
 extension LabeledEnum on PreviousStageSituation {
+  int get id {
+    return index + 1;
+  }
+
   String get name {
     switch (this) {
       case PreviousStageSituation.NAO_FREQUENTOU:

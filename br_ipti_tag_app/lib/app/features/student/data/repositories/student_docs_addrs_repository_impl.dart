@@ -27,7 +27,7 @@ class StudentDocumentsAddressRepositoryImpl
       StudentDocuments studentDocuments) async {
     try {
       final result = await _addressRemoteDataSource.create(
-        studentDocuments as StudentDocumentsAddressModel,
+        StudentDocumentsAddressModel.fromEntity(studentDocuments),
       );
       return Right(result);
     } catch (e) {
@@ -40,7 +40,7 @@ class StudentDocumentsAddressRepositoryImpl
       String id, StudentDocuments student) async {
     try {
       final result = await _addressRemoteDataSource.update(
-          id, student as StudentDocumentsAddressModel);
+          id, StudentDocumentsAddressModel.fromEntity(student));
 
       return Right(result);
     } catch (e) {

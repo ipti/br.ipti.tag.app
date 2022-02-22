@@ -1,8 +1,14 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/admission_type_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/current_stage_situation_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/previous_stage_situation_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/stage_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/unified_class_enum.dart';
 import 'package:equatable/equatable.dart';
 
 class EnrollmentClassroomState extends Equatable {
   const EnrollmentClassroomState({
+    this.classrooms = const [],
     this.schoolAdmissionDate,
     this.unifiedClass,
     this.stage,
@@ -12,36 +18,36 @@ class EnrollmentClassroomState extends Equatable {
     this.anotherScholarizationPlace,
     this.previousStageSituation,
     this.currentStageSituation,
-    required this.classroomId,
+    this.classroomId,
   });
 
-  final String classroomId;
+  final List<Classroom> classrooms;
+  final String? classroomId;
   final String? schoolAdmissionDate;
-  final int? unifiedClass;
+  final UnifiedClass? unifiedClass;
   final Stage? stage;
   final String? edcensoStageVsModalityFk;
-  final int? studentEntryForm;
+  final AdmissionType? studentEntryForm;
   final int? status;
   final int? anotherScholarizationPlace;
-  final int? previousStageSituation;
-  final int? currentStageSituation;
-
-  @override
-  List<Object?> get props => [classroomId];
+  final PreviousStageSituation? previousStageSituation;
+  final CurrentStageSituation? currentStageSituation;
 
   EnrollmentClassroomState copyWith({
+    List<Classroom>? classrooms,
     String? classroomId,
     String? schoolAdmissionDate,
-    int? unifiedClass,
+    UnifiedClass? unifiedClass,
     Stage? stage,
     String? edcensoStageVsModalityFk,
-    int? studentEntryForm,
+    AdmissionType? studentEntryForm,
     int? status,
     int? anotherScholarizationPlace,
-    int? previousStageSituation,
-    int? currentStageSituation,
+    PreviousStageSituation? previousStageSituation,
+    CurrentStageSituation? currentStageSituation,
   }) {
     return EnrollmentClassroomState(
+      classrooms: classrooms ?? this.classrooms,
       classroomId: classroomId ?? this.classroomId,
       schoolAdmissionDate: schoolAdmissionDate ?? this.schoolAdmissionDate,
       unifiedClass: unifiedClass ?? this.unifiedClass,
@@ -58,8 +64,25 @@ class EnrollmentClassroomState extends Equatable {
           currentStageSituation ?? this.currentStageSituation,
     );
   }
+
+  @override
+  List<Object?> get props {
+    return [
+      classrooms,
+      classroomId,
+      schoolAdmissionDate,
+      unifiedClass,
+      stage,
+      edcensoStageVsModalityFk,
+      studentEntryForm,
+      status,
+      anotherScholarizationPlace,
+      previousStageSituation,
+      currentStageSituation,
+    ];
+  }
 }
 
 class EmptyEnrollmentClassroomState extends EnrollmentClassroomState {
-  const EmptyEnrollmentClassroomState() : super(classroomId: "");
+  const EmptyEnrollmentClassroomState() : super();
 }

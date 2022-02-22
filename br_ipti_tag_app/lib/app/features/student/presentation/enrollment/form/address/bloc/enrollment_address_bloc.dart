@@ -55,16 +55,18 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
   }
 
   Future fetchUFs() async {
-    final result = await _listUFsUsecase(NoParams());
-    result.fold(id, (ufs) {
-      final mappedValues = <String, String>{};
-      mappedValues.addEntries(ufs.map((e) => MapEntry<String, String>(
-            e.id ?? "",
-            e.acronym ?? "",
-          )));
-      fetchCities(mappedValues.entries.first.key);
-      emit(state.copyWith(
-          ufs: mappedValues, edcensoUfFk: mappedValues.entries.first.key));
-    });
+    if (state.ufs.isEmpty) {
+      final result = await _listUFsUsecase(NoParams());
+      result.fold(id, (ufs) {
+        final mappedValues = <String, String>{};
+        mappedValues.addEntries(ufs.map((e) => MapEntry<String, String>(
+              e.id ?? "",
+              e.acronym ?? "",
+            )));
+        fetchCities(mappedValues.entries.first.key);
+        emit(state.copyWith(
+            ufs: mappedValues, edcensoUfFk: mappedValues.entries.first.key));
+      });
+    }
   }
 }

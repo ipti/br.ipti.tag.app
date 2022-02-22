@@ -95,14 +95,10 @@ class SocialFormPageState extends State<SocialFormPage> {
                     ),
                     SubmitButtonsRow(
                       onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          // controller.submitAddressForm();
-                        }
+                        controller.submitSocialForm();
                       },
                       onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          // controller.submitPersonalForm();
-                        }
+                        controller.submitSocialForm();
                       },
                     ),
                   ],

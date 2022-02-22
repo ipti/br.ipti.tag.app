@@ -1,85 +1,95 @@
 class StudentEnrollment {
+  int? oldId;
   String? registerType;
   String schoolInepIdFk;
+  String? studentInepId;
   String studentFk;
-  int oldId;
-  int? rgNumber;
-  String rgNumberEdcensoOrganIdEmitterFk;
-  String rgNumberEdcensoUfFk;
-  String? rgNumberExpedictionDate;
-  int? civilCertification;
-  int? civilCertificationType;
-  String? civilCertificationTermNumber;
-  String? civilCertificationSheet;
-  String? civilCertificationBook;
-  String? civilCertificationDate;
-  String notaryOfficeUfFk;
-  String notaryOfficeCityFk;
-  String? edcensoNotaryOfficeFk;
-  String? civilRegisterEnrollmentNumber;
-  String? cpf;
-  String? foreignDocumentOrPassport;
-  String? nis;
-  int residenceZone;
-  int? diffLocation;
-  String? cep;
-  String? address;
-  String? number;
-  String? complement;
-  String? neighborhood;
-  String edcensoUfFk;
-  String edcensoCityFk;
-  bool? receivedCc;
-  bool? receivedAddress;
-  bool? receivedPhoto;
-  bool? receivedNis;
-  bool? receivedHistory;
-  bool? receivedResponsableRg;
-  bool? receivedResponsableCpf;
-  String? cns;
+  String? classroomInepId;
+  String classroomFk;
+  String? enrollmentId;
+  int? unifiedClass;
+  String? edcensoStageVsModalityFk;
+  int? anotherScholarizationPlace;
+  int? multi;
+  bool? aeeCognitiveFunctions;
+  bool? aeeAutonomousLife;
+  bool? aeeCurriculumEnrichment;
+  bool? aeeAccessibleTeaching;
+  bool? aeeLibras;
+  bool? aeePortuguese;
+  bool? aeeSoroban;
+  bool? aeeBraille;
+  bool? aeeMobilityTechniques;
+  bool? aeeCaa;
+  bool? aeeOpticalNonoptical;
+  bool? publicTransport;
+  int? transportResponsableGovernment;
+  bool? vehicleTypeVan;
+  bool? vehicleTypeMicrobus;
+  bool? vehicleTypeBus;
+  bool? vehicleTypeBike;
+  bool? vehicleTypeAnimalVehicle;
+  bool? vehicleTypeOtherVehicle;
+  bool? vehicleTypeWaterwayBoat5;
+  bool? vehicleTypeWaterwayBoat515;
+  bool? vehicleTypeWaterwayBoat1535;
+  bool? vehicleTypeWaterwayBoat35;
+  bool? vehicleTypeMetroOrTrain;
+  int? studentEntryForm;
   int? hash;
-  bool? justiceRestriction;
+  String? schoolAdmissionDate;
+  int? currentStageSituation;
+  int? previousStageSituation;
+  int? admissionType;
+  int? hashClassroom;
+  int? hashStudent;
+  int? status;
 
   StudentEnrollment({
+    this.oldId,
     this.registerType,
     required this.schoolInepIdFk,
+    this.studentInepId,
     required this.studentFk,
-    required this.oldId,
-    this.rgNumber,
-    required this.rgNumberEdcensoOrganIdEmitterFk,
-    required this.rgNumberEdcensoUfFk,
-    this.rgNumberExpedictionDate,
-    this.civilCertification,
-    this.civilCertificationType,
-    this.civilCertificationTermNumber,
-    this.civilCertificationSheet,
-    this.civilCertificationBook,
-    this.civilCertificationDate,
-    required this.notaryOfficeUfFk,
-    required this.notaryOfficeCityFk,
-    this.edcensoNotaryOfficeFk,
-    this.civilRegisterEnrollmentNumber,
-    this.cpf,
-    this.foreignDocumentOrPassport,
-    this.nis,
-    required this.residenceZone,
-    this.diffLocation,
-    this.cep,
-    this.address,
-    this.number,
-    this.complement,
-    this.neighborhood,
-    required this.edcensoUfFk,
-    required this.edcensoCityFk,
-    this.receivedCc,
-    this.receivedAddress,
-    this.receivedPhoto,
-    this.receivedNis,
-    this.receivedHistory,
-    this.receivedResponsableRg,
-    this.receivedResponsableCpf,
-    this.cns,
+    this.classroomInepId,
+    required this.classroomFk,
+    this.enrollmentId,
+    this.unifiedClass,
+    this.edcensoStageVsModalityFk,
+    this.anotherScholarizationPlace,
+    this.multi,
+    this.aeeCognitiveFunctions,
+    this.aeeAutonomousLife,
+    this.aeeCurriculumEnrichment,
+    this.aeeAccessibleTeaching,
+    this.aeeLibras,
+    this.aeePortuguese,
+    this.aeeSoroban,
+    this.aeeBraille,
+    this.aeeMobilityTechniques,
+    this.aeeCaa,
+    this.aeeOpticalNonoptical,
+    this.publicTransport,
+    this.transportResponsableGovernment,
+    this.vehicleTypeVan,
+    this.vehicleTypeMicrobus,
+    this.vehicleTypeBus,
+    this.vehicleTypeBike,
+    this.vehicleTypeAnimalVehicle,
+    this.vehicleTypeOtherVehicle,
+    this.vehicleTypeWaterwayBoat5,
+    this.vehicleTypeWaterwayBoat515,
+    this.vehicleTypeWaterwayBoat1535,
+    this.vehicleTypeWaterwayBoat35,
+    this.vehicleTypeMetroOrTrain,
+    this.studentEntryForm,
     this.hash,
-    this.justiceRestriction,
+    this.schoolAdmissionDate,
+    this.currentStageSituation,
+    this.previousStageSituation,
+    this.admissionType,
+    this.hashClassroom,
+    this.hashStudent,
+    this.status,
   });
 }

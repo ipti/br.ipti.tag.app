@@ -59,12 +59,13 @@ class EnrollmentPersonalState extends Equatable {
 class EmptyEnrollmentPersonalState extends EnrollmentPersonalState {
   const EmptyEnrollmentPersonalState()
       : super(
-            name: "",
-            birthday: "",
-            colorRace: 0,
-            deficiency: false,
-            filiation: 0,
-            foodRestrictions: "",
-            nationality: 0,
-            sex: 0);
+          name: "",
+          birthday: "",
+          colorRace: 1,
+          deficiency: false,
+          filiation: 1,
+          foodRestrictions: "",
+          nationality: 1,
+          sex: 1,
+        );
 }

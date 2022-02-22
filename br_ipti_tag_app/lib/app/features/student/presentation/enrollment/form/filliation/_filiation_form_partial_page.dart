@@ -69,11 +69,6 @@ class FiliationFormPageState extends State<FiliationFormPage> {
           validator: requiredValidator,
         );
 
-    const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
-
-    Widget withPadding(Widget widget) =>
-        Padding(padding: padding, child: widget);
-
     return BlocBuilder<EnrollmentFiliationBloc, EnrollmentFiliationState>(
         bloc: controller,
         builder: (context, state) {
@@ -223,7 +218,7 @@ class FiliationFormPageState extends State<FiliationFormPage> {
                         }
                       },
                     ),
-                  ].map((w) => withPadding(w)).toList(),
+                  ],
                 ),
               ),
             ),

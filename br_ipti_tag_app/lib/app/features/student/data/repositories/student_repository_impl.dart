@@ -12,9 +12,10 @@ class StudentRepositoryImpl implements StudentRepository {
   final StudentApiToEntityMapper _apiToEntity;
 
   @override
-  Future<Either<Exception, List<Student>>> listAll() async {
+  Future<Either<Exception, List<Student>>> listAll(
+      {required String schoolId}) async {
     try {
-      final results = await _studentDataSource.listAll();
+      final results = await _studentDataSource.listAll(schoolId: schoolId);
 
       final mappedResults = results.map((e) => _apiToEntity(e)).toList();
 
@@ -25,9 +26,12 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Exception, Student>> getById(int id) async {
+  Future<Either<Exception, Student>> getById(
+    int id, {
+    required String schoolId,
+  }) async {
     try {
-      final result = await _studentDataSource.getById(id);
+      final result = await _studentDataSource.getById(id, schoolId: schoolId);
       final mappedResult = _apiToEntity(result);
       return Right(mappedResult);
     } catch (e) {

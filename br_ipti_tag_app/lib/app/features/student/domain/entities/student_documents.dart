@@ -1,9 +1,9 @@
 class StudentDocuments {
   String? registerType;
-  String? schoolInepIdFk;
-  String? studentFk;
+  String schoolInepIdFk;
+  String studentFk;
   int? oldId;
-  String? rgNumber;
+  String rgNumber;
   String? rgNumberEdcensoOrganIdEmitterFk;
   String? rgNumberEdcensoUfFk;
   String? rgNumberExpedictionDate;
@@ -30,22 +30,22 @@ class StudentDocuments {
   String? cns;
   int? hash;
   String? justiceRestriction;
-  int? residenceZone;
+  int residenceZone;
   int? diffLocation;
   String? cep;
   String? address;
   String? number;
   String? complement;
   String? neighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
+  String edcensoUfFk;
+  String edcensoCityFk;
 
   StudentDocuments({
     this.registerType,
-    this.schoolInepIdFk,
-    this.studentFk,
+    required this.schoolInepIdFk,
+    required this.studentFk,
     this.oldId,
-    this.rgNumber,
+    required this.rgNumber,
     this.rgNumberEdcensoOrganIdEmitterFk,
     this.rgNumberEdcensoUfFk,
     this.rgNumberExpedictionDate,
@@ -72,14 +72,14 @@ class StudentDocuments {
     this.cns,
     this.hash,
     this.justiceRestriction,
-    this.residenceZone,
+    this.residenceZone = 0,
     this.diffLocation,
     this.cep,
     this.address,
     this.number,
     this.complement,
     this.neighborhood,
-    this.edcensoUfFk,
-    this.edcensoCityFk,
+    required this.edcensoUfFk,
+    required this.edcensoCityFk,
   });
 }

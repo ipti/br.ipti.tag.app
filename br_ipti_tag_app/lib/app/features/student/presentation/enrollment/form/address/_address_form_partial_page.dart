@@ -49,7 +49,7 @@ class AddressFormPageState extends State<AddressFormPage> {
                     RowToColumn(
                       children: [
                         Flexible(
-                          flex: 4,
+                          flex: 3,
                           child: TagTextField(
                             label: "CEP",
                             hint: "Digite o CEP",
@@ -64,14 +64,12 @@ class AddressFormPageState extends State<AddressFormPage> {
                             hint: "Selecione a UF",
                             items: state.ufs,
                             onChanged: controller.setUf,
-                            value: state.edcensoUfFk == ""
-                                ? state.edcensoUfFk
-                                : state.ufs.entries.first.key,
+                            value: state.edcensoUfFk,
                             validator: requiredValidator,
                           ),
                         ),
                         Flexible(
-                          flex: 4,
+                          flex: 3,
                           child: TagDropdownField<String>(
                             label: 'Cidade',
                             hint: "Selecione a cidade",

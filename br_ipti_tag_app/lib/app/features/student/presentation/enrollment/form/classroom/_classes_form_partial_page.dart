@@ -5,7 +5,6 @@ import 'package:br_ipti_tag_app/app/features/student/domain/enums/stage_enum.dar
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/unified_class_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -27,18 +26,17 @@ class ClassesFormPageState extends State<ClassesFormPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    controller.fetchClassrooms();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
 
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
-
-    Widget selectClass(String? classId) => TagDropdownField(
-          label: 'Turma',
-          items: controller.classesItems,
-          value: classId,
-          onChanged: controller.setStudentClass,
-        );
 
     return BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
         bloc: controller,
@@ -55,14 +53,18 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                     children: [
                       Flexible(
                         child: TagDatePickerField(
-                          onChanged: (String value) => print(value),
                           label: "Data de ingresso na escola",
+                          hint: "__/__/____",
+                          value: state.schoolAdmissionDate,
+                          onChanged: controller.setSchoolAdmissionDate,
+                          inputType: TextInputType.number,
                         ),
                       ),
                       Flexible(
                         child: TagDropdownField<AdmissionType>(
-                          onChanged: (AdmissionType value) => print(value.name),
                           label: "Tipo de matrícula",
+                          value: state.studentEntryForm,
+                          onChanged: controller.setAdmissionType,
                           items: Map.fromEntries(
                             AdmissionType.values
                                 .map((e) => MapEntry(e, e.name)),
@@ -75,16 +77,18 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                     children: [
                       Flexible(
                         child: TagDropdownField<String>(
-                          onChanged: (String value) => print(value),
                           label: "Turma",
-                          items: controller.classesItems,
+                          value: state.classroomId,
+                          onChanged: controller.setStudentClass,
+                          items: Map.fromEntries(state.classrooms
+                              .map((e) => MapEntry(e.id, e.name))),
                         ),
                       ),
                       Flexible(
                         child: TagDropdownField<CurrentStageSituation>(
-                          onChanged: (CurrentStageSituation value) =>
-                              print(value.name),
                           label: "Situação na série/etapa atual",
+                          value: state.currentStageSituation,
+                          onChanged: controller.setCurrentStageSituation,
                           items: Map.fromEntries(
                             CurrentStageSituation.values
                                 .map((e) => MapEntry(e, e.name)),
@@ -97,8 +101,9 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                     children: [
                       Flexible(
                         child: TagDropdownField<UnifiedClass>(
-                          onChanged: (UnifiedClass value) => print(value.name),
                           label: "Turma Unificada",
+                          value: state.unifiedClass,
+                          onChanged: controller.setUnifiedClass,
                           items: Map.fromEntries(
                             UnifiedClass.values.map((e) => MapEntry(e, e.name)),
                           ),
@@ -106,9 +111,9 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                       ),
                       Flexible(
                         child: TagDropdownField<PreviousStageSituation>(
-                          onChanged: (PreviousStageSituation value) =>
-                              print(value.name),
                           label: "Situação no ano anterior",
+                          value: state.previousStageSituation,
+                          onChanged: controller.setPreviousStageSituation,
                           items: Map.fromEntries(
                             PreviousStageSituation.values
                                 .map((e) => MapEntry(e, e.name)),
@@ -121,8 +126,9 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                     children: [
                       Flexible(
                         child: TagDropdownField<Stage>(
-                          onChanged: (Stage value) => print(value.name),
                           label: "Etapa",
+                          value: state.stage,
+                          onChanged: controller.setStage,
                           items: Map.fromEntries(
                             Stage.values.map((e) => MapEntry(e, e.name)),
                           ),
@@ -134,12 +140,12 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   SubmitButtonsRow(
                     onSubmitAndGo: () {
                       if (_formKey.currentState!.validate()) {
-                        // controller.submitAddressForm();
+                        controller.submit();
                       }
                     },
                     onSubmitAndStay: () {
                       if (_formKey.currentState!.validate()) {
-                        // controller.submitPersonalForm();
+                        controller.submit();
                       }
                     },
                   ),

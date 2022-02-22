@@ -12,21 +12,23 @@ class StudentRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<List<StudentModel>> listAll() async {
-    final response = await _httpClient.requestListFrom(
-      route: GetStudentsEndPoint(),
+  Future<List<StudentModel>> listAll({required String schoolId}) async {
+    final response = await _httpClient.requestListPaginatedFrom(
+      route: GetStudentsEndPoint(schoolId: schoolId),
     );
 
-    final mappedList = response.data!
+    final data = response.data?.data ?? [];
+
+    final mappedList = data
         .map((e) => StudentModel.fromMap(e as Map<String, dynamic>))
         .toList();
 
     return mappedList;
   }
 
-  Future<StudentModel> getById(int id) async {
+  Future<StudentModel> getById(int id, {required String schoolId}) async {
     final response = await _httpClient.request(
-      route: GetStudentsEndPoint(id: id.toString()),
+      route: GetStudentsEndPoint(id: id.toString(), schoolId: schoolId),
     );
 
     final mappedValue = StudentModel.fromMap(response.data!);

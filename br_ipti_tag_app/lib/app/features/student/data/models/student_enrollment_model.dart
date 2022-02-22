@@ -4,275 +4,358 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.
 
 class StudentEnrollmentModel extends StudentEnrollment {
   StudentEnrollmentModel({
+    int? oldId,
     String? registerType,
     required String schoolInepIdFk,
+    String? studentInepId,
     required String studentFk,
-    required int oldId,
-    int? rgNumber,
-    required String rgNumberEdcensoOrganIdEmitterFk,
-    required String rgNumberEdcensoUfFk,
-    String? rgNumberExpedictionDate,
-    int? civilCertification,
-    int? civilCertificationType,
-    String? civilCertificationTermNumber,
-    String? civilCertificationSheet,
-    String? civilCertificationBook,
-    String? civilCertificationDate,
-    required String notaryOfficeUfFk,
-    required String notaryOfficeCityFk,
-    String? edcensoNotaryOfficeFk,
-    String? civilRegisterEnrollmentNumber,
-    String? cpf,
-    String? foreignDocumentOrPassport,
-    String? nis,
-    required int residenceZone,
-    int? diffLocation,
-    String? cep,
-    String? address,
-    String? number,
-    String? complement,
-    String? neighborhood,
-    required String edcensoUfFk,
-    required String edcensoCityFk,
-    bool? receivedCc,
-    bool? receivedAddress,
-    bool? receivedPhoto,
-    bool? receivedNis,
-    bool? receivedHistory,
-    bool? receivedResponsableRg,
-    bool? receivedResponsableCpf,
-    String? cns,
+    String? classroomInepId,
+    required String classroomFk,
+    String? enrollmentId,
+    int? unifiedClass,
+    String? edcensoStageVsModalityFk,
+    int? anotherScholarizationPlace,
+    int? multi,
+    bool? aeeCognitiveFunctions,
+    bool? aeeAutonomousLife,
+    bool? aeeCurriculumEnrichment,
+    bool? aeeAccessibleTeaching,
+    bool? aeeLibras,
+    bool? aeePortuguese,
+    bool? aeeSoroban,
+    bool? aeeBraille,
+    bool? aeeMobilityTechniques,
+    bool? aeeCaa,
+    bool? aeeOpticalNonoptical,
+    bool? publicTransport,
+    int? transportResponsableGovernment,
+    bool? vehicleTypeVan,
+    bool? vehicleTypeMicrobus,
+    bool? vehicleTypeBus,
+    bool? vehicleTypeBike,
+    bool? vehicleTypeAnimalVehicle,
+    bool? vehicleTypeOtherVehicle,
+    bool? vehicleTypeWaterwayBoat5,
+    bool? vehicleTypeWaterwayBoat515,
+    bool? vehicleTypeWaterwayBoat1535,
+    bool? vehicleTypeWaterwayBoat35,
+    bool? vehicleTypeMetroOrTrain,
+    int? studentEntryForm,
     int? hash,
-    bool? justiceRestriction,
+    String? schoolAdmissionDate,
+    int? currentStageSituation,
+    int? previousStageSituation,
+    int? admissionType,
+    int? hashClassroom,
+    int? hashStudent,
+    int? status,
   }) : super(
+          oldId: oldId,
           registerType: registerType,
           schoolInepIdFk: schoolInepIdFk,
+          studentInepId: studentInepId,
           studentFk: studentFk,
-          oldId: oldId,
-          rgNumber: rgNumber,
-          rgNumberEdcensoOrganIdEmitterFk: rgNumberEdcensoOrganIdEmitterFk,
-          rgNumberEdcensoUfFk: rgNumberEdcensoUfFk,
-          rgNumberExpedictionDate: rgNumberExpedictionDate,
-          civilCertification: civilCertification,
-          civilCertificationType: civilCertificationType,
-          civilCertificationTermNumber: civilCertificationTermNumber,
-          civilCertificationSheet: civilCertificationSheet,
-          civilCertificationBook: civilCertificationBook,
-          civilCertificationDate: civilCertificationDate,
-          notaryOfficeUfFk: notaryOfficeUfFk,
-          notaryOfficeCityFk: notaryOfficeCityFk,
-          edcensoNotaryOfficeFk: edcensoNotaryOfficeFk,
-          civilRegisterEnrollmentNumber: civilRegisterEnrollmentNumber,
-          cpf: cpf,
-          foreignDocumentOrPassport: foreignDocumentOrPassport,
-          nis: nis,
-          residenceZone: residenceZone,
-          diffLocation: diffLocation,
-          cep: cep,
-          address: address,
-          number: number,
-          complement: complement,
-          neighborhood: neighborhood,
-          edcensoUfFk: edcensoUfFk,
-          edcensoCityFk: edcensoCityFk,
-          receivedCc: receivedCc,
-          receivedAddress: receivedAddress,
-          receivedPhoto: receivedPhoto,
-          receivedNis: receivedNis,
-          receivedHistory: receivedHistory,
-          receivedResponsableRg: receivedResponsableRg,
-          receivedResponsableCpf: receivedResponsableCpf,
-          cns: cns,
+          classroomInepId: classroomInepId,
+          classroomFk: classroomFk,
+          enrollmentId: enrollmentId,
+          unifiedClass: unifiedClass,
+          edcensoStageVsModalityFk: edcensoStageVsModalityFk,
+          anotherScholarizationPlace: anotherScholarizationPlace,
+          multi: multi,
+          aeeCognitiveFunctions: aeeCognitiveFunctions,
+          aeeAutonomousLife: aeeAutonomousLife,
+          aeeCurriculumEnrichment: aeeCurriculumEnrichment,
+          aeeAccessibleTeaching: aeeAccessibleTeaching,
+          aeeLibras: aeeLibras,
+          aeePortuguese: aeePortuguese,
+          aeeSoroban: aeeSoroban,
+          aeeBraille: aeeBraille,
+          aeeMobilityTechniques: aeeMobilityTechniques,
+          aeeCaa: aeeCaa,
+          aeeOpticalNonoptical: aeeOpticalNonoptical,
+          publicTransport: publicTransport,
+          transportResponsableGovernment: transportResponsableGovernment,
+          vehicleTypeVan: vehicleTypeVan,
+          vehicleTypeMicrobus: vehicleTypeMicrobus,
+          vehicleTypeBus: vehicleTypeBus,
+          vehicleTypeBike: vehicleTypeBike,
+          vehicleTypeAnimalVehicle: vehicleTypeAnimalVehicle,
+          vehicleTypeOtherVehicle: vehicleTypeOtherVehicle,
+          vehicleTypeWaterwayBoat5: vehicleTypeWaterwayBoat5,
+          vehicleTypeWaterwayBoat515: vehicleTypeWaterwayBoat515,
+          vehicleTypeWaterwayBoat1535: vehicleTypeWaterwayBoat1535,
+          vehicleTypeWaterwayBoat35: vehicleTypeWaterwayBoat35,
+          vehicleTypeMetroOrTrain: vehicleTypeMetroOrTrain,
+          studentEntryForm: studentEntryForm,
           hash: hash,
-          justiceRestriction: justiceRestriction,
+          schoolAdmissionDate: schoolAdmissionDate,
+          currentStageSituation: currentStageSituation,
+          previousStageSituation: previousStageSituation,
+          admissionType: admissionType,
+          hashClassroom: hashClassroom,
+          hashStudent: hashStudent,
+          status: status,
         );
-
-  StudentEnrollmentModel copyWith({
+  StudentEnrollment copyWith({
+    int? oldId,
     String? registerType,
     String? schoolInepIdFk,
+    String? studentInepId,
     String? studentFk,
-    int? oldId,
-    int? rgNumber,
-    String? rgNumberEdcensoOrganIdEmitterFk,
-    String? rgNumberEdcensoUfFk,
-    String? rgNumberExpedictionDate,
-    int? civilCertification,
-    int? civilCertificationType,
-    String? civilCertificationTermNumber,
-    String? civilCertificationSheet,
-    String? civilCertificationBook,
-    String? civilCertificationDate,
-    String? notaryOfficeUfFk,
-    String? notaryOfficeCityFk,
-    String? edcensoNotaryOfficeFk,
-    String? civilRegisterEnrollmentNumber,
-    String? cpf,
-    String? foreignDocumentOrPassport,
-    String? nis,
-    int? residenceZone,
-    int? diffLocation,
-    String? cep,
-    String? address,
-    String? number,
-    String? complement,
-    String? neighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    bool? receivedCc,
-    bool? receivedAddress,
-    bool? receivedPhoto,
-    bool? receivedNis,
-    bool? receivedHistory,
-    bool? receivedResponsableRg,
-    bool? receivedResponsableCpf,
-    String? cns,
+    String? classroomInepId,
+    String? classroomFk,
+    String? enrollmentId,
+    int? unifiedClass,
+    String? edcensoStageVsModalityFk,
+    int? anotherScholarizationPlace,
+    int? multi,
+    bool? aeeCognitiveFunctions,
+    bool? aeeAutonomousLife,
+    bool? aeeCurriculumEnrichment,
+    bool? aeeAccessibleTeaching,
+    bool? aeeLibras,
+    bool? aeePortuguese,
+    bool? aeeSoroban,
+    bool? aeeBraille,
+    bool? aeeMobilityTechniques,
+    bool? aeeCaa,
+    bool? aeeOpticalNonoptical,
+    bool? publicTransport,
+    int? transportResponsableGovernment,
+    bool? vehicleTypeVan,
+    bool? vehicleTypeMicrobus,
+    bool? vehicleTypeBus,
+    bool? vehicleTypeBike,
+    bool? vehicleTypeAnimalVehicle,
+    bool? vehicleTypeOtherVehicle,
+    bool? vehicleTypeWaterwayBoat5,
+    bool? vehicleTypeWaterwayBoat515,
+    bool? vehicleTypeWaterwayBoat1535,
+    bool? vehicleTypeWaterwayBoat35,
+    bool? vehicleTypeMetroOrTrain,
+    int? studentEntryForm,
     int? hash,
-    bool? justiceRestriction,
+    String? schoolAdmissionDate,
+    int? currentStageSituation,
+    int? previousStageSituation,
+    int? admissionType,
+    int? hashClassroom,
+    int? hashStudent,
+    int? status,
   }) {
-    return StudentEnrollmentModel(
+    return StudentEnrollment(
+      oldId: oldId ?? this.oldId,
       registerType: registerType ?? this.registerType,
       schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
+      studentInepId: studentInepId ?? this.studentInepId,
       studentFk: studentFk ?? this.studentFk,
-      oldId: oldId ?? this.oldId,
-      rgNumber: rgNumber ?? this.rgNumber,
-      rgNumberEdcensoOrganIdEmitterFk: rgNumberEdcensoOrganIdEmitterFk ??
-          this.rgNumberEdcensoOrganIdEmitterFk,
-      rgNumberEdcensoUfFk: rgNumberEdcensoUfFk ?? this.rgNumberEdcensoUfFk,
-      rgNumberExpedictionDate:
-          rgNumberExpedictionDate ?? this.rgNumberExpedictionDate,
-      civilCertification: civilCertification ?? this.civilCertification,
-      civilCertificationType:
-          civilCertificationType ?? this.civilCertificationType,
-      civilCertificationTermNumber:
-          civilCertificationTermNumber ?? this.civilCertificationTermNumber,
-      civilCertificationSheet:
-          civilCertificationSheet ?? this.civilCertificationSheet,
-      civilCertificationBook:
-          civilCertificationBook ?? this.civilCertificationBook,
-      civilCertificationDate:
-          civilCertificationDate ?? this.civilCertificationDate,
-      notaryOfficeUfFk: notaryOfficeUfFk ?? this.notaryOfficeUfFk,
-      notaryOfficeCityFk: notaryOfficeCityFk ?? this.notaryOfficeCityFk,
-      edcensoNotaryOfficeFk:
-          edcensoNotaryOfficeFk ?? this.edcensoNotaryOfficeFk,
-      civilRegisterEnrollmentNumber:
-          civilRegisterEnrollmentNumber ?? this.civilRegisterEnrollmentNumber,
-      cpf: cpf ?? this.cpf,
-      foreignDocumentOrPassport:
-          foreignDocumentOrPassport ?? this.foreignDocumentOrPassport,
-      nis: nis ?? this.nis,
-      residenceZone: residenceZone ?? this.residenceZone,
-      diffLocation: diffLocation ?? this.diffLocation,
-      cep: cep ?? this.cep,
-      address: address ?? this.address,
-      number: number ?? this.number,
-      complement: complement ?? this.complement,
-      neighborhood: neighborhood ?? this.neighborhood,
-      edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
-      edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
-      receivedCc: receivedCc ?? this.receivedCc,
-      receivedAddress: receivedAddress ?? this.receivedAddress,
-      receivedPhoto: receivedPhoto ?? this.receivedPhoto,
-      receivedNis: receivedNis ?? this.receivedNis,
-      receivedHistory: receivedHistory ?? this.receivedHistory,
-      receivedResponsableRg:
-          receivedResponsableRg ?? this.receivedResponsableRg,
-      receivedResponsableCpf:
-          receivedResponsableCpf ?? this.receivedResponsableCpf,
-      cns: cns ?? this.cns,
+      classroomInepId: classroomInepId ?? this.classroomInepId,
+      classroomFk: classroomFk ?? this.classroomFk,
+      enrollmentId: enrollmentId ?? this.enrollmentId,
+      unifiedClass: unifiedClass ?? this.unifiedClass,
+      edcensoStageVsModalityFk:
+          edcensoStageVsModalityFk ?? this.edcensoStageVsModalityFk,
+      anotherScholarizationPlace:
+          anotherScholarizationPlace ?? this.anotherScholarizationPlace,
+      multi: multi ?? this.multi,
+      aeeCognitiveFunctions:
+          aeeCognitiveFunctions ?? this.aeeCognitiveFunctions,
+      aeeAutonomousLife: aeeAutonomousLife ?? this.aeeAutonomousLife,
+      aeeCurriculumEnrichment:
+          aeeCurriculumEnrichment ?? this.aeeCurriculumEnrichment,
+      aeeAccessibleTeaching:
+          aeeAccessibleTeaching ?? this.aeeAccessibleTeaching,
+      aeeLibras: aeeLibras ?? this.aeeLibras,
+      aeePortuguese: aeePortuguese ?? this.aeePortuguese,
+      aeeSoroban: aeeSoroban ?? this.aeeSoroban,
+      aeeBraille: aeeBraille ?? this.aeeBraille,
+      aeeMobilityTechniques:
+          aeeMobilityTechniques ?? this.aeeMobilityTechniques,
+      aeeCaa: aeeCaa ?? this.aeeCaa,
+      aeeOpticalNonoptical: aeeOpticalNonoptical ?? this.aeeOpticalNonoptical,
+      publicTransport: publicTransport ?? this.publicTransport,
+      transportResponsableGovernment:
+          transportResponsableGovernment ?? this.transportResponsableGovernment,
+      vehicleTypeVan: vehicleTypeVan ?? this.vehicleTypeVan,
+      vehicleTypeMicrobus: vehicleTypeMicrobus ?? this.vehicleTypeMicrobus,
+      vehicleTypeBus: vehicleTypeBus ?? this.vehicleTypeBus,
+      vehicleTypeBike: vehicleTypeBike ?? this.vehicleTypeBike,
+      vehicleTypeAnimalVehicle:
+          vehicleTypeAnimalVehicle ?? this.vehicleTypeAnimalVehicle,
+      vehicleTypeOtherVehicle:
+          vehicleTypeOtherVehicle ?? this.vehicleTypeOtherVehicle,
+      vehicleTypeWaterwayBoat5:
+          vehicleTypeWaterwayBoat5 ?? this.vehicleTypeWaterwayBoat5,
+      vehicleTypeWaterwayBoat515:
+          vehicleTypeWaterwayBoat515 ?? this.vehicleTypeWaterwayBoat515,
+      vehicleTypeWaterwayBoat1535:
+          vehicleTypeWaterwayBoat1535 ?? this.vehicleTypeWaterwayBoat1535,
+      vehicleTypeWaterwayBoat35:
+          vehicleTypeWaterwayBoat35 ?? this.vehicleTypeWaterwayBoat35,
+      vehicleTypeMetroOrTrain:
+          vehicleTypeMetroOrTrain ?? this.vehicleTypeMetroOrTrain,
+      studentEntryForm: studentEntryForm ?? this.studentEntryForm,
       hash: hash ?? this.hash,
-      justiceRestriction: justiceRestriction ?? this.justiceRestriction,
+      schoolAdmissionDate: schoolAdmissionDate ?? this.schoolAdmissionDate,
+      currentStageSituation:
+          currentStageSituation ?? this.currentStageSituation,
+      previousStageSituation:
+          previousStageSituation ?? this.previousStageSituation,
+      admissionType: admissionType ?? this.admissionType,
+      hashClassroom: hashClassroom ?? this.hashClassroom,
+      hashStudent: hashStudent ?? this.hashStudent,
+      status: status ?? this.status,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'old_id': oldId,
       'register_type': registerType,
       'school_inep_id_fk': schoolInepIdFk,
+      'student_inep_id': studentInepId,
       'student_fk': studentFk,
-      'old_id': oldId,
-      'rg_number': rgNumber,
-      'rg_number_edcenso_organ_id_emitter_fk': rgNumberEdcensoOrganIdEmitterFk,
-      'rg_number_edcenso_uf_fk': rgNumberEdcensoUfFk,
-      'rg_number_expediction_date': rgNumberExpedictionDate,
-      'civil_certification': civilCertification,
-      'civil_certification_type': civilCertificationType,
-      'civil_certification_term_number': civilCertificationTermNumber,
-      'civil_certification_sheet': civilCertificationSheet,
-      'civil_certification_book': civilCertificationBook,
-      'civil_certification_date': civilCertificationDate,
-      'notary_office_uf_fk': notaryOfficeUfFk,
-      'notary_office_city_fk': notaryOfficeCityFk,
-      'edcenso_notary_office_fk': edcensoNotaryOfficeFk,
-      'civil_register_enrollment_number': civilRegisterEnrollmentNumber,
-      'cpf': cpf,
-      'foreign_document_or_passport': foreignDocumentOrPassport,
-      'nis': nis,
-      'residence_zone': residenceZone,
-      'diff_location': diffLocation,
-      'cep': cep,
-      'address': address,
-      'number': number,
-      'complement': complement,
-      'neighborhood': neighborhood,
-      'edcenso_uf_fk': edcensoUfFk,
-      'edcenso_city_fk': edcensoCityFk,
-      'received_cc': receivedCc,
-      'received_address': receivedAddress,
-      'received_photo': receivedPhoto,
-      'received_nis': receivedNis,
-      'received_history': receivedHistory,
-      'received_responsable_rg': receivedResponsableRg,
-      'received_responsable_cpf': receivedResponsableCpf,
-      'cns': cns,
+      'classroom_inep_id': classroomInepId,
+      'classroom_fk': classroomFk,
+      'enrollment_id': enrollmentId,
+      'unified_class': unifiedClass,
+      'edcenso_stage_vs_modality_fk': edcensoStageVsModalityFk,
+      'another_scholarization_place': anotherScholarizationPlace,
+      'multi': multi,
+      'aee_cognitive_functions': aeeCognitiveFunctions,
+      'aee_autonomous_life': aeeAutonomousLife,
+      'aee_curriculum_enrichment': aeeCurriculumEnrichment,
+      'aee_accessible_teaching': aeeAccessibleTeaching,
+      'aee_libras': aeeLibras,
+      'aee_portuguese': aeePortuguese,
+      'aee_soroban': aeeSoroban,
+      'aee_braille': aeeBraille,
+      'aee_mobility_techniques': aeeMobilityTechniques,
+      'aee_caa': aeeCaa,
+      'aee_optical_nonoptical': aeeOpticalNonoptical,
+      'public_transport': publicTransport,
+      'transport_responsable_government': transportResponsableGovernment,
+      'vehicle_type_van': vehicleTypeVan,
+      'vehicle_type_microbus': vehicleTypeMicrobus,
+      'vehicle_type_bus': vehicleTypeBus,
+      'vehicle_type_bike': vehicleTypeBike,
+      'vehicle_type_animal_vehicle': vehicleTypeAnimalVehicle,
+      'vehicle_type_other_vehicle': vehicleTypeOtherVehicle,
+      'vehicle_type_waterway_boat5': vehicleTypeWaterwayBoat5,
+      'vehicle_type_waterway_boat515': vehicleTypeWaterwayBoat515,
+      'vehicle_type_waterway_boat1535': vehicleTypeWaterwayBoat1535,
+      'vehicle_type_waterway_boat35': vehicleTypeWaterwayBoat35,
+      'vehicle_type_metro_or_train': vehicleTypeMetroOrTrain,
+      'student_entry_form': studentEntryForm,
       'hash': hash,
-      'justice_restriction': justiceRestriction,
+      'school_admission_date': schoolAdmissionDate,
+      'current_stage_situation': currentStageSituation,
+      'previous_stage_situation': previousStageSituation,
+      'admission_type': admissionType,
+      'hash_classroom': hashClassroom,
+      'hash_student': hashStudent,
+      'status': status,
     };
+  }
+
+  factory StudentEnrollmentModel.fromEntity(StudentEnrollment entity) {
+    return StudentEnrollmentModel(
+      oldId: entity.oldId,
+      registerType: entity.registerType,
+      schoolInepIdFk: entity.schoolInepIdFk,
+      studentInepId: entity.studentInepId,
+      studentFk: entity.studentFk,
+      classroomInepId: entity.classroomInepId,
+      classroomFk: entity.classroomFk,
+      enrollmentId: entity.enrollmentId,
+      unifiedClass: entity.unifiedClass,
+      edcensoStageVsModalityFk: entity.edcensoStageVsModalityFk,
+      anotherScholarizationPlace: entity.anotherScholarizationPlace,
+      multi: entity.multi,
+      aeeCognitiveFunctions: entity.aeeCognitiveFunctions,
+      aeeAutonomousLife: entity.aeeAutonomousLife,
+      aeeCurriculumEnrichment: entity.aeeCurriculumEnrichment,
+      aeeAccessibleTeaching: entity.aeeAccessibleTeaching,
+      aeeLibras: entity.aeeLibras,
+      aeePortuguese: entity.aeePortuguese,
+      aeeSoroban: entity.aeeSoroban,
+      aeeBraille: entity.aeeBraille,
+      aeeMobilityTechniques: entity.aeeMobilityTechniques,
+      aeeCaa: entity.aeeCaa,
+      aeeOpticalNonoptical: entity.aeeOpticalNonoptical,
+      publicTransport: entity.publicTransport,
+      transportResponsableGovernment: entity.transportResponsableGovernment,
+      vehicleTypeVan: entity.vehicleTypeVan,
+      vehicleTypeMicrobus: entity.vehicleTypeMicrobus,
+      vehicleTypeBus: entity.vehicleTypeBus,
+      vehicleTypeBike: entity.vehicleTypeBike,
+      vehicleTypeAnimalVehicle: entity.vehicleTypeAnimalVehicle,
+      vehicleTypeOtherVehicle: entity.vehicleTypeOtherVehicle,
+      vehicleTypeWaterwayBoat5: entity.vehicleTypeWaterwayBoat5,
+      vehicleTypeWaterwayBoat515: entity.vehicleTypeWaterwayBoat515,
+      vehicleTypeWaterwayBoat1535: entity.vehicleTypeWaterwayBoat1535,
+      vehicleTypeWaterwayBoat35: entity.vehicleTypeWaterwayBoat35,
+      vehicleTypeMetroOrTrain: entity.vehicleTypeMetroOrTrain,
+      studentEntryForm: entity.studentEntryForm,
+      hash: entity.hash,
+      schoolAdmissionDate: entity.schoolAdmissionDate,
+      currentStageSituation: entity.currentStageSituation,
+      previousStageSituation: entity.previousStageSituation,
+      admissionType: entity.admissionType,
+      hashClassroom: entity.hashClassroom,
+      hashStudent: entity.hashStudent,
+      status: entity.status,
+    );
   }
 
   factory StudentEnrollmentModel.fromMap(Map<String, dynamic> map) {
     return StudentEnrollmentModel(
-      registerType: map['register_type'],
+      oldId: map['old_id']?.toInt(),
+      registerType: map['register_type'] ?? '',
       schoolInepIdFk: map['school_inep_id_fk'] ?? '',
+      studentInepId: map['student_inep_id'],
       studentFk: map['student_fk'] ?? '',
-      oldId: map['old_id']?.toInt() ?? 0,
-      rgNumber: map['rg_number']?.toInt(),
-      rgNumberEdcensoOrganIdEmitterFk:
-          map['rg_number_edcenso_organ_id_emitter_fk'] ?? '',
-      rgNumberEdcensoUfFk: map['rg_number_edcenso_uf_fk'] ?? '',
-      rgNumberExpedictionDate: map['rg_number_expediction_date'],
-      civilCertification: map['civil_certification']?.toInt(),
-      civilCertificationType: map['civil_certification_type']?.toInt(),
-      civilCertificationTermNumber: map['civil_certification_term_number'],
-      civilCertificationSheet: map['civil_certification_sheet'],
-      civilCertificationBook: map['civil_certification_book'],
-      civilCertificationDate: map['civil_certification_date'],
-      notaryOfficeUfFk: map['notary_office_uf_fk'] ?? '',
-      notaryOfficeCityFk: map['notary_office_city_fk'] ?? '',
-      edcensoNotaryOfficeFk: map['edcenso_notary_office_fk'],
-      civilRegisterEnrollmentNumber: map['civil_register_enrollment_number'],
-      cpf: map['cpf'],
-      foreignDocumentOrPassport: map['foreign_document_or_passport'],
-      nis: map['nis'],
-      residenceZone: map['residence_zone']?.toInt() ?? 0,
-      diffLocation: map['diff_location']?.toInt(),
-      cep: map['cep'],
-      address: map['address'],
-      number: map['number'],
-      complement: map['complement'],
-      neighborhood: map['neighborhood'],
-      edcensoUfFk: map['edcenso_uf_fk'] ?? '',
-      edcensoCityFk: map['edcenso_city_fk'] ?? '',
-      receivedCc: map['received_cc'],
-      receivedAddress: map['received_address'],
-      receivedPhoto: map['received_photo'],
-      receivedNis: map['received_nis'],
-      receivedHistory: map['received_history'],
-      receivedResponsableRg: map['received_responsable_rg'],
-      receivedResponsableCpf: map['received_responsable_cpf'],
-      cns: map['cns'],
+      classroomInepId: map['classroom_inep_id'],
+      classroomFk: map['classroom_fk'] ?? '',
+      enrollmentId: map['enrollment_id'],
+      unifiedClass: map['unified_class']?.toInt(),
+      edcensoStageVsModalityFk: map['edcenso_stage_vs_modality_fk'],
+      anotherScholarizationPlace: map['another_scholarization_place']?.toInt(),
+      multi: map['multi']?.toInt(),
+      aeeCognitiveFunctions: map['aee_cognitive_functions'],
+      aeeAutonomousLife: map['aee_autonomous_life'],
+      aeeCurriculumEnrichment: map['aee_curriculum_enrichment'],
+      aeeAccessibleTeaching: map['aee_accessible_teaching'],
+      aeeLibras: map['aee_libras'],
+      aeePortuguese: map['aee_portuguese'],
+      aeeSoroban: map['aee_soroban'],
+      aeeBraille: map['aee_braille'],
+      aeeMobilityTechniques: map['aee_mobility_techniques'],
+      aeeCaa: map['aee_caa'],
+      aeeOpticalNonoptical: map['aee_optical_nonoptical'],
+      publicTransport: map['public_transport'],
+      transportResponsableGovernment:
+          map['transport_responsable_government']?.toInt(),
+      vehicleTypeVan: map['vehicle_type_van'],
+      vehicleTypeMicrobus: map['vehicle_type_microbus'],
+      vehicleTypeBus: map['vehicle_type_bus'],
+      vehicleTypeBike: map['vehicle_type_bike'],
+      vehicleTypeAnimalVehicle: map['vehicle_type_animal_vehicle'],
+      vehicleTypeOtherVehicle: map['vehicle_type_other_vehicle'],
+      vehicleTypeWaterwayBoat5: map['vehicle_type_waterway_boat5'],
+      vehicleTypeWaterwayBoat515: map['vehicle_type_waterway_boat515'],
+      vehicleTypeWaterwayBoat1535: map['vehicle_type_waterway_boat1535'],
+      vehicleTypeWaterwayBoat35: map['vehicle_type_waterway_boat35'],
+      vehicleTypeMetroOrTrain: map['vehicle_type_metro_or_train'],
+      studentEntryForm: map['student_entry_form']?.toInt(),
       hash: map['hash']?.toInt(),
-      justiceRestriction: map['justice_restriction'],
+      schoolAdmissionDate: map['school_admission_date'],
+      currentStageSituation: map['current_stage_situation']?.toInt(),
+      previousStageSituation: map['previous_stage_situation']?.toInt(),
+      admissionType: map['admission_type']?.toInt(),
+      hashClassroom: map['hash_classroom']?.toInt(),
+      hashStudent: map['hash_student']?.toInt(),
+      status: map['status']?.toInt(),
     );
   }
 
@@ -283,98 +366,108 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   @override
   String toString() {
-    return '''StudentEnrollmentModel(registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
+    return '''StudentEnrollment(oldId: $oldId, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentInepId: $studentInepId, studentFk: $studentFk, classroomInepId: $classroomInepId, classroomFk: $classroomFk, enrollmentId: $enrollmentId, unifiedClass: $unifiedClass, edcensoStageVsModalityFk: $edcensoStageVsModalityFk, anotherScholarizationPlace: $anotherScholarizationPlace, multi: $multi, aeeCognitiveFunctions: $aeeCognitiveFunctions, aeeAutonomousLife: $aeeAutonomousLife, aeeCurriculumEnrichment: $aeeCurriculumEnrichment, aeeAccessibleTeaching: $aeeAccessibleTeaching, aeeLibras: $aeeLibras, aeePortuguese: $aeePortuguese, aeeSoroban: $aeeSoroban, aeeBraille: $aeeBraille, aeeMobilityTechniques: $aeeMobilityTechniques, aeeCaa: $aeeCaa, aeeOpticalNonoptical: $aeeOpticalNonoptical, publicTransport: $publicTransport, transportResponsableGovernment: $transportResponsableGovernment, vehicleTypeVan: $vehicleTypeVan, vehicleTypeMicrobus: $vehicleTypeMicrobus, vehicleTypeBus: $vehicleTypeBus, vehicleTypeBike: $vehicleTypeBike, vehicleTypeAnimalVehicle: $vehicleTypeAnimalVehicle, vehicleTypeOtherVehicle: $vehicleTypeOtherVehicle, vehicleTypeWaterwayBoat5: $vehicleTypeWaterwayBoat5, vehicleTypeWaterwayBoat515: $vehicleTypeWaterwayBoat515, vehicleTypeWaterwayBoat1535: $vehicleTypeWaterwayBoat1535, vehicleTypeWaterwayBoat35: $vehicleTypeWaterwayBoat35, vehicleTypeMetroOrTrain: $vehicleTypeMetroOrTrain, studentEntryForm: $studentEntryForm, hash: $hash, schoolAdmissionDate: $schoolAdmissionDate, currentStageSituation: $currentStageSituation, previousStageSituation: $previousStageSituation, admissionType: $admissionType, hashClassroom: $hashClassroom, hashStudent: $hashStudent, status: $status)''';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is StudentEnrollmentModel &&
+    return other is StudentEnrollment &&
+        other.oldId == oldId &&
         other.registerType == registerType &&
         other.schoolInepIdFk == schoolInepIdFk &&
+        other.studentInepId == studentInepId &&
         other.studentFk == studentFk &&
-        other.oldId == oldId &&
-        other.rgNumber == rgNumber &&
-        other.rgNumberEdcensoOrganIdEmitterFk ==
-            rgNumberEdcensoOrganIdEmitterFk &&
-        other.rgNumberEdcensoUfFk == rgNumberEdcensoUfFk &&
-        other.rgNumberExpedictionDate == rgNumberExpedictionDate &&
-        other.civilCertification == civilCertification &&
-        other.civilCertificationType == civilCertificationType &&
-        other.civilCertificationTermNumber == civilCertificationTermNumber &&
-        other.civilCertificationSheet == civilCertificationSheet &&
-        other.civilCertificationBook == civilCertificationBook &&
-        other.civilCertificationDate == civilCertificationDate &&
-        other.notaryOfficeUfFk == notaryOfficeUfFk &&
-        other.notaryOfficeCityFk == notaryOfficeCityFk &&
-        other.edcensoNotaryOfficeFk == edcensoNotaryOfficeFk &&
-        other.civilRegisterEnrollmentNumber == civilRegisterEnrollmentNumber &&
-        other.cpf == cpf &&
-        other.foreignDocumentOrPassport == foreignDocumentOrPassport &&
-        other.nis == nis &&
-        other.residenceZone == residenceZone &&
-        other.diffLocation == diffLocation &&
-        other.cep == cep &&
-        other.address == address &&
-        other.number == number &&
-        other.complement == complement &&
-        other.neighborhood == neighborhood &&
-        other.edcensoUfFk == edcensoUfFk &&
-        other.edcensoCityFk == edcensoCityFk &&
-        other.receivedCc == receivedCc &&
-        other.receivedAddress == receivedAddress &&
-        other.receivedPhoto == receivedPhoto &&
-        other.receivedNis == receivedNis &&
-        other.receivedHistory == receivedHistory &&
-        other.receivedResponsableRg == receivedResponsableRg &&
-        other.receivedResponsableCpf == receivedResponsableCpf &&
-        other.cns == cns &&
+        other.classroomInepId == classroomInepId &&
+        other.classroomFk == classroomFk &&
+        other.enrollmentId == enrollmentId &&
+        other.unifiedClass == unifiedClass &&
+        other.edcensoStageVsModalityFk == edcensoStageVsModalityFk &&
+        other.anotherScholarizationPlace == anotherScholarizationPlace &&
+        other.multi == multi &&
+        other.aeeCognitiveFunctions == aeeCognitiveFunctions &&
+        other.aeeAutonomousLife == aeeAutonomousLife &&
+        other.aeeCurriculumEnrichment == aeeCurriculumEnrichment &&
+        other.aeeAccessibleTeaching == aeeAccessibleTeaching &&
+        other.aeeLibras == aeeLibras &&
+        other.aeePortuguese == aeePortuguese &&
+        other.aeeSoroban == aeeSoroban &&
+        other.aeeBraille == aeeBraille &&
+        other.aeeMobilityTechniques == aeeMobilityTechniques &&
+        other.aeeCaa == aeeCaa &&
+        other.aeeOpticalNonoptical == aeeOpticalNonoptical &&
+        other.publicTransport == publicTransport &&
+        other.transportResponsableGovernment ==
+            transportResponsableGovernment &&
+        other.vehicleTypeVan == vehicleTypeVan &&
+        other.vehicleTypeMicrobus == vehicleTypeMicrobus &&
+        other.vehicleTypeBus == vehicleTypeBus &&
+        other.vehicleTypeBike == vehicleTypeBike &&
+        other.vehicleTypeAnimalVehicle == vehicleTypeAnimalVehicle &&
+        other.vehicleTypeOtherVehicle == vehicleTypeOtherVehicle &&
+        other.vehicleTypeWaterwayBoat5 == vehicleTypeWaterwayBoat5 &&
+        other.vehicleTypeWaterwayBoat515 == vehicleTypeWaterwayBoat515 &&
+        other.vehicleTypeWaterwayBoat1535 == vehicleTypeWaterwayBoat1535 &&
+        other.vehicleTypeWaterwayBoat35 == vehicleTypeWaterwayBoat35 &&
+        other.vehicleTypeMetroOrTrain == vehicleTypeMetroOrTrain &&
+        other.studentEntryForm == studentEntryForm &&
         other.hash == hash &&
-        other.justiceRestriction == justiceRestriction;
+        other.schoolAdmissionDate == schoolAdmissionDate &&
+        other.currentStageSituation == currentStageSituation &&
+        other.previousStageSituation == previousStageSituation &&
+        other.admissionType == admissionType &&
+        other.hashClassroom == hashClassroom &&
+        other.hashStudent == hashStudent &&
+        other.status == status;
   }
 
   @override
   int get hashCode {
-    return registerType.hashCode ^
+    return oldId.hashCode ^
+        registerType.hashCode ^
         schoolInepIdFk.hashCode ^
+        studentInepId.hashCode ^
         studentFk.hashCode ^
-        oldId.hashCode ^
-        rgNumber.hashCode ^
-        rgNumberEdcensoOrganIdEmitterFk.hashCode ^
-        rgNumberEdcensoUfFk.hashCode ^
-        rgNumberExpedictionDate.hashCode ^
-        civilCertification.hashCode ^
-        civilCertificationType.hashCode ^
-        civilCertificationTermNumber.hashCode ^
-        civilCertificationSheet.hashCode ^
-        civilCertificationBook.hashCode ^
-        civilCertificationDate.hashCode ^
-        notaryOfficeUfFk.hashCode ^
-        notaryOfficeCityFk.hashCode ^
-        edcensoNotaryOfficeFk.hashCode ^
-        civilRegisterEnrollmentNumber.hashCode ^
-        cpf.hashCode ^
-        foreignDocumentOrPassport.hashCode ^
-        nis.hashCode ^
-        residenceZone.hashCode ^
-        diffLocation.hashCode ^
-        cep.hashCode ^
-        address.hashCode ^
-        number.hashCode ^
-        complement.hashCode ^
-        neighborhood.hashCode ^
-        edcensoUfFk.hashCode ^
-        edcensoCityFk.hashCode ^
-        receivedCc.hashCode ^
-        receivedAddress.hashCode ^
-        receivedPhoto.hashCode ^
-        receivedNis.hashCode ^
-        receivedHistory.hashCode ^
-        receivedResponsableRg.hashCode ^
-        receivedResponsableCpf.hashCode ^
-        cns.hashCode ^
+        classroomInepId.hashCode ^
+        classroomFk.hashCode ^
+        enrollmentId.hashCode ^
+        unifiedClass.hashCode ^
+        edcensoStageVsModalityFk.hashCode ^
+        anotherScholarizationPlace.hashCode ^
+        multi.hashCode ^
+        aeeCognitiveFunctions.hashCode ^
+        aeeAutonomousLife.hashCode ^
+        aeeCurriculumEnrichment.hashCode ^
+        aeeAccessibleTeaching.hashCode ^
+        aeeLibras.hashCode ^
+        aeePortuguese.hashCode ^
+        aeeSoroban.hashCode ^
+        aeeBraille.hashCode ^
+        aeeMobilityTechniques.hashCode ^
+        aeeCaa.hashCode ^
+        aeeOpticalNonoptical.hashCode ^
+        publicTransport.hashCode ^
+        transportResponsableGovernment.hashCode ^
+        vehicleTypeVan.hashCode ^
+        vehicleTypeMicrobus.hashCode ^
+        vehicleTypeBus.hashCode ^
+        vehicleTypeBike.hashCode ^
+        vehicleTypeAnimalVehicle.hashCode ^
+        vehicleTypeOtherVehicle.hashCode ^
+        vehicleTypeWaterwayBoat5.hashCode ^
+        vehicleTypeWaterwayBoat515.hashCode ^
+        vehicleTypeWaterwayBoat1535.hashCode ^
+        vehicleTypeWaterwayBoat35.hashCode ^
+        vehicleTypeMetroOrTrain.hashCode ^
+        studentEntryForm.hashCode ^
         hash.hashCode ^
-        justiceRestriction.hashCode;
+        schoolAdmissionDate.hashCode ^
+        currentStageSituation.hashCode ^
+        previousStageSituation.hashCode ^
+        admissionType.hashCode ^
+        hashClassroom.hashCode ^
+        hashStudent.hashCode ^
+        status.hashCode;
   }
 }

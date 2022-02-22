@@ -20,11 +20,6 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.symmetric(vertical: 8, horizontal: 16);
-
-    Widget withPadding(Widget widget) =>
-        Padding(padding: padding, child: widget);
-
     Widget inputName(String? name) => TagTextField(
           label: "Nome",
           hint: "Digite o nome do aluno",
@@ -34,11 +29,12 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
         );
 
     Widget inputBirthday(String? birthday) => TagDatePickerField(
-          label: "Data nascimento",
+          label: "Data  de nascimento",
           hint: "__/__/____",
           onChanged: controller.setBirthday,
           value: birthday,
           validator: requiredValidator,
+          inputType: TextInputType.number,
         );
 
     Widget selectSex(int? sex) => TagDropdownField<int>(
@@ -144,7 +140,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         }
                       },
                     ),
-                  ].map((w) => withPadding(w)).toList(),
+                  ],
                 ),
               ),
             );

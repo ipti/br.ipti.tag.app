@@ -11,8 +11,19 @@ username={{$processEnv TAG_AUTH_LOGIN}}&password={{$processEnv TAG_AUTH_PASSWORD
 
 @authToken = {{login.response.body.access_token}}
 
+
+GET http://ec2-54-91-8-233.compute-1.amazonaws.com:3000/instructor?page=1&perPage=10&school=61a9433412656f31249d2aa2
+Authorization: Bearer {{authToken}}
+
 # @name listar_alimentos
 GET http://{{host}}/foods HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+
+# @name listar_turmas
+GET http://{{host}}/classroom HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
@@ -46,19 +57,27 @@ Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "name": "Aluno teste com mais caracteres",
+    "name": "Aluno teste",
     "register_type": "RG",
     "sex": 0,
     "color_race": 0,
     "filiation": 0,
     "nationality": 0,
-    "birthday": "2013-02-04",
-    "send_year": 2020,
-    # "school_inep_id_fk": "123456789",
+    "birthday": "19/04/1995",
+    "send_year": 2022,    
+    "edcenso_nation_fk":"61ee3e877652254244a8b224",
     "edcenso_uf_fk": "61a92b6dd2b8a11704d7ae6a",
     "edcenso_city_fk": "61a92c8ed2b8a11704d813fe",
-    "edcenso_district_fk": "61a93a0781524118745b6314"
+    "school_inep_id_fk":"61a9433412656f31249d2aa2"
 }
+
+### 
+
+
+# @name list_student_enrollment
+GET  http://{{host}}/studentEnrollment HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
 
 ### 
 
@@ -103,8 +122,8 @@ Authorization: Bearer {{authToken}}
 
 ### 
 
-# @name /edcensoProfessionalEduCourse
-GET http://{{host}}/edcensoProfessionalEduCourse HTTP/1.1
+# @name /edcensoNation
+GET http://{{host}}/edcensoNation HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 

@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,43 +9,44 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'enrollment_personal_states.dart';
 
 class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
-  EnrollmentPersonalBloc(
-    this._createStudentsUsecase,
-  ) : super(const EmptyEnrollmentPersonalState());
+  EnrollmentPersonalBloc(this._createStudentsUsecase)
+      : super(const EmptyEnrollmentPersonalState());
 
   final CreateStudentsUsecase _createStudentsUsecase;
+  final _session = Modular.get<SessionBloc>();
+  final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
-  final sexItems = <int, String>{0: "Masculino", 1: "Feminino"};
+  final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
 
   final colorRaceItems = <int, String>{
-    0: "Não declarada",
-    1: "Branca",
-    2: "Preta",
-    3: "Parda",
-    4: "Amarela",
-    5: "Indígena",
+    1: "Não declarada",
+    2: "Branca",
+    3: "Preta",
+    4: "Parda",
+    5: "Amarela",
+    6: "Indígena",
   };
 
   final scholatiryItems = <int, String>{
-    0: "Não sabe ler e escrever",
-    1: "Sabe ler e escrever",
-    2: "Ens. Fund. Incompleto",
-    3: "Ens. Fund. Completo",
-    4: "Ens. Med. Incompleto",
-    5: "Ens. Med. Completo",
-    6: "Ens. Sup. Incompleto",
-    7: "Ens. Sup. Completo",
+    1: "Não sabe ler e escrever",
+    2: "Sabe ler e escrever",
+    3: "Ens. Fund. Incompleto",
+    4: "Ens. Fund. Completo",
+    5: "Ens. Med. Incompleto",
+    6: "Ens. Med. Completo",
+    7: "Ens. Sup. Incompleto",
+    8: "Ens. Sup. Completo",
   };
 
   final filiationItems = <int, String>{
-    0: "Não declarado/Ignorado",
-    1: "Pai e/ou Mãe",
+    1: "Não declarado/Ignorado",
+    2: "Pai e/ou Mãe",
   };
 
   final nationalityItems = <int, String>{
-    0: "Brasileira",
-    1: "Brasileira: Nascido no exterior ou Naturalizado",
-    2: "Estrangeira"
+    1: "Brasileira",
+    2: "Brasileira: Nascido no exterior ou Naturalizado",
+    3: "Estrangeira"
   };
 
   void setName(String value) => emit(state.copyWith(
@@ -63,7 +65,8 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       );
 
   Future<void> submitPersonalForm() async {
-    final EnrollmentBloc _enrollmentBloc = Modular.get();
+    final school = _session.state.currentSchool!;
+    final year = await _session.getYear();
 
     final student = Student(
       name: state.name,
@@ -75,10 +78,13 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       foodRestrictions: state.foodRestrictions,
       filiation: state.filiation,
       registerType: "rg",
-      sendYear: 2020,
-      edcensoUfFk: "61a92b6dd2b8a11704d7ae6a",
-      edcensoCityFk: "61a92c8ed2b8a11704d813fe",
-      edcensoDistrictFk: "61a93a0781524118745b6314",
+      sendYear: int.parse(year),
+      edcensoUfFk: school.edcensoUfFk,
+      edcensoCityFk: school.edcensoCityFk,
+      edcensoDistrictFk: school.edcensoDistrictFk,
+      edcensoNationFk: "61ee3e877652254244a8b224",
+
+      schoolInepIdFk: school.id,
     );
 
     final result = await _createStudentsUsecase.call(

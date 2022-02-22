@@ -5,6 +5,10 @@ enum AdmissionType {
 }
 
 extension LabeledEnum on AdmissionType {
+  int get id {
+    return index + 1;
+  }
+
   String get name {
     switch (this) {
       case AdmissionType.REMATRICULA:

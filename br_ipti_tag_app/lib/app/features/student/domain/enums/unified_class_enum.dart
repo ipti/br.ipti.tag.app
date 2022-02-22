@@ -1,6 +1,10 @@
 enum UnifiedClass { CRECHE, PRE_ESCOLA }
 
 extension IndexLegacyParity on UnifiedClass {
+  int get id {
+    return index + 1;
+  }
+
   String get name {
     switch (this) {
       case UnifiedClass.CRECHE:

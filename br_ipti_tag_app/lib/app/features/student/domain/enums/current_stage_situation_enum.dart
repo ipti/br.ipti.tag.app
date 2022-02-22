@@ -5,6 +5,10 @@ enum CurrentStageSituation {
 }
 
 extension LabeledEnum on CurrentStageSituation {
+  int get id {
+    return index + 1;
+  }
+
   String get name {
     switch (this) {
       case CurrentStageSituation.PRIMEIRA_MATRICULA_NO_CURSO:

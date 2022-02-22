@@ -66,10 +66,10 @@ class AddDocumentsAndAddressToStudentUsecase
 
 class AddDocumentsAndAddressToStudentParams {
   String? registerType;
-  String? schoolInepIdFk;
-  String? studentFk;
+  String schoolInepIdFk;
+  String studentFk;
   int? oldId;
-  String? rgNumber;
+  String rgNumber;
   String? rgNumberEdcensoOrganIdEmitterFk;
   String? rgNumberEdcensoUfFk;
   String? rgNumberExpedictionDate;
@@ -96,21 +96,21 @@ class AddDocumentsAndAddressToStudentParams {
   String? cns;
   int? hash;
   String? justiceRestriction;
-  int? residenceZone;
+  int residenceZone;
   int? diffLocation;
   String? cep;
   String? address;
   String? number;
   String? complement;
   String? neighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
+  String edcensoUfFk;
+  String edcensoCityFk;
   AddDocumentsAndAddressToStudentParams({
     this.registerType,
-    this.schoolInepIdFk,
-    this.studentFk,
-    this.oldId,
-    this.rgNumber,
+    required this.schoolInepIdFk,
+    required this.studentFk,
+    this.oldId = 1,
+    required this.rgNumber,
     this.rgNumberEdcensoOrganIdEmitterFk,
     this.rgNumberEdcensoUfFk,
     this.rgNumberExpedictionDate,
@@ -137,14 +137,14 @@ class AddDocumentsAndAddressToStudentParams {
     this.cns,
     this.hash,
     this.justiceRestriction,
-    this.residenceZone,
+    required this.residenceZone,
     this.diffLocation,
     this.cep,
     this.address,
     this.number,
     this.complement,
     this.neighborhood,
-    this.edcensoUfFk,
-    this.edcensoCityFk,
+    required this.edcensoUfFk,
+    required this.edcensoCityFk,
   });
 }
