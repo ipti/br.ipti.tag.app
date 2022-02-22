@@ -27,7 +27,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget selectClass(int? classId) => TagDropdownField(
+    Widget selectClass(String? classId) => TagDropdownField(
           label: 'Turma',
           items: controller.classesItems,
           value: classId,
@@ -44,7 +44,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   withPadding(heading),
-                  withPadding(selectClass(state.classroomId)),
+                  // withPadding(selectClass(state.classroomId)),
                 ],
               ),
             );
