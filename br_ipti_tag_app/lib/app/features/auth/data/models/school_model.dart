@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/auth/domain/entities/school.dart';
 
 class SchoolModel extends School {
   SchoolModel({
+    String? id,
     String? registerType,
     String? inepId,
     String? managerCpf,
@@ -65,6 +66,7 @@ class SchoolModel extends School {
     String? createdAt,
     String? updatedAt,
   }) : super(
+          id: id,
           registerType: registerType,
           inepId: inepId,
           managerCpf: managerCpf,
@@ -131,6 +133,7 @@ class SchoolModel extends School {
         );
 
   SchoolModel copyWith({
+    String? id,
     String? registerType,
     String? inepId,
     String? managerCpf,
@@ -193,6 +196,7 @@ class SchoolModel extends School {
     String? updatedAt,
   }) {
     return SchoolModel(
+      id: id,
       registerType: registerType ?? this.registerType,
       inepId: inepId ?? this.inepId,
       managerCpf: managerCpf ?? this.managerCpf,
@@ -272,6 +276,7 @@ class SchoolModel extends School {
 
   Map<String, dynamic> toMap() {
     return {
+      '_id': id,
       'register_type': registerType,
       'inep_id': inepId,
       'manager_cpf': managerCpf,
@@ -341,6 +346,7 @@ class SchoolModel extends School {
 
   factory SchoolModel.fromMap(Map<String, dynamic> map) {
     return SchoolModel(
+      id: map['_id'],
       registerType: map['register_type'],
       inepId: map['inep_id'],
       managerCpf: map['manager_cpf'],
@@ -424,6 +430,7 @@ class SchoolModel extends School {
     if (identical(this, other)) return true;
 
     return other is SchoolModel &&
+        other.id == id &&
         other.registerType == registerType &&
         other.inepId == inepId &&
         other.managerCpf == managerCpf &&
@@ -493,7 +500,8 @@ class SchoolModel extends School {
 
   @override
   int get hashCode {
-    return registerType.hashCode ^
+    return id.hashCode ^
+        registerType.hashCode ^
         inepId.hashCode ^
         managerCpf.hashCode ^
         managerName.hashCode ^
