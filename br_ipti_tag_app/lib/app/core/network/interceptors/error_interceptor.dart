@@ -17,9 +17,10 @@ class ErrorInterceptor extends InterceptorsWrapper {
     ErrorInterceptorHandler handler,
   ) {
     if (kDebugMode) {
-      print(err.message);
+      debugPrint(err.message);
     }
-    throw RestClientException(err);
+
+    super.onError(RestClientException(err), handler);
   }
 }
 

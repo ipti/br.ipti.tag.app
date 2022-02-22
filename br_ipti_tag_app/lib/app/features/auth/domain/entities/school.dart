@@ -1,4 +1,5 @@
 class School {
+  String? id;
   String? registerType;
   String? inepId;
   String? managerCpf;
@@ -61,6 +62,7 @@ class School {
   String? updatedAt;
 
   School({
+    this.id,
     this.registerType,
     this.inepId,
     this.managerCpf,

@@ -1,14 +1,13 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
-class GetStudentsEndPoint extends EndPointAPI {
-  GetStudentsEndPoint({this.id, required this.schoolId});
-
-  final String? id;
+class GetClassroomEndPoint extends EndPointAPI {
   final String schoolId;
 
+  GetClassroomEndPoint(this.schoolId);
+
   @override
-  String get path => id == null ? '/students' : '/students/{$id}';
+  String get path => '/classroom';
 
   @override
   Parameters? get bodyParameters => null;
@@ -20,7 +19,5 @@ class GetStudentsEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  Parameters? get urlParameters => () => {
-        "school": schoolId,
-      };
+  Parameters? get urlParameters => null;
 }

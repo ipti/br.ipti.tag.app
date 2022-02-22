@@ -10,7 +10,7 @@ class PostStudentDocsEndPoint extends EndPointAPI {
   final StudentDocumentsAddressModel model;
 
   @override
-  String get path => '/studentsDocs';
+  String get path => '/studentDocs';
 
   @override
   Parameters? get bodyParameters => () => model.toMap();

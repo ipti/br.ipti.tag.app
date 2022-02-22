@@ -25,5 +25,6 @@ class GuardTokenInterceptor extends InterceptorsWrapper {
         Modular.to.pushReplacementNamed('/auth');
       }
     }
+    super.onError(err, handler);
   }
 }
