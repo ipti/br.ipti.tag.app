@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/network/custom_dio/custom_dio.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
+import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -50,6 +51,11 @@ class AppModule extends Module {
     ModuleRoute(
       "/turmas",
       module: ClassroomModule(),
+      transition: TransitionType.noTransition,
+    ),
+    ModuleRoute(
+      "/escolas",
+      module: SchoolModule(),
       transition: TransitionType.noTransition,
     )
   ];

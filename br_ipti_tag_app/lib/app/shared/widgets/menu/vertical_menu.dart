@@ -72,6 +72,18 @@ class TagVerticalMenu extends StatelessWidget {
         },
       ),
       TagMenuItem(
+        title: "Escolas",
+        route: '/escolas',
+        isActive: currentRoute.contains('/escolas/'),
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
+        ),
+        onTap: (String routeName) {
+          Modular.to.pushReplacementNamed(routeName);
+        },
+      ),
+      TagMenuItem(
         title: "Logout",
         route: '/logout',
         icon: TagIcon(
