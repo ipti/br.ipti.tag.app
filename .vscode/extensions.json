@@ -4,6 +4,7 @@
         "kiritchoukc.flutter-clean-architecture",
         "eamodio.gitlens",
         "dart-code.dart-code",
-        "Dart-Code.flutter"
+        "dart-code.flutter",
+        "donjayamanne.githistory"
     ]
 }
