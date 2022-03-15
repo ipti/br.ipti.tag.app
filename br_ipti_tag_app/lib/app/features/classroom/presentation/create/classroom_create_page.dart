@@ -128,47 +128,54 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     return Form(
       key: _formKey,
       child: BlocBuilder<ClassroomCreateBloc, ClassroomCreateState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state is ClassroomCreateFormState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      withPadding(heading),
-                      RowToColumn(children: [
+        bloc: controller,
+        builder: (context, state) {
+          if (state is ClassroomCreateFormState) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    withPadding(heading),
+                    RowToColumn(
+                      children: [
                         Flexible(
                           child: withPadding(inputName(state.name)),
                         ),
                         Flexible(
                           child: withPadding(inputStartTime(state.startTime)),
                         )
-                      ]),
-                      RowToColumn(children: [
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
                         Flexible(
                           child: withPadding(selectModality(state.modalityId)),
                         ),
                         Flexible(
                           child: withPadding(inputEndTime(state.endTime)),
                         )
-                      ]),
-                      RowToColumn(children: [
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
                         Flexible(
                           child: withPadding(selectStage(state.stageId)),
                         ),
                         Flexible(child: Container()),
-                      ]),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ),
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
+              ),
             );
-          }),
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
     );
   }
 }

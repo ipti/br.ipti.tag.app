@@ -1,32 +1,58 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:equatable/equatable.dart';
 
 class EnrollmentState extends Equatable {
-  final String studentId;
+  final Student? student;
+  final StudentDocuments? studentDocs;
+  final StudentEnrollment? studentEnrollment;
+
   final int tabIndex;
 
   const EnrollmentState({
-    required this.studentId,
+    this.student,
+    this.studentDocs,
+    this.studentEnrollment,
     this.tabIndex = 0,
   });
 
   @override
-  List<Object> get props => [studentId, tabIndex];
+  List<Object> get props => [
+        tabIndex,
+        student.hashCode,
+        studentEnrollment.hashCode,
+        studentDocs.hashCode,
+      ];
 
   EnrollmentState copyWith({
-    String? studentId,
-    int? tabIndex,
+    int tabIndex = 0,
+    Student? student,
+    StudentDocuments? studentDocs,
+    StudentEnrollment? studentEnrollment,
   }) {
     return EnrollmentState(
-      studentId: studentId ?? this.studentId,
-      tabIndex: tabIndex ?? this.tabIndex,
+      tabIndex: tabIndex,
+      student: student ?? this.student,
+      studentDocs: studentDocs ?? this.studentDocs,
+      studentEnrollment: studentEnrollment ?? this.studentEnrollment,
     );
   }
 }
 
 class NextTabState extends EnrollmentState {
-  const NextTabState({required studentId, tabIndex})
-      : super(studentId: studentId, tabIndex: tabIndex);
+  const NextTabState({
+    int tabIndex = 0,
+    Student? student,
+    StudentDocuments? studentDocs,
+    StudentEnrollment? studentEnrollment,
+  }) : super(
+          tabIndex: tabIndex,
+          student: student,
+          studentDocs: studentDocs,
+          studentEnrollment: studentEnrollment,
+        );
 
   @override
-  List<Object> get props => [studentId, tabIndex];
+  List<Object> get props => [tabIndex];
 }

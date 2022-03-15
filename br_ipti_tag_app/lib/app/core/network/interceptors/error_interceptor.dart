@@ -58,8 +58,8 @@ class RestClientException extends DioError {
         return HTTP_UNAUTHORIZED;
       default:
         if (response!.data is Map) {
-          return response!.data['error_description'] as String? ??
-              DEFAULT_ERROR;
+          final data = response!.data as Map;
+          return data['error_description'] as String? ?? DEFAULT_ERROR;
         }
         if (response!.statusMessage?.isNotEmpty == true) {
           return response!.statusMessage ?? DEFAULT_ERROR;

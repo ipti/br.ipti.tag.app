@@ -51,6 +51,14 @@ Authorization: Bearer {{authToken}}
 ### 
 
 
+# @name studentsEnrollments
+GET http://{{host}}/studentEnrollment/62065f3e821343395cf23263 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+
+
 # @name create_student
 POST  http://{{host}}/students HTTP/1.1
 Content-Type: application/json

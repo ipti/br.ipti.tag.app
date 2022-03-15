@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 abstract class StudentRepository {
   Future<Either<Exception, List<Student>>> listAll({required String schoolId});
   Future<Either<Exception, Student>> getById(
-    int id, {
+    String id, {
     required String schoolId,
   });
   Future<Either<Exception, Student>> create(Student student);

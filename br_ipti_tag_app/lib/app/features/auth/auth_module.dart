@@ -22,21 +22,25 @@ class AuthModule extends Module {
     // repository
     Bind.singleton(
       (i) => AuthRespositoryImpl(
-          authRemoteDataSource: i.get(), sessionService: i.get()),
+        authRemoteDataSource: i.get(),
+        sessionService: i.get(),
+      ),
     ),
     // usecases
     Bind.singleton((i) => AuthLoginUsecase(i.get())),
     Bind.singleton((i) => VerifyAuthUsecase(i.get())),
     // bloc
-    Bind.singleton((i) => LoginBloc(
-          i.get<AuthLoginUsecase>(),
-          i.get<VerifyAuthUsecase>(),
-          i.get<PackageInfoService>(),
-        )),
+    Bind.singleton(
+      (i) => LoginBloc(
+        i.get<AuthLoginUsecase>(),
+        i.get<VerifyAuthUsecase>(),
+        i.get<PackageInfoService>(),
+      ),
+    ),
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const AuthLoginPage()),
   ];
 }

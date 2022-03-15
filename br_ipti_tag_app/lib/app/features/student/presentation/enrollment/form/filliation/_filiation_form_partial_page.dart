@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +10,8 @@ import 'bloc/enrollment_filiation_bloc.dart';
 import 'bloc/enrollment_filiation_states.dart';
 
 class FiliationFormPage extends StatefulWidget {
-  const FiliationFormPage({Key? key}) : super(key: key);
-
+  const FiliationFormPage({Key? key, this.student}) : super(key: key);
+  final Student? student;
   @override
   FiliationFormPageState createState() => FiliationFormPageState();
 }
@@ -18,6 +19,11 @@ class FiliationFormPage extends StatefulWidget {
 class FiliationFormPageState extends State<FiliationFormPage> {
   final _formKey = GlobalKey<FormState>();
   final controller = Modular.get<EnrollmentFiliationBloc>();
+  @override
+  void initState() {
+    if (widget.student != null) controller.loadStudent(widget.student!);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

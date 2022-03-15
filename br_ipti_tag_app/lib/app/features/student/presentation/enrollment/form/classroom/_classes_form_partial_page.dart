@@ -1,9 +1,11 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/admission_type_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/current_stage_situation_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/previous_stage_situation_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/stage_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/unified_class_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,7 +15,14 @@ import 'bloc/enrollment_classroom_bloc.dart';
 import 'bloc/enrollment_classroom_states.dart';
 
 class ClassesFormPage extends StatefulWidget {
-  const ClassesFormPage({Key? key}) : super(key: key);
+  const ClassesFormPage({
+    Key? key,
+    this.model,
+    this.editMode = EditMode.Create,
+  }) : super(key: key);
+
+  final StudentEnrollment? model;
+  final EditMode editMode;
 
   @override
   ClassesFormPageState createState() => ClassesFormPageState();
@@ -27,6 +36,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
 
   @override
   void initState() {
+    if (widget.model != null) controller.loadStudentEnrollment(widget.model!);
     controller.fetchClassrooms();
     super.initState();
   }

@@ -1,5 +1,7 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_states.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +11,14 @@ import 'package:tag_ui/tag_ui.dart';
 import 'bloc/enrollment_address_bloc.dart';
 
 class AddressFormPage extends StatefulWidget {
-  const AddressFormPage({Key? key}) : super(key: key);
+  const AddressFormPage({
+    Key? key,
+    this.editMode = EditMode.Create,
+    this.model,
+  }) : super(key: key);
+
+  final StudentDocuments? model;
+  final EditMode editMode;
 
   @override
   AddressFormPageState createState() => AddressFormPageState();
@@ -20,8 +29,9 @@ const heading = Heading(text: "Endereço", type: HeadingType.Title3);
 class AddressFormPageState extends State<AddressFormPage> {
   @override
   void initState() {
-    super.initState();
     controller.fetchUFs();
+    if (widget.model != null) controller.loadStudentDocuments(widget.model!);
+    super.initState();
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -54,6 +64,7 @@ class AddressFormPageState extends State<AddressFormPage> {
                             label: "CEP",
                             hint: "Digite o CEP",
                             onChanged: controller.setCEP,
+                            formatters: [TagMasks.maskCEP],
                             value: state.cep,
                             validator: requiredValidator,
                           ),
@@ -129,7 +140,7 @@ class AddressFormPageState extends State<AddressFormPage> {
                           child: TagTextField(
                             label: "Complemento",
                             hint: "Digite o número",
-                            onChanged: controller.setNumber,
+                            onChanged: controller.setComplement,
                             value: state.number,
                             validator: requiredValidator,
                           ),
@@ -157,12 +168,12 @@ class AddressFormPageState extends State<AddressFormPage> {
                     SubmitButtonsRow(
                       onSubmitAndGo: () {
                         if (_formKey.currentState!.validate()) {
-                          controller.submitAddressForm();
+                          controller.submitAddressForm(widget.editMode);
                         }
                       },
                       onSubmitAndStay: () {
                         if (_formKey.currentState!.validate()) {
-                          // controller.submitPersonalForm();
+                          controller.submitAddressForm(widget.editMode);
                         }
                       },
                     ),

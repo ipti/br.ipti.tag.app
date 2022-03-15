@@ -3,7 +3,8 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/e
 import 'package:dartz/dartz.dart';
 
 abstract class EdcensoLocationsRepository {
-  Future<Either<Exception, List<EdCensoCity>>> listCities(
-      [String? edCensoUfFk]);
+  Future<Either<Exception, List<EdCensoCity>>> listCities([
+    String? edCensoUfFk,
+  ]);
   Future<Either<Exception, List<EdCensoUF>>> listUfs();
 }

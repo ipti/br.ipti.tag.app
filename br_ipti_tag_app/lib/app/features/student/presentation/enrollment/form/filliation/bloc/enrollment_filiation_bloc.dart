@@ -1,5 +1,3 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/filiation.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/responsable.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
@@ -53,6 +51,26 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     1: "URBANA",
     2: "RURAL",
   };
+
+  Future loadStudent(Student student) async {
+    emit(state.copyWith(
+      nameFiliation1: student.filiation1,
+      cpfFiliation1: student.filiation1Cpf,
+      rgFiliation1: student.filiation1Rg,
+      jobFiliation1: student.filiation1Job,
+      scholarityFiliation1: student.filiation1Scholarity,
+      nameFiliation2: student.filiation2,
+      cpfFiliation2: student.filiation2Cpf,
+      rgFiliation2: student.filiation2Rg,
+      jobFiliation2: student.filiation2Job,
+      scholarityFiliation2: student.filiation2Scholarity,
+      nameResponsable: student.responsableName,
+      cpfResponsable: student.responsableCpf,
+      rgResponsable: student.responsableRg,
+      jobResponsable: student.responsableJob,
+      scholarityResponsable: student.responsableScholarity,
+    ));
+  }
 
   // Responsable
   void setNameResponsable(String value) => emit(
@@ -151,41 +169,33 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     await Modular.isModuleReady<StudentModule>();
     final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
-    final enrollmentState = _enrollmentBloc.state;
+    final student = _enrollmentBloc.state.student;
 
-    final student = Student(id: enrollmentState.studentId);
-
-    final filiation1 = StudentFiliation(
-      name: state.nameFiliation1,
-      rg: state.rgFiliation1,
-      cpf: state.cpfFiliation1,
-      job: state.jobFiliation1,
-      scholarity: state.scholarityFiliation1,
-    );
-    final filiation2 = StudentFiliation(
-      name: state.nameFiliation2,
-      rg: state.rgFiliation2,
-      cpf: state.cpfFiliation2,
-      job: state.jobFiliation2,
-      scholarity: state.scholarityFiliation2,
-    );
-    final responsable = StudentResponsable(
-      name: state.nameResponsable,
-      rg: state.rgResponsable,
-      cpf: state.cpfResponsable,
-      job: state.jobResponsable,
-      scholarity: state.scholarityResponsable,
+    final studentFiliation = student!.copyWith(
+      filiation1: state.nameFiliation1,
+      filiation1Rg: state.rgFiliation1,
+      filiation1Cpf: state.cpfFiliation1,
+      filiation1Job: state.jobFiliation1,
+      filiation1Scholarity: state.scholarityFiliation1,
+      filiation2: state.nameFiliation2,
+      filiation2Rg: state.rgFiliation2,
+      filiation2Cpf: state.cpfFiliation2,
+      filiation2Job: state.jobFiliation2,
+      filiation2Scholarity: state.scholarityFiliation2,
+      responsableName: state.nameResponsable,
+      responsableRg: state.rgResponsable,
+      responsableCpf: state.cpfResponsable,
+      responsableJob: state.jobResponsable,
+      responsableScholarity: state.scholarityResponsable,
     );
 
     final params = ChangeFiliationStudentParams(
-      student: student,
-      filiation1: filiation1,
-      filiation2: filiation2,
-      responsable: responsable,
+      student: studentFiliation,
     );
 
     await _changeFiliationStudentUsecase(params);
 
+    _enrollmentBloc.setStudent(studentFiliation);
     _enrollmentBloc.nextTab();
   }
 }

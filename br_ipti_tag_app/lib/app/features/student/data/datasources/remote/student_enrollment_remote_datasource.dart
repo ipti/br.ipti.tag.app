@@ -10,14 +10,28 @@ class StudentEnrollmenrRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<StudentEnrollmentModel> getById(int id) async {
+  Future<StudentEnrollmentModel> getById(String id) async {
     final response = await _httpClient.request(
-      route: GetStudentEnrollmentEndPoint(id: id.toString()),
+      route: GetStudentEnrollmentEndPoint(id: id),
     );
 
     final mappedValue = StudentEnrollmentModel.fromMap(response.data!);
 
     return mappedValue;
+  }
+
+  Future<StudentEnrollmentModel> getByStudentId(String studentId) async {
+    final response = await _httpClient.requestListPaginatedFrom(
+      route: GetStudentEnrollmentEndPoint(studentId: studentId),
+    );
+
+    final data = response.data?.data ?? [];
+
+    final mappedList = data
+        .map((e) => StudentEnrollmentModel.fromMap(e as Map<String, dynamic>))
+        .toList();
+
+    return mappedList.first;
   }
 
   Future<StudentEnrollmentModel> create(StudentEnrollmentModel model) async {

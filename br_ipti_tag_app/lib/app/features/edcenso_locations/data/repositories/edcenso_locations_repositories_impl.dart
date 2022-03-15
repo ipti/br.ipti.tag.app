@@ -13,8 +13,9 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
   EdcensoLocationsRepositoryImpl(this._remoteDatasource, this._localDatasource);
 
   @override
-  Future<Either<Exception, List<EdCensoCity>>> listCities(
-      [String? edCensoUfId]) async {
+  Future<Either<Exception, List<EdCensoCity>>> listCities([
+    String? edCensoUfId,
+  ]) async {
     try {
       final results = await _localDatasource.listCities(edCensoUfId);
 

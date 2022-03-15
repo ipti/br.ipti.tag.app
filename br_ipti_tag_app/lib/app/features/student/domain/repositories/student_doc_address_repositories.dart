@@ -2,9 +2,14 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_doc
 import 'package:dartz/dartz.dart';
 
 abstract class StudentDocumentsAddressRepository {
-  Future<Either<Exception, StudentDocuments>> getById(int id);
+  Future<Either<Exception, StudentDocuments>> getByStudentId(
+    String id,
+  );
   Future<Either<Exception, StudentDocuments>> create(
-      StudentDocuments studentdosStudentDocuments);
+    StudentDocuments studentdosStudentDocuments,
+  );
   Future<Either<Exception, StudentDocuments>> update(
-      String id, StudentDocuments student);
+    String id,
+    StudentDocuments student,
+  );
 }

@@ -2,221 +2,8 @@ import 'dart:convert';
 
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 
-class StudentModel {
-  final String? id;
-  final String? name;
-  final String? registerType;
-  final String? schoolInepIdFk;
-  final String? inepId;
-  final String? birthday;
-  final int? sex;
-  final int? colorRace;
-  final int? filiation;
-  final String? filiation1;
-  final String? filiation2;
-  final int? nationality;
-  final int? noDocumentDesc;
-  final int? scholarity;
-  final String? idEmail;
-  final String? edcensoNationFk;
-  final String? edcensoUfFk;
-  final String? edcensoCityFk;
-  final bool? deficiency;
-  final bool? deficiencyTypeBlindness;
-  final bool? deficiencyTypeLowVision;
-  final bool? deficiencyTypeDeafness;
-  final bool? deficiencyTypeDisabilityHearing;
-  final bool? deficiencyTypeDeafblindness;
-  final bool? deficiencyTypePhisicalDisability;
-  final bool? deficiencyTypeIntelectualDisability;
-  final bool? deficiencyTypeMultipleDisabilities;
-  final bool? deficiencyTypeAutism;
-  final bool? deficiencyTypeAspengerSyndrome;
-  final bool? deficiencyTypeRettSyndrome;
-  final bool? deficiencyTypeChildhoodDisintegrativeDisorder;
-  final bool? deficiencyTypeGifted;
-  final bool? resourceAidLector;
-  final bool? resourceAidTranscription;
-  final bool? resourceInterpreterGuide;
-  final bool? resourceInterpreterLibras;
-  final bool? resourceLipReading;
-  final bool? resourceZoomedTest16;
-  final bool? resourceZoomedTest18;
-  final bool? resourceZoomedTest20;
-  final bool? resourceZoomedTest24;
-  final bool? resourceCdAudio;
-  final bool? resourceProofLanguage;
-  final bool? resourceVideoLibras;
-  final bool? resourceBrailleTest;
-  final bool? resourceNone;
-  final int? sendYear;
-  final String? lastChange;
-  final int? responsable;
-  final String? responsableName;
-  final String? responsableRg;
-  final String? responsableCpf;
-  final int? responsableScholarity;
-  final String? responsableJob;
-  final bool? bfParticipator;
-  final String? foodRestrictions;
-  final String? responsableTelephone;
-  final int? hash;
-  final String? filiation1Rg;
-  final String? filiation1Cpf;
-  final int? filiation1Scholarity;
-  final String? filiation1Job;
-  final String? filiation2Rg;
-  final String? filiation2Cpf;
-  final int? filiation2Scholarity;
-  final String? filiation2Job;
+class StudentModel extends Student {
   StudentModel({
-    this.id,
-    this.name,
-    this.registerType,
-    this.schoolInepIdFk,
-    this.inepId,
-    this.birthday,
-    this.sex,
-    this.colorRace,
-    this.filiation,
-    this.filiation1,
-    this.filiation2,
-    this.nationality,
-    this.noDocumentDesc,
-    this.scholarity,
-    this.idEmail,
-    this.edcensoNationFk,
-    this.edcensoUfFk,
-    this.edcensoCityFk,
-    this.deficiency,
-    this.deficiencyTypeBlindness,
-    this.deficiencyTypeLowVision,
-    this.deficiencyTypeDeafness,
-    this.deficiencyTypeDisabilityHearing,
-    this.deficiencyTypeDeafblindness,
-    this.deficiencyTypePhisicalDisability,
-    this.deficiencyTypeIntelectualDisability,
-    this.deficiencyTypeMultipleDisabilities,
-    this.deficiencyTypeAutism,
-    this.deficiencyTypeAspengerSyndrome,
-    this.deficiencyTypeRettSyndrome,
-    this.deficiencyTypeChildhoodDisintegrativeDisorder,
-    this.deficiencyTypeGifted,
-    this.resourceAidLector,
-    this.resourceAidTranscription,
-    this.resourceInterpreterGuide,
-    this.resourceInterpreterLibras,
-    this.resourceLipReading,
-    this.resourceZoomedTest16,
-    this.resourceZoomedTest18,
-    this.resourceZoomedTest20,
-    this.resourceZoomedTest24,
-    this.resourceCdAudio,
-    this.resourceProofLanguage,
-    this.resourceVideoLibras,
-    this.resourceBrailleTest,
-    this.resourceNone,
-    this.sendYear,
-    this.lastChange,
-    this.responsable,
-    this.responsableName,
-    this.responsableRg,
-    this.responsableCpf,
-    this.responsableScholarity,
-    this.responsableJob,
-    this.bfParticipator,
-    this.foodRestrictions,
-    this.responsableTelephone,
-    this.hash,
-    this.filiation1Rg,
-    this.filiation1Cpf,
-    this.filiation1Scholarity,
-    this.filiation1Job,
-    this.filiation2Rg,
-    this.filiation2Cpf,
-    this.filiation2Scholarity,
-    this.filiation2Job,
-  });
-  factory StudentModel.fromEntity(Student student) {
-    return StudentModel(
-      id: student.id,
-      name: student.name,
-      registerType: student.registerType,
-      schoolInepIdFk: student.schoolInepIdFk,
-      inepId: student.inepId,
-      birthday: student.birthday,
-      sex: student.sex,
-      colorRace: student.colorRace,
-      filiation: student.filiation,
-      filiation1: student.filiation1?.name,
-      filiation2: student.filiation2?.name,
-      nationality: student.nationality,
-      noDocumentDesc: student.noDocumentDesc,
-      scholarity: student.scholarity,
-      idEmail: student.idEmail,
-      edcensoNationFk: student.edcensoNationFk,
-      edcensoUfFk: student.edcensoUfFk,
-      edcensoCityFk: student.edcensoCityFk,
-      deficiency: student.deficiency,
-      deficiencyTypeBlindness: student.deficiencies?.deficiencyTypeBlindness,
-      deficiencyTypeLowVision: student.deficiencies?.deficiencyTypeLowVision,
-      deficiencyTypeDeafness: student.deficiencies?.deficiencyTypeDeafness,
-      deficiencyTypeDisabilityHearing:
-          student.deficiencies?.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafblindness:
-          student.deficiencies?.deficiencyTypeDeafblindness,
-      deficiencyTypePhisicalDisability:
-          student.deficiencies?.deficiencyTypePhisicalDisability,
-      deficiencyTypeIntelectualDisability:
-          student.deficiencies?.deficiencyTypeIntelectualDisability,
-      deficiencyTypeMultipleDisabilities:
-          student.deficiencies?.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeAutism: student.deficiencies?.deficiencyTypeAutism,
-      deficiencyTypeAspengerSyndrome:
-          student.deficiencies?.deficiencyTypeAspengerSyndrome,
-      deficiencyTypeRettSyndrome:
-          student.deficiencies?.deficiencyTypeRettSyndrome,
-      deficiencyTypeChildhoodDisintegrativeDisorder:
-          student.deficiencies?.deficiencyTypeChildhoodDisintegrativeDisorder,
-      deficiencyTypeGifted: student.deficiencies?.deficiencyTypeGifted,
-      // resourceAidLector: student.resourceAidLector,
-      // resourceAidTranscription: student.resourceAidTranscription,
-      // resourceInterpreterGuide: student.resourceInterpreterGuide,
-      // resourceInterpreterLibras: student.resourceInterpreterLibras,
-      // resourceLipReading: student.resourceLipReading,
-      // resourceZoomedTest16: student.resourceZoomedTest16,
-      // resourceZoomedTest18: student.resourceZoomedTest18,
-      // resourceZoomedTest20: student.resourceZoomedTest20,
-      // resourceZoomedTest24: student.resourceZoomedTest24,
-      // resourceCdAudio: student.resourceCdAudio,
-      // resourceProofLanguage: student.resourceProofLanguage,
-      // resourceVideoLibras: student.resourceVideoLibras,
-      // resourceBrailleTest: student.resourceBrailleTest,
-      // resourceNone: student.resourceNone,
-      sendYear: student.sendYear,
-      lastChange: student.lastChange,
-      // responsable: student.responsable,
-      // responsableName: student.responsableName,
-      // responsableRg: student.responsableRg,
-      // responsableCpf: student.responsableCpf,
-      // responsableScholarity: student.responsableScholarity,
-      // responsableJob: student.responsableJob,
-      bfParticipator: student.bfParticipator,
-      foodRestrictions: student.foodRestrictions,
-      // responsableTelephone: student.responsableTelephone,
-      hash: student.hash,
-      // filiation1Rg: student.filiation1Rg,
-      // filiation1Cpf: student.filiation1Cpf,
-      // filiation1Scholarity: student.filiation1Scholarity,
-      // filiation1Job: student.filiation1Job,
-      // filiation2Rg: student.filiation2Rg,
-      // filiation2Cpf: student.filiation2Cpf,
-      // filiation2Scholarity: student.filiation2Scholarity,
-      // filiation2Job: student.filiation2Job,
-    );
-  }
-
-  StudentModel copyWith({
     String? id,
     String? name,
     String? registerType,
@@ -283,92 +70,150 @@ class StudentModel {
     String? filiation2Cpf,
     int? filiation2Scholarity,
     String? filiation2Job,
-  }) {
+  }) : super(
+          id: id,
+          name: name,
+          registerType: registerType,
+          schoolInepIdFk: schoolInepIdFk,
+          inepId: inepId,
+          birthday: birthday,
+          sex: sex,
+          colorRace: colorRace,
+          filiation: filiation,
+          filiation1: filiation1,
+          filiation2: filiation2,
+          nationality: nationality,
+          noDocumentDesc: noDocumentDesc,
+          scholarity: scholarity,
+          idEmail: idEmail,
+          edcensoNationFk: edcensoNationFk,
+          edcensoUfFk: edcensoUfFk,
+          edcensoCityFk: edcensoCityFk,
+          deficiency: deficiency,
+          deficiencyTypeBlindness: deficiencyTypeBlindness,
+          deficiencyTypeLowVision: deficiencyTypeLowVision,
+          deficiencyTypeDeafness: deficiencyTypeDeafness,
+          deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing,
+          deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
+          deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability,
+          deficiencyTypeIntelectualDisability:
+              deficiencyTypeIntelectualDisability,
+          deficiencyTypeMultipleDisabilities:
+              deficiencyTypeMultipleDisabilities,
+          deficiencyTypeAutism: deficiencyTypeAutism,
+          deficiencyTypeAspengerSyndrome: deficiencyTypeAspengerSyndrome,
+          deficiencyTypeRettSyndrome: deficiencyTypeRettSyndrome,
+          deficiencyTypeChildhoodDisintegrativeDisorder:
+              deficiencyTypeChildhoodDisintegrativeDisorder,
+          deficiencyTypeGifted: deficiencyTypeGifted,
+          resourceAidLector: resourceAidLector,
+          resourceAidTranscription: resourceAidTranscription,
+          resourceInterpreterGuide: resourceInterpreterGuide,
+          resourceInterpreterLibras: resourceInterpreterLibras,
+          resourceLipReading: resourceLipReading,
+          resourceZoomedTest16: resourceZoomedTest16,
+          resourceZoomedTest18: resourceZoomedTest18,
+          resourceZoomedTest20: resourceZoomedTest20,
+          resourceZoomedTest24: resourceZoomedTest24,
+          resourceCdAudio: resourceCdAudio,
+          resourceProofLanguage: resourceProofLanguage,
+          resourceVideoLibras: resourceVideoLibras,
+          resourceBrailleTest: resourceBrailleTest,
+          resourceNone: resourceNone,
+          sendYear: sendYear,
+          lastChange: lastChange,
+          responsable: responsable,
+          responsableName: responsableName,
+          responsableRg: responsableRg,
+          responsableCpf: responsableCpf,
+          responsableScholarity: responsableScholarity,
+          responsableJob: responsableJob,
+          bfParticipator: bfParticipator,
+          foodRestrictions: foodRestrictions,
+          responsableTelephone: responsableTelephone,
+          hash: hash,
+          filiation1Rg: filiation1Rg,
+          filiation1Cpf: filiation1Cpf,
+          filiation1Scholarity: filiation1Scholarity,
+          filiation1Job: filiation1Job,
+          filiation2Rg: filiation2Rg,
+          filiation2Cpf: filiation2Cpf,
+          filiation2Scholarity: filiation2Scholarity,
+          filiation2Job: filiation2Job,
+        );
+
+  factory StudentModel.fromEntity(Student student) {
     return StudentModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      registerType: registerType ?? this.registerType,
-      schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
-      inepId: inepId ?? this.inepId,
-      birthday: birthday ?? this.birthday,
-      sex: sex ?? this.sex,
-      colorRace: colorRace ?? this.colorRace,
-      filiation: filiation ?? this.filiation,
-      filiation1: filiation1 ?? this.filiation1,
-      filiation2: filiation2 ?? this.filiation2,
-      nationality: nationality ?? this.nationality,
-      noDocumentDesc: noDocumentDesc ?? this.noDocumentDesc,
-      scholarity: scholarity ?? this.scholarity,
-      idEmail: idEmail ?? this.idEmail,
-      edcensoNationFk: edcensoNationFk ?? this.edcensoNationFk,
-      edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
-      edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
-      deficiency: deficiency ?? this.deficiency,
-      deficiencyTypeBlindness:
-          deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
-      deficiencyTypeLowVision:
-          deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
-      deficiencyTypeDeafness:
-          deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
-      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ??
-          this.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafblindness:
-          deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
-      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ??
-          this.deficiencyTypePhisicalDisability,
+      id: student.id,
+      name: student.name,
+      registerType: student.registerType,
+      schoolInepIdFk: student.schoolInepIdFk,
+      inepId: student.inepId,
+      birthday: student.birthday,
+      sex: student.sex,
+      colorRace: student.colorRace,
+      filiation: student.filiation,
+      filiation1: student.filiation1,
+      filiation2: student.filiation2,
+      nationality: student.nationality,
+      noDocumentDesc: student.noDocumentDesc,
+      scholarity: student.scholarity,
+      idEmail: student.idEmail,
+      edcensoNationFk: student.edcensoNationFk,
+      edcensoUfFk: student.edcensoUfFk,
+      edcensoCityFk: student.edcensoCityFk,
+      deficiency: student.deficiency,
+      deficiencyTypeBlindness: student.deficiencyTypeBlindness,
+      deficiencyTypeLowVision: student.deficiencyTypeLowVision,
+      deficiencyTypeDeafness: student.deficiencyTypeDeafness,
+      deficiencyTypeDisabilityHearing: student.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafblindness: student.deficiencyTypeDeafblindness,
+      deficiencyTypePhisicalDisability:
+          student.deficiencyTypePhisicalDisability,
       deficiencyTypeIntelectualDisability:
-          deficiencyTypeIntelectualDisability ??
-              this.deficiencyTypeIntelectualDisability,
-      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ??
-          this.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeAutism: deficiencyTypeAutism ?? this.deficiencyTypeAutism,
-      deficiencyTypeAspengerSyndrome:
-          deficiencyTypeAspengerSyndrome ?? this.deficiencyTypeAspengerSyndrome,
-      deficiencyTypeRettSyndrome:
-          deficiencyTypeRettSyndrome ?? this.deficiencyTypeRettSyndrome,
+          student.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities:
+          student.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeAutism: student.deficiencyTypeAutism,
+      deficiencyTypeAspengerSyndrome: student.deficiencyTypeAspengerSyndrome,
+      deficiencyTypeRettSyndrome: student.deficiencyTypeRettSyndrome,
       deficiencyTypeChildhoodDisintegrativeDisorder:
-          deficiencyTypeChildhoodDisintegrativeDisorder ??
-              this.deficiencyTypeChildhoodDisintegrativeDisorder,
-      deficiencyTypeGifted: deficiencyTypeGifted ?? this.deficiencyTypeGifted,
-      resourceAidLector: resourceAidLector ?? this.resourceAidLector,
-      resourceAidTranscription:
-          resourceAidTranscription ?? this.resourceAidTranscription,
-      resourceInterpreterGuide:
-          resourceInterpreterGuide ?? this.resourceInterpreterGuide,
-      resourceInterpreterLibras:
-          resourceInterpreterLibras ?? this.resourceInterpreterLibras,
-      resourceLipReading: resourceLipReading ?? this.resourceLipReading,
-      resourceZoomedTest16: resourceZoomedTest16 ?? this.resourceZoomedTest16,
-      resourceZoomedTest18: resourceZoomedTest18 ?? this.resourceZoomedTest18,
-      resourceZoomedTest20: resourceZoomedTest20 ?? this.resourceZoomedTest20,
-      resourceZoomedTest24: resourceZoomedTest24 ?? this.resourceZoomedTest24,
-      resourceCdAudio: resourceCdAudio ?? this.resourceCdAudio,
-      resourceProofLanguage:
-          resourceProofLanguage ?? this.resourceProofLanguage,
-      resourceVideoLibras: resourceVideoLibras ?? this.resourceVideoLibras,
-      resourceBrailleTest: resourceBrailleTest ?? this.resourceBrailleTest,
-      resourceNone: resourceNone ?? this.resourceNone,
-      sendYear: sendYear ?? this.sendYear,
-      lastChange: lastChange ?? this.lastChange,
-      responsable: responsable ?? this.responsable,
-      responsableName: responsableName ?? this.responsableName,
-      responsableRg: responsableRg ?? this.responsableRg,
-      responsableCpf: responsableCpf ?? this.responsableCpf,
-      responsableScholarity:
-          responsableScholarity ?? this.responsableScholarity,
-      responsableJob: responsableJob ?? this.responsableJob,
-      bfParticipator: bfParticipator ?? this.bfParticipator,
-      foodRestrictions: foodRestrictions ?? this.foodRestrictions,
-      responsableTelephone: responsableTelephone ?? this.responsableTelephone,
-      hash: hash ?? this.hash,
-      filiation1Rg: filiation1Rg ?? this.filiation1Rg,
-      filiation1Cpf: filiation1Cpf ?? this.filiation1Cpf,
-      filiation1Scholarity: filiation1Scholarity ?? this.filiation1Scholarity,
-      filiation1Job: filiation1Job ?? this.filiation1Job,
-      filiation2Rg: filiation2Rg ?? this.filiation2Rg,
-      filiation2Cpf: filiation2Cpf ?? this.filiation2Cpf,
-      filiation2Scholarity: filiation2Scholarity ?? this.filiation2Scholarity,
-      filiation2Job: filiation2Job ?? this.filiation2Job,
+          student.deficiencyTypeChildhoodDisintegrativeDisorder,
+      deficiencyTypeGifted: student.deficiencyTypeGifted,
+      resourceAidLector: student.resourceAidLector,
+      resourceAidTranscription: student.resourceAidTranscription,
+      resourceInterpreterGuide: student.resourceInterpreterGuide,
+      resourceInterpreterLibras: student.resourceInterpreterLibras,
+      resourceLipReading: student.resourceLipReading,
+      resourceZoomedTest16: student.resourceZoomedTest16,
+      resourceZoomedTest18: student.resourceZoomedTest18,
+      resourceZoomedTest20: student.resourceZoomedTest20,
+      resourceZoomedTest24: student.resourceZoomedTest24,
+      resourceCdAudio: student.resourceCdAudio,
+      resourceProofLanguage: student.resourceProofLanguage,
+      resourceVideoLibras: student.resourceVideoLibras,
+      resourceBrailleTest: student.resourceBrailleTest,
+      resourceNone: student.resourceNone,
+      sendYear: student.sendYear,
+      lastChange: student.lastChange,
+      responsable: student.responsable,
+      responsableName: student.responsableName,
+      responsableRg: student.responsableRg,
+      responsableCpf: student.responsableCpf,
+      responsableScholarity: student.responsableScholarity,
+      responsableJob: student.responsableJob,
+      bfParticipator: student.bfParticipator,
+      foodRestrictions: student.foodRestrictions,
+      responsableTelephone: student.responsableTelephone,
+      hash: student.hash,
+      filiation1Rg: student.filiation1Rg,
+      filiation1Cpf: student.filiation1Cpf,
+      filiation1Scholarity: student.filiation1Scholarity,
+      filiation1Job: student.filiation1Job,
+      filiation2Rg: student.filiation2Rg,
+      filiation2Cpf: student.filiation2Cpf,
+      filiation2Scholarity: student.filiation2Scholarity,
+      filiation2Job: student.filiation2Job,
     );
   }
 
@@ -437,11 +282,11 @@ class StudentModel {
       'hash': hash,
       'filiation1_rg': filiation1Rg,
       'filiation1_cpf': filiation1Cpf,
-      'filiation1_scholarity': filiation1Scholarity,
+      'filiation1_scholarity': filiation1Scholarity.toString(),
       'filiation1_job': filiation1Job,
       'filiation_2_rg': filiation2Rg,
       'filiation_2_cpf': filiation2Cpf,
-      'filiation_2_scholarity': filiation2Scholarity,
+      'filiation_2_scholarity': filiation2Scholarity.toString(),
       'filiation_2_job': filiation2Job,
     };
   }
@@ -613,14 +458,14 @@ class StudentModel {
       schoolInepIdFk: map['school_inep_id_fk'],
       inepId: map['inep_id'],
       birthday: map['birthday'],
-      sex: map['sex']?.toInt(),
-      colorRace: map['color_race']?.toInt(),
-      filiation: map['filiation']?.toInt(),
+      sex: map['sex'],
+      colorRace: map['color_race'],
+      filiation: map['filiation'],
       filiation1: map['filiation_1'],
       filiation2: map['filiation_2'],
-      nationality: map['nationality']?.toInt(),
-      noDocumentDesc: map['no_document_desc']?.toInt(),
-      scholarity: map['scholarity']?.toInt(),
+      nationality: map['nationality'],
+      noDocumentDesc: map['no_document_desc'],
+      scholarity: map['scholarity'],
       idEmail: map['id_email'],
       edcensoNationFk: map['edcenso_nation_fk'],
       edcensoUfFk: map['edcenso_uf_fk'],
@@ -658,25 +503,25 @@ class StudentModel {
       resourceVideoLibras: map['resource_video_libras'],
       resourceBrailleTest: map['resource_braille_test'],
       resourceNone: map['resource_none'],
-      sendYear: map['send_year']?.toInt(),
+      sendYear: map['send_year'],
       lastChange: map['last_change'],
-      responsable: map['responsable']?.toInt(),
+      responsable: map['responsable'],
       responsableName: map['responsable_name'],
       responsableRg: map['responsable_rg'],
       responsableCpf: map['responsable_cpf'],
-      responsableScholarity: map['responsable_scholarity']?.toInt(),
+      responsableScholarity: map['responsable_scholarity'],
       responsableJob: map['responsable_job'],
       bfParticipator: map['bf_participator'],
       foodRestrictions: map['food_restrictions'],
       responsableTelephone: map['responsable_telephone'],
-      hash: map['hash']?.toInt(),
+      hash: map['hash'],
       filiation1Rg: map['filiation1_rg'],
       filiation1Cpf: map['filiation1_cpf'],
-      filiation1Scholarity: map['filiation1_scholarity']?.toInt(),
+      filiation1Scholarity: map['filiation_1_scholarity'],
       filiation1Job: map['filiation1_job'],
       filiation2Rg: map['filiation_2_rg'],
       filiation2Cpf: map['filiation_2_cpf'],
-      filiation2Scholarity: map['filiation_2_scholarity']?.toInt(),
+      filiation2Scholarity: map['filiation_2_scholarity'],
       filiation2Job: map['filiation_2_job'],
     );
   }

@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_doc
 
 class StudentDocumentsAddressModel extends StudentDocuments {
   StudentDocumentsAddressModel({
+    String? id,
     String? registerType,
     required String schoolInepIdFk,
     required String studentFk,
@@ -45,6 +46,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
     int? hash,
     String? justiceRestriction,
   }) : super(
+          id: id,
           registerType: registerType,
           schoolInepIdFk: schoolInepIdFk,
           studentFk: studentFk,
@@ -87,7 +89,9 @@ class StudentDocumentsAddressModel extends StudentDocuments {
           justiceRestriction: justiceRestriction,
         );
 
+  @override
   StudentDocumentsAddressModel copyWith({
+    String? id,
     String? registerType,
     String? schoolInepIdFk,
     String? studentFk,
@@ -130,6 +134,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
     String? justiceRestriction,
   }) {
     return StudentDocumentsAddressModel(
+      id: id ?? this.id,
       registerType: registerType ?? this.registerType,
       schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
       studentFk: studentFk ?? this.studentFk,
@@ -188,6 +193,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
   factory StudentDocumentsAddressModel.fromEntity(
       StudentDocuments studentDocuments) {
     return StudentDocumentsAddressModel(
+      id: studentDocuments.id,
       registerType: studentDocuments.registerType,
       schoolInepIdFk: studentDocuments.schoolInepIdFk,
       studentFk: studentDocuments.studentFk,
@@ -236,6 +242,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'register_type': registerType,
       'school_inep_id_fk': schoolInepIdFk,
       'student_fk': studentFk,
@@ -281,17 +288,18 @@ class StudentDocumentsAddressModel extends StudentDocuments {
 
   factory StudentDocumentsAddressModel.fromMap(Map<String, dynamic> map) {
     return StudentDocumentsAddressModel(
+      id: map['_id'],
       registerType: map['register_type'],
       schoolInepIdFk: map['school_inep_id_fk'] ?? '',
       studentFk: map['student_fk'] ?? '',
-      oldId: map['old_id']?.toInt(),
+      oldId: int.tryParse(map['old_id']),
       rgNumber: map['rg_number'] ?? '',
       rgNumberEdcensoOrganIdEmitterFk:
           map['rg_number_edcenso_organ_id_emitter_fk'],
       rgNumberEdcensoUfFk: map['rg_number_edcenso_uf_fk'],
       rgNumberExpedictionDate: map['rg_number_expediction_date'],
-      civilCertification: map['civil_certification']?.toInt(),
-      civilCertificationType: map['civil_certification_type']?.toInt(),
+      civilCertification: int.tryParse(map['civil_certification']),
+      civilCertificationType: int.tryParse(map['civil_certification_type']),
       civilCertificationTermNumber: map['civil_certification_term_number'],
       civilCertificationSheet: map['civil_certification_sheet'],
       civilCertificationBook: map['civil_certification_book'],
@@ -311,10 +319,10 @@ class StudentDocumentsAddressModel extends StudentDocuments {
       receivedResponsableRg: map['received_responsable_rg'],
       receivedResponsableCpf: map['received_responsable_cpf'],
       cns: map['cns'],
-      hash: map['hash']?.toInt(),
+      hash: int.tryParse(map['hash']),
       justiceRestriction: map['justice_restriction'],
-      residenceZone: map['residence_zone']?.toInt() ?? 0,
-      diffLocation: map['diff_location']?.toInt(),
+      residenceZone: int.tryParse(map['residence_zone']) ?? 0,
+      diffLocation: int.tryParse(map['diff_location']),
       cep: map['cep'],
       address: map['address'],
       number: map['number'],
@@ -332,7 +340,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
 
   @override
   String toString() {
-    return '''StudentDocumentsAddressModel(registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
+    return '''StudentDocumentsAddressModel(id: $id, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentFk: $studentFk, oldId: $oldId, rgNumber: $rgNumber, rgNumberEdcensoOrganIdEmitterFk: $rgNumberEdcensoOrganIdEmitterFk, rgNumberEdcensoUfFk: $rgNumberEdcensoUfFk, rgNumberExpedictionDate: $rgNumberExpedictionDate, civilCertification: $civilCertification, civilCertificationType: $civilCertificationType, civilCertificationTermNumber: $civilCertificationTermNumber, civilCertificationSheet: $civilCertificationSheet, civilCertificationBook: $civilCertificationBook, civilCertificationDate: $civilCertificationDate, notaryOfficeUfFk: $notaryOfficeUfFk, notaryOfficeCityFk: $notaryOfficeCityFk, edcensoNotaryOfficeFk: $edcensoNotaryOfficeFk, civilRegisterEnrollmentNumber: $civilRegisterEnrollmentNumber, cpf: $cpf, foreignDocumentOrPassport: $foreignDocumentOrPassport, nis: $nis, residenceZone: $residenceZone, diffLocation: $diffLocation, cep: $cep, address: $address, number: $number, complement: $complement, neighborhood: $neighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, receivedCc: $receivedCc, receivedAddress: $receivedAddress, receivedPhoto: $receivedPhoto, receivedNis: $receivedNis, receivedHistory: $receivedHistory, receivedResponsableRg: $receivedResponsableRg, receivedResponsableCpf: $receivedResponsableCpf, cns: $cns, hash: $hash, justiceRestriction: $justiceRestriction)''';
   }
 
   @override
@@ -340,6 +348,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
     if (identical(this, other)) return true;
 
     return other is StudentDocumentsAddressModel &&
+        other.id == id &&
         other.registerType == registerType &&
         other.schoolInepIdFk == schoolInepIdFk &&
         other.studentFk == studentFk &&
@@ -385,7 +394,8 @@ class StudentDocumentsAddressModel extends StudentDocuments {
 
   @override
   int get hashCode {
-    return registerType.hashCode ^
+    return id.hashCode ^
+        registerType.hashCode ^
         schoolInepIdFk.hashCode ^
         studentFk.hashCode ^
         oldId.hashCode ^

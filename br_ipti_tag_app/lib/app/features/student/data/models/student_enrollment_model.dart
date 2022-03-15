@@ -310,7 +310,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   factory StudentEnrollmentModel.fromMap(Map<String, dynamic> map) {
     return StudentEnrollmentModel(
-      oldId: map['old_id']?.toInt(),
+      oldId: int.tryParse(map['old_id']),
       registerType: map['register_type'] ?? '',
       schoolInepIdFk: map['school_inep_id_fk'] ?? '',
       studentInepId: map['student_inep_id'],
@@ -318,10 +318,11 @@ class StudentEnrollmentModel extends StudentEnrollment {
       classroomInepId: map['classroom_inep_id'],
       classroomFk: map['classroom_fk'] ?? '',
       enrollmentId: map['enrollment_id'],
-      unifiedClass: map['unified_class']?.toInt(),
+      unifiedClass: int.tryParse(map['unified_class']),
       edcensoStageVsModalityFk: map['edcenso_stage_vs_modality_fk'],
-      anotherScholarizationPlace: map['another_scholarization_place']?.toInt(),
-      multi: map['multi']?.toInt(),
+      anotherScholarizationPlace:
+          int.tryParse(map['another_scholarization_place']),
+      multi: int.tryParse(map['multi']),
       aeeCognitiveFunctions: map['aee_cognitive_functions'],
       aeeAutonomousLife: map['aee_autonomous_life'],
       aeeCurriculumEnrichment: map['aee_curriculum_enrichment'],
@@ -335,7 +336,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
       aeeOpticalNonoptical: map['aee_optical_nonoptical'],
       publicTransport: map['public_transport'],
       transportResponsableGovernment:
-          map['transport_responsable_government']?.toInt(),
+          int.tryParse(map['transport_responsable_government']),
       vehicleTypeVan: map['vehicle_type_van'],
       vehicleTypeMicrobus: map['vehicle_type_microbus'],
       vehicleTypeBus: map['vehicle_type_bus'],
@@ -347,15 +348,15 @@ class StudentEnrollmentModel extends StudentEnrollment {
       vehicleTypeWaterwayBoat1535: map['vehicle_type_waterway_boat1535'],
       vehicleTypeWaterwayBoat35: map['vehicle_type_waterway_boat35'],
       vehicleTypeMetroOrTrain: map['vehicle_type_metro_or_train'],
-      studentEntryForm: map['student_entry_form']?.toInt(),
-      hash: map['hash']?.toInt(),
+      studentEntryForm: int.tryParse(map['student_entry_form']),
+      hash: int.tryParse(map['hash']),
       schoolAdmissionDate: map['school_admission_date'],
-      currentStageSituation: map['current_stage_situation']?.toInt(),
-      previousStageSituation: map['previous_stage_situation']?.toInt(),
-      admissionType: map['admission_type']?.toInt(),
-      hashClassroom: map['hash_classroom']?.toInt(),
-      hashStudent: map['hash_student']?.toInt(),
-      status: map['status']?.toInt(),
+      currentStageSituation: int.tryParse(map['current_stage_situation']),
+      previousStageSituation: int.tryParse(map['previous_stage_situation']),
+      admissionType: int.tryParse(map['admission_type']),
+      hashClassroom: int.tryParse(map['hash_classroom']),
+      hashStudent: int.tryParse(map['hash_student']),
+      status: int.tryParse(map['status']),
     );
   }
 

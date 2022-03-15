@@ -1,6 +1,8 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_states.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +10,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
-  const PersonalDataFormPage({Key? key}) : super(key: key);
+  const PersonalDataFormPage({
+    Key? key,
+    this.student,
+    this.editMode = EditMode.Create,
+  }) : super(key: key);
+
+  final Student? student;
+  final EditMode editMode;
 
   @override
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
@@ -17,6 +26,12 @@ class PersonalDataFormPage extends StatefulWidget {
 class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
   final _formKey = GlobalKey<FormState>();
   final controller = Modular.get<EnrollmentPersonalBloc>();
+
+  @override
+  void initState() {
+    if (widget.student != null) controller.loadStudent(widget.student!);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

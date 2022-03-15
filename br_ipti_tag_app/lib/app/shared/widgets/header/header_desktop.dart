@@ -32,7 +32,9 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 350),
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3 * 2,
+                ),
                 child: BlocBuilder<SessionBloc, SessionState>(
                     bloc: sessionController,
                     builder: (context, state) {

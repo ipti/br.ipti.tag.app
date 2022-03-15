@@ -26,9 +26,9 @@ class StudentRemoteDataSource {
     return mappedList;
   }
 
-  Future<StudentModel> getById(int id, {required String schoolId}) async {
+  Future<StudentModel> getById(String id, {required String schoolId}) async {
     final response = await _httpClient.request(
-      route: GetStudentsEndPoint(id: id.toString(), schoolId: schoolId),
+      route: GetStudentsEndPoint(id: id, schoolId: schoolId),
     );
 
     final mappedValue = StudentModel.fromMap(response.data!);

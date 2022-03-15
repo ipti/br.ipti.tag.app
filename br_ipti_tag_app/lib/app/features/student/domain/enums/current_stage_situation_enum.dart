@@ -4,7 +4,7 @@ enum CurrentStageSituation {
   REPETENTE,
 }
 
-extension LabeledEnum on CurrentStageSituation {
+extension CurrentStageSituationExtension on CurrentStageSituation {
   int get id {
     return index + 1;
   }

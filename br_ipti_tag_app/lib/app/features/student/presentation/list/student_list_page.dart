@@ -44,14 +44,14 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
       path: ["Alunos", widget.title],
       body: <Widget>[
         SizedBox(
-          child: Row(
+          child: Wrap(
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
                 width: 120,
                 child: TagButton(
                   text: "Matricula",
-                  onPressed: () => Modular.to.pushNamed("matricula"),
+                  onPressed: () => Modular.to.pushNamed("matricula/"),
                 ),
               ),
               Container(
@@ -117,8 +117,14 @@ class StudentDatatable extends DataTableSource {
     return DataRow(cells: [
       DataCell(Text(data[index].name!.toUpperCase())),
       DataCell(Text(data[index].birthday ?? "")),
-      DataCell(Text(data[index].responsable?.name ?? "")),
-      const DataCell(Icon(Icons.edit)),
+      DataCell(Text(data[index].responsableName ?? "")),
+      DataCell(
+        const Icon(Icons.edit),
+        onTap: () => Modular.to.pushNamed(
+          "matricula/edit",
+          arguments: data[index],
+        ),
+      ),
     ]);
   }
 

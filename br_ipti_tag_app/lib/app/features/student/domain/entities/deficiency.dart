@@ -15,17 +15,17 @@ class Deficiency {
     this.deficiencyTypeGifted = false,
   });
 
-  bool deficiencyTypeBlindness;
-  bool deficiencyTypeLowVision;
-  bool deficiencyTypeDeafness;
-  bool deficiencyTypeDisabilityHearing;
-  bool deficiencyTypeDeafblindness;
-  bool deficiencyTypePhisicalDisability;
-  bool deficiencyTypeIntelectualDisability;
-  bool deficiencyTypeMultipleDisabilities;
-  bool deficiencyTypeAutism;
-  bool deficiencyTypeAspengerSyndrome;
-  bool deficiencyTypeRettSyndrome;
-  bool deficiencyTypeChildhoodDisintegrativeDisorder;
-  bool deficiencyTypeGifted;
+  bool? deficiencyTypeBlindness;
+  bool? deficiencyTypeLowVision;
+  bool? deficiencyTypeDeafness;
+  bool? deficiencyTypeDisabilityHearing;
+  bool? deficiencyTypeDeafblindness;
+  bool? deficiencyTypePhisicalDisability;
+  bool? deficiencyTypeIntelectualDisability;
+  bool? deficiencyTypeMultipleDisabilities;
+  bool? deficiencyTypeAutism;
+  bool? deficiencyTypeAspengerSyndrome;
+  bool? deficiencyTypeRettSyndrome;
+  bool? deficiencyTypeChildhoodDisintegrativeDisorder;
+  bool? deficiencyTypeGifted;
 }

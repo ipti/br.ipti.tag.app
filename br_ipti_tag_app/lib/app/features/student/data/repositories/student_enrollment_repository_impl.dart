@@ -6,15 +6,29 @@ import 'package:dartz/dartz.dart';
 
 class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   StudentEnrollmentRepositoryImpl(
-    this._addressRemoteDataSource,
+    this._enrollmenrRemoteDataSource,
   );
 
-  final StudentEnrollmenrRemoteDataSource _addressRemoteDataSource;
+  final StudentEnrollmenrRemoteDataSource _enrollmenrRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentEnrollment>> getById(int id) async {
+  Future<Either<Exception, StudentEnrollment>> getById(String id) async {
     try {
-      final result = await _addressRemoteDataSource.getById(id);
+      final result = await _enrollmenrRemoteDataSource.getById(id);
+      return Right(result);
+    } catch (e) {
+      return Left(Exception("Não foi possível listar"));
+    }
+  }
+
+  @override
+  Future<Either<Exception, StudentEnrollment>> getStudentById(
+    String studentId,
+  ) async {
+    try {
+      final result = await _enrollmenrRemoteDataSource.getByStudentId(
+        studentId,
+      );
       return Right(result);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
@@ -25,7 +39,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   Future<Either<Exception, StudentEnrollment>> create(
       StudentEnrollment studentEnrollment) async {
     try {
-      final result = await _addressRemoteDataSource.create(
+      final result = await _enrollmenrRemoteDataSource.create(
         StudentEnrollmentModel.fromEntity(studentEnrollment),
       );
 
@@ -39,7 +53,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   Future<Either<Exception, StudentEnrollment>> update(
       String id, StudentEnrollment student) async {
     try {
-      final result = await _addressRemoteDataSource.update(
+      final result = await _enrollmenrRemoteDataSource.update(
         id,
         student as StudentEnrollmentModel,
       );

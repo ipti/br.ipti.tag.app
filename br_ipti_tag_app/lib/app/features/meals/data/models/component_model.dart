@@ -51,13 +51,12 @@ class ComponentModel {
   }
 
   factory ComponentModel.fromMap(Map<String, dynamic> map) {
+    final ingredients = List.from(map['ingredients'] ?? []);
     return ComponentModel(
       id: map['id'],
       description: map['description'],
       observation: map['observation'],
-      ingredients: List<IngredientModel>.from(map['ingredients']?.map(
-        (x) => IngredientModel.fromMap(x),
-      )),
+      ingredients: ingredients.map((x) => IngredientModel.fromMap(x)).toList(),
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );

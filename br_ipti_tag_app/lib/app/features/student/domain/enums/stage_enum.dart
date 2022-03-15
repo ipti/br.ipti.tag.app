@@ -1,4 +1,5 @@
 enum Stage {
+  None,
   INFANTIL,
   FUNDAMENTAL_MENOR,
   FUNDAMENTAL_MAIOR,
@@ -8,12 +9,7 @@ enum Stage {
   OUTROS,
 }
 
-extension IndexLegacyParity on Stage {
-  // Essa alteração é necessário pois no legado o indice começa em 1 e não em 0
-  int get id {
-    return index + 1;
-  }
-
+extension StageExtension on Stage {
   String get name {
     switch (this) {
       case Stage.INFANTIL:
@@ -30,6 +26,8 @@ extension IndexLegacyParity on Stage {
         return "EJA";
       case Stage.OUTROS:
         return "Outros";
+      case Stage.None:
+        return "";
     }
   }
 }

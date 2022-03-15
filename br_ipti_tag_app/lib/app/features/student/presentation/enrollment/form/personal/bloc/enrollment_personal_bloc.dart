@@ -13,6 +13,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       : super(const EmptyEnrollmentPersonalState());
 
   final CreateStudentsUsecase _createStudentsUsecase;
+
   final _session = Modular.get<SessionBloc>();
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
@@ -48,6 +49,19 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
     2: "Brasileira: Nascido no exterior ou Naturalizado",
     3: "Estrangeira"
   };
+
+  Future loadStudent(Student student) async {
+    emit(state.copyWith(
+      name: student.name,
+      birthday: student.birthday,
+      sex: student.sex,
+      colorRace: student.colorRace,
+      filiation: student.filiation,
+      nationality: student.nationality,
+      deficiency: student.deficiency,
+      foodRestrictions: student.foodRestrictions,
+    ));
+  }
 
   void setName(String value) => emit(state.copyWith(
         name: value,
@@ -93,8 +107,8 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       ),
     );
 
-    result.fold(id, (r) {
-      _enrollmentBloc.setStudent(r.id);
+    result.fold(id, (student) {
+      _enrollmentBloc.setStudent(student);
       _enrollmentBloc.nextTab();
     });
   }

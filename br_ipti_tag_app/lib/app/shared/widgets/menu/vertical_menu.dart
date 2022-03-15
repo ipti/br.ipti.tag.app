@@ -84,7 +84,7 @@ class TagVerticalMenu extends StatelessWidget {
           sessionService.cleanToken();
           sessionService.cleanSchoolYear();
           sessionService.cleanCurrentUserSchools();
-          Modular.to.pushReplacementNamed("/auth");
+          Modular.to.pushReplacementNamed("/");
         },
       ),
     ];

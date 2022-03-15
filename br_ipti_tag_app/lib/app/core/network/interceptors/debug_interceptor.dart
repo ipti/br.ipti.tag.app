@@ -14,7 +14,8 @@ class DebugInterceptor extends InterceptorsWrapper {
   ) async {
     if (kDebugMode) {
       debugPrint(
-          '''==>> Sending ${options.method} to: ${options.path} - ${DateTime.now()}''');
+        '''==>> Sending ${options.method} to: ${options.path} - ${DateTime.now()}''',
+      );
       debugPrint("   |  Data: \n ${_formatJson(options.data)}");
       debugPrint("   |  Query Params: ${options.queryParameters}");
       debugPrint("=========================================================>>");
@@ -26,11 +27,13 @@ class DebugInterceptor extends InterceptorsWrapper {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (kDebugMode) {
       debugPrint(
-          '''<<== Received [${response.statusCode}] from: ${response.realUri.path} - ${DateTime.now()}''');
+        '''<<== Received [${response.statusCode}] from: ${response.realUri.path} - ${DateTime.now()}''',
+      );
 
       debugPrint("|  Data: ${_formatJson(response.data)}");
       debugPrint(
-          '''<<=========================================== ${response.realUri.path}''');
+        '''<<=========================================== ${response.realUri.path}''',
+      );
     }
 
     super.onResponse(response, handler);

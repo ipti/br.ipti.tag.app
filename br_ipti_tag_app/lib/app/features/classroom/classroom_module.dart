@@ -23,8 +23,8 @@ class ClassroomModule extends Module {
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const ClassroomPage()),
-    ChildRoute("create", child: (_, args) => const ClassroomCreatePage()),
+    ChildRoute("/create", child: (_, args) => const ClassroomCreatePage()),
   ];
 }

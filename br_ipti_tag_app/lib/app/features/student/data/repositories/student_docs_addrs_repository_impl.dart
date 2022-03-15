@@ -13,9 +13,9 @@ class StudentDocumentsAddressRepositoryImpl
   final StudentDocumentsAndAddressRemoteDataSource _addressRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentDocuments>> getById(int id) async {
+  Future<Either<Exception, StudentDocuments>> getByStudentId(String id) async {
     try {
-      final result = await _addressRemoteDataSource.getById(id);
+      final result = await _addressRemoteDataSource.getByStudentId(id);
       return Right(result);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
@@ -37,10 +37,14 @@ class StudentDocumentsAddressRepositoryImpl
 
   @override
   Future<Either<Exception, StudentDocuments>> update(
-      String id, StudentDocuments student) async {
+    String id,
+    StudentDocuments student,
+  ) async {
     try {
       final result = await _addressRemoteDataSource.update(
-          id, StudentDocumentsAddressModel.fromEntity(student));
+        id,
+        StudentDocumentsAddressModel.fromEntity(student),
+      );
 
       return Right(result);
     } catch (e) {

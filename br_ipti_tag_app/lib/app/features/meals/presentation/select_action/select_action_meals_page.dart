@@ -64,7 +64,7 @@ class _SelectActionNavigatorItem extends StatelessWidget {
     required this.subtitle,
   }) : super(key: key);
 
-  final Function onTap;
+  final Function() onTap;
   final String title;
   final String subtitle;
 
