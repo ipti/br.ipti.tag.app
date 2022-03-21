@@ -80,7 +80,9 @@ Widget _returnPage(
         classroomEntity: classroomEntity,
       );
     case 1:
-      return const ClassroomTeacherPage();
+      return ClassroomTeacherPage(
+        classroomId: classroomEntity!.id,
+      );
     default:
       return const ClassroomStudentPage();
   }

@@ -5,19 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'classroom_states.dart';
 import 'classroom_update_events.dart';
 
-final _initialState = ClassroomUpdateDeleteFormState(
-  name: "",
-  stageVsModalityFk: 'MN',
-  startTime: TimeOfDay.now(),
-  endTime: TimeOfDay.now(),
-  modalityId: 0,
-  stageId: 0,
-  typePedagogicMediationId: 0,
-  registerType: '1230',
-);
+final _initialState = ClassroomUpdateDeleteInitial();
 
 class ClassroomUpdateDeleteBloc
-    extends Bloc<ClassroomUpdateDeleteEvent, ClassroomUpdateDeleteFormState> {
+    extends Bloc<ClassroomUpdateDeleteEvent, ClassroomUpdateDeleteState> {
   final CreateClassroomUsecase _usecaseCreateClassroom;
 
   final modalitiesList = const <int, String>{
@@ -106,137 +97,161 @@ class ClassroomUpdateDeleteBloc
         ),
       );
   @override
-  Stream<ClassroomUpdateDeleteFormState> mapEventToState(
+  Stream<ClassroomUpdateDeleteState> mapEventToState(
       ClassroomUpdateDeleteEvent event) async* {
-    ClassroomUpdateDeleteFormState newState = state;
+    ClassroomUpdateDeleteState newState = state;
     if (event is NameChanged) {
-      newState = state.copyWith(name: event.name);
+      newState =
+          (state as ClassroomUpdateDeleteFormState).copyWith(name: event.name);
     } else if (event is StartTimeChanged) {
-      newState = state.copyWith(startTime: event.startTime);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(startTime: event.startTime);
     } else if (event is EndTimeChanged) {
-      newState = state.copyWith(endTime: event.endTime);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(endTime: event.endTime);
     } else if (event is ModalityChanged) {
-      newState = state.copyWith(modalityId: event.modalityId);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(modalityId: event.modalityId);
     } else if (event is StageChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
       );
     } else if (event is TypePedagogicalMediationChanged) {
-      newState = state.copyWith(
-          typePedagogicMediationId: event.typePedagogicMediationId);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(typePedagogicMediationId: event.typePedagogicMediationId);
     } else if (event is SchoolingChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         schooling: event.schooling,
       );
     } else if (event is ComplementaryActivityChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         complementaryActivity: event.complementaryActivity,
       );
     } else if (event is AeeChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aee: event.aee,
       );
     } else if (event is MoreEducationParticipatorChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         moreEducationParticipator: event.moreEducationParticipator,
       );
     } else if (event is AeeBrailleChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeBraille: event.aeeBraille,
       );
     } else if (event is AeeOpticalNonOpticalChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeOpticalNonOptical: event.aeeOpticalNonOptical,
       );
     } else if (event is AeeMobilityTechniquesChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeMobilityTechniques: event.aeeMobilityTechniques,
       );
     } else if (event is AeeCognitiveFunctionsChanged) {
-      newState =
-          state.copyWith(aeeCognitiveFunctions: event.aeeCognitiveFunctions);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(aeeCognitiveFunctions: event.aeeCognitiveFunctions);
     } else if (event is AeeLibrasChanged) {
-      newState = state.copyWith(aeeLibras: event.aeeLibras);
+      newState = (state as ClassroomUpdateDeleteFormState)
+          .copyWith(aeeLibras: event.aeeLibras);
     } else if (event is AeeCaaChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeCaa: event.aeeCaa,
       );
     } else if (event is AeeCurriculumEnrichmentChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
       );
     } else if (event is AeeAccessibleTeachingChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeAccessibleTeaching: event.aeeAccessibleTeaching,
       );
     } else if (event is AeePortugueseChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeePortuguese: event.aeePortuguese,
       );
     } else if (event is AeeSorobanChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeSoroban: event.aeeSoroban,
       );
     } else if (event is AeeAutonomousLifeChanged) {
-      newState = state.copyWith(
+      newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeAutonomousLife: event.aeeAutonomousLife,
       );
     } else if (event is SubmitClassroom) {
       final params = ClassroomCreateEntity(
-        moreEducationParticipator: state.moreEducationParticipator,
-        name: state.name,
-        startTime: state.startTime,
-        endTime: state.endTime,
-        modalityId: state.modalityId,
-        typePedagogicMediationId: state.typePedagogicMediationId,
-        complementaryActivity: state.complementaryActivity,
-        aeeCaa: state.aeeCaa,
-        aeeAccessibleTeaching: state.aeeAccessibleTeaching,
-        aee: state.aee,
-        aeeAutonomousLife: state.aeeAutonomousLife,
-        aeeBraille: state.aeeBraille,
-        aeeCognitiveFunctions: state.aeeCognitiveFunctions,
-        aeeCurriculumEnrichment: state.aeeCurriculumEnrichment,
-        aeeLibras: state.aeeLibras,
-        aeeMobilityTechniques: state.aeeMobilityTechniques,
-        aeeOpticalNonOptical: state.aeeOpticalNonOptical,
-        aeePortuguese: state.aeePortuguese,
-        aeeSoroban: state.aeeSoroban,
-        schooling: state.schooling,
-        edcensoStageVsModalityFk: state.stageVsModalityFk,
-        weekDaysFriday: state.weekDaysFriday,
-        weekDaysMonday: state.weekDaysMonday,
-        weekDaysSaturday: state.weekDaysSaturday,
-        weekDaysSunday: state.weekDaysSunday,
-        weekDaysThursday: state.weekDaysThursday,
-        weekDaysTuesday: state.weekDaysTuesday,
-        weekDaysWednesday: state.weekDaysWednesday,
+        moreEducationParticipator:
+            (state as ClassroomUpdateDeleteFormState).moreEducationParticipator,
+        name: (state as ClassroomUpdateDeleteFormState).name,
+        startTime: (state as ClassroomUpdateDeleteFormState).startTime,
+        endTime: (state as ClassroomUpdateDeleteFormState).endTime,
+        modalityId: (state as ClassroomUpdateDeleteFormState).modalityId,
+        typePedagogicMediationId:
+            (state as ClassroomUpdateDeleteFormState).typePedagogicMediationId,
+        complementaryActivity:
+            (state as ClassroomUpdateDeleteFormState).complementaryActivity,
+        aeeCaa: (state as ClassroomUpdateDeleteFormState).aeeCaa,
+        aeeAccessibleTeaching:
+            (state as ClassroomUpdateDeleteFormState).aeeAccessibleTeaching,
+        aee: (state as ClassroomUpdateDeleteFormState).aee,
+        aeeAutonomousLife:
+            (state as ClassroomUpdateDeleteFormState).aeeAutonomousLife,
+        aeeBraille: (state as ClassroomUpdateDeleteFormState).aeeBraille,
+        aeeCognitiveFunctions:
+            (state as ClassroomUpdateDeleteFormState).aeeCognitiveFunctions,
+        aeeCurriculumEnrichment:
+            (state as ClassroomUpdateDeleteFormState).aeeCurriculumEnrichment,
+        aeeLibras: (state as ClassroomUpdateDeleteFormState).aeeLibras,
+        aeeMobilityTechniques:
+            (state as ClassroomUpdateDeleteFormState).aeeMobilityTechniques,
+        aeeOpticalNonOptical:
+            (state as ClassroomUpdateDeleteFormState).aeeOpticalNonOptical,
+        aeePortuguese: (state as ClassroomUpdateDeleteFormState).aeePortuguese,
+        aeeSoroban: (state as ClassroomUpdateDeleteFormState).aeeSoroban,
+        schooling: (state as ClassroomUpdateDeleteFormState).schooling,
+        edcensoStageVsModalityFk:
+            (state as ClassroomUpdateDeleteFormState).stageVsModalityFk,
+        weekDaysFriday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysFriday,
+        weekDaysMonday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysMonday,
+        weekDaysSaturday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysSaturday,
+        weekDaysSunday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysSunday,
+        weekDaysThursday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysThursday,
+        weekDaysTuesday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysTuesday,
+        weekDaysWednesday:
+            (state as ClassroomUpdateDeleteFormState).weekDaysWednesday,
       );
 
       _usecaseCreateClassroom.call(params);
     } else if (event is UpdateClassroom) {
-      newState = state.copyWith(
-        moreEducationParticipator: event.moreEducationParticipator,
-        name: event.name,
-        startTime: event.startTime,
-        endTime: event.endTime,
-        modalityId: event.modalityId,
-        typePedagogicMediationId: event.typePedagogicMeditationId,
-        complementaryActivity: event.complementaryActivity,
-        aeeCaa: event.aeeCaa,
-        aeeAccessibleTeaching: event.aeeAccessibleTeaching,
-        aee: event.aee,
-        aeeAutonomousLife: event.aeeAutonomousLife,
-        aeeBraille: event.aeeBraille,
-        aeeCognitiveFunctions: event.aeeCognitiveFunction,
-        aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
-        aeeLibras: event.aeeLibras,
-        aeeMobilityTechniques: event.aeeMobilityTechniques,
-        aeeOpticalNonOptical: event.aeeOpticalNonoptical,
-        aeePortuguese: event.aeePortuguese,
-        aeeSoroban: event.aeeSoroban,
-        schooling: event.schooling,
-      );
+      newState = ClassroomUpdateDeleteFormState(
+          stageId: 1,
+          registerType: "20",
+          stageVsModalityFk: event.edcensoStageVsModalityFk,
+          moreEducationParticipator: event.moreEducationParticipator,
+          name: event.name,
+          startTime: event.startTime,
+          endTime: event.endTime,
+          modalityId: event.modalityId,
+          typePedagogicMediationId: event.typePedagogicMeditationId,
+          complementaryActivity: event.complementaryActivity,
+          aeeCaa: event.aeeCaa,
+          aeeAccessibleTeaching: event.aeeAccessibleTeaching,
+          aee: event.aee,
+          aeeAutonomousLife: event.aeeAutonomousLife,
+          aeeBraille: event.aeeBraille,
+          aeeCognitiveFunctions: event.aeeCognitiveFunction,
+          aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
+          aeeLibras: event.aeeLibras,
+          aeeMobilityTechniques: event.aeeMobilityTechniques,
+          aeeOpticalNonOptical: event.aeeOpticalNonoptical,
+          aeePortuguese: event.aeePortuguese,
+          aeeSoroban: event.aeeSoroban,
+          schooling: event.schooling);
     }
 
     yield newState;

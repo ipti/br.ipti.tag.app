@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 abstract class ClassroomUpdateDeleteState extends Equatable {}
 
 class ClassroomUpdateDeleteInitial extends ClassroomUpdateDeleteState {
+  ClassroomUpdateDeleteInitial();
+
   @override
   List<Object?> get props => [];
 }

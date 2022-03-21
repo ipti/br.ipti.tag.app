@@ -69,7 +69,6 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                 widget.classroomEntity?.moreEducationParticipator ?? false,
           ),
         );
-        controller.setName('oi');
       }
     });
     super.initState();
