@@ -16,7 +16,7 @@ class DebugInterceptor extends InterceptorsWrapper {
       debugPrint(
         '''==>> Sending ${options.method} to: ${options.path} - ${DateTime.now()}''',
       );
-      debugPrint("   |  Data: \n ${_formatJson(options.data)}");
+      // debugPrint("   |  Data: \n ${_formatJson(options.data)}");
       debugPrint("   |  Query Params: ${options.queryParameters}");
       debugPrint("=========================================================>>");
     }

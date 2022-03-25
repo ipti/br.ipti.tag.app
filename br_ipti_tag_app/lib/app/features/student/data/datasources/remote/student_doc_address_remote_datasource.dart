@@ -40,7 +40,8 @@ class StudentDocumentsAndAddressRemoteDataSource {
   }
 
   Future<StudentDocumentsAddressModel> create(
-      StudentDocumentsAddressModel model) async {
+    StudentDocumentsAddressModel model,
+  ) async {
     final response = await _httpClient.request(
       route: PostStudentDocsEndPoint(model: model),
     );

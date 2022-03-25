@@ -1,4 +1,9 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/color_race_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/filliation_type_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/nationality_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/scholarity_enum.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/sex_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
@@ -17,38 +22,35 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   final _session = Modular.get<SessionBloc>();
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
-  final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
+  final sexItems = Map.fromEntries(
+    Sex.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
-  final colorRaceItems = <int, String>{
-    1: "Não declarada",
-    2: "Branca",
-    3: "Preta",
-    4: "Parda",
-    5: "Amarela",
-    6: "Indígena",
-  };
+  final colorRaceItems = Map.fromEntries(
+    ColorRace.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
-  final scholatiryItems = <int, String>{
-    1: "Não sabe ler e escrever",
-    2: "Sabe ler e escrever",
-    3: "Ens. Fund. Incompleto",
-    4: "Ens. Fund. Completo",
-    5: "Ens. Med. Incompleto",
-    6: "Ens. Med. Completo",
-    7: "Ens. Sup. Incompleto",
-    8: "Ens. Sup. Completo",
-  };
+  final scholatiryItems = Map.fromEntries(
+    Scholarity.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
-  final filiationItems = <int, String>{
-    1: "Não declarado/Ignorado",
-    2: "Pai e/ou Mãe",
-  };
+  final filiationItems = Map.fromEntries(
+    FilliationType.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
-  final nationalityItems = <int, String>{
-    1: "Brasileira",
-    2: "Brasileira: Nascido no exterior ou Naturalizado",
-    3: "Estrangeira"
-  };
+  final nationalityItems = Map.fromEntries(
+    Nationality.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
   Future loadStudent(Student student) async {
     emit(state.copyWith(
@@ -97,7 +99,6 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       edcensoCityFk: school.edcensoCityFk,
       edcensoDistrictFk: school.edcensoDistrictFk,
       edcensoNationFk: "61ee3e877652254244a8b224",
-
       schoolInepIdFk: school.id,
     );
 

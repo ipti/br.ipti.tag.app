@@ -27,7 +27,6 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
     controller.fetchListStudentsEvent();
 
     session.stream.listen((state) {
-      // state.currentSchool;
       controller.fetchListStudentsEvent();
     });
 

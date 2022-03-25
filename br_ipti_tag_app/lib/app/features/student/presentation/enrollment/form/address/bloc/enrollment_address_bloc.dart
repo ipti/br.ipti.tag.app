@@ -57,10 +57,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
           )));
       emit(state.copyWith(
         cities: mappedValues,
-        edcensoCityFk:
-            state.edcensoCityFk == null || state.edcensoCityFk!.isEmpty
-                ? mappedValues.entries.first.key
-                : state.edcensoCityFk,
+        edcensoCityFk: mappedValues.entries.first.key,
       ));
     });
   }

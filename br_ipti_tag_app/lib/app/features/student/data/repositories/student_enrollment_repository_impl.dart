@@ -3,6 +3,7 @@ import 'package:br_ipti_tag_app/app/features/student/data/models/student_enrollm
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
 class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   StudentEnrollmentRepositoryImpl(
@@ -31,6 +32,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
       );
       return Right(result);
     } catch (e) {
+      debugPrint(e.toString());
       return Left(Exception("Não foi possível listar"));
     }
   }
@@ -51,11 +53,11 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
 
   @override
   Future<Either<Exception, StudentEnrollment>> update(
-      String id, StudentEnrollment student) async {
+      String id, StudentEnrollment studentEnrollment) async {
     try {
       final result = await _enrollmenrRemoteDataSource.update(
         id,
-        student as StudentEnrollmentModel,
+        StudentEnrollmentModel.fromEntity(studentEnrollment),
       );
 
       return Right(result);

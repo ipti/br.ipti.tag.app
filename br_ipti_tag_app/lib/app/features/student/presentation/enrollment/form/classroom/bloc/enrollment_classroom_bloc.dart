@@ -6,7 +6,9 @@ import 'package:br_ipti_tag_app/app/features/student/domain/enums/stage_enum.dar
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/unified_class_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/list_classrooms_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/util/extensions/enum_by_id.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -17,13 +19,15 @@ import 'enrollment_classroom_states.dart';
 
 class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   EnrollmentClassroomBloc(
-      this._listClassroomsUsecase, this._createStudentEnrollmentUsecase)
-      : super(const EmptyEnrollmentClassroomState());
+    this._listClassroomsUsecase,
+    this._createStudentEnrollmentUsecase,
+    this._updateStudentEnrollmentUsecase,
+  ) : super(const EmptyEnrollmentClassroomState());
 
   final ListClassroomsUsecase _listClassroomsUsecase;
   final CreateStudentEnrollmentUsecase _createStudentEnrollmentUsecase;
+  final UpdateStudentEnrollmentUsecase _updateStudentEnrollmentUsecase;
   final _session = Modular.get<SessionBloc>();
-  final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
   void setStudentClass(String classroomid) => emit(state.copyWith(
@@ -57,6 +61,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
 
   void loadStudentEnrollment(StudentEnrollment studentEnrollment) {
     emit(state.copyWith(
+      studentEnrollment: studentEnrollment,
       classroomId: studentEnrollment.classroomFk,
       anotherScholarizationPlace: studentEnrollment.anotherScholarizationPlace,
       currentStageSituation: CurrentStageSituation.values.byId(
@@ -88,20 +93,59 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     );
   }
 
-  Future submit() async {
-    final schoolId = _session.state.currentSchool;
+  Future submit(EditMode mode) async {
+    final _enrollmentBloc = Modular.get<EnrollmentBloc>();
+
+    final schoolId = _session.state.currentSchool!.id!;
     final studentId = _enrollmentBloc.state.student!.id!;
+
+    switch (mode) {
+      case EditMode.Create:
+        final enrollment = StudentEnrollment(
+          schoolInepIdFk: schoolId,
+          studentFk: studentId,
+          classroomFk: state.classroomId!,
+          currentStageSituation: state.currentStageSituation?.id,
+          previousStageSituation: state.previousStageSituation?.id,
+          schoolAdmissionDate: state.schoolAdmissionDate,
+          studentEntryForm: state.studentEntryForm?.id,
+          unifiedClass: state.unifiedClass?.id,
+          registerType: "rg",
+        );
+        await _create(enrollment);
+        break;
+      case EditMode.Edit:
+        final oldStudentEnrollment = state.studentEnrollment;
+        final enrollment = oldStudentEnrollment!.copyWith(
+          schoolInepIdFk: schoolId,
+          studentFk: studentId,
+          classroomFk: state.classroomId,
+          currentStageSituation: state.currentStageSituation?.id,
+          previousStageSituation: state.previousStageSituation?.id,
+          schoolAdmissionDate: state.schoolAdmissionDate,
+          studentEntryForm: state.studentEntryForm?.id,
+          unifiedClass: state.unifiedClass?.id,
+          registerType: "rg",
+        );
+        await _update(enrollment.id!, enrollment);
+        break;
+    }
+  }
+
+  Future _create(StudentEnrollment enrollment) async {
     final params = CreateStudentEnrollmentParams(
-      schoolId: schoolId!.id!,
-      studentId: studentId,
-      classroomId: state.classroomId!,
-      currentStageSituation: state.currentStageSituation,
-      previousStageSituation: state.previousStageSituation,
-      studentEntryForm: state.studentEntryForm,
-      schoolAdmissionDate: state.schoolAdmissionDate,
-      unifiedClass: state.unifiedClass,
+      enrollment: enrollment,
     );
 
     await _createStudentEnrollmentUsecase(params);
+  }
+
+  Future _update(String id, StudentEnrollment enrollment) async {
+    final params = UpdateStudentEnrollmentParams(
+      enrollmentId: id,
+      enrollment: enrollment,
+    );
+
+    await _updateStudentEnrollmentUsecase(params);
   }
 }

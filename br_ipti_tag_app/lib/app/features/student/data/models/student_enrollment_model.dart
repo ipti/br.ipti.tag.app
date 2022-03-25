@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.
 
 class StudentEnrollmentModel extends StudentEnrollment {
   StudentEnrollmentModel({
+    String? id,
     int? oldId,
     String? registerType,
     required String schoolInepIdFk,
@@ -50,6 +51,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
     int? hashStudent,
     int? status,
   }) : super(
+          id: id,
           oldId: oldId,
           registerType: registerType,
           schoolInepIdFk: schoolInepIdFk,
@@ -96,120 +98,10 @@ class StudentEnrollmentModel extends StudentEnrollment {
           hashStudent: hashStudent,
           status: status,
         );
-  StudentEnrollment copyWith({
-    int? oldId,
-    String? registerType,
-    String? schoolInepIdFk,
-    String? studentInepId,
-    String? studentFk,
-    String? classroomInepId,
-    String? classroomFk,
-    String? enrollmentId,
-    int? unifiedClass,
-    String? edcensoStageVsModalityFk,
-    int? anotherScholarizationPlace,
-    int? multi,
-    bool? aeeCognitiveFunctions,
-    bool? aeeAutonomousLife,
-    bool? aeeCurriculumEnrichment,
-    bool? aeeAccessibleTeaching,
-    bool? aeeLibras,
-    bool? aeePortuguese,
-    bool? aeeSoroban,
-    bool? aeeBraille,
-    bool? aeeMobilityTechniques,
-    bool? aeeCaa,
-    bool? aeeOpticalNonoptical,
-    bool? publicTransport,
-    int? transportResponsableGovernment,
-    bool? vehicleTypeVan,
-    bool? vehicleTypeMicrobus,
-    bool? vehicleTypeBus,
-    bool? vehicleTypeBike,
-    bool? vehicleTypeAnimalVehicle,
-    bool? vehicleTypeOtherVehicle,
-    bool? vehicleTypeWaterwayBoat5,
-    bool? vehicleTypeWaterwayBoat515,
-    bool? vehicleTypeWaterwayBoat1535,
-    bool? vehicleTypeWaterwayBoat35,
-    bool? vehicleTypeMetroOrTrain,
-    int? studentEntryForm,
-    int? hash,
-    String? schoolAdmissionDate,
-    int? currentStageSituation,
-    int? previousStageSituation,
-    int? admissionType,
-    int? hashClassroom,
-    int? hashStudent,
-    int? status,
-  }) {
-    return StudentEnrollment(
-      oldId: oldId ?? this.oldId,
-      registerType: registerType ?? this.registerType,
-      schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
-      studentInepId: studentInepId ?? this.studentInepId,
-      studentFk: studentFk ?? this.studentFk,
-      classroomInepId: classroomInepId ?? this.classroomInepId,
-      classroomFk: classroomFk ?? this.classroomFk,
-      enrollmentId: enrollmentId ?? this.enrollmentId,
-      unifiedClass: unifiedClass ?? this.unifiedClass,
-      edcensoStageVsModalityFk:
-          edcensoStageVsModalityFk ?? this.edcensoStageVsModalityFk,
-      anotherScholarizationPlace:
-          anotherScholarizationPlace ?? this.anotherScholarizationPlace,
-      multi: multi ?? this.multi,
-      aeeCognitiveFunctions:
-          aeeCognitiveFunctions ?? this.aeeCognitiveFunctions,
-      aeeAutonomousLife: aeeAutonomousLife ?? this.aeeAutonomousLife,
-      aeeCurriculumEnrichment:
-          aeeCurriculumEnrichment ?? this.aeeCurriculumEnrichment,
-      aeeAccessibleTeaching:
-          aeeAccessibleTeaching ?? this.aeeAccessibleTeaching,
-      aeeLibras: aeeLibras ?? this.aeeLibras,
-      aeePortuguese: aeePortuguese ?? this.aeePortuguese,
-      aeeSoroban: aeeSoroban ?? this.aeeSoroban,
-      aeeBraille: aeeBraille ?? this.aeeBraille,
-      aeeMobilityTechniques:
-          aeeMobilityTechniques ?? this.aeeMobilityTechniques,
-      aeeCaa: aeeCaa ?? this.aeeCaa,
-      aeeOpticalNonoptical: aeeOpticalNonoptical ?? this.aeeOpticalNonoptical,
-      publicTransport: publicTransport ?? this.publicTransport,
-      transportResponsableGovernment:
-          transportResponsableGovernment ?? this.transportResponsableGovernment,
-      vehicleTypeVan: vehicleTypeVan ?? this.vehicleTypeVan,
-      vehicleTypeMicrobus: vehicleTypeMicrobus ?? this.vehicleTypeMicrobus,
-      vehicleTypeBus: vehicleTypeBus ?? this.vehicleTypeBus,
-      vehicleTypeBike: vehicleTypeBike ?? this.vehicleTypeBike,
-      vehicleTypeAnimalVehicle:
-          vehicleTypeAnimalVehicle ?? this.vehicleTypeAnimalVehicle,
-      vehicleTypeOtherVehicle:
-          vehicleTypeOtherVehicle ?? this.vehicleTypeOtherVehicle,
-      vehicleTypeWaterwayBoat5:
-          vehicleTypeWaterwayBoat5 ?? this.vehicleTypeWaterwayBoat5,
-      vehicleTypeWaterwayBoat515:
-          vehicleTypeWaterwayBoat515 ?? this.vehicleTypeWaterwayBoat515,
-      vehicleTypeWaterwayBoat1535:
-          vehicleTypeWaterwayBoat1535 ?? this.vehicleTypeWaterwayBoat1535,
-      vehicleTypeWaterwayBoat35:
-          vehicleTypeWaterwayBoat35 ?? this.vehicleTypeWaterwayBoat35,
-      vehicleTypeMetroOrTrain:
-          vehicleTypeMetroOrTrain ?? this.vehicleTypeMetroOrTrain,
-      studentEntryForm: studentEntryForm ?? this.studentEntryForm,
-      hash: hash ?? this.hash,
-      schoolAdmissionDate: schoolAdmissionDate ?? this.schoolAdmissionDate,
-      currentStageSituation:
-          currentStageSituation ?? this.currentStageSituation,
-      previousStageSituation:
-          previousStageSituation ?? this.previousStageSituation,
-      admissionType: admissionType ?? this.admissionType,
-      hashClassroom: hashClassroom ?? this.hashClassroom,
-      hashStudent: hashStudent ?? this.hashStudent,
-      status: status ?? this.status,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'old_id': oldId,
       'register_type': registerType,
       'school_inep_id_fk': schoolInepIdFk,
@@ -260,6 +152,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   factory StudentEnrollmentModel.fromEntity(StudentEnrollment entity) {
     return StudentEnrollmentModel(
+      id: entity.id,
       oldId: entity.oldId,
       registerType: entity.registerType,
       schoolInepIdFk: entity.schoolInepIdFk,
@@ -310,7 +203,8 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   factory StudentEnrollmentModel.fromMap(Map<String, dynamic> map) {
     return StudentEnrollmentModel(
-      oldId: int.tryParse(map['old_id']),
+      id: map['_id'],
+      oldId: map['old_id'],
       registerType: map['register_type'] ?? '',
       schoolInepIdFk: map['school_inep_id_fk'] ?? '',
       studentInepId: map['student_inep_id'],
@@ -318,11 +212,10 @@ class StudentEnrollmentModel extends StudentEnrollment {
       classroomInepId: map['classroom_inep_id'],
       classroomFk: map['classroom_fk'] ?? '',
       enrollmentId: map['enrollment_id'],
-      unifiedClass: int.tryParse(map['unified_class']),
+      unifiedClass: map['unified_class'],
       edcensoStageVsModalityFk: map['edcenso_stage_vs_modality_fk'],
-      anotherScholarizationPlace:
-          int.tryParse(map['another_scholarization_place']),
-      multi: int.tryParse(map['multi']),
+      anotherScholarizationPlace: map['another_scholarization_place'],
+      multi: map['multi'],
       aeeCognitiveFunctions: map['aee_cognitive_functions'],
       aeeAutonomousLife: map['aee_autonomous_life'],
       aeeCurriculumEnrichment: map['aee_curriculum_enrichment'],
@@ -335,8 +228,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
       aeeCaa: map['aee_caa'],
       aeeOpticalNonoptical: map['aee_optical_nonoptical'],
       publicTransport: map['public_transport'],
-      transportResponsableGovernment:
-          int.tryParse(map['transport_responsable_government']),
+      transportResponsableGovernment: map['transport_responsable_government'],
       vehicleTypeVan: map['vehicle_type_van'],
       vehicleTypeMicrobus: map['vehicle_type_microbus'],
       vehicleTypeBus: map['vehicle_type_bus'],
@@ -348,15 +240,15 @@ class StudentEnrollmentModel extends StudentEnrollment {
       vehicleTypeWaterwayBoat1535: map['vehicle_type_waterway_boat1535'],
       vehicleTypeWaterwayBoat35: map['vehicle_type_waterway_boat35'],
       vehicleTypeMetroOrTrain: map['vehicle_type_metro_or_train'],
-      studentEntryForm: int.tryParse(map['student_entry_form']),
-      hash: int.tryParse(map['hash']),
+      studentEntryForm: map['student_entry_form'],
+      hash: map['hash'],
       schoolAdmissionDate: map['school_admission_date'],
-      currentStageSituation: int.tryParse(map['current_stage_situation']),
-      previousStageSituation: int.tryParse(map['previous_stage_situation']),
-      admissionType: int.tryParse(map['admission_type']),
-      hashClassroom: int.tryParse(map['hash_classroom']),
-      hashStudent: int.tryParse(map['hash_student']),
-      status: int.tryParse(map['status']),
+      currentStageSituation: map['current_stage_situation'],
+      previousStageSituation: map['previous_stage_situation'],
+      admissionType: map['admission_type'],
+      hashClassroom: map['hash_classroom'],
+      hashStudent: map['hash_student'],
+      status: map['status'],
     );
   }
 
@@ -367,7 +259,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   @override
   String toString() {
-    return '''StudentEnrollment(oldId: $oldId, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentInepId: $studentInepId, studentFk: $studentFk, classroomInepId: $classroomInepId, classroomFk: $classroomFk, enrollmentId: $enrollmentId, unifiedClass: $unifiedClass, edcensoStageVsModalityFk: $edcensoStageVsModalityFk, anotherScholarizationPlace: $anotherScholarizationPlace, multi: $multi, aeeCognitiveFunctions: $aeeCognitiveFunctions, aeeAutonomousLife: $aeeAutonomousLife, aeeCurriculumEnrichment: $aeeCurriculumEnrichment, aeeAccessibleTeaching: $aeeAccessibleTeaching, aeeLibras: $aeeLibras, aeePortuguese: $aeePortuguese, aeeSoroban: $aeeSoroban, aeeBraille: $aeeBraille, aeeMobilityTechniques: $aeeMobilityTechniques, aeeCaa: $aeeCaa, aeeOpticalNonoptical: $aeeOpticalNonoptical, publicTransport: $publicTransport, transportResponsableGovernment: $transportResponsableGovernment, vehicleTypeVan: $vehicleTypeVan, vehicleTypeMicrobus: $vehicleTypeMicrobus, vehicleTypeBus: $vehicleTypeBus, vehicleTypeBike: $vehicleTypeBike, vehicleTypeAnimalVehicle: $vehicleTypeAnimalVehicle, vehicleTypeOtherVehicle: $vehicleTypeOtherVehicle, vehicleTypeWaterwayBoat5: $vehicleTypeWaterwayBoat5, vehicleTypeWaterwayBoat515: $vehicleTypeWaterwayBoat515, vehicleTypeWaterwayBoat1535: $vehicleTypeWaterwayBoat1535, vehicleTypeWaterwayBoat35: $vehicleTypeWaterwayBoat35, vehicleTypeMetroOrTrain: $vehicleTypeMetroOrTrain, studentEntryForm: $studentEntryForm, hash: $hash, schoolAdmissionDate: $schoolAdmissionDate, currentStageSituation: $currentStageSituation, previousStageSituation: $previousStageSituation, admissionType: $admissionType, hashClassroom: $hashClassroom, hashStudent: $hashStudent, status: $status)''';
+    return '''StudentEnrollment(id: $id, oldId: $oldId, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, studentInepId: $studentInepId, studentFk: $studentFk, classroomInepId: $classroomInepId, classroomFk: $classroomFk, enrollmentId: $enrollmentId, unifiedClass: $unifiedClass, edcensoStageVsModalityFk: $edcensoStageVsModalityFk, anotherScholarizationPlace: $anotherScholarizationPlace, multi: $multi, aeeCognitiveFunctions: $aeeCognitiveFunctions, aeeAutonomousLife: $aeeAutonomousLife, aeeCurriculumEnrichment: $aeeCurriculumEnrichment, aeeAccessibleTeaching: $aeeAccessibleTeaching, aeeLibras: $aeeLibras, aeePortuguese: $aeePortuguese, aeeSoroban: $aeeSoroban, aeeBraille: $aeeBraille, aeeMobilityTechniques: $aeeMobilityTechniques, aeeCaa: $aeeCaa, aeeOpticalNonoptical: $aeeOpticalNonoptical, publicTransport: $publicTransport, transportResponsableGovernment: $transportResponsableGovernment, vehicleTypeVan: $vehicleTypeVan, vehicleTypeMicrobus: $vehicleTypeMicrobus, vehicleTypeBus: $vehicleTypeBus, vehicleTypeBike: $vehicleTypeBike, vehicleTypeAnimalVehicle: $vehicleTypeAnimalVehicle, vehicleTypeOtherVehicle: $vehicleTypeOtherVehicle, vehicleTypeWaterwayBoat5: $vehicleTypeWaterwayBoat5, vehicleTypeWaterwayBoat515: $vehicleTypeWaterwayBoat515, vehicleTypeWaterwayBoat1535: $vehicleTypeWaterwayBoat1535, vehicleTypeWaterwayBoat35: $vehicleTypeWaterwayBoat35, vehicleTypeMetroOrTrain: $vehicleTypeMetroOrTrain, studentEntryForm: $studentEntryForm, hash: $hash, schoolAdmissionDate: $schoolAdmissionDate, currentStageSituation: $currentStageSituation, previousStageSituation: $previousStageSituation, admissionType: $admissionType, hashClassroom: $hashClassroom, hashStudent: $hashStudent, status: $status)''';
   }
 
   @override
@@ -375,6 +267,7 @@ class StudentEnrollmentModel extends StudentEnrollment {
     if (identical(this, other)) return true;
 
     return other is StudentEnrollment &&
+        other.id == id &&
         other.oldId == oldId &&
         other.registerType == registerType &&
         other.schoolInepIdFk == schoolInepIdFk &&
@@ -425,7 +318,8 @@ class StudentEnrollmentModel extends StudentEnrollment {
 
   @override
   int get hashCode {
-    return oldId.hashCode ^
+    return id.hashCode ^
+        oldId.hashCode ^
         registerType.hashCode ^
         schoolInepIdFk.hashCode ^
         studentInepId.hashCode ^

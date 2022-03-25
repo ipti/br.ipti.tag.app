@@ -4,7 +4,7 @@ enum AdmissionType {
   TRANSFERENCIA_EXTERNA,
 }
 
-extension LabeledEnum on AdmissionType {
+extension AdmissionTypeExtension on AdmissionType {
   int get id {
     return index + 1;
   }

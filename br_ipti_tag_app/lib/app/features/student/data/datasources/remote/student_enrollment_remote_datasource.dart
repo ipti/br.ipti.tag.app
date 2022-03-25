@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/api/student_enrollment/get_student_enrollment_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/student_enrollment/post_student_enrollment_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/student_enrollment/put_student_enrollment_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_enrollment_model.dart';
 
@@ -48,6 +49,14 @@ class StudentEnrollmenrRemoteDataSource {
     String id,
     StudentEnrollmentModel model,
   ) async {
-    throw UnimplementedError();
+    final response = await _httpClient.request(
+        route: PutStudentEnrollmentEndPoint(
+      id: id,
+      model: model,
+    ));
+
+    final mappedValue = StudentEnrollmentModel.fromMap(response.data!);
+
+    return mappedValue;
   }
 }

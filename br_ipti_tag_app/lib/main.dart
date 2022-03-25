@@ -5,7 +5,6 @@ import 'app/app_module.dart';
 import 'app/app_widget.dart';
 
 void main() {
-  // Modular.setInitialRoute('/home');
   runApp(
     ModularApp(
       module: AppModule(),

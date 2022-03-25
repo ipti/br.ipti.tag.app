@@ -22,6 +22,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_studen
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -73,6 +74,11 @@ class EnrollmentModule extends Module {
     // Usecases
     Bind.singleton(
       (i) => CreateStudentEnrollmentUsecase(
+        i.get<StudentEnrollmentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => UpdateStudentEnrollmentUsecase(
         i.get<StudentEnrollmentRepository>(),
       ),
     ),
@@ -152,6 +158,7 @@ class EnrollmentModule extends Module {
       (i) => EnrollmentClassroomBloc(
         i.get<ListClassroomsUsecase>(),
         i.get<CreateStudentEnrollmentUsecase>(),
+        i.get<UpdateStudentEnrollmentUsecase>(),
       ),
     ),
   ];

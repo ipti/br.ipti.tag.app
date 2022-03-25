@@ -1,6 +1,6 @@
 enum UnifiedClass { CRECHE, PRE_ESCOLA }
 
-extension IndexLegacyParity on UnifiedClass {
+extension UnifiedClassExtensions on UnifiedClass {
   int get id {
     return index + 1;
   }

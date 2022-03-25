@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/admission_type_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/current_stage_situation_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/previous_stage_situation_enum.dart';
@@ -8,6 +9,7 @@ import 'package:equatable/equatable.dart';
 
 class EnrollmentClassroomState extends Equatable {
   const EnrollmentClassroomState({
+    this.studentEnrollment,
     this.classrooms = const [],
     this.schoolAdmissionDate,
     this.unifiedClass,
@@ -22,6 +24,7 @@ class EnrollmentClassroomState extends Equatable {
   });
 
   final List<Classroom> classrooms;
+  final StudentEnrollment? studentEnrollment;
   final String? classroomId;
   final String? schoolAdmissionDate;
   final UnifiedClass? unifiedClass;
@@ -34,6 +37,7 @@ class EnrollmentClassroomState extends Equatable {
   final CurrentStageSituation? currentStageSituation;
 
   EnrollmentClassroomState copyWith({
+    StudentEnrollment? studentEnrollment,
     List<Classroom>? classrooms,
     String? classroomId,
     String? schoolAdmissionDate,
@@ -47,6 +51,7 @@ class EnrollmentClassroomState extends Equatable {
     CurrentStageSituation? currentStageSituation,
   }) {
     return EnrollmentClassroomState(
+      studentEnrollment: studentEnrollment ?? this.studentEnrollment,
       classrooms: classrooms ?? this.classrooms,
       classroomId: classroomId ?? this.classroomId,
       schoolAdmissionDate: schoolAdmissionDate ?? this.schoolAdmissionDate,
@@ -68,7 +73,8 @@ class EnrollmentClassroomState extends Equatable {
   @override
   List<Object?> get props {
     return [
-      classrooms,
+      studentEnrollment.hashCode,
+      classrooms.hashCode,
       classroomId,
       schoolAdmissionDate,
       unifiedClass,

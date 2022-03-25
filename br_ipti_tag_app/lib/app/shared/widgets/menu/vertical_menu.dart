@@ -14,7 +14,7 @@ class TagVerticalMenu extends StatelessWidget {
     final items = [
       TagMenuItem(
         title: "Turmas",
-        route: '/turmas',
+        route: '/turmas/',
         isActive: currentRoute!.contains('/turmas/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
@@ -26,7 +26,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Alunos",
-        route: '/alunos',
+        route: '/alunos/',
         isActive: currentRoute.contains('/alunos/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
@@ -38,7 +38,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Professores",
-        route: '/professores',
+        route: '/professores/',
         isActive: currentRoute.contains('/professores/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
@@ -50,7 +50,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Transporte",
-        route: '/transporte',
+        route: '/transporte/',
         isActive: currentRoute.contains('/transporte/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,

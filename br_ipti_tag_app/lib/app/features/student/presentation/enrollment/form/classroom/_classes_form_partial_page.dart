@@ -150,12 +150,12 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   SubmitButtonsRow(
                     onSubmitAndGo: () {
                       if (_formKey.currentState!.validate()) {
-                        controller.submit();
+                        controller.submit(widget.editMode);
                       }
                     },
                     onSubmitAndStay: () {
                       if (_formKey.currentState!.validate()) {
-                        controller.submit();
+                        controller.submit(widget.editMode);
                       }
                     },
                   ),

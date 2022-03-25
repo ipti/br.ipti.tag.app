@@ -3,25 +3,31 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
 import 'package:dartz/dartz.dart';
 
-class CreateStudentEnrollmentUsecase
-    implements Usecase<StudentEnrollment, CreateStudentEnrollmentParams> {
-  CreateStudentEnrollmentUsecase(this._repositoryStudent);
+class UpdateStudentEnrollmentUsecase
+    implements Usecase<StudentEnrollment, UpdateStudentEnrollmentParams> {
+  UpdateStudentEnrollmentUsecase(this._repositoryStudent);
 
   final StudentEnrollmentRepository _repositoryStudent;
 
   @override
   Future<Either<Exception, StudentEnrollment>> call(
-    CreateStudentEnrollmentParams params,
+    UpdateStudentEnrollmentParams params,
   ) async {
-    final result = await _repositoryStudent.create(params.enrollment);
+    final result = await _repositoryStudent.update(
+      params.enrollmentId,
+      params.enrollment,
+    );
+
     return result;
   }
 }
 
-class CreateStudentEnrollmentParams {
+class UpdateStudentEnrollmentParams {
+  final String enrollmentId;
   final StudentEnrollment enrollment;
 
-  CreateStudentEnrollmentParams({
+  UpdateStudentEnrollmentParams({
+    required this.enrollmentId,
     required this.enrollment,
   });
 }

@@ -6,7 +6,7 @@ enum PreviousStageSituation {
   MATRICULA_EDUCACAO_INFANTIL
 }
 
-extension LabeledEnum on PreviousStageSituation {
+extension PreviousStageSituationExtension on PreviousStageSituation {
   int get id {
     return index + 1;
   }
