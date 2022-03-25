@@ -14,6 +14,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/edcenso_discip
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_create_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_update_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
@@ -131,7 +132,7 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> updateInstructorsTeachingData(
-      String id, InstructorTeachingDataCreateModel instructor) async {
+      String id, InstructorTeachingDataUpdateModel instructor) async {
     final response = await _httpClient.request(
       route: PutInstructorTeachingDataEndpoint(instructor, id),
     );
