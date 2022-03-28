@@ -24,20 +24,29 @@ class SessionBloc extends Cubit<SessionState> {
     final currentSchool = await _sessionService.getCurrentSchool();
     emit(state.copyWith(currentSchool: currentSchool));
   }
+
+  Future<String> getYear() async {
+    final year = await _sessionService.getSchoolYear();
+    emit(state.copyWith(year: year));
+    return year;
+  }
 }
 
 class SessionState {
   final School? currentSchool;
   final List<School>? schools;
+  final String? year;
 
   SessionState({
     this.currentSchool,
     this.schools,
+    this.year,
   });
 
   SessionState copyWith({
     School? currentSchool,
     List<School>? schools,
+    String? year,
   }) {
     return SessionState(
       currentSchool: currentSchool ?? this.currentSchool,

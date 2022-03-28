@@ -20,8 +20,8 @@ class AppModule extends Module {
     Bind.singleton<SessionService>((i) => SessionServiceImpl()),
     Bind.singleton<SessionBloc>((i) => SessionBloc(i.get())),
     Bind.singleton((i) => PackageInfoServiceImpl()),
-    Bind.singleton((i) => ClientHTTPConfiguration.apply(Dio())),
-    Bind.singleton((i) => RouterAPI(i.get<Dio>()))
+    Bind.factory((i) => ClientHTTPConfiguration.apply(Dio())),
+    Bind.factory((i) => RouterAPI(i.get<Dio>()))
   ];
 
   // Provide all the routes for your module

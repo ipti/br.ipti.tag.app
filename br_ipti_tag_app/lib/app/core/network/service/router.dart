@@ -1,7 +1,9 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/network/service/paginated_response.dart';
 import 'package:dio/dio.dart';
 
 import '../manager/http_method.dart';
+import 'network_response.dart';
 import 'network_router.dart';
 
 class RouterAPI implements NetworkRouter {
@@ -13,14 +15,18 @@ class RouterAPI implements NetworkRouter {
   Future<NetworkResponse<Map<String, dynamic>>> request({
     required EndPointAPI route,
   }) async {
-    final requestOptions = _buildRequest(route: route);
-    final response = await _client.fetch(requestOptions);
+    try {
+      final requestOptions = _buildRequest(route: route);
+      final response = await _client.fetch(requestOptions);
 
-    return NetworkResponse(
-      response.data as Map<String, dynamic>,
-      response,
-      null,
-    );
+      return NetworkResponse(
+        response.data as Map<String, dynamic>,
+        response,
+        null,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
@@ -46,11 +52,24 @@ class RouterAPI implements NetworkRouter {
     }
   }
 
+  @override
+  Future<NetworkResponse<PaginatedResponse>> requestListPaginatedFrom({
+    required EndPointAPI route,
+  }) async {
+    final requestOptions = _buildRequest(route: route);
+    final response = await _client.fetch(requestOptions);
+    return NetworkResponse(
+      PaginatedResponse.fromMap(response.data as Map<String, dynamic>),
+      response,
+      null,
+    );
+  }
+
   RequestOptions _buildRequest({
     required EndPointAPI route,
   }) {
     final headers = _client.options.headers;
-    final queryParameters = _client.options.queryParameters;
+    final Map<String, dynamic> queryParameters = {};
     final data = {};
 
     if (route.headers != null) {

@@ -76,7 +76,7 @@ class ClassroomRemoteDataSource {
 
   Future<List<ClassroomModel>> listAll() async {
     final response = await _httpClient.request(
-      route: GetClasroomEndPoint(),
+      route: GetClassroomEndPoint(),
     );
 
     final mappedList = (response.data!['data'] as List)

@@ -105,38 +105,38 @@ class FiliationFormPageState extends State<FiliationFormPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   heading,
-                  RowToColumn(
-                    children: [
-                      Flexible(child: inputName(state.name)),
-                      Flexible(child: inputCPF(state.cpf)),
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(child: inputRG(state.rg)),
-                      Flexible(child: selectNationality(state.nationality))
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: selectColorRace(state.colorRace),
-                      ),
-                      Flexible(
-                        child: selectScholarity(state.colorRace),
-                      ),
-                      Flexible(
-                        flex: 2,
-                        child: inputJob(state.job),
-                      )
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(child: inputEmail(state.email)),
-                      Flexible(child: inputPhone(state.phone))
-                    ],
-                  ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputName(state.name)),
+                  //     Flexible(child: inputCPF(state.cpf)),
+                  //   ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputRG(state.rg)),
+                  //     Flexible(child: selectNationality(state.nationality))
+                  //   ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(
+                  //       child: selectColorRace(state.colorRace),
+                  //     ),
+                  //     Flexible(
+                  //       child: selectScholarity(state.colorRace),
+                  //     ),
+                  //     Flexible(
+                  //       flex: 2,
+                  //       child: inputJob(state.job),
+                  //     )
+                  // ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputEmail(state.email)),
+                  //     Flexible(child: inputPhone(state.phone))
+                  //   ],
+                  // ),
                 ].map((w) => withPadding(w)).toList(),
               ),
             ),

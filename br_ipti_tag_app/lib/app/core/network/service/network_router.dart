@@ -1,24 +1,17 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
-import 'package:dio/dio.dart';
+import 'package:br_ipti_tag_app/app/core/network/service/paginated_response.dart';
 
-class NetworkResponse<T> {
-  NetworkResponse(this.data, this.response, this.error);
-
-  final T? data;
-  final Response? response;
-  final Exception? error;
-
-  @override
-  String toString() {
-    return "Message : $error \n Data : $data";
-  }
-}
+import 'network_response.dart';
 
 abstract class NetworkRouter {
   Future<NetworkResponse> request({
     required EndPointAPI route,
   });
-  Future<NetworkResponse> requestListFrom({
+  Future<NetworkResponse<Iterable>> requestListFrom({
+    required EndPointAPI route,
+  });
+
+  Future<NetworkResponse<PaginatedResponse>> requestListPaginatedFrom({
     required EndPointAPI route,
   });
 }
