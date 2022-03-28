@@ -72,11 +72,11 @@ class InstructorFormBloc
 
   int _role = 1;
   void changeRole(int role) => _role = role + 1;
-  int get currentRole => _role;
+  int get currentRole => _role - 1;
 
   int _contractType = 1;
   void changeContractType(int contractType) => _contractType = contractType + 1;
-  int get currentContractType => _contractType;
+  int get currentContractType => _contractType - 1;
 
   @override
   Stream<InstructorFormState> mapEventToState(
@@ -88,7 +88,8 @@ class InstructorFormBloc
           instructorFk: _currentInstructor!,
           classroomIdFk: _classroomId!,
           discipline1Fk: _currentDiscipline,
-          role: _role);
+          role: _role,
+          contractType: _contractType);
       await _createInstructorTeachingDataUseCase(params);
     }
     if (event is SubmitUpdateInstructorForm) {

@@ -191,7 +191,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                       minimumSize: const Size(130, TagSizes.heightButtonNormal),
                     ),
                     onPressed: () {
-                      widget.instructorEntity != null
+                      widget.instructorEntity == null
                           ? controller.add(SubmitInstructorForm())
                           : controller.add(SubmitUpdateInstructorForm(
                               instructorTeachingDataId:
