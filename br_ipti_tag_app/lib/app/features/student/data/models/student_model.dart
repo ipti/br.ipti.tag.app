@@ -282,11 +282,11 @@ class StudentModel extends Student {
       'hash': hash,
       'filiation1_rg': filiation1Rg,
       'filiation1_cpf': filiation1Cpf,
-      'filiation1_scholarity': filiation1Scholarity.toString(),
+      'filiation1_scholarity': filiation1Scholarity,
       'filiation1_job': filiation1Job,
       'filiation_2_rg': filiation2Rg,
       'filiation_2_cpf': filiation2Cpf,
-      'filiation_2_scholarity': filiation2Scholarity.toString(),
+      'filiation_2_scholarity': filiation2Scholarity,
       'filiation_2_job': filiation2Job,
     };
   }

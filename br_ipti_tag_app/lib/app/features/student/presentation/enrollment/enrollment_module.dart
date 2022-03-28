@@ -13,7 +13,6 @@ import 'package:br_ipti_tag_app/app/features/student/domain/repositories/classro
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_doc_address_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
@@ -23,6 +22,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_studen
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -98,7 +98,7 @@ class EnrollmentModule extends Module {
       ),
     ),
     Bind.singleton(
-      (i) => ChangeFiliationStudentUsecase(
+      (i) => UpdateStudentUsecase(
         i.get<StudentRepository>(),
       ),
     ),
@@ -140,6 +140,7 @@ class EnrollmentModule extends Module {
     Bind.singleton(
       (i) => EnrollmentPersonalBloc(
         i.get<CreateStudentsUsecase>(),
+        i.get<UpdateStudentUsecase>(),
       ),
     ),
     Bind.singleton(
@@ -151,7 +152,7 @@ class EnrollmentModule extends Module {
     ),
     Bind.singleton(
       (i) => EnrollmentFiliationBloc(
-        i.get<ChangeFiliationStudentUsecase>(),
+        i.get<UpdateStudentUsecase>(),
       ),
     ),
     Bind.singleton(

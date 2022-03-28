@@ -88,16 +88,6 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           validator: requiredValidator,
         );
 
-    Widget deficiencyCheck({bool? deficiency}) => Row(
-          children: [
-            Checkbox(
-              value: deficiency ?? false,
-              onChanged: (value) => controller.setDeficiency(value: value!),
-            ),
-            const TagLabel("Deficiência"),
-          ],
-        );
-
     Widget inputFoodRestriction(String? foodRestriction) => TagTextField(
           label: "Restrição Alimentar / Alergia",
           inputType: TextInputType.multiline,
@@ -108,7 +98,15 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           maxLines: 5,
         );
 
-    const heading = Heading(text: "Dados do Aluno", type: HeadingType.Title3);
+    const heading1 = Heading(
+      text: "Dados básicos",
+      type: HeadingType.Title3,
+    );
+
+    const heading2 = Heading(
+      text: "Saúde e recursos",
+      type: HeadingType.Title3,
+    );
 
     return Form(
       key: _formKey,
@@ -121,7 +119,10 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    heading,
+                    const Padding(
+                      padding: EdgeInsets.only(top: 36, bottom: 16),
+                      child: heading1,
+                    ),
                     RowToColumn(
                       children: [
                         Flexible(child: inputName(state.name)),
@@ -129,37 +130,165 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                       ],
                     ),
                     RowToColumn(children: [
-                      Flexible(child: selectSex(state.sex)),
                       Flexible(child: selectColorRace(state.colorRace)),
-                      Flexible(
-                        flex: 3,
-                        child: selectNationality(state.nationality),
-                      ),
+                      Flexible(child: selectSex(state.sex)),
                     ]),
                     RowToColumn(children: [
+                      Flexible(
+                        child: selectNationality(state.nationality),
+                      ),
                       Flexible(child: selectFiliation(state.filiation)),
+                    ]),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 36, bottom: 16),
+                      child: heading2,
+                    ),
+                    RowToColumn(children: [
+                      Flexible(
+                        child: _FormDeficiency(
+                          controller: controller,
+                          state: state,
+                        ),
+                      ),
                       Flexible(
                         child: inputFoodRestriction(state.foodRestrictions),
                       ),
                     ]),
-                    deficiencyCheck(deficiency: state.deficiency),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitPersonalForm();
-                        }
-                      },
-                      onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitPersonalForm();
-                        }
-                      },
+                    Padding(
+                      padding: const EdgeInsets.only(top: 56),
+                      child: SubmitButtonsRow(
+                        onSubmitAndGo: () {
+                          if (_formKey.currentState!.validate()) {
+                            controller.submitPersonalForm(widget.editMode);
+                          }
+                        },
+                        onSubmitAndStay: () {
+                          if (_formKey.currentState!.validate()) {
+                            controller.submitPersonalForm(widget.editMode);
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
             );
           }),
+    );
+  }
+}
+
+class _FormDeficiency extends StatelessWidget {
+  const _FormDeficiency({
+    Key? key,
+    required this.controller,
+    required this.state,
+  }) : super(key: key);
+
+  final EnrollmentPersonalBloc controller;
+  final EnrollmentPersonalState state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _TagCheckbox(
+          label: "Deficiência",
+          value: state.deficiency,
+          onChange: controller.setDeficiency,
+        ),
+        const Divider(
+          color: TagColors.colorBaseProductNormal,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Cegueira",
+          value: state.deficiencyTypeBlindness,
+          onChange: controller.setDeficiencyTypeBlindness,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Baixa visão",
+          value: state.deficiencyTypeLowVision,
+          onChange: controller.setDeficiencyTypeLowVision,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Surdez",
+          value: state.deficiencyTypeDeafness,
+          onChange: controller.setDeficiencyTypeDeafness,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Deficiência auditiva",
+          value: state.deficiencyTypeDisabilityHearing,
+          onChange: controller.setDeficiencyTypeDisabilityHearing,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Surdocegueira",
+          value: state.deficiencyTypeDeafblindness,
+          onChange: controller.setDeficiencyTypeDeafblindness,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Deficiência Física",
+          value: state.deficiencyTypePhisicalDisability,
+          onChange: controller.setDeficiencyTypePhisicalDisability,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Deficiência Intelectual",
+          value: state.deficiencyTypeIntelectualDisability,
+          onChange: controller.setDeficiencyTypeIntelectualDisability,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Deficiência Múltipla",
+          value: state.deficiencyTypeMultipleDisabilities,
+          onChange: controller.setDeficiencyTypeMultipleDisabilities,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Transtorno do Espectro Autista",
+          value: state.deficiencyTypeAutism,
+          onChange: controller.setDeficiencyTypeAutism,
+        ),
+        _TagCheckbox(
+          disabled: !state.deficiency,
+          label: "Altas Habilidades / Super Dotação",
+          value: state.deficiencyTypeGifted,
+          onChange: controller.setDeficiencyTypeGifted,
+        ),
+      ],
+    );
+  }
+}
+
+class _TagCheckbox extends StatelessWidget {
+  const _TagCheckbox({
+    Key? key,
+    required this.onChange,
+    this.value = false,
+    this.disabled = false,
+    required this.label,
+  }) : super(key: key);
+
+  final void Function(bool?) onChange;
+  final bool? value;
+  final bool disabled;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Checkbox(
+          value: value ?? false,
+          onChanged: disabled ? null : onChange,
+        ),
+        TagLabel(label),
+      ],
     );
   }
 }

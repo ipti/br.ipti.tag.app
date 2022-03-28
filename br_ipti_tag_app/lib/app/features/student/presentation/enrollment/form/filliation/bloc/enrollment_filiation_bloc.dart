@@ -1,5 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/change_filiation_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/student_module.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +12,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     this._changeFiliationStudentUsecase,
   ) : super(const EmptyEnrollmentFiliationState());
 
-  final ChangeFiliationStudentUsecase _changeFiliationStudentUsecase;
+  final UpdateStudentUsecase _changeFiliationStudentUsecase;
 
   final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
 
@@ -189,7 +189,8 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
       responsableScholarity: state.scholarityResponsable,
     );
 
-    final params = ChangeFiliationStudentParams(
+    final params = UpdateStudentParams(
+      id: studentFiliation.id!,
       student: studentFiliation,
     );
 

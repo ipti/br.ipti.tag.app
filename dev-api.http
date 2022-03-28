@@ -12,9 +12,6 @@ username={{$processEnv TAG_AUTH_LOGIN}}&password={{$processEnv TAG_AUTH_PASSWORD
 @authToken = {{login.response.body.access_token}}
 
 
-GET http://ec2-54-91-8-233.compute-1.amazonaws.com:3000/instructor?page=1&perPage=10&school=61a9433412656f31249d2aa2
-Authorization: Bearer {{authToken}}
-
 # @name listar_alimentos
 GET http://{{host}}/foods HTTP/1.1
 Content-Type: application/json

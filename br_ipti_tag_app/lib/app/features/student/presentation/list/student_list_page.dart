@@ -50,7 +50,8 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
                 width: 120,
                 child: TagButton(
                   text: "Matricula",
-                  onPressed: () => Modular.to.pushNamed("matricula/"),
+                  onPressed: () =>
+                      Modular.to.pushReplacementNamed("matricula/"),
                 ),
               ),
               Container(
@@ -119,7 +120,7 @@ class StudentDatatable extends DataTableSource {
       DataCell(Text(data[index].responsableName ?? "")),
       DataCell(
         const Icon(Icons.edit),
-        onTap: () => Modular.to.pushNamed(
+        onTap: () => Modular.to.pushReplacementNamed(
           "matricula/edit",
           arguments: data[index],
         ),
