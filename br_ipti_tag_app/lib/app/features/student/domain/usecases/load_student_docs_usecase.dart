@@ -5,13 +5,13 @@ import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student
 import 'package:dartz/dartz.dart';
 
 class LoadStudentDocsUsecase
-    implements Usecase<StudentDocuments, LoadStudentDocsParams> {
+    implements Usecase<StudentDocsAddress, LoadStudentDocsParams> {
   LoadStudentDocsUsecase(this._repositoryStudentDocs);
 
   final StudentDocumentsAddressRepository _repositoryStudentDocs;
 
   @override
-  Future<Either<Exception, StudentDocuments>> call(
+  Future<Either<Exception, StudentDocsAddress>> call(
     LoadStudentDocsParams params,
   ) async {
     final result = await _repositoryStudentDocs.getByStudentId(

@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 
 class EnrollmentState extends Equatable {
   final Student? student;
-  final StudentDocuments? studentDocs;
+  final StudentDocsAddress? studentDocs;
   final StudentEnrollment? studentEnrollment;
 
   final int tabIndex;
@@ -28,7 +28,7 @@ class EnrollmentState extends Equatable {
   EnrollmentState copyWith({
     int tabIndex = 0,
     Student? student,
-    StudentDocuments? studentDocs,
+    StudentDocsAddress? studentDocs,
     StudentEnrollment? studentEnrollment,
   }) {
     return EnrollmentState(
@@ -44,7 +44,7 @@ class NextTabState extends EnrollmentState {
   const NextTabState({
     int tabIndex = 0,
     Student? student,
-    StudentDocuments? studentDocs,
+    StudentDocsAddress? studentDocs,
     StudentEnrollment? studentEnrollment,
   }) : super(
           tabIndex: tabIndex,

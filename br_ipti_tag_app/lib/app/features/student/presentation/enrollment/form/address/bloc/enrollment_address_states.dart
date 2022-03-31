@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:equatable/equatable.dart';
 
 class EnrollmentAddressState extends Equatable {
@@ -13,6 +14,12 @@ class EnrollmentAddressState extends Equatable {
   final String edcensoUfFk;
   final String? edcensoCityFk;
 
+  final String nis;
+  final String inepId;
+  final bool bfParticipator;
+  final bool posCenso;
+  final StudentDocsAddress? docsAddress;
+
   const EnrollmentAddressState({
     required this.cities,
     required this.ufs,
@@ -24,6 +31,11 @@ class EnrollmentAddressState extends Equatable {
     required this.edcensoUfFk,
     this.edcensoCityFk,
     required this.residenceZone,
+    required this.nis,
+    required this.inepId,
+    required this.bfParticipator,
+    required this.posCenso,
+    this.docsAddress,
   });
 
   @override
@@ -37,6 +49,10 @@ class EnrollmentAddressState extends Equatable {
       edcensoUfFk,
       edcensoCityFk ?? "",
       residenceZone,
+      nis,
+      inepId,
+      bfParticipator,
+      posCenso,
       cities.toString(),
       ufs.toString(),
     ];
@@ -51,8 +67,13 @@ class EnrollmentAddressState extends Equatable {
     String? edcensoUfFk,
     String? edcensoCityFk,
     int? residenceZone,
+    String? nis,
+    String? inepId,
+    bool? bfParticipator,
+    bool? posCenso,
     Map<String, String>? cities,
     Map<String, String>? ufs,
+    StudentDocsAddress? docsAddress,
   }) {
     return EnrollmentAddressState(
       cep: cep ?? this.cep,
@@ -63,8 +84,13 @@ class EnrollmentAddressState extends Equatable {
       edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
       edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
       residenceZone: residenceZone ?? this.residenceZone,
+      nis: nis ?? this.nis,
+      inepId: inepId ?? this.inepId,
+      bfParticipator: bfParticipator ?? this.bfParticipator,
+      posCenso: posCenso ?? this.posCenso,
       cities: cities ?? this.cities,
       ufs: ufs ?? this.ufs,
+      docsAddress: docsAddress ?? this.docsAddress,
     );
   }
 }
@@ -80,6 +106,10 @@ class EmptyEnrollmentAddressState extends EnrollmentAddressState {
           neighborhood: "",
           number: "",
           residenceZone: 0,
+          nis: "",
+          inepId: "",
+          bfParticipator: false,
+          posCenso: false,
           cities: const {},
           ufs: const {},
         );

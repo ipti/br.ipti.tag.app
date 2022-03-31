@@ -13,7 +13,8 @@ class StudentDocumentsAddressRepositoryImpl
   final StudentDocumentsAndAddressRemoteDataSource _addressRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentDocuments>> getByStudentId(String id) async {
+  Future<Either<Exception, StudentDocsAddress>> getByStudentId(
+      String id) async {
     try {
       final result = await _addressRemoteDataSource.getByStudentId(id);
       return Right(result);
@@ -23,8 +24,8 @@ class StudentDocumentsAddressRepositoryImpl
   }
 
   @override
-  Future<Either<Exception, StudentDocuments>> create(
-      StudentDocuments studentDocuments) async {
+  Future<Either<Exception, StudentDocsAddress>> create(
+      StudentDocsAddress studentDocuments) async {
     try {
       final result = await _addressRemoteDataSource.create(
         StudentDocumentsAddressModel.fromEntity(studentDocuments),
@@ -36,9 +37,9 @@ class StudentDocumentsAddressRepositoryImpl
   }
 
   @override
-  Future<Either<Exception, StudentDocuments>> update(
+  Future<Either<Exception, StudentDocsAddress>> update(
     String id,
-    StudentDocuments student,
+    StudentDocsAddress student,
   ) async {
     try {
       final result = await _addressRemoteDataSource.update(

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 
-class StudentDocumentsAddressModel extends StudentDocuments {
+class StudentDocumentsAddressModel extends StudentDocsAddress {
   StudentDocumentsAddressModel({
     String? id,
     String? registerType,
@@ -191,7 +191,7 @@ class StudentDocumentsAddressModel extends StudentDocuments {
   }
 
   factory StudentDocumentsAddressModel.fromEntity(
-      StudentDocuments studentDocuments) {
+      StudentDocsAddress studentDocuments) {
     return StudentDocumentsAddressModel(
       id: studentDocuments.id,
       registerType: studentDocuments.registerType,

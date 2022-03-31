@@ -35,7 +35,7 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
         bfParticipator: value,
       ));
 
-  Future loadStudentDocuments(StudentDocuments studentDocuments) async {
+  Future loadStudentDocsAddress(StudentDocsAddress studentDocuments) async {
     emit(state.copyWith(
       nis: studentDocuments.nis,
       inepId: _session.state.currentSchool?.inepId ?? '',
@@ -58,7 +58,7 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
     }
   }
 
-  Future _create(StudentDocuments studentDocuments) async {
+  Future _create(StudentDocsAddress studentDocuments) async {
     final params = AddDocumentsAndAddressToStudentParams(
       studentDocumentsAddress: studentDocuments,
     );
@@ -70,7 +70,7 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
     });
   }
 
-  Future _edit(StudentDocuments studentDocuments) async {
+  Future _edit(StudentDocsAddress studentDocuments) async {
     final params = UpdateDocumentsAndAddressParams(
       studentDocsId: studentDocuments.id!,
       studentDocumentsAndAddress: studentDocuments,

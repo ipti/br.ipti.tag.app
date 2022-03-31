@@ -32,7 +32,6 @@ import 'form/address/bloc/enrollment_address_bloc.dart';
 import 'form/classroom/bloc/enrollment_classroom_bloc.dart';
 import 'form/filliation/bloc/enrollment_filiation_bloc.dart';
 import 'form/personal/bloc/enrollment_personal_bloc.dart';
-import 'form/social/bloc/enrollment_social_bloc.dart';
 
 class EnrollmentModule extends Module {
   @override
@@ -132,12 +131,6 @@ class EnrollmentModule extends Module {
       ),
     ),
     Bind.singleton(
-      (i) => EnrollmentSocialBloc(
-        i.get<AddDocumentsAndAddressToStudentUsecase>(),
-        i.get<UpdateDocumentsAndAddressUsecase>(),
-      ),
-    ),
-    Bind.singleton(
       (i) => EnrollmentPersonalBloc(
         i.get<CreateStudentsUsecase>(),
         i.get<UpdateStudentUsecase>(),
@@ -148,6 +141,7 @@ class EnrollmentModule extends Module {
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
         i.get<UpdateDocumentsAndAddressUsecase>(),
+        i.get<AddDocumentsAndAddressToStudentUsecase>(),
       ),
     ),
     Bind.singleton(

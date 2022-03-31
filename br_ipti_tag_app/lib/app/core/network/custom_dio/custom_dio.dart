@@ -12,7 +12,7 @@ class ClientHTTPConfiguration {
     client.interceptors.add(ErrorInterceptor());
     client.interceptors.add(GuardTokenInterceptor());
     client.options.baseUrl =
-        "http://ec2-54-91-8-233.compute-1.amazonaws.com:3000";
+        "http://ec2-3-230-55-29.compute-1.amazonaws.com:3000";
     return client;
   }
 }

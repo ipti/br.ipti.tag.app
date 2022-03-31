@@ -17,7 +17,6 @@ import 'form/classroom/_classes_form_partial_page.dart';
 import 'form/filliation/_filiation_form_partial_page.dart';
 import 'form/filliation/bloc/enrollment_filiation_bloc.dart';
 import 'form/personal/_personal_form_partial_page.dart';
-import 'form/social/_social_form_partial_page.dart';
 
 class EnrollmentPage extends StatefulWidget {
   const EnrollmentPage({
@@ -121,10 +120,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
                       student: widget.student,
                     ),
                     AddressFormPage(
-                      model: state.studentDocs,
-                      editMode: widget.editMode,
-                    ),
-                    SocialFormPage(
                       model: state.studentDocs,
                       editMode: widget.editMode,
                     ),

@@ -5,13 +5,13 @@ import 'package:dartz/dartz.dart';
 
 class AddDocumentsAndAddressToStudentUsecase
     implements
-        Usecase<StudentDocuments, AddDocumentsAndAddressToStudentParams> {
+        Usecase<StudentDocsAddress, AddDocumentsAndAddressToStudentParams> {
   AddDocumentsAndAddressToStudentUsecase(this._documentsAddressRepository);
 
   final StudentDocumentsAddressRepository _documentsAddressRepository;
 
   @override
-  Future<Either<Exception, StudentDocuments>> call(
+  Future<Either<Exception, StudentDocsAddress>> call(
       AddDocumentsAndAddressToStudentParams params) async {
     final result = await _documentsAddressRepository.create(
       params.studentDocumentsAddress,
@@ -22,7 +22,7 @@ class AddDocumentsAndAddressToStudentUsecase
 }
 
 class AddDocumentsAndAddressToStudentParams {
-  final StudentDocuments studentDocumentsAddress;
+  final StudentDocsAddress studentDocumentsAddress;
   AddDocumentsAndAddressToStudentParams({
     required this.studentDocumentsAddress,
   });

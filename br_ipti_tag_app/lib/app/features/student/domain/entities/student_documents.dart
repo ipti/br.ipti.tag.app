@@ -1,4 +1,4 @@
-class StudentDocuments {
+class StudentDocsAddress {
   String? id;
   String? registerType;
   String schoolInepIdFk;
@@ -41,7 +41,7 @@ class StudentDocuments {
   String edcensoUfFk;
   String edcensoCityFk;
 
-  StudentDocuments({
+  StudentDocsAddress({
     this.id,
     this.registerType,
     required this.schoolInepIdFk,
@@ -85,7 +85,7 @@ class StudentDocuments {
     required this.edcensoCityFk,
   });
 
-  StudentDocuments copyWith({
+  StudentDocsAddress copyWith({
     String? id,
     String? registerType,
     String? schoolInepIdFk,
@@ -128,7 +128,7 @@ class StudentDocuments {
     String? edcensoUfFk,
     String? edcensoCityFk,
   }) {
-    return StudentDocuments(
+    return StudentDocsAddress(
       id: id ?? this.id,
       registerType: registerType ?? this.registerType,
       schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,

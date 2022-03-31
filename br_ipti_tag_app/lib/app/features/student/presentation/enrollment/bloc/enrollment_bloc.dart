@@ -34,7 +34,7 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
     ));
   }
 
-  void setStudentDocs(StudentDocuments studentDocs) {
+  void setStudentDocs(StudentDocsAddress studentDocs) {
     emit(state.copyWith(
       studentDocs: studentDocs,
     ));
