@@ -1,9 +1,15 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
-class GetClasroomEndPoint extends EndPointAPI {
+class DeleteClasroomEndPoint extends EndPointAPI {
+  DeleteClasroomEndPoint(
+    this.id,
+  );
+
+  String id;
+
   @override
-  String get path => '/classroom';
+  String get path => '/classroom/$id';
 
   @override
   Parameters? get bodyParameters => null;
@@ -12,7 +18,7 @@ class GetClasroomEndPoint extends EndPointAPI {
   HTTPHeaders? get headers => null;
 
   @override
-  HTTPMethod get httpMethod => HTTPMethod.GET;
+  HTTPMethod get httpMethod => HTTPMethod.DELETE;
 
   @override
   Parameters? get urlParameters => null;

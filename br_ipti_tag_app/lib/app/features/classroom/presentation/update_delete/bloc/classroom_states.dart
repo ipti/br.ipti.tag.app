@@ -1,10 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-abstract class ClassroomCreateState extends Equatable {}
+abstract class ClassroomUpdateDeleteState extends Equatable {}
 
-class ClassroomCreateFormState extends ClassroomCreateState {
-  ClassroomCreateFormState({
+class ClassroomUpdateDeleteInitial extends ClassroomUpdateDeleteState {
+  @override
+  List<Object?> get props => [];
+}
+
+class ClassroomUpdateDeleteFormState extends ClassroomUpdateDeleteState {
+  ClassroomUpdateDeleteFormState({
     this.weekDaysSunday = false,
     this.weekDaysMonday = true,
     this.weekDaysTuesday = true,
@@ -68,7 +73,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
   final bool aeeSoroban;
   final bool aeeAutonomousLife;
   final bool moreEducationParticipator;
-  ClassroomCreateFormState copyWith({
+  ClassroomUpdateDeleteFormState copyWith({
     String? registerType,
     String? name,
     TimeOfDay? startTime,
@@ -101,7 +106,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     bool? aeeSoroban,
     bool? aeeAutonomousLife,
   }) {
-    return ClassroomCreateFormState(
+    return ClassroomUpdateDeleteFormState(
       aeeSoroban: aeeSoroban ?? this.aeeSoroban,
       aeePortuguese: aeePortuguese ?? this.aeePortuguese,
       aeeAutonomousLife: aeeAutonomousLife ?? this.aeeAutonomousLife,
