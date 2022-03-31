@@ -41,42 +41,43 @@ class AddressFormPageState extends State<AddressFormPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EnrollmentAddressBloc, EnrollmentAddressState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _AddressForm(
-                      controller: controller,
-                      state: state,
-                    ),
-                    _SocialForm(
-                      controller: controller,
-                      state: state,
-                    ),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitAddressForm(widget.editMode);
-                        }
-                      },
-                      onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitAddressForm(widget.editMode);
-                        }
-                      },
-                    ),
-                  ],
-                ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _AddressForm(
+                    controller: controller,
+                    state: state,
+                  ),
+                  _SocialForm(
+                    controller: controller,
+                    state: state,
+                  ),
+                  SubmitButtonsRow(
+                    onSubmitAndGo: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitAddressForm(widget.editMode);
+                      }
+                    },
+                    onSubmitAndStay: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitAddressForm(widget.editMode);
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 

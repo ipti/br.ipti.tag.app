@@ -19,4 +19,10 @@ class FilePaths {
   // Pencil Icon
   static const ICON_PENCIL_BLUE_SVG = 'assets/icons/lapis/azul.svg';
   static const ICON_PENCIL_GREY_SVG = 'assets/icons/lapis/cinza.svg';
+  // Impressora Icon
+  static const IMPRESSORA_ICON_SVG = 'assets/icons/impressora/impressora.svg';
+  // Info Icon
+  static const INFO_ICON_SVG = 'assets/icons/info/info.svg';
+  // Close Icon
+  static const ICON_CLOSE_SVG = 'assets/icons/fechar/fechar.svg';
 }

@@ -1,0 +1,141 @@
+import 'package:br_ipti_tag_app/app/api/classroom/delete_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/get_edcenso_disciplines_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/instructor/create_instructor_teaching_data_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_teaching_data_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/post_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/put_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/instructor/put_instructor_teaching_data_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_create_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/edcenso_discipline_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_create_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
+
+class ClassroomRemoteDataSource {
+  ClassroomRemoteDataSource(
+    this._httpClient,
+  );
+
+  final RouterAPI _httpClient;
+
+  Future<bool> create(ClassroomCreateModel classroomModel) async {
+    final response = await _httpClient.request(
+      route: PostClasroomEndPoint(classroomModel),
+    );
+
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
+  }
+
+  Future<bool> update(
+    ClassroomCreateModel classroomModel,
+    String id,
+  ) async {
+    final response = await _httpClient.request(
+      route: PutClasroomEndPoint(
+        classroomModel,
+        id,
+      ),
+    );
+
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
+  }
+
+  Future<bool> delete(
+    String id,
+  ) async {
+    final response = await _httpClient.request(
+      route: DeleteClasroomEndPoint(
+        id,
+      ),
+    );
+
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
+  }
+
+  Future<List<ClassroomModel>> listAll() async {
+    final response = await _httpClient.request(
+      route: GetClassroomEndPoint(),
+    );
+
+    final mappedList = (response.data!['data'] as List)
+        .map((e) => ClassroomModel.fromJson(e))
+        .toList();
+    return mappedList;
+  }
+
+  Future<List<EdcensoDisciplinesEntity>> listEdcensoDisciplines() async {
+    final response = await _httpClient.requestListFrom(
+      route: GetEdcensoDisciplinesEndpoint(),
+    );
+
+    final mappedList =
+        response.data!.map((e) => EdcensoDisciplineModel.fromJson(e)).toList();
+
+    return mappedList;
+  }
+
+  Future<List<InstructorEntity>> listInstructors(
+      ListInstructorsParams param) async {
+    final response = await _httpClient.request(
+      route: GetInstructorsEndPoint(param),
+    );
+
+    final mappedList = (response.data!['data'] as List)
+        .map((e) => InstructorModel.fromJson(e))
+        .toList();
+
+    return mappedList;
+  }
+
+  Future<List<InstructorTeachingDataEntity>> listInstructorsTeachingData(
+      ListInstructorsTeachingDataParams param) async {
+    final response = await _httpClient.request(
+      route: GetInstructorsTeachingDataEndPoint(param),
+    );
+
+    final mappedList = (response.data!['data'] as List)
+        .map((e) => InstructorTeachingDataModel.fromJson(e))
+        .toList();
+
+    return mappedList;
+  }
+
+  Future<bool> createInstructorsTeachingData(
+      InstructorTeachingDataCreateModel instructor) async {
+    final response = await _httpClient.request(
+      route: PostInstructorTeachingDataEndpoint(instructor),
+    );
+
+    return response.data!['data'];
+  }
+
+  Future<bool> updateInstructorsTeachingData(
+      String id, InstructorTeachingDataCreateModel instructor) async {
+    final response = await _httpClient.request(
+      route: PutInstructorTeachingDataEndpoint(instructor, id),
+    );
+
+    return response.data!['data'];
+  }
+}

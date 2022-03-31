@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../../domain/entities/classroom.dart';
+import '../../domain/entities/classroom_entity.dart';
 import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
@@ -63,6 +63,7 @@ class ClassroomPageState
               columns: const [
                 DataColumn(label: Text("Nome")),
                 DataColumn(label: Text("Etapa")),
+                DataColumn(label: Text("Horário ")),
                 DataColumn(label: Text("")),
               ],
               source: ClassroomDatatable(
@@ -81,17 +82,26 @@ class ClassroomDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Classroom> data;
+  final List<ClassroomEntity> data;
 
   @override
   DataRow getRow(int index) {
-    return DataRow(
-      cells: [
-        DataCell(Text(data[index].name.toUpperCase())),
-        DataCell(Text(data[index].stageId.toString())),
-        const DataCell(Icon(Icons.edit)),
-      ],
-    );
+    return DataRow(cells: [
+      DataCell(Text(data[index].name.toUpperCase())),
+      DataCell(Text(data[index].stage)),
+      DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
+      DataCell(
+        GestureDetector(
+          onTap: () => Modular.to.pushNamed(
+            "updatePage",
+            arguments: data[index],
+          ),
+          child: const Icon(
+            Icons.edit,
+          ),
+        ),
+      ),
+    ]);
   }
 
   @override
