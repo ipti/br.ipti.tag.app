@@ -22,5 +22,6 @@ class GetStudentsEndPoint extends EndPointAPI {
   @override
   Parameters? get urlParameters => () => {
         "school": schoolId,
+        "perPage": 1000,
       };
 }

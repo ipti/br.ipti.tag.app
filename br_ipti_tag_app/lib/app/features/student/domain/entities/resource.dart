@@ -1,5 +1,5 @@
-class Student {
-  Student({
+class StudentResources {
+  StudentResources({
     this.aidLector,
     this.aidTranscription,
     this.interpreterGuide,

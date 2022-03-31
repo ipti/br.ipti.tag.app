@@ -12,26 +12,29 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   Future<Either<Exception, List<Classroom>>> list() async {
     return Right(<Classroom>[
       Classroom(
-          name: "1º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
+        name: "1º ano Ensino Fundamental",
+        endTime: null,
+        startTime: null,
+        modalityId: 0,
+        stageId: 0,
+        typePedagogicMediationId: 0,
+      ),
       Classroom(
-          name: "3º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
+        name: "3º ano Ensino Fundamental",
+        endTime: null,
+        startTime: null,
+        modalityId: 0,
+        stageId: 0,
+        typePedagogicMediationId: 0,
+      ),
       Classroom(
-          name: "4º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
+        name: "4º ano Ensino Fundamental",
+        endTime: null,
+        startTime: null,
+        modalityId: 0,
+        stageId: 0,
+        typePedagogicMediationId: 0,
+      ),
     ]);
   }
 }

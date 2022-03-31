@@ -14,13 +14,13 @@ class EnrollmentParams extends Equatable {
   List<Object> get props => [student];
 }
 
-class FastEnrollmentUsecase implements Usecase<bool, EnrollmentParams> {
+class FastEnrollmentUsecase implements Usecase<Student, EnrollmentParams> {
   FastEnrollmentUsecase(this._service);
 
   final StudentRepository _service;
 
   @override
-  Future<Either<Exception, bool>> call(EnrollmentParams params) async {
+  Future<Either<Exception, Student>> call(EnrollmentParams params) async {
     return _service.create(params.student);
   }
 }

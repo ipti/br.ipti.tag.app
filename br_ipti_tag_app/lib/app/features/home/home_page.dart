@@ -28,12 +28,13 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 400,
               child: StreamBuilder<HomeEvent>(
-                  stream: _controller.states.stream,
-                  builder: (context, AsyncSnapshot<HomeEvent> snapshot) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }),
+                stream: _controller.states.stream,
+                builder: (context, AsyncSnapshot<HomeEvent> snapshot) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
             TextButton(
               onPressed: () => _controller.fetchUsers(),

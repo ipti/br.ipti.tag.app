@@ -85,11 +85,13 @@ class ClassroomDatatable extends DataTableSource {
 
   @override
   DataRow getRow(int index) {
-    return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stageId.toString())),
-      const DataCell(Icon(Icons.edit)),
-    ]);
+    return DataRow(
+      cells: [
+        DataCell(Text(data[index].name.toUpperCase())),
+        DataCell(Text(data[index].stageId.toString())),
+        const DataCell(Icon(Icons.edit)),
+      ],
+    );
   }
 
   @override

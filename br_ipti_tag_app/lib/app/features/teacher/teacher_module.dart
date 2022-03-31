@@ -27,7 +27,7 @@ class TeacherModule extends Module {
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const TeacherPage()),
   ];
 }

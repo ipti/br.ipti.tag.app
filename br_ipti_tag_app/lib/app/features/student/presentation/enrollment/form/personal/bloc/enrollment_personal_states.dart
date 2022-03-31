@@ -1,6 +1,30 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:equatable/equatable.dart';
 
 class EnrollmentPersonalState extends Equatable {
+  final String name;
+  final String birthday;
+  final int sex;
+  final int colorRace;
+  final int filiation;
+  final int nationality;
+  final bool deficiency;
+  final String foodRestrictions;
+  final bool? deficiencyTypeBlindness;
+  final bool? deficiencyTypeLowVision;
+  final bool? deficiencyTypeDeafness;
+  final bool? deficiencyTypeDisabilityHearing;
+  final bool? deficiencyTypeDeafblindness;
+  final bool? deficiencyTypePhisicalDisability;
+  final bool? deficiencyTypeIntelectualDisability;
+  final bool? deficiencyTypeMultipleDisabilities;
+  final bool? deficiencyTypeAutism;
+  final bool? deficiencyTypeAspengerSyndrome;
+  final bool? deficiencyTypeRettSyndrome;
+  final bool? deficiencyTypeChildhoodDisintegrativeDisorder;
+  final bool? deficiencyTypeGifted;
+  final Student? student;
+
   const EnrollmentPersonalState({
     required this.name,
     required this.birthday,
@@ -10,19 +34,21 @@ class EnrollmentPersonalState extends Equatable {
     required this.nationality,
     required this.deficiency,
     required this.foodRestrictions,
+    this.deficiencyTypeBlindness,
+    this.deficiencyTypeLowVision,
+    this.deficiencyTypeDeafness,
+    this.deficiencyTypeDisabilityHearing,
+    this.deficiencyTypeDeafblindness,
+    this.deficiencyTypePhisicalDisability,
+    this.deficiencyTypeIntelectualDisability,
+    this.deficiencyTypeMultipleDisabilities,
+    this.deficiencyTypeAutism,
+    this.deficiencyTypeAspengerSyndrome,
+    this.deficiencyTypeRettSyndrome,
+    this.deficiencyTypeChildhoodDisintegrativeDisorder,
+    this.deficiencyTypeGifted,
+    this.student,
   });
-
-  final String name;
-  final String birthday;
-  final int sex;
-  final int colorRace;
-  final int filiation;
-  final int nationality;
-  final bool deficiency;
-  final String foodRestrictions;
-
-  @override
-  List<Object?> get props => [];
 
   EnrollmentPersonalState copyWith({
     String? name,
@@ -33,6 +59,20 @@ class EnrollmentPersonalState extends Equatable {
     int? nationality,
     bool? deficiency,
     String? foodRestrictions,
+    bool? deficiencyTypeBlindness,
+    bool? deficiencyTypeLowVision,
+    bool? deficiencyTypeDeafness,
+    bool? deficiencyTypeDisabilityHearing,
+    bool? deficiencyTypeDeafblindness,
+    bool? deficiencyTypePhisicalDisability,
+    bool? deficiencyTypeIntelectualDisability,
+    bool? deficiencyTypeMultipleDisabilities,
+    bool? deficiencyTypeAutism,
+    bool? deficiencyTypeAspengerSyndrome,
+    bool? deficiencyTypeRettSyndrome,
+    bool? deficiencyTypeChildhoodDisintegrativeDisorder,
+    bool? deficiencyTypeGifted,
+    Student? student,
   }) {
     return EnrollmentPersonalState(
       name: name ?? this.name,
@@ -43,19 +83,74 @@ class EnrollmentPersonalState extends Equatable {
       nationality: nationality ?? this.nationality,
       deficiency: deficiency ?? this.deficiency,
       foodRestrictions: foodRestrictions ?? this.foodRestrictions,
+      deficiencyTypeBlindness:
+          deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
+      deficiencyTypeLowVision:
+          deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
+      deficiencyTypeDeafness:
+          deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
+      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ??
+          this.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafblindness:
+          deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
+      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ??
+          this.deficiencyTypePhisicalDisability,
+      deficiencyTypeIntelectualDisability:
+          deficiencyTypeIntelectualDisability ??
+              this.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ??
+          this.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeAutism: deficiencyTypeAutism ?? this.deficiencyTypeAutism,
+      deficiencyTypeAspengerSyndrome:
+          deficiencyTypeAspengerSyndrome ?? this.deficiencyTypeAspengerSyndrome,
+      deficiencyTypeRettSyndrome:
+          deficiencyTypeRettSyndrome ?? this.deficiencyTypeRettSyndrome,
+      deficiencyTypeChildhoodDisintegrativeDisorder:
+          deficiencyTypeChildhoodDisintegrativeDisorder ??
+              this.deficiencyTypeChildhoodDisintegrativeDisorder,
+      deficiencyTypeGifted: deficiencyTypeGifted ?? this.deficiencyTypeGifted,
+      student: student ?? this.student,
     );
+  }
+
+  @override
+  List<Object> get props {
+    return [
+      name,
+      birthday,
+      sex,
+      colorRace,
+      filiation,
+      nationality,
+      deficiency,
+      foodRestrictions,
+      deficiencyTypeBlindness ?? false,
+      deficiencyTypeLowVision ?? false,
+      deficiencyTypeDeafness ?? false,
+      deficiencyTypeDisabilityHearing ?? false,
+      deficiencyTypeDeafblindness ?? false,
+      deficiencyTypePhisicalDisability ?? false,
+      deficiencyTypeIntelectualDisability ?? false,
+      deficiencyTypeMultipleDisabilities ?? false,
+      deficiencyTypeAutism ?? false,
+      deficiencyTypeAspengerSyndrome ?? false,
+      deficiencyTypeRettSyndrome ?? false,
+      deficiencyTypeChildhoodDisintegrativeDisorder ?? false,
+      deficiencyTypeGifted ?? false,
+    ];
   }
 }
 
 class EmptyEnrollmentPersonalState extends EnrollmentPersonalState {
   const EmptyEnrollmentPersonalState()
       : super(
-            name: "",
-            birthday: "",
-            colorRace: 0,
-            deficiency: false,
-            filiation: 0,
-            foodRestrictions: "",
-            nationality: 0,
-            sex: 0);
+          name: "",
+          birthday: "",
+          colorRace: 1,
+          deficiency: false,
+          filiation: 1,
+          foodRestrictions: "",
+          nationality: 1,
+          sex: 1,
+        );
 }

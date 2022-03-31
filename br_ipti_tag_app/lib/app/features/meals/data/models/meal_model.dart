@@ -61,6 +61,7 @@ class MealModel {
   }
 
   factory MealModel.fromMap(Map<String, dynamic> map) {
+    final components = List.from(map['components'] ?? []);
     return MealModel(
       weekDays:
           map['weekDays'] != null ? List<String>.from(map['weekDays']) : null,
@@ -68,10 +69,7 @@ class MealModel {
       description: map['description'],
       observation: map['observation'],
       mealType: map['mealType'],
-      components: map['components'] != null
-          ? List<ComponentModel>.from(
-              map['components']?.map((x) => ComponentModel.fromMap(x)))
-          : null,
+      components: components.map((x) => ComponentModel.fromMap(x)).toList(),
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );

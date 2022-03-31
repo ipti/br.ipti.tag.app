@@ -1,7 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

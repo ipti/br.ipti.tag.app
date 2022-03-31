@@ -40,7 +40,8 @@ class ClassroomCreateBloc
 
   @override
   Stream<ClassroomCreateFormState> mapEventToState(
-      ClassroomCreateEvent event) async* {
+    ClassroomCreateEvent event,
+  ) async* {
     ClassroomCreateFormState newState = state;
     if (event is NameChanged) {
       newState = state.copyWith(name: event.name);
@@ -54,14 +55,16 @@ class ClassroomCreateBloc
       newState = state.copyWith(stageId: event.stageId);
     } else if (event is TypePedagogicalMediationChanged) {
       newState = state.copyWith(
-          typePedagogicMediationId: event.typePedagogicMediationId);
+        typePedagogicMediationId: event.typePedagogicMediationId,
+      );
     } else if (event is SubmitClassroom) {
       final params = ParamsCreateClassroom(
-          name: state.name,
-          startTime: state.startTime.toString(),
-          endTime: state.endTime.toString(),
-          modalityId: state.modalityId,
-          stageId: state.stageId);
+        name: state.name,
+        startTime: state.startTime.toString(),
+        endTime: state.endTime.toString(),
+        modalityId: state.modalityId,
+        stageId: state.stageId,
+      );
 
       _usecaseCreateClassroom.call(params);
     }

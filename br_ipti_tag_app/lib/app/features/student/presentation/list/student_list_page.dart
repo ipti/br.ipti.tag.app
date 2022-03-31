@@ -27,7 +27,6 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
     controller.fetchListStudentsEvent();
 
     session.stream.listen((state) {
-      // state.currentSchool;
       controller.fetchListStudentsEvent();
     });
 
@@ -44,14 +43,15 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
       path: ["Alunos", widget.title],
       body: <Widget>[
         SizedBox(
-          child: Row(
+          child: Wrap(
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
                 width: 120,
                 child: TagButton(
                   text: "Matricula",
-                  onPressed: () => Modular.to.pushNamed("matricula"),
+                  onPressed: () =>
+                      Modular.to.pushReplacementNamed("matricula/"),
                 ),
               ),
               Container(
@@ -115,9 +115,16 @@ class StudentDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].scholarity.toString())),
-      const DataCell(Icon(Icons.edit)),
+      DataCell(Text(data[index].name!.toUpperCase())),
+      DataCell(Text(data[index].birthday ?? "")),
+      DataCell(Text(data[index].responsableName ?? "")),
+      DataCell(
+        const Icon(Icons.edit),
+        onTap: () => Modular.to.pushReplacementNamed(
+          "matricula/edit",
+          arguments: data[index],
+        ),
+      ),
     ]);
   }
 

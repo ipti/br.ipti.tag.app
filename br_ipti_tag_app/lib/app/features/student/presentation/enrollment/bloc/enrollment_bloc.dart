@@ -1,38 +1,60 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/fast_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_docs_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import 'enrollment_states.dart';
 
 class EnrollmentBloc extends Cubit<EnrollmentState> {
-  EnrollmentBloc(this._enrollmentUsecase) : super(EnrollmentState());
+  EnrollmentBloc(
+    this._loadStudentDocsUsecase,
+    this._loadStudentEnrollmentUsecase,
+  ) : super(const EnrollmentState());
+  final LoadStudentDocsUsecase _loadStudentDocsUsecase;
+  final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
 
-  // ignore: unused_field
-  final FastEnrollmentUsecase _enrollmentUsecase;
-
-  Future<void> submitPersonalForm() async {
-    // final result = await _enrollmentUsecase(EnrollmentParams(student));
-    // result.fold((l) => null, (r) => emit(state));
+  Future fetchStudentDocs(String studentId, String schoolId) async {
+    final params = LoadStudentDocsParams(studentId, schoolId);
+    final result = await _loadStudentDocsUsecase(params);
+    result.fold(id, setStudentDocs);
   }
 
-  void tabNavigation(int index) {
-    switch (index) {
-      case 0:
-        Modular.to.navigate('/alunos/matricula/pessoal');
-        break;
-      case 1:
-        Modular.to.navigate('/alunos/matricula/filiacao');
-        break;
-      case 2:
-        Modular.to.navigate('/alunos/matricula/endereco');
-        break;
-      case 3:
-        Modular.to.navigate('/alunos/matricula/social');
-        break;
-      case 4:
-        Modular.to.navigate('/alunos/matricula/turma');
-        break;
-      default:
-    }
+  Future fetchStudentsEnrollment(String studentId, String schoolId) async {
+    final params = LoadStudentEnrollmentParams(studentId, schoolId);
+    final result = await _loadStudentEnrollmentUsecase(params);
+    result.fold(id, setStudentEnrollment);
+  }
+
+  void setStudent(Student student) {
+    emit(state.copyWith(
+      student: student,
+    ));
+  }
+
+  void setStudentDocs(StudentDocsAddress studentDocs) {
+    emit(state.copyWith(
+      studentDocs: studentDocs,
+    ));
+  }
+
+  void setStudentEnrollment(StudentEnrollment studentEnrollment) {
+    emit(state.copyWith(
+      studentEnrollment: studentEnrollment,
+    ));
+  }
+
+  void setTabIndex(int index) {
+    emit(NextTabState(
+      tabIndex: index,
+      student: state.student,
+      studentDocs: state.studentDocs,
+    ));
+  }
+
+  void nextTab() {
+    setTabIndex(state.tabIndex + 1);
   }
 }
