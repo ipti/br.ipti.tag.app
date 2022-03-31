@@ -1,11 +1,11 @@
 
-@host=ec2-54-91-8-233.compute-1.amazonaws.com:3000 
+@host=ec2-3-230-55-29.compute-1.amazonaws.com:3000
 
 # @name login
 POST http://{{host}}/auth/login HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
-username={{$processEnv TAG_AUTH_LOGIN}}&password={{$processEnv TAG_AUTH_PASSWORD}}
+username=tagdev&password={{$processEnv TAG_AUTH_PASSWORD}}
 
 ###
 
@@ -41,9 +41,11 @@ Authorization: Bearer {{authToken}}
 ###
 
 # @name students
-GET http://{{host}}/students HTTP/1.1
+GET http://{{host}}/students?school=6244c323f0a8e92a8c6fad02&perPage=1000 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
+
 
 ### 
 

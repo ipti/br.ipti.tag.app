@@ -1,7 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/social/bloc/enrollment_social_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
@@ -44,10 +43,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
       child: Text("Filiação"),
     ),
     Tab(
-      child: Text("Endereço"),
-    ),
-    Tab(
-      child: Text("Social"),
+      child: Text("Endereço e Social"),
     ),
     Tab(
       child: Text("Matrícula"),
@@ -142,7 +138,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
     Modular.dispose<EnrollmentPersonalBloc>();
     Modular.dispose<EnrollmentFiliationBloc>();
     Modular.dispose<EnrollmentAddressBloc>();
-    Modular.dispose<EnrollmentSocialBloc>();
     Modular.dispose<EnrollmentAddressBloc>();
     super.dispose();
   }

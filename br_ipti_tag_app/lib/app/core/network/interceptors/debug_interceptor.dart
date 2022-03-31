@@ -30,7 +30,7 @@ class DebugInterceptor extends InterceptorsWrapper {
         '''<<== Received [${response.statusCode}] from: ${response.realUri.path} - ${DateTime.now()}''',
       );
 
-      debugPrint("|  Data: ${_formatJson(response.data).substring(0, 100)}");
+      debugPrint("|  Data: ${_formatJson(response.data)}");
       debugPrint(
         '''<<=========================================== ${response.realUri.path}''',
       );
