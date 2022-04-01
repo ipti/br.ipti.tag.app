@@ -72,9 +72,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   final _session = Modular.get<SessionBloc>();
   final _formKey = GlobalKey<FormState>();
 
-  String? schoolId;
   @override
   void initState() {
+    _session.fetchCurrentSchool();
     super.initState();
   }
 
