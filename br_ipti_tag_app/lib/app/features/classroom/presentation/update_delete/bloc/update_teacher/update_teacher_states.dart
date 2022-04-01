@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class UpdateTeacherState extends Equatable {}

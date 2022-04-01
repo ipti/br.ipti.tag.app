@@ -4,7 +4,7 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 class GetClassroomEndPoint extends EndPointAPI {
   final String? schoolId;
 
-  GetClassroomEndPoint([this.schoolId]);
+  GetClassroomEndPoint(this.schoolId);
 
   @override
   String get path => '/classroom';
@@ -20,5 +20,4 @@ class GetClassroomEndPoint extends EndPointAPI {
 
   @override
   Parameters? get urlParameters => null;
-  // () => schoolId != null ? {"school": schoolId} : {};
 }

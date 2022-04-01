@@ -9,6 +9,7 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
     required String name,
     required int typePedagogicMediationId,
     required int modality,
+    required String schoolId,
     bool weekDaySunday = true,
     bool weekDayMonday = true,
     bool weekDayTuesday = true,
@@ -32,6 +33,7 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
     bool aeePortuguese = false,
     bool aeeAutonomousLife = false,
   }) : super(
+          schoolId: schoolId,
           endTime: endTime,
           name: name,
           startTime: startTime,
@@ -65,6 +67,7 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
   Map<String, dynamic> toJson() => <String, dynamic>{
         "inep_id": '10',
         "name": name,
+        "register_type": '20',
         "pedagogical_mediation_type": typePedagogicMediationId,
         "initial_hour": startTime.hour.toString(),
         "initial_minute": startTime.minute.toString(),
@@ -136,7 +139,6 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
         "hash": null,
         "edcenso_professional_education_course_fk": "61a9433412656f31249d2aa2",
         "calendar_fk": "61a9433412656f31249d2aa2",
-        "school_fk": "6244c323f0a8e92a8c6fad02",
-        "register_type": "rg"
+        "school_fk": schoolId,
       };
 }

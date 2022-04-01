@@ -26,9 +26,6 @@ class AddTeacherDialog extends StatefulWidget {
 
 class _AddTeacherDialogState extends State<AddTeacherDialog> {
   final controller = Modular.get<InstructorFormBloc>();
-  final int cargoDropDownValue = 0;
-
-  final int tipoContratoDropDownValue = 0;
   final ScrollController scrollController = ScrollController();
   @override
   void dispose() {
@@ -134,9 +131,9 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   3: 'Intérprete',
                 },
                 hint: 'Selecione',
-                onChanged: () => cargoDropDownValue,
+                onChanged: (cargo) => controller.changeRole(cargo),
                 label: 'Cargo',
-                value: cargoDropDownValue,
+                value: controller.currentRole,
               ),
             ),
             Padding(
@@ -149,9 +146,10 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   3: 'CLT',
                 },
                 hint: 'Selecione',
-                onChanged: () => tipoContratoDropDownValue,
+                onChanged: (contrato) =>
+                    controller.changeContractType(contrato),
                 label: 'Tipo de Contrato',
-                value: tipoContratoDropDownValue,
+                value: controller.currentContractType,
               ),
             ),
             Padding(
@@ -163,20 +161,6 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TagButton(
-                    textStyle: const TextStyle(color: TagColors.colorRedDark),
-                    buttonStyle: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      padding: TagSpancing.paddingButtonNormal,
-                      minimumSize: const Size(130, TagSizes.heightButtonNormal),
-                      primary: TagColors.colorRedLight,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            TagBorderRadiusValues.borderRadiusNormal,
-                          ),
-                        ),
-                      ),
-                    ),
                     text: 'Cancelar',
                     onPressed: () {
                       debugPrint('cancelado');
@@ -188,12 +172,12 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   ),
                   TagButton(
                     text: 'Adicionar',
-                    backgroundColor: TagColors.colorBaseProductNormal,
-                    buttonStyle: ElevatedButton.styleFrom(
-                      minimumSize: const Size(130, TagSizes.heightButtonNormal),
-                    ),
                     onPressed: () {
-                      controller.add(SubmitInstructorForm());
+                      widget.instructorEntity == null
+                          ? controller.add(SubmitInstructorForm())
+                          : controller.add(SubmitUpdateInstructorForm(
+                              instructorTeachingDataId:
+                                  widget.instructorEntity!.id));
                       Navigator.pop(context);
                     },
                   ),

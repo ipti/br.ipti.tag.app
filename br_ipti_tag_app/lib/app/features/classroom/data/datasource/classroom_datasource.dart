@@ -1,11 +1,11 @@
 import 'package:br_ipti_tag_app/app/api/classroom/delete_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/get_edcenso_disciplines_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/post_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/classroom/put_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/create_instructor_teaching_data_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_teaching_data_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/classroom/post_classroom_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/classroom/put_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/put_instructor_teaching_data_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_create_model.dart';
@@ -14,6 +14,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/edcenso_discip
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_create_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_model.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_update_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
@@ -21,11 +22,11 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_inst
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
 
 class ClassroomRemoteDataSource {
+  final RouterAPI _httpClient;
+
   ClassroomRemoteDataSource(
     this._httpClient,
   );
-
-  final RouterAPI _httpClient;
 
   Future<bool> create(ClassroomCreateModel classroomModel) async {
     final response = await _httpClient.request(
@@ -39,22 +40,13 @@ class ClassroomRemoteDataSource {
     throw response.error ?? "Erro desconhecido";
   }
 
-  Future<bool> update(
-    ClassroomCreateModel classroomModel,
-    String id,
-  ) async {
+  Future<bool> createInstructorsTeachingData(
+      InstructorTeachingDataCreateModel instructor) async {
     final response = await _httpClient.request(
-      route: PutClasroomEndPoint(
-        classroomModel,
-        id,
-      ),
+      route: PostInstructorTeachingDataEndpoint(instructor),
     );
 
-    if (response.data != null) {
-      return true;
-    }
-
-    throw response.error ?? "Erro desconhecido";
+    return response.data!['data'];
   }
 
   Future<bool> delete(
@@ -75,7 +67,7 @@ class ClassroomRemoteDataSource {
 
   Future<List<ClassroomModel>> listAll() async {
     final response = await _httpClient.request(
-      route: GetClassroomEndPoint(),
+      route: GetClassroomEndPoint(""),
     );
 
     final mappedList = (response.data!['data'] as List)
@@ -121,17 +113,26 @@ class ClassroomRemoteDataSource {
     return mappedList;
   }
 
-  Future<bool> createInstructorsTeachingData(
-      InstructorTeachingDataCreateModel instructor) async {
+  Future<bool> update(
+    ClassroomCreateModel classroomModel,
+    String id,
+  ) async {
     final response = await _httpClient.request(
-      route: PostInstructorTeachingDataEndpoint(instructor),
+      route: PutClasroomEndPoint(
+        classroomModel,
+        id,
+      ),
     );
 
-    return response.data!['data'];
+    if (response.data != null) {
+      return true;
+    }
+
+    throw response.error ?? "Erro desconhecido";
   }
 
   Future<bool> updateInstructorsTeachingData(
-      String id, InstructorTeachingDataCreateModel instructor) async {
+      String id, InstructorTeachingDataUpdateModel instructor) async {
     final response = await _httpClient.request(
       route: PutInstructorTeachingDataEndpoint(instructor, id),
     );

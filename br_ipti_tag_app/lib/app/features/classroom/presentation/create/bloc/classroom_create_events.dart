@@ -10,7 +10,15 @@ abstract class ClassroomCreateEvent extends Equatable {
 
 class StartEditing extends ClassroomCreateEvent {}
 
-class SubmitClassroom extends ClassroomCreateEvent {}
+class SubmitClassroom extends ClassroomCreateEvent {
+  final String id;
+
+  const SubmitClassroom({required this.id});
+  @override
+  List<Object> get props => [
+        id,
+      ];
+}
 
 class SubmitedSuccess extends ClassroomCreateEvent {}
 
@@ -22,6 +30,7 @@ class NameChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [name];
 }
+
 class AeeBrailleChanged extends ClassroomCreateEvent {
   const AeeBrailleChanged({
     required this.aeeBraille,
@@ -43,6 +52,7 @@ class AeeOpticalNonOpticalChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeOpticalNonOptical];
 }
+
 class AeeCognitiveFunctionsChanged extends ClassroomCreateEvent {
   const AeeCognitiveFunctionsChanged({
     required this.aeeCognitiveFunctions,
@@ -53,6 +63,7 @@ class AeeCognitiveFunctionsChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeCognitiveFunctions];
 }
+
 class AeeMobilityTechniquesChanged extends ClassroomCreateEvent {
   const AeeMobilityTechniquesChanged({
     required this.aeeMobilityTechniques,
@@ -63,6 +74,7 @@ class AeeMobilityTechniquesChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeMobilityTechniques];
 }
+
 class AeeLibrasChanged extends ClassroomCreateEvent {
   const AeeLibrasChanged({
     required this.aeeLibras,
@@ -73,6 +85,7 @@ class AeeLibrasChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeLibras];
 }
+
 class AeeCaaChanged extends ClassroomCreateEvent {
   const AeeCaaChanged({
     required this.aeeCaa,
@@ -83,6 +96,7 @@ class AeeCaaChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeCaa];
 }
+
 class AeeCurriculumEnrichmentChanged extends ClassroomCreateEvent {
   const AeeCurriculumEnrichmentChanged({
     required this.aeeCurriculumEnrichment,
@@ -93,6 +107,7 @@ class AeeCurriculumEnrichmentChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeCurriculumEnrichment];
 }
+
 class AeeAccessibleTeachingChanged extends ClassroomCreateEvent {
   const AeeAccessibleTeachingChanged({
     required this.aeeAccessibleTeaching,
@@ -103,6 +118,7 @@ class AeeAccessibleTeachingChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeAccessibleTeaching];
 }
+
 class AeePortugueseChanged extends ClassroomCreateEvent {
   const AeePortugueseChanged({
     required this.aeePortuguese,
@@ -113,6 +129,7 @@ class AeePortugueseChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeePortuguese];
 }
+
 class AeeSorobanChanged extends ClassroomCreateEvent {
   const AeeSorobanChanged({
     required this.aeeSoroban,
@@ -123,6 +140,7 @@ class AeeSorobanChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeSoroban];
 }
+
 class AeeAutonomousLifeChanged extends ClassroomCreateEvent {
   const AeeAutonomousLifeChanged({
     required this.aeeAutonomousLife,
@@ -133,6 +151,7 @@ class AeeAutonomousLifeChanged extends ClassroomCreateEvent {
   @override
   List<Object> get props => [aeeAutonomousLife];
 }
+
 class MoreEducationParticipatorChanged extends ClassroomCreateEvent {
   const MoreEducationParticipatorChanged({
     required this.moreEducationParticipator,

@@ -24,3 +24,10 @@ class UpdateInstructorForm extends InstructorFormEvent {
   List<Object?> get props =>
       [schoolInepIdFk, discipline1Fk, instructorFk, role];
 }
+
+class SubmitUpdateInstructorForm extends InstructorFormEvent {
+  final String instructorTeachingDataId;
+
+  SubmitUpdateInstructorForm({required this.instructorTeachingDataId});
+  List<Object?> get props => [instructorTeachingDataId];
+}

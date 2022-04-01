@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_update_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_update_widget.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/util.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,10 @@ class ClassroomBasicDataForm extends StatefulWidget {
 class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   final controller = Modular.get<ClassroomUpdateDeleteBloc>();
   final _formKey = GlobalKey<FormState>();
+  final _session = Modular.get<SessionBloc>();
   @override
   void initState() {
+    _session.fetchCurrentSchool();
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       if (widget.classroomEntity != null) {
         controller.add(
@@ -261,13 +264,18 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                           TagButton(
                             text: "Salvar Alterações",
                             onPressed: () => controller.add(
-                              SubmitClassroom(),
+                              SubmitUpdateClassroom(
+                                schoolId: _session.state.currentSchool!.id!,
+                                id: widget.classroomEntity!.id,
+                              ),
                             ),
                           ),
                           TagButton(
                             text: "Excluir Turma",
                             onPressed: () => controller.add(
-                              SubmitClassroom(),
+                              DeleteClassroom(
+                                id: widget.classroomEntity!.id,
+                              ),
                             ),
                           ),
                         ],
