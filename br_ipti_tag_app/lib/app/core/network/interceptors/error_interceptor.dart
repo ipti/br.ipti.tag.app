@@ -10,7 +10,7 @@ const API_HTTP_INTERNAL_ERROR = "Erro interno do servidor";
 const API_HTTP_UNAVAILABLE = "Servidor não disponível";
 const CONNECTION_TIMEOUT = "Fim do tempo de conexão";
 const HTTP_NOT_FOUND_ERROR = "Recurso não encontrado no servidor";
-const HTTP_UNAUTHORIZED = "Não autorizado, atualize suas credenciais";
+const HTTP_UNAUTHORIZED = "Não autorizado, verifique suas credenciais";
 
 class ErrorInterceptor extends InterceptorsWrapper {
   @override

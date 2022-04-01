@@ -1,12 +1,8 @@
-import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/verify_auth_usecase.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -28,14 +24,22 @@ class LoginBloc extends Cubit<LoginState> {
       MapEntry(i.toString(), i.toString())
   ];
 
-  void setUsername(String username) => emit(state.copyWith(username: username));
-  void setPassword(String password) => emit(state.copyWith(password: password));
-  void setSchoolYear(String schoolYear) =>
-      emit(state.copyWith(year: schoolYear));
+  String username = "";
+  String password = "";
+  String schoolYear = DateTime.now().year.toString();
+  String appVersion = "0.0.0.0";
 
   Future fetchVersion() async {
-    final version = await servicePkgInfo.getVersion();
-    emit(state.copyWith(appVersion: version));
+    final appVersion = await servicePkgInfo.getVersion();
+    this.appVersion = appVersion;
+    emit(
+      LoginLoadedState(
+        username: username,
+        password: password,
+        appVersion: appVersion,
+        year: schoolYear,
+      ),
+    );
   }
 
   Future verifyAuthToken() async {
@@ -48,19 +52,26 @@ class LoginBloc extends Cubit<LoginState> {
 
   Future submitLogin() async {
     final params = LoginParams(
-      username: state.username,
-      password: state.password,
-      year: state.year,
+      username: username,
+      password: password,
+      year: schoolYear,
     );
 
-    final option = await authLoginUsecase(params);
+    final result = await authLoginUsecase(params);
 
-    final result = option.fold(id, id);
-
-    if (result is AuthResponse) {
-      Modular.to.pushReplacementNamed("/turmas/");
-    } else if (result is RestClientException) {
-      debugPrint(result.handledError());
-    }
+    result.fold(
+      (error) {
+        emit(LoginErrorState(error.toString()));
+        emit(
+          LoginLoadedState(
+            username: username,
+            password: password,
+            appVersion: appVersion,
+            year: schoolYear,
+          ),
+        );
+      },
+      (auth) => Modular.to.pushReplacementNamed("/turmas/"),
+    );
   }
 }

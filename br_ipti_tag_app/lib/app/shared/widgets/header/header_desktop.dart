@@ -14,7 +14,6 @@ class HeaderDesktop extends StatefulWidget {
 
 class _HeaderDesktopState extends State<HeaderDesktop> {
   final sessionController = Modular.get<SessionBloc>();
-
   @override
   void initState() {
     sessionController.fetchSchools();
