@@ -182,7 +182,7 @@ class ClassroomUpdateDeleteBloc
         aeeAutonomousLife: event.aeeAutonomousLife,
       );
     } else if (event is UpdateClassroom) {
-      final params = ClassroomCreateEntity(
+      newState = ClassroomUpdateDeleteFormState(
         moreEducationParticipator: event.moreEducationParticipator,
         name: event.name,
         startTime: event.startTime,
@@ -203,7 +203,9 @@ class ClassroomUpdateDeleteBloc
         aeePortuguese: event.aeePortuguese,
         aeeSoroban: event.aeeSoroban,
         schooling: event.schooling,
-        edcensoStageVsModalityFk: event.stage,
+        registerType: '20',
+        stageId: 1,
+        stageVsModalityFk: '',
       );
     } else if (event is SubmitUpdateClassroom) {
       final params = ClassroomCreateEntity(
