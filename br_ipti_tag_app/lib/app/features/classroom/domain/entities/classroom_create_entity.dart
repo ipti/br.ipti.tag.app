@@ -30,6 +30,7 @@ class ClassroomCreateEntity {
   final bool aeeSoroban;
   final bool aeeAutonomousLife;
   final bool moreEducationParticipator;
+  final String schoolId;
 
   ClassroomCreateEntity({
     this.schooling = false,
@@ -60,10 +61,10 @@ class ClassroomCreateEntity {
     required this.endTime,
     required this.modalityId,
     required this.typePedagogicMediationId,
+    required this.schoolId,
   });
 
-  ClassroomCreateModel fromEntity(
-  ) {
+  ClassroomCreateModel fromEntity() {
     return ClassroomCreateModel(
       startTime: startTime,
       endTime: endTime,
@@ -93,6 +94,7 @@ class ClassroomCreateEntity {
       aeePortuguese: aeePortuguese,
       aeeSoroban: aeeSoroban,
       moreEducationParticipator: moreEducationParticipator,
+      schoolId: schoolId,
     );
   }
 }

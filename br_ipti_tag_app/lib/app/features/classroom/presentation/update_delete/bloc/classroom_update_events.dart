@@ -12,10 +12,16 @@ class StartEditing extends ClassroomUpdateDeleteEvent {}
 
 class SubmitUpdateClassroom extends ClassroomUpdateDeleteEvent {
   final String id;
-
- const SubmitUpdateClassroom({required this.id});
- @override
-  List<Object> get props =>[id];
+  final String schoolId;
+  const SubmitUpdateClassroom({
+    required this.id,
+    required this.schoolId,
+  });
+  @override
+  List<Object> get props => [
+        id,
+        schoolId,
+      ];
 }
 
 class SubmitedSuccess extends ClassroomUpdateDeleteEvent {}

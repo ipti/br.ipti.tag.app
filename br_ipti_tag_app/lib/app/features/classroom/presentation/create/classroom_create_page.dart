@@ -1,8 +1,8 @@
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/util.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,7 +69,14 @@ class ClassroomBasicDataForm extends StatefulWidget {
 
 class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   final controller = Modular.get<ClassroomCreateBloc>();
+  final _session = Modular.get<SessionBloc>();
   final _formKey = GlobalKey<FormState>();
+
+  String? schoolId;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -255,7 +262,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                       TagButton(
                         text: "Criar turma",
                         onPressed: () => controller.add(
-                          SubmitClassroom(),
+                          SubmitClassroom(
+                            id: _session.state.currentSchool!.id!,
+                          ),
                         ),
                       ),
                     ],

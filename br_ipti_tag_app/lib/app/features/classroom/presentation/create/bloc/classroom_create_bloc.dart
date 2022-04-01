@@ -2,7 +2,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'classroom_create_events.dart';
 import 'classroom_states.dart';
 
@@ -204,6 +203,7 @@ class ClassroomCreateBloc
       );
     } else if (event is SubmitClassroom) {
       final params = ClassroomCreateEntity(
+        schoolId: event.id,
         moreEducationParticipator: state.moreEducationParticipator,
         name: state.name,
         startTime: state.startTime,

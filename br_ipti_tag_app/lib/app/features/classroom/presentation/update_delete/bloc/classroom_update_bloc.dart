@@ -209,6 +209,7 @@ class ClassroomUpdateDeleteBloc
       );
     } else if (event is SubmitUpdateClassroom) {
       final params = ClassroomCreateEntity(
+        schoolId: event.schoolId,
         moreEducationParticipator:
             (state as ClassroomUpdateDeleteFormState).moreEducationParticipator,
         name: (state as ClassroomUpdateDeleteFormState).name,
