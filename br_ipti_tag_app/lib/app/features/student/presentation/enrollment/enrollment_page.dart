@@ -55,8 +55,14 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
+
+    _tabController.addListener(() {
+      print(_tabController.index);
+    });
+
     if (widget.student != null) {
-      controller.setStudent(widget.student!);
+      controller.loadStudent(widget.student);
+
       controller.fetchStudentDocs(
         widget.student!.id!,
         widget.student!.schoolInepIdFk!,
@@ -66,11 +72,12 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
         widget.student!.schoolInepIdFk!,
       );
     }
-    controller.stream.listen((event) {
+    controller.stream.listen((state) {
       final nextIndex = _tabController.index + 1;
       final isLastTab = nextIndex == _tabs.length;
-      if (event is NextTabState && !isLastTab) {
-        _tabController.animateTo(event.tabIndex);
+      if (state is EnrollmentNextTabState && !isLastTab) {
+        _tabController.animateTo(nextIndex);
+        controller.tabIndex = nextIndex;
       }
     });
 
@@ -102,29 +109,31 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
               maxHeight: MediaQuery.of(context).size.height,
               maxWidth: 800,
             ),
-            child: BlocBuilder<EnrollmentBloc, EnrollmentState>(
+            child: BlocConsumer<EnrollmentBloc, EnrollmentState>(
+              listener: (context, state) {
+                if (state is EnrollmenErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: TagColors.colorRedDark,
+                      content: Text(state.message),
+                    ),
+                  );
+                }
+                if (state is EnrollmenSuccessState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: TagColors.colorBaseProductNormal,
+                      content: Text(state.message),
+                    ),
+                  );
+                }
+              },
               bloc: controller,
               builder: (context, state) {
-                return TabBarView(
-                  controller: _tabController,
-                  children: [
-                    PersonalDataFormPage(
-                      student: widget.student,
-                      editMode: widget.editMode,
-                    ),
-                    FiliationFormPage(
-                      student: widget.student,
-                    ),
-                    AddressFormPage(
-                      model: state.studentDocs,
-                      editMode: widget.editMode,
-                    ),
-                    ClassesFormPage(
-                      model: state.studentEnrollment,
-                      editMode: widget.editMode,
-                    )
-                  ],
-                );
+                if (state is EnrollmentLoadedState) {
+                  return _buildWithData(state);
+                }
+                return _buildWithoutData();
               },
             ),
           ),
@@ -133,11 +142,53 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
     );
   }
 
+  TabBarView _buildWithData(EnrollmentLoadedState state) {
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        PersonalDataFormPage(
+          student: widget.student,
+          editMode: widget.editMode,
+        ),
+        FiliationFormPage(
+          student: widget.student,
+        ),
+        AddressFormPage(
+          model: state.studentDocs,
+          editMode: widget.editMode,
+        ),
+        ClassesFormPage(
+          model: state.studentEnrollment,
+          editMode: widget.editMode,
+        )
+      ],
+    );
+  }
+
+  TabBarView _buildWithoutData() {
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        PersonalDataFormPage(
+          editMode: widget.editMode,
+        ),
+        FiliationFormPage(
+          student: widget.student,
+        ),
+        AddressFormPage(
+          editMode: widget.editMode,
+        ),
+        ClassesFormPage(
+          editMode: widget.editMode,
+        )
+      ],
+    );
+  }
+
   @override
   void dispose() {
     Modular.dispose<EnrollmentPersonalBloc>();
     Modular.dispose<EnrollmentFiliationBloc>();
-    Modular.dispose<EnrollmentAddressBloc>();
     Modular.dispose<EnrollmentAddressBloc>();
     super.dispose();
   }

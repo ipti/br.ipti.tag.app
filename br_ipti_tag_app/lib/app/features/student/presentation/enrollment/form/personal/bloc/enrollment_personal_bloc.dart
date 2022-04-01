@@ -224,10 +224,16 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       ),
     );
 
-    result.fold(id, (student) {
-      _enrollmentBloc.setStudent(student);
-      _enrollmentBloc.nextTab();
-    });
+    result.fold(
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (student) {
+        _enrollmentBloc.loadStudent(student);
+        _enrollmentBloc.notifySuccess(
+          "Dados básicos do aluno cadastrados com sucesso",
+        );
+        _enrollmentBloc.nextTab();
+      },
+    );
   }
 
   Future _edit() async {
@@ -266,9 +272,15 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
 
     final result = await _updateStudentsUsecase(params);
 
-    result.fold(id, (student) {
-      _enrollmentBloc.setStudent(student);
-      _enrollmentBloc.nextTab();
-    });
+    result.fold(
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (student) {
+        _enrollmentBloc.loadStudent(student);
+        _enrollmentBloc.notifySuccess(
+          "Dados básicos atualizados com sucesso",
+        );
+        _enrollmentBloc.nextTab();
+      },
+    );
   }
 }

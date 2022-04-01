@@ -451,11 +451,14 @@ class StudentModel extends Student {
   }
 
   factory StudentModel.fromMap(Map<String, dynamic> map) {
+    final schoolInepFk = map['school_inep_id_fk'] is Map
+        ? map['school_inep_id_fk']['_id']
+        : map['school_inep_id_fk'];
     return StudentModel(
       id: map['_id'],
       name: map['name'],
       registerType: map['register_type'],
-      schoolInepIdFk: map['school_inep_id_fk'],
+      schoolInepIdFk: schoolInepFk,
       inepId: map['inep_id'],
       birthday: map['birthday'],
       sex: map['sex'],

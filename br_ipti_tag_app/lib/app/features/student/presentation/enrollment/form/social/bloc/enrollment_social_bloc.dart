@@ -43,7 +43,7 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
   }
 
   Future<void> submitSocialForm(EditMode mode) async {
-    final oldStudentDocumentsAddress = _enrollmentBloc.state.studentDocs!;
+    final oldStudentDocumentsAddress = _enrollmentBloc.studentDocs!;
     final newStudentDocumentsAddress = oldStudentDocumentsAddress.copyWith(
       nis: state.nis,
     );
@@ -64,8 +64,8 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
     );
 
     final result = await _addressToStudentUsecase(params);
-    result.fold(id, (studenDocs) {
-      _enrollmentBloc.setStudentDocs(studenDocs);
+    result.fold(id, (studentDocs) {
+      _enrollmentBloc.loadStudentDocs(studentDocs);
       _enrollmentBloc.nextTab();
     });
   }
@@ -77,8 +77,8 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
     );
 
     final result = await _updateDocumentsAndAddressUsecase(params);
-    result.fold(id, (studenDocs) {
-      _enrollmentBloc.setStudentDocs(studenDocs);
+    result.fold(id, (studentDocs) {
+      _enrollmentBloc.loadStudentDocs(studentDocs);
       _enrollmentBloc.nextTab();
     });
   }

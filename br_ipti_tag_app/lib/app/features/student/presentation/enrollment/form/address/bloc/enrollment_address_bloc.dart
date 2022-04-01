@@ -134,10 +134,16 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     );
 
     final result = await _addAddressToStudentUsecase(params);
-    result.fold(id, (studenDocs) {
-      _enrollmentBloc.setStudentDocs(studenDocs);
-      _enrollmentBloc.nextTab();
-    });
+    result.fold(
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (studentDocs) {
+        _enrollmentBloc.loadStudentDocs(studentDocs);
+        _enrollmentBloc.notifySuccess(
+          "Documentos e endereço do aluno cadastrados com sucesso",
+        );
+        _enrollmentBloc.nextTab();
+      },
+    );
   }
 
   Future _edit(StudentDocsAddress studentDocuments) async {
@@ -160,13 +166,19 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     final result = await _updateDocumentsAndAddressUsecase(params);
 
     result.fold(
-      id,
-      (docsAddress) => _enrollmentBloc.setStudentDocs(docsAddress),
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (docsAddress) {
+        _enrollmentBloc.loadStudentDocs(docsAddress);
+        _enrollmentBloc.notifySuccess(
+          "Documentos e endereço do aluno atualizadas com sucesso",
+        );
+        _enrollmentBloc.nextTab();
+      },
     );
   }
 
   StudentDocsAddress _buildStudentDocsAddress() {
-    final student = _enrollmentBloc.state.student!;
+    final student = _enrollmentBloc.student!;
     final school = _session.state.currentSchool!;
 
     return StudentDocsAddress(

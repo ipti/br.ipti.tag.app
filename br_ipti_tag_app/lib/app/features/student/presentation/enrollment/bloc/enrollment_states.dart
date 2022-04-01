@@ -3,36 +3,41 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dar
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:equatable/equatable.dart';
 
-class EnrollmentState extends Equatable {
+abstract class EnrollmentState extends Equatable {
+  const EnrollmentState();
+}
+
+class EnrollmentInitialState extends EnrollmentState {
+  const EnrollmentInitialState();
+  @override
+  List<Object> get props => [];
+}
+
+class EnrollmentLoadedState extends EnrollmentState {
   final Student? student;
   final StudentDocsAddress? studentDocs;
   final StudentEnrollment? studentEnrollment;
 
-  final int tabIndex;
-
-  const EnrollmentState({
+  const EnrollmentLoadedState({
     this.student,
     this.studentDocs,
     this.studentEnrollment,
-    this.tabIndex = 0,
   });
 
   @override
   List<Object> get props => [
-        tabIndex,
         student.hashCode,
         studentEnrollment.hashCode,
         studentDocs.hashCode,
       ];
 
-  EnrollmentState copyWith({
+  EnrollmentLoadedState copyWith({
     int tabIndex = 0,
     Student? student,
     StudentDocsAddress? studentDocs,
     StudentEnrollment? studentEnrollment,
   }) {
-    return EnrollmentState(
-      tabIndex: tabIndex,
+    return EnrollmentLoadedState(
       student: student ?? this.student,
       studentDocs: studentDocs ?? this.studentDocs,
       studentEnrollment: studentEnrollment ?? this.studentEnrollment,
@@ -40,19 +45,32 @@ class EnrollmentState extends Equatable {
   }
 }
 
-class NextTabState extends EnrollmentState {
-  const NextTabState({
-    int tabIndex = 0,
-    Student? student,
-    StudentDocsAddress? studentDocs,
-    StudentEnrollment? studentEnrollment,
-  }) : super(
-          tabIndex: tabIndex,
-          student: student,
-          studentDocs: studentDocs,
-          studentEnrollment: studentEnrollment,
-        );
+class EnrollmentNextTabState extends EnrollmentState {
+  final int tabIndex;
+  const EnrollmentNextTabState({
+    this.tabIndex = 0,
+  });
 
   @override
   List<Object> get props => [tabIndex];
+}
+
+class EnrollmenErrorState extends EnrollmentState {
+  final String message;
+  const EnrollmenErrorState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
+class EnrollmenSuccessState extends EnrollmentState {
+  final String message;
+  const EnrollmenSuccessState({
+    required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
 }

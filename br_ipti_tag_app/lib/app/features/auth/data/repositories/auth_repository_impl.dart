@@ -25,7 +25,7 @@ class AuthRespositoryImpl extends AuthRepository {
       final result = await authRemoteDataSource.login(username, password);
       return Right(result);
     } on RestClientException catch (e) {
-      return Left(e);
+      return Left(Exception(e.handledError()));
     }
   }
 
