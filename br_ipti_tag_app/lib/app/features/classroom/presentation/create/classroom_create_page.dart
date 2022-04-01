@@ -37,7 +37,6 @@ class ClassroomCreatePageState
       length: 1,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
-        header: const HeaderDesktop(),
         aside: Container(),
         title: widget.title,
         description: "",

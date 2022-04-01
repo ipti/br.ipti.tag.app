@@ -288,6 +288,15 @@ class ModalityChanged extends ClassroomUpdateDeleteEvent {
   List<Object> get props => [modalityId];
 }
 
+class DeleteClassroom extends ClassroomUpdateDeleteEvent {
+  const DeleteClassroom({required this.id});
+
+  final String id;
+
+  @override
+  List<Object> get props => [id];
+}
+
 class StageChanged extends ClassroomUpdateDeleteEvent {
   const StageChanged(this.idEdcenso);
 

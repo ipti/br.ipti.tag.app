@@ -65,6 +65,7 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
   Map<String, dynamic> toJson() => <String, dynamic>{
         "inep_id": '10',
         "name": name,
+        "register_type": '20',
         "pedagogical_mediation_type": typePedagogicMediationId,
         "initial_hour": startTime.hour.toString(),
         "initial_minute": startTime.minute.toString(),

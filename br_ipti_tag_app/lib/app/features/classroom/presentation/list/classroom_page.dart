@@ -31,7 +31,6 @@ class ClassroomPageState
   Widget build(BuildContext context) {
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      header: const HeaderDesktop(),
       title: widget.title,
       description: "",
       path: ["Turmas", widget.title],

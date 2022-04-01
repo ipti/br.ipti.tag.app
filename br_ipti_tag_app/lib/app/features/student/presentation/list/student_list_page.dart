@@ -38,7 +38,6 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
   Widget build(BuildContext context) {
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      header: const HeaderDesktop(),
       title: widget.title,
       description: "",
       path: ["Alunos", widget.title],

@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create_entity.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/delete_classroom_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/update_classroom_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'classroom_states.dart';
@@ -9,7 +10,8 @@ final _initialState = ClassroomUpdateDeleteInitial();
 
 class ClassroomUpdateDeleteBloc
     extends Bloc<ClassroomUpdateDeleteEvent, ClassroomUpdateDeleteState> {
-  final CreateClassroomUsecase _usecaseCreateClassroom;
+  final UpdateClassroomUsecase _usecaseUpdateClassroom;
+  final DeleteClassroomUsecase _usecaseDeleteClassroom;
 
   final modalitiesList = const <int, String>{
     0: "Ensino Regular",
@@ -29,8 +31,10 @@ class ClassroomUpdateDeleteBloc
     2: "Mediação 3",
   };
 
-  ClassroomUpdateDeleteBloc(this._usecaseCreateClassroom)
-      : super(_initialState);
+  ClassroomUpdateDeleteBloc(
+    this._usecaseDeleteClassroom,
+    this._usecaseUpdateClassroom,
+  ) : super(_initialState);
   void aee({bool value = false}) => add(
         AeeChanged(
           aee: value,
@@ -177,7 +181,7 @@ class ClassroomUpdateDeleteBloc
       newState = (state as ClassroomUpdateDeleteFormState).copyWith(
         aeeAutonomousLife: event.aeeAutonomousLife,
       );
-    } else if (event is SubmitClassroom) {
+    } else if (event is UpdateClassroom) {
       final params = ClassroomCreateEntity(
         moreEducationParticipator:
             (state as ClassroomUpdateDeleteFormState).moreEducationParticipator,
@@ -226,32 +230,16 @@ class ClassroomUpdateDeleteBloc
             (state as ClassroomUpdateDeleteFormState).weekDaysWednesday,
       );
 
-      _usecaseCreateClassroom.call(params);
-    } else if (event is UpdateClassroom) {
-      newState = ClassroomUpdateDeleteFormState(
-          stageId: 1,
-          registerType: "20",
-          stageVsModalityFk: event.edcensoStageVsModalityFk,
-          moreEducationParticipator: event.moreEducationParticipator,
-          name: event.name,
-          startTime: event.startTime,
-          endTime: event.endTime,
-          modalityId: event.modalityId,
-          typePedagogicMediationId: event.typePedagogicMeditationId,
-          complementaryActivity: event.complementaryActivity,
-          aeeCaa: event.aeeCaa,
-          aeeAccessibleTeaching: event.aeeAccessibleTeaching,
-          aee: event.aee,
-          aeeAutonomousLife: event.aeeAutonomousLife,
-          aeeBraille: event.aeeBraille,
-          aeeCognitiveFunctions: event.aeeCognitiveFunction,
-          aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
-          aeeLibras: event.aeeLibras,
-          aeeMobilityTechniques: event.aeeMobilityTechniques,
-          aeeOpticalNonOptical: event.aeeOpticalNonoptical,
-          aeePortuguese: event.aeePortuguese,
-          aeeSoroban: event.aeeSoroban,
-          schooling: event.schooling);
+      _usecaseUpdateClassroom.call(
+        Params(
+          event.id,
+          params,
+        ),
+      );
+    } else if (event is DeleteClassroom) {
+      _usecaseDeleteClassroom.call(
+        event.id,
+      );
     }
 
     yield newState;

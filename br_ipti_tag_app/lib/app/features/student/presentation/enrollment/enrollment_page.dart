@@ -45,7 +45,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
       length: tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
-        header: const HeaderDesktop(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],

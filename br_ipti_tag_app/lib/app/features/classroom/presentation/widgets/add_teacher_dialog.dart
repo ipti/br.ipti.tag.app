@@ -161,20 +161,6 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TagButton(
-                    textStyle: const TextStyle(color: TagColors.colorRedDark),
-                    buttonStyle: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      padding: TagSpancing.paddingButtonNormal,
-                      minimumSize: const Size(130, TagSizes.heightButtonNormal),
-                      primary: TagColors.colorRedLight,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(
-                            TagBorderRadiusValues.borderRadiusNormal,
-                          ),
-                        ),
-                      ),
-                    ),
                     text: 'Cancelar',
                     onPressed: () {
                       debugPrint('cancelado');
@@ -186,10 +172,6 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   ),
                   TagButton(
                     text: 'Adicionar',
-                    backgroundColor: TagColors.colorBaseProductNormal,
-                    buttonStyle: ElevatedButton.styleFrom(
-                      minimumSize: const Size(130, TagSizes.heightButtonNormal),
-                    ),
                     onPressed: () {
                       widget.instructorEntity == null
                           ? controller.add(SubmitInstructorForm())
