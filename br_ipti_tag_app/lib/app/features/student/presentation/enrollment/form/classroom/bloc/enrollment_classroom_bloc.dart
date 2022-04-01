@@ -28,6 +28,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   final CreateStudentEnrollmentUsecase _createStudentEnrollmentUsecase;
   final UpdateStudentEnrollmentUsecase _updateStudentEnrollmentUsecase;
   final _session = Modular.get<SessionBloc>();
+  final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
   void setStudentClass(String classroomid) => emit(state.copyWith(
@@ -97,7 +98,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
     final schoolId = _session.state.currentSchool!.id!;
-    final studentId = _enrollmentBloc.state.student!.id!;
+    final studentId = _enrollmentBloc.student!.id!;
 
     switch (mode) {
       case EditMode.Create:
@@ -116,7 +117,10 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         break;
       case EditMode.Edit:
         final oldStudentEnrollment = state.studentEnrollment;
-        final enrollment = oldStudentEnrollment!.copyWith(
+
+        if (oldStudentEnrollment == null) return submit(EditMode.Create);
+
+        final enrollment = oldStudentEnrollment.copyWith(
           schoolInepIdFk: schoolId,
           studentFk: studentId,
           classroomFk: state.classroomId,
@@ -137,7 +141,17 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       enrollment: enrollment,
     );
 
-    await _createStudentEnrollmentUsecase(params);
+    final result = await _createStudentEnrollmentUsecase(params);
+
+    result.fold(
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (studentEnrollment) {
+        _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
+        _enrollmentBloc.notifySuccess(
+          "Matricula realizadas com sucesso",
+        );
+      },
+    );
   }
 
   Future _update(String id, StudentEnrollment enrollment) async {
@@ -146,6 +160,16 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       enrollment: enrollment,
     );
 
-    await _updateStudentEnrollmentUsecase(params);
+    final result = await _updateStudentEnrollmentUsecase(params);
+
+    result.fold(
+      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (studentEnrollment) {
+        _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
+        _enrollmentBloc.notifySuccess(
+          "Matricula atualizada com sucesso",
+        );
+      },
+    );
   }
 }

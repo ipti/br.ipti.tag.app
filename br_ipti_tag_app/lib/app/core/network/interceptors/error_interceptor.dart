@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 const DEFAULT_ERROR = "Erro não mapeado";
 const API_HTTP_INTERNAL_ERROR = "Erro interno do servidor";
@@ -18,6 +20,17 @@ class ErrorInterceptor extends InterceptorsWrapper {
   ) {
     if (kDebugMode) {
       debugPrint(err.message);
+    }
+
+    final sessionService = SessionServiceImpl();
+    if (err.response!.statusCode == 401) {
+      if (!Modular.to.path.contains('auth')) {
+        sessionService.cleanToken();
+        sessionService.cleanSchoolYear();
+        sessionService.cleanCurrentUserSchools();
+        sessionService.cleanCurrentSchool();
+        Modular.to.pushReplacementNamed('/');
+      }
     }
 
     super.onError(RestClientException(err), handler);

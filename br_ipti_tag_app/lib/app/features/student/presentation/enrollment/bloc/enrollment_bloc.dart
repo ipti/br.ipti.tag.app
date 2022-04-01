@@ -12,49 +12,74 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
   EnrollmentBloc(
     this._loadStudentDocsUsecase,
     this._loadStudentEnrollmentUsecase,
-  ) : super(const EnrollmentState());
+  ) : super(const EnrollmentInitialState());
+
   final LoadStudentDocsUsecase _loadStudentDocsUsecase;
   final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
+
+  Student? student;
+  StudentDocsAddress? studentDocs;
+  StudentEnrollment? studentEnrollment;
+
+  int tabIndex = 0;
+
+  void loadStudent(Student? student) {
+    this.student = student;
+    emit(
+      EnrollmentLoadedState(
+        student: student,
+        studentDocs: studentDocs,
+        studentEnrollment: studentEnrollment,
+      ),
+    );
+  }
+
+  void loadStudentDocs(StudentDocsAddress? studentDocs) {
+    this.studentDocs = studentDocs;
+    emit(EnrollmentLoadedState(
+      student: student,
+      studentDocs: studentDocs,
+      studentEnrollment: studentEnrollment,
+    ));
+  }
+
+  void loadStudentsEnrollment(StudentEnrollment studentEnrollment) {
+    this.studentEnrollment = studentEnrollment;
+    emit(EnrollmentLoadedState(
+      student: student,
+      studentDocs: studentDocs,
+      studentEnrollment: studentEnrollment,
+    ));
+  }
 
   Future fetchStudentDocs(String studentId, String schoolId) async {
     final params = LoadStudentDocsParams(studentId, schoolId);
     final result = await _loadStudentDocsUsecase(params);
-    result.fold(id, setStudentDocs);
+
+    result.fold(id, loadStudentDocs);
   }
 
   Future fetchStudentsEnrollment(String studentId, String schoolId) async {
     final params = LoadStudentEnrollmentParams(studentId, schoolId);
     final result = await _loadStudentEnrollmentUsecase(params);
-    result.fold(id, setStudentEnrollment);
-  }
-
-  void setStudent(Student student) {
-    emit(state.copyWith(
-      student: student,
-    ));
-  }
-
-  void setStudentDocs(StudentDocsAddress studentDocs) {
-    emit(state.copyWith(
-      studentDocs: studentDocs,
-    ));
-  }
-
-  void setStudentEnrollment(StudentEnrollment studentEnrollment) {
-    emit(state.copyWith(
-      studentEnrollment: studentEnrollment,
-    ));
+    result.fold(id, loadStudentsEnrollment);
   }
 
   void setTabIndex(int index) {
-    emit(NextTabState(
-      tabIndex: index,
-      student: state.student,
-      studentDocs: state.studentDocs,
-    ));
+    tabIndex = index;
   }
 
   void nextTab() {
-    setTabIndex(state.tabIndex + 1);
+    emit(EnrollmentNextTabState(
+      tabIndex: tabIndex + 1,
+    ));
+  }
+
+  void notifyError(String message) {
+    emit(EnrollmenErrorState(message: message));
+  }
+
+  void notifySuccess(String message) {
+    emit(EnrollmenSuccessState(message: message));
   }
 }

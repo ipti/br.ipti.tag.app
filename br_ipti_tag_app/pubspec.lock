@@ -592,7 +592,7 @@ packages:
       path: "../tag_ui"
       relative: true
     source: path
-    version: "0.21.2"
+    version: "0.23.2"
   term_glyph:
     dependency: transitive
     description:

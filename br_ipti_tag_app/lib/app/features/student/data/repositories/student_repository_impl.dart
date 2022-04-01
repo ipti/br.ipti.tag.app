@@ -21,7 +21,9 @@ class StudentRepositoryImpl implements StudentRepository {
       return Right(results);
     } catch (e) {
       debugPrint(e.toString());
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar estudantes, tente novamente"),
+      );
     }
   }
 
