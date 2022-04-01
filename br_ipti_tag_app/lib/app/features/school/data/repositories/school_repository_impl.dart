@@ -1,14 +1,12 @@
 import 'package:br_ipti_tag_app/app/features/school/data/datasources/school_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/repositories/school_repositories.dart';
-import 'package:br_ipti_tag_app/app/features/school/mappers/school_api_to_entity.dart';
 import 'package:dartz/dartz.dart';
 
 class SchoolRepositoryImpl extends SchoolRepository {
   final SchoolRemoteDataSource _schoolDataSource;
-  final SchoolApiToEntityMapper _apiToEntity;
 
-  SchoolRepositoryImpl(this._schoolDataSource, this._apiToEntity);
+  SchoolRepositoryImpl(this._schoolDataSource);
 
   @override
   Future<Either<Exception, SchoolEntity>> create(SchoolEntity school) {
@@ -39,7 +37,7 @@ class SchoolRepositoryImpl extends SchoolRepository {
       String uuid, SchoolEntity school) async {
     try {
       final results = await _schoolDataSource.update(uuid, school);
-      return Right(results);
+      return Right(results as SchoolEntity);
     } catch (e) {
       return Left(Exception("Não foi possível adicionar estudantes"));
     }
