@@ -28,31 +28,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
       builder: (context, constraints) {
         return ConstrainedBox(
           constraints: constraints,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width / 3 * 2,
-                ),
-                child: BlocBuilder<SessionBloc, SessionState>(
-                    bloc: sessionController,
-                    builder: (context, state) {
-                      final schools = state.schools ?? [];
-                      return TagDropdownField<School>(
-                        label: "",
-                        value: state.currentSchool,
-                        onChanged: (school) => sessionController.changeSchool(
-                          school,
-                        ),
-                        items: Map.fromEntries(schools.map(
-                          (e) => MapEntry(e, e.name!),
-                        )),
-                      );
-                    }),
-              ),
-            ],
-          ),
+          child: Row(mainAxisAlignment: MainAxisAlignment.end),
         );
       },
     );

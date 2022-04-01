@@ -20,7 +20,7 @@ Authorization: Bearer {{authToken}}
 ### 
 
 # @name listar_turmas
-GET http://{{host}}/classroom HTTP/1.1
+GET http://{{host}}/classroom?school=6244c323f0a8e92a8c6fad02 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
