@@ -31,7 +31,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
         controller.add(
           UpdateClassroom(
             edcensoStageVsModalityFk:
-                widget.classroomEntity?.i ?? 'MA',
+                widget.classroomEntity?.edcensoStageVsModalityFk ?? 'MA',
             name: widget.classroomEntity?.name ?? 'NoName',
             startTime: stringToTimeOfDay(
               widget.classroomEntity?.startTime ?? DateTime.now().toString(),
@@ -261,13 +261,17 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                           TagButton(
                             text: "Salvar Alterações",
                             onPressed: () => controller.add(
-                              SubmitClassroom(),
+                              SubmitUpdateClassroom(
+                                id: widget.classroomEntity!.id,
+                              ),
                             ),
                           ),
                           TagButton(
                             text: "Excluir Turma",
                             onPressed: () => controller.add(
-                              SubmitClassroom(),
+                              DeleteClassroom(
+                                id: widget.classroomEntity!.id,
+                              ),
                             ),
                           ),
                         ],

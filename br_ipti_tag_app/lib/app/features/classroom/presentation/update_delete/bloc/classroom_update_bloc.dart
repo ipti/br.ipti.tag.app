@@ -183,6 +183,30 @@ class ClassroomUpdateDeleteBloc
       );
     } else if (event is UpdateClassroom) {
       final params = ClassroomCreateEntity(
+        moreEducationParticipator: event.moreEducationParticipator,
+        name: event.name,
+        startTime: event.startTime,
+        endTime: event.endTime,
+        modalityId: event.modalityId,
+        typePedagogicMediationId: event.typePedagogicMeditationId,
+        complementaryActivity: event.complementaryActivity,
+        aeeCaa: event.aeeCaa,
+        aeeAccessibleTeaching: event.aeeAccessibleTeaching,
+        aee: event.aee,
+        aeeAutonomousLife: event.aeeAutonomousLife,
+        aeeBraille: event.aeeBraille,
+        aeeCognitiveFunctions: event.aeeCognitiveFunction,
+        aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
+        aeeLibras: event.aeeLibras,
+        aeeMobilityTechniques: event.aeeMobilityTechniques,
+        aeeOpticalNonOptical: event.aeeOpticalNonoptical,
+        aeePortuguese: event.aeePortuguese,
+        aeeSoroban: event.aeeSoroban,
+        schooling: event.schooling,
+        edcensoStageVsModalityFk: event.stage,
+      );
+    } else if (event is SubmitUpdateClassroom) {
+      final params = ClassroomCreateEntity(
         moreEducationParticipator:
             (state as ClassroomUpdateDeleteFormState).moreEducationParticipator,
         name: (state as ClassroomUpdateDeleteFormState).name,
@@ -229,7 +253,6 @@ class ClassroomUpdateDeleteBloc
         weekDaysWednesday:
             (state as ClassroomUpdateDeleteFormState).weekDaysWednesday,
       );
-
       _usecaseUpdateClassroom.call(
         Params(
           event.id,

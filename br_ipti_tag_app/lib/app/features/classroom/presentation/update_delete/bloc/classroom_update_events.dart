@@ -10,7 +10,13 @@ abstract class ClassroomUpdateDeleteEvent extends Equatable {
 
 class StartEditing extends ClassroomUpdateDeleteEvent {}
 
-class SubmitClassroom extends ClassroomUpdateDeleteEvent {}
+class SubmitUpdateClassroom extends ClassroomUpdateDeleteEvent {
+  final String id;
+
+ const SubmitUpdateClassroom({required this.id});
+ @override
+  List<Object> get props =>[id];
+}
 
 class SubmitedSuccess extends ClassroomUpdateDeleteEvent {}
 
