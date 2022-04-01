@@ -171,7 +171,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
 
     return StudentDocsAddress(
       nis: state.nis,
-      schoolInepIdFk: school.inepId!,
+      schoolInepIdFk: school.id!,
       studentFk: student.id!,
       rgNumber: '354511254',
       edcensoUfFk: state.edcensoUfFk,

@@ -116,7 +116,10 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         break;
       case EditMode.Edit:
         final oldStudentEnrollment = state.studentEnrollment;
-        final enrollment = oldStudentEnrollment!.copyWith(
+
+        if (oldStudentEnrollment == null) return submit(EditMode.Create);
+
+        final enrollment = oldStudentEnrollment.copyWith(
           schoolInepIdFk: schoolId,
           studentFk: studentId,
           classroomFk: state.classroomId,
