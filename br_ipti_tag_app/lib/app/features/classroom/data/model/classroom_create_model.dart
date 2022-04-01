@@ -136,6 +136,7 @@ class ClassroomCreateModel extends ClassroomCreateEntity {
         "hash": null,
         "edcenso_professional_education_course_fk": "61a9433412656f31249d2aa2",
         "calendar_fk": "61a9433412656f31249d2aa2",
-        "school_fk": "61a9433412656f31249d2aa2",
+        "school_fk": "6244c323f0a8e92a8c6fad02",
+        "register_type": "rg"
       };
 }

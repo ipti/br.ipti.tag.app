@@ -19,7 +19,6 @@ class GetClassroomEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  Parameters? get urlParameters => () => {
-        "school": schoolId,
-      };
+  Parameters? get urlParameters => null;
+  // () => schoolId != null ? {"school": schoolId} : {};
 }
