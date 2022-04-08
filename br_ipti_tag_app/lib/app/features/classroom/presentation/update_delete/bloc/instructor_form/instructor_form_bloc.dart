@@ -31,8 +31,7 @@ class InstructorFormBloc
   Future<void> fetchInstructorsAndDisciplines(
       {String? instructorFk, String? instructorDiscipline}) async {
     final requests = await Future.wait([
-      _instructorsUseCase(
-          ListInstructorsParams(schoolId: '61a9433412656f31249d2aa2')),
+      _instructorsUseCase(NoParams()),
       _edcensoDisciplinesUseCase(NoParams())
     ]);
 
@@ -40,12 +39,16 @@ class InstructorFormBloc
     List<EdcensoDisciplinesEntity> disciplines = [];
 
     requests.first.fold(
-        (l) => emit(InstructorFormStateError()),
+        (error) => emit(InstructorFormStateError(
+            message:
+                "Ocorreu um problema inesperado, tente novamente mais tarde.")),
         (instructorsResponse) =>
             instructors = instructorsResponse as List<InstructorEntity>);
 
     requests.last.fold(
-        (l) => emit(InstructorFormStateError()),
+        (error) => emit(InstructorFormStateError(
+            message:
+                "Ocorreu um problema inesperado, tente novamente mais tarde.")),
         (disciplinesResponse) => disciplines =
             disciplinesResponse as List<EdcensoDisciplinesEntity>);
 
@@ -54,6 +57,10 @@ class InstructorFormBloc
       changeCurrentDiscipline(instructorDiscipline ?? disciplines.first.id);
       emit(InstructorFormStateSuccess(
           instructors: instructors, disciplines: disciplines));
+    } else {
+      emit(InstructorFormStateError(
+          message:
+              "Ocorreu um problema inesperado, tente novamente mais tarde."));
     }
   }
 
@@ -90,7 +97,15 @@ class InstructorFormBloc
           discipline1Fk: _currentDiscipline,
           role: _role,
           contractType: _contractType);
-      await _createInstructorTeachingDataUseCase(params);
+      final createInstructorRequestResponse =
+          await _createInstructorTeachingDataUseCase(params);
+      createInstructorRequestResponse.fold(
+          (error) => emit(InstructorFormStateError(
+              message:
+                  "Ocorreu um problema inesperado, tente novamente mais tarde.")),
+          (success) => emit(InstructorFormStateInsertSuccess(
+              message: "Professor cadastrado na turma com sucesso!")));
+      newState = state;
     }
     if (event is SubmitUpdateInstructorForm) {
       final params = UpdateInstructorTeachingDataParams(
@@ -99,7 +114,8 @@ class InstructorFormBloc
               role: _role,
               contract_type: _contractType,
               discipline1Fk: _currentDiscipline));
-      await _updateInstructorTeachingDataUseCase(params);
+      final instructorRequestResposne =
+          await _updateInstructorTeachingDataUseCase(params);
     }
     if (event is LoadInstructorForm) {
       await fetchInstructorsAndDisciplines();

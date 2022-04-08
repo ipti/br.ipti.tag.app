@@ -3,8 +3,7 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
 
 class GetInstructorsEndPoint extends EndPointAPI {
-  final ListInstructorsParams instructorQuery;
-  GetInstructorsEndPoint(this.instructorQuery);
+  GetInstructorsEndPoint();
 
   @override
   String get path => '/instructor';
@@ -19,5 +18,5 @@ class GetInstructorsEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  Parameters? get urlParameters => instructorQuery.toJson;
+  Parameters? get urlParameters => null;
 }

@@ -46,7 +46,7 @@ class ClassroomRemoteDataSource {
       route: PostInstructorTeachingDataEndpoint(instructor),
     );
 
-    return response.data!['data'];
+    return response.data?['_id'] != null;
   }
 
   Future<bool> delete(
@@ -87,10 +87,9 @@ class ClassroomRemoteDataSource {
     return mappedList;
   }
 
-  Future<List<InstructorEntity>> listInstructors(
-      ListInstructorsParams param) async {
+  Future<List<InstructorEntity>> listInstructors() async {
     final response = await _httpClient.request(
-      route: GetInstructorsEndPoint(param),
+      route: GetInstructorsEndPoint(),
     );
 
     final mappedList = (response.data!['data'] as List)

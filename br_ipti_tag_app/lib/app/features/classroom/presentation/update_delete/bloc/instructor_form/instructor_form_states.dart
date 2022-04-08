@@ -43,6 +43,15 @@ class InstructorFormStateSuccess extends InstructorFormState {
 }
 
 class InstructorFormStateError extends InstructorFormState {
+  final String message;
+  InstructorFormStateError({required this.message});
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [message];
+}
+
+class InstructorFormStateInsertSuccess extends InstructorFormState {
+  final String message;
+  InstructorFormStateInsertSuccess({required this.message});
+  @override
+  List<Object?> get props => [message];
 }

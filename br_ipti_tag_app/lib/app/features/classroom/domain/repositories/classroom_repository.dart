@@ -26,9 +26,7 @@ abstract class ClassroomRepository {
   Future<Either<Exception, bool>> delete({
     required String id,
   });
-  Future<Either<Exception, List<InstructorEntity>>> listInstructors({
-    required ListInstructorsParams param,
-  });
+  Future<Either<Exception, List<InstructorEntity>>> listInstructors();
   Future<Either<Exception, List<InstructorTeachingDataEntity>>>
       listInstructorsTeachingData({
     required ListInstructorsTeachingDataParams param,

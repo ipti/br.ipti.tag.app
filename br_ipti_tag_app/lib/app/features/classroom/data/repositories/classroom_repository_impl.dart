@@ -80,10 +80,9 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<Exception, List<InstructorEntity>>> listInstructors(
-      {required ListInstructorsParams param}) async {
+  Future<Either<Exception, List<InstructorEntity>>> listInstructors() async {
     try {
-      final result = await classroomRemoteDataSource.listInstructors(param);
+      final result = await classroomRemoteDataSource.listInstructors();
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);

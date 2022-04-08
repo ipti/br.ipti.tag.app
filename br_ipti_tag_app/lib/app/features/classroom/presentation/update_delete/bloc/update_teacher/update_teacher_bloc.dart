@@ -26,8 +26,7 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
       _instructorsTeachingDataUseCase(
           ListInstructorsTeachingDataParams(classroomId: _classroomId!)),
       _disciplinesUseCase(NoParams()),
-      _instructorsUseCase(
-          ListInstructorsParams(schoolId: '61a9433412656f31249d2aa2'))
+      _instructorsUseCase(NoParams())
     ]);
     List<InstructorTeachingDataEntity> instructorsTeachingData = [];
     List<EdcensoDisciplinesEntity> edcensoDisciplines = [];

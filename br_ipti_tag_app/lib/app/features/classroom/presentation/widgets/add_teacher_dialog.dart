@@ -87,40 +87,60 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   bloc: controller,
                   builder: (context, state) {
                     if (state is InstructorFormStateSuccess) {
-                      return TagDropdownField<String>(
-                        items: Map.fromEntries(state.instructors!.map(
-                          (e) => MapEntry(e.id, e.name),
-                        )),
-                        hint: 'Selecione',
-                        onChanged: (instructor) =>
-                            controller.changeCurrentInstructor(instructor),
-                        label: 'Professor',
-                        value: controller.currentInstructor,
+                      return Column(
+                        children: [
+                          TagDropdownField<String>(
+                            items: Map.fromEntries(state.instructors!.map(
+                              (e) => MapEntry(e.id, e.name),
+                            )),
+                            hint: 'Selecione',
+                            onChanged: (instructor) =>
+                                controller.changeCurrentInstructor(instructor),
+                            label: 'Professor',
+                            value: controller.currentInstructor,
+                          ),
+                          const SizedBox(
+                            height: 36,
+                          ),
+                          TagDropdownField(
+                            items: Map.fromEntries(state.disciplines!.map(
+                              (e) => MapEntry(e.id, e.name),
+                            )),
+                            hint: 'Selecione',
+                            onChanged: (discipline) =>
+                                controller.changeCurrentDiscipline(discipline),
+                            label: 'Disciplinas',
+                            value: controller.currentDiscipline,
+                          )
+                        ],
                       );
+                    } else if (state is InstructorFormStateError) {
+                      WidgetsBinding.instance!
+                          .addPostFrameCallback((timeStamp) {
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: TagColors.colorRedDark,
+                            content: Text(state.message),
+                          ),
+                        );
+                      });
+                    } else if (state is InstructorFormStateInsertSuccess) {
+                      WidgetsBinding.instance!
+                          .addPostFrameCallback((timeStamp) {
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: TagColors.colorBaseProductNormal,
+                            content: Text(state.message),
+                          ),
+                        );
+                      });
                     }
+
                     return const CircularProgressIndicator();
                   }),
             ),
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: BlocBuilder<InstructorFormBloc, InstructorFormState>(
-                  bloc: controller,
-                  builder: (context, state) {
-                    if (state is InstructorFormStateSuccess) {
-                      return TagDropdownField(
-                        items: Map.fromEntries(state.disciplines!.map(
-                          (e) => MapEntry(e.id, e.name),
-                        )),
-                        hint: 'Selecione',
-                        onChanged: (discipline) =>
-                            controller.changeCurrentDiscipline(discipline),
-                        label: 'Disciplinas',
-                        value: controller.currentDiscipline,
-                      );
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                )),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: TagDropdownField(
@@ -178,7 +198,6 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                           : controller.add(SubmitUpdateInstructorForm(
                               instructorTeachingDataId:
                                   widget.instructorEntity!.id));
-                      Navigator.pop(context);
                     },
                   ),
                 ],
