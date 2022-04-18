@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/enums/scholarity_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/student_module.dart';
@@ -14,43 +15,11 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
 
   final UpdateStudentUsecase _changeFiliationStudentUsecase;
 
-  final sexItems = <int, String>{1: "Masculino", 2: "Feminino"};
-
-  final colorRaceItems = <int, String>{
-    0: "Não declarada",
-    1: "Branca",
-    2: "Preta",
-    3: "Parda",
-    4: "Amarela",
-    5: "Indígena",
-  };
-
-  final scholatiryItems = <int, String>{
-    0: "Não sabe ler e escrever",
-    1: "Sabe ler e escrever",
-    2: "Ens. Fund. Incompleto",
-    3: "Ens. Fund. Completo",
-    4: "Ens. Med. Incompleto",
-    5: "Ens. Med. Completo",
-    6: "Ens. Sup. Incompleto",
-    7: "Ens. Sup. Completo",
-  };
-
-  final filiationItems = <int, String>{
-    0: "Não declarado/Ignorado",
-    1: "Pai e/ou Mãe",
-  };
-
-  final nationalityItems = <int, String>{
-    0: "Brasileira",
-    1: "Brasileira: Nascido no exterior ou Naturalizado",
-    2: "Estrangeira"
-  };
-
-  final residenceZoneItems = <int, String>{
-    1: "URBANA",
-    2: "RURAL",
-  };
+  final scholarityItems = Map.fromEntries(
+    Scholarity.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
 
   Future loadStudent(Student student) async {
     emit(state.copyWith(

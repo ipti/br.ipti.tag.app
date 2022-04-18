@@ -19,6 +19,7 @@ class FiliationFormPage extends StatefulWidget {
 class FiliationFormPageState extends State<FiliationFormPage> {
   final _formKey = GlobalKey<FormState>();
   final controller = Modular.get<EnrollmentFiliationBloc>();
+
   @override
   void initState() {
     if (widget.student != null) controller.loadStudent(widget.student!);
@@ -62,7 +63,7 @@ class FiliationFormPageState extends State<FiliationFormPage> {
     Widget selectScholarity(int? classId, Function(int) onChanged) =>
         TagDropdownField(
           label: 'Escolaridade',
-          items: controller.scholatiryItems,
+          items: controller.scholarityItems,
           value: classId,
           onChanged: onChanged,
         );
