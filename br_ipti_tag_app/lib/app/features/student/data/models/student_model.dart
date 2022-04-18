@@ -451,14 +451,17 @@ class StudentModel extends Student {
   }
 
   factory StudentModel.fromMap(Map<String, dynamic> map) {
-    final schoolInepFk = map['school_inep_id_fk'] is Map
-        ? map['school_inep_id_fk']['_id']
-        : map['school_inep_id_fk'];
+    var schoolInepFk = map['school_inep_id_fk'];
+
+    if (schoolInepFk is Map) {
+      schoolInepFk = schoolInepFk['_id'];
+    }
+
     return StudentModel(
       id: map['_id'],
       name: map['name'],
       registerType: map['register_type'],
-      schoolInepIdFk: schoolInepFk,
+      schoolInepIdFk: schoolInepFk as String?,
       inepId: map['inep_id'],
       birthday: map['birthday'],
       sex: map['sex'],
