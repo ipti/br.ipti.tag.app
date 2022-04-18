@@ -7,6 +7,7 @@ import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
@@ -40,7 +41,12 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           hint: "Digite o nome do aluno",
           onChanged: controller.setName,
           value: name,
-          validator: requiredValidator,
+          inputType: TextInputType.name,
+          validator: MultiValidator([
+            requiredValidator,
+            minLengthValidator(10),
+            onlyLettersValidator
+          ]),
         );
 
     Widget inputBirthday(String? birthday) => TagDatePickerField(
@@ -48,8 +54,11 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           hint: "__/__/____",
           onChanged: controller.setBirthday,
           value: birthday,
-          validator: requiredValidator,
           inputType: TextInputType.number,
+          validator: MultiValidator([
+            requiredValidator,
+            dateValidator,
+          ]),
         );
 
     Widget selectSex(int? sex) => TagDropdownField<int>(
