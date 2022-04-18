@@ -11,7 +11,7 @@ enum Scholarity {
 
 extension ScholarityExtension on Scholarity {
   int get id {
-    return index + 1;
+    return index;
   }
 
   String get name {
