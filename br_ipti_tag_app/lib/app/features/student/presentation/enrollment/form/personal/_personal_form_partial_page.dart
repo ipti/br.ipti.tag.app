@@ -36,77 +36,6 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget inputName(String? name) => TagTextField(
-          label: "Nome",
-          hint: "Digite o nome do aluno",
-          onChanged: controller.setName,
-          value: name,
-          inputType: TextInputType.name,
-          validator: MultiValidator([
-            requiredValidator,
-            minLengthValidator(10),
-            onlyLettersValidator
-          ]),
-        );
-
-    Widget inputBirthday(String? birthday) => TagDatePickerField(
-          label: "Data  de nascimento",
-          hint: "__/__/____",
-          onChanged: controller.setBirthday,
-          value: birthday,
-          inputType: TextInputType.number,
-          validator: MultiValidator([
-            requiredValidator,
-            dateValidator,
-          ]),
-        );
-
-    Widget selectSex(int? sex) => TagDropdownField<int>(
-          label: 'Sexo',
-          hint: "Selecione o sexo",
-          items: controller.sexItems,
-          onChanged: controller.setSex,
-          value: sex,
-          validator: requiredValidator,
-        );
-
-    Widget selectColorRace(int? colorRace) => TagDropdownField<int>(
-          label: 'Cor/Raça',
-          hint: "Selecione a cor/raça",
-          items: controller.colorRaceItems,
-          onChanged: controller.setColorRace,
-          value: colorRace,
-          validator: requiredValidator,
-        );
-
-    Widget selectFiliation(int? filiation) => TagDropdownField<int>(
-          label: 'Filiação',
-          hint: "Selecione a filiação",
-          items: controller.filiationItems,
-          onChanged: controller.setFiliation,
-          value: filiation,
-          validator: requiredValidator,
-        );
-
-    Widget selectNationality(int? nationality) => TagDropdownField<int>(
-          label: 'Nacionalidade',
-          hint: "Selecione a nacionalidade",
-          items: controller.nationalityItems,
-          onChanged: controller.setNationality,
-          value: nationality,
-          validator: requiredValidator,
-        );
-
-    Widget inputFoodRestriction(String? foodRestriction) => TagTextField(
-          label: "Restrição Alimentar / Alergia",
-          inputType: TextInputType.multiline,
-          hint: "",
-          onChanged: controller.setFoodRestriction,
-          value: foodRestriction,
-          validator: requiredValidator,
-          maxLines: 5,
-        );
-
     const heading1 = Heading(
       text: "Dados básicos",
       type: HeadingType.Title3,
@@ -134,19 +63,43 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                     ),
                     RowToColumn(
                       children: [
-                        Flexible(child: inputName(state.name)),
-                        Flexible(child: inputBirthday(state.birthday)),
+                        Flexible(
+                          child: _NameField(
+                            name: state.name,
+                            controller: controller,
+                          ),
+                        ),
+                        Flexible(
+                            child: _BirthdayField(
+                          birthday: state.birthday,
+                          controller: controller,
+                        )),
                       ],
                     ),
                     RowToColumn(children: [
-                      Flexible(child: selectColorRace(state.colorRace)),
-                      Flexible(child: selectSex(state.sex)),
+                      Flexible(
+                          child: _ColorRaceField(
+                        colorRace: state.colorRace,
+                        controller: controller,
+                      )),
+                      Flexible(
+                          child: _SexField(
+                        sex: state.sex,
+                        controller: controller,
+                      )),
                     ]),
                     RowToColumn(children: [
                       Flexible(
-                        child: selectNationality(state.nationality),
+                        child: _NationalityField(
+                          nationality: state.nationality,
+                          controller: controller,
+                        ),
                       ),
-                      Flexible(child: selectFiliation(state.filiation)),
+                      Flexible(
+                          child: _FiliationField(
+                        filiation: state.filiation,
+                        controller: controller,
+                      )),
                     ]),
                     const Padding(
                       padding: EdgeInsets.only(top: 36, bottom: 16),
@@ -160,7 +113,10 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         ),
                       ),
                       Flexible(
-                        child: inputFoodRestriction(state.foodRestrictions),
+                        child: _FoodRestrictionField(
+                          foodRestriction: state.foodRestrictions,
+                          controller: controller,
+                        ),
                       ),
                     ]),
                     Padding(
@@ -183,6 +139,178 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
               ),
             );
           }),
+    );
+  }
+}
+
+class _SexField extends StatelessWidget {
+  const _SexField({
+    Key? key,
+    required this.controller,
+    this.sex,
+  }) : super(key: key);
+  final int? sex;
+  final EnrollmentPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<int>(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_SEX'),
+      label: 'Sexo',
+      hint: "Selecione o sexo",
+      items: controller.sexItems,
+      onChanged: controller.setSex,
+      value: sex,
+      validator: requiredValidator,
+    );
+  }
+}
+
+class _ColorRaceField extends StatelessWidget {
+  const _ColorRaceField({
+    Key? key,
+    required this.controller,
+    this.colorRace,
+  }) : super(key: key);
+
+  final EnrollmentPersonalBloc controller;
+  final int? colorRace;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<int>(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_COLOR_RACE'),
+      label: 'Cor/Raça',
+      hint: "Selecione a cor/raça",
+      items: controller.colorRaceItems,
+      onChanged: controller.setColorRace,
+      value: colorRace,
+      validator: requiredValidator,
+    );
+  }
+}
+
+class _FiliationField extends StatelessWidget {
+  const _FiliationField({
+    Key? key,
+    required this.controller,
+    this.filiation,
+  }) : super(key: key);
+
+  final int? filiation;
+  final EnrollmentPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<int>(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_FILIATION'),
+      label: 'Filiação',
+      hint: "Selecione a filiação",
+      items: controller.filiationItems,
+      onChanged: controller.setFiliation,
+      value: filiation,
+      validator: requiredValidator,
+    );
+  }
+}
+
+class _NationalityField extends StatelessWidget {
+  const _NationalityField({
+    Key? key,
+    required this.controller,
+    this.nationality,
+  }) : super(key: key);
+  final int? nationality;
+  final EnrollmentPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<int>(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_NATIONALITY'),
+      label: 'Nacionalidade',
+      hint: "Selecione a nacionalidade",
+      items: controller.nationalityItems,
+      onChanged: controller.setNationality,
+      value: nationality,
+      validator: requiredValidator,
+    );
+  }
+}
+
+class _FoodRestrictionField extends StatelessWidget {
+  const _FoodRestrictionField({
+    Key? key,
+    required this.controller,
+    this.foodRestriction,
+  }) : super(key: key);
+  final String? foodRestriction;
+  final EnrollmentPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagTextField(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_FOOD_RESTRICTION'),
+      label: "Restrição Alimentar / Alergia",
+      inputType: TextInputType.multiline,
+      hint: "",
+      onChanged: controller.setFoodRestriction,
+      value: foodRestriction,
+      maxLines: 5,
+    );
+  }
+}
+
+class _BirthdayField extends StatelessWidget {
+  const _BirthdayField({
+    Key? key,
+    this.birthday,
+    required this.controller,
+  }) : super(key: key);
+
+  final String? birthday;
+  final EnrollmentPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDatePickerField(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_BIRTHDAY'),
+      label: "Data  de nascimento",
+      hint: "__/__/____",
+      onChanged: controller.setBirthday,
+      value: birthday,
+      inputType: TextInputType.number,
+      validator: MultiValidator([
+        requiredValidator,
+        dateValidator,
+      ]),
+    );
+  }
+}
+
+class _NameField extends StatelessWidget {
+  const _NameField({
+    Key? key,
+    this.name,
+    required this.controller,
+  }) : super(key: key);
+
+  final EnrollmentPersonalBloc controller;
+  final String? name;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagTextField(
+      key: const Key('STUDENT_ENROLLMENT_PERSONAL_NAME'),
+      label: "Nome",
+      hint: "Digite o nome do aluno",
+      onChanged: controller.setName,
+      value: name,
+      inputType: TextInputType.name,
+      validator: MultiValidator([
+        requiredValidator,
+        minLengthValidator(10),
+        onlyLettersValidator,
+      ]),
     );
   }
 }
