@@ -21,6 +21,7 @@ class AppWidget extends StatelessWidget {
         routeInformationParser: Modular.routeInformationParser,
         routerDelegate: Modular.routerDelegate,
         color: TagColors.colorBaseWhiteNormal,
+        // showPerformanceOverlay: true,
       ),
     );
   }

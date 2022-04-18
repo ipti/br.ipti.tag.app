@@ -65,6 +65,7 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
     result.fold(id, loadStudentsEnrollment);
   }
 
+  // ignore: use_setters_to_change_properties
   void setTabIndex(int index) {
     tabIndex = index;
   }

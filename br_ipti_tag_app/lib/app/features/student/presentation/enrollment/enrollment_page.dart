@@ -56,10 +56,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
 
-    _tabController.addListener(() {
-      print(_tabController.index);
-    });
-
     if (widget.student != null) {
       controller.loadStudent(widget.student);
 

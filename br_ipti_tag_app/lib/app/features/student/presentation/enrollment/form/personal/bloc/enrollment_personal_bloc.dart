@@ -11,7 +11,6 @@ import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_stud
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -41,7 +40,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
     ),
   );
 
-  final scholatiryItems = Map.fromEntries(
+  final scholarityItems = Map.fromEntries(
     Scholarity.values.map(
       (e) => MapEntry(e.id, e.name),
     ),
