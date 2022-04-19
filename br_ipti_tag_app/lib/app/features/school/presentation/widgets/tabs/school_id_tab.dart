@@ -5,25 +5,22 @@ import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/forms/s
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/forms/school_others_data_form.dart';
 import 'package:flutter/material.dart';
 
-class IdTab extends StatelessWidget {
-  const IdTab({
+class SchoolIdTab extends StatelessWidget {
+  const SchoolIdTab({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: const <Widget>[
-            SchoolBasicDataForm(),
-            SchoolAdminDataForm(),
-            SchoolBodiesAffiliatedDataForm(),
-            SchoolBodyRegulationSphere(),
-            SchoolOthersDataForm()
-          ],
-        ),
+      child: Column(
+        children: const <Widget>[
+          SchoolBasicDataForm(),
+          SchoolAdminDataForm(),
+          SchoolBodiesAffiliatedDataForm(),
+          SchoolBodyRegulationSphereDataForm(),
+          SchoolOthersDataForm()
+        ],
       ),
     );
   }

@@ -1,17 +1,19 @@
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/components/components.dart';
 
-class SchoolBodyRegulationSphere extends StatefulWidget {
-  const SchoolBodyRegulationSphere({Key? key}) : super(key: key);
+class SchoolBodyRegulationSphereDataForm extends StatefulWidget {
+  const SchoolBodyRegulationSphereDataForm({Key? key}) : super(key: key);
 
   @override
-  State<SchoolBodyRegulationSphere> createState() =>
-      _SchoolBodyRegulationSphereState();
+  State<SchoolBodyRegulationSphereDataForm> createState() =>
+      _SchoolBodyRegulationSphereDataFormState();
 }
 
-class _SchoolBodyRegulationSphereState
-    extends State<SchoolBodyRegulationSphere> {
+class _SchoolBodyRegulationSphereDataFormState
+    extends State<SchoolBodyRegulationSphereDataForm> {
+  bool isFederal = false;
+  bool isState = false;
+  bool isMunicipal = false;
   @override
   Widget build(BuildContext context) {
     const heading = Heading(
@@ -23,91 +25,39 @@ class _SchoolBodyRegulationSphereState
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget inputSchoolName(String schoolName) => TagTextField(
-          label: "Nome da escola",
-          hint: "Digite o nome da escola",
-          value: schoolName,
-          validator: requiredValidator,
-        );
-    Widget inputInepCode(String inepCode) => TagTextField(
-          label: "Código do INEP",
-          hint: "Digite o código do INEP",
-          value: inepCode,
-          validator: requiredValidator,
-        );
-    Widget inputAdminDep() => TagDropdownField(
-          onChanged: () => {},
-          label: "Dependência administrativa",
-          validator: requiredValidator,
-          items: {},
-        );
-    Widget inputStatus() => TagDropdownField(
-          onChanged: () => {},
-          label: "Situação",
-          validator: requiredValidator,
-          items: {},
-        );
-    Widget inputRegionalAdmin() => TagDropdownField(
-          onChanged: () => {},
-          label: "Órgão regional de administração",
-          hint: "Selecione",
-          validator: requiredValidator,
-          items: {},
-        );
-    Widget inputStartDate(String inepCode) => TagTextField(
-          label: "Data de início da escola",
-          hint: "Somente números",
-          value: inepCode,
-          validator: requiredValidator,
-        );
-
-    Widget inputRecognitionAct(String inepCode) => TagTextField(
-          label: "Ato de reconhecimento",
-          hint: "Digite o código do INEP",
-          value: inepCode,
-          validator: requiredValidator,
-        );
-    Widget inputEndDate(String schoolName) => TagTextField(
-          label: "Data do fechamento da escola",
-          hint: "Digite o nome da escola",
-          value: schoolName,
-          validator: requiredValidator,
-        );
+    Widget checkboxFederal = TagCheckbox(
+      text: 'Órgão Federal',
+      isChecked: isFederal,
+      onChanged: (p0) {
+        setState(() {
+          isFederal = !isFederal;
+        });
+      },
+    );
+    Widget checkboxState = TagCheckbox(
+      text: 'Órgão Estadual',
+      isChecked: isState,
+      onChanged: (p0) {
+        setState(() {
+          isState = p0!;
+        });
+      },
+    );
+    Widget checkboxMunicipal = TagCheckbox(
+      text: 'Órgão Municipal',
+      isChecked: isMunicipal,
+      onChanged: (p0) {
+        setState(() {
+          isMunicipal = p0!;
+        });
+      },
+    );
     return Column(
       children: <Widget>[
         withPadding(heading),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputSchoolName("ai")),
-          ),
-          Flexible(
-            child: withPadding(inputInepCode("ai")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputAdminDep()),
-          ),
-          Flexible(
-            child: withPadding(inputStatus()),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRegionalAdmin()),
-          ),
-          Flexible(
-            child: withPadding(inputStartDate("ai")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRecognitionAct("ai")),
-          ),
-          Flexible(
-            child: withPadding(inputEndDate("ai")),
-          ),
-        ]),
+        checkboxFederal,
+        checkboxState,
+        checkboxMunicipal,
       ],
     );
   }

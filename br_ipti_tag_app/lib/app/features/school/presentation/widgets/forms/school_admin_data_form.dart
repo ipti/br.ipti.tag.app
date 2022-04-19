@@ -73,10 +73,10 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("ai")),
+            child: withPadding(inputSchoolName("PlaceHolder")),
           ),
           Flexible(
-            child: withPadding(inputInepCode("ai")),
+            child: withPadding(inputInepCode("PlaceHolder")),
           ),
         ]),
         RowToColumn(children: [
@@ -92,15 +92,15 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
             child: withPadding(inputRegionalAdmin()),
           ),
           Flexible(
-            child: withPadding(inputStartDate("ai")),
+            child: withPadding(inputStartDate("PlaceHolder")),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRecognitionAct("ai")),
+            child: withPadding(inputRecognitionAct("PlaceHolder")),
           ),
           Flexible(
-            child: withPadding(inputEndDate("ai")),
+            child: withPadding(inputEndDate("PlaceHolder")),
           ),
         ]),
       ],

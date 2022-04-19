@@ -39,18 +39,10 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("ai")),
+            child: withPadding(inputSchoolName("PlaceHolder")),
           ),
           Flexible(
-            child: withPadding(inputInepCode("ai")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(const Text("data")),
-          ),
-          Flexible(
-            child: withPadding(const Text("data")),
+            child: withPadding(inputInepCode("PlaceHolder")),
           ),
         ]),
       ],
