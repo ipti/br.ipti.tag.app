@@ -28,3 +28,13 @@ class TimeValidator extends TextFieldValidator {
     }
   }
 }
+
+final phoneValidator = PatternValidator(
+  r'(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})',
+  errorText: 'Telefone inválido',
+);
+
+final emailValidator = PatternValidator(
+  r'/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i',
+  errorText: 'E-mail inválido',
+);
