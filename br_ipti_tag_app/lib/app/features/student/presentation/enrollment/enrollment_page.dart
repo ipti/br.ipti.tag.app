@@ -11,11 +11,11 @@ import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/enrollment_bloc.dart';
 import 'bloc/enrollment_states.dart';
-import 'form/address/_address_form_partial_page.dart';
-import 'form/classroom/_classes_form_partial_page.dart';
-import 'form/filliation/_filiation_form_partial_page.dart';
+import 'form/address/address_social_form_partial_page.dart';
+import 'form/classroom/classes_form_partial_page.dart';
 import 'form/filliation/bloc/enrollment_filiation_bloc.dart';
-import 'form/personal/_personal_form_partial_page.dart';
+import 'form/filliation/filiation_form_partial_page.dart';
+import 'form/personal/personal_form_partial_page.dart';
 
 class EnrollmentPage extends StatefulWidget {
   const EnrollmentPage({

@@ -1,3 +1,5 @@
+library validators;
+
 export './cpf_validator.dart';
 export './date_validator.dart';
 export './min_length_validator.dart';

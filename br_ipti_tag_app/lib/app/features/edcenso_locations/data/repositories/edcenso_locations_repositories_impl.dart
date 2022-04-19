@@ -28,6 +28,10 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
           .where((element) => element.edcensoUfId == edCensoUfId)
           .toList();
 
+      filteredResults.sort(
+        (a, b) => a.name!.compareTo(b.name!),
+      );
+
       return Right(filteredResults);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
@@ -38,6 +42,10 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
   Future<Either<Exception, List<EdCensoUF>>> listUfs() async {
     try {
       final results = await _remoteDatasource.listUFs();
+
+      results.sort(
+        (a, b) => a.name!.compareTo(b.name!),
+      );
 
       return Right(results);
     } catch (e) {
