@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/enrollment_filiation_bloc.dart';
@@ -225,7 +226,10 @@ class _NameResponsableField extends StatelessWidget {
       hint: "Nome completo",
       onChanged: controller.setNameResponsable,
       value: name,
-      validator: requiredValidator,
+      validator: MultiValidator([
+        requiredValidator,
+        onlyLettersValidator,
+      ]),
     );
   }
 }
@@ -249,7 +253,10 @@ class _CpfResponsableField extends StatelessWidget {
       onChanged: controller.setCpfResponsable,
       formatters: [TagMasks.maskCPF],
       value: cpf,
-      validator: requiredValidator,
+      validator: MultiValidator([
+        requiredValidator,
+        cpfValidator,
+      ]),
     );
   }
 }
@@ -272,7 +279,9 @@ class _RGResponsableField extends StatelessWidget {
       hint: "digite o número do RG",
       onChanged: controller.setRgResponsable,
       value: rg,
-      validator: requiredValidator,
+      validator: MultiValidator([
+        rgValidator,
+      ]),
     );
   }
 }
@@ -341,7 +350,9 @@ class _NameFilliation1Field extends StatelessWidget {
       hint: "Nome completo",
       onChanged: controller.setNameFiliation1,
       value: name,
-      validator: requiredValidator,
+      validator: MultiValidator([
+        onlyLettersValidator,
+      ]),
     );
   }
 }
@@ -365,7 +376,7 @@ class _CpfFilliation1Field extends StatelessWidget {
       onChanged: controller.setCpfFiliation1,
       formatters: [TagMasks.maskCPF],
       value: cpf,
-      validator: requiredValidator,
+      validator: cpfValidator,
     );
   }
 }
@@ -388,7 +399,7 @@ class _RGFilliation1Field extends StatelessWidget {
       hint: "digite o número do RG",
       onChanged: controller.setRgFiliation1,
       value: rg,
-      validator: requiredValidator,
+      validator: rgValidator,
     );
   }
 }
@@ -457,7 +468,7 @@ class _NameFilliation2Field extends StatelessWidget {
       hint: "Nome completo",
       onChanged: controller.setNameFiliation2,
       value: name,
-      validator: requiredValidator,
+      validator: onlyLettersValidator,
     );
   }
 }
@@ -481,7 +492,7 @@ class _CpfFilliation2Field extends StatelessWidget {
       onChanged: controller.setCpfFiliation2,
       formatters: [TagMasks.maskCPF],
       value: cpf,
-      validator: requiredValidator,
+      validator: cpfValidator,
     );
   }
 }
@@ -504,7 +515,7 @@ class _RGFilliation2Field extends StatelessWidget {
       hint: "digite o número do RG",
       onChanged: controller.setRgFiliation2,
       value: rg,
-      validator: requiredValidator,
+      validator: rgValidator,
     );
   }
 }
