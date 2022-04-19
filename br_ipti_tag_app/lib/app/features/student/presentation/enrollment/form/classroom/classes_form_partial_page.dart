@@ -63,23 +63,15 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   RowToColumn(
                     children: [
                       Flexible(
-                        child: TagDatePickerField(
-                          label: "Data de ingresso na escola",
-                          hint: "__/__/____",
-                          value: state.schoolAdmissionDate,
-                          onChanged: controller.setSchoolAdmissionDate,
-                          inputType: TextInputType.number,
+                        child: _AdmissionDateField(
+                          schoolAdmissionDate: state.schoolAdmissionDate,
+                          controller: controller,
                         ),
                       ),
                       Flexible(
-                        child: TagDropdownField<AdmissionType>(
-                          label: "Tipo de matrícula",
-                          value: state.studentEntryForm,
-                          onChanged: controller.setAdmissionType,
-                          items: Map.fromEntries(
-                            AdmissionType.values
-                                .map((e) => MapEntry(e, e.name)),
-                          ),
+                        child: _AdmissionTypeField(
+                          studentEntryForm: state.studentEntryForm,
+                          controller: controller,
                         ),
                       ),
                     ],
@@ -87,24 +79,15 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   RowToColumn(
                     children: [
                       Flexible(
-                        child: TagDropdownField<String>(
-                          label: "Turma",
-                          value: state.classroomId,
-                          onChanged: controller.setStudentClass,
-                          validator: requiredValidator,
-                          items: Map.fromEntries(state.classrooms
-                              .map((e) => MapEntry(e.id, e.name))),
+                        child: _ClassroomField(
+                          classroomId: state.classroomId,
+                          controller: controller,
                         ),
                       ),
                       Flexible(
-                        child: TagDropdownField<CurrentStageSituation>(
-                          label: "Situação na série/etapa atual",
-                          value: state.currentStageSituation,
-                          onChanged: controller.setCurrentStageSituation,
-                          items: Map.fromEntries(
-                            CurrentStageSituation.values
-                                .map((e) => MapEntry(e, e.name)),
-                          ),
+                        child: _CurrentStageField(
+                          currentStageSituation: state.currentStageSituation,
+                          controller: controller,
                         ),
                       ),
                     ],
@@ -112,24 +95,14 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   RowToColumn(
                     children: [
                       Flexible(
-                        child: TagDropdownField<UnifiedClass>(
-                          label: "Turma Unificada",
-                          value: state.unifiedClass,
-                          onChanged: controller.setUnifiedClass,
-                          items: Map.fromEntries(
-                            UnifiedClass.values.map((e) => MapEntry(e, e.name)),
-                          ),
+                        child: _UnifiedClassField(
+                          unifiedClass: state.unifiedClass,
+                          controller: controller,
                         ),
                       ),
                       Flexible(
-                        child: TagDropdownField<PreviousStageSituation>(
-                          label: "Situação no ano anterior",
-                          value: state.previousStageSituation,
-                          onChanged: controller.setPreviousStageSituation,
-                          items: Map.fromEntries(
-                            PreviousStageSituation.values
-                                .map((e) => MapEntry(e, e.name)),
-                          ),
+                        child: _PreviousStageField(
+                          controller: controller,
                         ),
                       ),
                     ],
@@ -137,13 +110,9 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                   RowToColumn(
                     children: [
                       Flexible(
-                        child: TagDropdownField<Stage>(
-                          label: "Etapa",
-                          value: state.stage,
-                          onChanged: controller.setStage,
-                          items: Map.fromEntries(
-                            Stage.values.map((e) => MapEntry(e, e.name)),
-                          ),
+                        child: _StageField(
+                          stage: state.stage,
+                          controller: controller,
                         ),
                       ),
                       const Spacer()
@@ -167,5 +136,177 @@ class ClassesFormPageState extends State<ClassesFormPage> {
             ),
           );
         });
+  }
+}
+
+class _AdmissionDateField extends StatelessWidget {
+  const _AdmissionDateField({
+    Key? key,
+    this.schoolAdmissionDate,
+    required this.controller,
+  }) : super(key: key);
+
+  final String? schoolAdmissionDate;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDatePickerField(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_ADDMISSIONDATE"),
+      label: "Data de ingresso na escola",
+      hint: "__/__/____",
+      value: schoolAdmissionDate,
+      onChanged: controller.setSchoolAdmissionDate,
+      inputType: TextInputType.number,
+    );
+  }
+}
+
+class _AdmissionTypeField extends StatelessWidget {
+  const _AdmissionTypeField({
+    Key? key,
+    this.studentEntryForm,
+    required this.controller,
+  }) : super(key: key);
+
+  final AdmissionType? studentEntryForm;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<AdmissionType>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_ADDMISSIONTYPE"),
+      label: "Tipo de matrícula",
+      value: studentEntryForm,
+      onChanged: controller.setAdmissionType,
+      items: Map.fromEntries(
+        AdmissionType.values.map((e) => MapEntry(e, e.name)),
+      ),
+    );
+  }
+}
+
+class _ClassroomField extends StatelessWidget {
+  const _ClassroomField({
+    Key? key,
+    this.classroomId,
+    required this.controller,
+  }) : super(key: key);
+
+  final String? classroomId;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = controller.state.classrooms;
+
+    return TagDropdownField<String>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_CLASSROOM"),
+      label: "Turma",
+      value: classroomId,
+      onChanged: controller.setStudentClass,
+      validator: requiredValidator,
+      items: Map.fromEntries(items.map(
+        (e) => MapEntry(e.id, e.name),
+      )),
+    );
+  }
+}
+
+class _CurrentStageField extends StatelessWidget {
+  const _CurrentStageField({
+    Key? key,
+    this.currentStageSituation,
+    required this.controller,
+  }) : super(key: key);
+
+  final CurrentStageSituation? currentStageSituation;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<CurrentStageSituation>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_CURRENTSTAGE"),
+      label: "Situação na série/etapa atual",
+      value: currentStageSituation,
+      onChanged: controller.setCurrentStageSituation,
+      items: Map.fromEntries(
+        CurrentStageSituation.values.map((e) => MapEntry(e, e.name)),
+      ),
+    );
+  }
+}
+
+class _UnifiedClassField extends StatelessWidget {
+  const _UnifiedClassField({
+    Key? key,
+    this.unifiedClass,
+    required this.controller,
+  }) : super(key: key);
+
+  final UnifiedClass? unifiedClass;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<UnifiedClass>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_UNIFIEDCLASS"),
+      label: "Turma Unificada",
+      value: unifiedClass,
+      onChanged: controller.setUnifiedClass,
+      items: Map.fromEntries(
+        UnifiedClass.values.map((e) => MapEntry(e, e.name)),
+      ),
+    );
+  }
+}
+
+class _PreviousStageField extends StatelessWidget {
+  const _PreviousStageField({
+    Key? key,
+    this.previousStageSituation,
+    required this.controller,
+  }) : super(key: key);
+
+  final PreviousStageSituation? previousStageSituation;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<PreviousStageSituation>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_PREVIOUSSTAGE"),
+      label: "Situação no ano anterior",
+      value: previousStageSituation,
+      onChanged: controller.setPreviousStageSituation,
+      items: Map.fromEntries(
+        PreviousStageSituation.values.map(
+          (e) => MapEntry(e, e.name),
+        ),
+      ),
+    );
+  }
+}
+
+class _StageField extends StatelessWidget {
+  const _StageField({
+    Key? key,
+    this.stage,
+    required this.controller,
+  }) : super(key: key);
+
+  final Stage? stage;
+  final EnrollmentClassroomBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField<Stage>(
+      key: const Key("STUDENT_ENROLLMENT_CLASSROOM_STAGE"),
+      label: "Etapa",
+      value: stage,
+      onChanged: controller.setStage,
+      items: Map.fromEntries(
+        Stage.values.map((e) => MapEntry(e, e.name)),
+      ),
+    );
   }
 }
