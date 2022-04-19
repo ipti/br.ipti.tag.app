@@ -52,6 +52,7 @@ class _SchoolContactDataFormState extends State<SchoolContactDataForm> {
           value: primaryPhone,
         );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [

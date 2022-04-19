@@ -35,6 +35,7 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
           validator: requiredValidator,
         );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [

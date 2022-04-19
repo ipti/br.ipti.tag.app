@@ -69,6 +69,7 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           validator: requiredValidator,
         );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [

@@ -41,6 +41,7 @@ class _SchoolAdressDataFormState extends State<SchoolAdressDataForm> {
           onChanged: () => {},
         );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(

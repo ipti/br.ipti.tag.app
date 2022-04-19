@@ -23,6 +23,7 @@ class _SchoolBodiesAffiliatedDataFormState
         Padding(padding: padding, child: widget);
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
       ],

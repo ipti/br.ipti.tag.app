@@ -53,6 +53,7 @@ class _SchoolBodyRegulationSphereDataFormState
       },
     );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         checkboxFederal,
