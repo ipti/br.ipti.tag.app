@@ -42,37 +42,7 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
       description: "",
       path: ["Alunos", widget.title],
       body: <Widget>[
-        SizedBox(
-          child: Wrap(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                width: 120,
-                child: TagButton(
-                  text: "Matricula",
-                  onPressed: () =>
-                      Modular.to.pushReplacementNamed("matricula/"),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                width: 180,
-                child: TagButton(
-                  text: "Matricula em grupo",
-                  onPressed: () => Modular.to.pushNamed("matricula-rapida"),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(8),
-                width: 180,
-                child: TagLinkButton(
-                  text: "Matricula rápida",
-                  onPressed: () => Modular.to.pushNamed("matricula-rapida"),
-                ),
-              )
-            ],
-          ),
-        ),
+        const _Actions(),
         const SizedBox(height: 30),
         BlocBuilder<StudentListBloc, StudentListState>(
           bloc: controller,
@@ -88,17 +58,88 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
               );
             }
             return TagDataTable(
+              onTapRow: (index) => Modular.to.pushReplacementNamed(
+                "matricula/edit",
+                arguments: state.students[index],
+              ),
               columns: const [
-                DataColumn(label: Text("Nome")),
-                DataColumn(label: Text("Data de Nascimento")),
-                DataColumn(label: Text("Nome completo do responsável")),
-                DataColumn(label: Text("")),
+                DataColumn(
+                  label: Text(
+                    "Nome",
+                    style: TagTextStyles.textTableColumnHeader,
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    "Data de Nascimento",
+                    style: TagTextStyles.textTableColumnHeader,
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    "Nome completo do responsável",
+                    style: TagTextStyles.textTableColumnHeader,
+                  ),
+                ),
               ],
               source: StudentDatatable(
                 data: state.students,
               ),
             );
           },
+        )
+      ],
+    );
+  }
+}
+
+class _Actions extends StatelessWidget {
+  const _Actions({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 992;
+
+    return RowToColumn(
+      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Flexible(
+          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: TagButton(
+              text: "Matricula",
+              onPressed: () => Modular.to.pushReplacementNamed("matricula/"),
+            ),
+          ),
+        ),
+        Flexible(
+          child: Row(
+            children: [
+              Flexible(
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: TagLinkButton(
+                    text: "Matricula rápida",
+                    onPressed: () => Modular.to.pushNamed("matricula-rapida"),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 6,
+                child: Padding(
+                  padding: const EdgeInsets.all(4),
+                  child: TagLinkButton(
+                    text: "Matricula em grupo",
+                    onPressed: () => Modular.to.pushNamed("matricula-rapida"),
+                  ),
+                ),
+              ),
+            ],
+          ),
         )
       ],
     );
@@ -114,18 +155,13 @@ class StudentDatatable extends DataTableSource {
 
   @override
   DataRow getRow(int index) {
-    return DataRow(cells: [
-      DataCell(Text(data[index].name!.toUpperCase())),
-      DataCell(Text(data[index].birthday ?? "")),
-      DataCell(Text(data[index].responsableName ?? "")),
-      DataCell(
-        const Icon(Icons.edit),
-        onTap: () => Modular.to.pushReplacementNamed(
-          "matricula/edit",
-          arguments: data[index],
-        ),
-      ),
-    ]);
+    return DataRow(
+      cells: [
+        DataCell(Text(data[index].name!.toUpperCase())),
+        DataCell(Text(data[index].birthday ?? "")),
+        DataCell(Text(data[index].responsableName ?? "")),
+      ],
+    );
   }
 
   @override
