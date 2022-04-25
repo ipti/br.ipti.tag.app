@@ -23,7 +23,7 @@ class ListInstructorsTeachingDataParams extends Equatable {
   String perPage;
   String page;
   ListInstructorsTeachingDataParams(
-      {required this.classroomId, this.page = "1", this.perPage = '10'});
+      {required this.classroomId, this.page = "1", this.perPage = '100'});
   @override
   // TODO: implement props
   List<Object?> get props => [classroomId, perPage, page];

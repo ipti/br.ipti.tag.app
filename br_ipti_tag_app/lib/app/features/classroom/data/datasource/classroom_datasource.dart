@@ -18,6 +18,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_tea
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
 
@@ -65,9 +66,9 @@ class ClassroomRemoteDataSource {
     throw response.error ?? "Erro desconhecido";
   }
 
-  Future<List<ClassroomModel>> listAll() async {
+  Future<List<ClassroomModel>> listAll(ClassroomParams params) async {
     final response = await _httpClient.request(
-      route: GetClassroomEndPoint(""),
+      route: GetClassroomEndPoint(params),
     );
 
     final mappedList = (response.data!['data'] as List)

@@ -9,6 +9,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructo
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/update_instructor_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
 import 'package:dartz/dartz.dart';
@@ -33,9 +34,10 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<Exception, List<ClassroomEntity>>> list() async {
+  Future<Either<Exception, List<ClassroomEntity>>> list(
+      ClassroomParams params) async {
     try {
-      final result = await classroomRemoteDataSource.listAll();
+      final result = await classroomRemoteDataSource.listAll(params);
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
