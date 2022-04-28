@@ -7,9 +7,15 @@ class SchoolStructureTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: const <Widget>[],
+    final ScrollController _controllerStructure = ScrollController();
+    return Scrollbar(
+      isAlwaysShown: true,
+      controller: _controllerStructure,
+      child: SingleChildScrollView(
+        controller: _controllerStructure,
+        child: Column(
+          children: const <Widget>[],
+        ),
       ),
     );
   }

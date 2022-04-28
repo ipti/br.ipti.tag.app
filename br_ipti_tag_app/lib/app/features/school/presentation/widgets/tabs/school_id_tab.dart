@@ -12,15 +12,21 @@ class SchoolIdTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: const <Widget>[
-          SchoolBasicDataForm(),
-          SchoolAdminDataForm(),
-          SchoolBodiesAffiliatedDataForm(),
-          SchoolBodyRegulationSphereDataForm(),
-          SchoolOthersDataForm()
-        ],
+    final ScrollController _controllerId = ScrollController();
+    return Scrollbar(
+      isAlwaysShown: true,
+      controller: _controllerId,
+      child: SingleChildScrollView(
+        controller: _controllerId,
+        child: Column(
+          children: const <Widget>[
+            SchoolBasicDataForm(),
+            SchoolAdminDataForm(),
+            SchoolBodiesAffiliatedDataForm(),
+            SchoolBodyRegulationSphereDataForm(),
+            SchoolOthersDataForm()
+          ],
+        ),
       ),
     );
   }
