@@ -6,17 +6,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'student_list_states.dart';
 
 class StudentListBloc extends Cubit<StudentListState> {
-  StudentListBloc(this._listClassromsUsecase) : super(const EmptyState());
+  StudentListBloc(this._listClassromsUsecase)
+      : super(
+          const StudentListState(status: Status.initial, students: []),
+        );
 
   final ListStudentsUsecase _listClassromsUsecase;
   final session = Modular.get<SessionBloc>();
 
   void startLoading() {
-    emit(state.copyWith(loading: true));
-  }
-
-  void stopLoading() {
-    emit(state.copyWith(loading: false));
+    emit(state.copyWith(status: Status.loading));
   }
 
   Future<void> fetchListStudentsEvent() async {
@@ -27,9 +26,14 @@ class StudentListBloc extends Cubit<StudentListState> {
     final resultEither =
         await _listClassromsUsecase(ListStudentsParams(schoolId));
     resultEither.fold(
-      (Exception failure) => emit(FailedState(message: failure.toString())),
-      (students) => emit(LoadedState(students: students)),
+      (Exception failure) => emit(state.copyWith(
+        status: Status.failure,
+        error: failure.toString(),
+      )),
+      (students) => emit(state.copyWith(
+        status: Status.success,
+        students: students,
+      )),
     );
-    stopLoading();
   }
 }
