@@ -13,20 +13,31 @@ class SubmitButtonsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 992;
+
     return RowToColumn(
+      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Flexible(
-          child: TagButton(
-            text: "Salvar informações",
-            onPressed: onSubmitAndStay,
+          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            child: TagButton(
+              text: "Salvar informações",
+              onPressed: onSubmitAndStay,
+            ),
           ),
         ),
         Flexible(
-          child: TagButton(
-            backgroundColor: TagColors.colorBaseCloudNormal,
-            textButtonColor: TagColors.colorBaseInkNormal,
-            text: "Salvar informações e avançar",
-            onPressed: onSubmitAndGo,
+          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+          child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            child: TagButton(
+              backgroundColor: TagColors.colorBaseCloudNormal,
+              textButtonColor: TagColors.colorBaseInkNormal,
+              text: "Salvar informações e avançar",
+              onPressed: onSubmitAndGo,
+            ),
           ),
         ),
       ],
