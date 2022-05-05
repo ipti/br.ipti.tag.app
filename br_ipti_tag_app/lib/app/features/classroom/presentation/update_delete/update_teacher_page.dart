@@ -71,13 +71,31 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
               ),
             ),
             label: 'Adicionar professor por disciplina',
-            onPressed: () async => showDialog(
-                context: context,
-                builder: (context) {
-                  return AddTeacherDialog(
-                    classroomId: widget.classroomId,
-                  );
-                }),
+            onPressed: () async {
+              final success = await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AddTeacherDialog(
+                      classroomId: widget.classroomId,
+                    );
+                  });
+              if (success) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: TagColors.colorBaseProductNormal,
+                    content: Text("Professor cadastrado na turma com sucesso!"),
+                  ),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: TagColors.colorRedDark,
+                    content: Text(
+                        "Ocorreu um problema inesperado, tente novamente mais tarde."),
+                  ),
+                );
+              }
+            },
             icon: FilePaths.INFO_ICON_SVG,
             textStyle: const TextStyle(color: TagColors.colorBaseWhiteNormal),
           ),

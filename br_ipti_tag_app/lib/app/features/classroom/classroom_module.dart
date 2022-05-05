@@ -55,8 +55,7 @@ class ClassroomModule extends Module {
     Bind.singleton((i) => DeleteClassroomUsecase(i.get())),
     Bind.singleton((i) => CreateInstructorTeachingDataUseCase(i.get())),
     Bind.singleton((i) => UpdateInstructorTeachingDataUseCase(i.get())),
-    Bind.singleton(
-        (i) => InstructorFormBloc(i.get(), i.get(), i.get(), i.get())),
+    Bind.factory((i) => InstructorFormBloc(i.get(), i.get(), i.get(), i.get())),
     Bind.singleton((i) => ClassroomUpdateDeleteBloc(i.get(), i.get())),
     Bind.singleton((i) => TabControllerCubit()),
     Bind.singleton((i) => UpdateTeacherBloc(i.get(), i.get(), i.get())),
