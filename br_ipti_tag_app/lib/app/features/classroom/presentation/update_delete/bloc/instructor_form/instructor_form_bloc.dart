@@ -170,7 +170,6 @@ class InstructorFormBloc
     if (event is LoadInstructorForm) {
       await fetchInstructorsAndDisciplines();
       newState = state;
-      selectedDisciplines = [];
     }
     if (event is UpdateInstructorForm) {
       await fetchInstructorsAndDisciplines(
