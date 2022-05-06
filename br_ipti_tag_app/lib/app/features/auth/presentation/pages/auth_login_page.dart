@@ -173,6 +173,7 @@ class _Body extends StatelessWidget {
                   child: Text(
                     "Entre com as suas credenciais",
                     style: helpTextStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 withPadding(inputUsername(controller.username)),
