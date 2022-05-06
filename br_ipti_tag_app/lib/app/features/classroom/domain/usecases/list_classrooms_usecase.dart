@@ -20,9 +20,11 @@ class ListClassroomsUsecase
 class ClassroomParams {
   final String perPage;
   final String page;
-  ClassroomParams({this.perPage = '100', this.page = '1'});
+  final String? schoolId;
+  ClassroomParams({this.perPage = '100', this.page = '1', this.schoolId});
 
   Map<String, dynamic> toJson() => <String, dynamic>{
+        "schoolId": schoolId,
         "page": page,
         "perPage": perPage,
       };

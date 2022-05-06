@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/classroom_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/classroom.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/classroom_repositories.dart';
@@ -11,9 +12,10 @@ class ClassroomRepositoryImpl implements ClassroomRepository {
 
   @override
   Future<Either<Exception, List<Classroom>>> listAll(
-      {required String schoolId}) async {
+    ClassroomParams params,
+  ) async {
     try {
-      final results = await _classroomDataSource.listAll(schoolId: schoolId);
+      final results = await _classroomDataSource.listAll(params);
 
       final mappedResults = results.cast<Classroom>();
 

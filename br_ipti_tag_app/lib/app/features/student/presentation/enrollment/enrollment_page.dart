@@ -52,9 +52,9 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
 
   late TabController _tabController;
 
-  onTap() {
+  void onTap() {
     if (controller.student == null) {
-      final index = 0;
+      const index = 0;
       setState(() {
         _tabController.index = index;
         controller.tabIndex = index;

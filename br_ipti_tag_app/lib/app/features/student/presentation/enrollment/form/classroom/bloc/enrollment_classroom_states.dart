@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/admission_type_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/current_stage_situation_enum.dart';
@@ -23,7 +23,7 @@ class EnrollmentClassroomState extends Equatable {
     this.classroomId,
   });
 
-  final List<Classroom> classrooms;
+  final List<ClassroomEntity> classrooms;
   final StudentEnrollment? studentEnrollment;
   final String? classroomId;
   final String? schoolAdmissionDate;
@@ -38,7 +38,7 @@ class EnrollmentClassroomState extends Equatable {
 
   EnrollmentClassroomState copyWith({
     StudentEnrollment? studentEnrollment,
-    List<Classroom>? classrooms,
+    List<ClassroomEntity>? classrooms,
     String? classroomId,
     String? schoolAdmissionDate,
     UnifiedClass? unifiedClass,

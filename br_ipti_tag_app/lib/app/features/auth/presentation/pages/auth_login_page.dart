@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthLoginPage extends StatefulWidget {
   const AuthLoginPage({Key? key, this.title = 'Login'}) : super(key: key);
@@ -23,6 +23,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
   void initState() {
     controller.verifyAuthToken();
     controller.fetchVersion();
+
     super.initState();
   }
 
@@ -226,7 +227,7 @@ class _Footer extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => launch("https://www.ipti.org.br/"),
+                    ..onTap = () => launchUrlString("https://www.ipti.org.br/"),
                 ),
                 const TextSpan(text: " ®"),
                 TextSpan(text: year),

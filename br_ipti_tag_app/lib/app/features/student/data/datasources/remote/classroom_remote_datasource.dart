@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/classroom_model.dart';
 
 class ClassroomRemoteDataSource {
@@ -9,9 +10,9 @@ class ClassroomRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<List<ClassroomModel>> listAll({required String schoolId}) async {
+  Future<List<ClassroomModel>> listAll(ClassroomParams params) async {
     final response = await _httpClient.requestListPaginatedFrom(
-      route: GetClassroomEndPoint(schoolId),
+      route: GetClassroomEndPoint(params),
     );
 
     final data = response.data?.data ?? [];

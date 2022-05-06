@@ -64,20 +64,22 @@ class ClassroomModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const ClassroomPage()),
-    ChildRoute("create", child: (_, args) => const ClassroomCreatePage()),
+    ChildRoute("/create", child: (_, args) => const ClassroomCreatePage()),
     ChildRoute(
-      "updatePage",
+      "/updatePage",
       child: (_, args) => UpdateDeleteClassroomPage(
         classroomEntity: args.data,
       ),
     ),
-    ChildRoute("updateTeacher",
-        child: (_, args) => ClassroomTeacherPage(
-              classroomId: args.data,
-            )),
-    ChildRoute("updateStudent",
+    ChildRoute(
+      "/updateTeacher",
+      child: (_, args) => ClassroomTeacherPage(
+        classroomId: args.data,
+      ),
+    ),
+    ChildRoute("/updateStudent",
         child: (_, args) => const ClassroomStudentPage()),
-    ChildRoute("updateInfos",
+    ChildRoute("/updateInfos",
         child: (_, args) => const ClassroomBasicDataForm()),
   ];
 }
