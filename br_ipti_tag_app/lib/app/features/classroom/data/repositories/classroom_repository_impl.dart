@@ -1,37 +1,129 @@
-import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom.dart';
+import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructor_teaching_data_create_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/update_instructor_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 class ClassroomRepositoryImpl extends ClassroomRepository {
+  final ClassroomRemoteDataSource classroomRemoteDataSource;
+
+  ClassroomRepositoryImpl({required this.classroomRemoteDataSource});
+
   @override
-  Future<Either<Exception, bool>> create(Classroom classroom) {
-    throw UnimplementedError();
+  Future<Either<Exception, bool>> create(
+    ClassroomCreateEntity classroom,
+  ) async {
+    try {
+      final result = await classroomRemoteDataSource.create(
+        classroom.fromEntity(),
+      );
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
   }
 
   @override
-  Future<Either<Exception, List<Classroom>>> list() async {
-    return Right(<Classroom>[
-      Classroom(
-          name: "1º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-      Classroom(
-          name: "3º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-      Classroom(
-          name: "4º ano Ensino Fundamental",
-          endTime: null,
-          startTime: null,
-          modalityId: 0,
-          stageId: 0,
-          typePedagogicMediationId: 0),
-    ]);
+  Future<Either<Exception, List<ClassroomEntity>>> list(
+      ClassroomParams params) async {
+    try {
+      final result = await classroomRemoteDataSource.listAll(params);
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> delete({required String id}) async {
+    try {
+      final result = await classroomRemoteDataSource.delete(id);
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> update({
+    required String id,
+    required ClassroomCreateEntity classroomCreateEntity,
+  }) async {
+    try {
+      final result = await classroomRemoteDataSource.update(
+        classroomCreateEntity.fromEntity(),
+        id,
+      );
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<EdcensoDisciplinesEntity>>>
+      listEdcensoDisciplines() async {
+    try {
+      final result = await classroomRemoteDataSource.listEdcensoDisciplines();
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<InstructorEntity>>> listInstructors() async {
+    try {
+      final result = await classroomRemoteDataSource.listInstructors();
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<InstructorTeachingDataEntity>>>
+      listInstructorsTeachingData(
+          {required ListInstructorsTeachingDataParams param}) async {
+    try {
+      final result =
+          await classroomRemoteDataSource.listInstructorsTeachingData(param);
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> createInstructorTeachingData(
+      InstructorTeachingDataCreateEntity instructor) async {
+    try {
+      final result = await classroomRemoteDataSource
+          .createInstructorsTeachingData(instructor.fromEntity());
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> updateInstructorTeachingData(
+      {required String id,
+      required InstructorTeachingDataUpdateEntity instructor}) async {
+    try {
+      final result = await classroomRemoteDataSource
+          .updateInstructorsTeachingData(id, instructor.fromEntity());
+      return Right(result);
+    } on RestClientException catch (e) {
+      return Left(e);
+    }
   }
 }

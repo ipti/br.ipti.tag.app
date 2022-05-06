@@ -24,19 +24,20 @@ class AddressFormPageState extends State<AddressFormPage> {
         Padding(padding: padding, child: widget);
 
     return BlocBuilder<EnrollmentBloc, EnrollmentState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  withPadding(heading),
-                ],
-              ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                withPadding(heading),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
