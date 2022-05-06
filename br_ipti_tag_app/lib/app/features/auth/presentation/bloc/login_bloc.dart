@@ -49,10 +49,7 @@ class LoginBloc extends Cubit<LoginState> {
     final result = await verifyAuthUsecase(NoParams());
     result.fold(
       (l) => null,
-      (r) async {
-        await _sessionController.fetchCurrentSchool();
-        Modular.to.pushReplacementNamed("/turmas");
-      },
+      (r) => Modular.to.pushReplacementNamed("/turmas"),
     );
   }
 
