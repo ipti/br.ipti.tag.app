@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_states.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -27,7 +27,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget selectClass(int? classId) => TagDropdownField(
+    Widget selectClass(String? classId) => TagDropdownField(
           label: 'Turma',
           items: controller.classesItems,
           value: classId,
@@ -44,7 +44,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   withPadding(heading),
-                  withPadding(selectClass(state.classroomId)),
+                  // withPadding(selectClass(state.classroomId)),
                 ],
               ),
             );

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 const DEFAULT_ERROR = "Erro não mapeado";
 const API_HTTP_INTERNAL_ERROR = "Erro interno do servidor";
@@ -15,7 +16,11 @@ class ErrorInterceptor extends InterceptorsWrapper {
     DioError err,
     ErrorInterceptorHandler handler,
   ) {
-    throw RestClientException(err);
+    if (kDebugMode) {
+      debugPrint(err.message);
+    }
+
+    super.onError(RestClientException(err), handler);
   }
 }
 

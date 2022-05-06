@@ -5,10 +5,11 @@
 POST http://{{host}}/auth/login HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
-email={{$processEnv TAG_AUTH_LOGIN}}&password={{$processEnv TAG_AUTH_PASSWORD}}
+username={{$processEnv TAG_AUTH_LOGIN}}&password={{$processEnv TAG_AUTH_PASSWORD}}
+
+###
 
 @authToken = {{login.response.body.access_token}}
-###
 
 # @name listar_alimentos
 GET http://{{host}}/foods HTTP/1.1

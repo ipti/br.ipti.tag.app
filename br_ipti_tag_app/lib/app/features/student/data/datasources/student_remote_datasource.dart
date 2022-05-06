@@ -15,7 +15,7 @@ class StudentRemoteDataSource {
 
   Future<List<StudentModel>> listAll() async {
     final response = await _httpClient.requestListFrom(
-      route: GetStudentsEndPoint(),
+      route: GetStudentsEndPoint(schoolId: ""),
     );
 
     final mappedList = response.data!
@@ -27,7 +27,7 @@ class StudentRemoteDataSource {
 
   Future<StudentModel> getById(int id) async {
     final response = await _httpClient.request(
-      route: GetStudentsEndPoint(id: id.toString()),
+      route: GetStudentsEndPoint(id: id.toString(), schoolId: ""),
     );
 
     final mappedValue = _mapperJsonToResponse(response.data!);

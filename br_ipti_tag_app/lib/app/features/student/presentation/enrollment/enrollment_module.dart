@@ -18,7 +18,7 @@ class EnrollmentModule extends Module {
   final List<Bind> binds = [
     Bind.singleton((i) => EnrollmentSocialBloc()),
     Bind.singleton((i) => EnrollmentPersonalBloc()),
-    Bind.singleton((i) => EnrollmentAddressBloc()),
+    // Bind.singleton((i) => EnrollmentAddressBloc(i.get())),
     Bind.singleton((i) => EnrollmentFiliationBloc()),
     Bind.singleton((i) => EnrollmentClassroomBloc()),
     Bind.singleton((i) => EnrollmentBloc(i.get())),

@@ -1,6 +1,6 @@
+import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -45,6 +45,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
       length: tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
+        header: const HeaderDesktop(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],
@@ -57,15 +58,17 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc> {
             labelPadding: const EdgeInsets.symmetric(horizontal: 8),
             tabs: tabs,
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height,
-              maxWidth: 800,
-            ),
-            child: Expanded(
-              child: RouterOutlet(),
-            ),
-          ),
+          LayoutBuilder(builder: (context, constraints) {
+            return ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height,
+                maxWidth: constraints.maxWidth,
+              ),
+              child: Expanded(
+                child: RouterOutlet(),
+              ),
+            );
+          }),
         ],
       ),
     );

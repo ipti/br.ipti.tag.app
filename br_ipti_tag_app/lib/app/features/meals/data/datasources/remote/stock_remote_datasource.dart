@@ -18,7 +18,7 @@ class IngredientRemoteDataSourceImpl implements IngredientRemoteDataSource {
       route: ListFoodInventoryEndPoint(),
     );
 
-    final ingredients = InvetoryIngredientModel.fromList(
+    InvetoryIngredientModel.fromList(
       response.data! as List,
     );
 

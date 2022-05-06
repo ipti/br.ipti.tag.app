@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -99,53 +98,48 @@ class FiliationFormPageState extends State<FiliationFormPage> {
     return BlocBuilder<EnrollmentFiliationBloc, EnrollmentFiliationState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is EnrollmentFiliationState) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    heading,
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputName(state.name)),
-                        Flexible(child: inputCPF(state.cpf)),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputRG(state.rg)),
-                        Flexible(child: selectNationality(state.nationality))
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: selectColorRace(state.colorRace),
-                        ),
-                        Flexible(
-                          child: selectScholarity(state.colorRace),
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: inputJob(state.job),
-                        )
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputEmail(state.email)),
-                        Flexible(child: inputPhone(state.phone))
-                      ],
-                    ),
-                  ].map((w) => withPadding(w)).toList(),
-                ),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  heading,
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputName(state.name)),
+                  //     Flexible(child: inputCPF(state.cpf)),
+                  //   ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputRG(state.rg)),
+                  //     Flexible(child: selectNationality(state.nationality))
+                  //   ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(
+                  //       child: selectColorRace(state.colorRace),
+                  //     ),
+                  //     Flexible(
+                  //       child: selectScholarity(state.colorRace),
+                  //     ),
+                  //     Flexible(
+                  //       flex: 2,
+                  //       child: inputJob(state.job),
+                  //     )
+                  // ],
+                  // ),
+                  // RowToColumn(
+                  //   children: [
+                  //     Flexible(child: inputEmail(state.email)),
+                  //     Flexible(child: inputPhone(state.phone))
+                  //   ],
+                  // ),
+                ].map((w) => withPadding(w)).toList(),
               ),
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
+            ),
           );
         });
   }
