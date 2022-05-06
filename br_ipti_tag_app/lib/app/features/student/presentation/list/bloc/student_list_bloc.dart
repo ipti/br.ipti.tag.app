@@ -18,8 +18,10 @@ class StudentListBloc extends Cubit<StudentListState> {
     emit(state.copyWith(status: Status.loading));
   }
 
-  Future<void> fetchListStudentsEvent() async {
+  Future<void> fetchListStudents() async {
     startLoading();
+
+    await session.fetchCurrentSchool();
 
     final schoolId = session.state.currentSchool!.id!;
 

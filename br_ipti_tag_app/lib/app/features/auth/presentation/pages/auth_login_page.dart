@@ -30,6 +30,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      maintainBottomViewPadding: true,
       child: Scaffold(
         body: Stack(
           children: [
@@ -112,51 +113,51 @@ class _Logo extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
+  _Body({
     Key? key,
     required this.controller,
   }) : super(key: key);
   final LoginBloc controller;
+
+  static final _formKey = GlobalKey<FormState>();
+  final padding = const EdgeInsets.all(8.0);
+
+  final helpTextStyle = const TextStyle(
+    color: TagColors.colorBaseInkLight,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.75,
+  );
+
+  Widget withPadding(Widget widget) => Padding(padding: padding, child: widget);
+
+  Widget inputUsername(String username) => TagTextField(
+        label: "Usuário",
+        hint: "Digite seu usuário",
+        onChanged: (username) => controller.username = username,
+        value: username,
+        validator: requiredValidator,
+      );
+  Widget inputPassword(String password) => TagTextField(
+        label: "Senha",
+        hint: "Digite sua senha",
+        onChanged: (password) => controller.password = password,
+        value: password,
+        validator: requiredValidator,
+        obscureText: true,
+      );
+
+  Widget dropdownYear(String year) => TagDropdownField<String>(
+        label: "Ano letivo",
+        items: Map.fromEntries(controller.yearSequence),
+        onChanged: (year) => controller.schoolYear = year,
+        value: year,
+        validator: requiredValidator,
+        obscureText: true,
+      );
+
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.all(8.0);
-    final _formKey = GlobalKey<FormState>();
-
-    const helpTextStyle = TextStyle(
-      color: TagColors.colorBaseInkLight,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      height: 1.75,
-    );
-
-    Widget withPadding(Widget widget) =>
-        Padding(padding: padding, child: widget);
-
-    Widget inputUsername(String username) => TagTextField(
-          label: "Usuário",
-          hint: "Digite seu usuário",
-          onChanged: (username) => controller.username = username,
-          value: username,
-          validator: requiredValidator,
-        );
-    Widget inputPassword(String password) => TagTextField(
-          label: "Senha",
-          hint: "Digite sua senha",
-          onChanged: (password) => controller.password = password,
-          value: password,
-          validator: requiredValidator,
-          obscureText: true,
-        );
-
-    Widget dropdownYear(String year) => TagDropdownField<String>(
-          label: "Ano letivo",
-          items: Map.fromEntries(controller.yearSequence),
-          onChanged: (year) => controller.schoolYear = year,
-          value: year,
-          validator: requiredValidator,
-          obscureText: true,
-        );
-
     return Form(
       key: _formKey,
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -168,8 +169,8 @@ class _Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 40),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
                     "Entre com as suas credenciais",
                     style: helpTextStyle,
