@@ -52,22 +52,36 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
 
   late TabController _tabController;
 
+  onTap() {
+    if (controller.student == null) {
+      final index = 0;
+      setState(() {
+        _tabController.index = index;
+        controller.tabIndex = index;
+      });
+    }
+  }
+
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
+    _tabController.addListener(onTap);
 
     if (widget.student != null) {
-      controller.loadStudent(widget.student);
+      final student = widget.student!;
+
+      controller.loadStudent(student);
 
       controller.fetchStudentDocs(
-        widget.student!.id!,
-        widget.student!.schoolInepIdFk!,
+        student.id!,
+        student.schoolInepIdFk!,
       );
       controller.fetchStudentsEnrollment(
-        widget.student!.id!,
-        widget.student!.schoolInepIdFk!,
+        student.id!,
+        student.schoolInepIdFk!,
       );
     }
+
     controller.stream.listen((state) {
       final nextIndex = _tabController.index + 1;
       final isLastTab = nextIndex == _tabs.length;
