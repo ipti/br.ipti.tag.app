@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthLoginPage extends StatefulWidget {
   const AuthLoginPage({Key? key, this.title = 'Login'}) : super(key: key);
@@ -23,6 +23,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
   void initState() {
     controller.verifyAuthToken();
     controller.fetchVersion();
+
     super.initState();
   }
 
@@ -49,10 +50,26 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
             const TagRainbowBar(),
             Align(
               alignment: Alignment.bottomCenter,
-              child: BlocBuilder<LoginBloc, LoginState>(
+              child: BlocConsumer<LoginBloc, LoginState>(
+                listener: (context, state) {
+                  if (state is LoginErrorState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorRedDark,
+                        content: Text(state.message),
+                      ),
+                    );
+                  }
+                },
                 bloc: controller,
                 builder: (context, state) {
-                  return _Footer(version: state.appVersion, year: state.year);
+                  if (state is LoginLoadedState) {
+                    return _Footer(version: state.appVersion, year: state.year);
+                  }
+                  return _Footer(
+                    version: "0.0.0",
+                    year: controller.yearSequence.first.toString(),
+                  );
                 },
               ),
             )
@@ -107,14 +124,14 @@ class _Body extends StatelessWidget {
     Widget inputUsername(String username) => TagTextField(
           label: "Usuário",
           hint: "Digite seu usuário",
-          onChanged: controller.setUsername,
+          onChanged: (username) => controller.username = username,
           value: username,
           validator: requiredValidator,
         );
     Widget inputPassword(String password) => TagTextField(
           label: "Senha",
           hint: "Digite sua senha",
-          onChanged: controller.setPassword,
+          onChanged: (password) => controller.password = password,
           value: password,
           validator: requiredValidator,
           obscureText: true,
@@ -123,7 +140,7 @@ class _Body extends StatelessWidget {
     Widget dropdownYear(String year) => TagDropdownField<String>(
           label: "Ano letivo",
           items: Map.fromEntries(controller.yearSequence),
-          onChanged: controller.setSchoolYear,
+          onChanged: (year) => controller.schoolYear = year,
           value: year,
           validator: requiredValidator,
           obscureText: true,
@@ -146,9 +163,9 @@ class _Body extends StatelessWidget {
                     style: helpTextStyle,
                   ),
                 ),
-                withPadding(inputUsername(state.username)),
-                withPadding(inputPassword(state.password)),
-                withPadding(dropdownYear(state.year)),
+                withPadding(inputUsername(controller.username)),
+                withPadding(inputPassword(controller.password)),
+                withPadding(dropdownYear(controller.schoolYear)),
                 withPadding(
                   TagButton(
                     text: "Entrar",
@@ -210,7 +227,7 @@ class _Footer extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => launch("https://www.ipti.org.br/"),
+                    ..onTap = () => launchUrlString("https://www.ipti.org.br/"),
                 ),
                 const TextSpan(text: " ®"),
                 TextSpan(text: year),

@@ -2,52 +2,32 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dar
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
+enum Status { initial, loading, success, failure }
+
 @immutable
 class StudentListState extends Equatable {
   const StudentListState({
     required this.students,
-    required this.message,
-    required this.loading,
+    required this.status,
+    this.error,
   });
 
-  final bool loading;
+  final Status status;
   final List<Student> students;
-  final String message;
+  final String? error;
 
   @override
-  List<Object> get props => [students, message, loading];
+  List<Object> get props => [students, status];
 
   StudentListState copyWith({
-    bool? loading,
+    Status? status,
     List<Student>? students,
-    String? message,
+    String? error,
   }) {
     return StudentListState(
-      loading: loading ?? this.loading,
+      status: status ?? this.status,
       students: students ?? this.students,
-      message: message ?? this.message,
+      error: error ?? this.error,
     );
   }
-}
-
-class EmptyState extends StudentListState {
-  const EmptyState() : super(loading: false, message: "", students: const []);
-}
-
-class LoadingState extends StudentListState {
-  const LoadingState({
-    required bool loading,
-  }) : super(loading: loading, message: "", students: const []);
-}
-
-class LoadedState extends StudentListState {
-  const LoadedState({
-    required List<Student> students,
-  }) : super(loading: false, message: "", students: students);
-}
-
-class FailedState extends StudentListState {
-  const FailedState({
-    required String message,
-  }) : super(loading: false, message: message, students: const []);
 }

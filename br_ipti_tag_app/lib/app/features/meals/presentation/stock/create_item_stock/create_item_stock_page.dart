@@ -86,7 +86,7 @@ class CreateItemStockPageState
                       ),
                     ],
                   ),
-                  Expanded(
+                  const Expanded(
                     child: RouterOutlet(),
                   ),
                 ],

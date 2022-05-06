@@ -1,0 +1,1 @@
+enum EditMode { Create, Edit }

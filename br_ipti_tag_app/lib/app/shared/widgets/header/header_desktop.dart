@@ -3,7 +3,6 @@ import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:tag_ui/tag_ui.dart';
 
 class HeaderDesktop extends StatefulWidget {
@@ -15,7 +14,6 @@ class HeaderDesktop extends StatefulWidget {
 
 class _HeaderDesktopState extends State<HeaderDesktop> {
   final sessionController = Modular.get<SessionBloc>();
-
   @override
   void initState() {
     sessionController.fetchSchools();
@@ -33,7 +31,9 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 350),
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width / 3 * 2,
+                ),
                 child: BlocBuilder<SessionBloc, SessionState>(
                     bloc: sessionController,
                     builder: (context, state) {

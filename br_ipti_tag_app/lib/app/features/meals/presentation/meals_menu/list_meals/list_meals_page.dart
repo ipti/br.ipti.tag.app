@@ -202,7 +202,7 @@ class _FilterButton extends StatefulWidget {
     required this.child,
   }) : super(key: key);
 
-  final Function onPressed;
+  final void Function(bool) onPressed;
   final Widget child;
 
   @override

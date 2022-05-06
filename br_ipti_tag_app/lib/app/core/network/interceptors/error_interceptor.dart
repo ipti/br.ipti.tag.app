@@ -1,14 +1,16 @@
 import 'dart:io';
 
+import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 const DEFAULT_ERROR = "Erro não mapeado";
 const API_HTTP_INTERNAL_ERROR = "Erro interno do servidor";
 const API_HTTP_UNAVAILABLE = "Servidor não disponível";
 const CONNECTION_TIMEOUT = "Fim do tempo de conexão";
 const HTTP_NOT_FOUND_ERROR = "Recurso não encontrado no servidor";
-const HTTP_UNAUTHORIZED = "Não autorizado, atualize suas credenciais";
+const HTTP_UNAUTHORIZED = "Não autorizado, verifique suas credenciais";
 
 class ErrorInterceptor extends InterceptorsWrapper {
   @override
@@ -18,6 +20,17 @@ class ErrorInterceptor extends InterceptorsWrapper {
   ) {
     if (kDebugMode) {
       debugPrint(err.message);
+    }
+
+    final sessionService = SessionServiceImpl();
+    if (err.response!.statusCode == 401) {
+      if (!Modular.to.path.contains('auth')) {
+        sessionService.cleanToken();
+        sessionService.cleanSchoolYear();
+        sessionService.cleanCurrentUserSchools();
+        sessionService.cleanCurrentSchool();
+        Modular.to.pushReplacementNamed('/');
+      }
     }
 
     super.onError(RestClientException(err), handler);
@@ -58,8 +71,8 @@ class RestClientException extends DioError {
         return HTTP_UNAUTHORIZED;
       default:
         if (response!.data is Map) {
-          return response!.data['error_description'] as String? ??
-              DEFAULT_ERROR;
+          final data = response!.data as Map;
+          return data['error_description'] as String? ?? DEFAULT_ERROR;
         }
         if (response!.statusMessage?.isNotEmpty == true) {
           return response!.statusMessage ?? DEFAULT_ERROR;
