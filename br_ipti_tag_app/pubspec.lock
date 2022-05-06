@@ -328,7 +328,7 @@ packages:
       name: mask_text_input_formatter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.3.0"
   matcher:
     dependency: transitive
     description:
@@ -336,6 +336,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.11"
+<<<<<<< HEAD
+=======
+  material_color_utilities:
+    dependency: transitive
+    description:
+      name: material_color_utilities
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.3"
+>>>>>>> develop
   meta:
     dependency: "direct main"
     description:
@@ -599,7 +609,11 @@ packages:
       path: "../tag_ui"
       relative: true
     source: path
+<<<<<<< HEAD
     version: "0.21.2"
+=======
+    version: "0.23.2"
+>>>>>>> develop
   term_glyph:
     dependency: transitive
     description:
@@ -613,7 +627,11 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.4.3"
+=======
+    version: "0.4.8"
+>>>>>>> develop
   triple:
     dependency: transitive
     description:
