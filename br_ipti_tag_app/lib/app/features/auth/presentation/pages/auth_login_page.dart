@@ -41,38 +41,49 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
                 alignment: Alignment.topRight,
               ),
             ),
+            const _Logo(),
+            const TagRainbowBar(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height - 100,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      BlocConsumer<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          if (state is LoginErrorState) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: TagColors.colorRedDark,
+                                content: Text(state.message),
+                              ),
+                            );
+                          }
+                        },
+                        bloc: controller,
+                        builder: (context, state) {
+                          if (state is LoginLoadedState) {
+                            return _Footer(
+                                version: state.appVersion, year: state.year);
+                          }
+                          return _Footer(
+                            version: "0.0.0",
+                            year: controller.yearSequence.first.toString(),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Center(
               child: _Body(
                 controller: controller,
               ),
             ),
-            const _Logo(),
-            const TagRainbowBar(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: BlocConsumer<LoginBloc, LoginState>(
-                listener: (context, state) {
-                  if (state is LoginErrorState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: TagColors.colorRedDark,
-                        content: Text(state.message),
-                      ),
-                    );
-                  }
-                },
-                bloc: controller,
-                builder: (context, state) {
-                  if (state is LoginLoadedState) {
-                    return _Footer(version: state.appVersion, year: state.year);
-                  }
-                  return _Footer(
-                    version: "0.0.0",
-                    year: controller.yearSequence.first.toString(),
-                  );
-                },
-              ),
-            )
           ],
         ),
       ),
@@ -155,21 +166,25 @@ class _Body extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 332),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Padding(
                   padding: EdgeInsets.only(bottom: 40),
                   child: Text(
                     "Entre com as suas credenciais",
                     style: helpTextStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 withPadding(inputUsername(controller.username)),
                 withPadding(inputPassword(controller.password)),
                 withPadding(dropdownYear(controller.schoolYear)),
-                withPadding(
-                  TagButton(
-                    text: "Entrar",
-                    onPressed: () => _submit(_formKey.currentState!),
+                Flexible(
+                  child: withPadding(
+                    TagButton(
+                      text: "Entrar",
+                      onPressed: () => _submit(_formKey.currentState!),
+                    ),
                   ),
                 ),
               ],
