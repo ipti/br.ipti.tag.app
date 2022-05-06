@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/check_discipline_id.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructor_teaching_data_create_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
@@ -31,8 +32,7 @@ class InstructorFormBloc
   Future<void> fetchInstructorsAndDisciplines(
       {String? instructorFk, String? instructorDiscipline}) async {
     final requests = await Future.wait([
-      _instructorsUseCase(
-          ListInstructorsParams(schoolId: '61a9433412656f31249d2aa2')),
+      _instructorsUseCase(NoParams()),
       _edcensoDisciplinesUseCase(NoParams())
     ]);
 
@@ -40,12 +40,12 @@ class InstructorFormBloc
     List<EdcensoDisciplinesEntity> disciplines = [];
 
     requests.first.fold(
-        (l) => emit(InstructorFormStateError()),
+        (error) => emit(InstructorFormStateError()),
         (instructorsResponse) =>
             instructors = instructorsResponse as List<InstructorEntity>);
 
     requests.last.fold(
-        (l) => emit(InstructorFormStateError()),
+        (error) => emit(InstructorFormStateError()),
         (disciplinesResponse) => disciplines =
             disciplinesResponse as List<EdcensoDisciplinesEntity>);
 
@@ -54,6 +54,8 @@ class InstructorFormBloc
       changeCurrentDiscipline(instructorDiscipline ?? disciplines.first.id);
       emit(InstructorFormStateSuccess(
           instructors: instructors, disciplines: disciplines));
+    } else {
+      emit(InstructorFormStateError());
     }
   }
 
@@ -66,6 +68,7 @@ class InstructorFormBloc
   void changeCurrentDiscipline(String selectedDisciplineId) =>
       _currentDiscipline = selectedDisciplineId;
   String get currentDiscipline => _currentDiscipline!;
+  List<String> selectedDisciplines = [];
 
   String? _classroomId;
   void setClassroomId(String classroomId) => _classroomId = classroomId;
@@ -87,19 +90,82 @@ class InstructorFormBloc
           schoolInepIdFk: '61a9433412656f31249d2aa2',
           instructorFk: _currentInstructor!,
           classroomIdFk: _classroomId!,
-          discipline1Fk: _currentDiscipline,
+          discipline1Fk: selectedDisciplines[0],
+          discipline2Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 1),
+          discipline3Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 2),
+          discipline4Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 3),
+          discipline5Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 4),
+          discipline6Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 5),
+          discipline7Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 6),
+          discipline8Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 7),
+          discipline9Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 8),
+          discipline10Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 9),
+          discipline11Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 10),
+          discipline12Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 11),
+          discipline13Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 12),
+          discipline14Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 13),
+          discipline15Fk:
+              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 14),
           role: _role,
           contractType: _contractType);
-      await _createInstructorTeachingDataUseCase(params);
+      final createInstructorRequestResponse =
+          await _createInstructorTeachingDataUseCase(params);
+      createInstructorRequestResponse.fold(
+          (error) => emit(InstructorFormStateError()),
+          (success) => emit(InstructorFormStateInsertSuccess()));
+      newState = state;
     }
     if (event is SubmitUpdateInstructorForm) {
       final params = UpdateInstructorTeachingDataParams(
           event.instructorTeachingDataId,
           InstructorTeachingDataUpdateEntity(
-              role: _role,
-              contract_type: _contractType,
-              discipline1Fk: _currentDiscipline));
-      await _updateInstructorTeachingDataUseCase(params);
+            role: _role,
+            contract_type: _contractType,
+            discipline1Fk: selectedDisciplines[0],
+            discipline2Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 1),
+            discipline3Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 2),
+            discipline4Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 3),
+            discipline5Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 4),
+            discipline6Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 5),
+            discipline7Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 6),
+            discipline8Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 7),
+            discipline9Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 8),
+            discipline10Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 9),
+            discipline11Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 10),
+            discipline12Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 11),
+            discipline13Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 12),
+            discipline14Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 13),
+            discipline15Fk:
+                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 14),
+          ));
+      final instructorRequestResposne =
+          await _updateInstructorTeachingDataUseCase(params);
     }
     if (event is LoadInstructorForm) {
       await fetchInstructorsAndDisciplines();

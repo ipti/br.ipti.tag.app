@@ -6,12 +6,7 @@ abstract class InstructorFormState extends Equatable {}
 
 class InstructorFormStateLoading extends InstructorFormState {
   @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class InstructorFormStateEmpty extends InstructorFormState {
-  @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
 class InstructorFormStateSuccess extends InstructorFormState {
@@ -43,6 +38,13 @@ class InstructorFormStateSuccess extends InstructorFormState {
 }
 
 class InstructorFormStateError extends InstructorFormState {
+  InstructorFormStateError();
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
+}
+
+class InstructorFormStateInsertSuccess extends InstructorFormState {
+  InstructorFormStateInsertSuccess();
+  @override
+  List<Object?> get props => [];
 }

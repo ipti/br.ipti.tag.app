@@ -4,14 +4,26 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/class
 import 'package:dartz/dartz.dart';
 
 class ListClassroomsUsecase
-    implements Usecase<List<ClassroomEntity>, NoParams> {
+    implements Usecase<List<ClassroomEntity>, ClassroomParams> {
   ListClassroomsUsecase(this._repositoryClassroom);
 
   final ClassroomRepository _repositoryClassroom;
 
   @override
-  Future<Either<Exception, List<ClassroomEntity>>> call(NoParams params) async {
-    final result = await _repositoryClassroom.list();
+  Future<Either<Exception, List<ClassroomEntity>>> call(
+      ClassroomParams params) async {
+    final result = await _repositoryClassroom.list(params);
     return result;
   }
+}
+
+class ClassroomParams {
+  final String perPage;
+  final String page;
+  ClassroomParams({this.perPage = '100', this.page = '1'});
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        "page": page,
+        "perPage": perPage,
+      };
 }

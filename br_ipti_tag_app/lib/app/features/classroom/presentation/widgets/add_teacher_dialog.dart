@@ -27,14 +27,10 @@ class AddTeacherDialog extends StatefulWidget {
 class _AddTeacherDialogState extends State<AddTeacherDialog> {
   final controller = Modular.get<InstructorFormBloc>();
   final ScrollController scrollController = ScrollController();
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
-  }
+  final _animatedListKey = GlobalKey<AnimatedListState>();
 
   @override
-  void didChangeDependencies() {
+  void initState() {
     controller.setClassroomId(widget.classroomId);
     if (widget.instructorEntity != null) {
       controller.add(UpdateInstructorForm(
@@ -45,7 +41,13 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
     } else {
       controller.add(LoadInstructorForm());
     }
-    super.didChangeDependencies();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -85,42 +87,119 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
               padding: const EdgeInsets.all(18.0),
               child: BlocBuilder<InstructorFormBloc, InstructorFormState>(
                   bloc: controller,
+                  buildWhen: (previous, current) {
+                    if (previous is InstructorFormStateInsertSuccess ||
+                        previous is InstructorFormStateError) {
+                      return true;
+                    } else {
+                      return true;
+                    }
+                  },
                   builder: (context, state) {
                     if (state is InstructorFormStateSuccess) {
-                      return TagDropdownField<String>(
-                        items: Map.fromEntries(state.instructors!.map(
-                          (e) => MapEntry(e.id, e.name),
-                        )),
-                        hint: 'Selecione',
-                        onChanged: (instructor) =>
-                            controller.changeCurrentInstructor(instructor),
-                        label: 'Professor',
-                        value: controller.currentInstructor,
+                      return Column(
+                        children: [
+                          TagDropdownField<String>(
+                            items: Map.fromEntries(state.instructors!.map(
+                              (e) => MapEntry(e.id, e.name),
+                            )),
+                            hint: 'Selecione',
+                            onChanged: (instructor) =>
+                                controller.changeCurrentInstructor(instructor),
+                            label: 'Professor',
+                            value: controller.currentInstructor,
+                          ),
+                          const SizedBox(
+                            height: 36,
+                          ),
+                          TagDropdownField(
+                            items: Map.fromEntries(state.disciplines!.map(
+                              (e) => MapEntry(e.id, e.name),
+                            )),
+                            hint: 'Selecione',
+                            onChanged: (discipline) =>
+                                controller.changeCurrentDiscipline(discipline),
+                            label: 'Disciplinas',
+                            value: controller.currentDiscipline,
+                          ),
+                          TagButton(
+                              text: "Adicionar",
+                              onPressed: () {
+                                _animatedListKey.currentState!.insertItem(
+                                  0,
+                                );
+                                controller.selectedDisciplines
+                                    .insert(0, controller.currentDiscipline);
+                              }),
+                          Container(
+                              height: 100,
+                              width: MediaQuery.of(context).size.width,
+                              child: AnimatedList(
+                                  key: _animatedListKey,
+                                  itemBuilder: (context, index, animation) =>
+                                      SlideTransition(
+                                          position: animation.drive(Tween(
+                                              begin: const Offset(0.0, -1.0),
+                                              end: Offset.zero)),
+                                          child: Container(
+                                            height: 40,
+                                            color: TagColors
+                                                .colorBaseProductLighter,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  state.disciplines!
+                                                      .map((e) => MapEntry(
+                                                          e.id, e.name))
+                                                      .firstWhere((discipline) =>
+                                                          discipline.key ==
+                                                          controller
+                                                                  .selectedDisciplines[
+                                                              index])
+                                                      .value,
+                                                  style: const TextStyle(
+                                                      color: TagColors
+                                                          .colorBaseInkNormal),
+                                                ),
+                                                GestureDetector(
+                                                    onTap: () {
+                                                      _animatedListKey
+                                                          .currentState!
+                                                          .removeItem(
+                                                              index,
+                                                              (context,
+                                                                      animation) =>
+                                                                  SlideTransition(
+                                                                    position: animation.drive(Tween(
+                                                                        begin: Offset(
+                                                                            0.0,
+                                                                            1.0),
+                                                                        end: Offset(
+                                                                            3.0,
+                                                                            1.0))),
+                                                                  ));
+                                                      controller
+                                                          .selectedDisciplines
+                                                          .removeAt(index);
+                                                    },
+                                                    child: Icon(Icons.close))
+                                              ],
+                                            ),
+                                          )))),
+                        ],
                       );
+                    } else if (state is InstructorFormStateError) {
+                      Navigator.of(context).pop(false);
+                    } else if (state is InstructorFormStateInsertSuccess) {
+                      Navigator.of(context).pop(true);
                     }
+
                     return const CircularProgressIndicator();
                   }),
             ),
-            Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: BlocBuilder<InstructorFormBloc, InstructorFormState>(
-                  bloc: controller,
-                  builder: (context, state) {
-                    if (state is InstructorFormStateSuccess) {
-                      return TagDropdownField(
-                        items: Map.fromEntries(state.disciplines!.map(
-                          (e) => MapEntry(e.id, e.name),
-                        )),
-                        hint: 'Selecione',
-                        onChanged: (discipline) =>
-                            controller.changeCurrentDiscipline(discipline),
-                        label: 'Disciplinas',
-                        value: controller.currentDiscipline,
-                      );
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                )),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: TagDropdownField(
@@ -178,7 +257,6 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                           : controller.add(SubmitUpdateInstructorForm(
                               instructorTeachingDataId:
                                   widget.instructorEntity!.id));
-                      Navigator.pop(context);
                     },
                   ),
                 ],

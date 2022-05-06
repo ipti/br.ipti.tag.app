@@ -3,15 +3,60 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/update_in
 class InstructorTeachingDataUpdateModel
     extends InstructorTeachingDataUpdateEntity {
   InstructorTeachingDataUpdateModel(
-      int? role, int? contract_type, String? discipline1Fk)
-      : super(
-            role: role,
-            contract_type: contract_type,
-            discipline1Fk: discipline1Fk);
+    int? role,
+    int? contract_type,
+    String? discipline1Fk,
+    String? discipline2Fk,
+    String? discipline3Fk,
+    String? discipline4Fk,
+    String? discipline5Fk,
+    String? discipline6Fk,
+    String? discipline7Fk,
+    String? discipline8Fk,
+    String? discipline9Fk,
+    String? discipline10Fk,
+    String? discipline11Fk,
+    String? discipline12Fk,
+    String? discipline13Fk,
+    String? discipline14Fk,
+    String? discipline15Fk,
+  ) : super(
+          role: role,
+          contract_type: contract_type,
+          discipline1Fk: discipline1Fk,
+          discipline2Fk: discipline2Fk,
+          discipline3Fk: discipline3Fk,
+          discipline4Fk: discipline4Fk,
+          discipline5Fk: discipline5Fk,
+          discipline6Fk: discipline6Fk,
+          discipline7Fk: discipline7Fk,
+          discipline8Fk: discipline8Fk,
+          discipline9Fk: discipline9Fk,
+          discipline10Fk: discipline10Fk,
+          discipline11Fk: discipline11Fk,
+          discipline12Fk: discipline12Fk,
+          discipline13Fk: discipline13Fk,
+          discipline14Fk: discipline14Fk,
+          discipline15Fk: discipline15Fk,
+        );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        "role": role,
-        "contract_type": contract_type,
-        "discipline_1_fk": discipline1Fk
+        'role': role,
+        'contract_type': contract_type,
+        'discipline1Fk': discipline1Fk,
+        'discipline2Fk': discipline2Fk,
+        'discipline3Fk': discipline3Fk,
+        'discipline4Fk': discipline4Fk,
+        'discipline5Fk': discipline5Fk,
+        'discipline6Fk': discipline6Fk,
+        'discipline7Fk': discipline7Fk,
+        'discipline8Fk': discipline8Fk,
+        'discipline9Fk': discipline9Fk,
+        'discipline10Fk': discipline10Fk,
+        'discipline11Fk': discipline11Fk,
+        'discipline12Fk': discipline12Fk,
+        'discipline13Fk': discipline13Fk,
+        'discipline14Fk': discipline14Fk,
+        'discipline15Fk': discipline15Fk,
       };
 }
