@@ -76,6 +76,9 @@ flutter:
     - assets/icons/onibus/cinza.svg
     - assets/icons/maca/azul.svg
     - assets/icons/maca/cinza.svg
+    - assets/icons/info/info.svg
+    - assets/icons/fechar/fechar.svg
+    - assets/icons/impressora/impressora.svg
     - assets/resources/tag_logo_for_background.svg
    
 

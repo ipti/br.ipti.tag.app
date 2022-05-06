@@ -2,7 +2,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dar
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
+
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -100,7 +100,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
       length: _tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
-        header: const HeaderDesktop(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],

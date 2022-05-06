@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +36,6 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
   Widget build(BuildContext context) {
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      header: const HeaderDesktop(),
       title: widget.title,
       description: "",
       path: ["Alunos", widget.title],
