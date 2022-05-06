@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_adress_tab.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_educational_data_tab.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_equipments_tab.dart';
@@ -6,6 +7,7 @@ import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/sc
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_structure_tab.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolEditPage extends StatefulWidget {
@@ -13,12 +15,23 @@ class SchoolEditPage extends StatefulWidget {
 
   final String title;
   @override
-  _SchoolEditPageState createState() => _SchoolEditPageState();
+  SchoolEditPageState createState() => SchoolEditPageState();
 }
 
-class _SchoolEditPageState extends State<SchoolEditPage> {
+class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
+  @override
+  void initState() {
+    controller.fetchCurrentSchoolData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    const padding = EdgeInsets.all(8.0);
+
+    Widget withPadding(Widget widget) =>
+        Padding(padding: padding, child: widget);
+
     const List<Tab> tabs = [
       Tab(
         child: Text("Identificação"),
@@ -39,6 +52,18 @@ class _SchoolEditPageState extends State<SchoolEditPage> {
         child: Text("Relatórios"),
       ),
     ];
+
+    final buttonSubmitAndGo = TagButton(
+      text: "Salvar informações",
+      onPressed: () => _save(),
+    );
+    final buttonSubmitAndStay = TagButton(
+      text: "Salvar informações e avançar",
+      buttonStyle: TagButtonStyles.secondary,
+      textStyle: TagTextStyles.textButtonSecondary,
+      onPressed: () => _saveAndNext(),
+    );
+
     return DefaultTabController(
       length: tabs.length,
       child: TagDefaultPage(
@@ -48,16 +73,19 @@ class _SchoolEditPageState extends State<SchoolEditPage> {
         title: widget.title,
         description: 'Edite as informações da sua escola',
         path: [],
-        body: const <Widget>[
+        body: <Widget>[
           TabBar(
             isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
+            labelColor: TagColors.colorBaseInkLight,
+            labelStyle: TagTextStyles.textTabBarLabel,
+            unselectedLabelColor: TagColors.colorBaseInkLight,
+            unselectedLabelStyle: TagTextStyles.textTabBarLabelUnselected,
             indicatorColor: TagColors.colorBaseProductDark,
             labelPadding: EdgeInsets.symmetric(horizontal: 8),
             tabs: tabs,
           ),
           SizedBox(
-            height: 300.0,
+            height: 200.0,
             child: TabBarView(children: [
               SchoolIdTab(),
               SchoolAddressTab(),
@@ -67,8 +95,23 @@ class _SchoolEditPageState extends State<SchoolEditPage> {
               SchoolReportsTab(),
             ]),
           ),
+          RowToColumn(children: [
+            Column(
+              children: [withPadding(buttonSubmitAndGo)],
+            ),
+            Flexible(child: withPadding(buttonSubmitAndStay)),
+          ]),
         ],
       ),
     );
+  }
+
+  void _save() {
+    controller.updateSchoolData();
+    print("object1");
+  }
+
+  void _saveAndNext() {
+    _save();
   }
 }

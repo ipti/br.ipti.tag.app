@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/network/end_point/endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/network/manager/http_headers.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
 class GetSchoolEndPoint extends EndPointAPI {
@@ -12,7 +13,9 @@ class GetSchoolEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  HTTPHeaders? get headers => null;
+  HTTPHeaders? get headers => () => {
+        'Content-Type': ContentType.APPLICATION_JSON,
+      };
 
   @override
   Parameters? get bodyParameters => null;

@@ -1,12 +1,13 @@
 import 'package:br_ipti_tag_app/app/features/school/data/datasources/school_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/repositories/school_repositories.dart';
 import 'package:dartz/dartz.dart';
 
 class SchoolRepositoryImpl extends SchoolRepository {
-  final SchoolRemoteDataSource _schoolDataSource;
+  SchoolRepositoryImpl(this._schoolRemoteDataSource);
 
-  SchoolRepositoryImpl(this._schoolDataSource);
+  final SchoolRemoteDataSource _schoolRemoteDataSource;
 
   @override
   Future<Either<Exception, SchoolEntity>> create(SchoolEntity school) {
@@ -27,16 +28,21 @@ class SchoolRepositoryImpl extends SchoolRepository {
   }
 
   @override
-  Future<Either<Exception, SchoolEntity>> getById(String uuid) {
-    // TODO: implement getById
-    throw UnimplementedError();
+  Future<Either<Exception, SchoolEntity>> getById(String uuid) async {
+    try {
+      final result = await _schoolRemoteDataSource.getOne(uuid);
+      return Right(result as SchoolEntity);
+    } catch (e) {
+      return Left(Exception("Não foi possível encontrar os dados da escola"));
+    }
   }
 
   @override
   Future<Either<Exception, SchoolEntity>> update(
       String uuid, SchoolEntity school) async {
     try {
-      final results = await _schoolDataSource.update(uuid, school);
+      print("object4");
+      final results = await _schoolRemoteDataSource.update(uuid, school);
       return Right(results as SchoolEntity);
     } catch (e) {
       return Left(Exception("Não foi possível adicionar estudantes"));
