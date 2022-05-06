@@ -26,13 +26,6 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget selectClass(String? classId) => TagDropdownField(
-          label: 'Turma',
-          items: controller.classesItems,
-          value: classId,
-          onChanged: controller.setStudentClass,
-        );
-
     return BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
         bloc: controller,
         builder: (context, state) {

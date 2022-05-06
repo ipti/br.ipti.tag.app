@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
 import 'form/address/_address_form_partial_page.dart';
-import 'form/address/bloc/enrollment_address_bloc.dart';
 import 'form/classroom/_classes_form_partial_page.dart';
 import 'form/classroom/bloc/enrollment_classroom_bloc.dart';
 import 'form/filliation/_filiation_form_partial_page.dart';
