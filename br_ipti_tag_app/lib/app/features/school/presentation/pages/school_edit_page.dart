@@ -48,22 +48,15 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
       Tab(
         child: Text("Dados educacionais"),
       ),
-      Tab(
-        child: Text("Relatórios"),
-      ),
+      // Tab(
+      //   child: Text("Relatórios"),
+      // ),
     ];
 
     final buttonSubmitAndGo = TagButton(
       text: "Salvar informações",
       onPressed: () => _save(),
     );
-    final buttonSubmitAndStay = TagButton(
-      text: "Salvar informações e avançar",
-      buttonStyle: TagButtonStyles.secondary,
-      textStyle: TagTextStyles.textButtonSecondary,
-      onPressed: () => _saveAndNext(),
-    );
-
     return DefaultTabController(
       length: tabs.length,
       child: TagDefaultPage(
@@ -74,7 +67,7 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
         description: 'Edite as informações da sua escola',
         path: [],
         body: <Widget>[
-          TabBar(
+          const TabBar(
             isScrollable: true,
             labelColor: TagColors.colorBaseInkLight,
             labelStyle: TagTextStyles.textTabBarLabel,
@@ -84,34 +77,42 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
             labelPadding: EdgeInsets.symmetric(horizontal: 8),
             tabs: tabs,
           ),
-          SizedBox(
-            height: 200.0,
+          const SizedBox(
+            height: 250,
             child: TabBarView(children: [
               SchoolIdTab(),
               SchoolAddressTab(),
               SchoolStructureTab(),
               ShcoolEquipmentsTab(),
               SchoolEducationalDataTab(),
-              SchoolReportsTab(),
+              // SchoolReportsTab(),
             ]),
           ),
-          RowToColumn(children: [
-            Column(
-              children: [withPadding(buttonSubmitAndGo)],
-            ),
-            Flexible(child: withPadding(buttonSubmitAndStay)),
-          ]),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              RowToColumn(children: [
+                Flexible(child: withPadding(buttonSubmitAndGo)),
+              ]),
+            ],
+          ),
         ],
       ),
     );
   }
 
   void _save() {
-    controller.updateSchoolData();
-    print("object1");
-  }
+    const snackBar = SnackBar(
+      content: Text('Enviando dados'),
+      backgroundColor: TagColors.colorBaseBlueNormal,
+    );
 
-  void _saveAndNext() {
-    _save();
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+    print("object1");
+    controller.updateSchoolData();
   }
 }
