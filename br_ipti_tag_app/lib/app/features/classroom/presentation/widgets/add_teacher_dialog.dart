@@ -150,19 +150,21 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
-                                                  state.disciplines!
-                                                      .map((e) => MapEntry(
-                                                          e.id, e.name))
-                                                      .firstWhere((discipline) =>
-                                                          discipline.key ==
-                                                          controller
-                                                                  .selectedDisciplines[
-                                                              index])
-                                                      .value,
-                                                  style: const TextStyle(
-                                                      color: TagColors
-                                                          .colorBaseInkNormal),
+                                                Flexible(
+                                                  child: Text(
+                                                    state.disciplines!
+                                                        .map((e) => MapEntry(
+                                                            e.id, e.name))
+                                                        .firstWhere((discipline) =>
+                                                            discipline.key ==
+                                                            controller
+                                                                    .selectedDisciplines[
+                                                                index])
+                                                        .value,
+                                                    style: const TextStyle(
+                                                        color: TagColors
+                                                            .colorBaseInkNormal),
+                                                  ),
                                                 ),
                                                 GestureDetector(
                                                     onTap: () {
