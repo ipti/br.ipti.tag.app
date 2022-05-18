@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_create_model.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
@@ -11,7 +10,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/update_in
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_instructors_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 class ClassroomRepositoryImpl extends ClassroomRepository {

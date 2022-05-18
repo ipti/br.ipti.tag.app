@@ -131,7 +131,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                                 controller.selectedDisciplines
                                     .insert(0, controller.currentDiscipline);
                               }),
-                          Container(
+                          SizedBox(
                               height: 100,
                               width: MediaQuery.of(context).size.width,
                               child: AnimatedList(
@@ -187,7 +187,8 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                                                           .selectedDisciplines
                                                           .removeAt(index);
                                                     },
-                                                    child: Icon(Icons.close))
+                                                    child:
+                                                        const Icon(Icons.close))
                                               ],
                                             ),
                                           )))),
