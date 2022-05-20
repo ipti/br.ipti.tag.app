@@ -54,7 +54,7 @@ class FastEnrollmentPageState
               maxHeight: MediaQuery.of(context).size.height,
               maxWidth: 800,
             ),
-            child: Expanded(
+            child: const Expanded(
               child: RouterOutlet(),
             ),
           ),

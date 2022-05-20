@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthLoginPage extends StatefulWidget {
   const AuthLoginPage({Key? key, this.title = 'Login'}) : super(key: key);
@@ -23,12 +23,14 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
   void initState() {
     controller.verifyAuthToken();
     controller.fetchVersion();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      maintainBottomViewPadding: true,
       child: Scaffold(
         body: Stack(
           children: [
@@ -40,22 +42,49 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
                 alignment: Alignment.topRight,
               ),
             ),
+            const _Logo(),
+            const TagRainbowBar(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height - 100,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      BlocConsumer<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          if (state is LoginErrorState) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor: TagColors.colorRedDark,
+                                content: Text(state.message),
+                              ),
+                            );
+                          }
+                        },
+                        bloc: controller,
+                        builder: (context, state) {
+                          if (state is LoginLoadedState) {
+                            return _Footer(
+                                version: state.appVersion, year: state.year);
+                          }
+                          return _Footer(
+                            version: "0.0.0",
+                            year: controller.yearSequence.first.toString(),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Center(
               child: _Body(
                 controller: controller,
               ),
             ),
-            const _Logo(),
-            const TagRainbowBar(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: BlocBuilder<LoginBloc, LoginState>(
-                bloc: controller,
-                builder: (context, state) {
-                  return _Footer(version: state.appVersion, year: state.year);
-                },
-              ),
-            )
           ],
         ),
       ),
@@ -84,51 +113,51 @@ class _Logo extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
+  _Body({
     Key? key,
     required this.controller,
   }) : super(key: key);
   final LoginBloc controller;
+
+  static final _formKey = GlobalKey<FormState>();
+  final padding = const EdgeInsets.all(8.0);
+
+  final helpTextStyle = const TextStyle(
+    color: TagColors.colorBaseInkLight,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.75,
+  );
+
+  Widget withPadding(Widget widget) => Padding(padding: padding, child: widget);
+
+  Widget inputUsername(String username) => TagTextField(
+        label: "Usuário",
+        hint: "Digite seu usuário",
+        onChanged: (username) => controller.username = username,
+        value: username,
+        validator: requiredValidator,
+      );
+  Widget inputPassword(String password) => TagTextField(
+        label: "Senha",
+        hint: "Digite sua senha",
+        onChanged: (password) => controller.password = password,
+        value: password,
+        validator: requiredValidator,
+        obscureText: true,
+      );
+
+  Widget dropdownYear(String year) => TagDropdownField<String>(
+        label: "Ano letivo",
+        items: Map.fromEntries(controller.yearSequence),
+        onChanged: (year) => controller.schoolYear = year,
+        value: year,
+        validator: requiredValidator,
+        obscureText: true,
+      );
+
   @override
   Widget build(BuildContext context) {
-    const padding = EdgeInsets.all(8.0);
-    final _formKey = GlobalKey<FormState>();
-
-    const helpTextStyle = TextStyle(
-      color: TagColors.colorBaseInkLight,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      height: 1.75,
-    );
-
-    Widget withPadding(Widget widget) =>
-        Padding(padding: padding, child: widget);
-
-    Widget inputUsername(String username) => TagTextField(
-          label: "Usuário",
-          hint: "Digite seu usuário",
-          onChanged: controller.setUsername,
-          value: username,
-          validator: requiredValidator,
-        );
-    Widget inputPassword(String password) => TagTextField(
-          label: "Senha",
-          hint: "Digite sua senha",
-          onChanged: controller.setPassword,
-          value: password,
-          validator: requiredValidator,
-          obscureText: true,
-        );
-
-    Widget dropdownYear(String year) => TagDropdownField<String>(
-          label: "Ano letivo",
-          items: Map.fromEntries(controller.yearSequence),
-          onChanged: controller.setSchoolYear,
-          value: year,
-          validator: requiredValidator,
-          obscureText: true,
-        );
-
     return Form(
       key: _formKey,
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -138,21 +167,25 @@ class _Body extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 332),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 40),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
                   child: Text(
                     "Entre com as suas credenciais",
                     style: helpTextStyle,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                withPadding(inputUsername(state.username)),
-                withPadding(inputPassword(state.password)),
-                withPadding(dropdownYear(state.year)),
-                withPadding(
-                  TagButton(
-                    text: "Entrar",
-                    onPressed: () => _submit(_formKey.currentState!),
+                withPadding(inputUsername(controller.username)),
+                withPadding(inputPassword(controller.password)),
+                withPadding(dropdownYear(controller.schoolYear)),
+                Flexible(
+                  child: withPadding(
+                    TagButton(
+                      text: "Entrar",
+                      onPressed: () => _submit(_formKey.currentState!),
+                    ),
                   ),
                 ),
               ],
@@ -210,7 +243,7 @@ class _Footer extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => launch("https://www.ipti.org.br/"),
+                    ..onTap = () => launchUrlString("https://www.ipti.org.br/"),
                 ),
                 const TextSpan(text: " ®"),
                 TextSpan(text: year),

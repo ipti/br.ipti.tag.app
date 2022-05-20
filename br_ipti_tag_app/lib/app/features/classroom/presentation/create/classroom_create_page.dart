@@ -162,137 +162,140 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     return Form(
       key: _formKey,
       child: BlocBuilder<ClassroomCreateBloc, ClassroomCreateState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state is ClassroomCreateFormState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      withPadding(heading),
-                      RowToColumn(children: [
+        bloc: controller,
+        builder: (context, state) {
+          if (state is ClassroomCreateFormState) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    withPadding(heading),
+                    RowToColumn(
+                      children: [
                         Flexible(
                           child: withPadding(inputName(state.name)),
                         ),
                         Flexible(
                           child: withPadding(inputStartTime(state.startTime)),
                         )
-                      ]),
-                      RowToColumn(children: [
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
                         Flexible(
                           child: withPadding(selectModality(state.modalityId)),
                         ),
                         Flexible(
                           child: withPadding(inputEndTime(state.endTime)),
                         )
-                      ]),
-                      RowToColumn(children: [
-                        Flexible(
-                          child: withPadding(selectStage(state.stageId)),
-                        ),
-                      ]),
-                      RowToColumn(children: [
-                        Flexible(
-                          child: withPadding(
-                            selectMediacaoDidaticaPedagogica(
-                              state.typePedagogicMediationId,
-                            ),
-                          ),
-                        ),
-                      ]),
-                      RowToColumn(children: [
-                        Flexible(
-                          child: withPadding(
-                            LeftListClassroomWidget(
-                              onChangedSchooling: (value) =>
-                                  controller.schooling(
-                                value: value!,
-                              ),
-                              onChangedAee: (value) => controller.aee(
-                                value: value!,
-                              ),
-                              onChangedComplementaryActivity: (value) =>
-                                  controller.complementaryActivity(
-                                value: value!,
-                              ),
-                              onChangedMoreEducatorParticipator: (value) =>
-                                  controller.moreEducationParticipator(
-                                value: value!,
-                              ),
-                              state: state,
-                            ),
-                          ),
-                        ),
-                        Flexible(
-                          child: withPadding(
-                            RightListClasroomWidget(
-                              onChangedAeeBraille: (value) =>
-                                  controller.aeeBraille(
-                                value: value!,
-                              ),
-                              onChangedAeeOpticalNonOptical: (value) =>
-                                  controller.aeeOpticalNonOptical(
-                                value: value!,
-                              ),
-                              state: state,
-                              onChangedAeeCognitiveFunctions: (value) =>
-                                  controller.aeeCognitiveFunctions(
-                                value: value!,
-                              ),
-                              onChangedAeeMobilityTechniques: (value) =>
-                                  controller.aeeMobilityTechniques(
-                                value: value!,
-                              ),
-                              onChangedAeeLibras: (value) =>
-                                  controller.aeeLibras(
-                                value: value!,
-                              ),
-                              onChangedAeeCaa: (value) => controller.aeeCaa(
-                                value: value!,
-                              ),
-                              onChangedAeeCurriculumEnrichment: (value) =>
-                                  controller.aeeCurriculumEnrichment(
-                                value: value!,
-                              ),
-                              onChangedAeeAccessibleTeaching: (value) =>
-                                  controller.aeeAccessibleTeaching(
-                                value: value!,
-                              ),
-                              onChangedAeePortuguese: (value) =>
-                                  controller.aeePortuguese(
-                                value: value!,
-                              ),
-                              onChangedAeeSoroban: (value) =>
-                                  controller.aeeSoroban(
-                                value: value!,
-                              ),
-                              onChangedAeeAutonomousLife: (value) =>
-                                  controller.aeeAutonomousLife(
-                                value: value!,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ]),
-                      TagButton(
-                        text: "Criar turma",
-                        onPressed: () => controller.add(
-                          SubmitClassroom(
-                            id: _session.state.currentSchool!.id!,
+                      ],
+                    ),
+                    RowToColumn(children: [
+                      Flexible(
+                        child: withPadding(selectStage(state.stageId)),
+                      ),
+                    ]),
+                    RowToColumn(children: [
+                      Flexible(
+                        child: withPadding(
+                          selectMediacaoDidaticaPedagogica(
+                            state.typePedagogicMediationId,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ]),
+                    RowToColumn(children: [
+                      Flexible(
+                        child: withPadding(
+                          LeftListClassroomWidget(
+                            onChangedSchooling: (value) => controller.schooling(
+                              value: value!,
+                            ),
+                            onChangedAee: (value) => controller.aee(
+                              value: value!,
+                            ),
+                            onChangedComplementaryActivity: (value) =>
+                                controller.complementaryActivity(
+                              value: value!,
+                            ),
+                            onChangedMoreEducatorParticipator: (value) =>
+                                controller.moreEducationParticipator(
+                              value: value!,
+                            ),
+                            state: state,
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        child: withPadding(
+                          RightListClasroomWidget(
+                            onChangedAeeBraille: (value) =>
+                                controller.aeeBraille(
+                              value: value!,
+                            ),
+                            onChangedAeeOpticalNonOptical: (value) =>
+                                controller.aeeOpticalNonOptical(
+                              value: value!,
+                            ),
+                            state: state,
+                            onChangedAeeCognitiveFunctions: (value) =>
+                                controller.aeeCognitiveFunctions(
+                              value: value!,
+                            ),
+                            onChangedAeeMobilityTechniques: (value) =>
+                                controller.aeeMobilityTechniques(
+                              value: value!,
+                            ),
+                            onChangedAeeLibras: (value) => controller.aeeLibras(
+                              value: value!,
+                            ),
+                            onChangedAeeCaa: (value) => controller.aeeCaa(
+                              value: value!,
+                            ),
+                            onChangedAeeCurriculumEnrichment: (value) =>
+                                controller.aeeCurriculumEnrichment(
+                              value: value!,
+                            ),
+                            onChangedAeeAccessibleTeaching: (value) =>
+                                controller.aeeAccessibleTeaching(
+                              value: value!,
+                            ),
+                            onChangedAeePortuguese: (value) =>
+                                controller.aeePortuguese(
+                              value: value!,
+                            ),
+                            onChangedAeeSoroban: (value) =>
+                                controller.aeeSoroban(
+                              value: value!,
+                            ),
+                            onChangedAeeAutonomousLife: (value) =>
+                                controller.aeeAutonomousLife(
+                              value: value!,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                    TagButton(
+                      text: "Criar turma",
+                      onPressed: () => controller.add(
+                        SubmitClassroom(
+                          id: _session.state.currentSchool!.id!,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
+              ),
             );
-          }),
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
     );
   }
 }

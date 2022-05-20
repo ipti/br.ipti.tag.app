@@ -25,11 +25,13 @@ class MealsModule extends Module {
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const SelectActionMealsPage()),
     ChildRoute(
       "/details",
-      child: (_, args) => DetailsMealPage(meal: args.data['mealComponent']),
+      child: (_, args) => DetailsMealPage(
+        meal: (args.data as Map)['mealComponent'],
+      ),
     ),
     ChildRoute("/refeicoes", child: (_, args) => const ListMealsPage()),
     ModuleRoute("/estoque", module: StockModule())

@@ -18,12 +18,14 @@ class AuthRespositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Exception, AuthResponse>> login(
-      String username, String password) async {
+    String username,
+    String password,
+  ) async {
     try {
       final result = await authRemoteDataSource.login(username, password);
       return Right(result);
     } on RestClientException catch (e) {
-      return Left(e);
+      return Left(Exception(e.handledError()));
     }
   }
 
@@ -86,7 +88,8 @@ class AuthRespositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Exception, bool>> storeCurrentUserSchools(
-      List<School> schools) async {
+    List<School> schools,
+  ) async {
     try {
       final result = await sessionService.setCurrentUserSchools(schools);
       return Right(result);

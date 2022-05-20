@@ -22,7 +22,7 @@ class GuardTokenInterceptor extends InterceptorsWrapper {
         sessionService.cleanSchoolYear();
         sessionService.cleanCurrentUserSchools();
         sessionService.cleanCurrentSchool();
-        Modular.to.pushReplacementNamed('/auth');
+        Modular.to.pushReplacementNamed('/');
       }
     }
     super.onError(err, handler);
