@@ -21,24 +21,6 @@ class ClassroomCreateBloc
   ClassroomCreateBloc(this._usecaseCreateClassroom) : super(_initialState);
 
   final CreateClassroomUsecase _usecaseCreateClassroom;
-
-  final modalitiesList = const <int, String>{
-    0: "Ensino Regular",
-    1: "Educação Especial",
-    2: "Educação de Jovens e Adultos (EJA)",
-  };
-
-  final etapaEnsino = const <int, String>{
-    0: "Manhã",
-    1: "Tarde",
-    2: "Noite",
-  };
-
-  final mediacao = const <int, String>{
-    0: "Mediação 1",
-    1: "Mediação 2",
-    2: "Mediação 3",
-  };
   void aeeBraille({bool value = false}) => add(
         AeeBrailleChanged(
           aeeBraille: value,

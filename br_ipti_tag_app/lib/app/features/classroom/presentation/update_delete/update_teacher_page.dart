@@ -21,16 +21,18 @@ class ClassroomTeacherPage extends StatefulWidget {
 
 class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
   final controller = Modular.get<UpdateTeacherBloc>();
+  final String erro =
+      "Ocorreu um problema inesperado, tente novamente mais tarde.";
   @override
   void initState() {
-    controller.setClassroomId(widget.classroomId);
+    controller.classroomId = widget.classroomId;
     controller.fetchListClassroomsEvent();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height,
       child: Column(
         children: [
@@ -72,26 +74,31 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
             ),
             label: 'Adicionar professor por disciplina',
             onPressed: () async {
+              final scaffoldMessenger = ScaffoldMessenger.of(context);
               final success = await showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AddTeacherDialog(
-                      classroomId: widget.classroomId,
-                    );
-                  });
+                context: context,
+                builder: (_) {
+                  return AddTeacherDialog(
+                    classroomId: widget.classroomId,
+                  );
+                },
+              );
               if (success) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
+                scaffoldMessenger.showSnackBar(
+                  const SnackBar(
                     backgroundColor: TagColors.colorBaseProductNormal,
-                    content: Text("Professor cadastrado na turma com sucesso!"),
+                    content: Text(
+                      "Professor cadastrado na turma com sucesso!",
+                    ),
                   ),
                 );
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(
+                scaffoldMessenger.showSnackBar(
                   SnackBar(
                     backgroundColor: TagColors.colorRedDark,
                     content: Text(
-                        "Ocorreu um problema inesperado, tente novamente mais tarde."),
+                      erro,
+                    ),
                   ),
                 );
               }
