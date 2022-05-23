@@ -1,64 +1,69 @@
 import 'dart:convert';
 
-class InstructorModel {
+import '../../domain/entities/instructor.dart';
+
+class InstructorModel extends Instructor {
   InstructorModel({
-    this.registerType = "",
-    this.schoolInepIdFk = "",
-    this.inepId = "",
-    required this.name,
-    required this.email,
-    this.nis = "",
-    this.birthdayDate = "",
-    this.sex = 0,
-    this.colorRace = 0,
-    this.filiation = false,
-    this.filiation1 = "",
-    this.filiation2 = "",
-    this.nationality = 0,
-    this.edcensoNationFk = 0,
-    this.edcensoUfFk = 0,
-    this.edcensoCityFk = 0,
-    this.deficiency = false,
-    this.deficiencyTypeBlindness = false,
-    this.deficiencyTypeLowVision = false,
-    this.deficiencyTypeDeafness = false,
-    this.deficiencyTypeDisabilityHearing = false,
-    this.deficiencyTypeDeafblindness = false,
-    this.deficiencyTypePhisicalDisability = false,
-    this.deficiencyTypeIntelectualDisability = false,
-    this.deficiencyTypeMultipleDisabilities = false,
-    this.deficiencyTypeAutism = false,
-    this.deficiencyTypeGifted = false,
-    this.hash = 0,
-  });
-  final String registerType;
-  final String schoolInepIdFk;
-  final String inepId;
-  final String name;
-  final String email;
-  final String nis;
-  final String birthdayDate;
-  final int sex;
-  final int colorRace;
-  final bool filiation;
-  final String filiation1;
-  final String filiation2;
-  final int nationality;
-  final int edcensoNationFk;
-  final int edcensoUfFk;
-  final int edcensoCityFk;
-  final bool deficiency;
-  final bool deficiencyTypeBlindness;
-  final bool deficiencyTypeLowVision;
-  final bool deficiencyTypeDeafness;
-  final bool deficiencyTypeDisabilityHearing;
-  final bool deficiencyTypeDeafblindness;
-  final bool deficiencyTypePhisicalDisability;
-  final bool deficiencyTypeIntelectualDisability;
-  final bool deficiencyTypeMultipleDisabilities;
-  final bool deficiencyTypeAutism;
-  final bool deficiencyTypeGifted;
-  final int hash;
+    String? registerType,
+    String? schoolInepIdFk,
+    String? inepId,
+    String? name,
+    String? email,
+    String? nis,
+    String? birthdayDate,
+    int? sex,
+    int? colorRace,
+    bool? filiation,
+    String? filiation1,
+    String? filiation2,
+    int? nationality,
+    int? edcensoNationFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
+    bool? deficiency,
+    bool? deficiencyTypeBlindness,
+    bool? deficiencyTypeLowVision,
+    bool? deficiencyTypeDeafness,
+    bool? deficiencyTypeDisabilityHearing,
+    bool? deficiencyTypeDeafblindness,
+    bool? deficiencyTypePhisicalDisability,
+    bool? deficiencyTypeIntelectualDisability,
+    bool? deficiencyTypeMultipleDisabilities,
+    bool? deficiencyTypeAutism,
+    bool? deficiencyTypeGifted,
+    int? hash,
+  }) : super(
+          registerType: registerType,
+          schoolInepIdFk: schoolInepIdFk,
+          inepId: inepId,
+          name: name,
+          email: email,
+          nis: nis,
+          birthdayDate: birthdayDate,
+          sex: sex,
+          colorRace: colorRace,
+          filiation: filiation,
+          filiation1: filiation1,
+          filiation2: filiation2,
+          nationality: nationality,
+          edcensoNationFk: edcensoNationFk,
+          edcensoUfFk: edcensoUfFk,
+          edcensoCityFk: edcensoCityFk,
+          deficiency: deficiency,
+          deficiencyTypeBlindness: deficiencyTypeBlindness,
+          deficiencyTypeLowVision: deficiencyTypeLowVision,
+          deficiencyTypeDeafness: deficiencyTypeDeafness,
+          deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing,
+          deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
+          deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability,
+          deficiencyTypeIntelectualDisability:
+              deficiencyTypeIntelectualDisability,
+          deficiencyTypeMultipleDisabilities:
+              deficiencyTypeMultipleDisabilities,
+          deficiencyTypeAutism: deficiencyTypeAutism,
+          deficiencyTypeGifted: deficiencyTypeGifted,
+          hash: hash,
+        );
 
   InstructorModel copyWith({
     String? registerType,
@@ -91,33 +96,29 @@ class InstructorModel {
     int? hash,
   }) {
     return InstructorModel(
-      registerType: registerType ?? this.registerType,
-      schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
-      inepId: inepId ?? this.inepId,
-      name: name ?? this.name,
-      email: email ?? this.email,
-      nis: nis ?? this.nis,
-      birthdayDate: birthdayDate ?? this.birthdayDate,
-      sex: sex ?? this.sex,
-      colorRace: colorRace ?? this.colorRace,
-      filiation: filiation ?? this.filiation,
-      filiation1: filiation1 ?? this.filiation1,
-      filiation2: filiation2 ?? this.filiation2,
-      nationality: nationality ?? this.nationality,
-      edcensoNationFk: edcensoNationFk ?? this.edcensoNationFk,
-      edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
-      edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
-      deficiency: deficiency ?? this.deficiency,
-      deficiencyTypeBlindness:
-          deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
-      deficiencyTypeLowVision:
-          deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
-      deficiencyTypeDeafness:
-          deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
+      registerType: registerType,
+      schoolInepIdFk: schoolInepIdFk,
+      inepId: inepId,
+      name: name,
+      email: email,
+      nis: nis,
+      birthdayDate: birthdayDate,
+      sex: sex,
+      colorRace: colorRace,
+      filiation: filiation,
+      filiation1: filiation1,
+      filiation2: filiation2,
+      nationality: nationality,
+      edcensoNationFk: edcensoNationFk,
+      edcensoUfFk: edcensoUfFk,
+      edcensoCityFk: edcensoCityFk,
+      deficiency: deficiency,
+      deficiencyTypeBlindness: deficiencyTypeBlindness,
+      deficiencyTypeLowVision: deficiencyTypeLowVision,
+      deficiencyTypeDeafness: deficiencyTypeDeafness,
       deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ??
           this.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafblindness:
-          deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
+      deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
       deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ??
           this.deficiencyTypePhisicalDisability,
       deficiencyTypeIntelectualDisability:
@@ -125,9 +126,9 @@ class InstructorModel {
               this.deficiencyTypeIntelectualDisability,
       deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ??
           this.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeAutism: deficiencyTypeAutism ?? this.deficiencyTypeAutism,
-      deficiencyTypeGifted: deficiencyTypeGifted ?? this.deficiencyTypeGifted,
-      hash: hash ?? this.hash,
+      deficiencyTypeAutism: deficiencyTypeAutism,
+      deficiencyTypeGifted: deficiencyTypeGifted,
+      hash: hash,
     );
   }
 
@@ -204,6 +205,43 @@ class InstructorModel {
 
   factory InstructorModel.fromJson(String source) =>
       InstructorModel.fromMap(json.decode(source));
+
+  factory InstructorModel.fromEntity(Instructor instructor) {
+    return InstructorModel(
+      registerType: instructor.registerType,
+      schoolInepIdFk: instructor.schoolInepIdFk,
+      inepId: instructor.inepId,
+      name: instructor.name,
+      email: instructor.email,
+      nis: instructor.nis,
+      birthdayDate: instructor.birthdayDate,
+      sex: instructor.sex,
+      colorRace: instructor.colorRace,
+      filiation: instructor.filiation,
+      filiation1: instructor.filiation1,
+      filiation2: instructor.filiation2,
+      nationality: instructor.nationality,
+      edcensoNationFk: instructor.edcensoNationFk,
+      edcensoUfFk: instructor.edcensoUfFk,
+      edcensoCityFk: instructor.edcensoCityFk,
+      deficiency: instructor.deficiency,
+      deficiencyTypeBlindness: instructor.deficiencyTypeBlindness,
+      deficiencyTypeLowVision: instructor.deficiencyTypeLowVision,
+      deficiencyTypeDeafness: instructor.deficiencyTypeDeafness,
+      deficiencyTypeDisabilityHearing:
+          instructor.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafblindness: instructor.deficiencyTypeDeafblindness,
+      deficiencyTypePhisicalDisability:
+          instructor.deficiencyTypePhisicalDisability,
+      deficiencyTypeIntelectualDisability:
+          instructor.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities:
+          instructor.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeAutism: instructor.deficiencyTypeAutism,
+      deficiencyTypeGifted: instructor.deficiencyTypeGifted,
+      hash: instructor.hash,
+    );
+  }
 
   @override
   String toString() {

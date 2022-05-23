@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/teacher.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:equatable/equatable.dart';
 
 class TeacherListState extends Equatable {
@@ -9,7 +9,7 @@ class TeacherListState extends Equatable {
   });
 
   final bool loading;
-  final List<Teacher> teachers;
+  final List<Instructor> teachers;
   final String message;
 
   @override
@@ -17,7 +17,7 @@ class TeacherListState extends Equatable {
 
   TeacherListState copyWith({
     bool? loading,
-    List<Teacher>? teachers,
+    List<Instructor>? teachers,
     String? message,
   }) {
     return TeacherListState(
@@ -40,7 +40,7 @@ class LoadingState extends TeacherListState {
 
 class LoadedState extends TeacherListState {
   const LoadedState({
-    required List<Teacher> teachers,
+    required List<Instructor> teachers,
   }) : super(loading: false, message: "", teachers: teachers);
 }
 
