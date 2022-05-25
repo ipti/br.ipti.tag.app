@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'data/datasources/remote/teacher_remote_datasource.dart';
 import 'data/repositories/teacher_repository_impl.dart';
 import 'domain/usecases/list_teachers_usecase.dart';
+import 'presentation/create/create_instructor_module.dart';
 
 class TeacherModule extends Module {
   @override
@@ -25,5 +26,6 @@ class TeacherModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const TeacherPage()),
+    ModuleRoute("/create", module: CreateInstructorModule()),
   ];
 }

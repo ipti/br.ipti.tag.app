@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
@@ -11,10 +10,11 @@ import 'bloc/enrollment_social_bloc.dart';
 import 'bloc/enrollment_social_states.dart';
 
 class SocialFormPage extends StatefulWidget {
-  const SocialFormPage({Key? key, this.model, this.editMode = EditMode.Create})
-      : super(key: key);
+  const SocialFormPage({
+    Key? key,
+    this.editMode = EditMode.Create,
+  }) : super(key: key);
 
-  final StudentDocsAddress? model;
   final EditMode editMode;
 
   @override
@@ -28,7 +28,6 @@ class SocialFormPageState extends State<SocialFormPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    if (widget.model != null) controller.loadStudentDocsAddress(widget.model!);
     super.initState();
   }
 

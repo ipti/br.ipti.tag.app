@@ -1,23 +1,22 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_states.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import 'bloc/enrollment_personal_bloc.dart';
+import 'bloc/enrollment_personal_states.dart';
+
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
     Key? key,
-    this.student,
     this.editMode = EditMode.Create,
   }) : super(key: key);
 
-  final Student? student;
   final EditMode editMode;
 
   @override
@@ -26,11 +25,10 @@ class PersonalDataFormPage extends StatefulWidget {
 
 class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
   final _formKey = GlobalKey<FormState>();
-  final controller = Modular.get<EnrollmentPersonalBloc>();
+  final controller = Modular.get<InstructorPersonalBloc>();
 
   @override
   void initState() {
-    if (widget.student != null) controller.loadStudent(widget.student!);
     super.initState();
   }
 
@@ -48,7 +46,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
     return Form(
       key: _formKey,
-      child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
+      child: BlocBuilder<InstructorPersonalBloc, InstructorPersonalState>(
           bloc: controller,
           builder: (context, state) {
             return SingleChildScrollView(
@@ -71,7 +69,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         ),
                         Flexible(
                             child: _BirthdayField(
-                          birthday: state.birthday,
+                          birthday: state.birthdayDate,
                           controller: controller,
                         )),
                       ],
@@ -97,7 +95,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                       ),
                       Flexible(
                           child: _FiliationField(
-                        filiation: state.filiation,
+                        filiation: 1,
                         controller: controller,
                       )),
                     ]),
@@ -110,12 +108,6 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         child: _FormDeficiency(
                           controller: controller,
                           state: state,
-                        ),
-                      ),
-                      Flexible(
-                        child: _FoodRestrictionField(
-                          foodRestriction: state.foodRestrictions,
-                          controller: controller,
                         ),
                       ),
                     ]),
@@ -150,12 +142,12 @@ class _SexField extends StatelessWidget {
     this.sex,
   }) : super(key: key);
   final int? sex;
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
 
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_SEX'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_SEX'),
       label: 'Sexo',
       hint: "Selecione o sexo",
       items: controller.sexItems,
@@ -173,13 +165,13 @@ class _ColorRaceField extends StatelessWidget {
     this.colorRace,
   }) : super(key: key);
 
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
   final int? colorRace;
 
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_COLOR_RACE'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_COLOR_RACE'),
       label: 'Cor/Raça',
       hint: "Selecione a cor/raça",
       items: controller.colorRaceItems,
@@ -198,12 +190,12 @@ class _FiliationField extends StatelessWidget {
   }) : super(key: key);
 
   final int? filiation;
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
 
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_FILIATION'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_FILIATION'),
       label: 'Filiação',
       hint: "Selecione a filiação",
       items: controller.filiationItems,
@@ -221,41 +213,18 @@ class _NationalityField extends StatelessWidget {
     this.nationality,
   }) : super(key: key);
   final int? nationality;
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
 
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_NATIONALITY'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_NATIONALITY'),
       label: 'Nacionalidade',
       hint: "Selecione a nacionalidade",
       items: controller.nationalityItems,
       onChanged: controller.setNationality,
       value: nationality,
       validator: requiredValidator,
-    );
-  }
-}
-
-class _FoodRestrictionField extends StatelessWidget {
-  const _FoodRestrictionField({
-    Key? key,
-    required this.controller,
-    this.foodRestriction,
-  }) : super(key: key);
-  final String? foodRestriction;
-  final EnrollmentPersonalBloc controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return TagTextField(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_FOOD_RESTRICTION'),
-      label: "Restrição Alimentar / Alergia",
-      inputType: TextInputType.multiline,
-      hint: "",
-      onChanged: controller.setFoodRestriction,
-      value: foodRestriction,
-      maxLines: 5,
     );
   }
 }
@@ -268,12 +237,12 @@ class _BirthdayField extends StatelessWidget {
   }) : super(key: key);
 
   final String? birthday;
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
 
   @override
   Widget build(BuildContext context) {
     return TagDatePickerField(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_BIRTHDAY'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_BIRTHDAY'),
       label: "Data  de nascimento",
       hint: "__/__/____",
       onChanged: controller.setBirthday,
@@ -294,13 +263,13 @@ class _NameField extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final EnrollmentPersonalBloc controller;
+  final InstructorPersonalBloc controller;
   final String? name;
 
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key('STUDENT_ENROLLMENT_PERSONAL_NAME'),
+      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_NAME'),
       label: "Nome",
       hint: "Digite o nome do aluno",
       onChanged: controller.setName,
@@ -322,8 +291,8 @@ class _FormDeficiency extends StatelessWidget {
     required this.state,
   }) : super(key: key);
 
-  final EnrollmentPersonalBloc controller;
-  final EnrollmentPersonalState state;
+  final InstructorPersonalBloc controller;
+  final InstructorPersonalState state;
 
   @override
   Widget build(BuildContext context) {
