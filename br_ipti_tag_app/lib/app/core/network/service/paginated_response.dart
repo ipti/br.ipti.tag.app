@@ -45,10 +45,10 @@ class PaginatedResponse {
 
   factory PaginatedResponse.fromMap(Map<String, dynamic> map) {
     return PaginatedResponse(
-      page: map['page']?.toInt() ?? 0,
-      totalPages: map['totalPages']?.toInt() ?? 0,
-      perPage: map['perPage']?.toInt() ?? 0,
-      totalData: map['totalData']?.toInt() ?? 0,
+      page: map['page'] ?? 0,
+      totalPages: map['totalPages'] ?? 0,
+      perPage: map['perPage'] ?? 0,
+      totalData: map['totalData'] ?? 0,
       data: List.from(map['data']),
     );
   }

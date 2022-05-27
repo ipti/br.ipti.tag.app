@@ -13,9 +13,6 @@ class EnrollmentSocialState extends Equatable {
   final bool bfParticipator;
   final bool posCenso;
 
-  @override
-  List<Object?> get props => [];
-
   EnrollmentSocialState copyWith({
     String? nis,
     String? inepId,
@@ -29,6 +26,9 @@ class EnrollmentSocialState extends Equatable {
       posCenso: posCenso ?? this.posCenso,
     );
   }
+
+  @override
+  List<Object> get props => [nis, inepId, bfParticipator, posCenso];
 }
 
 class EmptyEnrollmentSocialState extends EnrollmentSocialState {

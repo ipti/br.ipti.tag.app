@@ -39,36 +39,41 @@ class DetailsMealPageState extends State<DetailsMealPage> {
         ConstrainedBox(
           constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(text: "Consistência ", style: labelText),
-                      TextSpan(
-                        text: "${widget.mealComponent.consistence} ",
-                        style: infoText,
-                      ),
-                    ],
-                  ),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              RichText(
+                text: TextSpan(
+                  children: [
+                    const TextSpan(text: "Consistência ", style: labelText),
+                    TextSpan(
+                      text: "${widget.mealComponent.consistence} ",
+                      style: infoText,
+                    ),
+                  ],
                 ),
-                RichText(
-                  text: const TextSpan(children: [
+              ),
+              RichText(
+                text: const TextSpan(
+                  children: [
                     TextSpan(text: "Data e hora  ", style: labelText),
                     TextSpan(
                       // text: "${widget.mealComponent.turn} ",
                       text: "{widget.mealComponent.turn}",
                       style: infoText,
                     ),
-                  ]),
+                  ],
                 ),
-                RichText(
-                  text: const TextSpan(children: [
+              ),
+              RichText(
+                text: const TextSpan(
+                  children: [
                     TextSpan(text: "Tipo de Aluno ", style: labelText),
                     TextSpan(text: "{widget.mealComponent.studentType} "),
-                  ]),
+                  ],
                 ),
-              ]),
+              ),
+            ],
+          ),
         ),
         IngredientsList(
           ingredients: ingredients,

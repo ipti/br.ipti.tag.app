@@ -27,9 +27,9 @@ class AppModule extends Module {
 
   // Provide all the routes for your module
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ModuleRoute(
-      "/auth",
+      "/",
       module: AuthModule(),
       transition: TransitionType.noTransition,
     ),

@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +18,7 @@ class ClassroomListBloc extends Cubit<ClassroomListState> {
 
   Future<void> fetchListClassroomsEvent() async {
     startLoading();
-    final resultEither = await _listClassromsUsecase(NoParams());
+    final resultEither = await _listClassromsUsecase(ClassroomParams());
     resultEither.fold(
       (Exception failure) => emit(FailedState(message: failure.toString())),
       (classrooms) => emit(LoadedState(classrooms: classrooms)),

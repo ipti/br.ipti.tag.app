@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -65,7 +64,7 @@ class _SelectActionNavigatorItem extends StatelessWidget {
     required this.subtitle,
   }) : super(key: key);
 
-  final Function onTap;
+  final Function() onTap;
   final String title;
   final String subtitle;
 

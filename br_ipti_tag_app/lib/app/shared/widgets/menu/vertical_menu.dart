@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/widgets.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -37,7 +38,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Alunos",
-        route: '/alunos',
+        route: '/alunos/',
         isActive: currentRoute.contains('/alunos/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
@@ -49,7 +50,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Professores",
-        route: '/professores',
+        route: '/professores/',
         isActive: currentRoute.contains('/professores/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
@@ -61,7 +62,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Transporte",
-        route: '/transporte',
+        route: '/transporte/',
         isActive: currentRoute.contains('/transporte/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
@@ -95,7 +96,7 @@ class TagVerticalMenu extends StatelessWidget {
           sessionService.cleanToken();
           sessionService.cleanSchoolYear();
           sessionService.cleanCurrentUserSchools();
-          Modular.to.pushReplacementNamed("/auth");
+          Modular.to.pushReplacementNamed("/");
         },
       ),
     ];

@@ -35,13 +35,13 @@ class UserModel extends User {
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    final schools = List.from(map['schools'] ?? []);
     return UserModel(
       id: map['id'],
       name: map['name'],
-      schools: map['schools'] != null
-          ? List<SchoolModel>.from(
-              map['schools']?.map((x) => SchoolModel.fromMap(x)))
-          : null,
+      schools: List<SchoolModel>.from(
+        schools.map((x) => SchoolModel.fromMap(x)),
+      ),
       username: map['username'],
     );
   }

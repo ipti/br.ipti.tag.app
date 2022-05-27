@@ -22,4 +22,10 @@ class FilePaths {
   // Home Icon
   static const ICON_HOME_BLUE_SVG = 'assets/icons/home/azul.svg';
   static const ICON_HOME_GREY_SVG = 'assets/icons/home/cinza.svg';
+  // Impressora Icon
+  static const IMPRESSORA_ICON_SVG = 'assets/icons/impressora/impressora.svg';
+  // Info Icon
+  static const INFO_ICON_SVG = 'assets/icons/info/info.svg';
+  // Close Icon
+  static const ICON_CLOSE_SVG = 'assets/icons/fechar/fechar.svg';
 }

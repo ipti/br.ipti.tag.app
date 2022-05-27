@@ -1,38 +1,86 @@
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/fast_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_docs_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import 'enrollment_states.dart';
 
 class EnrollmentBloc extends Cubit<EnrollmentState> {
-  EnrollmentBloc(this._enrollmentUsecase) : super(EnrollmentState());
+  EnrollmentBloc(
+    this._loadStudentDocsUsecase,
+    this._loadStudentEnrollmentUsecase,
+  ) : super(const EnrollmentInitialState());
 
-  // ignore: unused_field
-  final FastEnrollmentUsecase _enrollmentUsecase;
+  final LoadStudentDocsUsecase _loadStudentDocsUsecase;
+  final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
 
-  Future<void> submitPersonalForm() async {
-    // final result = await _enrollmentUsecase(EnrollmentParams(student));
-    // result.fold((l) => null, (r) => emit(state));
+  Student? student;
+  StudentDocsAddress? studentDocs;
+  StudentEnrollment? studentEnrollment;
+
+  int tabIndex = 0;
+
+  void loadStudent(Student? student) {
+    this.student = student;
+    emit(
+      EnrollmentLoadedState(
+        student: student,
+        studentDocs: studentDocs,
+        studentEnrollment: studentEnrollment,
+      ),
+    );
   }
 
-  void tabNavigation(int index) {
-    switch (index) {
-      case 0:
-        Modular.to.navigate('/alunos/matricula/pessoal');
-        break;
-      case 1:
-        Modular.to.navigate('/alunos/matricula/filiacao');
-        break;
-      case 2:
-        Modular.to.navigate('/alunos/matricula/endereco');
-        break;
-      case 3:
-        Modular.to.navigate('/alunos/matricula/social');
-        break;
-      case 4:
-        Modular.to.navigate('/alunos/matricula/turma');
-        break;
-      default:
-    }
+  void loadStudentDocs(StudentDocsAddress? studentDocs) {
+    this.studentDocs = studentDocs;
+    emit(EnrollmentLoadedState(
+      student: student,
+      studentDocs: studentDocs,
+      studentEnrollment: studentEnrollment,
+    ));
+  }
+
+  void loadStudentsEnrollment(StudentEnrollment studentEnrollment) {
+    this.studentEnrollment = studentEnrollment;
+    emit(EnrollmentLoadedState(
+      student: student,
+      studentDocs: studentDocs,
+      studentEnrollment: studentEnrollment,
+    ));
+  }
+
+  Future fetchStudentDocs(String studentId, String schoolId) async {
+    final params = LoadStudentDocsParams(studentId, schoolId);
+    final result = await _loadStudentDocsUsecase(params);
+
+    result.fold(id, loadStudentDocs);
+  }
+
+  Future fetchStudentsEnrollment(String studentId, String schoolId) async {
+    final params = LoadStudentEnrollmentParams(studentId, schoolId);
+    final result = await _loadStudentEnrollmentUsecase(params);
+    result.fold(id, loadStudentsEnrollment);
+  }
+
+  // ignore: use_setters_to_change_properties
+  void setTabIndex(int index) {
+    tabIndex = index;
+  }
+
+  void nextTab() {
+    emit(EnrollmentNextTabState(
+      tabIndex: tabIndex + 1,
+    ));
+  }
+
+  void notifyError(String message) {
+    emit(EnrollmenErrorState(message: message));
+  }
+
+  void notifySuccess(String message) {
+    emit(EnrollmenSuccessState(message: message));
   }
 }
