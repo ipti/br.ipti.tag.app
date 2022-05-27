@@ -11,13 +11,15 @@ class SchoolModule extends Module {
   // TODO: implement binds
   List<Bind<Object>> get binds => [
         // Datasources
-        Bind.factory((i) => SchoolRemoteDataSource(i.get())),
+        Bind.singleton((i) => SchoolRemoteDataSource(i.get())),
 
         // Repositories
         Bind.singleton((i) => SchoolRepositoryImpl(i.get())),
 
         // UseCases
-        Bind.singleton((i) => EditSchoolUsecase(i.get())),
+        Bind.singleton((i) => EditSchoolUsecase(
+              i.get<SchoolRepositoryImpl>(),
+            )),
         Bind.singleton((i) => ShowSchoolUsecase(i.get())),
 
         // Cubic(States)

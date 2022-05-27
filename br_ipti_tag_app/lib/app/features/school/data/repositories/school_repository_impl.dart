@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/features/school/data/datasources/school_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/repositories/school_repositories.dart';
 import 'package:dartz/dartz.dart';

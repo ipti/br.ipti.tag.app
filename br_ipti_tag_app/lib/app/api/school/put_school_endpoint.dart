@@ -4,7 +4,10 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_headers.dart';
 import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
 class PutSchoolEndPoint extends EndPointAPI {
-  PutSchoolEndPoint(this.schoolId, this.schoolDto);
+  PutSchoolEndPoint(
+    this.schoolId,
+    this.schoolDto,
+  );
 
   final String schoolId;
   final SchoolUpdateDto schoolDto;
@@ -17,11 +20,12 @@ class PutSchoolEndPoint extends EndPointAPI {
 
   @override
   HTTPHeaders? get headers => () => {
-        'Content-Type': ContentType.APPLICATION_JSON,
+        'Content-Type': ContentType.APPLICATION_FORM,
       };
 
   @override
   Parameters? get bodyParameters => () => {
+        "name": schoolDto.name,
         "register_type": schoolDto.registerType,
         "inep_id": schoolDto.inepId,
         "manager_cpf": schoolDto.managerCpf,
@@ -33,7 +37,6 @@ class PutSchoolEndPoint extends EndPointAPI {
         "situation": schoolDto.situation,
         "initial_date": schoolDto.initialDate,
         "final_date": schoolDto.finalDate,
-        "name": schoolDto.name,
         "latitude": schoolDto.latitude,
         "longitude": schoolDto.longitude,
         "cep": schoolDto.cep,
