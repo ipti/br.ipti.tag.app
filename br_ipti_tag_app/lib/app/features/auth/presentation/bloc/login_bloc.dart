@@ -49,7 +49,7 @@ class LoginBloc extends Cubit<LoginState> {
     final result = await verifyAuthUsecase(NoParams());
     result.fold(
       (l) => null,
-      (r) => Modular.to.pushReplacementNamed("/turmas"),
+      (r) => Modular.to.pushReplacementNamed("/turmas/"),
     );
   }
 

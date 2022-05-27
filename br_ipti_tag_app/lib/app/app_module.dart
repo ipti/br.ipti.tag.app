@@ -49,7 +49,7 @@ class AppModule extends Module {
       transition: TransitionType.noTransition,
     ),
     ModuleRoute(
-      "/turmas",
+      "/turmas/",
       module: ClassroomModule(),
       transition: TransitionType.noTransition,
     ),
