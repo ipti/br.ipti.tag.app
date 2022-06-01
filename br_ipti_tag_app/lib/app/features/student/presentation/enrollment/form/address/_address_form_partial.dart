@@ -289,7 +289,7 @@ class _ZoneField extends StatelessWidget {
         Checkbox(
           key: const Key("STUDENT_ENROLLMENT_ADDRESS_ZONE"),
           value: residenceZone == 1,
-          onChanged: (value) => controller.setZone(value! ? 1 : 0),
+          onChanged: (value) => controller.setZone(value! ? 2 : 1),
         ),
         const TagLabel("A residência fica em uma Zona Urbana"),
       ],
