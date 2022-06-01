@@ -23,7 +23,6 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
   Widget build(BuildContext context) {
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.title,
       description:
           "Acompanhe o calendário e o estoque de alimentos da sua escola",

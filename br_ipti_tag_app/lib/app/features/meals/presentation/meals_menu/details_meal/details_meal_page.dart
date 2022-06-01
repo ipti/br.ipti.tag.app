@@ -32,7 +32,6 @@ class DetailsMealPageState extends State<DetailsMealPage> {
 
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.meal.description,
       description: "Ingredientes para a refeição",
       path: const [],
