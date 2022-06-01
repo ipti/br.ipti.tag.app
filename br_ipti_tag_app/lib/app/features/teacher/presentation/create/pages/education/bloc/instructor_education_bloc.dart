@@ -90,6 +90,5 @@ class InstructorEducationBloc extends Cubit<InstructorEducationState> {
 
   Future<void> submitEducationForm() async {
     _createInstructorBloc.loadEducationData(education: state);
-    _createInstructorBloc.create();
   }
 }

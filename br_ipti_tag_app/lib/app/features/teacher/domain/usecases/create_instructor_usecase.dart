@@ -14,7 +14,72 @@ class CreateInstructorsUsecase
   Future<Either<Exception, Instructor>> call(
     CreateInstructorParams params,
   ) async {
-    final instructor = Instructor();
+    final instructor = Instructor(
+      schoolInepIdFk: params.schoolInepIdFk,
+      cpf: params.cpf,
+      deficiencyTypeGifted: params.deficiencyTypeGifted,
+      deficiencyTypeAutism: params.deficiencyTypeAutism,
+      deficiencyTypeMultipleDisabilities:
+          params.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability:
+          params.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: params.deficiencyTypePhisicalDisability,
+      deficiencyTypeDeafblindness: params.deficiencyTypeDeafblindness,
+      deficiencyTypeDisabilityHearing: params.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafness: params.deficiencyTypeDeafness,
+      deficiencyTypeLowVision: params.deficiencyTypeLowVision,
+      deficiencyTypeBlindness: params.deficiencyTypeBlindness,
+      filiation2: params.filiation2,
+      filiation1: params.filiation1,
+      filiation: params.filiation,
+      nis: params.nis,
+      email: params.email,
+      registerType: params.registerType,
+      name: params.name,
+      birthdayDate: params.birthdayDate,
+      sex: params.sex,
+      colorRace: params.colorRace,
+      nationality: params.nationality,
+      edcensoNationFk: params.edcensoNationFk,
+      edcensoUfFk: params.edcensoUfFk,
+      edcensoCityFk: params.edcensoCityFk,
+      deficiency: params.deficiency,
+      scholarity: params.scholarity,
+
+      // address
+      neighborhood: params.neighborhood,
+      complement: params.complement,
+      addressNumber: params.addressNumber,
+      address: params.address,
+      cep: params.cep,
+      areaOfResidence: params.areaOfResidence,
+
+      // education
+      otherCoursesNone: params.otherCoursesNone,
+      otherCoursesOther: params.otherCoursesOther,
+      otherCoursesEthnicEducation: params.otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights:
+          params.otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: params.otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation: params.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation: params.otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: params.otherCoursesFieldEducation,
+      otherCoursesNativeEducation: params.otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: params.otherCoursesSpecialEducation,
+      otherCoursesEducationOfYouthAndAdults:
+          params.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: params.otherCoursesHighSchool,
+      otherCoursesBasicEducationFinalYears:
+          params.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears:
+          params.otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: params.otherCoursesPreSchool,
+      otherCoursesNursery: params.otherCoursesNursery,
+      postGraduationNone: params.postGraduationNone,
+      postGraduationDoctorate: params.postGraduationDoctorate,
+      postGraduationMaster: params.postGraduationMaster,
+      postGraduationSpecialization: params.postGraduationSpecialization,
+    );
 
     final result = await _repositoryInstructor.create(instructor);
     return result;

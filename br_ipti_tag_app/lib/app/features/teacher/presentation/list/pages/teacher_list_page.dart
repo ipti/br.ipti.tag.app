@@ -66,6 +66,7 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
               return const Center(child: CircularProgressIndicator());
             }
             return TagDataTable(
+              bodyHeight: 420,
               onTapRow: (row) => Modular.to.pushNamed("/edit", arguments: row),
               columns: const [
                 DataColumn(label: Text("Nome")),

@@ -117,6 +117,15 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                         controller: controller,
                       )),
                     ]),
+                    RowToColumn(children: [
+                      Flexible(
+                        child: _ScholarityField(
+                          controller: controller,
+                          scholarity: state.scholarity,
+                        ),
+                      ),
+                      const Spacer()
+                    ]),
                     const Padding(
                       padding: EdgeInsets.only(top: 36, bottom: 16),
                       child: heading2,
@@ -347,11 +356,34 @@ class _CPFField extends StatelessWidget {
       hint: "Somente números",
       onChanged: controller.setCPF,
       value: cpf,
+      formatters: [TagMasks.maskCPF],
       inputType: TextInputType.number,
       validator: MultiValidator([
         requiredValidator,
         cpfValidator,
       ]),
+    );
+  }
+}
+
+class _ScholarityField extends StatelessWidget {
+  const _ScholarityField({
+    Key? key,
+    this.scholarity,
+    required this.controller,
+  }) : super(key: key);
+
+  final int? scholarity;
+  final InstructorPersonalBloc controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagDropdownField(
+      key: const Key('INSTRUCTOR_PERSONAL_SCHOLARITY'),
+      label: 'Escolaridade',
+      items: controller.scholarityItems,
+      value: scholarity,
+      onChanged: controller.setScholarity,
     );
   }
 }

@@ -84,6 +84,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   void setColorRace(int value) => emit(state.copyWith(colorRace: value));
   void setFiliation(int value) => emit(state.copyWith(filiation: value));
   void setNationality(int value) => emit(state.copyWith(nationality: value));
+  void setScholarity(int value) => emit(state.copyWith(scholarity: value));
 
   // Cegueira
   // Baixa visão

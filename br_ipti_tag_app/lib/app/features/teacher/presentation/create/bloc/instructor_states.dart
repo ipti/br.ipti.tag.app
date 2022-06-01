@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class InstructorFormState extends Equatable {
+  final int tabIndex;
   final String? neighborhood;
   final String? complement;
   final String? addressNumber;
@@ -78,6 +79,7 @@ class InstructorFormState extends Equatable {
   final bool deficiency;
   final int? scholarity;
   const InstructorFormState({
+    this.tabIndex = 0,
     this.neighborhood,
     this.complement,
     this.addressNumber,
@@ -159,6 +161,7 @@ class InstructorFormState extends Equatable {
   @override
   List<Object> get props {
     return [
+      tabIndex,
       neighborhood ?? "",
       complement ?? "",
       addressNumber ?? "",
@@ -239,6 +242,7 @@ class InstructorFormState extends Equatable {
   }
 
   InstructorFormState copyWith({
+    int? tabIndex,
     String? neighborhood,
     String? complement,
     String? addressNumber,
@@ -317,6 +321,7 @@ class InstructorFormState extends Equatable {
     int? scholarity,
   }) {
     return InstructorFormState(
+      tabIndex: tabIndex ?? this.tabIndex,
       neighborhood: neighborhood ?? this.neighborhood,
       complement: complement ?? this.complement,
       addressNumber: addressNumber ?? this.addressNumber,
@@ -442,8 +447,8 @@ class InstructorFormState extends Equatable {
   }
 }
 
-class InstructorInitialState extends InstructorFormState {
-  const InstructorInitialState();
+class EmptyInstructorState extends InstructorFormState {
+  const EmptyInstructorState();
   @override
   List<Object> get props => [];
 }
@@ -453,19 +458,9 @@ class InstructorLoadedState extends InstructorFormState {
   List<Object> get props => [];
 }
 
-class InstructorNextTabState extends InstructorFormState {
-  final int tabIndex;
-  const InstructorNextTabState({
-    this.tabIndex = 0,
-  });
-
-  @override
-  List<Object> get props => [tabIndex];
-}
-
 class CreateInstructorErrorState extends InstructorFormState {
   final String message;
-  CreateInstructorErrorState({
+  const CreateInstructorErrorState({
     required this.message,
   });
 
@@ -475,7 +470,7 @@ class CreateInstructorErrorState extends InstructorFormState {
 
 class CreateInstructorSuccessState extends InstructorFormState {
   final String message;
-  CreateInstructorSuccessState({
+  const CreateInstructorSuccessState({
     required this.message,
   });
 

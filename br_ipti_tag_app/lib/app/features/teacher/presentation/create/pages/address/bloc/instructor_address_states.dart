@@ -38,8 +38,8 @@ class InstructorAddressState extends Equatable {
       edcensoUfFk,
       edcensoCityFk ?? "",
       residenceZone,
-      cities.toString(),
-      ufs.toString(),
+      cities.hashCode,
+      ufs.hashCode,
     ];
   }
 
@@ -85,7 +85,7 @@ class EmptyInstructorAddressState extends InstructorAddressState {
           edcensoUfFk: "",
           neighborhood: "",
           number: "",
-          residenceZone: 0,
+          residenceZone: 1,
           cities: const {},
           ufs: const {},
         );

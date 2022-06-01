@@ -12,7 +12,7 @@ import 'instructor_states.dart';
 class CreateInstructorBloc extends Cubit<InstructorFormState> {
   CreateInstructorBloc(
     this._createInstructorsUsecase,
-  ) : super(const InstructorInitialState());
+  ) : super(const EmptyInstructorState());
 
   final CreateInstructorsUsecase _createInstructorsUsecase;
 
@@ -25,10 +25,8 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     tabIndex = index;
   }
 
-  void nextTab() {
-    emit(InstructorNextTabState(
-      tabIndex: tabIndex + 1,
-    ));
+  void goToTab(int index) {
+    emit(state.copyWith(tabIndex: index));
   }
 
   void notifyError(String message) {
@@ -74,6 +72,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     );
 
     emit(loadPersonalDataState);
+    goToTab(1);
   }
 
   void loadAddressData({required InstructorAddressState address}) {
@@ -84,9 +83,12 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       address: address.address,
       cep: address.cep,
       areaOfResidence: address.residenceZone,
+      edcensoCityFk: address.edcensoCityFk,
+      edcensoUfFk: address.edcensoUfFk,
     );
 
     emit(loadAddressDataState);
+    goToTab(2);
   }
 
   void loadEducationData({required InstructorEducationState education}) {
@@ -120,6 +122,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     );
 
     emit(loadedEducationDataState);
+    create();
   }
 
   Future create() async {
@@ -152,7 +155,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       sex: state.sex!,
       colorRace: state.colorRace!,
       nationality: state.nationality!,
-      edcensoNationFk: state.edcensoNationFk!,
+      edcensoNationFk: "61ee3e877652254244a8b224",
       edcensoUfFk: state.edcensoUfFk!,
       edcensoCityFk: state.edcensoCityFk!,
       deficiency: state.deficiency,
@@ -164,7 +167,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       addressNumber: state.addressNumber,
       address: state.address,
       cep: state.cep,
-      areaOfResidence: state.areaOfResidence,
+      areaOfResidence: state.areaOfResidence ?? 1,
 
       // education
       otherCoursesNone: state.otherCoursesNone,
@@ -198,8 +201,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     result.fold(
       (error) => notifyError(error.toString()),
       (student) {
-        notifySuccess("Dados básicos do aluno cadastrados com sucesso");
-        nextTab();
+        notifySuccess("Professor cadastrado com sucesso");
       },
     );
   }
