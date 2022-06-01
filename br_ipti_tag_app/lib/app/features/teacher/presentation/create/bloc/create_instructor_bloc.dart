@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../pages/address/bloc/instructor_address_states.dart';
+import '../pages/education/bloc/instructor_education_states.dart';
 import '../pages/personal/bloc/instructor_personal_states.dart';
 import 'instructor_states.dart';
 
 class CreateInstructorBloc extends Cubit<InstructorFormState> {
   CreateInstructorBloc(
     this._createInstructorsUsecase,
-  ) : super(InstructorInitialState());
+  ) : super(const InstructorInitialState());
 
   final CreateInstructorsUsecase _createInstructorsUsecase;
 
@@ -88,13 +89,64 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     emit(loadAddressDataState);
   }
 
+  void loadEducationData({required InstructorEducationState education}) {
+    final loadedEducationDataState = state.copyWith(
+      otherCoursesNone: education.otherCoursesNone,
+      otherCoursesOther: education.otherCoursesOther,
+      otherCoursesEthnicEducation: education.otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights:
+          education.otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: education.otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation:
+          education.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation:
+          education.otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: education.otherCoursesFieldEducation,
+      otherCoursesNativeEducation: education.otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: education.otherCoursesSpecialEducation,
+      otherCoursesEducationOfYouthAndAdults:
+          education.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: education.otherCoursesHighSchool,
+      otherCoursesBasicEducationFinalYears:
+          education.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears:
+          education.otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: education.otherCoursesPreSchool,
+      otherCoursesNursery: education.otherCoursesNursery,
+      postGraduationNone: education.postGraduationNone,
+      postGraduationDoctorate: education.postGraduationDoctorate,
+      postGraduationMaster: education.postGraduationMaster,
+      postGraduationSpecialization: education.postGraduationSpecialization,
+    );
+
+    emit(loadedEducationDataState);
+  }
+
   Future create() async {
     await _session.fetchCurrentSchool();
     final school = _session.state.currentSchool!;
 
     final params = CreateInstructorParams(
-      registerType: state.registerType!,
       schoolInepIdFk: school.id!,
+      cpf: state.cpf,
+      deficiencyTypeGifted: state.deficiencyTypeGifted,
+      deficiencyTypeAutism: state.deficiencyTypeAutism,
+      deficiencyTypeMultipleDisabilities:
+          state.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability:
+          state.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: state.deficiencyTypePhisicalDisability,
+      deficiencyTypeDeafblindness: state.deficiencyTypeDeafblindness,
+      deficiencyTypeDisabilityHearing: state.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafness: state.deficiencyTypeDeafness,
+      deficiencyTypeLowVision: state.deficiencyTypeLowVision,
+      deficiencyTypeBlindness: state.deficiencyTypeBlindness,
+      filiation2: state.filiation2,
+      filiation1: state.filiation1,
+      filiation: state.filiation,
+      nis: state.nis,
+      email: state.email,
+      registerType: 'rg',
       name: state.name!,
       birthdayDate: state.birthdayDate!,
       sex: state.sex!,
@@ -103,7 +155,42 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       edcensoNationFk: state.edcensoNationFk!,
       edcensoUfFk: state.edcensoUfFk!,
       edcensoCityFk: state.edcensoCityFk!,
+      deficiency: state.deficiency,
       scholarity: state.scholarity!,
+
+      // address
+      neighborhood: state.neighborhood,
+      complement: state.complement,
+      addressNumber: state.addressNumber,
+      address: state.address,
+      cep: state.cep,
+      areaOfResidence: state.areaOfResidence,
+
+      // education
+      otherCoursesNone: state.otherCoursesNone,
+      otherCoursesOther: state.otherCoursesOther,
+      otherCoursesEthnicEducation: state.otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights:
+          state.otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: state.otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation: state.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation: state.otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: state.otherCoursesFieldEducation,
+      otherCoursesNativeEducation: state.otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: state.otherCoursesSpecialEducation,
+      otherCoursesEducationOfYouthAndAdults:
+          state.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: state.otherCoursesHighSchool,
+      otherCoursesBasicEducationFinalYears:
+          state.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears:
+          state.otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: state.otherCoursesPreSchool,
+      otherCoursesNursery: state.otherCoursesNursery,
+      postGraduationNone: state.postGraduationNone,
+      postGraduationDoctorate: state.postGraduationDoctorate,
+      postGraduationMaster: state.postGraduationMaster,
+      postGraduationSpecialization: state.postGraduationSpecialization,
     );
 
     final result = await _createInstructorsUsecase(params);
@@ -111,9 +198,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     result.fold(
       (error) => notifyError(error.toString()),
       (student) {
-        notifySuccess(
-          "Dados básicos do aluno cadastrados com sucesso",
-        );
+        notifySuccess("Dados básicos do aluno cadastrados com sucesso");
         nextTab();
       },
     );

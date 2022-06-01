@@ -5,6 +5,7 @@ import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/instruc
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/create_instructor_page.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -30,12 +31,17 @@ class CreateInstructorModule extends Module {
         i.get<CreateInstructorsUsecase>(),
       ),
     ),
-    Bind.singleton((i) => InstructorPersonalBloc()),
+    Bind.singleton(
+      (i) => InstructorPersonalBloc(),
+    ),
     Bind.singleton(
       (i) => InstructorAddressBloc(
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
       ),
+    ),
+    Bind.singleton(
+      (i) => InstructorEducationBloc(),
     ),
   ];
 

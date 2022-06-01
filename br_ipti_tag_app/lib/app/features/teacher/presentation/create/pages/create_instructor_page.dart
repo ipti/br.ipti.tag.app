@@ -10,6 +10,7 @@ import '../bloc/instructor_states.dart';
 import 'address/address_social_form_partial_page.dart';
 
 import 'address/bloc/instructor_address_bloc.dart';
+import 'education/instructor_education_form_page.dart';
 import 'personal/bloc/instructor_personal_bloc.dart';
 import 'personal/personal_form_partial_page.dart';
 
@@ -37,6 +38,9 @@ class InstructorFormPageState
     Tab(
       child: Text("Endereço e Social"),
     ),
+    Tab(
+      child: Text("Dados Educacionais"),
+    ),
   ];
 
   late TabController _tabController;
@@ -44,7 +48,6 @@ class InstructorFormPageState
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
-    // _tabController.addListener(onTap);
 
     controller.stream.listen((state) {
       final nextIndex = _tabController.index + 1;
@@ -125,6 +128,9 @@ class InstructorFormPageState
         AddressFormPage(
           editMode: widget.editMode,
         ),
+        InstructoEducationPage(
+          editMode: widget.editMode,
+        )
       ],
     );
   }
@@ -137,6 +143,9 @@ class InstructorFormPageState
           editMode: widget.editMode,
         ),
         AddressFormPage(
+          editMode: widget.editMode,
+        ),
+        InstructoEducationPage(
           editMode: widget.editMode,
         ),
       ],
