@@ -76,9 +76,9 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
     ));
   }
 
-  void setName(String value) => emit(state.copyWith(
-        name: value,
-      ));
+  void setName(String value) => emit(state.copyWith(name: value));
+  void setCPF(String value) => emit(state.copyWith(cpf: value));
+  void setEmail(String value) => emit(state.copyWith(email: value));
   void setBirthday(String value) => emit(state.copyWith(birthdayDate: value));
   void setSex(int value) => emit(state.copyWith(sex: value));
   void setColorRace(int value) => emit(state.copyWith(colorRace: value));

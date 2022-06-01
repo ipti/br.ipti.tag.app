@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/shared/validators/email_validator.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
 
@@ -68,10 +69,27 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                           ),
                         ),
                         Flexible(
-                            child: _BirthdayField(
-                          birthday: state.birthdayDate,
-                          controller: controller,
-                        )),
+                          child: _BirthdayField(
+                            birthday: state.birthdayDate,
+                            controller: controller,
+                          ),
+                        ),
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: _CPFField(
+                            cpf: state.cpf,
+                            controller: controller,
+                          ),
+                        ),
+                        Flexible(
+                          child: _EmailField(
+                            email: state.email,
+                            controller: controller,
+                          ),
+                        ),
                       ],
                     ),
                     RowToColumn(children: [
@@ -147,7 +165,7 @@ class _SexField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_SEX'),
+      key: const Key('INSTRUCTOR_PERSONAL_SEX'),
       label: 'Sexo',
       hint: "Selecione o sexo",
       items: controller.sexItems,
@@ -171,7 +189,7 @@ class _ColorRaceField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_COLOR_RACE'),
+      key: const Key('INSTRUCTOR_PERSONAL_COLOR_RACE'),
       label: 'Cor/Raça',
       hint: "Selecione a cor/raça",
       items: controller.colorRaceItems,
@@ -195,7 +213,7 @@ class _FiliationField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_FILIATION'),
+      key: const Key('INSTRUCTOR_PERSONAL_FILIATION'),
       label: 'Filiação',
       hint: "Selecione a filiação",
       items: controller.filiationItems,
@@ -218,7 +236,7 @@ class _NationalityField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<int>(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_NATIONALITY'),
+      key: const Key('INSTRUCTOR_PERSONAL_NATIONALITY'),
       label: 'Nacionalidade',
       hint: "Selecione a nacionalidade",
       items: controller.nationalityItems,
@@ -242,7 +260,7 @@ class _BirthdayField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDatePickerField(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_BIRTHDAY'),
+      key: const Key('INSTRUCTOR_PERSONAL_BIRTHDAY'),
       label: "Data  de nascimento",
       hint: "__/__/____",
       onChanged: controller.setBirthday,
@@ -269,9 +287,9 @@ class _NameField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key('STUDENT_INSTRUCTOR_PERSONAL_NAME'),
+      key: const Key('INSTRUCTOR_PERSONAL_NAME'),
       label: "Nome",
-      hint: "Digite o nome do aluno",
+      hint: "Digite o nome do professor",
       onChanged: controller.setName,
       value: name,
       inputType: TextInputType.name,
@@ -279,6 +297,60 @@ class _NameField extends StatelessWidget {
         requiredValidator,
         minLengthValidator(10),
         onlyLettersValidator,
+      ]),
+    );
+  }
+}
+
+class _EmailField extends StatelessWidget {
+  const _EmailField({
+    Key? key,
+    this.email,
+    required this.controller,
+  }) : super(key: key);
+
+  final InstructorPersonalBloc controller;
+  final String? email;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagTextField(
+      key: const Key('INSTRUCTOR_PERSONAL_EMAIL'),
+      label: "Email",
+      hint: "Digite o email do professor",
+      onChanged: controller.setEmail,
+      value: email,
+      inputType: TextInputType.emailAddress,
+      validator: MultiValidator([
+        requiredValidator,
+        emailValidator,
+      ]),
+    );
+  }
+}
+
+class _CPFField extends StatelessWidget {
+  const _CPFField({
+    Key? key,
+    this.cpf,
+    required this.controller,
+  }) : super(key: key);
+
+  final InstructorPersonalBloc controller;
+  final String? cpf;
+
+  @override
+  Widget build(BuildContext context) {
+    return TagTextField(
+      key: const Key('INSTRUCTOR_PERSONAL_CPF'),
+      label: "CPF",
+      hint: "Somente números",
+      onChanged: controller.setCPF,
+      value: cpf,
+      inputType: TextInputType.number,
+      validator: MultiValidator([
+        requiredValidator,
+        cpfValidator,
       ]),
     );
   }
