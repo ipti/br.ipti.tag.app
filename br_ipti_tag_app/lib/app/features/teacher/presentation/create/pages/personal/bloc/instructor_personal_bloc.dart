@@ -6,25 +6,17 @@ import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/filliation_typ
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/nationality_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/scholarity_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/sex_enum.dart';
-import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
-
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'enrollment_personal_states.dart';
+import 'instructor_personal_states.dart';
 
 class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
-  InstructorPersonalBloc(
-    this._createStudentsUsecase,
-  ) : super(const EmptyInstructorPersonalState());
+  InstructorPersonalBloc() : super(const EmptyInstructorPersonalState());
 
-  final CreateInstructorsUsecase _createStudentsUsecase;
-
-  final _session = Modular.get<SessionBloc>();
-  final _instructorBloc = Modular.get<CreateInstructorBloc>();
+  final _createInstructorBloc = Modular.get<CreateInstructorBloc>();
 
   final sexItems = Map.fromEntries(
     Sex.values.map(
@@ -56,7 +48,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
     ),
   );
 
-  Future loadStudent(Instructor instructor) async {
+  Future loadInstructor(Instructor instructor) async {
     emit(state.copyWith(
       // instructor: instructor,
       name: instructor.name,
@@ -90,7 +82,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   void setBirthday(String value) => emit(state.copyWith(birthdayDate: value));
   void setSex(int value) => emit(state.copyWith(sex: value));
   void setColorRace(int value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(bool value) => emit(state.copyWith(filiation: value));
+  void setFiliation(int value) => emit(state.copyWith(filiation: value));
   void setNationality(int value) => emit(state.copyWith(nationality: value));
 
   // Cegueira
@@ -160,49 +152,8 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   }
 
   Future _create() async {
-    final school = _session.state.currentSchool!;
-
-    final instructor = Instructor(
-      name: state.name,
-      email: state.email,
-      birthdayDate: state.birthdayDate,
-      sex: state.sex,
-      colorRace: state.colorRace,
-      nationality: state.nationality,
-      deficiency: state.deficiency,
-      filiation: state.filiation,
-      registerType: "rg",
-      edcensoUfFk: school.edcensoUfFk,
-      edcensoCityFk: school.edcensoCityFk,
-      // edcensoDistrictFk: school.edcensoDistrictFk,
-      edcensoNationFk: "61ee3e877652254244a8b224",
-      schoolInepIdFk: school.id,
-      deficiencyTypeBlindness: state.deficiencyTypeBlindness,
-      deficiencyTypeLowVision: state.deficiencyTypeLowVision,
-      deficiencyTypeDeafness: state.deficiencyTypeDeafness,
-      deficiencyTypeDisabilityHearing: state.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafblindness: state.deficiencyTypeDeafblindness,
-      deficiencyTypePhisicalDisability: state.deficiencyTypePhisicalDisability,
-      deficiencyTypeIntelectualDisability:
-          state.deficiencyTypeIntelectualDisability,
-      deficiencyTypeMultipleDisabilities:
-          state.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeAutism: state.deficiencyTypeAutism,
-      deficiencyTypeGifted: state.deficiencyTypeGifted,
-    );
-
-    final result = await _createStudentsUsecase(
-      CreateInstructorParams(instructor: instructor),
-    );
-
-    result.fold(
-      (error) => _instructorBloc.notifyError(error.toString()),
-      (student) {
-        _instructorBloc.notifySuccess(
-          "Dados básicos do aluno cadastrados com sucesso",
-        );
-        _instructorBloc.nextTab();
-      },
+    _createInstructorBloc.loadPersonalData(
+      personal: state,
     );
   }
 }

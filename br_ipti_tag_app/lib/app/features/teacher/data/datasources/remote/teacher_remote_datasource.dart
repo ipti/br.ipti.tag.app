@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/api/instructor/get_instructor_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/instructor/post_instructor_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/data/models/instructor_model.dart';
 
@@ -29,7 +30,13 @@ class TeacherRemoteDataSource {
     return InstructorModel.fromMap(response.data!);
   }
 
-  Future<bool> create(InstructorModel student) async {
-    throw UnimplementedError();
+  Future<InstructorModel> create(InstructorModel instructor) async {
+    final response = await _httpClient.request(
+      route: PostInstructorEndPoint(model: instructor),
+    );
+
+    final mappedValue = InstructorModel.fromMap(response.data!);
+
+    return mappedValue;
   }
 }

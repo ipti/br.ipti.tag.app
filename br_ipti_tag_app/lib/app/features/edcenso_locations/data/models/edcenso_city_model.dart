@@ -4,9 +4,9 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/e
 
 class EdCensoCityModel extends EdCensoCity {
   EdCensoCityModel({
-    String? id,
+    required String id,
     String? oldId,
-    String? name,
+    required String name,
     String? cepInitial,
     String? cepFinal,
     String? ddd1,

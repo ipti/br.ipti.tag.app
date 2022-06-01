@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import 'bloc/enrollment_address_bloc.dart';
-import 'bloc/enrollment_address_states.dart';
+import 'bloc/instructor_address_bloc.dart';
+import 'bloc/instructor_address_states.dart';
 
 const headingAddress = Heading(text: "Endereço", type: HeadingType.Title3);
 const padding = EdgeInsets.symmetric(vertical: 8);
@@ -125,7 +125,7 @@ class _CEPField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_CEP"),
+      key: const Key("INSTRUCTOR_ADDRESS_CEP"),
       label: "CEP",
       hint: "Digite o CEP",
       onChanged: controller.setCEP,
@@ -151,7 +151,7 @@ class _UFField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<String>(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_UF"),
+      key: const Key("INSTRUCTOR_ADDRESS_UF"),
       label: "UF",
       hint: "Selecione a UF",
       items: controller.state.ufs,
@@ -174,7 +174,7 @@ class _CityField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagDropdownField<String>(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_CITY"),
+      key: const Key("INSTRUCTOR_ADDRESS_CITY"),
       label: 'Cidade',
       hint: "Selecione a cidade",
       items: controller.state.cities,
@@ -197,7 +197,7 @@ class _AddressField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_ADDRESS"),
+      key: const Key("INSTRUCTOR_ADDRESS_ADDRESS"),
       label: "Endereço",
       hint: "Digite o endereço",
       onChanged: controller.setAddress,
@@ -219,7 +219,7 @@ class _AddressNumberField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_NUMBER"),
+      key: const Key("INSTRUCTOR_ADDRESS_NUMBER"),
       label: "Número",
       hint: "Digite o número",
       onChanged: controller.setNumber,
@@ -241,7 +241,7 @@ class _NeighborhoodField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_NEIGHBORHOOD"),
+      key: const Key("INSTRUCTOR_ADDRESS_NEIGHBORHOOD"),
       label: "Bairro",
       hint: "Digite o bairro",
       onChanged: controller.setNeighborhood,
@@ -263,7 +263,7 @@ class _ComplementField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TagTextField(
-      key: const Key("STUDENT_ENROLLMENT_ADDRESS_COMPLEMENT"),
+      key: const Key("INSTRUCTOR_ADDRESS_COMPLEMENT"),
       label: "Complemento",
       hint: "Digite o complemento",
       onChanged: controller.setComplement,
@@ -287,7 +287,7 @@ class _ZoneField extends StatelessWidget {
     return Row(
       children: [
         Checkbox(
-          key: const Key("STUDENT_ENROLLMENT_ADDRESS_ZONE"),
+          key: const Key("INSTRUCTOR_ADDRESS_ZONE"),
           value: residenceZone == 1,
           onChanged: (value) => controller.setZone(value! ? 1 : 0),
         ),

@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '_address_form_partial.dart';
-import '_social_form_partial.dart';
-import 'bloc/enrollment_address_bloc.dart';
-import 'bloc/enrollment_address_states.dart';
+
+import 'bloc/instructor_address_bloc.dart';
+import 'bloc/instructor_address_states.dart';
 
 class AddressFormPage extends StatefulWidget {
   const AddressFormPage({
@@ -46,10 +46,6 @@ class AddressFormPageState extends State<AddressFormPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     AddressForm(
-                      controller: controller,
-                      state: state,
-                    ),
-                    SocialForm(
                       controller: controller,
                       state: state,
                     ),

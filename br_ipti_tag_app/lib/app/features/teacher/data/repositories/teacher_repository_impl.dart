@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.
 import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/instructor_repository.dart';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
 class InstructorRepositoryImpl implements InstructorRepository {
   InstructorRepositoryImpl(this._instructorDataSource);
@@ -19,6 +20,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
 
       return Right(mappedResults);
     } catch (e) {
+      debugPrint(e.toString());
       return Left(Exception("Não foi possível listar"));
     }
   }
@@ -35,12 +37,13 @@ class InstructorRepositoryImpl implements InstructorRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> create(Instructor instructor) async {
+  Future<Either<Exception, Instructor>> create(Instructor instructor) async {
     try {
       final instructorModel = InstructorModel.fromEntity(instructor);
       final results = await _instructorDataSource.create(instructorModel);
       return Right(results);
     } catch (e) {
+      debugPrint(e.toString());
       return Left(Exception("Não foi possível adicionar estudantes"));
     }
   }

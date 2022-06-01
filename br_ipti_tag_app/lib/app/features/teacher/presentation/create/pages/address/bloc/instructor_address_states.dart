@@ -14,12 +14,6 @@ class InstructorAddressState extends Equatable {
   final String edcensoUfFk;
   final String? edcensoCityFk;
 
-  final String nis;
-  final String inepId;
-  final bool bfParticipator;
-  final bool posCenso;
-  final StudentDocsAddress? docsAddress;
-
   const InstructorAddressState({
     required this.cities,
     required this.ufs,
@@ -31,11 +25,6 @@ class InstructorAddressState extends Equatable {
     required this.edcensoUfFk,
     this.edcensoCityFk,
     required this.residenceZone,
-    required this.nis,
-    required this.inepId,
-    required this.bfParticipator,
-    required this.posCenso,
-    this.docsAddress,
   });
 
   @override
@@ -49,10 +38,6 @@ class InstructorAddressState extends Equatable {
       edcensoUfFk,
       edcensoCityFk ?? "",
       residenceZone,
-      nis,
-      inepId,
-      bfParticipator,
-      posCenso,
       cities.toString(),
       ufs.toString(),
     ];
@@ -84,13 +69,8 @@ class InstructorAddressState extends Equatable {
       edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
       edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
       residenceZone: residenceZone ?? this.residenceZone,
-      nis: nis ?? this.nis,
-      inepId: inepId ?? this.inepId,
-      bfParticipator: bfParticipator ?? this.bfParticipator,
-      posCenso: posCenso ?? this.posCenso,
       cities: cities ?? this.cities,
       ufs: ufs ?? this.ufs,
-      docsAddress: docsAddress ?? this.docsAddress,
     );
   }
 }
@@ -106,10 +86,6 @@ class EmptyInstructorAddressState extends InstructorAddressState {
           neighborhood: "",
           number: "",
           residenceZone: 0,
-          nis: "",
-          inepId: "",
-          bfParticipator: false,
-          posCenso: false,
           cities: const {},
           ufs: const {},
         );

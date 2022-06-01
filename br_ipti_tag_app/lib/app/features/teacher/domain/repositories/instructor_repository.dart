@@ -4,5 +4,5 @@ import 'package:dartz/dartz.dart';
 abstract class InstructorRepository {
   Future<Either<Exception, List<Instructor>>> listAll();
   Future<Either<Exception, Instructor>> getById(int id);
-  Future<Either<Exception, bool>> create(Instructor instructor);
+  Future<Either<Exception, Instructor>> create(Instructor instructor);
 }

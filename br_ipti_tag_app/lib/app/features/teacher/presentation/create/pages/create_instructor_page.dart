@@ -8,9 +8,9 @@ import 'package:tag_ui/tag_ui.dart';
 import '../bloc/create_instructor_bloc.dart';
 import '../bloc/instructor_states.dart';
 import 'address/address_social_form_partial_page.dart';
-import 'address/bloc/enrollment_address_bloc.dart';
-import 'filliation/filiation_form_partial_page.dart';
-import 'personal/bloc/enrollment_personal_bloc.dart';
+
+import 'address/bloc/instructor_address_bloc.dart';
+import 'personal/bloc/instructor_personal_bloc.dart';
 import 'personal/personal_form_partial_page.dart';
 
 class InstructorFormPage extends StatefulWidget {
@@ -32,33 +32,19 @@ class InstructorFormPageState
     with SingleTickerProviderStateMixin {
   static const List<Tab> _tabs = [
     Tab(
-      child: Text("Dados do aluno"),
-    ),
-    Tab(
-      child: Text("Filiação"),
+      child: Text("Dados do pessoais"),
     ),
     Tab(
       child: Text("Endereço e Social"),
     ),
-    Tab(
-      child: Text("Matrícula"),
-    )
   ];
 
   late TabController _tabController;
 
-  void onTap() {
-    const index = 0;
-    setState(() {
-      _tabController.index = index;
-      controller.tabIndex = index;
-    });
-  }
-
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
-    _tabController.addListener(onTap);
+    // _tabController.addListener(onTap);
 
     controller.stream.listen((state) {
       final nextIndex = _tabController.index + 1;
@@ -98,7 +84,7 @@ class InstructorFormPageState
             ),
             child: BlocConsumer<CreateInstructorBloc, InstructorFormState>(
               listener: (context, state) {
-                if (state is EnrollmenErrorState) {
+                if (state is CreateInstructorErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: TagColors.colorRedDark,
@@ -106,7 +92,7 @@ class InstructorFormPageState
                     ),
                   );
                 }
-                if (state is EnrollmenSuccessState) {
+                if (state is CreateInstructorSuccessState) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: TagColors.colorBaseProductNormal,
@@ -150,7 +136,6 @@ class InstructorFormPageState
         PersonalDataFormPage(
           editMode: widget.editMode,
         ),
-        const FiliationFormPage(),
         AddressFormPage(
           editMode: widget.editMode,
         ),

@@ -4,63 +4,71 @@ import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.
 
 class InstructorModel extends Instructor {
   InstructorModel({
-    bool? otherCoursesNone,
-    bool? otherCoursesOther,
-    bool? otherCoursesEthnicEducation,
-    bool? otherCoursesChildAndTeenageRights,
-    bool? otherCoursesSexualEducation,
-    bool? otherCoursesHumanRightsEducation,
-    bool? otherCoursesEnvironmentEducation,
-    bool? otherCoursesFieldEducation,
-    bool? otherCoursesNativeEducation,
-    bool? otherCoursesSpecialEducation,
-    bool? otherCoursesEducationOfYouthAndAdults,
-    bool? otherCoursesHighSchool,
-    bool? otherCoursesBasicEducationFinalYears,
-    bool? otherCoursesBasicEducationInitialYears,
-    bool? otherCoursesPreSchool,
-    bool? otherCoursesNursery,
-    bool? postGraduationNone,
-    bool? postGraduationDoctorate,
-    bool? postGraduationMaster,
-    bool? postGraduationSpecialization,
-    bool? highEducationInstitutionCode3Fk,
-    bool? highEducationFinalYear3,
-    bool? highEducationInitialYear3,
-    bool? highEducationCourseCode3Fk,
-    bool? highEducationFormation3,
-    bool? highEducationSituation3,
-    bool? highEducationInstitutionCode2Fk,
-    bool? highEducationFinalYear2,
-    bool? highEducationInitialYear2,
-    bool? highEducationCourseCode2Fk,
-    bool? highEducationFormation2,
-    bool? highEducationSituation2,
-    bool? highEducationInstitutionCode1Fk,
-    bool? highEducationFinalYear1,
-    bool? highEducationInitialYear1,
-    bool? highEducationCourseCode1Fk,
-    bool? highEducationFormation1,
-    bool? highEducationSituation1,
-    String? hash,
-    bool? deficiencyTypeGifted,
-    bool? deficiencyTypeAutism,
-    bool? deficiencyTypeMultipleDisabilities,
-    bool? deficiencyTypeIntelectualDisability,
-    bool? deficiencyTypePhisicalDisability,
-    bool? deficiencyTypeDeafblindness,
-    bool? deficiencyTypeDisabilityHearing,
-    bool? deficiencyTypeDeafness,
-    bool? deficiencyTypeLowVision,
-    bool? deficiencyTypeBlindness,
+    String? neighborhood,
+    String? complement,
+    String? addressNumber,
+    String? address,
+    String? cep,
+    dynamic diffLocation,
+    int? areaOfResidence,
+    String? cpf,
+    bool? otherCoursesNone = false,
+    bool? otherCoursesOther = false,
+    bool? otherCoursesEthnicEducation = false,
+    bool? otherCoursesChildAndTeenageRights = false,
+    bool? otherCoursesSexualEducation = false,
+    bool? otherCoursesHumanRightsEducation = false,
+    bool? otherCoursesEnvironmentEducation = false,
+    bool? otherCoursesFieldEducation = false,
+    bool? otherCoursesNativeEducation = false,
+    bool? otherCoursesSpecialEducation = false,
+    bool? otherCoursesEducationOfYouthAndAdults = false,
+    bool? otherCoursesHighSchool = false,
+    bool? otherCoursesBasicEducationFinalYears = false,
+    bool? otherCoursesBasicEducationInitialYears = false,
+    bool? otherCoursesPreSchool = false,
+    bool? otherCoursesNursery = false,
+    bool? postGraduationNone = false,
+    bool? postGraduationDoctorate = false,
+    bool? postGraduationMaster = false,
+    bool? postGraduationSpecialization = false,
+    bool? highEducationInstitutionCode3Fk = false,
+    bool? highEducationFinalYear3 = false,
+    bool? highEducationInitialYear3 = false,
+    bool? highEducationCourseCode3Fk = false,
+    bool? highEducationFormation3 = false,
+    bool? highEducationSituation3 = false,
+    bool? highEducationInstitutionCode2Fk = false,
+    bool? highEducationFinalYear2 = false,
+    bool? highEducationInitialYear2 = false,
+    bool? highEducationCourseCode2Fk = false,
+    bool? highEducationFormation2 = false,
+    bool? highEducationSituation2 = false,
+    bool? highEducationInstitutionCode1Fk = false,
+    bool? highEducationFinalYear1 = false,
+    bool? highEducationInitialYear1 = false,
+    bool? highEducationCourseCode1Fk = false,
+    bool? highEducationFormation1 = false,
+    bool? highEducationSituation1 = false,
+    dynamic hash,
+    bool? deficiencyTypeGifted = false,
+    bool? deficiencyTypeAutism = false,
+    bool? deficiencyTypeMultipleDisabilities = false,
+    bool? deficiencyTypeIntelectualDisability = false,
+    bool? deficiencyTypePhisicalDisability = false,
+    bool? deficiencyTypeDeafblindness = false,
+    bool? deficiencyTypeDisabilityHearing = false,
+    bool? deficiencyTypeDeafness = false,
+    bool? deficiencyTypeLowVision = false,
+    bool? deficiencyTypeBlindness = false,
     String? filiation2,
     String? filiation1,
-    bool? filiation,
-    String? nis,
+    int? filiation,
+    dynamic nis,
     String? email,
-    String? inepId,
+    dynamic inepId,
     String? registerType,
-    String? sId,
+    String? id,
     String? schoolInepIdFk,
     String? name,
     String? birthdayDate,
@@ -70,63 +78,81 @@ class InstructorModel extends Instructor {
     String? edcensoNationFk,
     String? edcensoUfFk,
     String? edcensoCityFk,
-    bool? deficiency,
+    bool? deficiency = false,
     int? scholarity,
+    String? createdAt,
+    String? updatedAt,
   }) : super(
-          otherCoursesNone: otherCoursesNone,
-          otherCoursesOther: otherCoursesOther,
-          otherCoursesEthnicEducation: otherCoursesEthnicEducation,
-          otherCoursesChildAndTeenageRights: otherCoursesChildAndTeenageRights,
-          otherCoursesSexualEducation: otherCoursesSexualEducation,
-          otherCoursesHumanRightsEducation: otherCoursesHumanRightsEducation,
-          otherCoursesEnvironmentEducation: otherCoursesEnvironmentEducation,
-          otherCoursesFieldEducation: otherCoursesFieldEducation,
-          otherCoursesNativeEducation: otherCoursesNativeEducation,
-          otherCoursesSpecialEducation: otherCoursesSpecialEducation,
+          neighborhood: neighborhood,
+          complement: complement,
+          addressNumber: addressNumber,
+          address: address,
+          cep: cep,
+          diffLocation: diffLocation,
+          areaOfResidence: areaOfResidence,
+          cpf: cpf,
+          otherCoursesNone: otherCoursesNone ?? false,
+          otherCoursesOther: otherCoursesOther ?? false,
+          otherCoursesEthnicEducation: otherCoursesEthnicEducation ?? false,
+          otherCoursesChildAndTeenageRights:
+              otherCoursesChildAndTeenageRights ?? false,
+          otherCoursesSexualEducation: otherCoursesSexualEducation ?? false,
+          otherCoursesHumanRightsEducation:
+              otherCoursesHumanRightsEducation ?? false,
+          otherCoursesEnvironmentEducation:
+              otherCoursesEnvironmentEducation ?? false,
+          otherCoursesFieldEducation: otherCoursesFieldEducation ?? false,
+          otherCoursesNativeEducation: otherCoursesNativeEducation ?? false,
+          otherCoursesSpecialEducation: otherCoursesSpecialEducation ?? false,
           otherCoursesEducationOfYouthAndAdults:
-              otherCoursesEducationOfYouthAndAdults,
-          otherCoursesHighSchool: otherCoursesHighSchool,
+              otherCoursesEducationOfYouthAndAdults ?? false,
+          otherCoursesHighSchool: otherCoursesHighSchool ?? false,
           otherCoursesBasicEducationFinalYears:
-              otherCoursesBasicEducationFinalYears,
+              otherCoursesBasicEducationFinalYears ?? false,
           otherCoursesBasicEducationInitialYears:
-              otherCoursesBasicEducationInitialYears,
-          otherCoursesPreSchool: otherCoursesPreSchool,
-          otherCoursesNursery: otherCoursesNursery,
-          postGraduationNone: postGraduationNone,
-          postGraduationDoctorate: postGraduationDoctorate,
-          postGraduationMaster: postGraduationMaster,
-          postGraduationSpecialization: postGraduationSpecialization,
-          highEducationInstitutionCode3Fk: highEducationInstitutionCode3Fk,
-          highEducationFinalYear3: highEducationFinalYear3,
-          highEducationInitialYear3: highEducationInitialYear3,
-          highEducationCourseCode3Fk: highEducationCourseCode3Fk,
-          highEducationFormation3: highEducationFormation3,
-          highEducationSituation3: highEducationSituation3,
-          highEducationInstitutionCode2Fk: highEducationInstitutionCode2Fk,
-          highEducationFinalYear2: highEducationFinalYear2,
-          highEducationInitialYear2: highEducationInitialYear2,
-          highEducationCourseCode2Fk: highEducationCourseCode2Fk,
-          highEducationFormation2: highEducationFormation2,
-          highEducationSituation2: highEducationSituation2,
-          highEducationInstitutionCode1Fk: highEducationInstitutionCode1Fk,
-          highEducationFinalYear1: highEducationFinalYear1,
-          highEducationInitialYear1: highEducationInitialYear1,
-          highEducationCourseCode1Fk: highEducationCourseCode1Fk,
-          highEducationFormation1: highEducationFormation1,
-          highEducationSituation1: highEducationSituation1,
+              otherCoursesBasicEducationInitialYears ?? false,
+          otherCoursesPreSchool: otherCoursesPreSchool ?? false,
+          otherCoursesNursery: otherCoursesNursery ?? false,
+          postGraduationNone: postGraduationNone ?? false,
+          postGraduationDoctorate: postGraduationDoctorate ?? false,
+          postGraduationMaster: postGraduationMaster ?? false,
+          postGraduationSpecialization: postGraduationSpecialization ?? false,
+          highEducationInstitutionCode3Fk:
+              highEducationInstitutionCode3Fk ?? false,
+          highEducationFinalYear3: highEducationFinalYear3 ?? false,
+          highEducationInitialYear3: highEducationInitialYear3 ?? false,
+          highEducationCourseCode3Fk: highEducationCourseCode3Fk ?? false,
+          highEducationFormation3: highEducationFormation3 ?? false,
+          highEducationSituation3: highEducationSituation3 ?? false,
+          highEducationInstitutionCode2Fk:
+              highEducationInstitutionCode2Fk ?? false,
+          highEducationFinalYear2: highEducationFinalYear2 ?? false,
+          highEducationInitialYear2: highEducationInitialYear2 ?? false,
+          highEducationCourseCode2Fk: highEducationCourseCode2Fk ?? false,
+          highEducationFormation2: highEducationFormation2 ?? false,
+          highEducationSituation2: highEducationSituation2 ?? false,
+          highEducationInstitutionCode1Fk:
+              highEducationInstitutionCode1Fk ?? false,
+          highEducationFinalYear1: highEducationFinalYear1 ?? false,
+          highEducationInitialYear1: highEducationInitialYear1 ?? false,
+          highEducationCourseCode1Fk: highEducationCourseCode1Fk ?? false,
+          highEducationFormation1: highEducationFormation1 ?? false,
+          highEducationSituation1: highEducationSituation1 ?? false,
           hash: hash,
-          deficiencyTypeGifted: deficiencyTypeGifted,
-          deficiencyTypeAutism: deficiencyTypeAutism,
+          deficiencyTypeGifted: deficiencyTypeGifted ?? false,
+          deficiencyTypeAutism: deficiencyTypeAutism ?? false,
           deficiencyTypeMultipleDisabilities:
-              deficiencyTypeMultipleDisabilities,
+              deficiencyTypeMultipleDisabilities ?? false,
           deficiencyTypeIntelectualDisability:
-              deficiencyTypeIntelectualDisability,
-          deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability,
-          deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
-          deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing,
-          deficiencyTypeDeafness: deficiencyTypeDeafness,
-          deficiencyTypeLowVision: deficiencyTypeLowVision,
-          deficiencyTypeBlindness: deficiencyTypeBlindness,
+              deficiencyTypeIntelectualDisability ?? false,
+          deficiencyTypePhisicalDisability:
+              deficiencyTypePhisicalDisability ?? false,
+          deficiencyTypeDeafblindness: deficiencyTypeDeafblindness ?? false,
+          deficiencyTypeDisabilityHearing:
+              deficiencyTypeDisabilityHearing ?? false,
+          deficiencyTypeDeafness: deficiencyTypeDeafness ?? false,
+          deficiencyTypeLowVision: deficiencyTypeLowVision ?? false,
+          deficiencyTypeBlindness: deficiencyTypeBlindness ?? false,
           filiation2: filiation2,
           filiation1: filiation1,
           filiation: filiation,
@@ -134,7 +160,7 @@ class InstructorModel extends Instructor {
           email: email,
           inepId: inepId,
           registerType: registerType,
-          sId: sId,
+          id: id,
           schoolInepIdFk: schoolInepIdFk,
           name: name,
           birthdayDate: birthdayDate,
@@ -144,68 +170,77 @@ class InstructorModel extends Instructor {
           edcensoNationFk: edcensoNationFk,
           edcensoUfFk: edcensoUfFk,
           edcensoCityFk: edcensoCityFk,
-          deficiency: deficiency,
+          deficiency: deficiency ?? false,
           scholarity: scholarity,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
         );
-
-  InstructorModel copyWith({
-    bool? otherCoursesNone,
-    bool? otherCoursesOther,
-    bool? otherCoursesEthnicEducation,
-    bool? otherCoursesChildAndTeenageRights,
-    bool? otherCoursesSexualEducation,
-    bool? otherCoursesHumanRightsEducation,
-    bool? otherCoursesEnvironmentEducation,
-    bool? otherCoursesFieldEducation,
-    bool? otherCoursesNativeEducation,
-    bool? otherCoursesSpecialEducation,
-    bool? otherCoursesEducationOfYouthAndAdults,
-    bool? otherCoursesHighSchool,
-    bool? otherCoursesBasicEducationFinalYears,
-    bool? otherCoursesBasicEducationInitialYears,
-    bool? otherCoursesPreSchool,
-    bool? otherCoursesNursery,
-    bool? postGraduationNone,
-    bool? postGraduationDoctorate,
-    bool? postGraduationMaster,
-    bool? postGraduationSpecialization,
-    bool? highEducationInstitutionCode3Fk,
-    bool? highEducationFinalYear3,
-    bool? highEducationInitialYear3,
-    bool? highEducationCourseCode3Fk,
-    bool? highEducationFormation3,
-    bool? highEducationSituation3,
-    bool? highEducationInstitutionCode2Fk,
-    bool? highEducationFinalYear2,
-    bool? highEducationInitialYear2,
-    bool? highEducationCourseCode2Fk,
-    bool? highEducationFormation2,
-    bool? highEducationSituation2,
-    bool? highEducationInstitutionCode1Fk,
-    bool? highEducationFinalYear1,
-    bool? highEducationInitialYear1,
-    bool? highEducationCourseCode1Fk,
-    bool? highEducationFormation1,
-    bool? highEducationSituation1,
+  Instructor copyWith({
+    String? neighborhood,
+    String? complement,
+    String? addressNumber,
+    String? address,
+    String? cep,
+    String? diffLocation,
+    int? areaOfResidence,
+    String? cpf,
+    bool otherCoursesNone = false,
+    bool otherCoursesOther = false,
+    bool otherCoursesEthnicEducation = false,
+    bool otherCoursesChildAndTeenageRights = false,
+    bool otherCoursesSexualEducation = false,
+    bool otherCoursesHumanRightsEducation = false,
+    bool otherCoursesEnvironmentEducation = false,
+    bool otherCoursesFieldEducation = false,
+    bool otherCoursesNativeEducation = false,
+    bool otherCoursesSpecialEducation = false,
+    bool otherCoursesEducationOfYouthAndAdults = false,
+    bool otherCoursesHighSchool = false,
+    bool otherCoursesBasicEducationFinalYears = false,
+    bool otherCoursesBasicEducationInitialYears = false,
+    bool otherCoursesPreSchool = false,
+    bool otherCoursesNursery = false,
+    bool postGraduationNone = false,
+    bool postGraduationDoctorate = false,
+    bool postGraduationMaster = false,
+    bool postGraduationSpecialization = false,
+    bool highEducationInstitutionCode3Fk = false,
+    bool highEducationFinalYear3 = false,
+    bool highEducationInitialYear3 = false,
+    bool highEducationCourseCode3Fk = false,
+    bool highEducationFormation3 = false,
+    bool highEducationSituation3 = false,
+    bool highEducationInstitutionCode2Fk = false,
+    bool highEducationFinalYear2 = false,
+    bool highEducationInitialYear2 = false,
+    bool highEducationCourseCode2Fk = false,
+    bool highEducationFormation2 = false,
+    bool highEducationSituation2 = false,
+    bool highEducationInstitutionCode1Fk = false,
+    bool highEducationFinalYear1 = false,
+    bool highEducationInitialYear1 = false,
+    bool highEducationCourseCode1Fk = false,
+    bool highEducationFormation1 = false,
+    bool highEducationSituation1 = false,
     String? hash,
-    bool? deficiencyTypeGifted,
-    bool? deficiencyTypeAutism,
-    bool? deficiencyTypeMultipleDisabilities,
-    bool? deficiencyTypeIntelectualDisability,
-    bool? deficiencyTypePhisicalDisability,
-    bool? deficiencyTypeDeafblindness,
-    bool? deficiencyTypeDisabilityHearing,
-    bool? deficiencyTypeDeafness,
-    bool? deficiencyTypeLowVision,
-    bool? deficiencyTypeBlindness,
+    bool deficiencyTypeGifted = false,
+    bool deficiencyTypeAutism = false,
+    bool deficiencyTypeMultipleDisabilities = false,
+    bool deficiencyTypeIntelectualDisability = false,
+    bool deficiencyTypePhisicalDisability = false,
+    bool deficiencyTypeDeafblindness = false,
+    bool deficiencyTypeDisabilityHearing = false,
+    bool deficiencyTypeDeafness = false,
+    bool deficiencyTypeLowVision = false,
+    bool deficiencyTypeBlindness = false,
     String? filiation2,
     String? filiation1,
-    bool? filiation,
+    int? filiation,
     String? nis,
     String? email,
     String? inepId,
     String? registerType,
-    String? sId,
+    String? id,
     String? schoolInepIdFk,
     String? name,
     String? birthdayDate,
@@ -215,128 +250,106 @@ class InstructorModel extends Instructor {
     String? edcensoNationFk,
     String? edcensoUfFk,
     String? edcensoCityFk,
-    bool? deficiency,
+    bool deficiency = false,
     int? scholarity,
+    String? createdAt,
+    String? updatedAt,
   }) {
-    return InstructorModel(
-      otherCoursesNone: otherCoursesNone ?? this.otherCoursesNone,
-      otherCoursesOther: otherCoursesOther ?? this.otherCoursesOther,
-      otherCoursesEthnicEducation:
-          otherCoursesEthnicEducation ?? this.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights: otherCoursesChildAndTeenageRights ??
-          this.otherCoursesChildAndTeenageRights,
-      otherCoursesSexualEducation:
-          otherCoursesSexualEducation ?? this.otherCoursesSexualEducation,
-      otherCoursesHumanRightsEducation: otherCoursesHumanRightsEducation ??
-          this.otherCoursesHumanRightsEducation,
-      otherCoursesEnvironmentEducation: otherCoursesEnvironmentEducation ??
-          this.otherCoursesEnvironmentEducation,
-      otherCoursesFieldEducation:
-          otherCoursesFieldEducation ?? this.otherCoursesFieldEducation,
-      otherCoursesNativeEducation:
-          otherCoursesNativeEducation ?? this.otherCoursesNativeEducation,
-      otherCoursesSpecialEducation:
-          otherCoursesSpecialEducation ?? this.otherCoursesSpecialEducation,
+    return Instructor(
+      neighborhood: neighborhood,
+      complement: complement,
+      addressNumber: addressNumber,
+      address: address,
+      cep: cep,
+      diffLocation: diffLocation,
+      areaOfResidence: areaOfResidence,
+      cpf: cpf,
+      otherCoursesNone: otherCoursesNone,
+      otherCoursesOther: otherCoursesOther,
+      otherCoursesEthnicEducation: otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights: otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation: otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation: otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: otherCoursesFieldEducation,
+      otherCoursesNativeEducation: otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: otherCoursesSpecialEducation,
       otherCoursesEducationOfYouthAndAdults:
-          otherCoursesEducationOfYouthAndAdults ??
-              this.otherCoursesEducationOfYouthAndAdults,
-      otherCoursesHighSchool:
-          otherCoursesHighSchool ?? this.otherCoursesHighSchool,
+          otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: otherCoursesHighSchool,
       otherCoursesBasicEducationFinalYears:
-          otherCoursesBasicEducationFinalYears ??
-              this.otherCoursesBasicEducationFinalYears,
+          otherCoursesBasicEducationFinalYears,
       otherCoursesBasicEducationInitialYears:
-          otherCoursesBasicEducationInitialYears ??
-              this.otherCoursesBasicEducationInitialYears,
-      otherCoursesPreSchool:
-          otherCoursesPreSchool ?? this.otherCoursesPreSchool,
-      otherCoursesNursery: otherCoursesNursery ?? this.otherCoursesNursery,
-      postGraduationNone: postGraduationNone ?? this.postGraduationNone,
-      postGraduationDoctorate:
-          postGraduationDoctorate ?? this.postGraduationDoctorate,
-      postGraduationMaster: postGraduationMaster ?? this.postGraduationMaster,
-      postGraduationSpecialization:
-          postGraduationSpecialization ?? this.postGraduationSpecialization,
-      highEducationInstitutionCode3Fk: highEducationInstitutionCode3Fk ??
-          this.highEducationInstitutionCode3Fk,
-      highEducationFinalYear3:
-          highEducationFinalYear3 ?? this.highEducationFinalYear3,
-      highEducationInitialYear3:
-          highEducationInitialYear3 ?? this.highEducationInitialYear3,
-      highEducationCourseCode3Fk:
-          highEducationCourseCode3Fk ?? this.highEducationCourseCode3Fk,
-      highEducationFormation3:
-          highEducationFormation3 ?? this.highEducationFormation3,
-      highEducationSituation3:
-          highEducationSituation3 ?? this.highEducationSituation3,
-      highEducationInstitutionCode2Fk: highEducationInstitutionCode2Fk ??
-          this.highEducationInstitutionCode2Fk,
-      highEducationFinalYear2:
-          highEducationFinalYear2 ?? this.highEducationFinalYear2,
-      highEducationInitialYear2:
-          highEducationInitialYear2 ?? this.highEducationInitialYear2,
-      highEducationCourseCode2Fk:
-          highEducationCourseCode2Fk ?? this.highEducationCourseCode2Fk,
-      highEducationFormation2:
-          highEducationFormation2 ?? this.highEducationFormation2,
-      highEducationSituation2:
-          highEducationSituation2 ?? this.highEducationSituation2,
-      highEducationInstitutionCode1Fk: highEducationInstitutionCode1Fk ??
-          this.highEducationInstitutionCode1Fk,
-      highEducationFinalYear1:
-          highEducationFinalYear1 ?? this.highEducationFinalYear1,
-      highEducationInitialYear1:
-          highEducationInitialYear1 ?? this.highEducationInitialYear1,
-      highEducationCourseCode1Fk:
-          highEducationCourseCode1Fk ?? this.highEducationCourseCode1Fk,
-      highEducationFormation1:
-          highEducationFormation1 ?? this.highEducationFormation1,
-      highEducationSituation1:
-          highEducationSituation1 ?? this.highEducationSituation1,
-      hash: hash ?? this.hash,
-      deficiencyTypeGifted: deficiencyTypeGifted ?? this.deficiencyTypeGifted,
-      deficiencyTypeAutism: deficiencyTypeAutism ?? this.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ??
-          this.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          deficiencyTypeIntelectualDisability ??
-              this.deficiencyTypeIntelectualDisability,
-      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ??
-          this.deficiencyTypePhisicalDisability,
-      deficiencyTypeDeafblindness:
-          deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
-      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ??
-          this.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafness:
-          deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
-      deficiencyTypeLowVision:
-          deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
-      deficiencyTypeBlindness:
-          deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
-      filiation2: filiation2 ?? this.filiation2,
-      filiation1: filiation1 ?? this.filiation1,
-      filiation: filiation ?? this.filiation,
-      nis: nis ?? this.nis,
-      email: email ?? this.email,
-      inepId: inepId ?? this.inepId,
-      registerType: registerType ?? this.registerType,
-      sId: sId ?? this.sId,
-      schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
-      name: name ?? this.name,
-      birthdayDate: birthdayDate ?? this.birthdayDate,
-      sex: sex ?? this.sex,
-      colorRace: colorRace ?? this.colorRace,
-      nationality: nationality ?? this.nationality,
-      edcensoNationFk: edcensoNationFk ?? this.edcensoNationFk,
-      edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
-      edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
-      deficiency: deficiency ?? this.deficiency,
-      scholarity: scholarity ?? this.scholarity,
+          otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: otherCoursesPreSchool,
+      otherCoursesNursery: otherCoursesNursery,
+      postGraduationNone: postGraduationNone,
+      postGraduationDoctorate: postGraduationDoctorate,
+      postGraduationMaster: postGraduationMaster,
+      postGraduationSpecialization: postGraduationSpecialization,
+      highEducationInstitutionCode3Fk: highEducationInstitutionCode3Fk,
+      highEducationFinalYear3: highEducationFinalYear3,
+      highEducationInitialYear3: highEducationInitialYear3,
+      highEducationCourseCode3Fk: highEducationCourseCode3Fk,
+      highEducationFormation3: highEducationFormation3,
+      highEducationSituation3: highEducationSituation3,
+      highEducationInstitutionCode2Fk: highEducationInstitutionCode2Fk,
+      highEducationFinalYear2: highEducationFinalYear2,
+      highEducationInitialYear2: highEducationInitialYear2,
+      highEducationCourseCode2Fk: highEducationCourseCode2Fk,
+      highEducationFormation2: highEducationFormation2,
+      highEducationSituation2: highEducationSituation2,
+      highEducationInstitutionCode1Fk: highEducationInstitutionCode1Fk,
+      highEducationFinalYear1: highEducationFinalYear1,
+      highEducationInitialYear1: highEducationInitialYear1,
+      highEducationCourseCode1Fk: highEducationCourseCode1Fk,
+      highEducationFormation1: highEducationFormation1,
+      highEducationSituation1: highEducationSituation1,
+      hash: hash,
+      deficiencyTypeGifted: deficiencyTypeGifted,
+      deficiencyTypeAutism: deficiencyTypeAutism,
+      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability,
+      deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
+      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafness: deficiencyTypeDeafness,
+      deficiencyTypeLowVision: deficiencyTypeLowVision,
+      deficiencyTypeBlindness: deficiencyTypeBlindness,
+      filiation2: filiation2,
+      filiation1: filiation1,
+      filiation: filiation,
+      nis: nis,
+      email: email,
+      inepId: inepId,
+      registerType: registerType,
+      id: id,
+      schoolInepIdFk: schoolInepIdFk,
+      name: name,
+      birthdayDate: birthdayDate,
+      sex: sex,
+      colorRace: colorRace,
+      nationality: nationality,
+      edcensoNationFk: edcensoNationFk,
+      edcensoUfFk: edcensoUfFk,
+      edcensoCityFk: edcensoCityFk,
+      deficiency: deficiency,
+      scholarity: scholarity,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'neighborhood': neighborhood,
+      'complement': complement,
+      'address_number': addressNumber,
+      'address': address,
+      'cep': cep,
+      'diff_location': diffLocation,
+      'area_of_residence': areaOfResidence,
+      'cpf': cpf,
       'other_courses_none': otherCoursesNone,
       'other_courses_other': otherCoursesOther,
       'other_courses_ethnic_education': otherCoursesEthnicEducation,
@@ -394,12 +407,12 @@ class InstructorModel extends Instructor {
       'deficiency_type_blindness': deficiencyTypeBlindness,
       'filiation2': filiation2,
       'filiation1': filiation1,
-      'filiation': filiation,
+      'filiation': filiation == 1,
       'nis': nis,
       'email': email,
       'inep_id': inepId,
       'register_type': registerType,
-      's_id': sId,
+      'id': id,
       'school_inep_id_fk': schoolInepIdFk,
       'name': name,
       'birthday_date': birthdayDate,
@@ -411,97 +424,21 @@ class InstructorModel extends Instructor {
       'edcenso_city_fk': edcensoCityFk,
       'deficiency': deficiency,
       'scholarity': scholarity,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
     };
-  }
-
-  factory InstructorModel.fromEntity(Instructor instructor) {
-    return InstructorModel(
-      otherCoursesNone: instructor.otherCoursesNone,
-      otherCoursesOther: instructor.otherCoursesOther,
-      otherCoursesEthnicEducation: instructor.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          instructor.otherCoursesChildAndTeenageRights,
-      otherCoursesSexualEducation: instructor.otherCoursesSexualEducation,
-      otherCoursesHumanRightsEducation:
-          instructor.otherCoursesHumanRightsEducation,
-      otherCoursesEnvironmentEducation:
-          instructor.otherCoursesEnvironmentEducation,
-      otherCoursesFieldEducation: instructor.otherCoursesFieldEducation,
-      otherCoursesNativeEducation: instructor.otherCoursesNativeEducation,
-      otherCoursesSpecialEducation: instructor.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          instructor.otherCoursesEducationOfYouthAndAdults,
-      otherCoursesHighSchool: instructor.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          instructor.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          instructor.otherCoursesBasicEducationInitialYears,
-      otherCoursesPreSchool: instructor.otherCoursesPreSchool,
-      otherCoursesNursery: instructor.otherCoursesNursery,
-      postGraduationNone: instructor.postGraduationNone,
-      postGraduationDoctorate: instructor.postGraduationDoctorate,
-      postGraduationMaster: instructor.postGraduationMaster,
-      postGraduationSpecialization: instructor.postGraduationSpecialization,
-      highEducationInstitutionCode3Fk:
-          instructor.highEducationInstitutionCode3Fk,
-      highEducationFinalYear3: instructor.highEducationFinalYear3,
-      highEducationInitialYear3: instructor.highEducationInitialYear3,
-      highEducationCourseCode3Fk: instructor.highEducationCourseCode3Fk,
-      highEducationFormation3: instructor.highEducationFormation3,
-      highEducationSituation3: instructor.highEducationSituation3,
-      highEducationInstitutionCode2Fk:
-          instructor.highEducationInstitutionCode2Fk,
-      highEducationFinalYear2: instructor.highEducationFinalYear2,
-      highEducationInitialYear2: instructor.highEducationInitialYear2,
-      highEducationCourseCode2Fk: instructor.highEducationCourseCode2Fk,
-      highEducationFormation2: instructor.highEducationFormation2,
-      highEducationSituation2: instructor.highEducationSituation2,
-      highEducationInstitutionCode1Fk:
-          instructor.highEducationInstitutionCode1Fk,
-      highEducationFinalYear1: instructor.highEducationFinalYear1,
-      highEducationInitialYear1: instructor.highEducationInitialYear1,
-      highEducationCourseCode1Fk: instructor.highEducationCourseCode1Fk,
-      highEducationFormation1: instructor.highEducationFormation1,
-      highEducationSituation1: instructor.highEducationSituation1,
-      hash: instructor.hash,
-      deficiencyTypeGifted: instructor.deficiencyTypeGifted,
-      deficiencyTypeAutism: instructor.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          instructor.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          instructor.deficiencyTypeIntelectualDisability,
-      deficiencyTypePhisicalDisability:
-          instructor.deficiencyTypePhisicalDisability,
-      deficiencyTypeDeafblindness: instructor.deficiencyTypeDeafblindness,
-      deficiencyTypeDisabilityHearing:
-          instructor.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafness: instructor.deficiencyTypeDeafness,
-      deficiencyTypeLowVision: instructor.deficiencyTypeLowVision,
-      deficiencyTypeBlindness: instructor.deficiencyTypeBlindness,
-      filiation2: instructor.filiation2,
-      filiation1: instructor.filiation1,
-      filiation: instructor.filiation,
-      nis: instructor.nis,
-      email: instructor.email,
-      inepId: instructor.inepId,
-      registerType: instructor.registerType,
-      sId: instructor.sId,
-      schoolInepIdFk: instructor.schoolInepIdFk,
-      name: instructor.name,
-      birthdayDate: instructor.birthdayDate,
-      sex: instructor.sex,
-      colorRace: instructor.colorRace,
-      nationality: instructor.nationality,
-      edcensoNationFk: instructor.edcensoNationFk,
-      edcensoUfFk: instructor.edcensoUfFk,
-      edcensoCityFk: instructor.edcensoCityFk,
-      deficiency: instructor.deficiency,
-      scholarity: instructor.scholarity,
-    );
   }
 
   factory InstructorModel.fromMap(Map<String, dynamic> map) {
     return InstructorModel(
+      neighborhood: map['neighborhood'],
+      complement: map['complement'],
+      addressNumber: map['address_number'],
+      address: map['address'],
+      cep: map['cep'],
+      diffLocation: map['diff_location'],
+      areaOfResidence: map['area_of_residence'],
+      cpf: map['cpf'],
       otherCoursesNone: map['other_courses_none'],
       otherCoursesOther: map['other_courses_other'],
       otherCoursesEthnicEducation: map['other_courses_ethnic_education'],
@@ -566,12 +503,12 @@ class InstructorModel extends Instructor {
       deficiencyTypeBlindness: map['deficiency_type_blindness'],
       filiation2: map['filiation2'],
       filiation1: map['filiation1'],
-      filiation: map['filiation'],
+      filiation: map['filiation'] ? 1 : 2,
       nis: map['nis'],
       email: map['email'],
       inepId: map['inep_id'],
       registerType: map['register_type'],
-      sId: map['s_id'],
+      id: map['id'],
       schoolInepIdFk: map['school_inep_id_fk'],
       name: map['name'],
       birthdayDate: map['birthday_date'],
@@ -583,6 +520,8 @@ class InstructorModel extends Instructor {
       edcensoCityFk: map['edcenso_city_fk'],
       deficiency: map['deficiency'],
       scholarity: map['scholarity'],
+      createdAt: map['created_at'],
+      updatedAt: map['updated_at'],
     );
   }
 
@@ -591,16 +530,195 @@ class InstructorModel extends Instructor {
   factory InstructorModel.fromJson(String source) =>
       InstructorModel.fromMap(json.decode(source));
 
+  factory InstructorModel.fromEntity(Instructor entity) {
+    return InstructorModel(
+      neighborhood: entity.neighborhood,
+      complement: entity.complement,
+      addressNumber: entity.addressNumber,
+      address: entity.address,
+      cep: entity.cep,
+      diffLocation: entity.diffLocation,
+      areaOfResidence: entity.areaOfResidence,
+      cpf: entity.cpf,
+      otherCoursesNone: entity.otherCoursesNone,
+      otherCoursesOther: entity.otherCoursesOther,
+      otherCoursesEthnicEducation: entity.otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights:
+          entity.otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: entity.otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation: entity.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation: entity.otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: entity.otherCoursesFieldEducation,
+      otherCoursesNativeEducation: entity.otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: entity.otherCoursesSpecialEducation,
+      otherCoursesEducationOfYouthAndAdults:
+          entity.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: entity.otherCoursesHighSchool,
+      otherCoursesBasicEducationFinalYears:
+          entity.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears:
+          entity.otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: entity.otherCoursesPreSchool,
+      otherCoursesNursery: entity.otherCoursesNursery,
+      postGraduationNone: entity.postGraduationNone,
+      postGraduationDoctorate: entity.postGraduationDoctorate,
+      postGraduationMaster: entity.postGraduationMaster,
+      postGraduationSpecialization: entity.postGraduationSpecialization,
+      highEducationInstitutionCode3Fk: entity.highEducationInstitutionCode3Fk,
+      highEducationFinalYear3: entity.highEducationFinalYear3,
+      highEducationInitialYear3: entity.highEducationInitialYear3,
+      highEducationCourseCode3Fk: entity.highEducationCourseCode3Fk,
+      highEducationFormation3: entity.highEducationFormation3,
+      highEducationSituation3: entity.highEducationSituation3,
+      highEducationInstitutionCode2Fk: entity.highEducationInstitutionCode2Fk,
+      highEducationFinalYear2: entity.highEducationFinalYear2,
+      highEducationInitialYear2: entity.highEducationInitialYear2,
+      highEducationCourseCode2Fk: entity.highEducationCourseCode2Fk,
+      highEducationFormation2: entity.highEducationFormation2,
+      highEducationSituation2: entity.highEducationSituation2,
+      highEducationInstitutionCode1Fk: entity.highEducationInstitutionCode1Fk,
+      highEducationFinalYear1: entity.highEducationFinalYear1,
+      highEducationInitialYear1: entity.highEducationInitialYear1,
+      highEducationCourseCode1Fk: entity.highEducationCourseCode1Fk,
+      highEducationFormation1: entity.highEducationFormation1,
+      highEducationSituation1: entity.highEducationSituation1,
+      hash: entity.hash,
+      deficiencyTypeGifted: entity.deficiencyTypeGifted,
+      deficiencyTypeAutism: entity.deficiencyTypeAutism,
+      deficiencyTypeMultipleDisabilities:
+          entity.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability:
+          entity.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: entity.deficiencyTypePhisicalDisability,
+      deficiencyTypeDeafblindness: entity.deficiencyTypeDeafblindness,
+      deficiencyTypeDisabilityHearing: entity.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafness: entity.deficiencyTypeDeafness,
+      deficiencyTypeLowVision: entity.deficiencyTypeLowVision,
+      deficiencyTypeBlindness: entity.deficiencyTypeBlindness,
+      filiation2: entity.filiation2,
+      filiation1: entity.filiation1,
+      filiation: entity.filiation,
+      nis: entity.nis,
+      email: entity.email,
+      inepId: entity.inepId,
+      registerType: entity.registerType,
+      id: entity.id,
+      schoolInepIdFk: entity.schoolInepIdFk,
+      name: entity.name,
+      birthdayDate: entity.birthdayDate,
+      sex: entity.sex,
+      colorRace: entity.colorRace,
+      nationality: entity.nationality,
+      edcensoNationFk: entity.edcensoNationFk,
+      edcensoUfFk: entity.edcensoUfFk,
+      edcensoCityFk: entity.edcensoCityFk,
+      deficiency: entity.deficiency,
+      scholarity: entity.scholarity,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
+
   @override
   String toString() {
-    return '''InstructorModel(otherCoursesNone: $otherCoursesNone, otherCoursesOther: $otherCoursesOther, otherCoursesEthnicEducation: $otherCoursesEthnicEducation, otherCoursesChildAndTeenageRights: $otherCoursesChildAndTeenageRights, otherCoursesSexualEducation: $otherCoursesSexualEducation, otherCoursesHumanRightsEducation: $otherCoursesHumanRightsEducation, otherCoursesEnvironmentEducation: $otherCoursesEnvironmentEducation, otherCoursesFieldEducation: $otherCoursesFieldEducation, otherCoursesNativeEducation: $otherCoursesNativeEducation, otherCoursesSpecialEducation: $otherCoursesSpecialEducation, otherCoursesEducationOfYouthAndAdults: $otherCoursesEducationOfYouthAndAdults, otherCoursesHighSchool: $otherCoursesHighSchool, otherCoursesBasicEducationFinalYears: $otherCoursesBasicEducationFinalYears, otherCoursesBasicEducationInitialYears: $otherCoursesBasicEducationInitialYears, otherCoursesPreSchool: $otherCoursesPreSchool, otherCoursesNursery: $otherCoursesNursery, postGraduationNone: $postGraduationNone, postGraduationDoctorate: $postGraduationDoctorate, postGraduationMaster: $postGraduationMaster, postGraduationSpecialization: $postGraduationSpecialization, highEducationInstitutionCode3Fk: $highEducationInstitutionCode3Fk, highEducationFinalYear3: $highEducationFinalYear3, highEducationInitialYear3: $highEducationInitialYear3, highEducationCourseCode3Fk: $highEducationCourseCode3Fk, highEducationFormation3: $highEducationFormation3, highEducationSituation3: $highEducationSituation3, highEducationInstitutionCode2Fk: $highEducationInstitutionCode2Fk, highEducationFinalYear2: $highEducationFinalYear2, highEducationInitialYear2: $highEducationInitialYear2, highEducationCourseCode2Fk: $highEducationCourseCode2Fk, highEducationFormation2: $highEducationFormation2, highEducationSituation2: $highEducationSituation2, highEducationInstitutionCode1Fk: $highEducationInstitutionCode1Fk, highEducationFinalYear1: $highEducationFinalYear1, highEducationInitialYear1: $highEducationInitialYear1, highEducationCourseCode1Fk: $highEducationCourseCode1Fk, highEducationFormation1: $highEducationFormation1, highEducationSituation1: $highEducationSituation1, hash: $hash, deficiencyTypeGifted: $deficiencyTypeGifted, deficiencyTypeAutism: $deficiencyTypeAutism, deficiencyTypeMultipleDisabilities: $deficiencyTypeMultipleDisabilities, deficiencyTypeIntelectualDisability: $deficiencyTypeIntelectualDisability, deficiencyTypePhisicalDisability: $deficiencyTypePhisicalDisability, deficiencyTypeDeafblindness: $deficiencyTypeDeafblindness, deficiencyTypeDisabilityHearing: $deficiencyTypeDisabilityHearing, deficiencyTypeDeafness: $deficiencyTypeDeafness, deficiencyTypeLowVision: $deficiencyTypeLowVision, deficiencyTypeBlindness: $deficiencyTypeBlindness, filiation2: $filiation2, filiation1: $filiation1, filiation: $filiation, nis: $nis, email: $email, inepId: $inepId, registerType: $registerType, sId: $sId, schoolInepIdFk: $schoolInepIdFk, name: $name, birthdayDate: $birthdayDate, sex: $sex, colorRace: $colorRace, nationality: $nationality, edcensoNationFk: $edcensoNationFk, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, deficiency: $deficiency, scholarity: $scholarity)''';
+    return 'Instructor(neighborhood: $neighborhood, complement: $complement, addressNumber: $addressNumber, address: $address, cep: $cep, diffLocation: $diffLocation, areaOfResidence: $areaOfResidence, cpf: $cpf, otherCoursesNone: $otherCoursesNone, otherCoursesOther: $otherCoursesOther, otherCoursesEthnicEducation: $otherCoursesEthnicEducation, otherCoursesChildAndTeenageRights: $otherCoursesChildAndTeenageRights, otherCoursesSexualEducation: $otherCoursesSexualEducation, otherCoursesHumanRightsEducation: $otherCoursesHumanRightsEducation, otherCoursesEnvironmentEducation: $otherCoursesEnvironmentEducation, otherCoursesFieldEducation: $otherCoursesFieldEducation, otherCoursesNativeEducation: $otherCoursesNativeEducation, otherCoursesSpecialEducation: $otherCoursesSpecialEducation, otherCoursesEducationOfYouthAndAdults: $otherCoursesEducationOfYouthAndAdults, otherCoursesHighSchool: $otherCoursesHighSchool, otherCoursesBasicEducationFinalYears: $otherCoursesBasicEducationFinalYears, otherCoursesBasicEducationInitialYears: $otherCoursesBasicEducationInitialYears, otherCoursesPreSchool: $otherCoursesPreSchool, otherCoursesNursery: $otherCoursesNursery, postGraduationNone: $postGraduationNone, postGraduationDoctorate: $postGraduationDoctorate, postGraduationMaster: $postGraduationMaster, postGraduationSpecialization: $postGraduationSpecialization, highEducationInstitutionCode3Fk: $highEducationInstitutionCode3Fk, highEducationFinalYear3: $highEducationFinalYear3, highEducationInitialYear3: $highEducationInitialYear3, highEducationCourseCode3Fk: $highEducationCourseCode3Fk, highEducationFormation3: $highEducationFormation3, highEducationSituation3: $highEducationSituation3, highEducationInstitutionCode2Fk: $highEducationInstitutionCode2Fk, highEducationFinalYear2: $highEducationFinalYear2, highEducationInitialYear2: $highEducationInitialYear2, highEducationCourseCode2Fk: $highEducationCourseCode2Fk, highEducationFormation2: $highEducationFormation2, highEducationSituation2: $highEducationSituation2, highEducationInstitutionCode1Fk: $highEducationInstitutionCode1Fk, highEducationFinalYear1: $highEducationFinalYear1, highEducationInitialYear1: $highEducationInitialYear1, highEducationCourseCode1Fk: $highEducationCourseCode1Fk, highEducationFormation1: $highEducationFormation1, highEducationSituation1: $highEducationSituation1, hash: $hash, deficiencyTypeGifted: $deficiencyTypeGifted, deficiencyTypeAutism: $deficiencyTypeAutism, deficiencyTypeMultipleDisabilities: $deficiencyTypeMultipleDisabilities, deficiencyTypeIntelectualDisability: $deficiencyTypeIntelectualDisability, deficiencyTypePhisicalDisability: $deficiencyTypePhisicalDisability, deficiencyTypeDeafblindness: $deficiencyTypeDeafblindness, deficiencyTypeDisabilityHearing: $deficiencyTypeDisabilityHearing, deficiencyTypeDeafness: $deficiencyTypeDeafness, deficiencyTypeLowVision: $deficiencyTypeLowVision, deficiencyTypeBlindness: $deficiencyTypeBlindness, filiation2: $filiation2, filiation1: $filiation1, filiation: $filiation, nis: $nis, email: $email, inepId: $inepId, registerType: $registerType, id: $id, schoolInepIdFk: $schoolInepIdFk, name: $name, birthdayDate: $birthdayDate, sex: $sex, colorRace: $colorRace, nationality: $nationality, edcensoNationFk: $edcensoNationFk, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, deficiency: $deficiency, scholarity: $scholarity, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  int get hashCode {
+    return neighborhood.hashCode ^
+        complement.hashCode ^
+        addressNumber.hashCode ^
+        address.hashCode ^
+        cep.hashCode ^
+        diffLocation.hashCode ^
+        areaOfResidence.hashCode ^
+        cpf.hashCode ^
+        otherCoursesNone.hashCode ^
+        otherCoursesOther.hashCode ^
+        otherCoursesEthnicEducation.hashCode ^
+        otherCoursesChildAndTeenageRights.hashCode ^
+        otherCoursesSexualEducation.hashCode ^
+        otherCoursesHumanRightsEducation.hashCode ^
+        otherCoursesEnvironmentEducation.hashCode ^
+        otherCoursesFieldEducation.hashCode ^
+        otherCoursesNativeEducation.hashCode ^
+        otherCoursesSpecialEducation.hashCode ^
+        otherCoursesEducationOfYouthAndAdults.hashCode ^
+        otherCoursesHighSchool.hashCode ^
+        otherCoursesBasicEducationFinalYears.hashCode ^
+        otherCoursesBasicEducationInitialYears.hashCode ^
+        otherCoursesPreSchool.hashCode ^
+        otherCoursesNursery.hashCode ^
+        postGraduationNone.hashCode ^
+        postGraduationDoctorate.hashCode ^
+        postGraduationMaster.hashCode ^
+        postGraduationSpecialization.hashCode ^
+        highEducationInstitutionCode3Fk.hashCode ^
+        highEducationFinalYear3.hashCode ^
+        highEducationInitialYear3.hashCode ^
+        highEducationCourseCode3Fk.hashCode ^
+        highEducationFormation3.hashCode ^
+        highEducationSituation3.hashCode ^
+        highEducationInstitutionCode2Fk.hashCode ^
+        highEducationFinalYear2.hashCode ^
+        highEducationInitialYear2.hashCode ^
+        highEducationCourseCode2Fk.hashCode ^
+        highEducationFormation2.hashCode ^
+        highEducationSituation2.hashCode ^
+        highEducationInstitutionCode1Fk.hashCode ^
+        highEducationFinalYear1.hashCode ^
+        highEducationInitialYear1.hashCode ^
+        highEducationCourseCode1Fk.hashCode ^
+        highEducationFormation1.hashCode ^
+        highEducationSituation1.hashCode ^
+        hash.hashCode ^
+        deficiencyTypeGifted.hashCode ^
+        deficiencyTypeAutism.hashCode ^
+        deficiencyTypeMultipleDisabilities.hashCode ^
+        deficiencyTypeIntelectualDisability.hashCode ^
+        deficiencyTypePhisicalDisability.hashCode ^
+        deficiencyTypeDeafblindness.hashCode ^
+        deficiencyTypeDisabilityHearing.hashCode ^
+        deficiencyTypeDeafness.hashCode ^
+        deficiencyTypeLowVision.hashCode ^
+        deficiencyTypeBlindness.hashCode ^
+        filiation2.hashCode ^
+        filiation1.hashCode ^
+        filiation.hashCode ^
+        nis.hashCode ^
+        email.hashCode ^
+        inepId.hashCode ^
+        registerType.hashCode ^
+        id.hashCode ^
+        schoolInepIdFk.hashCode ^
+        name.hashCode ^
+        birthdayDate.hashCode ^
+        sex.hashCode ^
+        colorRace.hashCode ^
+        nationality.hashCode ^
+        edcensoNationFk.hashCode ^
+        edcensoUfFk.hashCode ^
+        edcensoCityFk.hashCode ^
+        deficiency.hashCode ^
+        scholarity.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode;
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is InstructorModel &&
+    return other is Instructor &&
+        other.neighborhood == neighborhood &&
+        other.complement == complement &&
+        other.addressNumber == addressNumber &&
+        other.address == address &&
+        other.cep == cep &&
+        other.diffLocation == diffLocation &&
+        other.areaOfResidence == areaOfResidence &&
+        other.cpf == cpf &&
         other.otherCoursesNone == otherCoursesNone &&
         other.otherCoursesOther == otherCoursesOther &&
         other.otherCoursesEthnicEducation == otherCoursesEthnicEducation &&
@@ -670,7 +788,7 @@ class InstructorModel extends Instructor {
         other.email == email &&
         other.inepId == inepId &&
         other.registerType == registerType &&
-        other.sId == sId &&
+        other.id == id &&
         other.schoolInepIdFk == schoolInepIdFk &&
         other.name == name &&
         other.birthdayDate == birthdayDate &&
@@ -681,78 +799,8 @@ class InstructorModel extends Instructor {
         other.edcensoUfFk == edcensoUfFk &&
         other.edcensoCityFk == edcensoCityFk &&
         other.deficiency == deficiency &&
-        other.scholarity == scholarity;
-  }
-
-  @override
-  int get hashCode {
-    return otherCoursesNone.hashCode ^
-        otherCoursesOther.hashCode ^
-        otherCoursesEthnicEducation.hashCode ^
-        otherCoursesChildAndTeenageRights.hashCode ^
-        otherCoursesSexualEducation.hashCode ^
-        otherCoursesHumanRightsEducation.hashCode ^
-        otherCoursesEnvironmentEducation.hashCode ^
-        otherCoursesFieldEducation.hashCode ^
-        otherCoursesNativeEducation.hashCode ^
-        otherCoursesSpecialEducation.hashCode ^
-        otherCoursesEducationOfYouthAndAdults.hashCode ^
-        otherCoursesHighSchool.hashCode ^
-        otherCoursesBasicEducationFinalYears.hashCode ^
-        otherCoursesBasicEducationInitialYears.hashCode ^
-        otherCoursesPreSchool.hashCode ^
-        otherCoursesNursery.hashCode ^
-        postGraduationNone.hashCode ^
-        postGraduationDoctorate.hashCode ^
-        postGraduationMaster.hashCode ^
-        postGraduationSpecialization.hashCode ^
-        highEducationInstitutionCode3Fk.hashCode ^
-        highEducationFinalYear3.hashCode ^
-        highEducationInitialYear3.hashCode ^
-        highEducationCourseCode3Fk.hashCode ^
-        highEducationFormation3.hashCode ^
-        highEducationSituation3.hashCode ^
-        highEducationInstitutionCode2Fk.hashCode ^
-        highEducationFinalYear2.hashCode ^
-        highEducationInitialYear2.hashCode ^
-        highEducationCourseCode2Fk.hashCode ^
-        highEducationFormation2.hashCode ^
-        highEducationSituation2.hashCode ^
-        highEducationInstitutionCode1Fk.hashCode ^
-        highEducationFinalYear1.hashCode ^
-        highEducationInitialYear1.hashCode ^
-        highEducationCourseCode1Fk.hashCode ^
-        highEducationFormation1.hashCode ^
-        highEducationSituation1.hashCode ^
-        hash.hashCode ^
-        deficiencyTypeGifted.hashCode ^
-        deficiencyTypeAutism.hashCode ^
-        deficiencyTypeMultipleDisabilities.hashCode ^
-        deficiencyTypeIntelectualDisability.hashCode ^
-        deficiencyTypePhisicalDisability.hashCode ^
-        deficiencyTypeDeafblindness.hashCode ^
-        deficiencyTypeDisabilityHearing.hashCode ^
-        deficiencyTypeDeafness.hashCode ^
-        deficiencyTypeLowVision.hashCode ^
-        deficiencyTypeBlindness.hashCode ^
-        filiation2.hashCode ^
-        filiation1.hashCode ^
-        filiation.hashCode ^
-        nis.hashCode ^
-        email.hashCode ^
-        inepId.hashCode ^
-        registerType.hashCode ^
-        sId.hashCode ^
-        schoolInepIdFk.hashCode ^
-        name.hashCode ^
-        birthdayDate.hashCode ^
-        sex.hashCode ^
-        colorRace.hashCode ^
-        nationality.hashCode ^
-        edcensoNationFk.hashCode ^
-        edcensoUfFk.hashCode ^
-        edcensoCityFk.hashCode ^
-        deficiency.hashCode ^
-        scholarity.hashCode;
+        other.scholarity == scholarity &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt;
   }
 }

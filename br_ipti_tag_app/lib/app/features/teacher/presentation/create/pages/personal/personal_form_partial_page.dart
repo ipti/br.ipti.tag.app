@@ -8,8 +8,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import 'bloc/enrollment_personal_bloc.dart';
-import 'bloc/enrollment_personal_states.dart';
+import 'bloc/instructor_personal_bloc.dart';
+import 'bloc/instructor_personal_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
@@ -298,102 +298,74 @@ class _FormDeficiency extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _TagCheckbox(
+        TagCheckbox(
           label: "Deficiência",
           value: state.deficiency,
-          onChange: controller.setDeficiency,
+          onChanged: controller.setDeficiency,
         ),
         const Divider(
           color: TagColors.colorBaseProductNormal,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Cegueira",
           value: state.deficiencyTypeBlindness,
-          onChange: controller.setDeficiencyTypeBlindness,
+          onChanged: controller.setDeficiencyTypeBlindness,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Baixa visão",
           value: state.deficiencyTypeLowVision,
-          onChange: controller.setDeficiencyTypeLowVision,
+          onChanged: controller.setDeficiencyTypeLowVision,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Surdez",
           value: state.deficiencyTypeDeafness,
-          onChange: controller.setDeficiencyTypeDeafness,
+          onChanged: controller.setDeficiencyTypeDeafness,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Deficiência auditiva",
           value: state.deficiencyTypeDisabilityHearing,
-          onChange: controller.setDeficiencyTypeDisabilityHearing,
+          onChanged: controller.setDeficiencyTypeDisabilityHearing,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Surdocegueira",
           value: state.deficiencyTypeDeafblindness,
-          onChange: controller.setDeficiencyTypeDeafblindness,
+          onChanged: controller.setDeficiencyTypeDeafblindness,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Deficiência Física",
           value: state.deficiencyTypePhisicalDisability,
-          onChange: controller.setDeficiencyTypePhisicalDisability,
+          onChanged: controller.setDeficiencyTypePhisicalDisability,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Deficiência Intelectual",
           value: state.deficiencyTypeIntelectualDisability,
-          onChange: controller.setDeficiencyTypeIntelectualDisability,
+          onChanged: controller.setDeficiencyTypeIntelectualDisability,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Deficiência Múltipla",
           value: state.deficiencyTypeMultipleDisabilities,
-          onChange: controller.setDeficiencyTypeMultipleDisabilities,
+          onChanged: controller.setDeficiencyTypeMultipleDisabilities,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Transtorno do Espectro Autista",
           value: state.deficiencyTypeAutism,
-          onChange: controller.setDeficiencyTypeAutism,
+          onChanged: controller.setDeficiencyTypeAutism,
         ),
-        _TagCheckbox(
+        TagCheckbox(
           disabled: !state.deficiency,
           label: "Altas Habilidades / Super Dotação",
           value: state.deficiencyTypeGifted,
-          onChange: controller.setDeficiencyTypeGifted,
+          onChanged: controller.setDeficiencyTypeGifted,
         ),
-      ],
-    );
-  }
-}
-
-class _TagCheckbox extends StatelessWidget {
-  const _TagCheckbox({
-    Key? key,
-    required this.onChange,
-    this.value = false,
-    this.disabled = false,
-    required this.label,
-  }) : super(key: key);
-
-  final void Function(bool?) onChange;
-  final bool? value;
-  final bool disabled;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          value: value ?? false,
-          onChanged: disabled ? null : onChange,
-        ),
-        TagLabel(label),
       ],
     );
   }
