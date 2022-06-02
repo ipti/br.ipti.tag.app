@@ -65,9 +65,7 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
       result.fold(id, (ufs) async {
         final mappedValues = {for (var uf in ufs) uf.id: uf.acronym};
 
-        final currentUf = state.edcensoUfFk.isEmpty
-            ? mappedValues.entries.first.key
-            : state.edcensoUfFk;
+        final currentUf = state.edcensoUfFk;
 
         final loadUfState = state.copyWith(
           ufs: mappedValues,
@@ -75,8 +73,7 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
         );
 
         emit(loadUfState);
-
-        fetchCities(currentUf);
+        if (state.edcensoCityFk != null) fetchCities(currentUf);
       });
     }
   }

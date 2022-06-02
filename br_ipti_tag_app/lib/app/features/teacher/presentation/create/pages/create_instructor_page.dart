@@ -36,7 +36,7 @@ class InstructorFormPageState
       child: Text("Dados do pessoais"),
     ),
     Tab(
-      child: Text("Endereço e Social"),
+      child: Text("Endereço"),
     ),
     Tab(
       child: Text("Dados Educacionais"),

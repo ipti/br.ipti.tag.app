@@ -49,93 +49,95 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    return BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
-        bloc: controller,
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  withPadding(heading),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: _AdmissionDateField(
-                          schoolAdmissionDate: state.schoolAdmissionDate,
-                          controller: controller,
+    return SingleChildScrollView(
+      child: BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
+          bloc: controller,
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    withPadding(heading),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: _AdmissionDateField(
+                            schoolAdmissionDate: state.schoolAdmissionDate,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        child: _AdmissionTypeField(
-                          studentEntryForm: state.studentEntryForm,
-                          controller: controller,
+                        Flexible(
+                          child: _AdmissionTypeField(
+                            studentEntryForm: state.studentEntryForm,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: _ClassroomField(
-                          classroomId: state.classroomId,
-                          controller: controller,
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: _ClassroomField(
+                            classroomId: state.classroomId,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        child: _CurrentStageField(
-                          currentStageSituation: state.currentStageSituation,
-                          controller: controller,
+                        Flexible(
+                          child: _CurrentStageField(
+                            currentStageSituation: state.currentStageSituation,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: _UnifiedClassField(
-                          unifiedClass: state.unifiedClass,
-                          controller: controller,
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: _UnifiedClassField(
+                            unifiedClass: state.unifiedClass,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                      Flexible(
-                        child: _PreviousStageField(
-                          controller: controller,
+                        Flexible(
+                          child: _PreviousStageField(
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  RowToColumn(
-                    children: [
-                      Flexible(
-                        child: _StageField(
-                          stage: state.stage,
-                          controller: controller,
+                      ],
+                    ),
+                    RowToColumn(
+                      children: [
+                        Flexible(
+                          child: _StageField(
+                            stage: state.stage,
+                            controller: controller,
+                          ),
                         ),
-                      ),
-                      const Spacer()
-                    ],
-                  ),
-                  SubmitButtonsRow(
-                    onSubmitAndGo: () {
-                      if (_formKey.currentState!.validate()) {
-                        controller.submit(widget.editMode);
-                      }
-                    },
-                    onSubmitAndStay: () {
-                      if (_formKey.currentState!.validate()) {
-                        controller.submit(widget.editMode);
-                      }
-                    },
-                  ),
-                  // withPadding(selectClass(state.classroomId)),
-                ],
+                        const Spacer()
+                      ],
+                    ),
+                    SubmitButtonsRow(
+                      onSubmitAndGo: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submit(widget.editMode);
+                        }
+                      },
+                      onSubmitAndStay: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submit(widget.editMode);
+                        }
+                      },
+                    ),
+                    // withPadding(selectClass(state.classroomId)),
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }
 

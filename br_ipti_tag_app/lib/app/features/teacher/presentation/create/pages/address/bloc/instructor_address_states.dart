@@ -11,7 +11,7 @@ class InstructorAddressState extends Equatable {
   final String complement;
   final int residenceZone;
   final String neighborhood;
-  final String edcensoUfFk;
+  final String? edcensoUfFk;
   final String? edcensoCityFk;
 
   const InstructorAddressState({
@@ -35,7 +35,7 @@ class InstructorAddressState extends Equatable {
       number,
       complement,
       neighborhood,
-      edcensoUfFk,
+      edcensoUfFk ?? "",
       edcensoCityFk ?? "",
       residenceZone,
       cities.hashCode,
@@ -82,7 +82,7 @@ class EmptyInstructorAddressState extends InstructorAddressState {
           address: "",
           complement: "",
           edcensoCityFk: null,
-          edcensoUfFk: "",
+          edcensoUfFk: null,
           neighborhood: "",
           number: "",
           residenceZone: 1,

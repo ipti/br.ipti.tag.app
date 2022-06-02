@@ -39,6 +39,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
 
   void loadPersonalData({required InstructorPersonalState personal}) {
     final loadPersonalDataState = state.copyWith(
+      isValidPersonal: true,
       cpf: personal.cpf,
       deficiencyTypeGifted: personal.deficiencyTypeGifted,
       deficiencyTypeAutism: personal.deficiencyTypeAutism,
@@ -77,6 +78,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
 
   void loadAddressData({required InstructorAddressState address}) {
     final loadAddressDataState = state.copyWith(
+      isValidFormAddress: true,
       neighborhood: address.neighborhood,
       complement: address.complement,
       addressNumber: address.number,
@@ -93,6 +95,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
 
   void loadEducationData({required InstructorEducationState education}) {
     final loadedEducationDataState = state.copyWith(
+      isValidFormEducation: true,
       otherCoursesNone: education.otherCoursesNone,
       otherCoursesOther: education.otherCoursesOther,
       otherCoursesEthnicEducation: education.otherCoursesEthnicEducation,
@@ -126,6 +129,14 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   }
 
   Future create() async {
+    if (!(state.isValidFormAddress &&
+        state.isValidPersonal &&
+        state.isValidFormEducation)) {
+      notifyError(
+        "Verifique se todos os campos obrigatórios foram preenchidos",
+      );
+      return;
+    }
     await _session.fetchCurrentSchool();
     final school = _session.state.currentSchool!;
 

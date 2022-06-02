@@ -2,6 +2,9 @@ import 'package:equatable/equatable.dart';
 
 class InstructorFormState extends Equatable {
   final int tabIndex;
+  final bool isValidPersonal;
+  final bool isValidFormAddress;
+  final bool isValidFormEducation;
   final String? neighborhood;
   final String? complement;
   final String? addressNumber;
@@ -79,6 +82,9 @@ class InstructorFormState extends Equatable {
   final bool deficiency;
   final int? scholarity;
   const InstructorFormState({
+    this.isValidPersonal = false,
+    this.isValidFormAddress = false,
+    this.isValidFormEducation = false,
     this.tabIndex = 0,
     this.neighborhood,
     this.complement,
@@ -161,6 +167,9 @@ class InstructorFormState extends Equatable {
   @override
   List<Object> get props {
     return [
+      isValidPersonal,
+      isValidFormAddress,
+      isValidFormEducation,
       tabIndex,
       neighborhood ?? "",
       complement ?? "",
@@ -242,6 +251,9 @@ class InstructorFormState extends Equatable {
   }
 
   InstructorFormState copyWith({
+    bool? isValidPersonal,
+    bool? isValidFormAddress,
+    bool? isValidFormEducation,
     int? tabIndex,
     String? neighborhood,
     String? complement,
@@ -321,6 +333,9 @@ class InstructorFormState extends Equatable {
     int? scholarity,
   }) {
     return InstructorFormState(
+      isValidPersonal: isValidPersonal ?? this.isValidPersonal,
+      isValidFormAddress: isValidFormAddress ?? this.isValidFormAddress,
+      isValidFormEducation: isValidFormEducation ?? this.isValidFormEducation,
       tabIndex: tabIndex ?? this.tabIndex,
       neighborhood: neighborhood ?? this.neighborhood,
       complement: complement ?? this.complement,
