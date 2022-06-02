@@ -6,7 +6,7 @@ enum Modalidades {
 
 extension ModalidadesExtensions on Modalidades {
   int get id {
-    return index + 1;
+    return index;
   }
 
   String get name {

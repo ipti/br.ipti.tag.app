@@ -6,7 +6,7 @@ enum Mediacao {
 
 extension MediacaoExtensions on Mediacao {
   int get id {
-    return index + 1;
+    return index;
   }
 
   String get name {

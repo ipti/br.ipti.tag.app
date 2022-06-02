@@ -44,8 +44,10 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
       (e) => MapEntry(e.id, e.name),
     ),
   );
+
   @override
   void initState() {
+    print(modalidadesMap);
     _session.fetchCurrentSchool();
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       if (widget.classroomEntity != null) {
