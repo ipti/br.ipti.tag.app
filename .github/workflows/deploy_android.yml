@@ -1,0 +1,101 @@
+# This is a basic workflow to help you get started with Actions
+name: Deploy Android Beta Channel
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+      - develop
+      - 'ci/deploy_playstore'
+    paths-ignore:
+      - '**/README.md'
+  pull_request:
+    branches: [develop]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:  
+  release:
+    name: build and release to beta channel    
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./br_ipti_tag_app
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.10.4'
+      
+      - name: Cache pub dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
+      
+      - name: Download pub dependencies
+        run: flutter pub get
+
+      - name: Decode Service Account Key JSON File
+        uses: timheuer/base64-to-file@v1
+        id: service_account_json_file
+        with:
+          fileName: "serviceAccount.json"
+          encodedString: ${{ secrets.GPLAY_SERVICE_ACCOUNT_KEY_JSON }}
+
+      - name: Decode Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+
+      - name: Build Android App Bundle
+        run: flutter build appbundle
+  
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+
+      - name: Cache bundle dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-      
+          
+      - name: Download bundle dependencies
+        run: |
+          gem install bundler:2.0.2
+          bundle config path vendor/bundle
+          bundle install
+      
+      - name: Release to Google Play (beta)
+        env:
+          SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
+          SUPPLY_JSON_KEY_DATA: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          bundle exec fastlane supply \
+          --aab build/app/outputs/bundle/release/app-release.aab \
+          --track beta
