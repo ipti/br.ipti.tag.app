@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/update_teacher/update_teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/update_teacher/update_teacher_states.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/add_teacher_dialog.dart';
@@ -50,10 +51,12 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
                       DataColumn(label: Text("")),
                     ],
                     source: InstructorDatatable(
-                        data: state.instructors,
-                        disciplines: state.disciplinesOfInstructor,
-                        classroomId: widget.classroomId,
-                        context: context),
+                      data: state.instructors,
+                      disciplines: state.disciplinesOfInstructor,
+                      classroomId: widget.classroomId,
+                      context: context,
+                      instructorTeachingData: state.instructorsTeachingData,
+                    ),
                   );
                 }
                 return Container();
@@ -113,16 +116,19 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
 }
 
 class InstructorDatatable extends DataTableSource {
-  InstructorDatatable(
-      {required this.data,
-      required this.disciplines,
-      required this.classroomId,
-      required this.context});
+  InstructorDatatable({
+    required this.data,
+    required this.disciplines,
+    required this.classroomId,
+    required this.context,
+    required this.instructorTeachingData,
+  });
 
   final List<InstructorEntity> data;
   final List<List<EdcensoDisciplinesEntity>> disciplines;
   final String classroomId;
   final BuildContext context;
+  final List<InstructorTeachingDataEntity> instructorTeachingData;
 
   @override
   DataRow getRow(int index) {
@@ -138,6 +144,7 @@ class InstructorDatatable extends DataTableSource {
                   classroomId: classroomId,
                   disciplineIdFk: disciplines[index].first.id,
                   instructorEntity: data[index],
+                  instructorTeachingDataEntity: instructorTeachingData[index],
                 );
               }),
           child: const Icon(

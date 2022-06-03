@@ -136,6 +136,6 @@ class ClassroomRemoteDataSource {
       route: PutInstructorTeachingDataEndpoint(instructor, id),
     );
 
-    return response.data!['data'];
+    return response.data!['data'] != null;
   }
 }

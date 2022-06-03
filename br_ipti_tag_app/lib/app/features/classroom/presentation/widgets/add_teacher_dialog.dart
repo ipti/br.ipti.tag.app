@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_cargo_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_tipo_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_states.dart';
@@ -12,15 +13,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class AddTeacherDialog extends StatefulWidget {
-  const AddTeacherDialog(
-      {Key? key,
-      required this.classroomId,
-      this.instructorEntity,
-      this.disciplineIdFk})
-      : super(key: key);
+  const AddTeacherDialog({
+    Key? key,
+    required this.classroomId,
+    this.instructorTeachingDataEntity,
+    this.instructorEntity,
+    this.disciplineIdFk,
+  }) : super(key: key);
   final String classroomId;
   final InstructorEntity? instructorEntity;
   final String? disciplineIdFk;
+  final InstructorTeachingDataEntity? instructorTeachingDataEntity;
 
   @override
   State<AddTeacherDialog> createState() => _AddTeacherDialogState();
@@ -274,8 +277,9 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                       widget.instructorEntity == null
                           ? controller.add(SubmitInstructorForm())
                           : controller.add(SubmitUpdateInstructorForm(
-                              instructorTeachingDataId:
-                                  widget.instructorEntity!.id));
+                              instructorTeachingDataId: widget
+                                  .instructorTeachingDataEntity!.instructorId,
+                            ));
                     },
                   ),
                 ],

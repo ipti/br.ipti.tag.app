@@ -49,10 +49,16 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
             instructors = instructorsResponse as List<InstructorEntity>);
 
     if (instructorsTeachingData.isNotEmpty && edcensoDisciplines.isNotEmpty) {
-      emit(UpdateTeacherStateSuccess(
+      emit(
+        UpdateTeacherStateSuccess(
           _bindInstructorsTeachingData(instructorsTeachingData, instructors),
-          _bindDisciplines(edcensoDisciplines,
-              instructorsTeachingData.map((e) => e.disciplineId).toList())));
+          _bindDisciplines(
+            edcensoDisciplines,
+            instructorsTeachingData.map((e) => e.disciplineId).toList(),
+          ),
+          instructorsTeachingData,
+        ),
+      );
     } else {
       emit(UpdateTeacherStateEmpty());
     }
