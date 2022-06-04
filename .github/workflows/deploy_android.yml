@@ -40,6 +40,19 @@ jobs:
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
       
+      - name: Define version code with offset
+        env:
+          RUN_NUMBER: ${{ github.run_number }}
+          INITIAL_VERSION_CODE: 2
+        run: |
+          VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
+          echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
+      
+      - name: Replace YAML version with tag version
+        run: |
+          sed -i 's/99.99.99+99/'$VERSION_CODE'/g' pubspec.yaml|
+          echo "App version:"$VERSION_CODE
+      
       - name: Download pub dependencies
         run: flutter pub get
 
