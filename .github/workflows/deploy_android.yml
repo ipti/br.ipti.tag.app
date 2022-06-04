@@ -72,7 +72,7 @@ jobs:
         with:
           ruby-version: '2.6'
 
-      - name: Cache bundle dependencies
+      - name: Cache bundle dependencies        
         uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -80,8 +80,8 @@ jobs:
           restore-keys: ${{ runner.os }}-gems-      
           
       - name: Download bundle dependencies
-        run: |
-          cd android
+        working-directory: ./br_ipti_tag_app/android
+        run: |          
           gem install bundler:2.0.2
           bundle config path vendor/bundle
           bundle install
@@ -90,6 +90,7 @@ jobs:
         env:
           SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
           SUPPLY_JSON_KEY_DATA: ${{ steps.service_account_json_file.outputs.filePath }}
+        working-directory: ./br_ipti_tag_app/android
         run: |          
           bundle exec fastlane supply \
           --aab build/app/outputs/bundle/release/app-release.aab \
