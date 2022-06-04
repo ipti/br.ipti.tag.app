@@ -47,11 +47,7 @@ jobs:
         run: |
           VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
           echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
-      
-      - name: Replace YAML version with tag version
-        run: |
-          sed -i 's/99.99.99+99/'$VERSION_CODE'/g' pubspec.yaml|
-          echo "App version:"$VERSION_CODE
+            
       
       - name: Download pub dependencies
         run: flutter pub get
@@ -78,7 +74,7 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
 
       - name: Build Android App Bundle
-        run: flutter build appbundle
+        run: flutter build appbundle --build_number=$VERSION_CODE
   
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
