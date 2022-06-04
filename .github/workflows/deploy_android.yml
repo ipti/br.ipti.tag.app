@@ -93,7 +93,7 @@ jobs:
         working-directory: ./br_ipti_tag_app/android
         run: |          
           bundle exec fastlane supply \
-          --aab build/app/outputs/bundle/release/app-release.aab \
+          --aab ../build/app/outputs/bundle/release/app-release.aab \
           --track alpha
 
           
