@@ -89,7 +89,7 @@ jobs:
       - name: Release to Google Play (alpha)
         env:
           SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
-          SUPPLY_JSON_KEY_DATA: ${{ steps.service_account_json_file.outputs.filePath }}
+          SUPPLY_JSON_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
         working-directory: ./br_ipti_tag_app/android
         run: |          
           bundle exec fastlane supply \

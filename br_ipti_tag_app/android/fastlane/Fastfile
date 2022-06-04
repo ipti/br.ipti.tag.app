@@ -5,7 +5,7 @@ platform :android do
   lane :deploy do
     gradle(task: "clean assembleRelease")
     upload_to_play_store(
-      json_key: ENV['SUPPLY_JSON_KEY_DATA']
+      json_key: ENV['SUPPLY_JSON_KEY']
       package_name: ENV['SUPPLY_PACKAGE_NAME']
       track: 'alpha'
     )
