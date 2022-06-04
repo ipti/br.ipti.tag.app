@@ -1,9 +1,5 @@
-# This is a basic workflow to help you get started with Actions
-name: Deploy Android Beta Channel
-
-# Controls when the workflow will run
+name: Deploy Android Alpha Channel
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
       - develop
@@ -12,8 +8,6 @@ on:
       - '**/README.md'
   pull_request:
     branches: [develop]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:  
@@ -54,7 +48,7 @@ jobs:
         id: service_account_json_file
         with:
           fileName: "serviceAccount.json"
-          encodedString: ${{ secrets.GPLAY_SERVICE_ACCOUNT_KEY_JSON }}
+          encodedString: ${{ secrets.GOOGLE_SERVICE_JSON_BASE64 }}
 
       - name: Decode Android keystore
         id: android_keystore
@@ -91,11 +85,14 @@ jobs:
           bundle config path vendor/bundle
           bundle install
       
-      - name: Release to Google Play (beta)
+      - name: Release to Google Play (alpha)
         env:
           SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
-          SUPPLY_JSON_KEY_DATA: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          SUPPLY_JSON_KEY_DATA: ${{ steps.service_account_json_file.outputs.filePath }}
         run: |
+          cd android
           bundle exec fastlane supply \
           --aab build/app/outputs/bundle/release/app-release.aab \
-          --track beta
+          --track alpha
+
+          
