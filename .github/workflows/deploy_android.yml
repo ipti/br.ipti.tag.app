@@ -83,6 +83,7 @@ jobs:
   deploy:
     name: Deploy to Google Play
     needs: build
+    steps:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
