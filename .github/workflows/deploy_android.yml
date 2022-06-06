@@ -2,8 +2,7 @@ name: Deploy Android Alpha Channel
 on:
   push:
     branches:
-      - develop
-      - 'ci/deploy_playstore'
+      - develop      
     paths-ignore:
       - '**/README.md'
   pull_request:
@@ -24,7 +23,7 @@ jobs:
           submodules: 'true'
 
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setupubspecp-java@v1
         with:
           java-version: '11'
       
