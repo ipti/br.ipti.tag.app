@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Setup Dart
-      - uses: dart-lang/setup-dart@v1.3
+        uses: dart-lang/setup-dart@v1.3
 
       - name: Update version in YAML
         working-directory: ./br_ipti_tag_app
