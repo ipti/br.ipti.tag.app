@@ -36,8 +36,13 @@ jobs:
       
       - name: Upgrade Minor version
         working-directory: ./br_ipti_tag_app
-        if:  startsWith(github.ref_name, 'fix')
+        if:  startsWith(github.ref_name, 'feature')
         run: cider bump minor
+
+      - name: Upgrade Patch version
+        working-directory: ./br_ipti_tag_app
+        if:  startsWith(github.ref_name, 'fix')
+        run: cider bump patch
       
       - name: Check Version
         working-directory: ./br_ipti_tag_app
