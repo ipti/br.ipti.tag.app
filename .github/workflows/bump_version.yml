@@ -13,17 +13,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Bump Version        
-        id: bump_version
-        uses: google-github-actions/release-please-action@v3.2.6
-        with:
-          path: br_ipti_tag_app
-          release-type: dart          
-          package-name: br_ipti_tag_app
-          default-branch: develop          
-          changelog-path: br_ipti_tag_app/CHANGELOG.md
-          extra-files: br_ipti_tag_app/pubspec.yaml            
+      # - name: Bump Version        
+      #   id: bump_version
+      #   uses: google-github-actions/release-please-action@v3.2.6
+      #   with:
+      #     path: br_ipti_tag_app
+      #     release-type: dart          
+      #     package-name: br_ipti_tag_app
+      #     default-branch: develop          
+      #     changelog-path: br_ipti_tag_app/CHANGELOG.md
+      #     extra-files: br_ipti_tag_app/pubspec.yaml
       
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.GH_TOKEN_ACTION }}
+          output-file: br_ipti_tag_app/CHANGELOG.md
+          version-file: br_ipti_tag_app/pubspec.yaml
+
+      - name: Setup Dart
+        run: echo ${{ steps.changelog.outputs.tag }}
+
+
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1.3
 
