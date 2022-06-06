@@ -8,7 +8,11 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest    
+    
     steps:      
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Bump Version        
         id: bump_version
         uses: google-github-actions/release-please-action@v3
@@ -17,11 +21,8 @@ jobs:
           release-type: dart          
           package-name: br_ipti_tag_app
           default-branch: develop          
-          changelog-path: ./br_ipti_tag_app/CHANGELOG.md
-          extra-files: ./br_ipti_tag_app/pubspec.yaml
-      
-      - name: Checkout
-        uses: actions/checkout@v2
+          changelog-path: br_ipti_tag_app/CHANGELOG.md
+          extra-files: br_ipti_tag_app/pubspec.yaml            
       
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1.3
