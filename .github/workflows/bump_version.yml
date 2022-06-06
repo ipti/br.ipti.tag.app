@@ -8,6 +8,8 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    container:
+      image:  google/dart:latest
     steps:      
       - name: Bump Version
         id: bump_version
@@ -21,18 +23,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '2.10.4'
-
-      - name: Cache pub dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.FLUTTER_HOME }}/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: ${{ runner.os }}-pub-
-
       - name: Update version in YAML
         working-directory: ./br_ipti_tag_app
         run: |          
