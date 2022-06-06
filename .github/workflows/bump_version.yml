@@ -29,13 +29,16 @@ jobs:
         run: |          
           dart pub global activate cider
       
-      - name: Upgrade Major version        
+      - name: Upgrade Major version
+        working-directory: ./br_ipti_tag_app
         if:  startsWith(github.ref_name, 'ci')
         run: cider bump major
       
       - name: Upgrade Minor version
+        working-directory: ./br_ipti_tag_app
         if:  startsWith(github.ref_name, 'fix')
         run: cider bump minor
       
       - name: Check Version
+        working-directory: ./br_ipti_tag_app
         run: cider version
