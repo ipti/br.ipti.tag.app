@@ -3,7 +3,7 @@ name: Bump Version
 on:
   push:
     branches:
-      - 'feature/**'
+      - develop
       - 'ci/deploy_playstore'
 jobs:
   release-please:
@@ -20,9 +20,31 @@ jobs:
       
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.10.4'
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
 
       - name: Update version in YAML
         working-directory: ./br_ipti_tag_app
         run: |          
-          sed -i 's/99.99.99+99/${{ steps.bump_version.outputs.major }}.${{ steps.bump_version.outputs.minor }}.${{ steps.bump_version.outputs.patch }}+${{ github.run_number }}/g' pubspec.yaml
-          cat pubspec.yaml
+          pub global activate cider
+      
+      - name: Upgrade Major version        
+        if:  startsWith(github.head_ref, 'ci/')
+        run: cider bump major
+      
+      - name: Upgrade Minor version
+        if:  startsWith(github.head_ref, 'fix/')
+        run: cider bump minor
+      
+      - name: Check Version
+        run: cider version
