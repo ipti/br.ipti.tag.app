@@ -2,14 +2,23 @@ name: Bump Version
 
 on:
   push:
-    branches:      
+    branches:
+      - 'feature/**'
       - 'ci/deploy_playstore'
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    steps:
-      - uses: google-github-actions/release-please-action@v3
+    steps:      
+      - name: Bump Version
+        id: bump_version
+        uses: google-github-actions/release-please-action@v3
         with:
           path: br_ipti_tag_app
           release-type: dart          
           package-name: br_ipti_tag_app
+          bump-minor-pre-major: true
+      
+      - name: Update version in YAML
+        run: |
+          sed -i 's/99.99.99+99/${{ steps.bump_version.outputs.major }}.${{ steps.bump_version.outputs.minor }}.${{ steps.bump_version.outputs.patch }}+${{ github.run_number }}/g' pubspec.yaml
+          cat pubspec.yaml
