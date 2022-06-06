@@ -36,7 +36,7 @@ jobs:
       - name: Update version in YAML
         working-directory: ./br_ipti_tag_app
         run: |          
-          pub global activate cider
+          dart pub global activate cider
       
       - name: Upgrade Major version        
         if:  startsWith(github.head_ref, 'ci/')
