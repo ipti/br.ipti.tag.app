@@ -39,11 +39,11 @@ jobs:
           dart pub global activate cider
       
       - name: Upgrade Major version        
-        if:  startsWith(github.head_ref, 'ci/')
+        if:  startsWith(github.github.ref_name, 'ci')
         run: cider bump major
       
       - name: Upgrade Minor version
-        if:  startsWith(github.head_ref, 'fix/')
+        if:  startsWith(github.github.ref_name, 'fix')
         run: cider bump minor
       
       - name: Check Version
