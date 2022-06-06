@@ -15,14 +15,14 @@ jobs:
         with:
           path: br_ipti_tag_app
           release-type: dart          
-          package-name: br_ipti_tag_app
-          bump-minor-pre-major: true
+          package-name: br_ipti_tag_app          
           command: github-release
       
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Update version in YAML
-        run: |
+        working-directory: ./br_ipti_tag_app
+        run: |          
           sed -i 's/99.99.99+99/${{ steps.bump_version.outputs.major }}.${{ steps.bump_version.outputs.minor }}.${{ steps.bump_version.outputs.patch }}+${{ github.run_number }}/g' pubspec.yaml
           cat pubspec.yaml
