@@ -82,6 +82,7 @@ jobs:
 
   deploy:
     name: Deploy to Google Play
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Setup Ruby
