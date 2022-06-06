@@ -17,7 +17,11 @@ jobs:
           release-type: dart          
           package-name: br_ipti_tag_app
           bump-minor-pre-major: true
+          command: github-release
       
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Update version in YAML
         run: |
           sed -i 's/99.99.99+99/${{ steps.bump_version.outputs.major }}.${{ steps.bump_version.outputs.minor }}.${{ steps.bump_version.outputs.patch }}+${{ github.run_number }}/g' pubspec.yaml
