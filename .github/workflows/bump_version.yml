@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest    
     steps:      
       - name: Bump Version
+        working-directory: ./br_ipti_tag_app
         id: bump_version
         uses: google-github-actions/release-please-action@v3
         with:
           path: br_ipti_tag_app
           release-type: dart          
-          package-name: br_ipti_tag_app          
-          command: github-release
+          package-name: br_ipti_tag_app
+          default-branch: develop          
       
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,6 +29,10 @@ jobs:
         working-directory: ./br_ipti_tag_app
         run: |          
           dart pub global activate cider
+
+      - name: Check Version before
+        working-directory: ./br_ipti_tag_app
+        run: cider version
       
       - name: Upgrade Major version
         working-directory: ./br_ipti_tag_app
@@ -44,6 +49,6 @@ jobs:
         if:  startsWith(github.ref_name, 'fix')
         run: cider bump patch
       
-      - name: Check Version
+      - name: Check Version after
         working-directory: ./br_ipti_tag_app
         run: cider version
