@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:  
-  release:
-    name: build and release to beta channel    
+  build:
+    name: Build   
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -47,7 +47,11 @@ jobs:
         run: |
           VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
           echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
-            
+
+      - name: Conventional Changelog Action
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.GH_TOKEN_ACTION }}
       
       - name: Download pub dependencies
         run: flutter pub get
@@ -75,7 +79,10 @@ jobs:
 
       - name: Build Android App Bundle
         run: flutter build appbundle --build-number=${{ env.version_code }}
-  
+
+  deploy:
+    name: Deploy to Google Play
+    needs: build
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
