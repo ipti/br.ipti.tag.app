@@ -7,9 +7,7 @@ on:
       - 'ci/deploy_playstore'
 jobs:
   release-please:
-    runs-on: ubuntu-latest
-    container:
-      image:  google/dart:latest
+    runs-on: ubuntu-latest    
     steps:      
       - name: Bump Version
         id: bump_version
@@ -23,6 +21,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
+      - name: Setup Dart
+      - uses: dart-lang/setup-dart@v1.3
+
       - name: Update version in YAML
         working-directory: ./br_ipti_tag_app
         run: |          
