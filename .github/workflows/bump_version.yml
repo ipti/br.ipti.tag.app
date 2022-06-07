@@ -32,8 +32,15 @@ jobs:
           output-file: br_ipti_tag_app/CHANGELOG.md
           version-file: br_ipti_tag_app/pubspec.yaml
 
-      - name: Setup Dart
-        run: echo ${{ steps.changelog.outputs.tag }}
+      - name: Create Release
+        uses: actions/create-release@v1
+        if: ${{ steps.changelog.outputs.skipped == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_ACTION }}
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          release_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
 
 
       - name: Setup Dart
