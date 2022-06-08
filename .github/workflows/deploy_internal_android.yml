@@ -41,7 +41,7 @@ jobs:
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
       
-      - name: Define version code with offset
+      - name: Define build number 
         id: version_code
         env:
           RUN_NUMBER: ${{ github.run_number }}
@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab                
 
   deploy:
     name: Deploy to Google Play
