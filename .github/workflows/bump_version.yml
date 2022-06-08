@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - 'ci/deploy_playstore'
+    
 jobs:
   release-please:
     runs-on: ubuntu-latest    
@@ -13,17 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Bump Version        
-      #   id: bump_version
-      #   uses: google-github-actions/release-please-action@v3.2.6
-      #   with:
-      #     path: br_ipti_tag_app
-      #     release-type: dart          
-      #     package-name: br_ipti_tag_app
-      #     default-branch: develop          
-      #     changelog-path: br_ipti_tag_app/CHANGELOG.md
-      #     extra-files: br_ipti_tag_app/pubspec.yaml
-      
       - name: Conventional Changelog Action
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3
@@ -32,44 +21,4 @@ jobs:
           output-file: br_ipti_tag_app/CHANGELOG.md
           version-file: br_ipti_tag_app/pubspec.yaml
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_ACTION }}
-        with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.clean_changelog }}
-
-
-      - name: Setup Dart
-        uses: dart-lang/setup-dart@v1.3
-
-      - name: Update version in YAML
-        working-directory: ./br_ipti_tag_app
-        run: |          
-          dart pub global activate cider
-
-      - name: Check Version before
-        working-directory: ./br_ipti_tag_app
-        run: cider version
       
-      - name: Upgrade Major version
-        working-directory: ./br_ipti_tag_app
-        if:  startsWith(github.ref_name, 'ci')
-        run: cider bump major
-      
-      - name: Upgrade Minor version
-        working-directory: ./br_ipti_tag_app
-        if:  startsWith(github.ref_name, 'feature')
-        run: cider bump minor
-
-      - name: Upgrade Patch version
-        working-directory: ./br_ipti_tag_app
-        if:  startsWith(github.ref_name, 'fix')
-        run: cider bump patch
-      
-      - name: Check Version after
-        working-directory: ./br_ipti_tag_app
-        run: cider version
