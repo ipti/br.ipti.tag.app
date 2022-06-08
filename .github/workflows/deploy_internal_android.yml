@@ -50,13 +50,13 @@ jobs:
           VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
           echo "::set-output name=version::$VERSION_CODE"
         
-      - name: Generationg Changelog and Version name
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:
-          github-token: ${{ secrets.GH_TOKEN_ACTION }}
-          output-file: br_ipti_tag_app/CHANGELOG.md
-          version-file: br_ipti_tag_app/pubspec.yaml
+      # - name: Generationg Changelog and Version name
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v3
+      #   with:
+      #     github-token: ${{ secrets.GH_TOKEN_ACTION }}
+      #     output-file: br_ipti_tag_app/CHANGELOG.md
+      #     version-file: br_ipti_tag_app/pubspec.yaml
       
       - name: Download pub dependencies
         run: flutter pub get
