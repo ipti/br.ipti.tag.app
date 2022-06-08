@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab                
+          path: ${{ github.workspace }}/build/app/outputs/bundle/release/app-release.aab                
 
   deploy:
     name: Deploy to Google Play
