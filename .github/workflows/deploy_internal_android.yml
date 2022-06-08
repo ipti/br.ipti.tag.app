@@ -131,7 +131,7 @@ jobs:
         working-directory: ./br_ipti_tag_app/android
         run: |          
           bundle exec fastlane supply \
-          --aab ${{ steps.download.outputs.download-path }} \
+          --aab ${{ steps.download.outputs.download-path }}/app-release.aab \
           --track internal
 
           
