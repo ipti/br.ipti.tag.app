@@ -44,7 +44,7 @@ class SchoolRepositoryImpl extends SchoolRepository {
       final results = await _schoolRemoteDataSource.update(uuid, school);
       return Right(results);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudantes"));
+      return Left(Exception("Não foi possível atualizar dados da escola"));
     }
   }
 }

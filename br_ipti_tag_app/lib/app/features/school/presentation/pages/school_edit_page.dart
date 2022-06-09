@@ -54,7 +54,7 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
 
     final buttonSubmit = TagButton(
       text: "Salvar informações",
-      onPressed: () => _save(),
+      onPressed: () => _update(),
     );
 
     return DefaultTabController(
@@ -102,7 +102,8 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
     );
   }
 
-  void _save() {
+  void _update() {
+    controller.updateSchoolData();
     const snackBar = SnackBar(
       content: Text('Enviando dados'),
       backgroundColor: TagColors.colorBaseBlueNormal,
@@ -111,7 +112,5 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
 // Find the ScaffoldMessenger in the widget tree
 // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-    // controller.updateSchoolData();
   }
 }

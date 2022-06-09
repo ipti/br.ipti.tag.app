@@ -36,11 +36,12 @@ class SchoolRemoteDataSource implements DataSource<SchoolEntity, SchoolModel> {
   }
 
   @override
-  Future<SchoolModel> update(String uuid, SchoolEntity data) async {
+  Future<SchoolModel> update(String uuid, SchoolEntity schoolDto) async {
     final response = await _httpClient.request(
-      route: PutSchoolEndPoint(uuid, data as SchoolUpdateDto),
+      route: PutSchoolEndPoint(uuid, schoolDto),
     );
-    return response as SchoolModel;
+    final data = SchoolModel.fromMap(response.data!);
+    return data;
   }
 
   @override

@@ -6,13 +6,13 @@ class SchoolState extends Equatable {
     required this.loading,
     required this.sending,
     required this.message,
-    required this.currentSchool,
+    required this.currentSchoolData,
   });
 
   final bool loading;
   final bool sending;
   final String message;
-  final SchoolModel? currentSchool;
+  final SchoolModel? currentSchoolData;
 
   @override
   List<Object> get props => [loading, sending, message];
@@ -27,7 +27,7 @@ class SchoolState extends Equatable {
       loading: loading ?? this.loading,
       sending: sending ?? this.sending,
       message: message ?? this.message,
-      currentSchool: currentSchool ?? this.currentSchool,
+      currentSchoolData: currentSchool ?? currentSchoolData,
     );
   }
 }
@@ -38,7 +38,7 @@ class SchoolEmptyState extends SchoolState {
           loading: false,
           sending: false,
           message: "",
-          currentSchool: null,
+          currentSchoolData: null,
         );
 }
 
@@ -48,7 +48,7 @@ class SchoolInitialState extends SchoolState {
           loading: true,
           sending: false,
           message: "",
-          currentSchool: null,
+          currentSchoolData: null,
         );
 }
 
@@ -59,7 +59,7 @@ class SchoolFailedState extends SchoolState {
           loading: false,
           sending: false,
           message: message,
-          currentSchool: null,
+          currentSchoolData: null,
         );
 }
 
@@ -69,46 +69,50 @@ class SchoolLoadingState extends SchoolState {
           loading: true,
           sending: false,
           message: "Carregando dados da escola",
-          currentSchool: null,
+          currentSchoolData: null,
         );
 }
 
 class SchoolLoadedState extends SchoolState {
-  const SchoolLoadedState({required SchoolModel currentSchool})
-      : super(
+  const SchoolLoadedState({
+    required SchoolModel currentSchool,
+  }) : super(
           loading: false,
           sending: false,
           message: "Dados da escola carregados",
-          currentSchool: currentSchool,
+          currentSchoolData: currentSchool,
         );
 }
 
 class SchoolSendingState extends SchoolState {
-  const SchoolSendingState({required SchoolModel currentSchool})
-      : super(
+  const SchoolSendingState({
+    required SchoolModel currentSchool,
+  }) : super(
           loading: true,
           sending: false,
           message: "Enviando",
-          currentSchool: currentSchool,
+          currentSchoolData: currentSchool,
         );
 }
 
 class SchoolSentState extends SchoolState {
-  const SchoolSentState({required SchoolModel currentSchool})
-      : super(
+  const SchoolSentState({
+    required SchoolModel currentSchool,
+  }) : super(
           loading: false,
           sending: false,
           message: "Enviado",
-          currentSchool: currentSchool,
+          currentSchoolData: currentSchool,
         );
 }
 
 class SchoolSentFailState extends SchoolState {
-  const SchoolSentFailState({required SchoolModel currentSchool})
-      : super(
+  const SchoolSentFailState({
+    required SchoolModel currentSchool,
+  }) : super(
           loading: false,
           sending: false,
           message: "Falha no envio",
-          currentSchool: currentSchool,
+          currentSchoolData: currentSchool,
         );
 }

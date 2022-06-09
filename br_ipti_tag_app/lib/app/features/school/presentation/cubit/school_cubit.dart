@@ -52,10 +52,11 @@ class SchoolCubit extends Cubit<SchoolState> {
 
   Future<void> updateSchoolData() async {
     _startSending();
+
     final params = EditSchoolParams(
       uuid: "6244c323f0a8e92a8c6fad02",
       data: SchoolEntity(
-        name: "testando",
+        name: "Escola Teste - 02",
         inepId: "123456789",
         registerType: "00",
         edcensoUfFk: "61a92b6dd2b8a11704d7ae6a",
@@ -67,7 +68,7 @@ class SchoolCubit extends Cubit<SchoolState> {
     result.fold(
       (Exception failure) =>
           emit(SchoolFailedState(message: failure.toString())),
-      (school) => print(school),
+      (school) => emit(SchoolLoadedState(currentSchool: school)),
     );
     _stopSending();
   }
