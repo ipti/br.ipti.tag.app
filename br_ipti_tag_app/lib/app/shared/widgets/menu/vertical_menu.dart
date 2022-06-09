@@ -13,7 +13,7 @@ class TagVerticalMenu extends StatelessWidget {
     final currentRoute = ModalRoute.of(context)!.settings.name;
     final items = [
       TagMenuItem(
-        title: "Inicio",
+        title: "Escola",
         route: '/escola/editar',
         isActive: currentRoute!.contains('/escola/'),
         icon: TagIcon(

@@ -1,7 +1,9 @@
+import 'package:br_ipti_tag_app/app/api/school/dto/school_update.dto.dart';
 import 'package:br_ipti_tag_app/app/api/school/get_school_endpoint.dart';
+import 'package:br_ipti_tag_app/app/api/school/put_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/data/data_source.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
-import 'package:br_ipti_tag_app/app/features/auth/data/models/school_model.dart';
+import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 
 class SchoolRemoteDataSource implements DataSource<SchoolEntity, SchoolModel> {
@@ -29,13 +31,16 @@ class SchoolRemoteDataSource implements DataSource<SchoolEntity, SchoolModel> {
       route: GetSchoolEndPoint(uuid),
     );
 
-    return response as SchoolModel;
+    final data = SchoolModel.fromMap(response.data!);
+    return data;
   }
 
   @override
-  Future<SchoolModel> update(String uuid, SchoolEntity data) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<SchoolModel> update(String uuid, SchoolEntity data) async {
+    final response = await _httpClient.request(
+      route: PutSchoolEndPoint(uuid, data as SchoolUpdateDto),
+    );
+    return response as SchoolModel;
   }
 
   @override

@@ -1,130 +1,13 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/core/model/model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 
-class SchoolModel extends SchoolEntity implements Model {
-  final String registerType;
-  final String inepId;
-  final String managerCpf;
-  final String managerName;
-  final int managerRole;
-  final String managerEmail;
-  final String managerAccessCriterion;
-  final int managerContractType;
-  final int situation;
-  final String initialDate;
-  final String finalDate;
-  final String name;
-  final String latitude;
-  final String longitude;
-  final String cep;
-  final String address;
-  final String addressNumber;
-  final String addressComplement;
-  final String addressNeighborhood;
-  // EdcensoUfFk? edcensoUfFk;
-  // EdcensoUfFk? edcensoCityFk;
-  // EdcensoUfFk? edcensoDistrictFk;
-  final String ddd;
-  final String phoneNumber;
-  final String publicPhoneNumber;
-  final String otherPhoneNumber;
-  final String faxNumber;
-  final String email;
-  final String edcensoRegionalEducationOrganFk;
-  final int administrativeDependence;
-  final int location;
-  final int idDifflocation;
-  final bool linkedMec;
-  final bool linkedArmy;
-  final bool linkedHelth;
-  final bool linkedOther;
-  final int privateSchoolCategory;
-  final int publicContract;
-  final bool privateSchoolBusinessOrIndividual;
-  final bool privateSchoolSyndicateOrAssociation;
-  final bool privateSchoolOngOrOscip;
-  final bool privateSchoolNonProfitInstitutions;
-  final bool privateSchoolSSystem;
-  final bool privateSchoolOrganizationCivilSociety;
-  final String privateSchoolMaintainerCnpj;
-  final String privateSchoolCnpj;
-  final int regulation;
-  final int regulationOrgan;
-  final bool regulationOrganFederal;
-  final bool regulationOrganState;
-  final bool regulationOrganMunicipal;
-  final int offerOrLinkedUnity;
-  final String inepHeadSchool;
-  final String iesCode;
-  final String logoFileName;
-  final String logoFileType;
-  final String logoFileContent;
-  final String actOfAcknowledgement;
-  final String createdAt;
-  final String updatedAt;
-
-  SchoolModel(
-      this.registerType,
-      this.inepId,
-      this.managerCpf,
-      this.managerName,
-      this.managerRole,
-      this.managerEmail,
-      this.managerAccessCriterion,
-      this.managerContractType,
-      this.situation,
-      this.initialDate,
-      this.finalDate,
-      this.name,
-      this.latitude,
-      this.longitude,
-      this.cep,
-      this.address,
-      this.addressNumber,
-      this.addressComplement,
-      this.addressNeighborhood,
-      this.ddd,
-      this.phoneNumber,
-      this.publicPhoneNumber,
-      this.otherPhoneNumber,
-      this.faxNumber,
-      this.email,
-      this.edcensoRegionalEducationOrganFk,
-      this.administrativeDependence,
-      this.location,
-      this.idDifflocation,
-      this.linkedMec,
-      this.linkedArmy,
-      this.linkedHelth,
-      this.linkedOther,
-      this.privateSchoolCategory,
-      this.publicContract,
-      this.privateSchoolBusinessOrIndividual,
-      this.privateSchoolSyndicateOrAssociation,
-      this.privateSchoolOngOrOscip,
-      this.privateSchoolNonProfitInstitutions,
-      this.privateSchoolSSystem,
-      this.privateSchoolOrganizationCivilSociety,
-      this.privateSchoolMaintainerCnpj,
-      this.privateSchoolCnpj,
-      this.regulation,
-      this.regulationOrgan,
-      this.regulationOrganFederal,
-      this.regulationOrganState,
-      this.regulationOrganMunicipal,
-      this.offerOrLinkedUnity,
-      this.inepHeadSchool,
-      this.iesCode,
-      this.logoFileName,
-      this.logoFileType,
-      this.logoFileContent,
-      this.actOfAcknowledgement,
-      this.createdAt,
-      this.updatedAt);
-
-  SchoolModel copyWith({
+class SchoolModel extends SchoolEntity {
+  String? id;
+  String? createdAt;
+  String? updatedAt;
+  SchoolModel({
+    String? id,
     String? registerType,
     String? inepId,
     String? managerCpf,
@@ -144,6 +27,9 @@ class SchoolModel extends SchoolEntity implements Model {
     String? addressNumber,
     String? addressComplement,
     String? addressNeighborhood,
+    String? edcensoUfFk,
+    String? edcensoCityFk,
+    String? edcensoDistrictFk,
     String? ddd,
     String? phoneNumber,
     String? publicPhoneNumber,
@@ -182,335 +68,326 @@ class SchoolModel extends SchoolEntity implements Model {
     String? actOfAcknowledgement,
     String? createdAt,
     String? updatedAt,
-  }) {
-    return SchoolModel(
-      registerType ?? this.registerType,
-      inepId ?? this.inepId,
-      managerCpf ?? this.managerCpf,
-      managerName ?? this.managerName,
-      managerRole ?? this.managerRole,
-      managerEmail ?? this.managerEmail,
-      managerAccessCriterion ?? this.managerAccessCriterion,
-      managerContractType ?? this.managerContractType,
-      situation ?? this.situation,
-      initialDate ?? this.initialDate,
-      finalDate ?? this.finalDate,
-      name ?? this.name,
-      latitude ?? this.latitude,
-      longitude ?? this.longitude,
-      cep ?? this.cep,
-      address ?? this.address,
-      addressNumber ?? this.addressNumber,
-      addressComplement ?? this.addressComplement,
-      addressNeighborhood ?? this.addressNeighborhood,
-      ddd ?? this.ddd,
-      phoneNumber ?? this.phoneNumber,
-      publicPhoneNumber ?? this.publicPhoneNumber,
-      otherPhoneNumber ?? this.otherPhoneNumber,
-      faxNumber ?? this.faxNumber,
-      email ?? this.email,
-      edcensoRegionalEducationOrganFk ?? this.edcensoRegionalEducationOrganFk,
-      administrativeDependence ?? this.administrativeDependence,
-      location ?? this.location,
-      idDifflocation ?? this.idDifflocation,
-      linkedMec ?? this.linkedMec,
-      linkedArmy ?? this.linkedArmy,
-      linkedHelth ?? this.linkedHelth,
-      linkedOther ?? this.linkedOther,
-      privateSchoolCategory ?? this.privateSchoolCategory,
-      publicContract ?? this.publicContract,
-      privateSchoolBusinessOrIndividual ??
-          this.privateSchoolBusinessOrIndividual,
-      privateSchoolSyndicateOrAssociation ??
-          this.privateSchoolSyndicateOrAssociation,
-      privateSchoolOngOrOscip ?? this.privateSchoolOngOrOscip,
-      privateSchoolNonProfitInstitutions ??
-          this.privateSchoolNonProfitInstitutions,
-      privateSchoolSSystem ?? this.privateSchoolSSystem,
-      privateSchoolOrganizationCivilSociety ??
-          this.privateSchoolOrganizationCivilSociety,
-      privateSchoolMaintainerCnpj ?? this.privateSchoolMaintainerCnpj,
-      privateSchoolCnpj ?? this.privateSchoolCnpj,
-      regulation ?? this.regulation,
-      regulationOrgan ?? this.regulationOrgan,
-      regulationOrganFederal ?? this.regulationOrganFederal,
-      regulationOrganState ?? this.regulationOrganState,
-      regulationOrganMunicipal ?? this.regulationOrganMunicipal,
-      offerOrLinkedUnity ?? this.offerOrLinkedUnity,
-      inepHeadSchool ?? this.inepHeadSchool,
-      iesCode ?? this.iesCode,
-      logoFileName ?? this.logoFileName,
-      logoFileType ?? this.logoFileType,
-      logoFileContent ?? this.logoFileContent,
-      actOfAcknowledgement ?? this.actOfAcknowledgement,
-      createdAt ?? this.createdAt,
-      updatedAt ?? this.updatedAt,
-    );
+  }) : super(
+          registerType: registerType,
+          inepId: inepId,
+          managerCpf: managerCpf,
+          managerName: managerName,
+          managerRole: managerRole,
+          managerEmail: managerEmail,
+          managerAccessCriterion: managerAccessCriterion,
+          managerContractType: managerContractType,
+          situation: situation,
+          initialDate: initialDate,
+          finalDate: finalDate,
+          name: name,
+          latitude: latitude,
+          longitude: longitude,
+          cep: cep,
+          address: address,
+          addressNumber: addressNumber,
+          addressComplement: addressComplement,
+          addressNeighborhood: addressNeighborhood,
+          edcensoUfFk: edcensoUfFk,
+          edcensoCityFk: edcensoCityFk,
+          edcensoDistrictFk: edcensoDistrictFk,
+          ddd: ddd,
+          phoneNumber: phoneNumber,
+          publicPhoneNumber: publicPhoneNumber,
+          otherPhoneNumber: otherPhoneNumber,
+          faxNumber: faxNumber,
+          email: email,
+          edcensoRegionalEducationOrganFk: edcensoRegionalEducationOrganFk,
+          administrativeDependence: administrativeDependence,
+          location: location,
+          idDifflocation: idDifflocation,
+          linkedMec: linkedMec,
+          linkedArmy: linkedArmy,
+          linkedHelth: linkedHelth,
+          linkedOther: linkedOther,
+          privateSchoolCategory: privateSchoolCategory,
+          publicContract: publicContract,
+          privateSchoolBusinessOrIndividual: privateSchoolBusinessOrIndividual,
+          privateSchoolSyndicateOrAssociation:
+              privateSchoolSyndicateOrAssociation,
+          privateSchoolOngOrOscip: privateSchoolOngOrOscip,
+          privateSchoolNonProfitInstitutions:
+              privateSchoolNonProfitInstitutions,
+          privateSchoolSSystem: privateSchoolSSystem,
+          privateSchoolOrganizationCivilSociety:
+              privateSchoolOrganizationCivilSociety,
+          privateSchoolMaintainerCnpj: privateSchoolMaintainerCnpj,
+          privateSchoolCnpj: privateSchoolCnpj,
+          regulation: regulation,
+          regulationOrgan: regulationOrgan,
+          regulationOrganFederal: regulationOrganFederal,
+          regulationOrganState: regulationOrganState,
+          regulationOrganMunicipal: regulationOrganMunicipal,
+          offerOrLinkedUnity: offerOrLinkedUnity,
+          inepHeadSchool: inepHeadSchool,
+          iesCode: iesCode,
+          logoFileName: logoFileName,
+          logoFileType: logoFileType,
+          logoFileContent: logoFileContent,
+          actOfAcknowledgement: actOfAcknowledgement,
+        ) {
+    this.id = id;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
+  @override
+  SchoolModel copyWith({
+    String? id,
+    String? createdAt,
+    String? updatedAt,
+    String? registerType,
+    String? inepId,
+    String? managerCpf,
+    String? managerName,
+    int? managerRole,
+    String? managerEmail,
+    String? managerAccessCriterion,
+    int? managerContractType,
+    int? situation,
+    String? initialDate,
+    String? finalDate,
+    String? name,
+    String? latitude,
+    String? longitude,
+    String? cep,
+    String? address,
+    String? addressNumber,
+    String? addressComplement,
+    String? addressNeighborhood,
+    String? edcensoUfFk,
+    String? edcensoCityFk,
+    String? edcensoDistrictFk,
+    String? ddd,
+    String? phoneNumber,
+    String? publicPhoneNumber,
+    String? otherPhoneNumber,
+    String? faxNumber,
+    String? email,
+    String? edcensoRegionalEducationOrganFk,
+    int? administrativeDependence,
+    int? location,
+    int? idDifflocation,
+    bool? linkedMec,
+    bool? linkedArmy,
+    bool? linkedHelth,
+    bool? linkedOther,
+    int? privateSchoolCategory,
+    int? publicContract,
+    bool? privateSchoolBusinessOrIndividual,
+    bool? privateSchoolSyndicateOrAssociation,
+    bool? privateSchoolOngOrOscip,
+    bool? privateSchoolNonProfitInstitutions,
+    bool? privateSchoolSSystem,
+    bool? privateSchoolOrganizationCivilSociety,
+    String? privateSchoolMaintainerCnpj,
+    String? privateSchoolCnpj,
+    int? regulation,
+    int? regulationOrgan,
+    bool? regulationOrganFederal,
+    bool? regulationOrganState,
+    bool? regulationOrganMunicipal,
+    int? offerOrLinkedUnity,
+    String? inepHeadSchool,
+    String? iesCode,
+    String? logoFileName,
+    String? logoFileType,
+    String? logoFileContent,
+    String? actOfAcknowledgement,
+  }) {
+    final schoolModel = SchoolModel(
+      id: id ?? this.id,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      registerType: registerType ?? this.registerType,
+      inepId: inepId ?? this.inepId,
+      managerCpf: managerCpf ?? this.managerCpf,
+      managerName: managerName ?? this.managerName,
+      managerRole: managerRole ?? this.managerRole,
+      managerEmail: managerEmail ?? this.managerEmail,
+      managerAccessCriterion:
+          managerAccessCriterion ?? this.managerAccessCriterion,
+      managerContractType: managerContractType ?? this.managerContractType,
+      situation: situation ?? this.situation,
+      initialDate: initialDate ?? this.initialDate,
+      finalDate: finalDate ?? this.finalDate,
+      name: name ?? this.name,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      cep: cep ?? this.cep,
+      address: address ?? this.address,
+      addressNumber: addressNumber ?? this.addressNumber,
+      addressComplement: addressComplement ?? this.addressComplement,
+      addressNeighborhood: addressNeighborhood ?? this.addressNeighborhood,
+      edcensoUfFk: edcensoUfFk ?? this.edcensoUfFk,
+      edcensoCityFk: edcensoCityFk ?? this.edcensoCityFk,
+      edcensoDistrictFk: edcensoDistrictFk ?? this.edcensoDistrictFk,
+      ddd: ddd ?? this.ddd,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      publicPhoneNumber: publicPhoneNumber ?? this.publicPhoneNumber,
+      otherPhoneNumber: otherPhoneNumber ?? this.otherPhoneNumber,
+      faxNumber: faxNumber ?? this.faxNumber,
+      email: email ?? this.email,
+      edcensoRegionalEducationOrganFk: edcensoRegionalEducationOrganFk ??
+          this.edcensoRegionalEducationOrganFk,
+      administrativeDependence:
+          administrativeDependence ?? this.administrativeDependence,
+      location: location ?? this.location,
+      idDifflocation: idDifflocation ?? this.idDifflocation,
+      linkedMec: linkedMec ?? this.linkedMec,
+      linkedArmy: linkedArmy ?? this.linkedArmy,
+      linkedHelth: linkedHelth ?? this.linkedHelth,
+      linkedOther: linkedOther ?? this.linkedOther,
+      privateSchoolCategory:
+          privateSchoolCategory ?? this.privateSchoolCategory,
+      publicContract: publicContract ?? this.publicContract,
+      privateSchoolBusinessOrIndividual: privateSchoolBusinessOrIndividual ??
+          this.privateSchoolBusinessOrIndividual,
+      privateSchoolSyndicateOrAssociation:
+          privateSchoolSyndicateOrAssociation ??
+              this.privateSchoolSyndicateOrAssociation,
+      privateSchoolOngOrOscip:
+          privateSchoolOngOrOscip ?? this.privateSchoolOngOrOscip,
+      privateSchoolNonProfitInstitutions: privateSchoolNonProfitInstitutions ??
+          this.privateSchoolNonProfitInstitutions,
+      privateSchoolSSystem: privateSchoolSSystem ?? this.privateSchoolSSystem,
+      privateSchoolOrganizationCivilSociety:
+          privateSchoolOrganizationCivilSociety ??
+              this.privateSchoolOrganizationCivilSociety,
+      privateSchoolMaintainerCnpj:
+          privateSchoolMaintainerCnpj ?? this.privateSchoolMaintainerCnpj,
+      privateSchoolCnpj: privateSchoolCnpj ?? this.privateSchoolCnpj,
+      regulation: regulation ?? this.regulation,
+      regulationOrgan: regulationOrgan ?? this.regulationOrgan,
+      regulationOrganFederal:
+          regulationOrganFederal ?? this.regulationOrganFederal,
+      regulationOrganState: regulationOrganState ?? this.regulationOrganState,
+      regulationOrganMunicipal:
+          regulationOrganMunicipal ?? this.regulationOrganMunicipal,
+      offerOrLinkedUnity: offerOrLinkedUnity ?? this.offerOrLinkedUnity,
+      inepHeadSchool: inepHeadSchool ?? this.inepHeadSchool,
+      iesCode: iesCode ?? this.iesCode,
+      logoFileName: logoFileName ?? this.logoFileName,
+      logoFileType: logoFileType ?? this.logoFileType,
+      logoFileContent: logoFileContent ?? this.logoFileContent,
+      actOfAcknowledgement: actOfAcknowledgement ?? this.actOfAcknowledgement,
+    );
+    return schoolModel;
+  }
+
+  @override
   Map<String, dynamic> toMap() {
-    return {
-      'registerType': registerType,
-      'inepId': inepId,
-      'managerCpf': managerCpf,
-      'managerName': managerName,
-      'managerRole': managerRole,
-      'managerEmail': managerEmail,
-      'managerAccessCriterion': managerAccessCriterion,
-      'managerContractType': managerContractType,
-      'situation': situation,
-      'initialDate': initialDate,
-      'finalDate': finalDate,
-      'name': name,
-      'latitude': latitude,
-      'longitude': longitude,
-      'cep': cep,
-      'address': address,
-      'addressNumber': addressNumber,
-      'addressComplement': addressComplement,
-      'addressNeighborhood': addressNeighborhood,
-      'ddd': ddd,
-      'phoneNumber': phoneNumber,
-      'publicPhoneNumber': publicPhoneNumber,
-      'otherPhoneNumber': otherPhoneNumber,
-      'faxNumber': faxNumber,
-      'email': email,
-      'edcensoRegionalEducationOrganFk': edcensoRegionalEducationOrganFk,
-      'administrativeDependence': administrativeDependence,
-      'location': location,
-      'idDifflocation': idDifflocation,
-      'linkedMec': linkedMec,
-      'linkedArmy': linkedArmy,
-      'linkedHelth': linkedHelth,
-      'linkedOther': linkedOther,
-      'privateSchoolCategory': privateSchoolCategory,
-      'publicContract': publicContract,
-      'privateSchoolBusinessOrIndividual': privateSchoolBusinessOrIndividual,
-      'privateSchoolSyndicateOrAssociation':
-          privateSchoolSyndicateOrAssociation,
-      'privateSchoolOngOrOscip': privateSchoolOngOrOscip,
-      'privateSchoolNonProfitInstitutions': privateSchoolNonProfitInstitutions,
-      'privateSchoolSSystem': privateSchoolSSystem,
-      'privateSchoolOrganizationCivilSociety':
-          privateSchoolOrganizationCivilSociety,
-      'privateSchoolMaintainerCnpj': privateSchoolMaintainerCnpj,
-      'privateSchoolCnpj': privateSchoolCnpj,
-      'regulation': regulation,
-      'regulationOrgan': regulationOrgan,
-      'regulationOrganFederal': regulationOrganFederal,
-      'regulationOrganState': regulationOrganState,
-      'regulationOrganMunicipal': regulationOrganMunicipal,
-      'offerOrLinkedUnity': offerOrLinkedUnity,
-      'inepHeadSchool': inepHeadSchool,
-      'iesCode': iesCode,
-      'logoFileName': logoFileName,
-      'logoFileType': logoFileType,
-      'logoFileContent': logoFileContent,
-      'actOfAcknowledgement': actOfAcknowledgement,
+    final map = super.toMap();
+    map.addAll({
+      '_id': id,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
-    };
+    });
+
+    return map;
   }
 
   factory SchoolModel.fromMap(Map<String, dynamic> map) {
-    return SchoolModel(
-      map['registerType'] ?? '',
-      map['inepId'] ?? '',
-      map['managerCpf'] ?? '',
-      map['managerName'] ?? '',
-      map['managerRole']?.toInt() ?? 0,
-      map['managerEmail'] ?? '',
-      map['managerAccessCriterion'] ?? '',
-      map['managerContractType']?.toInt() ?? 0,
-      map['situation']?.toInt() ?? 0,
-      map['initialDate'] ?? '',
-      map['finalDate'] ?? '',
-      map['name'] ?? '',
-      map['latitude'] ?? '',
-      map['longitude'] ?? '',
-      map['cep'] ?? '',
-      map['address'] ?? '',
-      map['addressNumber'] ?? '',
-      map['addressComplement'] ?? '',
-      map['addressNeighborhood'] ?? '',
-      map['ddd'] ?? '',
-      map['phoneNumber'] ?? '',
-      map['publicPhoneNumber'] ?? '',
-      map['otherPhoneNumber'] ?? '',
-      map['faxNumber'] ?? '',
-      map['email'] ?? '',
-      map['edcensoRegionalEducationOrganFk'] ?? '',
-      map['administrativeDependence']?.toInt() ?? 0,
-      map['location']?.toInt() ?? 0,
-      map['idDifflocation']?.toInt() ?? 0,
-      map['linkedMec'] ?? false,
-      map['linkedArmy'] ?? false,
-      map['linkedHelth'] ?? false,
-      map['linkedOther'] ?? false,
-      map['privateSchoolCategory']?.toInt() ?? 0,
-      map['publicContract']?.toInt() ?? 0,
-      map['privateSchoolBusinessOrIndividual'] ?? false,
-      map['privateSchoolSyndicateOrAssociation'] ?? false,
-      map['privateSchoolOngOrOscip'] ?? false,
-      map['privateSchoolNonProfitInstitutions'] ?? false,
-      map['privateSchoolSSystem'] ?? false,
-      map['privateSchoolOrganizationCivilSociety'] ?? false,
-      map['privateSchoolMaintainerCnpj'] ?? '',
-      map['privateSchoolCnpj'] ?? '',
-      map['regulation']?.toInt() ?? 0,
-      map['regulationOrgan']?.toInt() ?? 0,
-      map['regulationOrganFederal'] ?? false,
-      map['regulationOrganState'] ?? false,
-      map['regulationOrganMunicipal'] ?? false,
-      map['offerOrLinkedUnity']?.toInt() ?? 0,
-      map['inepHeadSchool'] ?? '',
-      map['iesCode'] ?? '',
-      map['logoFileName'] ?? '',
-      map['logoFileType'] ?? '',
-      map['logoFileContent'] ?? '',
-      map['actOfAcknowledgement'] ?? '',
-      map['createdAt'] ?? '',
-      map['updatedAt'] ?? '',
+    final schoolModel = SchoolModel(
+      id: map['id'] ?? '',
+      createdAt: map['createdAt'] ?? '',
+      updatedAt: map['updatedAt'] ?? '',
+      registerType: map['register_type'],
+      inepId: map['inep_id'],
+      managerCpf: map['manager_cpf'],
+      managerName: map['manager_name'],
+      managerRole: int.tryParse(map['manager_role'] ?? ''),
+      managerEmail: map['manager_email'],
+      managerAccessCriterion: map['manager_access_criterion'],
+      managerContractType: int.tryParse(map['manager_contract_type'] ?? ''),
+      situation: int.tryParse(map['situation'] ?? ''),
+      initialDate: map['initial_date'],
+      finalDate: map['final_date'],
+      name: map['name'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
+      cep: map['cep'],
+      address: map['address'],
+      addressNumber: map['address_number'],
+      addressComplement: map['address_complement'],
+      addressNeighborhood: map['address_neighborhood'],
+      edcensoUfFk: map['edcenso_uf_fk'],
+      edcensoCityFk: map['edcenso_city_fk'],
+      edcensoDistrictFk: map['edcenso_district_fk'],
+      ddd: map['ddd'],
+      phoneNumber: map['phone_number'],
+      publicPhoneNumber: map['public_phone_number'],
+      otherPhoneNumber: map['other_phone_number'],
+      faxNumber: map['fax_number'],
+      email: map['email'],
+      edcensoRegionalEducationOrganFk:
+          map['edcenso_regional_education_organ_fk'],
+      administrativeDependence: int.tryParse(
+        map['administrative_dependence'] ?? '',
+      ),
+      location: map['location'],
+      idDifflocation: int.tryParse(map['id_difflocation'] ?? ''),
+      linkedMec: map['linked_mec'],
+      linkedArmy: map['linked_army'],
+      linkedHelth: map['linked_helth'],
+      linkedOther: map['linked_other'],
+      privateSchoolCategory: int.tryParse(map['private_school_category'] ?? ''),
+      publicContract: int.tryParse(map['public_contract'] ?? ''),
+      privateSchoolBusinessOrIndividual:
+          map['private_school_business_or_individual'],
+      privateSchoolSyndicateOrAssociation:
+          map['private_school_syndicate_or_association'],
+      privateSchoolOngOrOscip: map['private_school_ong_or_oscip'],
+      privateSchoolNonProfitInstitutions:
+          map['private_school_non_profit_institutions'],
+      privateSchoolSSystem: map['private_school_s_system'],
+      privateSchoolOrganizationCivilSociety:
+          map['private_school_organization_civil_society'],
+      privateSchoolMaintainerCnpj: map['private_school_maintainer_cnpj'],
+      privateSchoolCnpj: map['private_school_cnpj'],
+      regulation: int.tryParse(map['regulation'] ?? ''),
+      regulationOrgan: int.tryParse(map['regulation_organ'] ?? ''),
+      regulationOrganFederal: map['regulation_organ_federal'],
+      regulationOrganState: map['regulation_organ_state'],
+      regulationOrganMunicipal: map['regulation_organ_municipal'],
+      offerOrLinkedUnity: int.tryParse(map['offer_or_linked_unity'] ?? ''),
+      inepHeadSchool: map['inep_head_school'],
+      iesCode: map['ies_code'],
+      logoFileName: map['logo_file_name'],
+      logoFileType: map['logo_file_type'],
+      logoFileContent: map['logo_file_content'],
+      actOfAcknowledgement: map['act_of_acknowledgement'],
     );
+    return schoolModel;
   }
 
+  @override
   String toJson() => json.encode(toMap());
 
   factory SchoolModel.fromJson(String source) =>
       SchoolModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'SchoolModel(registerType: $registerType, inepId: $inepId, managerCpf: $managerCpf, managerName: $managerName, managerRole: $managerRole, managerEmail: $managerEmail, managerAccessCriterion: $managerAccessCriterion, managerContractType: $managerContractType, situation: $situation, initialDate: $initialDate, finalDate: $finalDate, name: $name, latitude: $latitude, longitude: $longitude, cep: $cep, address: $address, addressNumber: $addressNumber, addressComplement: $addressComplement, addressNeighborhood: $addressNeighborhood, ddd: $ddd, phoneNumber: $phoneNumber, publicPhoneNumber: $publicPhoneNumber, otherPhoneNumber: $otherPhoneNumber, faxNumber: $faxNumber, email: $email, edcensoRegionalEducationOrganFk: $edcensoRegionalEducationOrganFk, administrativeDependence: $administrativeDependence, location: $location, idDifflocation: $idDifflocation, linkedMec: $linkedMec, linkedArmy: $linkedArmy, linkedHelth: $linkedHelth, linkedOther: $linkedOther, privateSchoolCategory: $privateSchoolCategory, publicContract: $publicContract, privateSchoolBusinessOrIndividual: $privateSchoolBusinessOrIndividual, privateSchoolSyndicateOrAssociation: $privateSchoolSyndicateOrAssociation, privateSchoolOngOrOscip: $privateSchoolOngOrOscip, privateSchoolNonProfitInstitutions: $privateSchoolNonProfitInstitutions, privateSchoolSSystem: $privateSchoolSSystem, privateSchoolOrganizationCivilSociety: $privateSchoolOrganizationCivilSociety, privateSchoolMaintainerCnpj: $privateSchoolMaintainerCnpj, privateSchoolCnpj: $privateSchoolCnpj, regulation: $regulation, regulationOrgan: $regulationOrgan, regulationOrganFederal: $regulationOrganFederal, regulationOrganState: $regulationOrganState, regulationOrganMunicipal: $regulationOrganMunicipal, offerOrLinkedUnity: $offerOrLinkedUnity, inepHeadSchool: $inepHeadSchool, iesCode: $iesCode, logoFileName: $logoFileName, logoFileType: $logoFileType, logoFileContent: $logoFileContent, actOfAcknowledgement: $actOfAcknowledgement, createdAt: $createdAt, updatedAt: $updatedAt)';
-  }
+  String toString() => '''
+SchoolModel(id: $id, registerType: $registerType, inepId: $inepId, managerCpf: $managerCpf, managerName: $managerName, managerRole: $managerRole, managerEmail: $managerEmail, managerAccessCriterion: $managerAccessCriterion, managerContractType: $managerContractType, situation: $situation, initialDate: $initialDate, finalDate: $finalDate, name: $name, latitude: $latitude, longitude: $longitude, cep: $cep, address: $address, addressNumber: $addressNumber, addressComplement: $addressComplement, addressNeighborhood: $addressNeighborhood, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, edcensoDistrictFk: $edcensoDistrictFk, ddd: $ddd, phoneNumber: $phoneNumber, publicPhoneNumber: $publicPhoneNumber, otherPhoneNumber: $otherPhoneNumber, faxNumber: $faxNumber, email: $email, edcensoRegionalEducationOrganFk: $edcensoRegionalEducationOrganFk, administrativeDependence: $administrativeDependence, location: $location, idDifflocation: $idDifflocation, linkedMec: $linkedMec, linkedArmy: $linkedArmy, linkedHelth: $linkedHelth, linkedOther: $linkedOther, privateSchoolCategory: $privateSchoolCategory, publicContract: $publicContract, privateSchoolBusinessOrIndividual: $privateSchoolBusinessOrIndividual, privateSchoolSyndicateOrAssociation: $privateSchoolSyndicateOrAssociation, privateSchoolOngOrOscip: $privateSchoolOngOrOscip, privateSchoolNonProfitInstitutions: $privateSchoolNonProfitInstitutions, privateSchoolSSystem: $privateSchoolSSystem, privateSchoolOrganizationCivilSociety: $privateSchoolOrganizationCivilSociety, privateSchoolMaintainerCnpj: $privateSchoolMaintainerCnpj, privateSchoolCnpj: $privateSchoolCnpj, regulation: $regulation, regulationOrgan: $regulationOrgan, regulationOrganFederal: $regulationOrganFederal, regulationOrganState: $regulationOrganState, regulationOrganMunicipal: $regulationOrganMunicipal, offerOrLinkedUnity: $offerOrLinkedUnity, inepHeadSchool: $inepHeadSchool, iesCode: $iesCode, logoFileName: $logoFileName, logoFileType: $logoFileType, logoFileContent: $logoFileContent, actOfAcknowledgement: $actOfAcknowledgement, createdAt: $createdAt, updatedAt: $updatedAt)''';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is SchoolModel &&
-        other.registerType == registerType &&
-        other.inepId == inepId &&
-        other.managerCpf == managerCpf &&
-        other.managerName == managerName &&
-        other.managerRole == managerRole &&
-        other.managerEmail == managerEmail &&
-        other.managerAccessCriterion == managerAccessCriterion &&
-        other.managerContractType == managerContractType &&
-        other.situation == situation &&
-        other.initialDate == initialDate &&
-        other.finalDate == finalDate &&
-        other.name == name &&
-        other.latitude == latitude &&
-        other.longitude == longitude &&
-        other.cep == cep &&
-        other.address == address &&
-        other.addressNumber == addressNumber &&
-        other.addressComplement == addressComplement &&
-        other.addressNeighborhood == addressNeighborhood &&
-        other.ddd == ddd &&
-        other.phoneNumber == phoneNumber &&
-        other.publicPhoneNumber == publicPhoneNumber &&
-        other.otherPhoneNumber == otherPhoneNumber &&
-        other.faxNumber == faxNumber &&
-        other.email == email &&
-        other.edcensoRegionalEducationOrganFk ==
-            edcensoRegionalEducationOrganFk &&
-        other.administrativeDependence == administrativeDependence &&
-        other.location == location &&
-        other.idDifflocation == idDifflocation &&
-        other.linkedMec == linkedMec &&
-        other.linkedArmy == linkedArmy &&
-        other.linkedHelth == linkedHelth &&
-        other.linkedOther == linkedOther &&
-        other.privateSchoolCategory == privateSchoolCategory &&
-        other.publicContract == publicContract &&
-        other.privateSchoolBusinessOrIndividual ==
-            privateSchoolBusinessOrIndividual &&
-        other.privateSchoolSyndicateOrAssociation ==
-            privateSchoolSyndicateOrAssociation &&
-        other.privateSchoolOngOrOscip == privateSchoolOngOrOscip &&
-        other.privateSchoolNonProfitInstitutions ==
-            privateSchoolNonProfitInstitutions &&
-        other.privateSchoolSSystem == privateSchoolSSystem &&
-        other.privateSchoolOrganizationCivilSociety ==
-            privateSchoolOrganizationCivilSociety &&
-        other.privateSchoolMaintainerCnpj == privateSchoolMaintainerCnpj &&
-        other.privateSchoolCnpj == privateSchoolCnpj &&
-        other.regulation == regulation &&
-        other.regulationOrgan == regulationOrgan &&
-        other.regulationOrganFederal == regulationOrganFederal &&
-        other.regulationOrganState == regulationOrganState &&
-        other.regulationOrganMunicipal == regulationOrganMunicipal &&
-        other.offerOrLinkedUnity == offerOrLinkedUnity &&
-        other.inepHeadSchool == inepHeadSchool &&
-        other.iesCode == iesCode &&
-        other.logoFileName == logoFileName &&
-        other.logoFileType == logoFileType &&
-        other.logoFileContent == logoFileContent &&
-        other.actOfAcknowledgement == actOfAcknowledgement &&
+        other.id == id &&
         other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
+        other.updatedAt == updatedAt &&
+        super == other;
   }
 
   @override
-  int get hashCode {
-    return registerType.hashCode ^
-        inepId.hashCode ^
-        managerCpf.hashCode ^
-        managerName.hashCode ^
-        managerRole.hashCode ^
-        managerEmail.hashCode ^
-        managerAccessCriterion.hashCode ^
-        managerContractType.hashCode ^
-        situation.hashCode ^
-        initialDate.hashCode ^
-        finalDate.hashCode ^
-        name.hashCode ^
-        latitude.hashCode ^
-        longitude.hashCode ^
-        cep.hashCode ^
-        address.hashCode ^
-        addressNumber.hashCode ^
-        addressComplement.hashCode ^
-        addressNeighborhood.hashCode ^
-        ddd.hashCode ^
-        phoneNumber.hashCode ^
-        publicPhoneNumber.hashCode ^
-        otherPhoneNumber.hashCode ^
-        faxNumber.hashCode ^
-        email.hashCode ^
-        edcensoRegionalEducationOrganFk.hashCode ^
-        administrativeDependence.hashCode ^
-        location.hashCode ^
-        idDifflocation.hashCode ^
-        linkedMec.hashCode ^
-        linkedArmy.hashCode ^
-        linkedHelth.hashCode ^
-        linkedOther.hashCode ^
-        privateSchoolCategory.hashCode ^
-        publicContract.hashCode ^
-        privateSchoolBusinessOrIndividual.hashCode ^
-        privateSchoolSyndicateOrAssociation.hashCode ^
-        privateSchoolOngOrOscip.hashCode ^
-        privateSchoolNonProfitInstitutions.hashCode ^
-        privateSchoolSSystem.hashCode ^
-        privateSchoolOrganizationCivilSociety.hashCode ^
-        privateSchoolMaintainerCnpj.hashCode ^
-        privateSchoolCnpj.hashCode ^
-        regulation.hashCode ^
-        regulationOrgan.hashCode ^
-        regulationOrganFederal.hashCode ^
-        regulationOrganState.hashCode ^
-        regulationOrganMunicipal.hashCode ^
-        offerOrLinkedUnity.hashCode ^
-        inepHeadSchool.hashCode ^
-        iesCode.hashCode ^
-        logoFileName.hashCode ^
-        logoFileType.hashCode ^
-        logoFileContent.hashCode ^
-        actOfAcknowledgement.hashCode ^
-        createdAt.hashCode ^
-        updatedAt.hashCode;
-  }
+  int get hashCode =>
+      id.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ super.hashCode;
 }

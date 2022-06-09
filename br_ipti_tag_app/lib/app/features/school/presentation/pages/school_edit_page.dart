@@ -3,7 +3,6 @@ import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/sc
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_educational_data_tab.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_equipments_tab.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_id_tab.dart';
-import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_reports_tab.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/tabs/school_structure_tab.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
@@ -53,10 +52,11 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
       // ),
     ];
 
-    final buttonSubmitAndGo = TagButton(
+    final buttonSubmit = TagButton(
       text: "Salvar informações",
       onPressed: () => _save(),
     );
+
     return DefaultTabController(
       length: tabs.length,
       child: TagDefaultPage(
@@ -93,7 +93,7 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               RowToColumn(children: [
-                Flexible(child: withPadding(buttonSubmitAndGo)),
+                Flexible(child: withPadding(buttonSubmit)),
               ]),
             ],
           ),
@@ -112,7 +112,6 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit> {
 // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-    print("object1");
-    controller.updateSchoolData();
+    // controller.updateSchoolData();
   }
 }

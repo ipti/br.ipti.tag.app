@@ -5,7 +5,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_crea
 class PutClasroomEndPoint extends EndPointAPI {
   PutClasroomEndPoint(
     this.classroomModel,
-    this.id
+    this.id,
   );
 
   ClassroomCreateModel classroomModel;
