@@ -2,16 +2,19 @@ import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart'
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/edit_school_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/show_school_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
+import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class SchoolCubit extends Cubit<SchoolState> {
   SchoolCubit(
     this._editSchoolUsecase,
     this._showSchoolUsecase,
-  ) : super(SchoolEmptyState());
+  ) : super(const SchoolEmptyState());
 
   final EditSchoolUsecase _editSchoolUsecase;
   final ShowSchoolUsecase _showSchoolUsecase;
+  final _session = Modular.get<SessionBloc>();
 
   Future save() async {
     final data = SchoolEntity(name: "Escola Teste em");
@@ -40,8 +43,9 @@ class SchoolCubit extends Cubit<SchoolState> {
 
   Future<void> fetchCurrentSchoolData() async {
     _startLoading();
-    final result = await _showSchoolUsecase(
-        ShowSchoolParams(uuid: "6244c323f0a8e92a8c6fad02"));
+    await _session.fetchCurrentSchool();
+    final schoolId = _session.state.currentSchool!.id!;
+    final result = await _showSchoolUsecase(ShowSchoolParams(uuid: schoolId));
     result.fold(
       (Exception failure) =>
           emit(SchoolFailedState(message: failure.toString())),
