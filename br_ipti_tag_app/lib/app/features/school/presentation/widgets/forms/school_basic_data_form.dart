@@ -1,5 +1,9 @@
+import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
+import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolBasicDataForm extends StatefulWidget {
@@ -10,6 +14,8 @@ class SchoolBasicDataForm extends StatefulWidget {
 }
 
 class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
+  final controller = Modular.get<SchoolCubit>();
+
   @override
   Widget build(BuildContext context) {
     const heading = Heading(text: "Dados básicos", type: HeadingType.Title2);
@@ -68,10 +74,25 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           value: schoolName,
           validator: requiredValidator,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
+        BlocBuilder<SchoolCubit, SchoolState>(
+          bloc: controller,
+          builder: (context, state) {
+            return RowToColumn(children: [
+              Flexible(
+                child: withPadding(
+                    inputSchoolName('state.currentSchoolData!.name')),
+              ),
+              Flexible(
+                child: withPadding(inputInepCode("PlaceHolder")),
+              ),
+            ]);
+          },
+        ),
         RowToColumn(children: [
           Flexible(
             child: withPadding(inputSchoolName("PlaceHolder")),
@@ -106,48 +127,5 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
         ]),
       ],
     );
-    // return SingleChildScrollView(
-    //   child: Padding(
-    //     padding: const EdgeInsets.all(8.0),
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: <Widget>[
-    //         withPadding(heading),
-    //         RowToColumn(children: [
-    //           Flexible(
-    //             child: withPadding(inputSchoolName("PlaceHolder")),
-    //           ),
-    //           Flexible(
-    //             child: withPadding(inputInepCode("PlaceHolder")),
-    //           ),
-    //         ]),
-    //         RowToColumn(children: [
-    //           Flexible(
-    //             child: withPadding(inputAdminDep()),
-    //           ),
-    //           Flexible(
-    //             child: withPadding(inputStatus()),
-    //           ),
-    //         ]),
-    //         RowToColumn(children: [
-    //           Flexible(
-    //             child: withPadding(inputRegionalAdmin()),
-    //           ),
-    //           Flexible(
-    //             child: withPadding(inputStartDate("PlaceHolder")),
-    //           ),
-    //         ]),
-    //         RowToColumn(children: [
-    //           Flexible(
-    //             child: withPadding(inputRecognitionAct("PlaceHolder")),
-    //           ),
-    //           Flexible(
-    //             child: withPadding(inputEndDate("PlaceHolder")),
-    //           ),
-    //         ]),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

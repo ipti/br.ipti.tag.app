@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/edit_school_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/show_school_usecase.dart';
@@ -14,31 +15,34 @@ class SchoolCubit extends Cubit<SchoolState> {
 
   final EditSchoolUsecase _editSchoolUsecase;
   final ShowSchoolUsecase _showSchoolUsecase;
-  final _session = Modular.get<SessionBloc>();
+  final SessionBloc _session = Modular.get<SessionBloc>();
+
+  void _startLoading() {
+    emit(
+      const SchoolLoadingState(),
+    );
+  }
+
+  void _stopLoading(SchoolModel currentSchool) {
+    emit(
+      SchoolLoadedState(currentSchool: currentSchool),
+    );
+  }
+
+  void _startSending(SchoolModel? currentSchool) {
+    emit(
+      SchoolSendingState(currentSchool: currentSchool),
+    );
+  }
+
+  void _stopSending(SchoolModel currentSchool) {
+    emit(SchoolSentState(currentSchool: currentSchool));
+  }
 
   Future save() async {
     final data = SchoolEntity(name: "Escola Teste em");
     // final params = EditSchoolParams(uuid: "6244c323f0a8e92a8c6fad02", data: );
     //  final option = await editSchoolUsecase();
-  }
-
-  void _startLoading() {
-    emit(state.copyWith(loading: true));
-  }
-
-  void _stopLoading() {
-    emit(state.copyWith(loading: false));
-  }
-
-  void _startSending() {
-    emit(state.copyWith(
-      sending: true,
-      message: "Enviando dados",
-    ));
-  }
-
-  void _stopSending() {
-    emit(state.copyWith(sending: false));
   }
 
   Future<void> fetchCurrentSchoolData() async {
@@ -49,18 +53,17 @@ class SchoolCubit extends Cubit<SchoolState> {
     result.fold(
       (Exception failure) =>
           emit(SchoolFailedState(message: failure.toString())),
-      (school) => emit(SchoolLoadedState(currentSchool: school)),
+      (school) => _stopLoading(school),
     );
-    _stopLoading();
   }
 
-  Future<void> updateSchoolData() async {
-    _startSending();
-
+  Future<void> updateCurrentSchoolData() async {
+    _startSending(null);
+    final schoolId = _session.state.currentSchool!.id!;
     final params = EditSchoolParams(
-      uuid: "6244c323f0a8e92a8c6fad02",
+      uuid: schoolId,
       data: SchoolEntity(
-        name: "Escola Teste - 02",
+        name: "Escola Teste - 07",
         inepId: "123456789",
         registerType: "00",
         edcensoUfFk: "61a92b6dd2b8a11704d7ae6a",
@@ -72,8 +75,7 @@ class SchoolCubit extends Cubit<SchoolState> {
     result.fold(
       (Exception failure) =>
           emit(SchoolFailedState(message: failure.toString())),
-      (school) => emit(SchoolLoadedState(currentSchool: school)),
+      (school) => _stopSending(school),
     );
-    _stopSending();
   }
 }
