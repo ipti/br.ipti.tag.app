@@ -19,10 +19,10 @@ class ListInstructorsTeachingDataUseCase
 }
 
 class ListInstructorsTeachingDataParams extends Equatable {
-  String classroomId;
-  String perPage;
-  String page;
-  ListInstructorsTeachingDataParams(
+  final String classroomId;
+  final String perPage;
+  final String page;
+  const ListInstructorsTeachingDataParams(
       {required this.classroomId, this.page = "1", this.perPage = '100'});
   @override
   // TODO: implement props

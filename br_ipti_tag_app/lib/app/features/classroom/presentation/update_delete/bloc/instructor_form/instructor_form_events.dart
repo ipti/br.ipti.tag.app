@@ -29,5 +29,6 @@ class SubmitUpdateInstructorForm extends InstructorFormEvent {
   final String instructorTeachingDataId;
 
   SubmitUpdateInstructorForm({required this.instructorTeachingDataId});
+  @override
   List<Object?> get props => [instructorTeachingDataId];
 }

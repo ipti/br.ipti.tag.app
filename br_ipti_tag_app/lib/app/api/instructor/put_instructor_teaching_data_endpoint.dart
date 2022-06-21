@@ -17,7 +17,7 @@ class PutInstructorTeachingDataEndpoint extends EndPointAPI {
   HTTPHeaders? get headers => null;
 
   @override
-  HTTPMethod get httpMethod => HTTPMethod.POST;
+  HTTPMethod get httpMethod => HTTPMethod.PUT;
 
   @override
   Parameters? get urlParameters => null;

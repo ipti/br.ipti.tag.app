@@ -4,7 +4,7 @@ class InstructorTeachingDataUpdateModel
     extends InstructorTeachingDataUpdateEntity {
   InstructorTeachingDataUpdateModel(
     int? role,
-    int? contract_type,
+    int? contractType,
     String? discipline1Fk,
     String? discipline2Fk,
     String? discipline3Fk,
@@ -22,7 +22,7 @@ class InstructorTeachingDataUpdateModel
     String? discipline15Fk,
   ) : super(
           role: role,
-          contract_type: contract_type,
+          contractType: contractType,
           discipline1Fk: discipline1Fk,
           discipline2Fk: discipline2Fk,
           discipline3Fk: discipline3Fk,
@@ -42,7 +42,7 @@ class InstructorTeachingDataUpdateModel
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'role': role,
-        'contract_type': contract_type,
+        'contract_type': contractType,
         'discipline1Fk': discipline1Fk,
         'discipline2Fk': discipline2Fk,
         'discipline3Fk': discipline3Fk,
