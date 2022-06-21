@@ -26,7 +26,6 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
   Widget build(BuildContext context) {
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.ingredient.name,
       description: "Estoque de item",
       path: const [],

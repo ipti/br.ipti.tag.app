@@ -32,7 +32,6 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
           length: 3,
           child: TagDefaultPage(
             menu: const TagVerticalMenu(),
-            aside: Container(),
             title: 'Atualizar Turmas',
             description: "",
             path: const ["Turmas", 'Atualizar Turmas'],

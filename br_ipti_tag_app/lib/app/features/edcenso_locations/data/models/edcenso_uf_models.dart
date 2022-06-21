@@ -4,10 +4,10 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/e
 
 class EdCensoUfModel extends EdCensoUF {
   EdCensoUfModel({
-    String? id,
+    required String id,
     String? oldId,
-    String? name,
-    String? acronym,
+    required String name,
+    required String acronym,
   }) : super(id: id, oldId: oldId, name: name, acronym: acronym);
 
   EdCensoUfModel copyWith({

@@ -40,7 +40,6 @@ class ClassroomCreatePageState
       length: 1,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
-        aside: Container(),
         title: widget.title,
         description: "",
         path: ["Turmas", widget.title],

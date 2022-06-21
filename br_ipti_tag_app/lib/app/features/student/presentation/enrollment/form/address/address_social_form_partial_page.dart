@@ -2,8 +2,8 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_doc
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/_address_form_partial.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/_social_form_partial.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_states.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/widgets/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
