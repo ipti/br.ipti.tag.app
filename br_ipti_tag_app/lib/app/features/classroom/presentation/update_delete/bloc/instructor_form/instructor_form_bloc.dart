@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
-import 'package:br_ipti_tag_app/app/features/classroom/check_discipline_id.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructor_teaching_data_create_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
@@ -50,8 +49,8 @@ class InstructorFormBloc
             disciplinesResponse as List<EdcensoDisciplinesEntity>);
 
     if (instructors.isNotEmpty && disciplines.isNotEmpty) {
-      changeCurrentInstructor(instructorFk ?? instructors.first.id);
-      changeCurrentDiscipline(instructorDiscipline ?? disciplines.first.id);
+      currentInstructor = instructorFk ?? instructors.first.id;
+      changeCurrentDiscipline = instructorDiscipline ?? disciplines.first.id;
       emit(InstructorFormStateSuccess(
           instructors: instructors, disciplines: disciplines));
     } else {
@@ -59,19 +58,20 @@ class InstructorFormBloc
     }
   }
 
-  String? _currentInstructor;
-  void changeCurrentInstructor(String selectedInstructorId) =>
+  late String? _currentInstructor;
+  set currentInstructor(String selectedInstructorId) =>
       _currentInstructor = selectedInstructorId;
   String get currentInstructor => _currentInstructor!;
 
-  String? _currentDiscipline;
-  void changeCurrentDiscipline(String selectedDisciplineId) =>
+  late String? _currentDiscipline;
+  set changeCurrentDiscipline(String selectedDisciplineId) =>
       _currentDiscipline = selectedDisciplineId;
-  String get currentDiscipline => _currentDiscipline!;
+  String get changeCurrentDiscipline => _currentDiscipline!;
   List<String> selectedDisciplines = [];
 
-  String? _classroomId;
-  void setClassroomId(String classroomId) => _classroomId = classroomId;
+  late String? _classroomId;
+  set classroomId(String classroomId) => _classroomId = classroomId;
+  String get classroomId => _classroomId!; 
 
   int _role = 1;
   void changeRole(int role) => _role = role + 1;
@@ -91,34 +91,20 @@ class InstructorFormBloc
           instructorFk: _currentInstructor!,
           classroomIdFk: _classroomId!,
           discipline1Fk: selectedDisciplines[0],
-          discipline2Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 1),
-          discipline3Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 2),
-          discipline4Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 3),
-          discipline5Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 4),
-          discipline6Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 5),
-          discipline7Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 6),
-          discipline8Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 7),
-          discipline9Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 8),
-          discipline10Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 9),
-          discipline11Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 10),
-          discipline12Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 11),
-          discipline13Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 12),
-          discipline14Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 13),
-          discipline15Fk:
-              CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 14),
+          discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
+          discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
+          discipline4Fk: getIdDiscipline(selectedDisciplines, 3),
+          discipline5Fk: getIdDiscipline(selectedDisciplines, 4),
+          discipline6Fk: getIdDiscipline(selectedDisciplines, 5),
+          discipline7Fk: getIdDiscipline(selectedDisciplines, 6),
+          discipline8Fk: getIdDiscipline(selectedDisciplines, 7),
+          discipline9Fk: getIdDiscipline(selectedDisciplines, 8),
+          discipline10Fk: getIdDiscipline(selectedDisciplines, 9),
+          discipline11Fk: getIdDiscipline(selectedDisciplines, 10),
+          discipline12Fk: getIdDiscipline(selectedDisciplines, 11),
+          discipline13Fk: getIdDiscipline(selectedDisciplines, 12),
+          discipline14Fk: getIdDiscipline(selectedDisciplines, 13),
+          discipline15Fk: getIdDiscipline(selectedDisciplines, 14),
           role: _role,
           contractType: _contractType);
       final createInstructorRequestResponse =
@@ -133,39 +119,25 @@ class InstructorFormBloc
           event.instructorTeachingDataId,
           InstructorTeachingDataUpdateEntity(
             role: _role,
-            contract_type: _contractType,
+            contractType: _contractType,
             discipline1Fk: selectedDisciplines[0],
-            discipline2Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 1),
-            discipline3Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 2),
-            discipline4Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 3),
-            discipline5Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 4),
-            discipline6Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 5),
-            discipline7Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 6),
-            discipline8Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 7),
-            discipline9Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 8),
-            discipline10Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 9),
-            discipline11Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 10),
-            discipline12Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 11),
-            discipline13Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 12),
-            discipline14Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 13),
-            discipline15Fk:
-                CheckIdDiscipline.getIdDiscipline(selectedDisciplines, 14),
+            discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
+            discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
+            discipline4Fk: getIdDiscipline(selectedDisciplines, 3),
+            discipline5Fk: getIdDiscipline(selectedDisciplines, 4),
+            discipline6Fk: getIdDiscipline(selectedDisciplines, 5),
+            discipline7Fk: getIdDiscipline(selectedDisciplines, 6),
+            discipline8Fk: getIdDiscipline(selectedDisciplines, 7),
+            discipline9Fk: getIdDiscipline(selectedDisciplines, 8),
+            discipline10Fk: getIdDiscipline(selectedDisciplines, 9),
+            discipline11Fk: getIdDiscipline(selectedDisciplines, 10),
+            discipline12Fk: getIdDiscipline(selectedDisciplines, 11),
+            discipline13Fk: getIdDiscipline(selectedDisciplines, 12),
+            discipline14Fk: getIdDiscipline(selectedDisciplines, 13),
+            discipline15Fk: getIdDiscipline(selectedDisciplines, 14),
           ));
-      final instructorRequestResposne =
-          await _updateInstructorTeachingDataUseCase(params);
+
+      await _updateInstructorTeachingDataUseCase(params);
     }
     if (event is LoadInstructorForm) {
       await fetchInstructorsAndDisciplines();
@@ -178,5 +150,13 @@ class InstructorFormBloc
       newState = state;
     }
     yield newState;
+  }
+
+  String? getIdDiscipline(List<String> disciplinesList, int index) {
+    try {
+      return disciplinesList.elementAt(index);
+    } catch (e) {
+      return null;
+    }
   }
 }
