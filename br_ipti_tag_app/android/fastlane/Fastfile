@@ -2,12 +2,24 @@ default_platform(:android)
 
 platform :android do
   desc "Deploy a new version to alpha channel"
-  lane :deploy do
+  lane :deployAlpha do
     gradle(task: "clean assembleRelease")
     upload_to_play_store(
-      json_key: ENV['SUPPLY_JSON_KEY']
-      package_name: ENV['SUPPLY_PACKAGE_NAME']
+      json_key: ENV['SUPPLY_JSON_KEY'],
+      package_name: ENV['SUPPLY_PACKAGE_NAME'],
       track: 'alpha'
+    )
+  end
+  lane :distribute do   
+    gradle(
+      task: 'assemble',
+      build_type: 'Release'
+    )
+    firebase_app_distribution(
+      app: "1:60043627213:android:50acfb64097a9570973784",      
+      release_notes: "Lots of amazing new features to test out!",
+      groups: "teste-interno",
+      apk_path: "../build/app/outputs/apk/release/app-release.apk"
     )
   end
 end

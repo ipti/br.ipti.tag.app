@@ -48,7 +48,7 @@ class LoginBloc extends Cubit<LoginState> {
   Future verifyAuthToken() async {
     final result = await verifyAuthUsecase(NoParams());
     result.fold(
-      (l) => null,
+      (l) => emit(const LoginErrorState("Sessão expirada")),
       (r) => Modular.to.pushReplacementNamed("/turmas"),
     );
   }
