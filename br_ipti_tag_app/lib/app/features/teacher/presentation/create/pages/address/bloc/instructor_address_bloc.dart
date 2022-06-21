@@ -1,13 +1,10 @@
 import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
-import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -25,7 +22,6 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
   final ListCitiesUsecase _listCitiesUsecase;
   final ListUFsUsecase _listUFsUsecase;
 
-  final _session = Modular.get<SessionBloc>();
   void setCEP(String cep) => emit(state.copyWith(cep: cep.replaceAll('-', '')));
   void setAddress(String address) => emit(state.copyWith(address: address));
   void setComplement(String complement) => emit(

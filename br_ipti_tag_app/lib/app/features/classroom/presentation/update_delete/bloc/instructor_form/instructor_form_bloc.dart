@@ -11,8 +11,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-final initialState = InstructorFormStateLoading();
-
 class InstructorFormBloc
     extends Bloc<InstructorFormEvent, InstructorFormState> {
   InstructorFormBloc(
@@ -20,7 +18,8 @@ class InstructorFormBloc
       this._edcensoDisciplinesUseCase,
       this._createInstructorTeachingDataUseCase,
       this._updateInstructorTeachingDataUseCase)
-      : super(initialState);
+      : super(InstructorFormStateLoading());
+
   final ListEdcensoDisciplinesUseCase _edcensoDisciplinesUseCase;
   final ListInstructorsUseCase _instructorsUseCase;
   final CreateInstructorTeachingDataUseCase
@@ -39,22 +38,22 @@ class InstructorFormBloc
     List<EdcensoDisciplinesEntity> disciplines = [];
 
     requests.first.fold(
-        (error) => emit(InstructorFormStateError()),
+        (error) => add(InstructorFormEventInsertError()),
         (instructorsResponse) =>
             instructors = instructorsResponse as List<InstructorEntity>);
 
     requests.last.fold(
-        (error) => emit(InstructorFormStateError()),
+        (error) => add(InstructorFormEventInsertError()),
         (disciplinesResponse) => disciplines =
             disciplinesResponse as List<EdcensoDisciplinesEntity>);
 
     if (instructors.isNotEmpty && disciplines.isNotEmpty) {
       currentInstructor = instructorFk ?? instructors.first.id;
       changeCurrentDiscipline = instructorDiscipline ?? disciplines.first.id;
-      emit(InstructorFormStateSuccess(
+      add(InstructorFormEventSuccess(
           instructors: instructors, disciplines: disciplines));
     } else {
-      emit(InstructorFormStateError());
+      add(InstructorFormEventInsertError());
     }
   }
 
@@ -71,7 +70,7 @@ class InstructorFormBloc
 
   late String? _classroomId;
   set classroomId(String classroomId) => _classroomId = classroomId;
-  String get classroomId => _classroomId!; 
+  String get classroomId => _classroomId!;
 
   int _role = 1;
   void changeRole(int role) => _role = role + 1;
@@ -110,8 +109,8 @@ class InstructorFormBloc
       final createInstructorRequestResponse =
           await _createInstructorTeachingDataUseCase(params);
       createInstructorRequestResponse.fold(
-          (error) => emit(InstructorFormStateError()),
-          (success) => emit(InstructorFormStateInsertSuccess()));
+          (error) => add(InstructorFormEventInsertError()),
+          (success) => add(InstructorFormEventInsertSuccess()));
       newState = state;
     }
     if (event is SubmitUpdateInstructorForm) {
@@ -119,7 +118,7 @@ class InstructorFormBloc
           event.instructorTeachingDataId,
           InstructorTeachingDataUpdateEntity(
             role: _role,
-            contractType: _contractType,
+            // contractType: _contractType,
             discipline1Fk: selectedDisciplines[0],
             discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
             discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
