@@ -98,13 +98,7 @@ jobs:
       - name: Configure Flutterfire 
         working-directory: ./br_ipti_tag_app
         run: |          
-          flutterfire configure -y \
-          --platforms='android,ios,web,linux,windows' \
-          --android-package-name=br.org.ipti.tag \
-          --ios-bundle-id=br.org.ipti.tag \
-          --macos-bundle-id=br.org.ipti.tag \          
-          --project=br-org-ipti-tag \          
-          --token=${{ secrets.FIREBASE_TOKEN }}
+          flutterfire configure --project="br-org-ipti-tag" --platforms='android,ios,web,linux,windows' --android-package-name=br.org.ipti.tag --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
 
       - name: Build Android App Bundle
         working-directory: ./br_ipti_tag_app
