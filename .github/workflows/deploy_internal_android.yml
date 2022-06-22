@@ -199,6 +199,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BR_ORG_IPTI_TAG }}'
           projectId: br-org-ipti-tag
-          entryPoint: ${{ steps.webbundle.outputs.download-path }}/br_ipti_tag_app
+          
       
 ################ End Web pipeline ##################
