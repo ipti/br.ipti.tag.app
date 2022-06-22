@@ -170,7 +170,7 @@ jobs:
           encodedString: ${{ secrets.GOOGLE_SERVICE_JSON_BASE64 }}
 
       - name: Get appbundle from artifacts
-        id: download
+        id: appbundle-download
         uses: actions/download-artifact@v2
         with:
           name: appbundle
@@ -181,7 +181,7 @@ jobs:
           appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}          
           groups: teste-interno
-          file: ${{ steps.download.outputs.download-path }}/app-release.aab
+          file: ${{ steps.appbundle-download.outputs.download-path }}/app-release.aab
       
   web-deploy:
     name: Build Android
