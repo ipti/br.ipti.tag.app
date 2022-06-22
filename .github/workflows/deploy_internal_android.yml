@@ -77,8 +77,9 @@ jobs:
       - name: Cache pub dependencies
         uses: actions/cache@v2
         with:
-          path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+          path: ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
 
       - name: Setup Flutter        
         uses: subosito/flutter-action@v1
@@ -93,7 +94,7 @@ jobs:
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
       - name: Create key.properties
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/android
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
@@ -128,8 +129,9 @@ jobs:
       - name: Cache pub dependencies
         uses: actions/cache@v2
         with:
-          path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+          path: ${{ env.FLUTTER_HOME }}/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
 
       - name: Setup Flutter        
         uses: subosito/flutter-action@v1
