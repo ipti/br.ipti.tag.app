@@ -29,10 +29,13 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       
-      - name: Setup Flutter
+      - name: Setup Flutter        
         uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.10.4'
+      
+      - name: Setup dart
+        uses: dart-lang/setup-dart@v1
       
       - name: Cache pub dependencies
         uses: actions/cache@v2
@@ -86,9 +89,8 @@ jobs:
           repository: exaby73/flutterfire_cli           
           ref: 'feature/token-option'
           path: 'flutterfire'
-
+        
       - name: Setup flutterfire      
-        uses: dart-lang/setup-dart@v1
         working-directory: ${{ github.workspace }}/flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
