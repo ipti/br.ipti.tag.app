@@ -199,6 +199,8 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BR_ORG_IPTI_TAG }}'
           projectId: br-org-ipti-tag
+          expires: 30d
+          channelId: live
           
       
 ################ End Web pipeline ##################
