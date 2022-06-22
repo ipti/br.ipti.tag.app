@@ -151,8 +151,7 @@ jobs:
           name: appbundle
       
       - name: Release On Firebase App Distribution
-        working-directory: ./br_ipti_tag_app/android
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0        
         with:
           appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}          
