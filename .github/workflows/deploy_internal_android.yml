@@ -111,7 +111,7 @@ jobs:
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build appbundle
       
-      - name: Upload app bundle
+      - name: Upload Android App Bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
@@ -167,11 +167,11 @@ jobs:
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter pub get
 
-      - name: Build Web App Bundle
+      - name: Build Web App
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build web --release
       
-      - name: Upload app bundle
+      - name: Upload Web App Bundle
         uses: actions/upload-artifact@v2
         with:
           name: webbundle
@@ -185,7 +185,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Web Bundle from artifacts
-        id: project-folder
+        id: webbundle
         uses: actions/download-artifact@v2
         with:
           name: webbundle
