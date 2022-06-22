@@ -66,7 +66,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: temp_project_folder
-          path: ~/project_folder
           
 
       - name: Setup Java
@@ -87,7 +86,7 @@ jobs:
           flutter-version: ${{ env.flutter_version }}
           
       - name: Download pub dependencies
-        working-directory: ~/project_folder
+        working-directory: ${{ github.workspace }}/project_folder
         run: flutter pub get
 
       - name: Decode Android keystore
@@ -98,7 +97,7 @@ jobs:
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
       - name: Create key.properties
-        working-directory: ~/project_folder/android
+        working-directory: ${{ github.workspace }}/project_folder/android
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
@@ -106,14 +105,14 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
 
       - name: Build Android App Bundle
-        working-directory: ~/project_folder
+        working-directory: ${{ github.workspace }}/project_folder
         run: flutter build appbundle
       
       - name: Upload app bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: ~/project_folder/build/app/outputs/bundle/release/app-release.aab       
+          path: ${{ github.workspace }}/project_folder/build/app/outputs/bundle/release/app-release.aab       
 
   build-web:
     name: Build Web
@@ -125,7 +124,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: temp_project_folder
-          path: ~/project_folder
+          path: ${{ github.workspace }}/project_folder
           
 
       - name: Setup Java
@@ -146,11 +145,11 @@ jobs:
           flutter-version: ${{ env.flutter_version }}
           
       - name: Download pub dependencies
-        working-directory: ~/project_folder
+        working-directory: ${{ github.workspace }}/project_folder
         run: flutter pub get
 
       - name: Build Android App Bundle
-        working-directory: ~/project_folder
+        working-directory: ${{ github.workspace }}/project_folder
         run: flutter build web --release
       
       - name: Upload app bundle
