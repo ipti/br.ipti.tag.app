@@ -1,4 +1,4 @@
-name: Deploy Android internal Channel
+name: Deploy for Internal Test
 on:
   push:
     branches:
@@ -10,9 +10,12 @@ on:
     branches: [develop]
   workflow_dispatch:
 
-jobs:  
-  build:
-    name: Build   
+env:
+  flutter_version: "2.10.4"
+
+jobs:
+  before-build:
+    name: Before Build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,44 +26,65 @@ jobs:
         with:
           submodules: 'true'
 
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+
+      - name: Setup Firebase-tools
+        run: |
+          sudo npm install -g firebase-tools
+          
+      - name: Clone flutterfire_cli docs repository
+        uses: actions/checkout@v2        
+        with:
+          repository: exaby73/flutterfire_cli           
+          ref: 'feature/token-option'
+          path: 'flutterfire'
+        
+      - name: Setup Flutterfire
+        working-directory: ${{ github.workspace }}/flutterfire
+        run: |
+          dart pub global activate --source="path" . --executable="flutterfire" --overwrite
+
+      - name: Generate Firebase Configuration Files
+        working-directory: ./br_ipti_tag_app
+        run: |          
+          flutterfire configure --project="br-org-ipti-tag" --platforms='android,ios,web,linux,windows' --android-package-name=${{secrets.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
+      
+      - name: Upload folder to build
+        uses: actions/upload-artifact@v3
+        with:
+          name: temp_project_folder
+          path: ${{ github.workspace }}/temp_project_folder
+
+  build-android:
+    name: Build Android
+    needs: before-build   
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get appbundle from artifacts
+        id: project-folder
+        uses: actions/download-artifact@v2
+        with:
+          name: temp_project_folder
+          path: ${{ github.workspace }}/project_folder
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
       
-      - name: Setup Flutter        
-        uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '2.10.4'
-      
-      - name: Setup Dart
-        uses: dart-lang/setup-dart@v1
-      
       - name: Cache pub dependencies
         uses: actions/cache@v2
         with:
-          path: ${{ env.FLUTTER_HOME }}/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: ${{ runner.os }}-pub-
-      
-      - name: Define build number 
-        id: version_code
-        env:
-          RUN_NUMBER: ${{ github.run_number }}
-          INITIAL_VERSION_CODE: 2
-        run: |
-          VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
-          echo "::set-output name=version::$VERSION_CODE"
-        
-      # - name: Generationg Changelog and Version name
-      #   id: changelog
-      #   uses: TriPSs/conventional-changelog-action@v3
-      #   with:
-      #     github-token: ${{ secrets.GH_TOKEN_ACTION }}
-      #     output-file: br_ipti_tag_app/CHANGELOG.md
-      #     version-file: br_ipti_tag_app/pubspec.yaml
-      
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+
+      - name: Setup Flutter        
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          
       - name: Download pub dependencies
         run: flutter pub get
 
@@ -78,42 +102,62 @@ jobs:
           echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
 
-
-      - name: Setup Firebase-tools
-        run: |
-          sudo npm install -g firebase-tools
-          
-      - name: Clone supercharge docs repository
-        uses: actions/checkout@v2        
-        with:
-          repository: exaby73/flutterfire_cli           
-          ref: 'feature/token-option'
-          path: 'flutterfire'
-        
-      - name: Setup Flutterfire
-        working-directory: ${{ github.workspace }}/flutterfire
-        run: |
-          dart pub global activate --source="path" . --executable="flutterfire" --overwrite
-
-      - name: Generate Firebase Configuration Files
-        working-directory: ./br_ipti_tag_app
-        run: |          
-          flutterfire configure --project="br-org-ipti-tag" --platforms='android,ios,web,linux,windows' --android-package-name=${{secrets.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
-
       - name: Build Android App Bundle
-        working-directory: ./br_ipti_tag_app
-        run: flutter build appbundle --build-number=${{ steps.version_code.outputs.version }}
+        working-directory: ${{ github.workspace }}/project_folder
+        run: flutter build appbundle
       
       - name: Upload app bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: ${{ github.workspace }}/br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab                
+          path: ${{ github.workspace }}/project_folder/build/app/outputs/bundle/release/app-release.aab       
 
-  deploy:
-    name: Deploy to Firebase App Distribution
+  build-web:
+    name: Build Android
+    needs: before-build   
     runs-on: ubuntu-latest
-    needs: build
+    steps:
+      - name: Get appbundle from artifacts
+        id: project-folder
+        uses: actions/download-artifact@v2
+        with:
+          name: temp_project_folder
+          path: ${{ github.workspace }}/project_folder
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      
+      - name: Cache pub dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.OS }}-flutter-install-cache-${{ env.flutter_version }}
+
+      - name: Setup Flutter        
+        uses: subosito/flutter-action@v1
+        with:
+          flutter-version: ${{ env.flutter_version }}
+          
+      - name: Download pub dependencies
+        run: flutter pub get
+
+      - name: Build Android App Bundle
+        working-directory: ${{ github.workspace }}/project_folder
+        run: flutter build web --release
+      
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v2
+        with:
+          name: webbundle
+          path: ${{ github.workspace }}/project_folder/build/web/        
+
+  android-deploy:
+    name: Deploy Android to App Distribution
+    runs-on: ubuntu-latest
+    needs: build-android
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -125,32 +169,13 @@ jobs:
           fileName: "serviceAccount.json"
           encodedString: ${{ secrets.GOOGLE_SERVICE_JSON_BASE64 }}
 
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6'
-
-      - name: Cache bundle dependencies        
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: ${{ runner.os }}-gems-      
-          
-      - name: Download bundle dependencies
-        working-directory: ./br_ipti_tag_app/android
-        run: |          
-          gem install bundler:2.0.2
-          bundle config path vendor/bundle
-          bundle install
-      
       - name: Get appbundle from artifacts
         id: download
         uses: actions/download-artifact@v2
         with:
           name: appbundle
       
-      - name: Release On Firebase App Distribution
+      - name: Release on Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.3     
         with:
           appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
@@ -158,14 +183,22 @@ jobs:
           groups: teste-interno
           file: ${{ steps.download.outputs.download-path }}/app-release.aab
       
-      # - name: Release to Google Play (internal)
-      #   env:
-      #     SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
-      #     SUPPLY_JSON_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
-      #   working-directory: ./br_ipti_tag_app/android
-      #   run: |          
-      #     bundle exec fastlane supply \
-      #     --aab ${{ steps.download.outputs.download-path }}/app-release.aab \
-      #     --track internal
-
-          
+  web-deploy:
+    name: Build Android
+    needs: build-web   
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Web Bundle from artifacts
+        id: project-folder
+        uses: actions/download-artifact@v2
+        with:
+          name: webbundle
+      
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GH_TOKEN_ACTION }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
+          expires: 30d
+          projectId: br-org-ipti-tag
+      
