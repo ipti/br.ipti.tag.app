@@ -167,7 +167,7 @@ jobs:
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter pub get
 
-      - name: Build Android App Bundle
+      - name: Build Web App Bundle
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build web --release
       
@@ -196,6 +196,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BR_ORG_IPTI_TAG }}'
           projectId: br-org-ipti-tag
-          entryPoint: ${{ steps.webbundle.outputs.download-path }}
+          entryPoint: ${{ steps.webbundle.outputs.download-path }}/br_ipti_tag_app
       
 ################ End Web pipeline ##################
