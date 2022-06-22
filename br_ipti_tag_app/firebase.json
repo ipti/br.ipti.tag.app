@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/br_ipti_tag_app/build/web/index.html"
+        "destination": "build/web/index.html"
       }
     ]
   }
