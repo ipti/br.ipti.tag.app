@@ -34,7 +34,7 @@ jobs:
         with:
           flutter-version: '2.10.4'
       
-      - name: Setup dart
+      - name: Setup Dart
         uses: dart-lang/setup-dart@v1
       
       - name: Cache pub dependencies
@@ -79,7 +79,7 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
 
 
-      - name: Setup firebase      
+      - name: Setup Firebase-tools
         run: |
           sudo npm install -g firebase-tools
           
@@ -90,12 +90,12 @@ jobs:
           ref: 'feature/token-option'
           path: 'flutterfire'
         
-      - name: Setup flutterfire      
+      - name: Setup Flutterfire
         working-directory: ${{ github.workspace }}/flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
 
-      - name: Configure Flutterfire 
+      - name: Generate Firebase Configuration Files
         working-directory: ./br_ipti_tag_app
         run: |          
           flutterfire configure --project="br-org-ipti-tag" --platforms='android,ios,web,linux,windows' --android-package-name=br.org.ipti.tag --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
@@ -110,62 +110,62 @@ jobs:
           name: appbundle
           path: ${{ github.workspace }}/br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab                
 
-  # deploy:
-  #   name: Deploy to Google Play
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v2
+  deploy:
+    name: Deploy to Google Play
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
-  #     - name: Decode Service Account Key JSON File
-  #       uses: timheuer/base64-to-file@v1
-  #       id: service_account_json_file
-  #       with:
-  #         fileName: "serviceAccount.json"
-  #         encodedString: ${{ secrets.GOOGLE_SERVICE_JSON_BASE64 }}
+      - name: Decode Service Account Key JSON File
+        uses: timheuer/base64-to-file@v1
+        id: service_account_json_file
+        with:
+          fileName: "serviceAccount.json"
+          encodedString: ${{ secrets.GOOGLE_SERVICE_JSON_BASE64 }}
 
-  #     - name: Setup Ruby
-  #       uses: actions/setup-ruby@v1
-  #       with:
-  #         ruby-version: '2.6'
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
 
-  #     - name: Cache bundle dependencies        
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: vendor/bundle
-  #         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-  #         restore-keys: ${{ runner.os }}-gems-      
+      - name: Cache bundle dependencies        
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-      
           
-  #     - name: Download bundle dependencies
-  #       working-directory: ./br_ipti_tag_app/android
-  #       run: |          
-  #         gem install bundler:2.0.2
-  #         bundle config path vendor/bundle
-  #         bundle install
+      - name: Download bundle dependencies
+        working-directory: ./br_ipti_tag_app/android
+        run: |          
+          gem install bundler:2.0.2
+          bundle config path vendor/bundle
+          bundle install
       
-  #     - name: Get appbundle from artifacts
-  #       id: download
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: appbundle
+      - name: Get appbundle from artifacts
+        id: download
+        uses: actions/download-artifact@v2
+        with:
+          name: appbundle
       
-  #     - name: Release On Firebase App Distribution
-  #       working-directory: ./br_ipti_tag_app/android
-  #       uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0
-  #       with:
-  #         appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
-  #         token: ${{secrets.FIREBASE_TOKEN}}          
-  #         file: ${{ steps.download.outputs.download-path }}/app-release.aab
+      - name: Release On Firebase App Distribution
+        working-directory: ./br_ipti_tag_app/android
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0
+        with:
+          appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
+          token: ${{secrets.FIREBASE_TOKEN}}          
+          file: ${{ steps.download.outputs.download-path }}/app-release.aab
       
-  #     # - name: Release to Google Play (internal)
-  #     #   env:
-  #     #     SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
-  #     #     SUPPLY_JSON_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
-  #     #   working-directory: ./br_ipti_tag_app/android
-  #     #   run: |          
-  #     #     bundle exec fastlane supply \
-  #     #     --aab ${{ steps.download.outputs.download-path }}/app-release.aab \
-  #     #     --track internal
+      # - name: Release to Google Play (internal)
+      #   env:
+      #     SUPPLY_PACKAGE_NAME: ${{ secrets.ANDROID_PACKAGE_NAME }}
+      #     SUPPLY_JSON_KEY: ${{ steps.service_account_json_file.outputs.filePath }}
+      #   working-directory: ./br_ipti_tag_app/android
+      #   run: |          
+      #     bundle exec fastlane supply \
+      #     --aab ${{ steps.download.outputs.download-path }}/app-release.aab \
+      #     --track internal
 
           
