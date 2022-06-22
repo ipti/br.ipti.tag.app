@@ -15,7 +15,7 @@ env:
 
 jobs:
   before-build:
-    name: Before Build
+    name: Generate Firebase Files
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -157,7 +157,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-android
     steps:
-      
       - name: Get appbundle from artifacts
         id: appbundle-download
         uses: actions/download-artifact@v2
@@ -173,7 +172,7 @@ jobs:
           file: ${{ steps.appbundle-download.outputs.download-path }}/app-release.aab
       
   web-deploy:
-    name: Build Android
+    name: Deploy to Firebase Hosting
     needs: build-web   
     runs-on: ubuntu-latest
     steps:
@@ -183,11 +182,10 @@ jobs:
         with:
           name: webbundle
       
-      - name: Deploy to Firebase Hosting
+      - name: Deploy to Firebase Hosting 
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: "${{ secrets.GH_TOKEN_ACTION }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_TOKEN }}"
-          expires: 30d
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BR_ORG_IPTI_TAG }}'
           projectId: br-org-ipti-tag
       
