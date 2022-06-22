@@ -103,7 +103,7 @@ jobs:
           --android-package-name=br.org.ipti.tag \
           --account=ipti633@gmail.com \
           --project=br-org-ipti-tag
-          --toke=${{ secrets.FIREBASE_TOKEN }}
+          --token=${{ secrets.FIREBASE_TOKEN }}
 
       - name: Build Android App Bundle
         working-directory: ./br_ipti_tag_app
