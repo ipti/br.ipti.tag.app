@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: project_folder
-          path: ${{ github.workspace }}/br_ipti_tag_app
+          path: ${{ github.workspace }}
 
   build-android:
     name: Build Android
@@ -85,10 +85,6 @@ jobs:
         with:
           flutter-version: ${{ env.flutter_version }}
           
-      - name: Download pub dependencies
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
-        run: flutter pub get
-
       - name: Decode Android keystore
         id: android_keystore
         uses: timheuer/base64-to-file@v1.0.3
@@ -97,22 +93,26 @@ jobs:
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
       - name: Create key.properties
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/android
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/android
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
           echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
       
+      - name: Download pub dependencies
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
+        run: flutter pub get
+
       - name: Build Android App Bundle
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build appbundle
       
       - name: Upload app bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: ${{ steps.project-folder.outputs.download-path }}/build/app/outputs/bundle/release/app-release.aab       
+          path: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab       
 
   build-web:
     name: Build Web
@@ -137,18 +137,18 @@ jobs:
           flutter-version: ${{ env.flutter_version }}
           
       - name: Download pub dependencies
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter pub get
 
       - name: Build Android App Bundle
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build web --release
       
       - name: Upload app bundle
         uses: actions/upload-artifact@v2
         with:
           name: webbundle
-          path: ${{ steps.project-folder.outputs.download-path }}/build/web/        
+          path: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/build/web/        
 
   android-deploy:
     name: Deploy Android to App Distribution
