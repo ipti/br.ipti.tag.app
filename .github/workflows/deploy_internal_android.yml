@@ -155,6 +155,7 @@ jobs:
         with:
           appId: ${{secrets.FIREBASE_ANDROID_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}          
+          groups: teste-interno
           file: ${{ steps.download.outputs.download-path }}/app-release.aab
       
       # - name: Release to Google Play (internal)
