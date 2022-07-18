@@ -38,25 +38,23 @@ class ClassroomCreatePageState
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 1,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Turmas", widget.title],
-        body: const <Widget>[
-          TabBar(
-            isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
-            indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: EdgeInsets.symmetric(horizontal: 8),
-            tabs: [
-              Tab(
-                child: Text("Dados da Turma"),
-              ),
-            ],
-          ),
-          ClassroomBasicDataForm()
-        ],
+        tabBar: const TabBar(
+          isScrollable: true,
+          labelColor: TagColors.colorBaseProductDark,
+          indicatorColor: TagColors.colorBaseProductDark,
+          labelPadding: EdgeInsets.symmetric(horizontal: 8),
+          tabs: [
+            Tab(
+              child: Text("Dados da Turma"),
+            ),
+          ],
+        ),
+        body: const ClassroomBasicDataForm(),
       ),
     );
   }

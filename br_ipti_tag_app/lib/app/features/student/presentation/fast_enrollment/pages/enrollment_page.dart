@@ -35,30 +35,28 @@ class FastEnrollmentPageState
     ];
     return DefaultTabController(
       length: tabs.length,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],
-        body: [
-          TabBar(
-            isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
-            indicatorColor: TagColors.colorBaseProductDark,
-            onTap: controller.tabNavigation,
-            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-            tabs: tabs,
+        tabBar: TabBar(
+          isScrollable: true,
+          labelColor: TagColors.colorBaseProductDark,
+          indicatorColor: TagColors.colorBaseProductDark,
+          onTap: controller.tabNavigation,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+          tabs: tabs,
+        ),
+        body: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height,
+            maxWidth: 800,
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height,
-              maxWidth: 800,
-            ),
-            child: const Expanded(
-              child: RouterOutlet(),
-            ),
+          child: const Expanded(
+            child: RouterOutlet(),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -27,23 +27,21 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.title,
       path: ["Merenda Escolar", widget.title],
       description: "Verifique o estoque de alimentos da escola",
-      body: <Widget>[
-        BlocBuilder<StockBloc, ListStockState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state is LoadedState) {
-              return IngredientsList(ingredients: state.ingredients);
-            } else {
-              return Container();
-            }
-          },
-        )
-      ],
+      body: BlocBuilder<StockBloc, ListStockState>(
+        bloc: controller,
+        builder: (context, state) {
+          if (state is LoadedState) {
+            return IngredientsList(ingredients: state.ingredients);
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

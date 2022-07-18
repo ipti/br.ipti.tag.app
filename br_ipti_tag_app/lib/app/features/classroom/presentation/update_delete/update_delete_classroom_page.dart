@@ -30,37 +30,35 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
       builder: (context, state) {
         return DefaultTabController(
           length: 3,
-          child: TagDefaultPage(
+          child: TagScaffold(
             menu: const TagVerticalMenu(),
             title: 'Atualizar Turmas',
             description: "",
             path: const ["Turmas", 'Atualizar Turmas'],
-            body: <Widget>[
-              TabBar(
-                isScrollable: true,
-                labelColor: TagColors.colorBaseProductDark,
-                indicatorColor: TagColors.colorBaseProductDark,
-                labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                onTap: (value) {
-                  controller.valueChanged(value: value);
-                },
-                tabs: const [
-                  Tab(
-                    child: Text("Dados da Turma"),
-                  ),
-                  Tab(
-                    child: Text("Professor"),
-                  ),
-                  Tab(
-                    child: Text("Alunos"),
-                  ),
-                ],
-              ),
-              _returnPage(
-                state.value,
-                widget.classroomEntity,
-              ),
-            ],
+            tabBar: TabBar(
+              isScrollable: true,
+              labelColor: TagColors.colorBaseProductDark,
+              indicatorColor: TagColors.colorBaseProductDark,
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              onTap: (value) {
+                controller.valueChanged(value: value);
+              },
+              tabs: const [
+                Tab(
+                  child: Text("Dados da Turma"),
+                ),
+                Tab(
+                  child: Text("Professor"),
+                ),
+                Tab(
+                  child: Text("Alunos"),
+                ),
+              ],
+            ),
+            body: _returnPage(
+              state.value,
+              widget.classroomEntity,
+            ),
           ),
         );
       },

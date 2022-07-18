@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dar
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -34,35 +35,37 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
       path: ["Alunos", widget.title],
-      body: <Widget>[
-        const _Actions(),
-        const SizedBox(height: 30),
-        BlocBuilder<StudentListBloc, StudentListState>(
-          bloc: controller,
-          builder: (context, state) {
-            switch (state.status) {
-              case Status.initial:
-              case Status.loading:
-                return const SizedBox(
-                  height: 200,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
-              case Status.failure:
-                return SizedBox(
-                  height: 200,
-                  child: Center(
-                    child: Text(state.error!),
-                  ),
-                );
-              case Status.success:
-                return TagDataTable(
+      actionsHeader: _SliverHeaderActionDelegate(
+        actionsHeader: const _Actions(),
+      ),
+      body: BlocBuilder<StudentListBloc, StudentListState>(
+        bloc: controller,
+        builder: (context, state) {
+          switch (state.status) {
+            case Status.initial:
+            case Status.loading:
+              return const SizedBox(
+                height: 200,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            case Status.failure:
+              return SizedBox(
+                height: 200,
+                child: Center(
+                  child: Text(state.error!),
+                ),
+              );
+            case Status.success:
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TagDataTable(
                   onTapRow: (index) => Modular.to.pushReplacementNamed(
                     "matricula/edit",
                     arguments: state.students[index],
@@ -90,11 +93,11 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
                   source: StudentDatatable(
                     data: state.students,
                   ),
-                );
-            }
-          },
-        )
-      ],
+                ),
+              );
+          }
+        },
+      ),
     );
   }
 }
@@ -112,41 +115,19 @@ class _Actions extends StatelessWidget {
       columnCrossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Flexible(
-          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: TagButton(
-              text: "Matricula",
-              onPressed: () => Modular.to.pushReplacementNamed("matricula/"),
-            ),
-          ),
-        ),
-        Flexible(
           child: Row(
             children: [
               Flexible(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: TagLinkButton(
-                    text: "Matricula rápida",
-                    onPressed: () => Modular.to.pushNamed("matricula-rapida"),
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 6,
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: TagLinkButton(
-                    text: "Matricula em grupo",
-                    onPressed: () => Modular.to.pushNamed("matricula-rapida"),
-                  ),
+                fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+                child: TagButton(
+                  text: "Matricula",
+                  onPressed: () =>
+                      Modular.to.pushReplacementNamed("matricula/"),
                 ),
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -186,4 +167,38 @@ class StudentDatatable extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
+}
+
+class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
+  _SliverHeaderActionDelegate({
+    required this.actionsHeader,
+  });
+
+  final Widget actionsHeader;
+
+  @override
+  double get maxExtent => 44;
+
+  @override
+  double get minExtent => 44;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      height: maxExtent,
+      color: TagColors.colorBaseWhiteNormal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: actionsHeader,
+    );
+  }
+
+  @override
+  OverScrollHeaderStretchConfiguration get stretchConfiguration =>
+      OverScrollHeaderStretchConfiguration();
+
+  @override
+  bool shouldRebuild(_SliverHeaderActionDelegate oldDelegate) {
+    return false;
+  }
 }
