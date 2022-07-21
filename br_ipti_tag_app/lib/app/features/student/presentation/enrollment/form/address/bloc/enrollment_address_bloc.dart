@@ -65,8 +65,8 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     result.fold(id, (cities) {
       final mappedValues = <String, String>{};
       mappedValues.addEntries(cities.map((e) => MapEntry<String, String>(
-            e.id ?? "",
-            e.name ?? "",
+            e.id,
+            e.name,
           )));
       emit(state.copyWith(
         cities: mappedValues,
@@ -81,8 +81,8 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
       result.fold(id, (ufs) async {
         final mappedValues = <String, String>{};
         mappedValues.addEntries(ufs.map((e) => MapEntry<String, String>(
-              e.id ?? "",
-              e.acronym ?? "",
+              e.id,
+              e.acronym,
             )));
 
         final currentUf = state.edcensoUfFk.isEmpty

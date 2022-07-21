@@ -2,7 +2,9 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_d
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
 import 'package:equatable/equatable.dart';
 
-abstract class InstructorFormState extends Equatable {}
+abstract class InstructorFormState extends Equatable {
+  const InstructorFormState();
+}
 
 class InstructorFormStateLoading extends InstructorFormState {
   @override
@@ -14,7 +16,7 @@ class InstructorFormStateSuccess extends InstructorFormState {
   final List<EdcensoDisciplinesEntity>? disciplines;
   final String? currentInstructor;
   final String? instructorDiscipline;
-  InstructorFormStateSuccess(
+  const InstructorFormStateSuccess(
       {this.instructors,
       this.disciplines,
       this.currentInstructor,
@@ -38,13 +40,13 @@ class InstructorFormStateSuccess extends InstructorFormState {
 }
 
 class InstructorFormStateError extends InstructorFormState {
-  InstructorFormStateError();
+  const InstructorFormStateError();
   @override
   List<Object?> get props => [];
 }
 
 class InstructorFormStateInsertSuccess extends InstructorFormState {
-  InstructorFormStateInsertSuccess();
+  const InstructorFormStateInsertSuccess();
   @override
   List<Object?> get props => [];
 }

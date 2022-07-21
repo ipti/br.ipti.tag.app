@@ -37,7 +37,6 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
 
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.title,
       description: "Cardápio semanal da sua escola",
       path: ["Merenda Escolar", widget.title],

@@ -122,6 +122,13 @@ Authorization: Bearer {{authToken}}
 
 ### 
 
+# @name instuctor-teaching-data
+GET http://{{host}}/instructorTeachingData HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+### 
+
 # @name Calendar
 GET http://{{host}}/calendar HTTP/1.1
 Content-Type: application/json

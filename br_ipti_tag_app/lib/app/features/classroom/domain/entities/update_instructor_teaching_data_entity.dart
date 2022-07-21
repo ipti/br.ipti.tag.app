@@ -2,7 +2,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_tea
 
 class InstructorTeachingDataUpdateEntity {
   int? role;
-  int? contract_type;
+  int? contractType;
   String? discipline1Fk;
   String? discipline2Fk;
   String? discipline3Fk;
@@ -20,7 +20,7 @@ class InstructorTeachingDataUpdateEntity {
   String? discipline15Fk;
   InstructorTeachingDataUpdateEntity({
     this.role = 0,
-    this.contract_type = 0,
+    this.contractType = 0,
     this.discipline1Fk,
     this.discipline2Fk,
     this.discipline3Fk,
@@ -41,7 +41,7 @@ class InstructorTeachingDataUpdateEntity {
   InstructorTeachingDataUpdateModel fromEntity() =>
       InstructorTeachingDataUpdateModel(
         role,
-        contract_type,
+        contractType,
         discipline1Fk,
         discipline2Fk,
         discipline3Fk,

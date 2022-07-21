@@ -31,7 +31,6 @@ class DetailsMealPageState extends State<DetailsMealPage> {
     final ingredients = widget.mealComponent.ingredients;
     return TagDefaultPage(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.mealComponent.description,
       description: "Ingredientes para a refeição",
       path: const [],

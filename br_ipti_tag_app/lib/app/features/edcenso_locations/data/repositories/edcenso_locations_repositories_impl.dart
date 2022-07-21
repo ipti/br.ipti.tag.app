@@ -29,7 +29,7 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
           .toList();
 
       filteredResults.sort(
-        (a, b) => a.name!.compareTo(b.name!),
+        (a, b) => a.name.compareTo(b.name),
       );
 
       return Right(filteredResults);
@@ -44,7 +44,7 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
       final results = await _remoteDatasource.listUFs();
 
       results.sort(
-        (a, b) => a.name!.compareTo(b.name!),
+        (a, b) => a.name.compareTo(b.name),
       );
 
       return Right(results);

@@ -81,7 +81,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
               ),
             ),
             Center(
-              child: _Body(
+              child: Body(
                 controller: controller,
               ),
             ),
@@ -112,24 +112,19 @@ class _Logo extends StatelessWidget {
   }
 }
 
-class _Body extends StatelessWidget {
-  _Body({
+class Body extends StatelessWidget {
+  const Body({
     Key? key,
     required this.controller,
   }) : super(key: key);
   final LoginBloc controller;
 
   static final _formKey = GlobalKey<FormState>();
-  final padding = const EdgeInsets.all(8.0);
 
-  final helpTextStyle = const TextStyle(
-    color: TagColors.colorBaseInkLight,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    height: 1.75,
-  );
-
-  Widget withPadding(Widget widget) => Padding(padding: padding, child: widget);
+  Widget withPadding(Widget widget) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: widget,
+      );
 
   Widget inputUsername(String username) => TagTextField(
         label: "Usuário",
@@ -169,11 +164,16 @@ class _Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 40),
                   child: Text(
                     "Entre com as suas credenciais",
-                    style: helpTextStyle,
+                    style: TextStyle(
+                      color: TagColors.colorBaseInkLight,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      height: 1.75,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -6,9 +6,14 @@ import 'package:equatable/equatable.dart';
 abstract class UpdateTeacherState extends Equatable {}
 
 class UpdateTeacherStateSuccess extends UpdateTeacherState {
-  List<InstructorEntity> instructors;
-  List<List<EdcensoDisciplinesEntity>> disciplinesOfInstructor;
-  UpdateTeacherStateSuccess(this.instructors, this.disciplinesOfInstructor);
+  final List<InstructorEntity> instructors;
+  final List<List<EdcensoDisciplinesEntity>> disciplinesOfInstructor;
+  final List<InstructorTeachingDataEntity> instructorsTeachingData;
+  UpdateTeacherStateSuccess(
+    this.instructors,
+    this.disciplinesOfInstructor,
+    this.instructorsTeachingData,
+  );
   @override
   List<Object?> get props => [instructors, disciplinesOfInstructor];
 }

@@ -22,9 +22,9 @@ class ErrorInterceptor extends InterceptorsWrapper {
       debugPrint(err.message);
     }
 
-    final sessionService = SessionServiceImpl();
     if (err.response!.statusCode == 401) {
       if (!Modular.to.path.contains('auth')) {
+        final sessionService = SessionServiceImpl();
         sessionService.cleanToken();
         sessionService.cleanSchoolYear();
         sessionService.cleanCurrentUserSchools();

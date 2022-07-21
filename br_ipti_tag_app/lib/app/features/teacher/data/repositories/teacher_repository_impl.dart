@@ -1,45 +1,49 @@
 import 'package:br_ipti_tag_app/app/features/teacher/data/datasources/remote/teacher_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/teacher.dart';
-import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/teacher_repository.dart';
-import 'package:br_ipti_tag_app/app/features/teacher/mappers/teacher_api_to_entity.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/data/models/instructor_model.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/instructor_repository.dart';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
-class TeacherRepositoryImpl implements TeacherRepository {
-  TeacherRepositoryImpl(this._teacherDataSource, this._apiToEntity);
+class InstructorRepositoryImpl implements InstructorRepository {
+  InstructorRepositoryImpl(this._instructorDataSource);
 
-  final TeacherRemoteDataSource _teacherDataSource;
-  final TeacherApiToEntityMapper _apiToEntity;
+  final TeacherRemoteDataSource _instructorDataSource;
 
   @override
-  Future<Either<Exception, List<Teacher>>> listAll() async {
+  Future<Either<Exception, List<Instructor>>> listAll() async {
     try {
-      final results = await _teacherDataSource.listAll();
+      final results = await _instructorDataSource.listAll();
 
-      final mappedResults = results.map((e) => _apiToEntity(e)).toList();
+      final mappedResults = results.toList();
 
       return Right(mappedResults);
     } catch (e) {
+      debugPrint(e.toString());
       return Left(Exception("Não foi possível listar"));
     }
   }
 
   @override
-  Future<Either<Exception, Teacher>> getById(int id) async {
+  Future<Either<Exception, Instructor>> getById(int id) async {
     try {
-      final result = await _teacherDataSource.getById(id);
-      final mappedResult = _apiToEntity(result);
-      return Right(mappedResult);
+      final result = await _instructorDataSource.getById(id);
+
+      return Right(result);
     } catch (e) {
       return Left(Exception("Não foi possível listar"));
     }
   }
 
   @override
-  Future<Either<Exception, bool>> create(Teacher teacher) async {
+  Future<Either<Exception, Instructor>> create(Instructor instructor) async {
     try {
-      final results = await _teacherDataSource.create(teacher);
+      final instructorModel = InstructorModel.fromEntity(instructor);
+      final results = await _instructorDataSource.create(instructorModel);
       return Right(results);
     } catch (e) {
+      debugPrint(e.toString());
       return Left(Exception("Não foi possível adicionar estudantes"));
     }
   }

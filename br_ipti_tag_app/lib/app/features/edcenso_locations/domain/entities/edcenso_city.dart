@@ -1,7 +1,7 @@
 class EdCensoCity {
-  final String? id;
+  final String id;
   final String? oldId;
-  final String? name;
+  final String name;
   final String? cepInitial;
   final String? cepFinal;
   final String? ddd1;
@@ -9,9 +9,9 @@ class EdCensoCity {
   final String? edcensoUfId;
 
   EdCensoCity({
-    this.id,
+    required this.id,
     this.oldId,
-    this.name,
+    required this.name,
     this.cepInitial,
     this.cepFinal,
     this.ddd1,
