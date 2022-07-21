@@ -114,3 +114,15 @@ class SchoolSentFailState extends SchoolState {
           currentSchoolData: currentSchool,
         );
 }
+
+class SchoolDataChangeState extends SchoolState {
+  const SchoolDataChangeState({
+    required SchoolModel currentSchool,
+  }) : super(
+          loading: false,
+          sending: false,
+          message: "",
+          messageColor: TagColors.colorBaseBlueNormal,
+          currentSchoolData: currentSchool,
+        );
+}

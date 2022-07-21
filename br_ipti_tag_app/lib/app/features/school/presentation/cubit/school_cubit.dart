@@ -29,9 +29,9 @@ class SchoolCubit extends Cubit<SchoolState> {
     );
   }
 
-  void _startSending(SchoolModel? currentSchool) {
+  void _startSending() {
     emit(
-      SchoolSendingState(currentSchool: currentSchool),
+      SchoolSendingState(currentSchool: state.currentSchoolData!.copyWith()),
     );
   }
 
@@ -58,17 +58,21 @@ class SchoolCubit extends Cubit<SchoolState> {
   }
 
   Future<void> updateCurrentSchoolData() async {
-    _startSending(null);
-    final schoolId = _session.state.currentSchool!.id!;
+    _startSending();
+    final String schoolId = _session.state.currentSchool!.id!;
+
     final params = EditSchoolParams(
       uuid: schoolId,
       data: SchoolEntity(
-        name: "Escola Teste - 07",
-        inepId: "123456789",
-        registerType: "00",
-        edcensoUfFk: "61a92b6dd2b8a11704d7ae6a",
-        edcensoCityFk: "61a92c8ed2b8a11704d813fe",
-        edcensoDistrictFk: "61a93a0781524118745b6314",
+        name: state.currentSchoolData?.name,
+        inepId: state.currentSchoolData?.inepId,
+        registerType: state.currentSchoolData?.registerType,
+        edcensoUfFk: state.currentSchoolData?.edcensoUfFk,
+        edcensoCityFk: state.currentSchoolData?.edcensoCityFk,
+        edcensoDistrictFk: state.currentSchoolData?.edcensoDistrictFk,
+        // initialDate: state.currentSchoolData!.initialDate,
+        // finalDate: state.currentSchoolData!.finalDate,
+        // actOfAcknowledgement: state.currentSchoolData!.actOfAcknowledgement,
       ),
     );
     final result = await _editSchoolUsecase(params);
@@ -78,4 +82,37 @@ class SchoolCubit extends Cubit<SchoolState> {
       (school) => _stopSending(school),
     );
   }
+
+  void setCurrentSchoolName(String name) => emit(SchoolDataChangeState(
+      currentSchool: state.currentSchoolData!.copyWith(name: name)));
+  void setCurrentSchoolInepId(String inepId) => emit(SchoolDataChangeState(
+      currentSchool: state.currentSchoolData!.copyWith(inepId: inepId)));
+  void setCurrentSchoolRegisterType(String registerType) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(registerType: registerType)));
+  void setCurrentSchoolEdcensoUfFk(String edcensoUfFk) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(edcensoUfFk: edcensoUfFk)));
+  void setCurrentSchoolEdcensoCityFk(String edcensoCityFk) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(edcensoCityFk: edcensoCityFk)));
+  void setCurrentSchoolEdcensoDistrictFk(String edcensoDistrictFk) =>
+      emit(SchoolDataChangeState(
+          currentSchool: state.currentSchoolData!
+              .copyWith(edcensoDistrictFk: edcensoDistrictFk)));
+  void setCurrentSchoolInitialDate(String initialDate) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(initialDate: initialDate)));
+  void setCurrentSchoolFinalDate(String finalDate) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(finalDate: finalDate)));
+  void setCurrentSchoolActOfAcknowledgement(String actOfAcknowledgement) =>
+      emit(SchoolDataChangeState(
+          currentSchool: state.currentSchoolData!
+              .copyWith(actOfAcknowledgement: actOfAcknowledgement)));
 }

@@ -5,11 +5,16 @@ import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/forms/s
 import 'package:br_ipti_tag_app/app/features/school/presentation/widgets/forms/school_others_data_form.dart';
 import 'package:flutter/material.dart';
 
-class SchoolIdTab extends StatelessWidget {
+class SchoolIdTab extends StatefulWidget {
   const SchoolIdTab({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<SchoolIdTab> createState() => _SchoolIdTabState();
+}
+
+class _SchoolIdTabState extends State<SchoolIdTab> {
   @override
   Widget build(BuildContext context) {
     final ScrollController _controllerId = ScrollController();

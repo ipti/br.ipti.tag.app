@@ -119,8 +119,9 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
               },
               bloc: controller,
               builder: (context, state) {
-                if (state is SchoolLoadedState) {
-                  return _buildWithData(state);
+                if (state is SchoolLoadedState ||
+                    state.currentSchoolData != null) {
+                  return _buildWithData();
                 }
                 return _buildWithoutData();
               },
@@ -140,7 +141,7 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
     );
   }
 
-  TabBarView _buildWithData(SchoolLoadedState state) {
+  TabBarView _buildWithData() {
     return TabBarView(
       controller: _tabController,
       children: const [
@@ -157,11 +158,11 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
     return TabBarView(
       controller: _tabController,
       children: const [
-        SchoolIdTab(),
-        SchoolAddressTab(),
-        SchoolStructureTab(),
-        ShcoolEquipmentsTab(),
-        SchoolEducationalDataTab(),
+        Center(child: CircularProgressIndicator()),
+        Center(child: CircularProgressIndicator()),
+        Center(child: CircularProgressIndicator()),
+        Center(child: CircularProgressIndicator()),
+        Center(child: CircularProgressIndicator())
       ],
     );
   }
