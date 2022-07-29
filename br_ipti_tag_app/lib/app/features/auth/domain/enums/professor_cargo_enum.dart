@@ -7,7 +7,7 @@ enum ProfessorCargo {
 
 extension ProfessorCargoExtensions on ProfessorCargo {
   int get id {
-    return index ;
+    return index;
   }
 
   String get name {

@@ -73,6 +73,12 @@ class SchoolCubit extends Cubit<SchoolState> {
         // initialDate: state.currentSchoolData!.initialDate,
         // finalDate: state.currentSchoolData!.finalDate,
         // actOfAcknowledgement: state.currentSchoolData!.actOfAcknowledgement,
+        managerName: state.currentSchoolData?.managerName,
+        managerCpf: state.currentSchoolData?.managerCpf,
+        managerEmail: state.currentSchoolData?.managerEmail,
+        // managerRole: state.currentSchoolData?.managerRole,
+        // managerContractType: state.currentSchoolData?.managerContractType,
+        // managerAccessCriterion: state.currentSchoolData?.managerAccessCriterion,
       ),
     );
     final result = await _editSchoolUsecase(params);
@@ -115,4 +121,29 @@ class SchoolCubit extends Cubit<SchoolState> {
       emit(SchoolDataChangeState(
           currentSchool: state.currentSchoolData!
               .copyWith(actOfAcknowledgement: actOfAcknowledgement)));
+
+  void setCurrentSchoolManagerName(String managerName) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(managerName: managerName)));
+  void setCurrentSchoolManagerCpf(String managerCpf) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(managerCpf: managerCpf)));
+  void setCurrentSchoolManagerMail(String managerMail) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(managerEmail: managerMail)));
+  void setCurrentSchoolManagerRole(int managerRole) =>
+      emit(SchoolDataChangeState(
+          currentSchool:
+              state.currentSchoolData!.copyWith(managerRole: managerRole)));
+  void setCurrentSchoolManagerContract(int managerContract) =>
+      emit(SchoolDataChangeState(
+          currentSchool: state.currentSchoolData!
+              .copyWith(managerContractType: managerContract)));
+  void setCurrentSchoolManagerAccessControl(String managerAccessControl) =>
+      emit(SchoolDataChangeState(
+          currentSchool: state.currentSchoolData!
+              .copyWith(managerAccessCriterion: managerAccessControl)));
 }

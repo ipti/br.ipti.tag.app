@@ -1,5 +1,9 @@
+import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
+import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolAdminDataForm extends StatefulWidget {
@@ -10,6 +14,8 @@ class SchoolAdminDataForm extends StatefulWidget {
 }
 
 class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
+  final controller = Modular.get<SchoolCubit>();
+
   @override
   Widget build(BuildContext context) {
     const heading = Heading(text: "Dados do gestor", type: HeadingType.Title2);
@@ -18,93 +24,85 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget inputSchoolName(String schoolName) => TagTextField(
-          label: "Nome da escola",
-          hint: "Digite o nome da escola",
-          value: schoolName,
+    Widget inputManagerName(String adminName) => TagTextField(
+          label: "Nome completo",
+          hint: "Digite o nome completo do gestor",
+          inputType: TextInputType.name,
           validator: requiredValidator,
+          value: adminName,
+          onChanged: controller.setCurrentSchoolManagerName,
         );
-    Widget inputInepCode(String inepCode) => TagTextField(
-          label: "Código do INEP",
-          hint: "Digite o código do INEP",
-          value: inepCode,
+    Widget inputManagerCpf(String adminCpf) => TagTextField(
+          label: "CPF",
+          hint: "Digite o CPF do gestor",
           validator: requiredValidator,
+          value: adminCpf,
+          onChanged: controller.setCurrentSchoolManagerCpf,
         );
-    Widget inputAdminDep() => TagDropdownField(
-          onChanged: () => {},
-          label: "Dependência administrativa",
+    Widget inputManagerMail(String adminMail) => TagTextField(
+          label: "E-mail",
+          hint: "Digite o e-mail do gestor",
+          validator: requiredValidator,
+          value: adminMail,
+          onChanged: controller.setCurrentSchoolManagerMail,
+        );
+    Widget inputManagerRole() => TagDropdownField(
+          label: "Cargo",
           validator: requiredValidator,
           items: {},
+          onChanged: controller.setCurrentSchoolManagerRole,
         );
-    Widget inputStatus() => TagDropdownField(
-          onChanged: () => {},
-          label: "Situação",
+    Widget inputManagerContract() => TagDropdownField(
+          label: "Tipo de contrato",
           validator: requiredValidator,
           items: {},
+          onChanged: controller.setCurrentSchoolManagerContract,
         );
-    Widget inputRegionalAdmin() => TagDropdownField(
-          onChanged: () => {},
-          label: "Órgão regional de administração",
-          hint: "Selecione",
+    Widget inputManagerAccessControl(String adminAccessContro) => TagTextField(
+          label: "Especificação do Critério de Acesso",
+          hint: "Digite o valor",
           validator: requiredValidator,
-          items: {},
-        );
-    Widget inputStartDate(String inepCode) => TagTextField(
-          label: "Data de início da escola",
-          hint: "Somente números",
-          value: inepCode,
-          validator: requiredValidator,
+          value: adminAccessContro,
         );
 
-    Widget inputRecognitionAct(String inepCode) => TagTextField(
-          label: "Ato de reconhecimento",
-          hint: "Digite o código do INEP",
-          value: inepCode,
-          validator: requiredValidator,
+    return BlocBuilder<SchoolCubit, SchoolState>(
+      bloc: controller,
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            withPadding(heading),
+            RowToColumn(children: [
+              Flexible(
+                child: withPadding(inputManagerName(
+                    controller.state.currentSchoolData?.managerName ?? "")),
+              ),
+              Flexible(
+                child: withPadding(inputManagerCpf(
+                    controller.state.currentSchoolData?.managerCpf ?? "")),
+              ),
+            ]),
+            RowToColumn(children: [
+              Flexible(
+                child: withPadding(inputManagerMail(
+                    controller.state.currentSchoolData?.managerEmail ?? "")),
+              ),
+              // Flexible(
+              //   child: withPadding(inputManagerRole()),
+              // ),
+            ]),
+            RowToColumn(children: [
+              // Flexible(
+              //   child: withPadding(inputManagerContract()),
+              // ),
+              Flexible(
+                  child: withPadding(inputManagerAccessControl(controller
+                          .state.currentSchoolData?.managerAccessCriterion ??
+                      "")))
+            ]),
+          ],
         );
-    Widget inputEndDate(String schoolName) => TagTextField(
-          label: "Data do fechamento da escola",
-          hint: "Digite o nome da escola",
-          value: schoolName,
-          validator: requiredValidator,
-        );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        withPadding(heading),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputSchoolName("PlaceHolder")),
-          ),
-          Flexible(
-            child: withPadding(inputInepCode("PlaceHolder")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputAdminDep()),
-          ),
-          Flexible(
-            child: withPadding(inputStatus()),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRegionalAdmin()),
-          ),
-          Flexible(
-            child: withPadding(inputStartDate("PlaceHolder")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRecognitionAct("PlaceHolder")),
-          ),
-          Flexible(
-            child: withPadding(inputEndDate("PlaceHolder")),
-          ),
-        ]),
-      ],
+      },
     );
   }
 }

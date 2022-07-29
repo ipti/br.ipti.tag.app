@@ -60,20 +60,19 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           validator: requiredValidator,
           items: {},
         );
-    Widget inputStartDate(String startDate) => TagTextField(
-          label: "Data de início da escola",
-          hint: "Digite a data do início da escola",
-          value: startDate,
-          validator: requiredValidator,
-          onChanged: controller.setCurrentSchoolInitialDate,
-        );
-
     Widget inputRecognitionAct(String recognitionAct) => TagTextField(
           label: "Ato de reconhecimento",
           hint: "Digite o ato de reconhecimento",
           value: recognitionAct,
           validator: requiredValidator,
           onChanged: controller.setCurrentSchoolActOfAcknowledgement,
+        );
+    Widget inputStartDate(String startDate) => TagTextField(
+          label: "Data de início da escola",
+          hint: "Digite a data do início da escola",
+          value: startDate,
+          validator: requiredValidator,
+          onChanged: controller.setCurrentSchoolInitialDate,
         );
     Widget inputEndDate(String endDate) => TagTextField(
           label: "Data do fechamento da escola",
@@ -83,54 +82,53 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           onChanged: controller.setCurrentSchoolFinalDate,
         );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        withPadding(heading),
-        BlocBuilder<SchoolCubit, SchoolState>(
-          bloc: controller,
-          builder: (context, state) {
-            return RowToColumn(children: [
-              Flexible(
-                child: withPadding(inputSchoolName(
-                    controller.state.currentSchoolData?.name ?? "")),
-              ),
-              Flexible(
-                child: withPadding(inputInepCode(
-                    controller.state.currentSchoolData?.inepId ?? "")),
-              ),
+    return BlocBuilder<SchoolCubit, SchoolState>(
+      bloc: controller,
+      builder: (context, state) {
+        return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              withPadding(heading),
+              RowToColumn(children: [
+                Flexible(
+                  child: withPadding(inputSchoolName(
+                      controller.state.currentSchoolData?.name ?? "")),
+                ),
+                Flexible(
+                  child: withPadding(inputInepCode(
+                      controller.state.currentSchoolData?.inepId ?? "")),
+                ),
+              ]),
+              // RowToColumn(children: [
+              //   Flexible(
+              //     child: withPadding(inputAdminDep()),
+              //   ),
+              //   Flexible(
+              //     child: withPadding(inputStatus()),
+              //   ),
+              // ]),
+              RowToColumn(children: [
+                // Flexible(
+                //   child: withPadding(inputRegionalAdmin()),
+                // ),
+                Flexible(
+                  child: withPadding(inputRecognitionAct(controller
+                          .state.currentSchoolData?.actOfAcknowledgement ??
+                      "")),
+                ),
+              ]),
+              RowToColumn(children: [
+                Flexible(
+                  child: withPadding(inputStartDate(
+                      controller.state.currentSchoolData?.initialDate ?? "")),
+                ),
+                Flexible(
+                  child: withPadding(inputEndDate(
+                      controller.state.currentSchoolData?.finalDate ?? "")),
+                ),
+              ]),
             ]);
-          },
-        ),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputAdminDep()),
-          ),
-          Flexible(
-            child: withPadding(inputStatus()),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRegionalAdmin()),
-          ),
-          Flexible(
-            child: withPadding(inputStartDate(
-                controller.state.currentSchoolData?.initialDate ?? "")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRecognitionAct(
-                controller.state.currentSchoolData?.actOfAcknowledgement ??
-                    "")),
-          ),
-          Flexible(
-            child: withPadding(inputEndDate(
-                controller.state.currentSchoolData?.finalDate ?? "")),
-          ),
-        ]),
-      ],
+      },
     );
   }
 }
