@@ -508,7 +508,7 @@ class InstructorModel extends Instructor {
       email: map['email'],
       inepId: map['inep_id'],
       registerType: map['register_type'],
-      id: map['id'],
+      id: map['_id'],
       schoolInepIdFk: map['school_inep_id_fk'],
       name: map['name'],
       birthdayDate: map['birthday_date'],

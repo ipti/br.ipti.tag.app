@@ -44,7 +44,20 @@ class InstructorRepositoryImpl implements InstructorRepository {
       return Right(results);
     } catch (e) {
       debugPrint(e.toString());
-      return Left(Exception("Não foi possível adicionar estudantes"));
+      return Left(Exception("Não foi possível adicionar professor"));
+    }
+  }
+
+  @override
+  Future<Either<Exception, Instructor>> update(
+      String id, Instructor instructor) async {
+    try {
+      final instructorModel = InstructorModel.fromEntity(instructor);
+      final results = await _instructorDataSource.update(id, instructorModel);
+      return Right(results);
+    } catch (e) {
+      debugPrint(e.toString());
+      return Left(Exception("Não foi possível atualizar dados do professor"));
     }
   }
 }

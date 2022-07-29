@@ -1,3 +1,5 @@
+import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
@@ -14,22 +16,24 @@ import 'education/instructor_education_form_page.dart';
 import 'personal/bloc/instructor_personal_bloc.dart';
 import 'personal/personal_form_partial_page.dart';
 
-class InstructorFormPage extends StatefulWidget {
-  const InstructorFormPage({
+class UpdateInstructorPage extends StatefulWidget {
+  const UpdateInstructorPage({
     Key? key,
-    this.title = 'Cadastrar',
-    this.editMode = EditMode.Create,
+    this.title = 'Editar',
+    this.instructor,
+    this.editMode = EditMode.Edit,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final EditMode editMode;
+  final Instructor? instructor;
 
   @override
-  InstructorFormPageState createState() => InstructorFormPageState();
+  UpdateInstructorPageState createState() => UpdateInstructorPageState();
 }
 
-class InstructorFormPageState
-    extends ModularState<InstructorFormPage, CreateInstructorBloc>
+class UpdateInstructorPageState
+    extends ModularState<UpdateInstructorPage, CreateInstructorBloc>
     with SingleTickerProviderStateMixin {
   static const List<Tab> _tabs = [
     Tab(
@@ -48,14 +52,13 @@ class InstructorFormPageState
   @override
   void initState() {
     _tabController = TabController(length: _tabs.length, vsync: this);
-
     controller.stream.listen((state) {
-      final nextIndex = state.tabIndex % _tabs.length;
-      final isLastTab = nextIndex == _tabs.length;
-      if (!isLastTab) {
-        _tabController.animateTo(nextIndex);
+      if (state.tabIndex != _tabController.index) {
+        _tabController.animateTo(state.tabIndex);
       }
     });
+
+    controller.loadInstructorData(instructor: widget.instructor!);
 
     super.initState();
   }
@@ -66,9 +69,9 @@ class InstructorFormPageState
       length: _tabs.length,
       child: TagDefaultPage(
         menu: const TagVerticalMenu(),
-        title: widget.title,
+        title: widget.title!,
         description: "",
-        path: ["Professor", widget.title],
+        path: ["Professor", widget.title!],
         body: [
           TabBar(
             controller: _tabController,
@@ -106,10 +109,23 @@ class InstructorFormPageState
                 },
                 bloc: controller,
                 builder: (context, state) {
-                  if (state.status == InstructorFormStatus.Loaded) {
-                    return _buildWithData(state);
-                  }
-                  return _buildWithoutData();
+                  return TabBarView(
+                    controller: _tabController,
+                    children: [
+                      PersonalDataFormPage(
+                        instructor: state,
+                        editMode: widget.editMode,
+                      ),
+                      AddressFormPage(
+                        instructor: state,
+                        editMode: widget.editMode,
+                      ),
+                      InstructoEducationPage(
+                        instructor: state,
+                        editMode: widget.editMode,
+                      )
+                    ],
+                  );
                 },
               ),
             );
@@ -119,44 +135,11 @@ class InstructorFormPageState
     );
   }
 
-  TabBarView _buildWithData(state) {
-    return TabBarView(
-      controller: _tabController,
-      children: [
-        PersonalDataFormPage(
-          editMode: widget.editMode,
-        ),
-        AddressFormPage(
-          editMode: widget.editMode,
-        ),
-        InstructoEducationPage(
-          editMode: widget.editMode,
-        )
-      ],
-    );
-  }
-
-  TabBarView _buildWithoutData() {
-    return TabBarView(
-      controller: _tabController,
-      children: [
-        PersonalDataFormPage(
-          editMode: widget.editMode,
-        ),
-        AddressFormPage(
-          editMode: widget.editMode,
-        ),
-        InstructoEducationPage(
-          editMode: widget.editMode,
-        ),
-      ],
-    );
-  }
-
   @override
   void dispose() {
     Modular.dispose<InstructorPersonalBloc>();
     Modular.dispose<InstructorAddressBloc>();
+    Modular.dispose<InstructorEducationBloc>();
     super.dispose();
   }
 }

@@ -42,7 +42,7 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
                 padding: const EdgeInsets.all(8),
                 child: TagButton(
                   text: "Adicionar professor",
-                  onPressed: () => Modular.to.pushNamed("adicionar/"),
+                  onPressed: () => Modular.to.pushNamed("registro/"),
                 ),
               ),
             ),
@@ -67,7 +67,10 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
             }
             return TagDataTable(
               bodyHeight: 420,
-              onTapRow: (row) => Modular.to.pushNamed("/edit", arguments: row),
+              onTapRow: (row) => Modular.to.pushNamed(
+                "registro/editar",
+                arguments: state.teachers[row],
+              ),
               columns: const [
                 DataColumn(label: Text("Nome")),
                 DataColumn(label: Text("Email")),
