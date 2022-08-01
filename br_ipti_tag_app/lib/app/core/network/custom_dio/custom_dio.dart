@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 // ignore: avoid_classes_with_only_static_members
 class ClientHTTPConfiguration {
   static Dio apply(Dio client) {
-    if (kDebugMode && false) client.interceptors.add(DebugInterceptor());
+    if (kDebugMode) client.interceptors.add(DebugInterceptor());
     client.interceptors.add(AuthInterceptor());
     client.interceptors.add(ErrorInterceptor());
     // client.interceptors.add(GuardTokenInterceptor());

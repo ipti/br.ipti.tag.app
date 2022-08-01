@@ -41,7 +41,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   }
 
   void loadInstructorData({required Instructor instructor}) {
-    final loadState = state.copyWith(
+    final loadState = InstructorFormState(
       status: InstructorFormStatus.Loaded,
       isValidPersonal: true,
       id: instructor.id,
@@ -111,7 +111,6 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       postGraduationMaster: instructor.postGraduationMaster,
       postGraduationSpecialization: instructor.postGraduationSpecialization,
     );
-
     emit(loadState);
   }
 

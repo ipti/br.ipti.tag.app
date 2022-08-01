@@ -21,5 +21,8 @@ class GetInstructorEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  Parameters? get urlParameters => null;
+  Parameters? get urlParameters => () => <String, dynamic>{
+        "page": 0,
+        "perPage": 10,
+      };
 }
