@@ -26,7 +26,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
   }
 
   @override
-  Future<Either<Exception, Instructor>> getById(int id) async {
+  Future<Either<Exception, Instructor>> getById(String id) async {
     try {
       final result = await _instructorDataSource.getById(id);
 

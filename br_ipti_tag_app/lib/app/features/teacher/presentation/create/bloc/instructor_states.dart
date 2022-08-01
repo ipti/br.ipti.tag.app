@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-enum InstructorFormStatus { Loaded, Empty, Loading }
+enum InstructorFormStatus { Loaded, Empty, Loading, Error, Success }
 
 class InstructorFormState extends Equatable {
   final InstructorFormStatus status;
@@ -470,7 +470,7 @@ class InstructorFormState extends Equatable {
 }
 
 class EmptyInstructorState extends InstructorFormState {
-  const EmptyInstructorState();
+  const EmptyInstructorState() : super(status: InstructorFormStatus.Empty);
   @override
   List<Object> get props => [];
 }
@@ -479,7 +479,7 @@ class CreateInstructorErrorState extends InstructorFormState {
   final String message;
   const CreateInstructorErrorState({
     required this.message,
-  });
+  }) : super(status: InstructorFormStatus.Error);
 
   @override
   List<Object> get props => [message];
@@ -489,7 +489,7 @@ class CreateInstructorSuccessState extends InstructorFormState {
   final String message;
   const CreateInstructorSuccessState({
     required this.message,
-  });
+  }) : super(status: InstructorFormStatus.Error);
 
   @override
   List<Object> get props => [message];

@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/instructor_repository.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/get_teachers_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/update_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/create_instructor_page.dart';
@@ -32,11 +33,17 @@ class CreateInstructorModule extends Module {
         i.get<InstructorRepository>(),
       ),
     ),
+    Bind.factory(
+      (i) => GetInstructorsUsecase(
+        i.get<InstructorRepository>(),
+      ),
+    ),
     // Blocs
     Bind.singleton(
       (i) => CreateInstructorBloc(
         i.get<CreateInstructorsUsecase>(),
         i.get<UpdateInstructorsUsecase>(),
+        i.get<GetInstructorsUsecase>(),
       ),
     ),
     Bind.singleton(

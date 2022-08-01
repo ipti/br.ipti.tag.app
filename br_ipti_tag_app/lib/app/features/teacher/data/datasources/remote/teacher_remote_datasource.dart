@@ -23,9 +23,9 @@ class TeacherRemoteDataSource {
     return mappedList.toList();
   }
 
-  Future<InstructorModel> getById(int id) async {
+  Future<InstructorModel> getById(String id) async {
     final response = await _httpClient.request(
-      route: GetInstructorEndPoint(id: id.toString()),
+      route: GetInstructorEndPoint(id: id),
     );
 
     return InstructorModel.fromMap(response.data!);

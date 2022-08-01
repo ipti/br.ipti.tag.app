@@ -58,7 +58,11 @@ class UpdateInstructorPageState
       }
     });
 
-    controller.loadInstructorData(instructor: widget.instructor!);
+    // controller.loadInstructorData(instructor: widget.instructor!);
+    final objectId = widget.instructor?.id;
+    if (objectId != null) {
+      controller.fetch(objectId);
+    }
 
     super.initState();
   }
@@ -108,6 +112,12 @@ class UpdateInstructorPageState
                   }
                 },
                 bloc: controller,
+                buildWhen: (previou, current) {
+                  return [
+                    InstructorFormStatus.Loaded,
+                    InstructorFormStatus.Empty
+                  ].contains(current.status);
+                },
                 builder: (context, state) {
                   return TabBarView(
                     controller: _tabController,

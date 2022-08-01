@@ -35,12 +35,15 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
       controller.loadInstructor(widget.instructor!);
       controller.autoUpdate();
     }
-
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
+    if (widget.editMode == EditMode.Edit) {
+      controller.loadInstructor(widget.instructor!);
+      controller.autoUpdate();
+    }
     super.didChangeDependencies();
   }
 

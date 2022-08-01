@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/get_teachers_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/update_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,23 +15,29 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   CreateInstructorBloc(
     this._createInstructorsUsecase,
     this._updateInstructorsUsecase,
+    this._getInstructorsUsecase,
   ) : super(const EmptyInstructorState());
 
   final CreateInstructorsUsecase _createInstructorsUsecase;
   final UpdateInstructorsUsecase _updateInstructorsUsecase;
+  final GetInstructorsUsecase _getInstructorsUsecase;
 
   final _session = Modular.get<SessionBloc>();
 
   void goToTab(int index) {
-    // emit(state.copyWith(tabIndex: index));
+    emit(state.copyWith(tabIndex: index));
   }
 
   void notifyError(String message) {
+    final cacheState = state.copyWith();
     emit(CreateInstructorErrorState(message: message));
+    emit(cacheState);
   }
 
   void notifySuccess(String message) {
+    final cacheState = state.copyWith();
     emit(CreateInstructorSuccessState(message: message));
+    emit(cacheState);
   }
 
   void loadInstructorData({required Instructor instructor}) {
@@ -194,6 +201,15 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     );
 
     emit(loadedEducationDataState);
+  }
+
+  Future fetch(String objectId) async {
+    final param = GetInstructorParams(objectId);
+    final result = await _getInstructorsUsecase(param);
+    result.fold(
+      (error) => notifyError(error.toString()),
+      (instructor) => loadInstructorData(instructor: instructor),
+    );
   }
 
   Future create() async {
