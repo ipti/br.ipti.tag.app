@@ -694,11 +694,9 @@ packages:
   tag_ui:
     dependency: "direct main"
     description:
-      path: "."
-      ref: develop
-      resolved-ref: c9e267098e4bb82ae140e3a5c274bb94ab349946
-      url: "git@github.com:ipti/br.tag.app.ui.git"
-    source: git
+      path: "../tag_ui"
+      relative: true
+    source: path
     version: "0.23.2"
   term_glyph:
     dependency: transitive

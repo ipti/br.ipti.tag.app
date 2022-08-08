@@ -38,9 +38,7 @@ dependencies:
   package_info_plus: 1.4.2
   shared_preferences: ^2.0.8
   tag_ui:
-    git:
-      url: https://github.com/ipti/br.tag.app.git
-      ref: develop # branch name
+    path: ../tag_ui
   url_launcher: ^6.0.12
 
 
