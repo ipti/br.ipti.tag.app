@@ -60,8 +60,10 @@ jobs:
 
       - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ${{inputs.working_directory}}
+        env:
+          FIREBASE_ANDROID_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
         run: |          
-          flutterfire configure --project='br-org-ipti-tag' --platforms='android,ios,web' --android-package-name="${{secrets.ANDROID_PACKAGE_NAME}}" --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token="${{ secrets.FIREBASE_TOKEN }}" -y
+          flutterfire configure --project='${{ env.FIREBASE_ANDROID_APP_ID }}' --platforms='android,ios,web' --android-package-name="${{secrets.ANDROID_PACKAGE_NAME}}" --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token="${{ secrets.FIREBASE_TOKEN }}" -y
       
       - name: 🔼 Upload folder to build
         uses: actions/upload-artifact@v3
