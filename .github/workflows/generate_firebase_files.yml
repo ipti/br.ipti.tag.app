@@ -3,18 +3,16 @@ name: Generate firebase configurations
 on:
   workflow_call:
     inputs:
-      ANDROID_PACKAGE_NAME:
-        required: true
-      FIREBASE_ANDROID_APP_ID:
-        required: true
-      FIREBASE_TOKEN:
-        required: true
       runs_on:
         required: false
         type: string
         default: "ubuntu-latest"
       workspace:
         required: true
+      env:
+        required: false
+        type: string
+        default: "development"
       working_directory:
         required: false
         type: string
@@ -23,6 +21,7 @@ on:
 jobs:
   build:
     runs-on: ${{ inputs.runs_on }}
+    environment: ${{ inputs.env }}
     defaults:
       run:
         working-directory: ${{ inputs.working_directory }}
@@ -56,7 +55,7 @@ jobs:
       - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ${{inputs.working_directory}}
         run: |          
-          flutterfire configure --project=${{inputs.FIREBASE_ANDROID_APP_ID}} --platforms='android,ios,web' --android-package-name=${{inputs.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ inputs.FIREBASE_TOKEN }} -y
+          flutterfire configure --project=${{ secrets.FIREBASE_ANDROID_APP_ID }} --platforms='android,ios,web' --android-package-name=${{secrets.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
       
       - name: 🔼 Upload folder to build
         uses: actions/upload-artifact@v3
