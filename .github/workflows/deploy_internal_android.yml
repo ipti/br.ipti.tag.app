@@ -12,7 +12,7 @@ on:
   
 jobs:
   generate_firebase_files:
-    uses: ./.github/workflows/generate_firebase_files/action.yml
+    uses: ./.github/workflows/generate_firebase_files.yml
     with: 
       ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
       FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
