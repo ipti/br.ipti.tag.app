@@ -51,7 +51,7 @@ jobs:
         run: ls -la
 
       - name: ❤️‍🔥 Setup Flutterfire
-        working-directory: ${{ inputs.workspace }}/flutterfire
+        working-directory: ../flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
 
