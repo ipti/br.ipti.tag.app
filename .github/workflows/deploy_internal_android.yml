@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
+    - uses: actions/checkout@v1
     - uses: ./.github/actions/generate_firebase_files.yml
       with: 
         ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
