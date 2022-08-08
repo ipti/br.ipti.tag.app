@@ -1,4 +1,5 @@
 name: Generate firebase configurations
+
 on:
   workflow_call:
     inputs:
@@ -8,11 +9,23 @@ on:
         required: true
       FIREBASE_TOKEN:
         required: true
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      working_directory:
+        required: false
+        type: string
+        default: "."
 
 jobs:
-  generate_firebase_files:
-    name: Pass input and secrets to my-action
-    runs-on: ubuntu-latest
+  build:
+    defaults:
+      run:
+        working-directory: ${{inputs.working_directory}}
+        
+    runs-on: ${{inputs.runs_on}}
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
