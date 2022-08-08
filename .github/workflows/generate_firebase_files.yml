@@ -29,16 +29,14 @@ on:
 jobs:
   build:
     runs-on: ${{ inputs.runs_on }}
-    environment: ${{ inputs.env }}
-    defaults:
-      run:
-        working-directory: ${{ inputs.working_directory }}
+    environment: ${{ inputs.env }}    
 
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2
         with:
-          submodules: 'true'
+          fetch-depth: 0
+          submodules: recursive
           
       - name: 🎯 Setup Dart 
         uses: dart-lang/setup-dart@v1
@@ -67,7 +65,7 @@ jobs:
         run: |          
           flutterfire configure --project='${{ inputs.firebase-project }}' --platforms='android,ios,web' --android-package-name="${{secrets.ANDROID_PACKAGE_NAME}}" --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token="${{ secrets.FIREBASE_TOKEN }}" -y
       
-      - name: 🔼 Upload folder to build
+      - name: 🔼 Upload folder to build        
         uses: actions/upload-artifact@v3
         with:
           name: project_folder
