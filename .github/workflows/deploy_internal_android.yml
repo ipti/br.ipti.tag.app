@@ -18,6 +18,7 @@ jobs:
     with: 
       working_directory: ./br_ipti_tag_app
       workspace: "${{ github.workspace }}"
+      firebase-project: br-org-ipti-tag
     
    
 ################ Start Android pipeline ################## 
