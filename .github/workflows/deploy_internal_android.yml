@@ -70,17 +70,12 @@ jobs:
         with:
           name: project_folder
       
-      - name: Cache pub dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.FLUTTER_HOME }}/.pub-cache
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: ${{ runner.os }}-pub-
 
       - name: Setup Flutter        
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.flutter_version }}
+          cache: true
           
       - name: Download pub dependencies
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
