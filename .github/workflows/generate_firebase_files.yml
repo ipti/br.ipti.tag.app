@@ -27,6 +27,11 @@ jobs:
     runs-on: ${{inputs.runs_on}}
 
     steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+          
       - name: 🎯 Setup Dart 
         uses: dart-lang/setup-dart@v1
 
