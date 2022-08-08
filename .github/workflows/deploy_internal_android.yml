@@ -15,8 +15,9 @@ env:
   flutter_version: "2.10.4"
 
 jobs:
-  environment: development
   generate_firebase_files:
+    environment: 
+      name: development
     uses: ./.github/workflows/generate_firebase_files.yml
     secrets: 
       ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
