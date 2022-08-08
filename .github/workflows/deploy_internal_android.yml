@@ -12,18 +12,14 @@ on:
   
 jobs:
   generate_firebase_files:
-    runs-on: ubuntu-latest
-    environment: development
-    steps:
-    - uses: actions/checkout@v1
-    - name: Generate Firebase Files
-      uses: ./.github/actions/generate_firebase_files
-      with: 
-        ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
-        FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
-        FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
-        working_directory: ./br_ipti_tag_app
-        workspace: ${{github.workspace}}
+  
+    uses: ./.github/actions/generate_firebase_files
+    with: 
+      ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
+      FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
+      FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
+      working_directory: ./br_ipti_tag_app
+      workspace: ${{github.workspace}}
     
    
 ################ Start Android pipeline ################## 
