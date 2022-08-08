@@ -9,6 +9,7 @@ on:
         default: "ubuntu-latest"
       workspace:
         required: true
+        type: string
       env:
         required: false
         type: string
