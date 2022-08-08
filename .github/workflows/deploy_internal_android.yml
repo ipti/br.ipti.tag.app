@@ -31,11 +31,11 @@ jobs:
     name: Build Android
     needs: generate_firebase_files   
     uses: ./.github/workflows/build_android.yml
-      secrets:
-        ANDROID_KEYSTORE_BASE64: ${{secrets.ANDROID_KEYSTORE_BASE64}}
-        ANDROID_KEYSTORE_PASSWORD: ${{secrets.ANDROID_KEYSTORE_PASSWORD}}
-        ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
-        ANDROID_KEY_ALIAS: ${{secrets.ANDROID_KEY_ALIAS}}
+    secrets:
+      ANDROID_KEYSTORE_BASE64: ${{secrets.ANDROID_KEYSTORE_BASE64}}
+      ANDROID_KEYSTORE_PASSWORD: ${{secrets.ANDROID_KEYSTORE_PASSWORD}}
+      ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
+      ANDROID_KEY_ALIAS: ${{secrets.ANDROID_KEY_ALIAS}}
             
 
   android-deploy:
