@@ -12,7 +12,7 @@ on:
       runs_on:
         required: false
         type: string
-        default: ubuntu-latest
+        default: "ubuntu-latest"
       workspace:
         required: true
       working_directory:
@@ -22,10 +22,10 @@ on:
       
 jobs:
   build:
-    runs-on: ${{inputs.runs_on}}
+    runs-on: ${{ inputs.runs_on }}
     defaults:
       run:
-        working-directory: ${{inputs.working_directory}}
+        working-directory: ${{ inputs.working_directory }}
         
 
     steps:
