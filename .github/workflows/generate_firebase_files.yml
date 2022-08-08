@@ -27,7 +27,6 @@ jobs:
       run:
         working-directory: ${{ inputs.working_directory }}
         
-
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@v2

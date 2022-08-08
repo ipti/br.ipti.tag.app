@@ -18,7 +18,7 @@ jobs:
       # FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
       # FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
       working_directory: ./br_ipti_tag_app
-      workspace: ${{github.workspace}}
+      workspace: "${{github.workspace}}"
     
    
 ################ Start Android pipeline ################## 
