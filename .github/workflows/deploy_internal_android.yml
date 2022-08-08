@@ -16,7 +16,7 @@ jobs:
     environment: development
     steps:
     - uses: actions/checkout@v1
-    - uses: ipti/br.ipti.tag.app/.github/actions/generate_firebase_files.yml@ci/deploy_playstore
+    - uses: ./.github/actions/generate_firebase_files
       with: 
         ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
         FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
