@@ -18,9 +18,9 @@ jobs:
       name: development
     steps:
       - name: 📚 Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
-          submodules: 'true'
+          submodules: true
           
       - name: Run FlutterFire CLI
         uses: ./.github/workflows/generate_firebase_files.yml
