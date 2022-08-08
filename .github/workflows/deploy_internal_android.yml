@@ -1,6 +1,6 @@
 name: Deploy for Internal Test
+
 on:
-  workflow_dispatch:
   push:
     branches:
       - develop
@@ -12,9 +12,8 @@ on:
   
 jobs:
   generate_firebase_files:
-    environment: 
-      name: development
-    uses: ./.github/workflows/generate_firebase_files.yml
+    environment: development
+    uses: ./.github/actions/generate_firebase_files
     with: 
       ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
       FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
