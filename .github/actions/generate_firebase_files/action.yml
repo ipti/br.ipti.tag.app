@@ -12,19 +12,21 @@ on:
       runs_on:
         required: false
         type: string
-        default: "ubuntu-latest"
+        default: ubuntu-latest
+      workspace:
+        required: true
       working_directory:
         required: false
         type: string
         default: "."
-
+      
 jobs:
   build:
+    runs-on: ${{inputs.runs_on}}
     defaults:
       run:
         working-directory: ${{inputs.working_directory}}
         
-    runs-on: ${{inputs.runs_on}}
 
     steps:
       - name: 📚 Git Checkout
@@ -47,12 +49,12 @@ jobs:
           path: 'flutterfire'
         
       - name: ❤️‍🔥 Setup Flutterfire
-        working-directory: ${{ github.workspace }}/flutterfire
+        working-directory: ${{ inputs.workspace }}/flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
 
       - name: 👩‍🚒 Generate Firebase Configuration Files
-        working-directory: ./br_ipti_tag_app
+        working-directory: ${{inputs.working_directory}}
         run: |          
           flutterfire configure --project=${{inputs.FIREBASE_ANDROID_APP_ID}} --platforms='android,ios,web' --android-package-name=${{inputs.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ inputs.FIREBASE_TOKEN }} -y
       
@@ -60,4 +62,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: project_folder
-          path: ${{ github.workspace }}
+          path: ${{ inputs.workspace }}
