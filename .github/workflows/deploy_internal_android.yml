@@ -1,6 +1,6 @@
 name: Deploy for Internal Test
-
 on:
+  workflow_dispatch:
   push:
     branches:
       - develop
@@ -12,11 +12,18 @@ on:
   
 jobs:
   generate_firebase_files:
-    uses: ./.github/workflows/generate_firebase_files.yml
-    with: 
-      ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
-      FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
-      FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
+    name: Generate Firebase Files
+    runs-on: ubuntu-latest
+    environment: 
+      name: development
+    steps:
+      - name: Run FlutterFire CLI
+        uses: ./.github/workflows/generate_firebase_files.yml
+        with: 
+          ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
+          FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
+          FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
+    
    
 ################ Start Android pipeline ################## 
 
@@ -24,7 +31,7 @@ jobs:
     name: Build Android
     needs: generate_firebase_files   
     uses: ./.github/workflows/build_android.yml
-    with:
+    secrets:
       ANDROID_KEYSTORE_BASE64: ${{secrets.ANDROID_KEYSTORE_BASE64}}
       ANDROID_KEYSTORE_PASSWORD: ${{secrets.ANDROID_KEYSTORE_PASSWORD}}
       ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
