@@ -12,7 +12,6 @@ on:
   
 jobs:
   generate_firebase_files:
-  
     uses: ./.github/actions/generate_firebase_files
     with: 
       ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
