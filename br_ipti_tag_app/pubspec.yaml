@@ -39,7 +39,7 @@ dependencies:
   shared_preferences: ^2.0.8
   tag_ui:
     git:
-      url: git@github.com:ipti/br.tag.app.ui.git
+      url: https://github.com/ipti/br.tag.app.git
       ref: develop # branch name
   url_launcher: ^6.0.12
 
