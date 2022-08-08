@@ -10,7 +10,7 @@ on:
       workspace:
         required: true
         type: string
-      env:
+      environment:
         required: false
         type: string
         default: "development"
@@ -24,8 +24,6 @@ on:
       
 jobs:
   build:
-    env:
-      key1: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
     runs-on: ${{ inputs.runs_on }}
     environment: ${{ inputs.env }}
     defaults:

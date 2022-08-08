@@ -23,16 +23,11 @@ jobs:
 ################ Start Android pipeline ################## 
 
   build-android:
+    needs: generate_firebase_files
+    uses: ./.github/workflows/build_android.yml
     name: Build Android
-    runs-on: ubuntu-latest
-    needs: generate_firebase_files   
-    steps:
-      - uses: ./.github/workflows/build_android.yml
-        with:
-          ANDROID_KEYSTORE_BASE64: ${{secrets.ANDROID_KEYSTORE_BASE64}}
-          ANDROID_KEYSTORE_PASSWORD: ${{secrets.ANDROID_KEYSTORE_PASSWORD}}
-          ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}
-          ANDROID_KEY_ALIAS: ${{secrets.ANDROID_KEY_ALIAS}}
+    secrets: inherit
+          
             
 
   android-deploy:

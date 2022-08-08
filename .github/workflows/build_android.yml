@@ -3,14 +3,21 @@ name: Generate firebase configurations
 on:
   workflow_call:
     inputs:
-      ANDROID_KEYSTORE_BASE64:
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      workspace:
         required: true
-      ANDROID_KEYSTORE_PASSWORD:
-        required: true
-      ANDROID_KEY_PASSWORD:
-        required: true
-      ANDROID_KEY_ALIAS:
-        required: true
+        type: string
+      environment:
+        required: false
+        type: string
+        default: "development"
+      working_directory:
+        required: false
+        type: string
+        default: "."
       flutter_version:
         type: string
         default: '2.10.4'
@@ -19,50 +26,51 @@ on:
 jobs:
   build-android:
     name: Build Android   
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runs_on }}
+    # environment: ${{ inputs.environment }}
     steps:
-      - name: Get project folder from artifacts
+      - name: 🔽 Get project folder from artifacts
         id: project-folder
         uses: actions/download-artifact@v2
         with:
           name: project_folder
           
-      - name: Setup Java
+      - name: ☕ Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
 
-      - name: Setup Flutter        
+      - name: 🐦 Setup Flutter        
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.flutter_version }}
+          flutter-version: ${{ inputs.flutter_version }}
           cache: true
           
-      - name: Decode Android keystore
+      - name: 🔑 Decode Android keystore
         id: android_keystore
         uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: key.jks
-          encodedString: ${{ inputs.ANDROID_KEYSTORE_BASE64 }}
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
-      - name: Create key.properties
+      - name: ⚙ Create key.properties
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
-          echo "storePassword=${{ inputs.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
-          echo "keyPassword=${{ inputs.ANDROID_KEY_PASSWORD }}" >> android/key.properties
-          echo "keyAlias=${{ inputs.ANDROID_KEY_ALIAS }}" >> android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
       
-      - name: Download pub dependencies
+      - name: 📦 Download pub dependencies
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter pub get
 
-      - name: Build Android App Bundle
+      - name: 🤖 Build Android App Bundle
         working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build appbundle
       
-      - name: Upload Android App Bundle
+      - name: 🔼 Upload Android App Bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
