@@ -8,22 +8,14 @@ on:
       - '**/README.md'
   pull_request:
     branches: [develop]
-  workflow_dispatch:
-    
-
-env:
-  flutter_version: "2.10.4"
-
+  
 jobs:
   generate_firebase_files:
-    environment: 
-      name: development
     uses: ./.github/workflows/generate_firebase_files.yml
-    secrets: 
+    with: 
       ANDROID_PACKAGE_NAME: ${{secrets.ANDROID_PACKAGE_NAME }}
       FIREBASE_ANDROID_APP_ID: ${{secrets.FIREBASE_ANDROID_APP_ID }}
       FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN }}
-    
    
 ################ Start Android pipeline ################## 
 
@@ -31,7 +23,7 @@ jobs:
     name: Build Android
     needs: generate_firebase_files   
     uses: ./.github/workflows/build_android.yml
-    secrets:
+    with:
       ANDROID_KEYSTORE_BASE64: ${{secrets.ANDROID_KEYSTORE_BASE64}}
       ANDROID_KEYSTORE_PASSWORD: ${{secrets.ANDROID_KEYSTORE_PASSWORD}}
       ANDROID_KEY_PASSWORD: ${{secrets.ANDROID_KEY_PASSWORD}}

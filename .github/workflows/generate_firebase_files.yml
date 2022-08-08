@@ -1,8 +1,7 @@
 name: Generate firebase configurations
-
 on:
   workflow_call:
-    secrets:
+    inputs:
       ANDROID_PACKAGE_NAME:
         required: true
       FIREBASE_ANDROID_APP_ID:
@@ -15,15 +14,15 @@ jobs:
     name: Pass input and secrets to my-action
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: 📚 Git Checkout
         uses: actions/checkout@v2
         with:
           submodules: 'true'
 
-      - name: Setup Dart
+      - name: 🎯 Setup Dart 
         uses: dart-lang/setup-dart@v1
 
-      - name: Setup Firebase-tools
+      - name: 🔥 Setup Firebase-tools
         run: |
           sudo npm install -g firebase-tools
           
@@ -34,17 +33,17 @@ jobs:
           ref: 'feature/token-option'
           path: 'flutterfire'
         
-      - name: Setup Flutterfire
+      - name: ❤️‍🔥 Setup Flutterfire
         working-directory: ${{ github.workspace }}/flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
 
-      - name: Generate Firebase Configuration Files
+      - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ./br_ipti_tag_app
         run: |          
-          flutterfire configure --project=${{secrets.FIREBASE_ANDROID_APP_ID}} --platforms='android,ios,web' --android-package-name=${{secrets.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ secrets.FIREBASE_TOKEN }} -y
+          flutterfire configure --project=${{inputs.FIREBASE_ANDROID_APP_ID}} --platforms='android,ios,web' --android-package-name=${{inputs.ANDROID_PACKAGE_NAME}} --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token=${{ inputs.FIREBASE_TOKEN }} -y
       
-      - name: Upload folder to build
+      - name: 🔼 Upload folder to build
         uses: actions/upload-artifact@v3
         with:
           name: project_folder
