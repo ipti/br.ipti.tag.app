@@ -91,6 +91,7 @@ jobs:
     name: Deploy to Firebase Hosting
     needs: build-web   
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: Get Web Bundle from artifacts
         id: webbundle
@@ -101,12 +102,12 @@ jobs:
       - name: List Files Downloaded
         run: ls -R
       
-      - name: Deploy to Firebase Hosting 
+      - name: Deploy to Firebase Hosting         
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_BR_ORG_IPTI_TAG }}'
-          projectId: ${{secrets.FIREBASE_ANDROID_APP_ID }}
+          projectId: ${{secrets.pro }}
           expires: 30d
           channelId: internal
           

@@ -21,8 +21,7 @@ on:
        
 
 jobs:
-  build-android:
-    name: Build Android   
+  build:      
     runs-on: ${{ inputs.runs_on }}
     # environment: ${{ inputs.environment }}
     steps:
