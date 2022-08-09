@@ -43,6 +43,7 @@ jobs:
         with:
           flutter-version: ${{ inputs.flutter_version }}
           cache: true
+          architecture: arm64
           
       - name: 🔑 Decode Android keystore
         id: android_keystore
