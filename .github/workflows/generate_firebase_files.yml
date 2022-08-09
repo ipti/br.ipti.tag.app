@@ -43,11 +43,12 @@ jobs:
 
       - name: 🔥 Setup Firebase-tools
         run: |
-          sudo npm install -g firebase-tools
+          sudo npm install firebase-tools --location=global
           
       - name: Clone flutterfire_cli docs repository
         uses: actions/checkout@v2        
         with:
+          fetch-depth: 0
           repository: exaby73/flutterfire_cli           
           ref: 'feature/token-option'
           path: 'flutterfire'

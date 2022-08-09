@@ -64,7 +64,8 @@ jobs:
         id: project-folder
         uses: actions/download-artifact@v2
         with:
-          name: project_folder      
+          name: project_folder
+      
 
       - name: Setup Flutter        
         uses: subosito/flutter-action@v2
@@ -73,11 +74,11 @@ jobs:
           cache: true
           
       - name: Download pub dependencies
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
-        run: flutter pub get        
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
+        run: flutter pub get
 
       - name: Build Web App
-        working-directory: ${{ steps.project-folder.outputs.download-path }}
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
         run: flutter build web --release
       
       - name: Upload Web App Bundle
@@ -85,8 +86,8 @@ jobs:
         with:
           name: webbundle
           path: |
-            ${{ steps.project-folder.outputs.download-path }}/build/web/
-            ${{ steps.project-folder.outputs.download-path }}/firebase.json       
+            ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/build/web/
+            ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/firebase.json       
   
   web-deploy:
     name: Deploy to Firebase Hosting
