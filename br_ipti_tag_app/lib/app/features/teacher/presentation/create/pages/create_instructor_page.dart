@@ -64,57 +64,55 @@ class InstructorFormPageState
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: _tabs.length,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Professor", widget.title],
-        body: [
-          TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
-            indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-            onTap: (value) => controller.goToTab(value),
-            tabs: _tabs,
-          ),
-          LayoutBuilder(builder: (context, constraints) {
-            return ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height - 200,
-                maxWidth: 800,
-              ),
-              child: BlocConsumer<CreateInstructorBloc, InstructorFormState>(
-                listener: (context, state) {
-                  if (state is CreateInstructorErrorState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: TagColors.colorRedDark,
-                        content: Text(state.message),
-                      ),
-                    );
-                  }
-                  if (state is CreateInstructorSuccessState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: TagColors.colorBaseProductNormal,
-                        content: Text(state.message),
-                      ),
-                    );
-                  }
-                },
-                bloc: controller,
-                builder: (context, state) {
-                  if (state.status == InstructorFormStatus.Loaded) {
-                    return _buildWithData(state);
-                  }
-                  return _buildWithoutData();
-                },
-              ),
-            );
-          }),
-        ],
+        tabBar: TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          labelColor: TagColors.colorBaseProductDark,
+          indicatorColor: TagColors.colorBaseProductDark,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+          onTap: (value) => controller.goToTab(value),
+          tabs: _tabs,
+        ),
+        body: LayoutBuilder(builder: (context, constraints) {
+          return ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height - 200,
+              maxWidth: 800,
+            ),
+            child: BlocConsumer<CreateInstructorBloc, InstructorFormState>(
+              listener: (context, state) {
+                if (state is CreateInstructorErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: TagColors.colorRedDark,
+                      content: Text(state.message),
+                    ),
+                  );
+                }
+                if (state is CreateInstructorSuccessState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: TagColors.colorBaseProductNormal,
+                      content: Text(state.message),
+                    ),
+                  );
+                }
+              },
+              bloc: controller,
+              builder: (context, state) {
+                if (state.status == InstructorFormStatus.Loaded) {
+                  return _buildWithData(state);
+                }
+                return _buildWithoutData();
+              },
+            ),
+          );
+        }),
       ),
     );
   }

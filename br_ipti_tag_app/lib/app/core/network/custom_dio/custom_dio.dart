@@ -10,7 +10,7 @@ class ClientHTTPConfiguration {
     if (kDebugMode) client.interceptors.add(DebugInterceptor());
     client.interceptors.add(AuthInterceptor());
     client.interceptors.add(ErrorInterceptor());
-    // client.interceptors.add(GuardTokenInterceptor());
+
     client.options.baseUrl =
         "http://ec2-3-230-55-29.compute-1.amazonaws.com:3000";
     return client;

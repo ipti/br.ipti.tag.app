@@ -36,15 +36,10 @@ dependencies:
   package_info_plus: 1.3.0
   shared_preferences: ^2.0.8
   tag_ui:
-    path: ../tag_ui
+    git:
+      url: https://github.com/ipti/br.tag.app.ui.git
+      ref: fix/changing-scroll
   url_launcher: ^6.0.12
-
-  
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  # cupertino_icons: ^1.0.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -55,15 +50,8 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo/logo_tag.svg
     - assets/dumb_data/meals_of_day.json

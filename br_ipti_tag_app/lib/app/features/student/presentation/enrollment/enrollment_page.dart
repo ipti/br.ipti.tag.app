@@ -55,10 +55,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
   void onTap() {
     if (controller.student == null) {
       const index = 0;
-      setState(() {
-        _tabController.index = index;
-        controller.tabIndex = index;
-      });
+      _tabController.index = index;
     }
   }
 
@@ -87,7 +84,6 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
       final isLastTab = nextIndex == _tabs.length;
       if (state is EnrollmentNextTabState && !isLastTab) {
         _tabController.animateTo(nextIndex);
-        controller.tabIndex = nextIndex;
       }
     });
 
@@ -98,55 +94,53 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: _tabs.length,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
         path: ["Alunos", widget.title],
-        body: [
-          TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
-            indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-            onTap: (value) => controller.setTabIndex(value),
-            tabs: _tabs,
+        tabBar: TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          labelColor: TagColors.colorBaseProductDark,
+          indicatorColor: TagColors.colorBaseProductDark,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+          onTap: (value) => controller.setTabIndex(value),
+          tabs: _tabs,
+        ),
+        body: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height + 800,
+            maxWidth: 800,
           ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height,
-              maxWidth: 800,
-            ),
-            child: BlocConsumer<EnrollmentBloc, EnrollmentState>(
-              listener: (context, state) {
-                if (state is EnrollmenErrorState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorRedDark,
-                      content: Text(state.message),
-                    ),
-                  );
-                }
-                if (state is EnrollmenSuccessState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorBaseProductNormal,
-                      content: Text(state.message),
-                    ),
-                  );
-                }
-              },
-              bloc: controller,
-              builder: (context, state) {
-                if (state is EnrollmentLoadedState) {
-                  return _buildWithData(state);
-                }
-                return _buildWithoutData();
-              },
-            ),
+          child: BlocConsumer<EnrollmentBloc, EnrollmentState>(
+            listener: (context, state) {
+              if (state is EnrollmenErrorState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: TagColors.colorRedDark,
+                    content: Text(state.message),
+                  ),
+                );
+              }
+              if (state is EnrollmenSuccessState) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: TagColors.colorBaseProductNormal,
+                    content: Text(state.message),
+                  ),
+                );
+              }
+            },
+            bloc: controller,
+            builder: (context, state) {
+              if (state is EnrollmentLoadedState) {
+                return _buildWithData(state);
+              }
+              return _buildWithoutData();
+            },
           ),
-        ],
+        ),
       ),
     );
   }
