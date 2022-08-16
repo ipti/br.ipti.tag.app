@@ -45,8 +45,8 @@ class LoginBloc extends Cubit<LoginState> {
   Future verifyAuthToken() async {
     final result = await verifyAuthUsecase(NoParams());
     result.fold(
-      (l) => null,
-      (r) => Modular.to.pushReplacementNamed("/turmas"),
+      (error) => emit(LoginErrorState(error.toString())),
+      (token) => Modular.to.pushReplacementNamed("/turmas/"),
     );
   }
 

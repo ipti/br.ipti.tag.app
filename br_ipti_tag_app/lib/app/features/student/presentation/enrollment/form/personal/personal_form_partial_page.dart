@@ -53,14 +53,11 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
           builder: (context, state) {
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(top: 36, bottom: 16),
-                      child: heading1,
-                    ),
+                    heading1,
                     RowToColumn(
                       children: [
                         Flexible(
