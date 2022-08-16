@@ -7,8 +7,6 @@ on:
       - 'ci/deploy_playstore'
     paths-ignore:
       - '**/README.md'
-  pull_request:
-    branches: [develop]
   
 jobs:
   generate_firebase_files:
