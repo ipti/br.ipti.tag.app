@@ -589,11 +589,9 @@ packages:
   tag_ui:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "fix/changing-scroll"
-      resolved-ref: c5f5951788ec2d973b7c478a875cb5baf2381032
-      url: "https://github.com/ipti/br.tag.app.ui.git"
-    source: git
+      path: "../tag_ui"
+      relative: true
+    source: path
     version: "0.23.2"
   term_glyph:
     dependency: transitive
