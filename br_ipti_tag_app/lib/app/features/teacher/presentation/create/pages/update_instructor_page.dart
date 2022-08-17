@@ -34,10 +34,10 @@ class UpdateInstructorPage extends StatefulWidget {
 
 class UpdateInstructorPageState
     extends ModularState<UpdateInstructorPage, CreateInstructorBloc>
-    with
-        SingleTickerProviderStateMixin,
-        AutomaticKeepAliveClientMixin<UpdateInstructorPage> {
-  static const List<Tab> _tabs = [
+    with SingleTickerProviderStateMixin {
+  UpdateInstructorPageState() : super();
+
+  final List<Tab> _tabs = const [
     Tab(
       child: Text("Dados do pessoais"),
     ),
@@ -157,7 +157,4 @@ class UpdateInstructorPageState
     Modular.dispose<InstructorEducationBloc>();
     super.dispose();
   }
-
-  @override
-  bool get wantKeepAlive => false;
 }

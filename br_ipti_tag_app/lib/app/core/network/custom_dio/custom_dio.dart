@@ -3,7 +3,6 @@ import 'package:br_ipti_tag_app/app/core/network/interceptors/auth_interceptor.d
 import 'package:br_ipti_tag_app/app/core/network/interceptors/debug_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class ClientHTTPConfiguration {
