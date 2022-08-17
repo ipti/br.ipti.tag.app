@@ -75,7 +75,7 @@ class InstructorFormPageState
           labelColor: TagColors.colorBaseProductDark,
           indicatorColor: TagColors.colorBaseProductDark,
           labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-          onTap: (value) => controller.setTabIndex(value),
+          onTap: (value) => controller.goToTab(value),
           tabs: _tabs,
         ),
         body: LayoutBuilder(builder: (context, constraints) {
@@ -105,7 +105,7 @@ class InstructorFormPageState
               },
               bloc: controller,
               builder: (context, state) {
-                if (state is InstructorLoadedState) {
+                if (state.status == InstructorFormStatus.Loaded) {
                   return _buildWithData(state);
                 }
                 return _buildWithoutData();
@@ -117,7 +117,7 @@ class InstructorFormPageState
     );
   }
 
-  TabBarView _buildWithData(InstructorLoadedState state) {
+  TabBarView _buildWithData(state) {
     return TabBarView(
       controller: _tabController,
       children: [

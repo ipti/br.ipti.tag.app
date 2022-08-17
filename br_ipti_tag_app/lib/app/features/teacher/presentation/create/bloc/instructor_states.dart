@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+enum InstructorFormStatus { Loaded, Empty, Loading, Error, Success }
+
 class InstructorFormState extends Equatable {
+  final InstructorFormStatus status;
   final int tabIndex;
   final bool isValidPersonal;
   final bool isValidFormAddress;
@@ -82,6 +85,7 @@ class InstructorFormState extends Equatable {
   final bool deficiency;
   final int? scholarity;
   const InstructorFormState({
+    this.status = InstructorFormStatus.Empty,
     this.isValidPersonal = false,
     this.isValidFormAddress = false,
     this.isValidFormEducation = false,
@@ -101,7 +105,7 @@ class InstructorFormState extends Equatable {
     this.otherCoursesSexualEducation = false,
     this.otherCoursesHumanRightsEducation = false,
     this.otherCoursesEnvironmentEducation = false,
-    this.otherCoursesFieldEducation = false,
+    this.otherCoursesFieldEducation = true,
     this.otherCoursesNativeEducation = false,
     this.otherCoursesSpecialEducation = false,
     this.otherCoursesEducationOfYouthAndAdults = false,
@@ -167,6 +171,7 @@ class InstructorFormState extends Equatable {
   @override
   List<Object> get props {
     return [
+      status,
       isValidPersonal,
       isValidFormAddress,
       isValidFormEducation,
@@ -251,6 +256,7 @@ class InstructorFormState extends Equatable {
   }
 
   InstructorFormState copyWith({
+    InstructorFormStatus? status,
     bool? isValidPersonal,
     bool? isValidFormAddress,
     bool? isValidFormEducation,
@@ -333,6 +339,7 @@ class InstructorFormState extends Equatable {
     int? scholarity,
   }) {
     return InstructorFormState(
+      status: status ?? this.status,
       isValidPersonal: isValidPersonal ?? this.isValidPersonal,
       isValidFormAddress: isValidFormAddress ?? this.isValidFormAddress,
       isValidFormEducation: isValidFormEducation ?? this.isValidFormEducation,
@@ -463,12 +470,7 @@ class InstructorFormState extends Equatable {
 }
 
 class EmptyInstructorState extends InstructorFormState {
-  const EmptyInstructorState();
-  @override
-  List<Object> get props => [];
-}
-
-class InstructorLoadedState extends InstructorFormState {
+  const EmptyInstructorState() : super(status: InstructorFormStatus.Empty);
   @override
   List<Object> get props => [];
 }
@@ -477,7 +479,7 @@ class CreateInstructorErrorState extends InstructorFormState {
   final String message;
   const CreateInstructorErrorState({
     required this.message,
-  });
+  }) : super(status: InstructorFormStatus.Error);
 
   @override
   List<Object> get props => [message];
@@ -487,7 +489,7 @@ class CreateInstructorSuccessState extends InstructorFormState {
   final String message;
   const CreateInstructorSuccessState({
     required this.message,
-  });
+  }) : super(status: InstructorFormStatus.Error);
 
   @override
   List<Object> get props => [message];

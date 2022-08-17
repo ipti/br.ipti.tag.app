@@ -7,16 +7,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../../bloc/instructor_states.dart';
 import 'bloc/instructor_personal_bloc.dart';
 import 'bloc/instructor_personal_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
     Key? key,
+    this.instructor,
     this.editMode = EditMode.Create,
   }) : super(key: key);
 
   final EditMode editMode;
+  final InstructorFormState? instructor;
 
   @override
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();
@@ -28,7 +31,20 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
   @override
   void initState() {
+    if (widget.editMode == EditMode.Edit) {
+      controller.loadInstructor(widget.instructor!);
+      controller.autoUpdate();
+    }
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (widget.editMode == EditMode.Edit) {
+      controller.loadInstructor(widget.instructor!);
+      controller.autoUpdate();
+    }
+    super.didChangeDependencies();
   }
 
   @override
@@ -155,9 +171,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                                 text: "Salvar dados e Avançar",
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    controller.submitPersonalForm(
-                                      widget.editMode,
-                                    );
+                                    controller.submitPersonalForm();
                                   }
                                 },
                               ),

@@ -14,7 +14,6 @@ class ClientHTTPConfiguration {
     client.interceptors.add(ErrorInterceptor());
 
     client.options.baseUrl = Environment().config.apiHost;
-
     return client;
   }
 }
