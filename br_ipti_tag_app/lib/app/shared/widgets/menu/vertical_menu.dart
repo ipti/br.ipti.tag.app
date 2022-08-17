@@ -13,9 +13,21 @@ class TagVerticalMenu extends StatelessWidget {
     final currentRoute = ModalRoute.of(context)!.settings.name;
     final items = [
       TagMenuItem(
+        title: "Escola",
+        route: '/escola/editar',
+        isActive: currentRoute!.contains('/escola/'),
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_HOME_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_HOME_GREY_SVG,
+        ),
+        onTap: (String routeName) {
+          Modular.to.pushReplacementNamed(routeName);
+        },
+      ),
+      TagMenuItem(
         title: "Turmas",
-        route: '/turmas/',
-        isActive: currentRoute!.contains('/turmas/'),
+        route: '/turmas',
+        isActive: currentRoute.contains('/turmas/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
