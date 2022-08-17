@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';

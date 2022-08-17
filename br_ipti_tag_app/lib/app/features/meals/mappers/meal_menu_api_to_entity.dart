@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/mapper/mapper.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/mapper.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/component_model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/food_menu_model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/ingredient_model.dart';

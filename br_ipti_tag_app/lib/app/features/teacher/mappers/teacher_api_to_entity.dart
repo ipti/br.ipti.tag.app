@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/mapper/mapper.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/mapper.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/data/models/instructor_model.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/teacher.dart';
 
