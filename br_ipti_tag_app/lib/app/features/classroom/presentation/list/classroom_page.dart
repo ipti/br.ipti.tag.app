@@ -1,11 +1,11 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../../domain/entities/classroom.dart';
+import '../../domain/entities/classroom_entity.dart';
 import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
@@ -29,48 +29,63 @@ class ClassroomPageState
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      header: const HeaderDesktop(),
       title: widget.title,
       description: "",
       path: ["Turmas", widget.title],
-      body: <Widget>[
-        SizedBox(
-          child: Row(
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 120,
-                  minWidth: 100,
-                ),
-                child: TagButton(
-                  text: "Criar turma",
-                  onPressed: () => Modular.to.pushNamed("create"),
-                ),
-              )
-            ],
+      actionsHeader: _SliverHeaderActionDelegate(
+        actionsHeader: const _Actions(),
+      ),
+      body: Column(
+        children: <Widget>[
+          const SizedBox(height: 30),
+          Flexible(
+            child: BlocBuilder<ClassroomListBloc, ClassroomListState>(
+              bloc: controller,
+              builder: (context, state) {
+                if (state.loading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return TagDataTable(
+                  onTapRow: (index) => Modular.to.pushNamed(
+                    "updatePage",
+                    arguments: state.classrooms[index],
+                  ),
+                  columns: const [
+                    DataColumn(label: Text("Nome")),
+                    DataColumn(label: Text("Etapa")),
+                    DataColumn(label: Text("Horário ")),
+                  ],
+                  source: ClassroomDatatable(
+                    data: state.classrooms,
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _Actions extends StatelessWidget {
+  const _Actions({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Flexible(
+          fit: FlexFit.tight,
+          child: TagButton(
+            text: "Criar turma",
+            onPressed: () => Modular.to.pushNamed("create"),
           ),
         ),
-        const SizedBox(height: 30),
-        BlocBuilder<ClassroomListBloc, ClassroomListState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return TagDataTable(
-              columns: const [
-                DataColumn(label: Text("Nome")),
-                DataColumn(label: Text("Etapa")),
-                DataColumn(label: Text("")),
-              ],
-              source: ClassroomDatatable(
-                data: state.classrooms,
-              ),
-            );
-          },
-        )
       ],
     );
   }
@@ -81,14 +96,14 @@ class ClassroomDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Classroom> data;
+  final List<ClassroomEntity> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stageId.toString())),
-      const DataCell(Icon(Icons.edit)),
+      DataCell(Text(data[index].stage)),
+      DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
     ]);
   }
 
@@ -100,4 +115,38 @@ class ClassroomDatatable extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
+}
+
+class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
+  _SliverHeaderActionDelegate({
+    required this.actionsHeader,
+  });
+
+  final Widget actionsHeader;
+
+  @override
+  double get maxExtent => 44;
+
+  @override
+  double get minExtent => 44;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      height: maxExtent,
+      color: TagColors.colorBaseWhiteNormal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: actionsHeader,
+    );
+  }
+
+  @override
+  OverScrollHeaderStretchConfiguration get stretchConfiguration =>
+      OverScrollHeaderStretchConfiguration();
+
+  @override
+  bool shouldRebuild(_SliverHeaderActionDelegate oldDelegate) {
+    return false;
+  }
 }

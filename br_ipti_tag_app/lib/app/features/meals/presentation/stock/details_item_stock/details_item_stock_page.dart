@@ -24,13 +24,12 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.ingredient.name,
       description: "Estoque de item",
       path: const [],
-      body: const <Widget>[],
+      body: Container(),
     );
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
-
 import 'bloc/create_item_stock_bloc.dart';
 import 'bloc/create_item_stock_events.dart';
 
@@ -88,7 +86,7 @@ class CreateItemStockPageState
                       ),
                     ],
                   ),
-                  Expanded(
+                  const Expanded(
                     child: RouterOutlet(),
                   ),
                 ],

@@ -29,16 +29,16 @@ class DetailsMealPageState extends State<DetailsMealPage> {
     const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
 
     final ingredients = widget.mealComponent.ingredients;
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.mealComponent.description,
       description: "Ingredientes para a refeição",
       path: const [],
-      body: <Widget>[
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
-          child: Column(
+      body: Column(
+        children: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 RichText(
@@ -53,27 +53,33 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(children: [
-                    TextSpan(text: "Data e hora  ", style: labelText),
-                    TextSpan(
-                      // text: "${widget.mealComponent.turn} ",
-                      text: "{widget.mealComponent.turn}",
-                      style: infoText,
-                    ),
-                  ]),
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Data e hora  ", style: labelText),
+                      TextSpan(
+                        // text: "${widget.mealComponent.turn} ",
+                        text: "{widget.mealComponent.turn}",
+                        style: infoText,
+                      ),
+                    ],
+                  ),
                 ),
                 RichText(
-                  text: const TextSpan(children: [
-                    TextSpan(text: "Tipo de Aluno ", style: labelText),
-                    TextSpan(text: "{widget.mealComponent.studentType} "),
-                  ]),
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Tipo de Aluno ", style: labelText),
+                      TextSpan(text: "{widget.mealComponent.studentType} "),
+                    ],
+                  ),
                 ),
-              ]),
-        ),
-        IngredientsList(
-          ingredients: ingredients,
-        ),
-      ],
+              ],
+            ),
+          ),
+          IngredientsList(
+            ingredients: ingredients,
+          ),
+        ],
+      ),
     );
   }
 }

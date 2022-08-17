@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 abstract class AuthLocalDataSource {
   Future<void> cacheAuthToken(AuthModel token);
   Future<AuthModel> getAuthToken();
+  Future<bool> cleanCacheToken();
 }
 
 // TODO: Mudar métodos para apenas cache do AuthResponse
@@ -22,7 +23,15 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<AuthModel> getAuthToken() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
-    final jsonToken = _sharedPreferences.getString("AUTH_TOKEN") ?? "";
-    return AuthModel.fromJson(jsonToken);
+    final jsonToken = _sharedPreferences.getString("AUTH_TOKEN");
+    if (jsonToken != null) return AuthModel.fromJson(jsonToken);
+
+    throw Exception("Token não encontrado");
+  }
+
+  @override
+  Future<bool> cleanCacheToken() async {
+    final _sharedPreferences = await SharedPreferences.getInstance();
+    return _sharedPreferences.remove("AUTH_TOKEN");
   }
 }

@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -14,13 +14,13 @@ class EnrollmentParams extends Equatable {
   List<Object> get props => [student];
 }
 
-class FastEnrollmentUsecase implements Usecase<bool, EnrollmentParams> {
+class FastEnrollmentUsecase implements Usecase<Student, EnrollmentParams> {
   FastEnrollmentUsecase(this._service);
 
   final StudentRepository _service;
 
   @override
-  Future<Either<Exception, bool>> call(EnrollmentParams params) async {
+  Future<Either<Exception, Student>> call(EnrollmentParams params) async {
     return _service.create(params.student);
   }
 }

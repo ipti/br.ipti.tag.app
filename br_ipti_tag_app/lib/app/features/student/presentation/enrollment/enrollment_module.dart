@@ -1,61 +1,186 @@
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
+
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_doc_address_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_enrollment_remote_datasource.dart';
+
+import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_docs_addrs_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_enrollment_repository_impl.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_doc_address_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
+
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_docs_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
-import 'form/address/_address_form_partial_page.dart';
 import 'form/address/bloc/enrollment_address_bloc.dart';
-import 'form/classroom/_classes_form_partial_page.dart';
 import 'form/classroom/bloc/enrollment_classroom_bloc.dart';
-import 'form/filliation/_filiation_form_partial_page.dart';
 import 'form/filliation/bloc/enrollment_filiation_bloc.dart';
-import 'form/personal/_personal_form_partial_page.dart';
 import 'form/personal/bloc/enrollment_personal_bloc.dart';
-import 'form/social/_social_form_partial_page.dart';
-import 'form/social/bloc/enrollment_social_bloc.dart';
 
 class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => EnrollmentSocialBloc()),
-    Bind.singleton((i) => EnrollmentPersonalBloc()),
-    // Bind.singleton((i) => EnrollmentAddressBloc(i.get())),
-    Bind.singleton((i) => EnrollmentFiliationBloc()),
-    Bind.singleton((i) => EnrollmentClassroomBloc()),
-    Bind.singleton((i) => EnrollmentBloc(i.get())),
+    // Datasources
+    Bind.singleton(
+      (i) => StudentDocumentsAndAddressRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => ClassroomRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentEnrollmenrRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
+
+    // Repositories
+    Bind.singleton(
+      (i) => ClassroomRepositoryImpl(
+        classroomRemoteDataSource: i.get<ClassroomRemoteDataSource>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentDocumentsAddressRepositoryImpl(
+        i.get<StudentDocumentsAndAddressRemoteDataSource>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => StudentEnrollmentRepositoryImpl(
+        i.get<StudentEnrollmenrRemoteDataSource>(),
+      ),
+    ),
+
+    // Usecases
+    Bind.singleton(
+      (i) => CreateStudentEnrollmentUsecase(
+        i.get<StudentEnrollmentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => UpdateStudentEnrollmentUsecase(
+        i.get<StudentEnrollmentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => ListClassroomsUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => AddDocumentsAndAddressToStudentUsecase(
+        i.get<StudentDocumentsAddressRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => CreateStudentsUsecase(
+        i.get<StudentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => UpdateStudentUsecase(
+        i.get<StudentRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => LoadStudentUsecase(
+        i.get<StudentRepository>(),
+      ),
+    ),
+
+    Bind.singleton(
+      (i) => LoadStudentDocsUsecase(
+        i.get<StudentDocumentsAddressRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => UpdateDocumentsAndAddressUsecase(
+        i.get<StudentDocumentsAddressRepository>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => LoadStudentEnrollmentUsecase(
+        i.get<StudentEnrollmentRepository>(),
+      ),
+    ),
+
+    // Blocs
+    Bind.singleton(
+      (i) => EnrollmentBloc(
+        i.get<LoadStudentDocsUsecase>(),
+        i.get<LoadStudentEnrollmentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentPersonalBloc(
+        i.get<CreateStudentsUsecase>(),
+        i.get<UpdateStudentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentAddressBloc(
+        i.get<ListCitiesUsecase>(),
+        i.get<ListUFsUsecase>(),
+        i.get<UpdateDocumentsAndAddressUsecase>(),
+        i.get<AddDocumentsAndAddressToStudentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentFiliationBloc(
+        i.get<UpdateStudentUsecase>(),
+      ),
+    ),
+    Bind.singleton(
+      (i) => EnrollmentClassroomBloc(
+        i.get<ListClassroomsUsecase>(),
+        i.get<CreateStudentEnrollmentUsecase>(),
+        i.get<UpdateStudentEnrollmentUsecase>(),
+      ),
+    ),
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  List<Module> get imports => [
+        EdcensoLocationsModule(),
+      ];
+
+  @override
+  final List<ModularRoute> routes = [
     ChildRoute(
       "/",
-      child: (_, args) => const EnrollmentPage(),
-      children: [
-        ChildRoute(
-          '/pessoal',
-          child: (_, args) => const PersonalDataFormPage(),
-          transition: TransitionType.rightToLeft,
-        ),
-        ChildRoute(
-          '/filiacao',
-          child: (_, args) => const FiliationFormPage(),
-          transition: TransitionType.rightToLeft,
-        ),
-        ChildRoute(
-          '/endereco',
-          child: (_, args) => const AddressFormPage(),
-          transition: TransitionType.rightToLeft,
-        ),
-        ChildRoute(
-          '/social',
-          child: (_, args) => const SocialFormPage(),
-          transition: TransitionType.rightToLeft,
-        ),
-        ChildRoute(
-          '/turma',
-          child: (_, args) => const ClassesFormPage(),
-          transition: TransitionType.rightToLeft,
-        ),
-      ],
+      child: (_, args) => EnrollmentPage(
+        student: args.data as Student?,
+      ),
+    ),
+    ChildRoute(
+      "/edit",
+      child: (_, args) => EnrollmentPage(
+        editMode: EditMode.Edit,
+        student: args.data as Student?,
+      ),
     ),
   ];
 }

@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -22,37 +21,34 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.title,
       description:
           "Acompanhe o calendário e o estoque de alimentos da sua escola",
       path: const [],
-      body: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _SelectActionNavigatorItem(
-                title: "Refeições",
-                subtitle: "Cardápio semanal da escola",
-                onTap: () {
-                  Modular.to.pushNamed("refeicoes");
-                },
-              ),
-              _SelectActionNavigatorItem(
-                title: "Estoque",
-                subtitle: "Estoque de alimentos da escola",
-                onTap: () {
-                  Modular.to.pushNamed("estoque");
-                },
-              ),
-            ],
-          ),
+      body: Container(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _SelectActionNavigatorItem(
+              title: "Refeições",
+              subtitle: "Cardápio semanal da escola",
+              onTap: () {
+                Modular.to.pushNamed("refeicoes");
+              },
+            ),
+            _SelectActionNavigatorItem(
+              title: "Estoque",
+              subtitle: "Estoque de alimentos da escola",
+              onTap: () {
+                Modular.to.pushNamed("estoque");
+              },
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -65,7 +61,7 @@ class _SelectActionNavigatorItem extends StatelessWidget {
     required this.subtitle,
   }) : super(key: key);
 
-  final Function onTap;
+  final Function() onTap;
   final String title;
   final String subtitle;
 

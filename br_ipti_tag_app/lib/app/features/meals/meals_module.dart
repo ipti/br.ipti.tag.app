@@ -1,9 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/meals_menu_dumb_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/repositories/meals_menu_repository_impl.dart';
-
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_menu_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'data/datasources/remote/meals_remote_datasource.dart';
 import 'mappers/meal_menu_api_to_entity.dart';
 import 'presentation/meals_menu/details_meal/details_meal_page.dart';
@@ -27,11 +25,13 @@ class MealsModule extends Module {
   ];
 
   @override
-  final List<ModularRoute<void>> routes = [
+  final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const SelectActionMealsPage()),
     ChildRoute(
       "/details",
-      child: (_, args) => DetailsMealPage(meal: args.data['mealComponent']),
+      child: (_, args) => DetailsMealPage(
+        meal: (args.data as Map)['mealComponent'],
+      ),
     ),
     ChildRoute("/refeicoes", child: (_, args) => const ListMealsPage()),
     ModuleRoute("/estoque", module: StockModule())

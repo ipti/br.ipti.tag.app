@@ -1,6 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal_component.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/header/header_desktop.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,17 +30,16 @@ class DetailsMealPageState extends State<DetailsMealPage> {
 
     final ingredients = widget.meal.ingredients;
 
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      header: const HeaderDesktop(),
-      aside: Container(),
       title: widget.meal.description,
       description: "Ingredientes para a refeição",
       path: const [],
-      body: <Widget>[
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
-          child: Column(
+      body: Column(
+        children: <Widget>[
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 RichText(
@@ -56,26 +54,32 @@ class DetailsMealPageState extends State<DetailsMealPage> {
                   ),
                 ),
                 RichText(
-                  text: const TextSpan(children: [
-                    TextSpan(text: "Data e hora  ", style: labelText),
-                    TextSpan(
-                      text: "{widget.meal.turn} ",
-                      style: infoText,
-                    ),
-                  ]),
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Data e hora  ", style: labelText),
+                      TextSpan(
+                        text: "{widget.meal.turn} ",
+                        style: infoText,
+                      ),
+                    ],
+                  ),
                 ),
                 RichText(
-                  text: const TextSpan(children: [
-                    TextSpan(text: "Tipo de Aluno ", style: labelText),
-                    TextSpan(text: "{widget.meal.studentType} "),
-                  ]),
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Tipo de Aluno ", style: labelText),
+                      TextSpan(text: "{widget.meal.studentType} "),
+                    ],
+                  ),
                 ),
-              ]),
-        ),
-        IngredientsList(
-          ingredients: ingredients,
-        ),
-      ],
+              ],
+            ),
+          ),
+          IngredientsList(
+            ingredients: ingredients,
+          ),
+        ],
+      ),
     );
   }
 }

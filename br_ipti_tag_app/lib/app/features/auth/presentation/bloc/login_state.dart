@@ -1,7 +1,36 @@
 part of 'login_bloc.dart';
 
-class LoginState extends Equatable {
-  const LoginState({
+abstract class LoginState extends Equatable {
+  const LoginState();
+}
+
+class LoginLoadingState extends LoginState {
+  const LoginLoadingState();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginErrorState extends LoginState {
+  final String message;
+
+  const LoginErrorState(this.message);
+
+  @override
+  List<Object?> get props => [message.hashCode];
+}
+
+class LoginSuccessState extends LoginState {
+  final String message;
+
+  const LoginSuccessState(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class LoginLoadedState extends LoginState {
+  const LoginLoadedState({
     required this.username,
     required this.password,
     required this.appVersion,
@@ -13,13 +42,13 @@ class LoginState extends Equatable {
   final String appVersion;
   final String year;
 
-  LoginState copyWith({
+  LoginLoadedState copyWith({
     String? username,
     String? password,
     String? appVersion,
     String? year,
   }) {
-    return LoginState(
+    return LoginLoadedState(
       username: username ?? this.username,
       password: password ?? this.password,
       appVersion: appVersion ?? this.appVersion,
@@ -28,11 +57,10 @@ class LoginState extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [username, password, appVersion, year];
 }
 
-class LoginInitial extends LoginState {
+class LoginInitial extends LoginLoadedState {
   LoginInitial()
       : super(
           username: "",
