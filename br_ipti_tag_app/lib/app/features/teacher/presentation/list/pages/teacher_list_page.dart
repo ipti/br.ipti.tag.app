@@ -1,8 +1,9 @@
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/teacher.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_state.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -25,47 +26,40 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
-      path: ["Professores", widget.title],
-      body: <Widget>[
-        SizedBox(
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                constraints: const BoxConstraints(minWidth: 120),
-                child: TagButton(
-                  text: "Adicionar professores",
-                  onPressed: () => Modular.to.pushNamed("cadastrar"),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 30),
-        BlocBuilder<TeacherListBloc, TeacherListState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            return TagDataTable(
-              columns: const [
-                DataColumn(label: Text("Nome")),
-                DataColumn(label: Text("CPF")),
-                DataColumn(label: Text("Data de nacimento")),
-                DataColumn(label: Text("")),
-              ],
-              source: TeacherDatatable(
-                data: state.teachers,
+      path: ["Início", widget.title],
+      actionsHeader: _SliverHeaderActionDelegate(),
+      body: BlocConsumer<TeacherListBloc, TeacherListState>(
+        listener: (context, state) {
+          if (state is FailedState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: TagColors.colorRedDark,
+                content: Text(state.message),
               ),
             );
-          },
-        )
-      ],
+          }
+        },
+        bloc: controller,
+        builder: (context, state) {
+          if (state.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return TagDataTable(
+            onTapRow: (row) => Modular.to.pushNamed("/edit", arguments: row),
+            columns: const [
+              DataColumn(label: Text("Nome")),
+              DataColumn(label: Text("Email")),
+            ],
+            source: TeacherDatatable(
+              data: state.teachers,
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -75,15 +69,13 @@ class TeacherDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Teacher> data;
+  final List<Instructor> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].cpf ?? " - ")),
-      DataCell(Text(data[index].birthday?.toString() ?? " - ")),
-      const DataCell(Icon(Icons.edit)),
+      DataCell(Text(data[index].name!.toUpperCase())),
+      DataCell(Text(data[index].email ?? " - ")),
     ]);
   }
 
@@ -95,4 +87,46 @@ class TeacherDatatable extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
+}
+
+class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  double get maxExtent => 50;
+
+  @override
+  double get minExtent => 50;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final isDesktop = MediaQuery.of(context).size.width > 992;
+    return Container(
+      height: maxExtent,
+      color: TagColors.colorBaseWhiteNormal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          Flexible(
+            fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: TagButton(
+                text: "Adicionar professor",
+                onPressed: () => Modular.to.pushNamed("adicionar/"),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  OverScrollHeaderStretchConfiguration get stretchConfiguration =>
+      OverScrollHeaderStretchConfiguration();
+
+  @override
+  bool shouldRebuild(_SliverHeaderActionDelegate oldDelegate) {
+    return false;
+  }
 }

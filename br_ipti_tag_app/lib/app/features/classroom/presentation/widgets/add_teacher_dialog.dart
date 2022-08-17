@@ -1,4 +1,7 @@
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_cargo_enum.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_tipo_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
+import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_states.dart';
@@ -10,15 +13,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class AddTeacherDialog extends StatefulWidget {
-  const AddTeacherDialog(
-      {Key? key,
-      required this.classroomId,
-      this.instructorEntity,
-      this.disciplineIdFk})
-      : super(key: key);
+  const AddTeacherDialog({
+    Key? key,
+    required this.classroomId,
+    this.instructorTeachingDataEntity,
+    this.instructorEntity,
+    this.disciplineIdFk,
+  }) : super(key: key);
   final String classroomId;
   final InstructorEntity? instructorEntity;
   final String? disciplineIdFk;
+  final InstructorTeachingDataEntity? instructorTeachingDataEntity;
 
   @override
   State<AddTeacherDialog> createState() => _AddTeacherDialogState();
@@ -28,10 +33,19 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
   final controller = Modular.get<InstructorFormBloc>();
   final ScrollController scrollController = ScrollController();
   final _animatedListKey = GlobalKey<AnimatedListState>();
-
+  final professorTipoMap = Map.fromEntries(
+    ProfessorTipo.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
+  final professorCargoMap = Map.fromEntries(
+    ProfessorCargo.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
   @override
   void initState() {
-    controller.setClassroomId(widget.classroomId);
+    controller.classroomId = widget.classroomId;
     if (widget.instructorEntity != null) {
       controller.add(UpdateInstructorForm(
           schoolInepIdFk: widget.instructorEntity!.schoolInepIdFk,
@@ -105,7 +119,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                             )),
                             hint: 'Selecione',
                             onChanged: (instructor) =>
-                                controller.changeCurrentInstructor(instructor),
+                                controller.currentInstructor = instructor,
                             label: 'Professor',
                             value: controller.currentInstructor,
                           ),
@@ -118,9 +132,9 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                             )),
                             hint: 'Selecione',
                             onChanged: (discipline) =>
-                                controller.changeCurrentDiscipline(discipline),
+                                controller.changeCurrentDiscipline = discipline,
                             label: 'Disciplinas',
-                            value: controller.currentDiscipline,
+                            value: controller.changeCurrentDiscipline,
                           ),
                           TagButton(
                               text: "Adicionar",
@@ -128,68 +142,85 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                                 _animatedListKey.currentState!.insertItem(
                                   0,
                                 );
-                                controller.selectedDisciplines
-                                    .insert(0, controller.currentDiscipline);
+                                controller.selectedDisciplines.insert(
+                                  0,
+                                  controller.changeCurrentDiscipline,
+                                );
                               }),
                           SizedBox(
-                              height: 100,
-                              width: MediaQuery.of(context).size.width,
-                              child: AnimatedList(
-                                  key: _animatedListKey,
-                                  itemBuilder: (context, index, animation) =>
-                                      SlideTransition(
-                                          position: animation.drive(Tween(
-                                              begin: const Offset(0.0, -1.0),
-                                              end: Offset.zero)),
-                                          child: Container(
-                                            height: 40,
-                                            color: TagColors
-                                                .colorBaseProductLighter,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  state.disciplines!
-                                                      .map((e) => MapEntry(
-                                                          e.id, e.name))
-                                                      .firstWhere((discipline) =>
-                                                          discipline.key ==
-                                                          controller
-                                                                  .selectedDisciplines[
-                                                              index])
-                                                      .value,
-                                                  style: const TextStyle(
-                                                      color: TagColors
-                                                          .colorBaseInkNormal),
+                            height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            child: AnimatedList(
+                              key: _animatedListKey,
+                              itemBuilder: (context, index, animation) =>
+                                  SlideTransition(
+                                position: animation.drive(
+                                  Tween(
+                                    begin: const Offset(0.0, -1.0),
+                                    end: Offset.zero,
+                                  ),
+                                ),
+                                child: Container(
+                                  height: 40,
+                                  color: TagColors.colorBaseProductLighter,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        state.disciplines!
+                                            .map(
+                                              (e) => MapEntry(
+                                                e.id,
+                                                e.name,
+                                              ),
+                                            )
+                                            .firstWhere(
+                                              (discipline) =>
+                                                  discipline.key ==
+                                                  controller
+                                                          .selectedDisciplines[
+                                                      index],
+                                            )
+                                            .value,
+                                        style: const TextStyle(
+                                          color: TagColors.colorBaseInkNormal,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          _animatedListKey.currentState!
+                                              .removeItem(
+                                            index,
+                                            (context, animation) =>
+                                                SlideTransition(
+                                              position: animation.drive(
+                                                Tween(
+                                                  begin: const Offset(
+                                                    0.0,
+                                                    1.0,
+                                                  ),
+                                                  end: const Offset(
+                                                    3.0,
+                                                    1.0,
+                                                  ),
                                                 ),
-                                                GestureDetector(
-                                                    onTap: () {
-                                                      _animatedListKey
-                                                          .currentState!
-                                                          .removeItem(
-                                                              index,
-                                                              (context,
-                                                                      animation) =>
-                                                                  SlideTransition(
-                                                                    position: animation.drive(Tween(
-                                                                        begin: Offset(
-                                                                            0.0,
-                                                                            1.0),
-                                                                        end: Offset(
-                                                                            3.0,
-                                                                            1.0))),
-                                                                  ));
-                                                      controller
-                                                          .selectedDisciplines
-                                                          .removeAt(index);
-                                                    },
-                                                    child:
-                                                        const Icon(Icons.close))
-                                              ],
+                                              ),
                                             ),
-                                          )))),
+                                          );
+                                          controller.selectedDisciplines
+                                              .removeAt(index);
+                                        },
+                                        child: const Icon(
+                                          Icons.close,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       );
                     } else if (state is InstructorFormStateError) {
@@ -204,12 +235,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: TagDropdownField(
-                items: const <int, String>{
-                  0: 'Professor',
-                  1: 'Auxiliar',
-                  2: 'Monitor',
-                  3: 'Intérprete',
-                },
+                items: professorTipoMap,
                 hint: 'Selecione',
                 onChanged: (cargo) => controller.changeRole(cargo),
                 label: 'Cargo',
@@ -219,12 +245,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: TagDropdownField(
-                items: const <int, String>{
-                  0: 'Concursado/Efetivo',
-                  1: 'Temporário',
-                  2: 'Terceirizado',
-                  3: 'CLT',
-                },
+                items: professorCargoMap,
                 hint: 'Selecione',
                 onChanged: (contrato) =>
                     controller.changeContractType(contrato),
@@ -256,8 +277,9 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                       widget.instructorEntity == null
                           ? controller.add(SubmitInstructorForm())
                           : controller.add(SubmitUpdateInstructorForm(
-                              instructorTeachingDataId:
-                                  widget.instructorEntity!.id));
+                              instructorTeachingDataId: widget
+                                  .instructorTeachingDataEntity!.instructorId,
+                            ));
                     },
                   ),
                 ],

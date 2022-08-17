@@ -19,7 +19,8 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   final ListEdcensoDisciplinesUseCase _disciplinesUseCase;
   final ListInstructorsUseCase _instructorsUseCase;
   late String? _classroomId;
-  void setClassroomId(String classroomId) => _classroomId = classroomId;
+  set classroomId(String classroomId) => _classroomId = classroomId;
+  String get classroomId => _classroomId!;
 
   Future<void> fetchListClassroomsEvent() async {
     final requests = await Future.wait([
@@ -48,19 +49,26 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
             instructors = instructorsResponse as List<InstructorEntity>);
 
     if (instructorsTeachingData.isNotEmpty && edcensoDisciplines.isNotEmpty) {
-      emit(UpdateTeacherStateSuccess(
+      emit(
+        UpdateTeacherStateSuccess(
           _bindInstructorsTeachingData(instructorsTeachingData, instructors),
-          _bindDisciplines(edcensoDisciplines,
-              instructorsTeachingData.map((e) => e.disciplineId).toList())));
+          _bindDisciplines(
+            edcensoDisciplines,
+            instructorsTeachingData.map((e) => e.disciplineId).toList(),
+          ),
+          instructorsTeachingData,
+        ),
+      );
     } else {
       emit(UpdateTeacherStateEmpty());
     }
   }
 
   List<List<EdcensoDisciplinesEntity>> _bindDisciplines(
-      List<EdcensoDisciplinesEntity> edcensoDisciplines,
-      List<String> instructorDisciplines) {
-    List<List<EdcensoDisciplinesEntity>> instructorDisciplinesResult = [];
+    List<EdcensoDisciplinesEntity> edcensoDisciplines,
+    List<String> instructorDisciplines,
+  ) {
+    final List<List<EdcensoDisciplinesEntity>> instructorDisciplinesResult = [];
     for (final userDiscipline in instructorDisciplines) {
       instructorDisciplinesResult.addAll(edcensoDisciplines
           .where((discipline) => discipline.id.contains(userDiscipline))
@@ -70,9 +78,10 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   }
 
   List<InstructorEntity> _bindInstructorsTeachingData(
-      List<InstructorTeachingDataEntity> instructorsTeachingData,
-      List<InstructorEntity> instructors) {
-    List<InstructorEntity> instructorsTeachingDataResult = [];
+    List<InstructorTeachingDataEntity> instructorsTeachingData,
+    List<InstructorEntity> instructors,
+  ) {
+    final List<InstructorEntity> instructorsTeachingDataResult = [];
     for (final instructorTeaching in instructorsTeachingData) {
       instructorsTeachingDataResult.addAll(instructors.where((instructor) =>
           instructorTeaching.instructorFk.contains(instructor.id)));

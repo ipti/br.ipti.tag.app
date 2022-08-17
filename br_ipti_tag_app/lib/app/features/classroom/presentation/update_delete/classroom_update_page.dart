@@ -1,3 +1,6 @@
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/etapa_ensino_enum.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/mediacao_enum.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/modalidades_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_states.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_bloc.dart';
@@ -26,6 +29,22 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   final controller = Modular.get<ClassroomUpdateDeleteBloc>();
   final _formKey = GlobalKey<FormState>();
   final _session = Modular.get<SessionBloc>();
+  final mediacaoMap = Map.fromEntries(
+    Mediacao.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
+  final etapaEnsinoMap = Map.fromEntries(
+    EtapaEnsino.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
+  final modalidadesMap = Map.fromEntries(
+    Modalidades.values.map(
+      (e) => MapEntry(e.id, e.name),
+    ),
+  );
+
   @override
   void initState() {
     _session.fetchCurrentSchool();
@@ -118,7 +137,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
           hint: "Selecione",
-          items: controller.modalitiesList,
+          items: modalidadesMap,
           onChanged: controller.setModality,
           value: modality,
           validator: requiredValidator,
@@ -126,7 +145,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectStage(int edcensoStage) => TagDropdownField(
           label: 'Etapa de Ensino',
           hint: "Selecione",
-          items: controller.etapaEnsino,
+          items: etapaEnsinoMap,
           onChanged: controller.setStage,
           value: edcensoStage,
           validator: requiredValidator,
@@ -135,7 +154,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectMediacaoDidaticaPedagogica(int mediacao) => TagDropdownField(
           label: 'Tipo de Mediação Didático-Pedagógica',
           hint: "Selecione",
-          items: controller.mediacao,
+          items: mediacaoMap,
           onChanged: controller.setMediacao,
           value: mediacao,
           validator: requiredValidator,

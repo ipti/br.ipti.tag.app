@@ -1,3 +1,6 @@
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/etapa_ensino_enum.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/mediacao_enum.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/enums/modalidades_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
@@ -35,26 +38,23 @@ class ClassroomCreatePageState
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 1,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
-        aside: Container(),
         title: widget.title,
         description: "",
         path: ["Turmas", widget.title],
-        body: const <Widget>[
-          TabBar(
-            isScrollable: true,
-            labelColor: TagColors.colorBaseProductDark,
-            indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: EdgeInsets.symmetric(horizontal: 8),
-            tabs: [
-              Tab(
-                child: Text("Dados da Turma"),
-              ),
-            ],
-          ),
-          ClassroomBasicDataForm()
-        ],
+        tabBar: const TabBar(
+          isScrollable: true,
+          labelColor: TagColors.colorBaseProductDark,
+          indicatorColor: TagColors.colorBaseProductDark,
+          labelPadding: EdgeInsets.symmetric(horizontal: 8),
+          tabs: [
+            Tab(
+              child: Text("Dados da Turma"),
+            ),
+          ],
+        ),
+        body: const ClassroomBasicDataForm(),
       ),
     );
   }
@@ -81,7 +81,21 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   @override
   Widget build(BuildContext context) {
     const padding = EdgeInsets.all(8.0);
-
+    final mediacaoMap = Map.fromEntries(
+      Mediacao.values.map(
+        (e) => MapEntry(e.id, e.name),
+      ),
+    );
+    final etapaEnsinoMap = Map.fromEntries(
+      EtapaEnsino.values.map(
+        (e) => MapEntry(e.id, e.name),
+      ),
+    );
+    final modalidadesMap = Map.fromEntries(
+      Modalidades.values.map(
+        (e) => MapEntry(e.id, e.name),
+      ),
+    );
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
@@ -119,7 +133,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectModality(int modality) => TagDropdownField(
           label: 'Modalidade de ensino',
           hint: "Selecione",
-          items: controller.modalitiesList,
+          items: modalidadesMap,
           onChanged: controller.setModality,
           value: modality,
           validator: requiredValidator,
@@ -127,7 +141,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectStage(int edcensoStage) => TagDropdownField(
           label: 'Etapa de Ensino',
           hint: "Selecione",
-          items: controller.etapaEnsino,
+          items: etapaEnsinoMap,
           onChanged: controller.setStage,
           value: edcensoStage,
           validator: requiredValidator,
@@ -136,7 +150,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget selectMediacaoDidaticaPedagogica(int mediacao) => TagDropdownField(
           label: 'Tipo de Mediação Didático-Pedagógica',
           hint: "Selecione",
-          items: controller.mediacao,
+          items: mediacaoMap,
           onChanged: controller.setMediacao,
           value: mediacao,
           validator: requiredValidator,

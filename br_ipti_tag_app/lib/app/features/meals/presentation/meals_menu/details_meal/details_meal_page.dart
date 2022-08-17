@@ -30,55 +30,56 @@ class DetailsMealPageState extends State<DetailsMealPage> {
 
     final ingredients = widget.meal.ingredients;
 
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
-      aside: Container(),
       title: widget.meal.description,
       description: "Ingredientes para a refeição",
       path: const [],
-      body: <Widget>[
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(text: "Consistência ", style: labelText),
-                    TextSpan(
-                      text: "{widget.meal.consistence} ",
-                      style: infoText,
-                    ),
-                  ],
+      body: Column(
+        children: <Widget>[
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Consistência ", style: labelText),
+                      TextSpan(
+                        text: "{widget.meal.consistence} ",
+                        style: infoText,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(text: "Data e hora  ", style: labelText),
-                    TextSpan(
-                      text: "{widget.meal.turn} ",
-                      style: infoText,
-                    ),
-                  ],
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Data e hora  ", style: labelText),
+                      TextSpan(
+                        text: "{widget.meal.turn} ",
+                        style: infoText,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(text: "Tipo de Aluno ", style: labelText),
-                    TextSpan(text: "{widget.meal.studentType} "),
-                  ],
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(text: "Tipo de Aluno ", style: labelText),
+                      TextSpan(text: "{widget.meal.studentType} "),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        IngredientsList(
-          ingredients: ingredients,
-        ),
-      ],
+          IngredientsList(
+            ingredients: ingredients,
+          ),
+        ],
+      ),
     );
   }
 }

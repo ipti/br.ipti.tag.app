@@ -38,10 +38,10 @@ dependencies:
   package_info_plus: 1.4.2
   shared_preferences: ^2.0.8
   tag_ui:
-    path: ../tag_ui
+    git:
+      url: https://github.com/ipti/br.tag.app.ui.git
+      ref: fix/changing-scroll
   url_launcher: ^6.0.12
-
-
 dev_dependencies:
   change_app_package_name: ^1.1.0
   flutter_launcher_icons: ^0.9.2
@@ -55,10 +55,8 @@ flutter_icons:
   ios: true
   image_path: "assets/icon.png"
 
-
-
-flutter:  
-  uses-material-design: true  
+flutter:
+  uses-material-design: true
   assets:
     - assets/logo/logo_tag.svg
     - assets/dumb_data/meals_of_day.json
