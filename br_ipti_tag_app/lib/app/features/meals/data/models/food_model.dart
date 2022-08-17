@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/core/model/model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/food.dart';
 
-class FoodModel extends Food implements Model {
+class FoodModel extends Food {
   FoodModel({
     required num tacoId,
     required String description,

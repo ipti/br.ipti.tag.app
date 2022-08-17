@@ -3,10 +3,7 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_create_model.dart';
 
 class PutClasroomEndPoint extends EndPointAPI {
-  PutClasroomEndPoint(
-    this.classroomModel,
-    this.id
-  );
+  PutClasroomEndPoint(this.classroomModel, this.id);
 
   ClassroomCreateModel classroomModel;
   String id;

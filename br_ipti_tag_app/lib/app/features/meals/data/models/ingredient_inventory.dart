@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:br_ipti_tag_app/app/core/model/model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/food_model.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ingredient.dart';
 
-class InvetoryIngredientModel extends InvetoryIngredient implements Model {
+class InvetoryIngredientModel extends InvetoryIngredient {
   InvetoryIngredientModel({
     required String foodId,
     required String schoolId,

@@ -39,3 +39,9 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+
+android/serviceAccount.json
+android/app/google-services.json
+
+lib/firebase_options.dart
