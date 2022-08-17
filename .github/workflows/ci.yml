@@ -20,12 +20,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         id: verify_pull
 
-      - name: Conventional Changelog Action        
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
-        with:          
-          github-token: ${{ secrets.GH_TOKEN_ACTION }}
-          output-file: br_ipti_tag_app/CHANGELOG.md
-          version-file: br_ipti_tag_app/pubspec.yaml
+      # - name: Conventional Changelog Action        
+      #   id: changelog
+      #   uses: TriPSs/conventional-changelog-action@v3
+      #   with:          
+      #     github-token: ${{ secrets.GH_TOKEN_ACTION }}
+      #     output-file: br_ipti_tag_app/CHANGELOG.md
+      #     version-file: br_ipti_tag_app/pubspec.yaml
 
         
