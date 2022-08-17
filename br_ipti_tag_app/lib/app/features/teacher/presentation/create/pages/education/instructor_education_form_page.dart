@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/instructor_states.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,8 +14,10 @@ class InstructoEducationPage extends StatefulWidget {
     this.instructor,
     this.editMode = EditMode.Create,
   }) : super(key: key);
-  final Instructor? instructor;
+
   final EditMode editMode;
+  final InstructorFormState? instructor;
+
   @override
   InstructoEducationPageState createState() => InstructoEducationPageState();
 }
@@ -26,8 +28,17 @@ class InstructoEducationPageState extends State<InstructoEducationPage> {
 
   @override
   void initState() {
-    // if (widget.student != null) controller.loadStudent(widget.student!);
+    if (widget.editMode == EditMode.Edit) {
+      controller.loadInstructorEducation(widget.instructor!);
+      controller.autoUpdate();
+    }
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
@@ -40,67 +51,77 @@ class InstructoEducationPageState extends State<InstructoEducationPage> {
     final isDesktop = MediaQuery.of(context).size.width > 992;
 
     return BlocBuilder<InstructorEducationBloc, InstructorEducationState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(top: 24, bottom: 16),
-                      child: heading,
-                    ),
-                    const Heading(
-                      text: "Pós-Graduação",
-                      type: HeadingType.Title4,
-                    ),
-                    _FormPosGraduate(
-                      controller: controller,
-                      state: state,
-                    ),
-                    const Heading(
-                      text: "Outros Cursos",
-                      type: HeadingType.Title4,
-                    ),
-                    _FormOtherCourses(
-                      controller: controller,
-                      state: state,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 56),
-                      child: RowToColumn(
-                        columnCrossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Flexible(
-                            fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 8,
-                              ),
-                              child: TagButton(
-                                text: "Salvar dados",
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    controller.submitEducationForm();
-                                  }
-                                },
-                              ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 24, bottom: 16),
+                    child: heading,
+                  ),
+                  const Heading(
+                    text: "Pós-Graduação",
+                    type: HeadingType.Title4,
+                  ),
+                  _FormPosGraduate(
+                    controller: controller,
+                    state: state,
+                  ),
+                  const Heading(
+                    text: "Outros Cursos",
+                    type: HeadingType.Title4,
+                  ),
+                  _FormOtherCourses(
+                    controller: controller,
+                    state: state,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
+                    child: RowToColumn(
+                      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Flexible(
+                          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: TagButton(
+                              text: "Salvar dados",
+                              onPressed: submit,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
+  }
+
+  void submit() {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    if (widget.editMode == EditMode.Create) {
+      controller.create();
+    }
+    if (widget.editMode == EditMode.Edit) {
+      controller.edit();
+    }
   }
 }
 

@@ -1,16 +1,15 @@
 // ignore_for_file: avoid_positional_boolean_parameters
 
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/color_race_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/filliation_type_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/nationality_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/scholarity_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/enums/sex_enum.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../bloc/instructor_states.dart';
 import 'instructor_personal_states.dart';
 
 class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
@@ -48,10 +47,12 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
     ),
   );
 
-  Future loadInstructor(Instructor instructor) async {
-    emit(state.copyWith(
-      // instructor: instructor,
+  Future loadInstructor(InstructorFormState instructor) async {
+    final loadState = state.copyWith(
       name: instructor.name,
+      cpf: instructor.cpf,
+      email: instructor.email,
+      scholarity: instructor.scholarity,
       birthdayDate: instructor.birthdayDate,
       sex: instructor.sex,
       colorRace: instructor.colorRace,
@@ -71,9 +72,10 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
       deficiencyTypeMultipleDisabilities:
           instructor.deficiencyTypeMultipleDisabilities,
       deficiencyTypeAutism: instructor.deficiencyTypeAutism,
-
       deficiencyTypeGifted: instructor.deficiencyTypeGifted,
-    ));
+    );
+
+    emit(loadState);
   }
 
   void setName(String value) => emit(state.copyWith(name: value));
@@ -142,19 +144,16 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   void setDeficiencyTypeGifted(bool? typeGifted) =>
       emit(state.copyWith(deficiencyTypeGifted: typeGifted));
 
-  Future<void> submitPersonalForm(EditMode mode) async {
-    switch (mode) {
-      case EditMode.Create:
-        _create();
-        break;
-      case EditMode.Edit:
-        break;
-    }
-  }
-
-  Future _create() async {
+  Future<void> submitPersonalForm() async {
     _createInstructorBloc.loadPersonalData(
       personal: state,
     );
+    _createInstructorBloc.goToTab(1);
+  }
+
+  void autoUpdate() {
+    stream.listen((event) {
+      _createInstructorBloc.loadPersonalData(personal: event);
+    });
   }
 }

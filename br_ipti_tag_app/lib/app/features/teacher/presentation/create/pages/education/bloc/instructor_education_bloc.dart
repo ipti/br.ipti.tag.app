@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_positional_boolean_parameters
 
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/instructor_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -88,7 +89,75 @@ class InstructorEducationBloc extends Cubit<InstructorEducationState> {
   void setHighEducationSituation1(bool? value) =>
       emit(state.copyWith(highEducationSituation1: value));
 
-  Future<void> submitEducationForm() async {
+  void loadInstructorEducation(InstructorFormState instructor) {
+    final loadState = state.copyWith(
+      otherCoursesNone: instructor.otherCoursesNone,
+      otherCoursesOther: instructor.otherCoursesOther,
+      otherCoursesEthnicEducation: instructor.otherCoursesEthnicEducation,
+      otherCoursesChildAndTeenageRights:
+          instructor.otherCoursesChildAndTeenageRights,
+      otherCoursesSexualEducation: instructor.otherCoursesSexualEducation,
+      otherCoursesHumanRightsEducation:
+          instructor.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation:
+          instructor.otherCoursesEnvironmentEducation,
+      otherCoursesFieldEducation: instructor.otherCoursesFieldEducation,
+      otherCoursesNativeEducation: instructor.otherCoursesNativeEducation,
+      otherCoursesSpecialEducation: instructor.otherCoursesSpecialEducation,
+      otherCoursesEducationOfYouthAndAdults:
+          instructor.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesHighSchool: instructor.otherCoursesHighSchool,
+      otherCoursesBasicEducationFinalYears:
+          instructor.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears:
+          instructor.otherCoursesBasicEducationInitialYears,
+      otherCoursesPreSchool: instructor.otherCoursesPreSchool,
+      otherCoursesNursery: instructor.otherCoursesNursery,
+      postGraduationNone: instructor.postGraduationNone,
+      postGraduationDoctorate: instructor.postGraduationDoctorate,
+      postGraduationMaster: instructor.postGraduationMaster,
+      postGraduationSpecialization: instructor.postGraduationSpecialization,
+      highEducationInstitutionCode3Fk:
+          instructor.highEducationInstitutionCode3Fk,
+      highEducationFinalYear3: instructor.highEducationFinalYear3,
+      highEducationInitialYear3: instructor.highEducationInitialYear3,
+      highEducationCourseCode3Fk: instructor.highEducationCourseCode3Fk,
+      highEducationFormation3: instructor.highEducationFormation3,
+      highEducationSituation3: instructor.highEducationSituation3,
+      highEducationInstitutionCode2Fk:
+          instructor.highEducationInstitutionCode2Fk,
+      highEducationFinalYear2: instructor.highEducationFinalYear2,
+      highEducationInitialYear2: instructor.highEducationInitialYear2,
+      highEducationCourseCode2Fk: instructor.highEducationCourseCode2Fk,
+      highEducationFormation2: instructor.highEducationFormation2,
+      highEducationSituation2: instructor.highEducationSituation2,
+      highEducationInstitutionCode1Fk:
+          instructor.highEducationInstitutionCode1Fk,
+      highEducationFinalYear1: instructor.highEducationFinalYear1,
+      highEducationInitialYear1: instructor.highEducationInitialYear1,
+      highEducationCourseCode1Fk: instructor.highEducationCourseCode1Fk,
+      highEducationFormation1: instructor.highEducationFormation1,
+      highEducationSituation1: instructor.highEducationSituation1,
+    );
+
+    emit(loadState);
+  }
+
+  Future<void> create() async {
     _createInstructorBloc.loadEducationData(education: state);
+    await _createInstructorBloc.create();
+    _createInstructorBloc.goToTab(0);
+  }
+
+  Future<void> edit() async {
+    _createInstructorBloc.loadEducationData(education: state);
+    await _createInstructorBloc.edit();
+    _createInstructorBloc.goToTab(0);
+  }
+
+  void autoUpdate() {
+    stream.listen((event) {
+      _createInstructorBloc.loadEducationData(education: event);
+    });
   }
 }

@@ -26,6 +26,6 @@ class TeacherModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute("/", child: (_, args) => const TeacherPage()),
-    ModuleRoute("/adicionar", module: CreateInstructorModule()),
+    ModuleRoute("/registro", module: CreateInstructorModule()),
   ];
 }
