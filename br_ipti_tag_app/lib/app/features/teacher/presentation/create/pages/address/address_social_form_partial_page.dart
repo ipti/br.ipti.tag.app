@@ -6,30 +6,37 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../../bloc/instructor_states.dart';
 import 'bloc/instructor_address_bloc.dart';
 import 'bloc/instructor_address_states.dart';
 
 class AddressFormPage extends StatefulWidget {
   const AddressFormPage({
     Key? key,
+    this.instructor,
     this.editMode = EditMode.Create,
   }) : super(key: key);
 
   final EditMode editMode;
+  final InstructorFormState? instructor;
 
   @override
   AddressFormPageState createState() => AddressFormPageState();
 }
 
 class AddressFormPageState extends State<AddressFormPage> {
+  final _formKey = GlobalKey<FormState>();
+  final controller = Modular.get<InstructorAddressBloc>();
+
   @override
   void initState() {
     controller.fetchUFs();
+    if (widget.editMode == EditMode.Edit) {
+      controller.loadInstructorAddress(widget.instructor!);
+      controller.autoUpdate();
+    }
     super.initState();
   }
-
-  final _formKey = GlobalKey<FormState>();
-  final controller = Modular.get<InstructorAddressBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +157,7 @@ class AddressFormPageState extends State<AddressFormPage> {
                                 text: "Salvar dados e Avançar",
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    controller.submitAddressForm(
-                                      widget.editMode,
-                                    );
+                                    controller.submitAddressForm();
                                   }
                                 },
                               ),

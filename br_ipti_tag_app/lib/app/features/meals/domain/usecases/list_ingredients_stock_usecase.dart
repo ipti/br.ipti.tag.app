@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/repositories/ingredient_repository.dart';
 import 'package:dartz/dartz.dart';

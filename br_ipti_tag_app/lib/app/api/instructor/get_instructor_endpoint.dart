@@ -9,7 +9,7 @@ class GetInstructorEndPoint extends EndPointAPI {
   final String? id;
 
   @override
-  String get path => id == null ? '/instructor' : '/instructor/{$id}';
+  String get path => id == null ? '/instructor' : '/instructor/$id';
 
   @override
   Parameters? get bodyParameters => null;
@@ -21,5 +21,8 @@ class GetInstructorEndPoint extends EndPointAPI {
   HTTPMethod get httpMethod => HTTPMethod.GET;
 
   @override
-  Parameters? get urlParameters => null;
+  Parameters? get urlParameters => () => <String, dynamic>{
+        "page": 0,
+        "perPage": 10,
+      };
 }

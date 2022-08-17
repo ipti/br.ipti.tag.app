@@ -74,7 +74,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Merenda",
-        route: '/merenda',
+        route: '/merenda/',
         isActive: currentRoute.contains('/merenda/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
@@ -86,7 +86,7 @@ class TagVerticalMenu extends StatelessWidget {
       ),
       TagMenuItem(
         title: "Logout",
-        route: '/logout',
+        route: '/logout/',
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
