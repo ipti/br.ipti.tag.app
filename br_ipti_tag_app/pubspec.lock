@@ -203,7 +203,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.20.1"
+    version: "1.19.1"
   firebase_core_dart:
     dependency: transitive
     description:
@@ -695,8 +695,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "fix/changing-scroll"
-      resolved-ref: c5f5951788ec2d973b7c478a875cb5baf2381032
+      ref: develop
+      resolved-ref: c9e267098e4bb82ae140e3a5c274bb94ab349946
       url: "https://github.com/ipti/br.tag.app.ui.git"
     source: git
     version: "0.23.2"
