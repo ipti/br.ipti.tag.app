@@ -49,7 +49,10 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
             return const Center(child: CircularProgressIndicator());
           }
           return TagDataTable(
-            onTapRow: (row) => Modular.to.pushNamed("/edit", arguments: row),
+            onTapRow: (row) => Modular.to.pushNamed(
+              "registro/editar",
+              arguments: state.teachers[row],
+            ),
             columns: const [
               DataColumn(label: Text("Nome")),
               DataColumn(label: Text("Email")),
@@ -112,7 +115,7 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
               padding: const EdgeInsets.all(8),
               child: TagButton(
                 text: "Adicionar professor",
-                onPressed: () => Modular.to.pushNamed("adicionar/"),
+                onPressed: () => Modular.to.pushNamed("registro/"),
               ),
             ),
           ),

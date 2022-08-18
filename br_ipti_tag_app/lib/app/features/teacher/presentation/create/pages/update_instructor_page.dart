@@ -98,6 +98,7 @@ class UpdateInstructorPageState
           bloc: controller,
           builder: (context, state) {
             return TagDefaultPage(
+                appBar: const TagAppBar(leading: TagAppBarBackIconButton()),
                 menu: const TagVerticalMenu(),
                 title: widget.title!,
                 description: "",
