@@ -24,8 +24,6 @@ jobs:
   build:      
     runs-on: ${{ inputs.runs_on }}
     # environment: ${{ inputs.environment }}
-    env:
-      ENVIRONMENT: ${{ inputs.environment }}
     steps:
       - name: 🔽 Get project folder from artifacts
         id: project-folder
