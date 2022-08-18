@@ -24,8 +24,8 @@ dependencies:
   device_preview: any
   dio: any
   equatable: ^2.0.3
-  firebase_core: ^1.17.1  
-  firebase_core_desktop: 1.0.2
+  firebase_core: 1.19.1  
+  firebase_core_desktop: ^1.0.0
   firebase_crashlytics: ^2.8.1
   firebase_performance: ^0.8.0+13
   flutter:
@@ -40,7 +40,7 @@ dependencies:
   tag_ui:
     git:
       url: https://github.com/ipti/br.tag.app.ui.git
-      ref: fix/changing-scroll
+      ref: develop
   url_launcher: ^6.0.12
 dev_dependencies:
   change_app_package_name: ^1.1.0
