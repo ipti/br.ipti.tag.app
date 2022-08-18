@@ -24,6 +24,9 @@ jobs:
     needs: generate_firebase_files
     uses: ./.github/workflows/build_android.yml
     secrets: inherit
+    with:
+      environment: "production"
+    
 
   android-deploy:
     name: Deploy Android to App Distribution
