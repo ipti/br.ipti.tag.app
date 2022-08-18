@@ -70,4 +70,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: project_folder
-          path: .
+          path: |
+            br_ipti_tag_app
+            tag_ui
