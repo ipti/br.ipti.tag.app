@@ -221,7 +221,7 @@ class _UFField extends StatelessWidget {
       items: controller.state.ufs,
       onChanged: controller.setUf,
       value: edcensoUfFk,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<String?>(),
     );
   }
 }
@@ -245,7 +245,7 @@ class _CityField extends StatelessWidget {
       items: controller.state.cities,
       onChanged: controller.setCity,
       value: edcensoCityFk,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<String?>(),
     );
   }
 }

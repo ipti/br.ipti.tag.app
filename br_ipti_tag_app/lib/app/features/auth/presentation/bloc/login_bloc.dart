@@ -24,20 +24,20 @@ class LoginBloc extends Cubit<LoginState> {
       MapEntry(i.toString(), i.toString())
   ];
 
-  String username = "";
-  String password = "";
-  String schoolYear = DateTime.now().year.toString();
-  String appVersion = "0.0.0.0";
+  String? username = "";
+  String? password = "";
+  String? schoolYear = DateTime.now().year.toString();
+  String? appVersion = "0.0.0.0";
 
   Future fetchVersion() async {
     final appVersion = await servicePkgInfo.getVersion();
     this.appVersion = appVersion;
     emit(
       LoginLoadedState(
-        username: username,
-        password: password,
+        username: username!,
+        password: password!,
         appVersion: appVersion,
-        year: schoolYear,
+        year: schoolYear!,
       ),
     );
   }
@@ -52,9 +52,9 @@ class LoginBloc extends Cubit<LoginState> {
 
   Future submitLogin() async {
     final params = LoginParams(
-      username: username,
-      password: password,
-      year: schoolYear,
+      username: username!,
+      password: password!,
+      year: schoolYear!,
     );
 
     final result = await authLoginUsecase(params);
@@ -64,10 +64,10 @@ class LoginBloc extends Cubit<LoginState> {
         emit(LoginErrorState(error.toString()));
         emit(
           LoginLoadedState(
-            username: username,
-            password: password,
-            appVersion: appVersion,
-            year: schoolYear,
+            username: username!,
+            password: password!,
+            appVersion: appVersion!,
+            year: schoolYear!,
           ),
         );
       },

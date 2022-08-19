@@ -126,14 +126,14 @@ class Body extends StatelessWidget {
         child: widget,
       );
 
-  Widget inputUsername(String username) => TagTextField(
+  Widget inputUsername(String? username) => TagTextField(
         label: "Usuário",
         hint: "Digite seu usuário",
         onChanged: (username) => controller.username = username,
         value: username,
         validator: requiredValidator,
       );
-  Widget inputPassword(String password) => TagTextField(
+  Widget inputPassword(String? password) => TagTextField(
         label: "Senha",
         hint: "Digite sua senha",
         onChanged: (password) => controller.password = password,
@@ -142,13 +142,12 @@ class Body extends StatelessWidget {
         obscureText: true,
       );
 
-  Widget dropdownYear(String year) => TagDropdownField<String>(
+  Widget dropdownYear(String? year) => TagDropdownField<String>(
         label: "Ano letivo",
         items: Map.fromEntries(controller.yearSequence),
-        onChanged: (year) => controller.schoolYear = year,
+        onChanged: (value) => controller.schoolYear = value,
         value: year,
-        validator: requiredValidator,
-        obscureText: true,
+        validator: requiredDropdownValidator<String?>(),
       );
 
   @override

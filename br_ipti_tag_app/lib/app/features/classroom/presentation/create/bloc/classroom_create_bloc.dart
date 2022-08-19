@@ -99,11 +99,11 @@ class ClassroomCreateBloc
   void setName(String name) => add(NameChanged(name));
   void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
   void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
-  void setModality(int modalityId) => add(ModalityChanged(modalityId));
-  void setStage(int stageId) => add(StageChanged(stageId));
-  void setMediacao(int mediacao) => add(
+  void setModality(int? modalityId) => add(ModalityChanged(modalityId!));
+  void setStage(int? stageId) => add(StageChanged(stageId!));
+  void setMediacao(int? mediacao) => add(
         TypePedagogicalMediationChanged(
-          mediacao,
+          mediacao!,
         ),
       );
 
@@ -223,7 +223,7 @@ class ClassroomCreateBloc
     yield newState;
   }
 
-  String _getEdcensoStage(int idEdcenso) {
+  String _getEdcensoStage(int? idEdcenso) {
     switch (idEdcenso) {
       case 0:
         return "MA";

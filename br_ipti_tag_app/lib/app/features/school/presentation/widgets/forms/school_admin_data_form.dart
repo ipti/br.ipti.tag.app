@@ -30,24 +30,24 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
           value: inepCode,
           validator: requiredValidator,
         );
-    Widget inputAdminDep() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputAdminDep() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Dependência administrativa",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
-    Widget inputStatus() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputStatus() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Situação",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
-    Widget inputRegionalAdmin() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputRegionalAdmin() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Órgão regional de administração",
           hint: "Selecione",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputStartDate(String inepCode) => TagTextField(
           label: "Data de início da escola",

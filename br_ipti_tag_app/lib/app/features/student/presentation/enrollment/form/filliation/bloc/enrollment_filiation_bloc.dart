@@ -60,7 +60,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
         ),
       );
 
-  void setScholarityResponsable(int value) => emit(
+  void setScholarityResponsable(int? value) => emit(
         state.copyWith(
           scholarityResponsable: value,
         ),
@@ -91,7 +91,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
         ),
       );
 
-  void setScholarityFiliation1(int value) => emit(
+  void setScholarityFiliation1(int? value) => emit(
         state.copyWith(
           scholarityFiliation1: value,
         ),
@@ -122,7 +122,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
         ),
       );
 
-  void setScholarityFiliation2(int value) => emit(
+  void setScholarityFiliation2(int? value) => emit(
         state.copyWith(
           scholarityFiliation2: value,
         ),

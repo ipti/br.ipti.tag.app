@@ -158,7 +158,7 @@ class _SexField extends StatelessWidget {
       items: controller.sexItems,
       onChanged: controller.setSex,
       value: sex,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -182,7 +182,7 @@ class _ColorRaceField extends StatelessWidget {
       items: controller.colorRaceItems,
       onChanged: controller.setColorRace,
       value: colorRace,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -206,7 +206,7 @@ class _FiliationField extends StatelessWidget {
       items: controller.filiationItems,
       onChanged: controller.setFiliation,
       value: filiation,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -229,7 +229,7 @@ class _NationalityField extends StatelessWidget {
       items: controller.nationalityItems,
       onChanged: controller.setNationality,
       value: nationality,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }

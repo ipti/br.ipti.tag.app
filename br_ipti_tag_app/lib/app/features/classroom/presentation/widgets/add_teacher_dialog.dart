@@ -119,20 +119,20 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                             )),
                             hint: 'Selecione',
                             onChanged: (instructor) =>
-                                controller.currentInstructor = instructor,
+                                controller.currentInstructor = instructor!,
                             label: 'Professor',
                             value: controller.currentInstructor,
                           ),
                           const SizedBox(
                             height: 36,
                           ),
-                          TagDropdownField(
+                          TagDropdownField<String>(
                             items: Map.fromEntries(state.disciplines!.map(
                               (e) => MapEntry(e.id, e.name),
                             )),
                             hint: 'Selecione',
-                            onChanged: (discipline) =>
-                                controller.changeCurrentDiscipline = discipline,
+                            onChanged: (discipline) => controller
+                                .changeCurrentDiscipline = discipline!,
                             label: 'Disciplinas',
                             value: controller.changeCurrentDiscipline,
                           ),
@@ -234,21 +234,21 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: TagDropdownField(
+              child: TagDropdownField<int>(
                 items: professorTipoMap,
                 hint: 'Selecione',
-                onChanged: (cargo) => controller.changeRole(cargo),
+                onChanged: controller.changeRole,
                 label: 'Cargo',
                 value: controller.currentRole,
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(18.0),
-              child: TagDropdownField(
+              child: TagDropdownField<int>(
                 items: professorCargoMap,
                 hint: 'Selecione',
                 onChanged: (contrato) =>
-                    controller.changeContractType(contrato),
+                    controller.changeContractType(contrato!),
                 label: 'Tipo de Contrato',
                 value: controller.currentContractType,
               ),

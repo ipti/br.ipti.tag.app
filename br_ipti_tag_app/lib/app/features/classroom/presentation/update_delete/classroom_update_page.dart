@@ -134,30 +134,31 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           value: endTime.format(context),
           validator: requiredTimeValidator,
         );
-    Widget selectModality(int modality) => TagDropdownField(
+    Widget selectModality(int modality) => TagDropdownField<int>(
           label: 'Modalidade de ensino',
           hint: "Selecione",
           items: modalidadesMap,
           onChanged: controller.setModality,
           value: modality,
-          validator: requiredValidator,
+          validator: requiredDropdownValidator<int?>(),
         );
-    Widget selectStage(int edcensoStage) => TagDropdownField(
+    Widget selectStage(int edcensoStage) => TagDropdownField<int>(
           label: 'Etapa de Ensino',
           hint: "Selecione",
           items: etapaEnsinoMap,
           onChanged: controller.setStage,
           value: edcensoStage,
-          validator: requiredValidator,
+          validator: requiredDropdownValidator<int?>(),
         );
 
-    Widget selectMediacaoDidaticaPedagogica(int mediacao) => TagDropdownField(
+    Widget selectMediacaoDidaticaPedagogica(int mediacao) =>
+        TagDropdownField<int>(
           label: 'Tipo de Mediação Didático-Pedagógica',
           hint: "Selecione",
           items: mediacaoMap,
           onChanged: controller.setMediacao,
           value: mediacao,
-          validator: requiredValidator,
+          validator: requiredDropdownValidator<int?>(),
         );
 
     return Form(

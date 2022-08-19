@@ -33,12 +33,12 @@ class _SchoolAdressDataFormState extends State<SchoolAdressDataForm> {
           value: cep,
           validator: requiredValidator,
         );
-    Widget inputCepa(String schoolName) => TagDropdownField(
+    Widget inputCepa(String schoolName) => TagDropdownField<dynamic>(
           label: "CEP",
           hint: "Digite o CEP da escola",
           validator: requiredValidator,
           items: {},
-          onChanged: () => {},
+          onChanged: (value) => {},
         );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
