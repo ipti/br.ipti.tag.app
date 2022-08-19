@@ -102,7 +102,6 @@ class TagVerticalMenu extends StatelessWidget {
     ];
 
     return TagMenu(
-      initialRoute: ModalRoute.of(context)!.settings.name,
       items: items,
     );
   }

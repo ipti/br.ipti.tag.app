@@ -298,7 +298,7 @@ class _ScholarityResponsableField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField(
+    return TagDropdownField<int>(
       key: const Key('STUDENT_ENROLLMENT_FILLIATION_RESPONSABLE_SCHOLARITY'),
       label: 'Escolaridade',
       items: controller.scholarityItems,

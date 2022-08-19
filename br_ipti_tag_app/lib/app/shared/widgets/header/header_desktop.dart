@@ -42,7 +42,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                         label: "",
                         value: state.currentSchool,
                         onChanged: (school) => sessionController.changeSchool(
-                          school,
+                          school!,
                         ),
                         items: Map.fromEntries(schools.map(
                           (e) => MapEntry(e, e.name!),

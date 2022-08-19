@@ -50,11 +50,11 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
   void setName(String value) => emit(state.copyWith(name: value));
   void setCPF(String value) => emit(state.copyWith(name: value));
   void setBirthday(String value) => emit(state.copyWith(birthday: value));
-  void setSex(int value) => emit(state.copyWith(sex: value));
-  void setColorRace(int value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(int value) => emit(state.copyWith(filiation: value));
-  void setNationality(int value) => emit(state.copyWith(nationality: value));
-  void setResidenceZone(int value) => emit(state.copyWith(
+  void setSex(int? value) => emit(state.copyWith(sex: value));
+  void setColorRace(int? value) => emit(state.copyWith(colorRace: value));
+  void setFiliation(int? value) => emit(state.copyWith(filiation: value));
+  void setNationality(int? value) => emit(state.copyWith(nationality: value));
+  void setResidenceZone(int? value) => emit(state.copyWith(
         residenceZone: value,
       ));
   void setDeficiency({required bool? value}) => emit(state.copyWith(
@@ -65,7 +65,7 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
       ));
 
   // Turma
-  void setStudentClass(int value) => emit(state.copyWith(studentClass: value));
+  void setStudentClass(int? value) => emit(state.copyWith(studentClass: value));
 
   Future<void> submitPersonalForm() async {
     final student = Student(

@@ -73,7 +73,7 @@ class InstructorFormBloc
   String get classroomId => _classroomId!;
 
   int _role = 1;
-  void changeRole(int role) => _role = role + 1;
+  void changeRole(int? role) => _role = role! + 1;
   int get currentRole => _role - 1;
 
   int _contractType = 1;

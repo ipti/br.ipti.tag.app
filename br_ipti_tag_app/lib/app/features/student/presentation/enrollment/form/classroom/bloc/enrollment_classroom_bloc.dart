@@ -31,32 +31,32 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
-  void setStudentClass(String classroomid) => emit(state.copyWith(
+  void setStudentClass(String? classroomid) => emit(state.copyWith(
         classroomId: classroomid,
       ));
 
-  void setCurrentStageSituation(CurrentStageSituation currentStageSituation) =>
+  void setCurrentStageSituation(CurrentStageSituation? currentStageSituation) =>
       emit(
         state.copyWith(currentStageSituation: currentStageSituation),
       );
 
-  void setPreviousStageSituation(PreviousStageSituation previousStage) => emit(
+  void setPreviousStageSituation(PreviousStageSituation? previousStage) => emit(
         state.copyWith(previousStageSituation: previousStage),
       );
 
-  void setStage(Stage stage) => emit(
+  void setStage(Stage? stage) => emit(
         state.copyWith(stage: stage),
       );
 
-  void setAdmissionType(AdmissionType admissionType) => emit(
+  void setAdmissionType(AdmissionType? admissionType) => emit(
         state.copyWith(studentEntryForm: admissionType),
       );
 
-  void setSchoolAdmissionDate(String schoolAdmissionDate) => emit(
+  void setSchoolAdmissionDate(String? schoolAdmissionDate) => emit(
         state.copyWith(schoolAdmissionDate: schoolAdmissionDate),
       );
 
-  void setUnifiedClass(UnifiedClass unifiedClass) => emit(
+  void setUnifiedClass(UnifiedClass? unifiedClass) => emit(
         state.copyWith(unifiedClass: unifiedClass),
       );
 

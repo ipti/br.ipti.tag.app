@@ -41,20 +41,20 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           validator: requiredValidator,
           onChanged: controller.setCurrentSchoolInepId,
         );
-    Widget inputAdminDep() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputAdminDep() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Dependência administrativa",
           validator: requiredValidator,
           items: {},
         );
-    Widget inputStatus() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputStatus() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Situação",
           validator: requiredValidator,
           items: {},
         );
-    Widget inputRegionalAdmin() => TagDropdownField(
-          onChanged: () => {},
+    Widget inputRegionalAdmin() => TagDropdownField<dynamic>(
+          onChanged: (value) => {},
           label: "Órgão regional de administração",
           hint: "Selecione o órgão regional de administração",
           validator: requiredValidator,

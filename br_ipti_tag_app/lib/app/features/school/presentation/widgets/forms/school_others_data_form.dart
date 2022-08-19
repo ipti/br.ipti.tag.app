@@ -21,12 +21,12 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget inputSchoolName(String schoolName) => TagDropdownField(
+    Widget inputSchoolName(String schoolName) => TagDropdownField<dynamic>(
           label: "Organização da Sociedade Civil (OSCIP)",
           hint: "Selecione o Organização da Sociedade Civil (OSCIP)",
           validator: requiredValidator,
           items: {},
-          onChanged: () => {},
+          onChanged: (value) => {},
         );
     Widget inputInepCode(String inepCode) => TagTextField(
           label: "Código do INEP",

@@ -264,14 +264,14 @@ class ClassroomUpdateDeleteBloc
         ),
       );
   void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
-  void setMediacao(int mediacao) => add(
+  void setMediacao(int? mediacao) => add(
         TypePedagogicalMediationChanged(
-          mediacao,
+          mediacao!,
         ),
       );
-  void setModality(int modalityId) => add(ModalityChanged(modalityId));
+  void setModality(int? modalityId) => add(ModalityChanged(modalityId!));
   void setName(String name) => add(NameChanged(name));
-  void setStage(int stageId) => add(StageChanged(stageId));
+  void setStage(int? stageId) => add(StageChanged(stageId!));
 
   void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
 

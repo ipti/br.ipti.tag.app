@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/email_validator.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -207,7 +206,7 @@ class _SexField extends StatelessWidget {
       items: controller.sexItems,
       onChanged: controller.setSex,
       value: sex,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -231,7 +230,7 @@ class _ColorRaceField extends StatelessWidget {
       items: controller.colorRaceItems,
       onChanged: controller.setColorRace,
       value: colorRace,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -255,7 +254,7 @@ class _FiliationField extends StatelessWidget {
       items: controller.filiationItems,
       onChanged: controller.setFiliation,
       value: filiation,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }
@@ -278,7 +277,7 @@ class _NationalityField extends StatelessWidget {
       items: controller.nationalityItems,
       onChanged: controller.setNationality,
       value: nationality,
-      validator: requiredValidator,
+      validator: requiredDropdownValidator<int?>(),
     );
   }
 }

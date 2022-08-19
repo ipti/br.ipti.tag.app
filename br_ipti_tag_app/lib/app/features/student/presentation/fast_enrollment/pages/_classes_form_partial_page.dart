@@ -24,7 +24,7 @@ class ClassesFormPageState extends State<ClassesFormPage> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    Widget selectClass(int? classId) => TagDropdownField(
+    Widget selectClass(int? classId) => TagDropdownField<int>(
           label: 'Turma',
           items: controller.classesItems,
           value: classId,

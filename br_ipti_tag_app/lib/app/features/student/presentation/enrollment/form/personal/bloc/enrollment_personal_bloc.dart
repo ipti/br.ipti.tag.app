@@ -93,10 +93,10 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
         name: value,
       ));
   void setBirthday(String value) => emit(state.copyWith(birthday: value));
-  void setSex(int value) => emit(state.copyWith(sex: value));
-  void setColorRace(int value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(int value) => emit(state.copyWith(filiation: value));
-  void setNationality(int value) => emit(state.copyWith(nationality: value));
+  void setSex(int? value) => emit(state.copyWith(sex: value));
+  void setColorRace(int? value) => emit(state.copyWith(colorRace: value));
+  void setFiliation(int? value) => emit(state.copyWith(filiation: value));
+  void setNationality(int? value) => emit(state.copyWith(nationality: value));
 
   // Cegueira
   // Baixa visão
