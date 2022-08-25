@@ -17,7 +17,9 @@ class StockModule extends Module {
     Bind.lazySingleton((i) => IngredientRemoteDataSourceImpl(i.get())),
     Bind.lazySingleton(
       (i) => IngredientRepositoryImpl(
-          dumbDataSource: i.get(), remoteDataSource: i.get()),
+        dumbDataSource: i.get(),
+        remoteDataSource: i.get(),
+      ),
     ),
     Bind.lazySingleton((i) => ListIngredientUsecase(i.get())),
     Bind.lazySingleton((i) => StockBloc(i.get())),

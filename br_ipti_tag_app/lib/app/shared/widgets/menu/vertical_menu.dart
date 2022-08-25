@@ -60,18 +60,18 @@ class TagVerticalMenu extends StatelessWidget {
           Modular.to.pushReplacementNamed(routeName);
         },
       ),
-      TagMenuItem(
-        title: "Transporte",
-        route: '/transporte/',
-        isActive: currentRoute.contains('/transporte/'),
-        icon: TagIcon(
-          defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
-          disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
-        ),
-        onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
-        },
-      ),
+      // TagMenuItem(
+      //   title: "Transporte",
+      //   route: '/transporte/',
+      //   isActive: currentRoute.contains('/transporte/'),
+      //   icon: TagIcon(
+      //     defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
+      //     disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
+      //   ),
+      //   onTap: (String routeName) {
+      //     Modular.to.pushReplacementNamed(routeName);
+      //   },
+      // ),
       TagMenuItem(
         title: "Merenda",
         route: '/merenda/',
