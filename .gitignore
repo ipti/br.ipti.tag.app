@@ -40,3 +40,5 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+br_ipti_tag_app/ios/firebase_app_id_file.json

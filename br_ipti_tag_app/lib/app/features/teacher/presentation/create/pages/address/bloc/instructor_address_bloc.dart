@@ -1,14 +1,12 @@
-import 'package:br_ipti_tag_app/app/core/usecases/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../bloc/instructor_states.dart';
 import 'instructor_address_states.dart';
 
 class InstructorAddressBloc extends Cubit<InstructorAddressState> {
@@ -36,7 +34,7 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
   void setZone(int residenceZone) =>
       emit(state.copyWith(residenceZone: residenceZone));
 
-  void setUf(String uf) {
+  Future<void> setUf(String uf) async {
     fetchCities(uf);
     emit(state.copyWith(edcensoUfFk: uf));
   }
@@ -46,9 +44,13 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
     result.fold(id, (cities) {
       final mappedValues = {for (var city in cities) city.id: city.name};
 
+      final defaultKey = mappedValues.containsKey(state.edcensoCityFk)
+          ? state.edcensoCityFk
+          : mappedValues.entries.first.key;
+
       final loadCitiesState = state.copyWith(
         cities: mappedValues,
-        edcensoCityFk: mappedValues.entries.first.key,
+        edcensoCityFk: defaultKey,
       );
 
       emit(loadCitiesState);
@@ -74,7 +76,7 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
     }
   }
 
-  Future loadInstructorAddress(Instructor studentDocuments) async {
+  Future loadInstructorAddress(InstructorFormState studentDocuments) async {
     final loadState = state.copyWith(
       cep: studentDocuments.cep,
       address: studentDocuments.address,
@@ -90,21 +92,14 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
     emit(loadState);
   }
 
-  Future submitAddressForm(EditMode mode) async {
-    switch (mode) {
-      case EditMode.Create:
-        _create();
-        break;
-      case EditMode.Edit:
-        await _edit();
-        break;
-      default:
-    }
-  }
-
-  Future _create() async {
+  Future submitAddressForm() async {
     _createInstructorBloc.loadAddressData(address: state);
+    _createInstructorBloc.goToTab(2);
   }
 
-  Future _edit() async {}
+  void autoUpdate() {
+    stream.listen((event) {
+      _createInstructorBloc.loadAddressData(address: event);
+    });
+  }
 }

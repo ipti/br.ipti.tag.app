@@ -35,50 +35,48 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
         fontWeight: FontWeight.w600,
         fontSize: 14);
 
-    return TagDefaultPage(
+    return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "Cardápio semanal da sua escola",
       path: ["Merenda Escolar", widget.title],
-      body: <Widget>[
-        BlocBuilder<ListMealsBloc, ListMealsState>(
-          bloc: controller,
-          builder: (context, state) {
-            if (state is LoadedState) {
-              return DefaultTabController(
-                length: state.mealsOfDay.length,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TabBar(
-                      isScrollable: true,
-                      labelColor: TagColors.colorBaseProductDark,
-                      indicatorColor: TagColors.colorBaseProductDark,
-                      labelStyle: labelStyle,
-                      onTap: (index) => pageController.animateToPage(index,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.easeIn),
-                      labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                      tabs: state.mealsOfDay
-                          .map((e) => Tab(child: Text(e.fullnameDay!)))
+      body: BlocBuilder<ListMealsBloc, ListMealsState>(
+        bloc: controller,
+        builder: (context, state) {
+          if (state is LoadedState) {
+            return DefaultTabController(
+              length: state.mealsOfDay.length,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TabBar(
+                    isScrollable: true,
+                    labelColor: TagColors.colorBaseProductDark,
+                    indicatorColor: TagColors.colorBaseProductDark,
+                    labelStyle: labelStyle,
+                    onTap: (index) => pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeIn),
+                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                    tabs: state.mealsOfDay
+                        .map((e) => Tab(child: Text(e.fullnameDay!)))
+                        .toList(),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: TabBarView(
+                      children: state.mealsOfDay
+                          .map((e) => _DailyMeals(mealsOfDay: e))
                           .toList(),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      child: TabBarView(
-                        children: state.mealsOfDay
-                            .map((e) => _DailyMeals(mealsOfDay: e))
-                            .toList(),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
-            return const CircularProgressIndicator();
-          },
-        ),
-      ],
+                  ),
+                ],
+              ),
+            );
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
     );
   }
 }

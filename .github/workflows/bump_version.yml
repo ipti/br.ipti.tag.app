@@ -1,0 +1,26 @@
+name: Bump Version
+
+on:
+  push:
+    branches:
+      - develop
+    
+jobs:
+  release-please:
+    runs-on: ubuntu-latest    
+    
+    steps:      
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.GH_TOKEN_ACTION }}
+          output-file: br_ipti_tag_app/CHANGELOG.md
+          version-file: br_ipti_tag_app/pubspec.yaml
+
+          
+
+      

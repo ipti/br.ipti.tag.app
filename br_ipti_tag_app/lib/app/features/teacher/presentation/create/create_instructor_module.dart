@@ -1,12 +1,15 @@
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/repositories/instructor_repository.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/get_teachers_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/update_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/create_instructor_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/create_instructor_page.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/update_instructor_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'pages/address/bloc/instructor_address_bloc.dart';
@@ -25,10 +28,22 @@ class CreateInstructorModule extends Module {
         i.get<InstructorRepository>(),
       ),
     ),
+    Bind.factory(
+      (i) => UpdateInstructorsUsecase(
+        i.get<InstructorRepository>(),
+      ),
+    ),
+    Bind.factory(
+      (i) => GetInstructorsUsecase(
+        i.get<InstructorRepository>(),
+      ),
+    ),
     // Blocs
     Bind.singleton(
       (i) => CreateInstructorBloc(
         i.get<CreateInstructorsUsecase>(),
+        i.get<UpdateInstructorsUsecase>(),
+        i.get<GetInstructorsUsecase>(),
       ),
     ),
     Bind.singleton(
@@ -54,14 +69,12 @@ class CreateInstructorModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
+    ChildRoute("/", child: (_, args) => const InstructorFormPage()),
     ChildRoute(
-      "/",
-      child: (_, args) => const InstructorFormPage(),
-    ),
-    ChildRoute(
-      "/edit",
-      child: (_, args) => const InstructorFormPage(
-        editMode: EditMode.Edit,
+      "/editar",
+      child: (_, args) => UpdateInstructorPage(
+        title: (args.data as Instructor?)?.name,
+        instructor: args.data as Instructor?,
       ),
     ),
   ];
