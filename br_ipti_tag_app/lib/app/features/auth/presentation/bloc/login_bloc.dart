@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
@@ -45,7 +47,7 @@ class LoginBloc extends Cubit<LoginState> {
   Future verifyAuthToken() async {
     final result = await verifyAuthUsecase(NoParams());
     result.fold(
-      (error) => emit(const LoginErrorState("Sessão expirada")),
+      (error) => log("Não há token válido"),
       (token) => Modular.to.pushReplacementNamed("/turmas/"),
     );
   }

@@ -3,6 +3,7 @@ import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -152,45 +153,55 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: BlocBuilder<LoginBloc, LoginState>(
-        bloc: controller,
-        builder: (context, state) {
-          return ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 332),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 40),
-                  child: Text(
-                    "Entre com as suas credenciais",
-                    style: TextStyle(
-                      color: TagColors.colorBaseInkLight,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      height: 1.75,
+    final focus = FocusNode();
+    return RawKeyboardListener(
+      autofocus: true,
+      focusNode: focus,
+      onKey: (event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+          _submit(_formKey.currentState!);
+        }
+      },
+      child: Form(
+        key: _formKey,
+        child: BlocBuilder<LoginBloc, LoginState>(
+          bloc: controller,
+          builder: (context, state) {
+            return ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 332),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 40),
+                    child: Text(
+                      "Entre com as suas credenciais",
+                      style: TextStyle(
+                        color: TagColors.colorBaseInkLight,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        height: 1.75,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                ),
-                withPadding(inputUsername(controller.username)),
-                withPadding(inputPassword(controller.password)),
-                withPadding(dropdownYear(controller.schoolYear)),
-                Flexible(
-                  child: withPadding(
-                    TagButton(
-                      text: "Entrar",
-                      onPressed: () => _submit(_formKey.currentState!),
+                  withPadding(inputUsername(controller.username)),
+                  withPadding(inputPassword(controller.password)),
+                  withPadding(dropdownYear(controller.schoolYear)),
+                  Flexible(
+                    child: withPadding(
+                      TagButton(
+                        text: "Entrar",
+                        onPressed: () => _submit(_formKey.currentState!),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
