@@ -56,13 +56,15 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
                 ),
               );
             case Status.failure:
-              return SizedBox(
-                height: 200,
-                child: Center(
-                  child: Text(state.error!),
-                ),
+              return TagEmpty(
+                onPressedRetry: () => controller.fetchListStudents(),
               );
             case Status.success:
+              if (state.students.isEmpty) {
+                return TagEmpty(
+                  onPressedRetry: () => controller.fetchListStudents(),
+                );
+              }
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TagDataTable(

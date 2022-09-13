@@ -48,6 +48,13 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
           if (state.loading) {
             return const Center(child: CircularProgressIndicator());
           }
+
+          if (state.teachers.isEmpty) {
+            return TagEmpty(
+              onPressedRetry: () => controller.fetchListTeachersEvent(),
+            );
+          }
+
           return TagDataTable(
             onTapRow: (row) => Modular.to.pushNamed(
               "registro/editar",

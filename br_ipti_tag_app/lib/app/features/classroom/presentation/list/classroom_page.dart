@@ -47,6 +47,11 @@ class ClassroomPageState
                 if (state.loading) {
                   return const Center(child: CircularProgressIndicator());
                 }
+                if (state.classrooms.isEmpty) {
+                  return TagEmpty(
+                    onPressedRetry: () => controller.fetchListClassroomsEvent(),
+                  );
+                }
                 return TagDataTable(
                   onTapRow: (index) => Modular.to.pushNamed(
                     "updatePage",
