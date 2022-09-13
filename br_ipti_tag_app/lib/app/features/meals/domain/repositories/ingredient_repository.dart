@@ -3,4 +3,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class IngredientRepository {
   Future<Either<Exception, List<Ingredient>>> list();
+  Future<Either<Exception, Ingredient>> create(Ingredient ingredient);
 }

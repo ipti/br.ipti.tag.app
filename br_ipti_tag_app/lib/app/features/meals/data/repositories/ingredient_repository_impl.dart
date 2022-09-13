@@ -17,11 +17,27 @@ class IngredientRepositoryImpl implements IngredientRepository {
   Future<Either<Exception, List<Ingredient>>> list() async {
     try {
       final result = await remoteDataSource.list();
-      return Right(result);
+      final mapped = [
+        for (var item in result)
+          Ingredient(
+            name: item.food?.description ?? "",
+            amount: item.amount,
+            available: item.amount > 0,
+            substitutionSuggestion: [],
+          )
+      ];
+      return Right(mapped);
     } catch (e) {
       return Left(
         Exception("Não foi possível ler dados do JSON"),
       );
     }
+  }
+
+  @override
+  Future<Either<Exception, Ingredient>> create(Ingredient ingredient) async {
+    // final inventory = InvetoryIngredientModel(foodId: inve, schoolId: schoolId, amount: amount, expirationDate: expirationDate)
+    // final result = await remoteDataSource.create(inventory);
+    return right(ingredient);
   }
 }

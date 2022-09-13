@@ -357,7 +357,7 @@ class _EmailField extends StatelessWidget {
       value: email,
       inputType: TextInputType.emailAddress,
       validator: MultiValidator([
-        requiredValidator,
+        // requiredValidator,
         emailValidator,
       ]),
     );
