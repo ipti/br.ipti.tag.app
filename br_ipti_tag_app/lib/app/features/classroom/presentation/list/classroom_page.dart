@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/shared/util/enums/status.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -44,7 +45,7 @@ class ClassroomPageState
             child: BlocBuilder<ClassroomListBloc, ClassroomListState>(
               bloc: controller,
               builder: (context, state) {
-                if (state.loading) {
+                if (state.status == Status.loading) {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (state.classrooms.isEmpty) {

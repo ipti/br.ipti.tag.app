@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_state.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/status.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -20,8 +21,18 @@ class TeacherPage extends StatefulWidget {
 class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
   @override
   void initState() {
-    controller.fetchListTeachersEvent();
     super.initState();
+    controller.fetchListTeachersEvent();
+    controller.stream.listen((state) {
+      if (state is FailedState) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: TagColors.colorRedDark,
+            content: Text(state.message),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -32,20 +43,10 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
       description: "",
       path: ["Início", widget.title],
       actionsHeader: _SliverHeaderActionDelegate(),
-      body: BlocConsumer<TeacherListBloc, TeacherListState>(
-        listener: (context, state) {
-          if (state is FailedState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: TagColors.colorRedDark,
-                content: Text(state.message),
-              ),
-            );
-          }
-        },
+      body: BlocBuilder<TeacherListBloc, TeacherListState>(
         bloc: controller,
         builder: (context, state) {
-          if (state.loading) {
+          if (state.status == Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
 
