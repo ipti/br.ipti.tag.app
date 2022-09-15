@@ -10,41 +10,48 @@ import 'package:mocktail/mocktail.dart';
 class MockClassroomRepository extends Mock implements ClassroomRepository {}
 
 void main() {
-  testWidgets("ListStudentUsecase when returns a right empty value",
-      (tester) async {
-    final repository = MockClassroomRepository();
-    final params = classroom_domain.ClassroomParams();
-    when(() => repository.listAll(any())).thenAnswer(
-      (realInvocation) => Future.value(right([])),
-    );
+  group("ListStudentUsecase when returns a", () {
+    setUpAll(() {
+      var params;
+      TestWidgetsFlutterBinding.ensureInitialized();
+      registerFallbackValue(params = classroom_domain.ClassroomParams());
+    });
+    testWidgets("right empty value",
+        (tester) async {
+      final repository = MockClassroomRepository();
+      final params = classroom_domain.ClassroomParams();
+      when(() => repository.listAll(any())).thenAnswer(
+        (realInvocation) => Future.value(right([])),
+      );
 
-    final usecase = ListClassroomsUsecase(repository);
+      final usecase = ListClassroomsUsecase(repository);
 
-    final either = await usecase(params);
+      final either = await usecase(params);
 
-    expect(either.isRight(), isTrue);
+      expect(either.isRight(), isTrue);
 
-    final result = either.fold(id, id);
-    expect(result, isEmpty);
-  });
+      final result = either.fold(id, id);
+      expect(result, isEmpty);
+    });
 
-  testWidgets("ListStudentUsecase when returns a left ConnexionExpection",
-      (tester) async {
-    final repository = MockClassroomRepository();
-    when(() => repository.listAll(any())).thenAnswer(
-      (realInvocation) =>
-          Future.value(left(const SocketException("Conexão invalida"))),
-    );
+    testWidgets("left ConnexionExpection",
+        (tester) async {
+      final repository = MockClassroomRepository();
+      when(() => repository.listAll(any())).thenAnswer(
+        (realInvocation) =>
+            Future.value(left(const SocketException("Conexão invalida"))),
+      );
 
-    final usecase = ListClassroomsUsecase(repository);
-    final params = classroom_domain.ClassroomParams();
+      final usecase = ListClassroomsUsecase(repository);
+      final params = classroom_domain.ClassroomParams();
 
-    final either = await usecase(params);
+      final either = await usecase(params);
 
-    expect(either.isLeft(), isTrue);
+      expect(either.isLeft(), isTrue);
 
-    final result = either.fold(id, id);
+      final result = either.fold(id, id);
 
-    expect(result, isA<SocketException>());
+      expect(result, isA<SocketException>());
+    });
   });
 }
