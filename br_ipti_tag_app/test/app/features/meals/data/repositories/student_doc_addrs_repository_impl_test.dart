@@ -11,14 +11,14 @@ class MockStudentDocumentsAndAddressRemoteDataSource extends Mock
     implements StudentDocumentsAndAddressRemoteDataSource {}
 
 void main() {
-  group("When TagButton ", () {
+  group("When  ", () {
     final studentDocsAddressModel = StudentDocumentsAddressModel(
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: "studentFk",
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
         edcensoCityFk: "edcensoCityFk");
-    testWidgets("when getByStudentId has right value", (tester) async {
+    testWidgets("getByStudentId has right value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.getByStudentId(''))
           .thenAnswer((invocation) => Future.value(studentDocsAddressModel));
@@ -30,7 +30,7 @@ void main() {
       final result = params.fold(id, id);
       expect(result, isA<StudentDocsAddress>());
     });
-    testWidgets("when getByStudentId has left value", (tester) async {
+    testWidgets("getByStudentId has left value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.getByStudentId(''))
           .thenThrow((invocation) => Exception("Não foi possível listar"));
@@ -42,7 +42,7 @@ void main() {
       final result = params.fold(id, id);
       expect(result, isA<Exception>());
     });
-    testWidgets("when create has right value", (tester) async {
+    testWidgets("create has right value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.create(studentDocsAddressModel))
           .thenAnswer((invocation) => Future.value(studentDocsAddressModel));
@@ -53,7 +53,7 @@ void main() {
       final result = params.fold(id, id);
       expect(result, isA<StudentDocsAddress>());
     });
-    testWidgets("when create has left value", (tester) async {
+    testWidgets("create has left value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.create(studentDocsAddressModel)).thenThrow(
           (invocation) => Exception("Não foi possível adicionar estudante"));
@@ -65,7 +65,7 @@ void main() {
       final result = params.fold(id, id);
       expect(result, isA<Exception>());
     });
-    testWidgets("when update has right value", (tester) async {
+    testWidgets("update has right value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.update("", studentDocsAddressModel))
           .thenAnswer((invocation) => Future.value(studentDocsAddressModel));
@@ -76,7 +76,7 @@ void main() {
       final result = params.fold(id, id);
       expect(result, isA<StudentDocsAddress>());
     });
-    testWidgets("when alterar has left value", (tester) async {
+    testWidgets("alterar has left value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(() => datasource.update("", studentDocsAddressModel)).thenThrow(
           (invocation) => Exception("Não foi possível alterar estudante"));

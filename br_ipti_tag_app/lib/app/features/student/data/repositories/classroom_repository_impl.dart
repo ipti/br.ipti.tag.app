@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 class ClassroomRepositoryImpl implements ClassroomRepository {
   ClassroomRepositoryImpl(this._classroomDataSource);
 
-  final    _classroomDataSource;
+  final ClassroomRemoteDataSource _classroomDataSource;
 
   @override
   Future<Either<Exception, List<Classroom>>> listAll(
