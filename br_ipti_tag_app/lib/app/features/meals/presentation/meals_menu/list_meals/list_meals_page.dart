@@ -19,7 +19,8 @@ class ListMealsPage extends StatefulWidget {
   ListMealsPageState createState() => ListMealsPageState();
 }
 
-class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
+class ListMealsPageState extends State<ListMealsPage> {
+  final controller = Modular.get<ListMealsBloc>();
   @override
   void initState() {
     controller.add(GetListMealsEvent());

@@ -23,7 +23,7 @@ class TagButtonIcon extends StatelessWidget {
         style: buttonStyle ??
             ElevatedButton.styleFrom(
               elevation: 0,
-              primary: TagColors.colorBaseCloudNormal,
+              backgroundColor: TagColors.colorBaseCloudNormal,
               padding: TagSpancing.paddingButtonNormal,
               minimumSize: const Size(40, TagSizes.heightButtonNormal),
               shape: const RoundedRectangleBorder(

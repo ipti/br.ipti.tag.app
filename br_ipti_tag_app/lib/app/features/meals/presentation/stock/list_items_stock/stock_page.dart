@@ -18,7 +18,8 @@ class StockPage extends StatefulWidget {
   StockPageState createState() => StockPageState();
 }
 
-class StockPageState extends ModularState<StockPage, StockBloc> {
+class StockPageState extends State<StockPage> {
+  final controller = Modular.get<StockBloc>();
   @override
   void initState() {
     controller.add(GetListStockEvent());

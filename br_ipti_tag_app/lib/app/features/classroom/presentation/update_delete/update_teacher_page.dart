@@ -64,7 +64,7 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
           TagButtonIcon(
             buttonStyle: ElevatedButton.styleFrom(
               elevation: 0,
-              primary: TagColors.colorBaseProductNormal,
+              backgroundColor: TagColors.colorBaseProductNormal,
               padding: TagSpancing.paddingButtonNormal,
               minimumSize: const Size(40, TagSizes.heightButtonNormal),
               shape: const RoundedRectangleBorder(

@@ -33,8 +33,9 @@ class EnrollmentPage extends StatefulWidget {
   EnrollmentPageState createState() => EnrollmentPageState();
 }
 
-class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
+class EnrollmentPageState extends State<EnrollmentPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<EnrollmentBloc>();
   static const List<Tab> _tabs = [
     Tab(
       child: Text("Dados do aluno"),

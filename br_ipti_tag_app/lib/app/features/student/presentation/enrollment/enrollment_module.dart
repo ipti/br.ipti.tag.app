@@ -29,6 +29,7 @@ import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_stud
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
@@ -128,19 +129,19 @@ class EnrollmentModule extends Module {
     ),
 
     // Blocs
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => EnrollmentBloc(
         i.get<LoadStudentDocsUsecase>(),
         i.get<LoadStudentEnrollmentUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => EnrollmentPersonalBloc(
         i.get<CreateStudentsUsecase>(),
         i.get<UpdateStudentUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => EnrollmentAddressBloc(
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
@@ -148,12 +149,12 @@ class EnrollmentModule extends Module {
         i.get<AddDocumentsAndAddressToStudentUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => EnrollmentFiliationBloc(
         i.get<UpdateStudentUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => EnrollmentClassroomBloc(
         i.get<ListClassroomsUsecase>(),
         i.get<CreateStudentEnrollmentUsecase>(),

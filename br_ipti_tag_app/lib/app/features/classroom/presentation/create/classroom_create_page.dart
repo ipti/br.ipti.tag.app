@@ -26,8 +26,9 @@ class ClassroomCreatePage extends StatefulWidget {
   ClassroomCreatePageState createState() => ClassroomCreatePageState();
 }
 
-class ClassroomCreatePageState
-    extends ModularState<ClassroomCreatePage, ClassroomCreateBloc> {
+class ClassroomCreatePageState extends State<ClassroomCreatePage> {
+  final controller = Modular.get<ClassroomCreateBloc>();
+
   @override
   void initState() {
     controller.add(StartEditing());

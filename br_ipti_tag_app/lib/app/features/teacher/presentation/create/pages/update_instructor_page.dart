@@ -32,8 +32,7 @@ class UpdateInstructorPage extends StatefulWidget {
   UpdateInstructorPageState createState() => UpdateInstructorPageState();
 }
 
-class UpdateInstructorPageState
-    extends ModularState<UpdateInstructorPage, CreateInstructorBloc>
+class UpdateInstructorPageState extends State<UpdateInstructorPage>
     with SingleTickerProviderStateMixin {
   UpdateInstructorPageState() : super();
 
@@ -50,6 +49,7 @@ class UpdateInstructorPageState
   ];
 
   late TabController _tabController;
+  final controller = Modular.get<CreateInstructorBloc>();
 
   @override
   void initState() {

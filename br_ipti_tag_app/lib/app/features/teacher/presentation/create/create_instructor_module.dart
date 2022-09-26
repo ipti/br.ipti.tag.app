@@ -11,6 +11,7 @@ import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/c
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/update_instructor_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'pages/address/bloc/instructor_address_bloc.dart';
 import 'pages/personal/bloc/instructor_personal_bloc.dart';
@@ -39,23 +40,23 @@ class CreateInstructorModule extends Module {
       ),
     ),
     // Blocs
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => CreateInstructorBloc(
         i.get<CreateInstructorsUsecase>(),
         i.get<UpdateInstructorsUsecase>(),
         i.get<GetInstructorsUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => InstructorPersonalBloc(),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => InstructorAddressBloc(
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => InstructorEducationBloc(),
     ),
   ];

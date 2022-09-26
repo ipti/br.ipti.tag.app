@@ -40,8 +40,8 @@ class SchoolCubit extends Cubit<SchoolState> {
   }
 
   Future save() async {
-    final data = SchoolEntity(name: "Escola Teste em");
-    // final params = EditSchoolParams(uuid: "6244c323f0a8e92a8c6fad02", data: );
+    // final data = SchoolEntity(name: "Escola Teste em");
+    // final params = EditSchoolParams(uuid: "6244c323f0a8e92a8c6fad02", data:);
     //  final option = await editSchoolUsecase();
   }
 

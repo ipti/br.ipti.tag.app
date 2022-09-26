@@ -19,8 +19,9 @@ class SchoolEditPage extends StatefulWidget {
   SchoolEditPageState createState() => SchoolEditPageState();
 }
 
-class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
+class SchoolEditPageState extends State<SchoolEditPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<SchoolCubit>();
   late TabController _tabController;
   static const List<Tab> _tabs = [
     Tab(child: Text("Identificação")),

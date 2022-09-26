@@ -19,8 +19,9 @@ class StudentPage extends StatefulWidget {
   StudentPageState createState() => StudentPageState();
 }
 
-class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
+class StudentPageState extends State<StudentPage> {
   final session = Modular.get<SessionBloc>();
+  final controller = Modular.get<StudentListBloc>();
 
   @override
   void initState() {

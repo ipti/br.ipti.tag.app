@@ -25,7 +25,7 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
           label: "Organização da Sociedade Civil (OSCIP)",
           hint: "Selecione o Organização da Sociedade Civil (OSCIP)",
           validator: requiredValidator,
-          items: {},
+          items: const {},
           onChanged: (value) => {},
         );
     Widget inputInepCode(String inepCode) => TagTextField(

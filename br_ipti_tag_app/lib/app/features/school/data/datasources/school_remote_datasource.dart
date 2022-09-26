@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/api/school/dto/school_update.dto.dart';
 import 'package:br_ipti_tag_app/app/api/school/get_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/school/put_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/data/data_source.dart';

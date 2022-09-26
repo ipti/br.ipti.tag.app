@@ -45,20 +45,20 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           onChanged: (value) => {},
           label: "Dependência administrativa",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputStatus() => TagDropdownField<dynamic>(
           onChanged: (value) => {},
           label: "Situação",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputRegionalAdmin() => TagDropdownField<dynamic>(
           onChanged: (value) => {},
           label: "Órgão regional de administração",
           hint: "Selecione o órgão regional de administração",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputStartDate(String startDate) => TagTextField(
           label: "Data de início da escola",

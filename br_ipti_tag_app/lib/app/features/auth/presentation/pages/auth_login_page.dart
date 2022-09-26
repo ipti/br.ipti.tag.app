@@ -19,12 +19,13 @@ class AuthLoginPage extends StatefulWidget {
   AuthLoginPageState createState() => AuthLoginPageState();
 }
 
-class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
+class AuthLoginPageState extends State<AuthLoginPage> {
+  final controller = Modular.get<LoginBloc>();
+
   @override
   void initState() {
     controller.verifyAuthToken();
     controller.fetchVersion();
-
     super.initState();
   }
 

@@ -19,8 +19,8 @@ class ClassroomPage extends StatefulWidget {
   ClassroomPageState createState() => ClassroomPageState();
 }
 
-class ClassroomPageState
-    extends ModularState<ClassroomPage, ClassroomListBloc> {
+class ClassroomPageState extends State<ClassroomPage> {
+  final controller = Modular.get<ClassroomListBloc>();
   @override
   void initState() {
     controller.fetchListClassroomsEvent();

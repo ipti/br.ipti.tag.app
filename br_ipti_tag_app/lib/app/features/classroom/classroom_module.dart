@@ -18,6 +18,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_student_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/update_teacher_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'presentation/create/classroom_create_page.dart';
 import 'presentation/list/bloc/classroom_list_bloc.dart';
 import 'presentation/list/classroom_page.dart';
@@ -40,14 +41,14 @@ class ClassroomModule extends Module {
 
     // List
     Bind.singleton((i) => ListClassroomsUsecase(i.get())),
-    Bind.singleton((i) => ClassroomListBloc(i.get())),
+    BlocBind.singleton((i) => ClassroomListBloc(i.get())),
     Bind.singleton((i) => ListInstructorsUseCase(i.get())),
     Bind.singleton((i) => ListInstructorsTeachingDataUseCase(i.get())),
     Bind.singleton((i) => ListEdcensoDisciplinesUseCase(i.get())),
 
     // Create
     Bind.singleton((i) => CreateClassroomUsecase(i.get())),
-    Bind.singleton((i) => ClassroomCreateBloc(i.get())),
+    BlocBind.singleton((i) => ClassroomCreateBloc(i.get())),
     Bind.singleton((i) => CreateInstructorTeachingDataUseCase(i.get())),
 
     //UpdateDelete
@@ -55,10 +56,11 @@ class ClassroomModule extends Module {
     Bind.singleton((i) => DeleteClassroomUsecase(i.get())),
     Bind.singleton((i) => CreateInstructorTeachingDataUseCase(i.get())),
     Bind.singleton((i) => UpdateInstructorTeachingDataUseCase(i.get())),
-    Bind.factory((i) => InstructorFormBloc(i.get(), i.get(), i.get(), i.get())),
-    Bind.singleton((i) => ClassroomUpdateDeleteBloc(i.get(), i.get())),
+    BlocBind.factory(
+        (i) => InstructorFormBloc(i.get(), i.get(), i.get(), i.get())),
+    BlocBind.singleton((i) => ClassroomUpdateDeleteBloc(i.get(), i.get())),
     Bind.singleton((i) => TabControllerCubit()),
-    Bind.singleton((i) => UpdateTeacherBloc(i.get(), i.get(), i.get())),
+    BlocBind.singleton((i) => UpdateTeacherBloc(i.get(), i.get(), i.get())),
   ];
 
   @override

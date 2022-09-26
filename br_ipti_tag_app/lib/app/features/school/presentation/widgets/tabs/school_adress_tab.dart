@@ -11,7 +11,7 @@ class SchoolAddressTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScrollController _controllerAddress = ScrollController();
     return Scrollbar(
-      isAlwaysShown: true,
+      thumbVisibility: true,
       controller: _controllerAddress,
       child: SingleChildScrollView(
         controller: _controllerAddress,

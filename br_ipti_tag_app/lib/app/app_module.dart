@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'core/network/service/router.dart';
 import 'core/plataform/pkg_info_service.dart';
@@ -19,7 +20,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton<SessionService>((i) => SessionServiceImpl()),
-    Bind.singleton<SessionBloc>((i) => SessionBloc(i.get())),
+    BlocBind.singleton<SessionBloc>((i) => SessionBloc(i.get())),
     Bind.singleton((i) => PackageInfoServiceImpl()),
     Bind.factory((i) => ClientHTTPConfiguration.apply(Dio())),
     Bind.factory((i) => RouterAPI(i.get<Dio>()))

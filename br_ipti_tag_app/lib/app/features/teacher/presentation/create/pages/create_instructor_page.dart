@@ -28,8 +28,7 @@ class InstructorFormPage extends StatefulWidget {
   InstructorFormPageState createState() => InstructorFormPageState();
 }
 
-class InstructorFormPageState
-    extends ModularState<InstructorFormPage, CreateInstructorBloc>
+class InstructorFormPageState extends State<InstructorFormPage>
     with SingleTickerProviderStateMixin {
   static const List<Tab> _tabs = [
     Tab(
@@ -44,6 +43,7 @@ class InstructorFormPageState
   ];
 
   late TabController _tabController;
+  final controller = Modular.get<CreateInstructorBloc>();
 
   @override
   void initState() {

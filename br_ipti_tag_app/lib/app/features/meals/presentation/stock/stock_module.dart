@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_ingredie
 
 import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/details_item_stock/details_item_stock_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'list_items_stock/bloc/stock_bloc.dart';
 import 'list_items_stock/stock_page.dart';
@@ -20,7 +21,7 @@ class StockModule extends Module {
           dumbDataSource: i.get(), remoteDataSource: i.get()),
     ),
     Bind.lazySingleton((i) => ListIngredientUsecase(i.get())),
-    Bind.lazySingleton((i) => StockBloc(i.get())),
+    BlocBind.lazySingleton((i) => StockBloc(i.get())),
   ];
 
   @override
