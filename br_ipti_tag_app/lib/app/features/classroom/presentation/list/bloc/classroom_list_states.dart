@@ -14,7 +14,7 @@ class ClassroomListState extends Equatable {
   final String message;
 
   @override
-  List<Object> get props => [classrooms, message, status];
+  List<Object> get props => [classrooms, message, status.index];
 
   ClassroomListState copyWith({
     Status? status,

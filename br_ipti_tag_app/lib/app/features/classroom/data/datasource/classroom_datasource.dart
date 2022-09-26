@@ -41,7 +41,8 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> createInstructorsTeachingData(
-      InstructorTeachingDataCreateModel instructor) async {
+    InstructorTeachingDataCreateModel instructor,
+  ) async {
     final response = await _httpClient.request(
       route: PostInstructorTeachingDataEndpoint(instructor),
     );
@@ -69,6 +70,8 @@ class ClassroomRemoteDataSource {
     final response = await _httpClient.request(
       route: GetClassroomEndPoint(params),
     );
+
+    throw "Error";
 
     final mappedList = (response.data!['data'] as List)
         .map((e) => ClassroomModel.fromJson(e))

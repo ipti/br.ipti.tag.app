@@ -26,7 +26,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
         classroom.fromEntity(),
       );
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -37,8 +37,8 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
     try {
       final result = await classroomRemoteDataSource.listAll(params);
       return Right(result);
-    } on RestClientException catch (e) {
-      return Left(e);
+    } catch (e) {
+      return Left(e as Exception);
     }
   }
 
@@ -47,7 +47,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
     try {
       final result = await classroomRemoteDataSource.delete(id);
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -63,7 +63,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
         id,
       );
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -74,7 +74,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
     try {
       final result = await classroomRemoteDataSource.listEdcensoDisciplines();
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -84,7 +84,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
     try {
       final result = await classroomRemoteDataSource.listInstructors();
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -97,7 +97,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
       final result =
           await classroomRemoteDataSource.listInstructorsTeachingData(param);
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -109,7 +109,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
       final result = await classroomRemoteDataSource
           .createInstructorsTeachingData(instructor.fromEntity());
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }
@@ -122,7 +122,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
       final result = await classroomRemoteDataSource
           .updateInstructorsTeachingData(id, instructor.fromEntity());
       return Right(result);
-    } on RestClientException catch (e) {
+    } on Exception catch (e) {
       return Left(e);
     }
   }

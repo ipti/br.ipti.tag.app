@@ -29,7 +29,7 @@ dependencies:
   firebase_performance: 0.8.0+13
   flutter:
     sdk: flutter  
-  flutter_bloc: ^7.0.1
+  flutter_bloc: 8.1.1
   flutter_modular: 4.5.1+1
   flutter_svg: any  
   form_field_validator: any  

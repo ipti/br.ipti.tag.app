@@ -45,28 +45,34 @@ class ClassroomPageState
             child: BlocBuilder<ClassroomListBloc, ClassroomListState>(
               bloc: controller,
               builder: (context, state) {
-                if (state.status == Status.loading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (state.classrooms.isEmpty) {
-                  return TagEmpty(
-                    onPressedRetry: () => controller.fetchListClassroomsEvent(),
-                  );
-                }
-                return TagDataTable(
-                  onTapRow: (index) => Modular.to.pushNamed(
-                    "updatePage",
-                    arguments: state.classrooms[index],
-                  ),
-                  columns: const [
-                    DataColumn(label: Text("Nome")),
-                    DataColumn(label: Text("Etapa")),
-                    DataColumn(label: Text("Horário ")),
-                  ],
-                  source: ClassroomDatatable(
-                    data: state.classrooms,
-                  ),
+                Widget stateWidget = TagEmpty(
+                  onPressedRetry: () => controller.fetchListClassroomsEvent(),
                 );
+                switch (state.status) {
+                  case Status.loading:
+                    stateWidget =
+                        const Center(child: CircularProgressIndicator());
+                    break;
+                  case Status.success:
+                    if (state.classrooms.isEmpty) break;
+                    stateWidget = TagDataTable(
+                      onTapRow: (index) => Modular.to.pushNamed(
+                        "updatePage",
+                        arguments: state.classrooms[index],
+                      ),
+                      columns: const [
+                        DataColumn(label: Text("Nome")),
+                        DataColumn(label: Text("Etapa")),
+                        DataColumn(label: Text("Horário ")),
+                      ],
+                      source: ClassroomDatatable(
+                        data: state.classrooms,
+                      ),
+                    );
+                    break;
+                  default:
+                }
+                return stateWidget;
               },
             ),
           )

@@ -14,7 +14,8 @@ class ClassroomListBloc extends Cubit<ClassroomListState> {
   }
 
   Future<void> fetchListClassroomsEvent() async {
-    startLoading();
+    emit(const LoadingState());
+
     final resultEither = await _listClassromsUsecase(ClassroomParams());
     resultEither.fold(
       (Exception failure) => emit(FailedState(message: failure.toString())),
