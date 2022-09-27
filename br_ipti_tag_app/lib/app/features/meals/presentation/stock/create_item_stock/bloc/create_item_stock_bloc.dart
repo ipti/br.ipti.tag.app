@@ -8,12 +8,6 @@ class CreateItemStockBloc
     extends Bloc<CreateItemStockEvent, CreateItemStockState> {
   CreateItemStockBloc() : super(const CreateItemStockState());
 
-  @override
-  Stream<CreateItemStockState> mapEventToState(
-      CreateItemStockEvent event) async* {
-    yield state;
-  }
-
   void tabNavigation(int index) {
     switch (index) {
       case 0:

@@ -103,6 +103,8 @@ class ClassesFormPageState extends State<ClassesFormPage> {
                         ),
                         Flexible(
                           child: _PreviousStageField(
+                            previousStageSituation:
+                                state.previousStageSituation,
                             controller: controller,
                           ),
                         ),

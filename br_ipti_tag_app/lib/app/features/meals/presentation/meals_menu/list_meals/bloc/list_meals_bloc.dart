@@ -7,7 +7,17 @@ import 'list_meals_events.dart';
 import 'list_meals_states.dart';
 
 class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
-  ListMealsBloc(this.listMealsMenuUsecase) : super(EmptyState());
+  ListMealsBloc(this.listMealsMenuUsecase) : super(EmptyState()) {
+    on<CleanFilterByTurnEvent>((event, emit) async {
+      emit(await _mapCleanFilterToState(event));
+    });
+    on<FilterByTurnEvent>((event, emit) async {
+      emit(await _mapFilterByTurnToState(event));
+    });
+    on<GetListMealsEvent>((event, emit) async {
+      emit(await _mapGetListMealsToState());
+    });
+  }
 
   final ListMealsMenuUsecase listMealsMenuUsecase;
 
@@ -16,18 +26,6 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
   final List<String> turnsFilters = [];
 
   List<MealsMenu> mealsOfDayCached = [];
-
-  @override
-  Stream<ListMealsState> mapEventToState(ListMealsEvent event) async* {
-    yield LoadingState();
-    if (event is CleanFilterByTurnEvent) {
-      yield await _mapCleanFilterToState(event);
-    } else if (event is FilterByTurnEvent) {
-      yield await _mapFilterByTurnToState(event);
-    } else if (event is GetListMealsEvent) {
-      yield await _mapGetListMealsToState();
-    }
-  }
 
   Future<ListMealsState> _mapGetListMealsToState() async {
     final resultEither = await listMealsMenuUsecase(NoParams());
