@@ -19,6 +19,7 @@ final _initialState = ClassroomCreateFormState(
 class ClassroomCreateBloc
     extends Bloc<ClassroomCreateEvent, ClassroomCreateFormState> {
   ClassroomCreateBloc(this._usecaseCreateClassroom) : super(_initialState) {
+    on<StartEditing>((event, emit) {});
     on<NameChanged>((event, emit) {
       emit(state.copyWith(name: event.name));
     });

@@ -6,7 +6,9 @@ import 'create_item_stock_states.dart';
 
 class CreateItemStockBloc
     extends Bloc<CreateItemStockEvent, CreateItemStockState> {
-  CreateItemStockBloc() : super(const CreateItemStockState());
+  CreateItemStockBloc() : super(const CreateItemStockState()) {
+    on<StartEditing>((event, emit) {});
+  }
 
   void tabNavigation(int index) {
     switch (index) {
