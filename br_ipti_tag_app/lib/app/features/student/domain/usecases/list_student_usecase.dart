@@ -11,7 +11,8 @@ class ListStudentsUsecase
 
   @override
   Future<Either<Exception, List<Student>>> call(
-      ListStudentsParams params) async {
+    ListStudentsParams params,
+  ) async {
     final result = await _repositoryStudent.listAll(schoolId: params.schoolId);
     return result;
   }
