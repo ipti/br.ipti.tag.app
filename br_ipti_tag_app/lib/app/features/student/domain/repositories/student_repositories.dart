@@ -8,6 +8,6 @@ abstract class StudentRepository {
     required String schoolId,
   });
   Future<Either<Exception, Student>> create(Student student);
-  Future<Either<Exception, Student>> update(String id, Student student);
+  Future<Either<Exception, Student>> update(int id, Student student);
   Future<Either<Exception, bool>> delete(String id);
 }

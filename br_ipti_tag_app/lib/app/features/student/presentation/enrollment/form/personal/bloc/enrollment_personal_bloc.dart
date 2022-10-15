@@ -197,7 +197,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       edcensoUfFk: school.edcensoUfFk,
       edcensoCityFk: school.edcensoCityFk,
       edcensoDistrictFk: school.edcensoDistrictFk,
-      edcensoNationFk: "61ee3e877652254244a8b224",
+      edcensoNationFk: 76,
       schoolInepIdFk: school.id,
       deficiencyTypeBlindness: state.deficiencyTypeBlindness,
       deficiencyTypeLowVision: state.deficiencyTypeLowVision,

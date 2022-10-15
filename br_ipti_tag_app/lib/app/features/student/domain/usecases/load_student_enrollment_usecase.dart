@@ -21,7 +21,7 @@ class LoadStudentEnrollmentUsecase
 }
 
 class LoadStudentEnrollmentParams {
-  final String studentId;
+  final int studentId;
   final String schoolId;
 
   LoadStudentEnrollmentParams(this.studentId, this.schoolId);

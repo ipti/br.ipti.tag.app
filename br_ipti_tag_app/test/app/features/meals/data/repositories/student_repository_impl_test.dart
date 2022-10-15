@@ -88,18 +88,18 @@ void main() {
   group("When update", () {
     final datasource = MockStudentRemoteDataSource();
     testWidgets("has right value", (tester) async {
-      when(() => datasource.update("", StudentModel()))
+      when(() => datasource.update(1, StudentModel()))
           .thenAnswer((invocation) => Future.value(StudentModel()));
 
       final repository = StudentRepositoryImpl(datasource);
-      final params = await repository.update("", Student());
+      final params = await repository.update(1, Student());
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
       expect(result, isA<StudentModel>());
     });
     testWidgets("has left value", (tester) async {
-      when(() => datasource.update("", StudentModel())).thenThrow(
+      when(() => datasource.update(1, StudentModel())).thenThrow(
           (invocation) => Exception("Não foi possível alterar estudante"));
 
       final repository = StudentRepositoryImpl(datasource);

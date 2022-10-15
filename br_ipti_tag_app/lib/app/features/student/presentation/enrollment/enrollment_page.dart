@@ -69,14 +69,14 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
 
       controller.loadStudent(student);
 
-      controller.fetchStudentDocs(
-        student.id!,
-        student.schoolInepIdFk!,
-      );
-      controller.fetchStudentsEnrollment(
-        student.id!,
-        student.schoolInepIdFk!,
-      );
+      // controller.fetchStudentDocs(
+      //   int.tryParse(student.inepId!) ?? 0,
+      //   student.schoolInepIdFk!,
+      // );
+      // controller.fetchStudentsEnrollment(
+      //   student.id!,
+      //   student.schoolInepIdFk!,
+      // );
     }
 
     controller.stream.listen((state) {

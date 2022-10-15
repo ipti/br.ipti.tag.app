@@ -8,7 +8,8 @@ class GetStudentsEndPoint extends EndPointAPI {
   final String schoolId;
 
   @override
-  String get path => id == null ? '/students' : '/students/{$id}';
+  String get path =>
+      id == null ? '/student-identification' : '/student-identification/$id';
 
   @override
   Parameters? get bodyParameters => null;
@@ -21,7 +22,7 @@ class GetStudentsEndPoint extends EndPointAPI {
 
   @override
   Parameters? get urlParameters => () => {
-        "school": schoolId,
+        // "school": schoolId,
         "perPage": 1000,
       };
 }

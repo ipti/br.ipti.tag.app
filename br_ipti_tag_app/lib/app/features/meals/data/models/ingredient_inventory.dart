@@ -5,22 +5,14 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/inventory_ing
 
 class InvetoryIngredientModel extends InvetoryIngredient {
   InvetoryIngredientModel({
-    required String foodId,
-    required String schoolId,
-    required num amount,
-    FoodSource source = FoodSource.Varejista,
-    MeasurementUnits measurementUnit = MeasurementUnits.Gramas,
-    required DateTime expirationDate,
-    FoodModel? food,
-  }) : super(
-          foodId: foodId,
-          schoolId: schoolId,
-          amount: amount,
-          source: source,
-          measurementUnit: measurementUnit,
-          expirationDate: expirationDate,
-          food: food,
-        );
+    required super.foodId,
+    required super.schoolId,
+    required super.amount,
+    super.source = FoodSource.Varejista,
+    super.measurementUnit = MeasurementUnits.Gramas,
+    required super.expirationDate,
+    super.food,
+  });
 
   @override
   factory InvetoryIngredientModel.fromMap(Map<String, dynamic> map) {

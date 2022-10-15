@@ -14,14 +14,14 @@ void main() {
   testWidgets("LoadStudentEnrollmentParams when load a right value",
       (tester) async {
     final repository = MockStudentEnrollmentRepository();
-    when(() => repository.getStudentById('')).thenAnswer(
+    when(() => repository.getStudentById(1)).thenAnswer(
       (invocation) => Future.value(right(StudentEnrollment(
           schoolInepIdFk: "schoolInepIdFk",
-          studentFk: "studentFk",
+          studentFk: 1,
           classroomFk: "classroomFk"))),
     );
     final usecase = LoadStudentEnrollmentUsecase(repository);
-    final params = LoadStudentEnrollmentParams("", "");
+    final params = LoadStudentEnrollmentParams(1, "");
 
     final either = await usecase(params);
     expect(either.isRight(), isTrue);
@@ -32,13 +32,13 @@ void main() {
   testWidgets("LoadStudentEnrollmentParams when load a left value",
       (tester) async {
     final repository = MockStudentEnrollmentRepository();
-    when(() => repository.getStudentById('')).thenAnswer(
-      (invocation) => 
-        Future.value(left(const SocketException("Ocorreu um erro"))),
+    when(() => repository.getStudentById(1)).thenAnswer(
+      (invocation) =>
+          Future.value(left(const SocketException("Ocorreu um erro"))),
     );
     final usecase = LoadStudentEnrollmentUsecase(repository);
-    final params = LoadStudentEnrollmentParams("", "");
-    
+    final params = LoadStudentEnrollmentParams(1, "");
+
     final either = await usecase(params);
     expect(either.isLeft(), isTrue);
 

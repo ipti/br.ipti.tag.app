@@ -15,7 +15,7 @@ void main() {
       (tester) async {
     final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         classroomFk: "classroomFk");
 
     final repository = MockStudentEnrollmentRepository();
@@ -37,7 +37,7 @@ void main() {
       (tester) async {
     final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         classroomFk: "classroomFk");
 
     final repository = MockStudentEnrollmentRepository();

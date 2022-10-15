@@ -53,7 +53,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Exception, Student>> update(String id, Student student) async {
+  Future<Either<Exception, Student>> update(int id, Student student) async {
     try {
       final model = StudentModel.fromEntity(student);
       final result = await _studentDataSource.update(id, model);

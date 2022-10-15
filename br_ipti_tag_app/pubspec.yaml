@@ -16,7 +16,7 @@ publish_to: 'none'
 version: 0.6.0
 
 environment:
-  sdk: '>=2.16.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:   
   collection: ^1.15.0  
@@ -36,10 +36,6 @@ dependencies:
   meta: ^1.1.6
   package_info_plus: 1.4.2
   shared_preferences: ^2.0.8
-  # tag_ui:
-  #   git:
-  #     url: https://github.com/ipti/br.tag.app.ui.git
-  #     ref: develop
   tag_ui:
     path: ../tag_ui
   url_launcher: ^6.0.12

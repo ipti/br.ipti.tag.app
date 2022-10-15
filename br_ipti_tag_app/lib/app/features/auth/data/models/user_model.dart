@@ -5,14 +5,14 @@ import 'package:collection/collection.dart';
 
 class UserModel extends User {
   UserModel({
-    String? id,
+    int? id,
     String? name,
     List<SchoolModel>? schools,
     String? username,
   }) : super(id: id, name: name, schools: schools, username: username);
 
   UserModel copyWith({
-    String? id,
+    int? id,
     String? name,
     List<SchoolModel>? schools,
     String? username,

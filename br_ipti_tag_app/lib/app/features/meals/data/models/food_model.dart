@@ -4,14 +4,10 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/food.dart';
 
 class FoodModel extends Food {
   FoodModel({
-    required num tacoId,
-    required String description,
-    required String scientificName,
-  }) : super(
-          tacoId: tacoId,
-          description: description,
-          scientificName: scientificName,
-        );
+    required super.tacoId,
+    required super.description,
+    required super.scientificName,
+  });
 
   factory FoodModel.fromMap(Map<String, dynamic> map) {
     return FoodModel(

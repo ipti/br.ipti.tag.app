@@ -4,9 +4,9 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/classroom.d
 
 class ClassroomModel extends Classroom {
   ClassroomModel({
-    required String id,
-    required String name,
-  }) : super(id: id, name: name);
+    required super.id,
+    required super.name,
+  });
 
   ClassroomModel copyWith({
     String? id,

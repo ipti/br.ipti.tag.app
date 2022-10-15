@@ -9,7 +9,7 @@ class DeleteStudentsEndPoint extends EndPointAPI {
   final String? id;
 
   @override
-  String get path => '/students/{$id}';
+  String get path => '/student-identification/$id';
 
   @override
   Parameters? get bodyParameters => null;

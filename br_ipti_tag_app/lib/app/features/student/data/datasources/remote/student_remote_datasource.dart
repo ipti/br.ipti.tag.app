@@ -46,7 +46,7 @@ class StudentRemoteDataSource {
     return mappedValue;
   }
 
-  Future<StudentModel> update(String id, StudentModel model) async {
+  Future<StudentModel> update(int id, StudentModel model) async {
     final response = await _httpClient.request(
       route: PutStudentsEndPoint(id: id, model: model),
     );

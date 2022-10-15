@@ -13,8 +13,7 @@ class StudentDocumentsAddressRepositoryImpl
   final StudentDocumentsAndAddressRemoteDataSource _addressRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentDocsAddress>> getByStudentId(
-      String id) async {
+  Future<Either<Exception, StudentDocsAddress>> getByStudentId(int id) async {
     try {
       final result = await _addressRemoteDataSource.getByStudentId(id);
       return Right(result);

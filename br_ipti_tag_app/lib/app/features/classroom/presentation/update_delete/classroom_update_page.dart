@@ -48,7 +48,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
   @override
   void initState() {
     _session.fetchCurrentSchool();
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.classroomEntity != null) {
         controller.add(
           UpdateClassroom(

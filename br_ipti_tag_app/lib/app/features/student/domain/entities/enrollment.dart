@@ -4,7 +4,7 @@ class StudentEnrollment {
   String? registerType;
   String schoolInepIdFk;
   String? studentInepId;
-  String studentFk;
+  int studentFk;
   String? classroomInepId;
   String classroomFk;
   String? enrollmentId;
@@ -101,7 +101,7 @@ class StudentEnrollment {
     String? registerType,
     String? schoolInepIdFk,
     String? studentInepId,
-    String? studentFk,
+    int? studentFk,
     String? classroomInepId,
     String? classroomFk,
     String? enrollmentId,

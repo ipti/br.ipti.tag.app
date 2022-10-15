@@ -15,7 +15,7 @@ void main() {
       (tester) async {
     final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         classroomFk: "classroomFk");
     final repository = MockStudentEnrollmentRepository();
     when(() => repository.create(studentEnrollment))
@@ -31,7 +31,7 @@ void main() {
       (tester) async {
     final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         classroomFk: "classroomFk");
     final repository = MockStudentEnrollmentRepository();
     when(() => repository.create(studentEnrollment)).thenAnswer((invocation) =>

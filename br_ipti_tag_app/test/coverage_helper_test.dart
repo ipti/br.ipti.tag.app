@@ -1,5 +1,5 @@
 // Helper file to make coverage work for all dart files\n
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, directives_ordering
 import 'package:br_ipti_tag_app/app/api/auth/post_auth_login.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/delete_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
@@ -13,13 +13,11 @@ import 'package:br_ipti_tag_app/app/api/food_menu/get_food_menu_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/create_instructor_teaching_data_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/get_instructors_teaching_data_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/instructor/get_instructor_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/post_instructor_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/put_instructor_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/instructor/put_instructor_teaching_data_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/school/dto/school_update.dto.dart';
 import 'package:br_ipti_tag_app/app/api/school/get_schools_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/school/get_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/school/post_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/school/put_school_endpoint.dart';
 import 'package:br_ipti_tag_app/app/api/students/delete_students_endpoint.dart';

@@ -19,7 +19,7 @@ class _SchoolIdTabState extends State<SchoolIdTab> {
   Widget build(BuildContext context) {
     final ScrollController _controllerId = ScrollController();
     return Scrollbar(
-      isAlwaysShown: true,
+      thumbVisibility: true,
       controller: _controllerId,
       child: SingleChildScrollView(
         controller: _controllerId,

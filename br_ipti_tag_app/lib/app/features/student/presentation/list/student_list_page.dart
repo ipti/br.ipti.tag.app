@@ -25,7 +25,6 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
   @override
   void initState() {
     controller.fetchListStudents();
-
     session.stream.listen((state) {
       controller.fetchListStudents();
     });

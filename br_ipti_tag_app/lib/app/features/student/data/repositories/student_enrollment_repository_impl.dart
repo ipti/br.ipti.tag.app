@@ -13,7 +13,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   final StudentEnrollmenrRemoteDataSource _enrollmenrRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentEnrollment>> getById(String id) async {
+  Future<Either<Exception, StudentEnrollment>> getById(int id) async {
     try {
       final result = await _enrollmenrRemoteDataSource.getById(id);
       return Right(result);
@@ -24,7 +24,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
 
   @override
   Future<Either<Exception, StudentEnrollment>> getStudentById(
-    String studentId,
+    int studentId,
   ) async {
     try {
       final result = await _enrollmenrRemoteDataSource.getByStudentId(

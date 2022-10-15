@@ -19,7 +19,8 @@ void main() {
     expect(result, isTrue);
   });
 
-  testWidgets("DeleteStudentsUsecase when params is equal value", (tester) async {
+  testWidgets("DeleteStudentsUsecase when params is equal value",
+      (tester) async {
     const params = DeleteStudentParams(id: "1");
     const params2 = DeleteStudentParams(id: "1");
 

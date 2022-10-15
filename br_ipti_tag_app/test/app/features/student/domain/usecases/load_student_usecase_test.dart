@@ -23,10 +23,9 @@ void main() {
     final result = either.fold(id, id);
     expect(result, isA<Student>());
   });
-    testWidgets("LoadStudentUsecase when load a left value", (tester) async {
+  testWidgets("LoadStudentUsecase when load a left value", (tester) async {
     final repository = MockStudentRepository();
-    when(() => repository.getById('', schoolId: ''))
-        .thenAnswer((invocation) => 
+    when(() => repository.getById('', schoolId: '')).thenAnswer((invocation) =>
         Future.value(left(const SocketException("Ocorreu um erro"))));
 
     final usecase = LoadStudentUsecase(repository);

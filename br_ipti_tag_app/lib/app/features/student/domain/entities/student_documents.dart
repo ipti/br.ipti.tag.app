@@ -2,7 +2,7 @@ class StudentDocsAddress {
   String? id;
   String? registerType;
   String schoolInepIdFk;
-  String studentFk;
+  int studentFk;
   int? oldId;
   String rgNumber;
   String? rgNumberEdcensoOrganIdEmitterFk;
@@ -89,7 +89,7 @@ class StudentDocsAddress {
     String? id,
     String? registerType,
     String? schoolInepIdFk,
-    String? studentFk,
+    int? studentFk,
     int? oldId,
     String? rgNumber,
     String? rgNumberEdcensoOrganIdEmitterFk,

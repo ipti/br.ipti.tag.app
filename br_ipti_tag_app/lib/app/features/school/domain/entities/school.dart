@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 class SchoolEntity {
+  String? id;
+  String? createdAt;
+  String? updatedAt;
   String? registerType;
   String? inepId;
   String? managerCpf;
@@ -60,6 +63,9 @@ class SchoolEntity {
   String? logoFileContent;
   String? actOfAcknowledgement;
   SchoolEntity({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
     this.registerType,
     this.inepId,
     this.managerCpf,

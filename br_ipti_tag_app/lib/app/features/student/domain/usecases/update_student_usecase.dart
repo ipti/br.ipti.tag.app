@@ -25,7 +25,7 @@ class UpdateStudentParams extends Equatable {
   });
 
   final Student student;
-  final String id;
+  final int id;
 
   @override
   List<Object> get props => [id, student.hashCode];

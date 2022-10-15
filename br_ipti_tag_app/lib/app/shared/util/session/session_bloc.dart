@@ -20,9 +20,10 @@ class SessionBloc extends Cubit<SessionState> {
     ));
   }
 
-  Future fetchCurrentSchool() async {
+  Future<School> fetchCurrentSchool() async {
     final currentSchool = await _sessionService.getCurrentSchool();
     emit(state.copyWith(currentSchool: currentSchool));
+    return currentSchool;
   }
 
   Future<String> getYear() async {

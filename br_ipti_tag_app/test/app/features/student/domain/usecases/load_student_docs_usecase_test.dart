@@ -13,16 +13,16 @@ class MockStudentDocumentsAddressRepository extends Mock
 void main() {
   testWidgets("LoadStudentDocsUsecase when load a right value", (tester) async {
     final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.getByStudentId('')).thenAnswer(
+    when(() => repository.getByStudentId(1)).thenAnswer(
       (realInvocation) => Future.value(right(StudentDocsAddress(
           schoolInepIdFk: "schoolInepIdFk",
-          studentFk: "studentFk",
+          studentFk: 1,
           rgNumber: "rgNumber",
           edcensoUfFk: "edcensoUfFk",
           edcensoCityFk: "edcensoCityFk"))),
     );
     final usecase = LoadStudentDocsUsecase(repository);
-    final params =  LoadStudentDocsParams("", "");
+    final params = LoadStudentDocsParams(1, "");
 
     final either = await usecase(params);
     expect(either.isRight(), isTrue);
@@ -32,12 +32,12 @@ void main() {
   });
   testWidgets("LoadStudentDocsUsecase when load a left value", (tester) async {
     final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.getByStudentId('')).thenAnswer(
+    when(() => repository.getByStudentId(1)).thenAnswer(
       (realInvocation) =>
           Future.value(left(const SocketException("Ocorreu um erro"))),
     );
     final usecase = LoadStudentDocsUsecase(repository);
-    final params = LoadStudentDocsParams("", "");
+    final params = LoadStudentDocsParams(1, "");
     final either = await usecase(params);
     expect(either.isLeft(), isTrue);
     final result = either.fold(id, id);

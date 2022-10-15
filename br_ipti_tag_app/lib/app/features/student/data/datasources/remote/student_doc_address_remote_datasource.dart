@@ -24,7 +24,7 @@ class StudentDocumentsAndAddressRemoteDataSource {
     return mappedList;
   }
 
-  Future<StudentDocumentsAddressModel> getByStudentId(String studentId) async {
+  Future<StudentDocumentsAddressModel> getByStudentId(int studentId) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentDocsEndPoint(studentId: studentId),
     );

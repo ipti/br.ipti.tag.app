@@ -52,14 +52,14 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
     ));
   }
 
-  Future fetchStudentDocs(String studentId, String schoolId) async {
+  Future fetchStudentDocs(int studentId, String schoolId) async {
     final params = LoadStudentDocsParams(studentId, schoolId);
     final result = await _loadStudentDocsUsecase(params);
 
     result.fold(id, loadStudentDocs);
   }
 
-  Future fetchStudentsEnrollment(String studentId, String schoolId) async {
+  Future fetchStudentsEnrollment(int studentId, String schoolId) async {
     final params = LoadStudentEnrollmentParams(studentId, schoolId);
     final result = await _loadStudentEnrollmentUsecase(params);
     result.fold(id, loadStudentsEnrollment);

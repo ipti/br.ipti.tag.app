@@ -19,9 +19,9 @@ class School {
   String? addressNumber;
   String? addressComplement;
   String? addressNeighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
-  String? edcensoDistrictFk;
+  int? edcensoUfFk;
+  int? edcensoCityFk;
+  int? edcensoDistrictFk;
   String? ddd;
   String? phoneNumber;
   String? publicPhoneNumber;

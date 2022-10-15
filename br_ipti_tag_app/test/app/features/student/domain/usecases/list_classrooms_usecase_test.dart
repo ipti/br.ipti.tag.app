@@ -12,12 +12,9 @@ class MockClassroomRepository extends Mock implements ClassroomRepository {}
 void main() {
   group("ListStudentUsecase when returns a", () {
     setUpAll(() {
-      var params;
       TestWidgetsFlutterBinding.ensureInitialized();
-      registerFallbackValue(params = classroom_domain.ClassroomParams());
     });
-    testWidgets("right empty value",
-        (tester) async {
+    testWidgets("right empty value", (tester) async {
       final repository = MockClassroomRepository();
       final params = classroom_domain.ClassroomParams();
       when(() => repository.listAll(any())).thenAnswer(
@@ -34,8 +31,7 @@ void main() {
       expect(result, isEmpty);
     });
 
-    testWidgets("left ConnexionExpection",
-        (tester) async {
+    testWidgets("left ConnexionExpection", (tester) async {
       final repository = MockClassroomRepository();
       when(() => repository.listAll(any())).thenAnswer(
         (realInvocation) =>

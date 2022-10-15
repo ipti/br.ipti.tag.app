@@ -69,10 +69,10 @@ class Student {
       this.filiation2Scholarity,
       this.filiation2Job});
 
-  final String? id;
+  final int? id;
   final String? name;
   final String? nis;
-  final String? edcensoDistrictFk;
+  final int? edcensoDistrictFk;
   final String? registerType;
   final String? schoolInepIdFk;
   final String? inepId;
@@ -86,9 +86,9 @@ class Student {
   final int? noDocumentDesc;
   final int? scholarity;
   final String? idEmail;
-  final String? edcensoNationFk;
-  final String? edcensoUfFk;
-  final String? edcensoCityFk;
+  final int? edcensoNationFk;
+  final int? edcensoUfFk;
+  final int? edcensoCityFk;
   final bool? deficiency;
   final bool? deficiencyTypeBlindness;
   final bool? deficiencyTypeLowVision;
@@ -292,10 +292,10 @@ class Student {
   }
 
   Student copyWith({
-    String? id,
+    int? id,
     String? name,
     String? nis,
-    String? edcensoDistrictFk,
+    int? edcensoDistrictFk,
     String? registerType,
     String? schoolInepIdFk,
     String? inepId,
@@ -309,9 +309,9 @@ class Student {
     int? noDocumentDesc,
     int? scholarity,
     String? idEmail,
-    String? edcensoNationFk,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
+    int? edcensoNationFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
     bool? deficiency,
     bool? deficiencyTypeBlindness,
     bool? deficiencyTypeLowVision,

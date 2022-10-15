@@ -16,7 +16,7 @@ void main() {
       (tester) async {
     final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
         edcensoCityFk: "edcensoCityFk");
@@ -36,7 +36,7 @@ void main() {
       (tester) async {
     final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
         edcensoCityFk: "edcensoCityFk");

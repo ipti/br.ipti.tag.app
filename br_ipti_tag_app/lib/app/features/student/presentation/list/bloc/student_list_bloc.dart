@@ -21,9 +21,9 @@ class StudentListBloc extends Cubit<StudentListState> {
   Future<void> fetchListStudents() async {
     startLoading();
 
-    await session.fetchCurrentSchool();
+    final currentSchool = await session.fetchCurrentSchool();
 
-    final schoolId = session.state.currentSchool!.id!;
+    final schoolId = currentSchool.inepId!;
 
     final resultEither =
         await _listClassromsUsecase(ListStudentsParams(schoolId));

@@ -15,7 +15,7 @@ void main() {
     when(() => repository.update(any(), Student()))
         .thenAnswer((invocation) => Future.value(right(Student())));
     final usercase = UpdateStudentUsecase(repository);
-    final params = UpdateStudentParams(id: "", student: Student());
+    final params = UpdateStudentParams(id: 1, student: Student());
     final either = await usercase(params);
     expect(either.isRight(), isTrue);
 
@@ -25,8 +25,8 @@ void main() {
 
   testWidgets("UpdateStudentUsecase when params is equal value",
       (tester) async {
-    final params = UpdateStudentParams(id: "", student: Student());
-    final params2 = UpdateStudentParams(id: "", student: Student());
+    final params = UpdateStudentParams(id: 1, student: Student());
+    final params2 = UpdateStudentParams(id: 1, student: Student());
 
     expect(params.props, equals(params2.props));
   });
@@ -36,7 +36,7 @@ void main() {
     when(() => repository.update(any(), Student())).thenAnswer((invocation) =>
         Future.value(left(const SocketException("Ocorreu um erro"))));
     final usercase = UpdateStudentUsecase(repository);
-    final params = UpdateStudentParams(id: "", student: Student());
+    final params = UpdateStudentParams(id: 1, student: Student());
     final either = await usercase(params);
     expect(either.isLeft(), isTrue);
 

@@ -8,10 +8,12 @@ class GetStudentDocsEndPoint extends EndPointAPI {
   });
 
   final String? id;
-  final String? studentId;
+  final int? studentId;
 
   @override
-  String get path => id == null ? '/studentDocs' : '/studentDocs/{$id}';
+  String get path => id == null
+      ? '/student-docs-and-address'
+      : '/student-docs-and-address/$id';
 
   @override
   Parameters? get bodyParameters => null;

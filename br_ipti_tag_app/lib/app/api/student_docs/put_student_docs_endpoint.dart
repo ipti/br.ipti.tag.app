@@ -12,7 +12,7 @@ class PutStudentDocsEndPoint extends EndPointAPI {
   final String id;
 
   @override
-  String get path => '/studentDocs/$id';
+  String get path => '/student-docs-and-address/$id';
 
   @override
   Parameters? get bodyParameters => () => model.toMap();

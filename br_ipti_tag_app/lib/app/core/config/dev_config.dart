@@ -2,7 +2,7 @@ import 'base_config.dart';
 
 class DevConfig implements BaseConfig {
   @override
-  String get apiHost => "http://ec2-3-230-55-29.compute-1.amazonaws.com:3000";
+  String get apiHost => "https://tag-dev-v3.fly.dev";
 
   @override
   bool get reportErrors => false;

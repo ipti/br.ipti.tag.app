@@ -17,9 +17,7 @@ class PostAuthLoginEndPoint extends EndPointAPI {
       };
 
   @override
-  HTTPHeaders? get headers => () => {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      };
+  HTTPHeaders? get headers => null;
 
   @override
   HTTPMethod get httpMethod => HTTPMethod.POST;

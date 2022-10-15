@@ -11,7 +11,7 @@ class StudentEnrollmenrRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<StudentEnrollmentModel> getById(String id) async {
+  Future<StudentEnrollmentModel> getById(int id) async {
     final response = await _httpClient.request(
       route: GetStudentEnrollmentEndPoint(id: id),
     );
@@ -21,7 +21,7 @@ class StudentEnrollmenrRemoteDataSource {
     return mappedValue;
   }
 
-  Future<StudentEnrollmentModel> getByStudentId(String studentId) async {
+  Future<StudentEnrollmentModel> getByStudentId(int studentId) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentEnrollmentEndPoint(studentId: studentId),
     );

@@ -7,8 +7,8 @@ class GetStudentEnrollmentEndPoint extends EndPointAPI {
     this.studentId,
   });
 
-  final String? id;
-  final String? studentId;
+  final int? id;
+  final int? studentId;
 
   @override
   String get path =>

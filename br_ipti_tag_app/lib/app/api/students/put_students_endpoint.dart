@@ -8,11 +8,11 @@ class PutStudentsEndPoint extends EndPointAPI {
     required this.model,
   });
 
-  final String id;
+  final int id;
   final StudentModel model;
 
   @override
-  String get path => '/students/$id';
+  String get path => '/student-identification/$id';
 
   @override
   Parameters? get bodyParameters => () => model.toMap();
