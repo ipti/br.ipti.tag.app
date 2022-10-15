@@ -13,9 +13,7 @@ class SchoolReportsTab extends StatelessWidget {
       controller: _controllerReports,
       child: SingleChildScrollView(
         controller: _controllerReports,
-        child: Column(
-          children: const <Widget>[],
-        ),
+        child: Column(),
       ),
     );
   }

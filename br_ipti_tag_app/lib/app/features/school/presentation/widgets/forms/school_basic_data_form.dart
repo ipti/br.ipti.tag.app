@@ -42,23 +42,23 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           onChanged: controller.setCurrentSchoolInepId,
         );
     Widget inputAdminDep() => TagDropdownField<dynamic>(
-          onChanged: (value) => {},
+          onChanged: (value) => const {},
           label: "Dependência administrativa",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputStatus() => TagDropdownField<dynamic>(
-          onChanged: (value) => {},
+          onChanged: (value) => const {},
           label: "Situação",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputRegionalAdmin() => TagDropdownField<dynamic>(
-          onChanged: (value) => {},
+          onChanged: (value) => const {},
           label: "Órgão regional de administração",
           hint: "Selecione o órgão regional de administração",
           validator: requiredValidator,
-          items: {},
+          items: const {},
         );
     Widget inputStartDate(String startDate) => TagTextField(
           label: "Data de início da escola",

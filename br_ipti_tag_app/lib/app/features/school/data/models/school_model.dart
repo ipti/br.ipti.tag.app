@@ -7,7 +7,9 @@ class SchoolModel extends SchoolEntity {
   String? createdAt;
   String? updatedAt;
   SchoolModel({
-    String? id,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
     String? registerType,
     String? inepId,
     String? managerCpf,
@@ -66,8 +68,6 @@ class SchoolModel extends SchoolEntity {
     String? logoFileType,
     String? logoFileContent,
     String? actOfAcknowledgement,
-    String? createdAt,
-    String? updatedAt,
   }) : super(
           registerType: registerType,
           inepId: inepId,
@@ -130,11 +130,7 @@ class SchoolModel extends SchoolEntity {
           logoFileType: logoFileType,
           logoFileContent: logoFileContent,
           actOfAcknowledgement: actOfAcknowledgement,
-        ) {
-    this.id = id;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
+        );
 
   @override
   SchoolModel copyWith({

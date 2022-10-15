@@ -13,9 +13,7 @@ class ShcoolEquipmentsTab extends StatelessWidget {
       controller: _controllerEquipments,
       child: SingleChildScrollView(
         controller: _controllerEquipments,
-        child: Column(
-          children: const <Widget>[],
-        ),
+        child: Column(),
       ),
     );
   }

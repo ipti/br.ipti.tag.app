@@ -13,9 +13,7 @@ class SchoolStructureTab extends StatelessWidget {
       controller: _controllerStructure,
       child: SingleChildScrollView(
         controller: _controllerStructure,
-        child: Column(
-          children: const <Widget>[],
-        ),
+        child: Column(),
       ),
     );
   }

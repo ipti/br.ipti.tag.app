@@ -13,9 +13,7 @@ class SchoolEducationalDataTab extends StatelessWidget {
       controller: _controllerEducationalData,
       child: SingleChildScrollView(
         controller: _controllerEducationalData,
-        child: Column(
-          children: const <Widget>[],
-        ),
+        child: Column(),
       ),
     );
   }

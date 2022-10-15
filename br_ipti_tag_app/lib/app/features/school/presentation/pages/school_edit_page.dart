@@ -54,89 +54,91 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
 
     return DefaultTabController(
       length: _tabs.length,
-      child: TagDefaultPage(
+      child: TagScaffold(
         menu: const TagVerticalMenu(),
         // header: const HeaderDesktop(),
         aside: Container(),
         title: widget.title,
         description: 'Edite as informações da sua escola',
         path: const [],
-        body: <Widget>[
-          TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            labelColor: TagColors.colorBaseInkLight,
-            // labelStyle: TagTextStyles.textTabBarLabel,
-            unselectedLabelColor: TagColors.colorBaseInkLight,
-            // unselectedLabelStyle: TagTextStyles.textTabBarLabelUnselected,
-            indicatorColor: TagColors.colorBaseProductDark,
-            labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-            tabs: _tabs,
-          ),
-          ConstrainedBox(
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height - 320,
-              maxWidth: 800,
+        body: Column(
+          children: <Widget>[
+            TabBar(
+              controller: _tabController,
+              isScrollable: true,
+              labelColor: TagColors.colorBaseInkLight,
+              // labelStyle: TagTextStyles.textTabBarLabel,
+              unselectedLabelColor: TagColors.colorBaseInkLight,
+              // unselectedLabelStyle: TagTextStyles.textTabBarLabelUnselected,
+              indicatorColor: TagColors.colorBaseProductDark,
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              tabs: _tabs,
             ),
-            child: BlocConsumer<SchoolCubit, SchoolState>(
-              listener: (context, state) {
-                if (state is SchoolFailedState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorRedDark,
-                      content: Text(state.message),
-                    ),
-                  );
-                } else if (state is SchoolLoadingState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorBaseBlueNormal,
-                      content: Text(state.message),
-                    ),
-                  );
-                } else if (state is SchoolSendingState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorBaseBlueNormal,
-                      content: Text(state.message),
-                    ),
-                  );
-                } else if (state is SchoolSentState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorBaseBlueNormal,
-                      content: Text(state.message),
-                    ),
-                  );
-                } else if (state is SchoolSentFailState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: TagColors.colorRedDark,
-                      content: Text(state.message),
-                    ),
-                  );
-                }
-              },
-              bloc: controller,
-              builder: (context, state) {
-                if (state is SchoolLoadedState ||
-                    state.currentSchoolData != null) {
-                  return _buildWithData();
-                }
-                return _buildWithoutData();
-              },
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height - 320,
+                maxWidth: 800,
+              ),
+              child: BlocConsumer<SchoolCubit, SchoolState>(
+                listener: (context, state) {
+                  if (state is SchoolFailedState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorRedDark,
+                        content: Text(state.message),
+                      ),
+                    );
+                  } else if (state is SchoolLoadingState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorBaseBlueNormal,
+                        content: Text(state.message),
+                      ),
+                    );
+                  } else if (state is SchoolSendingState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorBaseBlueNormal,
+                        content: Text(state.message),
+                      ),
+                    );
+                  } else if (state is SchoolSentState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorBaseBlueNormal,
+                        content: Text(state.message),
+                      ),
+                    );
+                  } else if (state is SchoolSentFailState) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: TagColors.colorRedDark,
+                        content: Text(state.message),
+                      ),
+                    );
+                  }
+                },
+                bloc: controller,
+                builder: (context, state) {
+                  if (state is SchoolLoadedState ||
+                      state.currentSchoolData != null) {
+                    return _buildWithData();
+                  }
+                  return _buildWithoutData();
+                },
+              ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              RowToColumn(children: [
-                Flexible(child: withPadding(buttonSubmit)),
-              ]),
-            ],
-          ),
-        ],
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                RowToColumn(children: [
+                  Flexible(child: withPadding(buttonSubmit)),
+                ]),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
