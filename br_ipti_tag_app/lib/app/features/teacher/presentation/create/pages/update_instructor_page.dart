@@ -97,56 +97,54 @@ class UpdateInstructorPageState
           },
           bloc: controller,
           builder: (context, state) {
-            return TagDefaultPage(
-                appBar: const TagAppBar(leading: TagAppBarBackIconButton()),
-                menu: const TagVerticalMenu(),
-                title: widget.title!,
-                description: "",
-                path: [
-                  "Professor",
-                  widget.title!
-                ],
-                body: [
-                  TabBar(
-                    controller: _tabController,
-                    isScrollable: true,
-                    labelColor: TagColors.colorBaseProductDark,
-                    indicatorColor: TagColors.colorBaseProductDark,
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                    onTap: (value) => controller.goToTab(value),
-                    tabs: _tabs,
+            return TagScaffold(
+              // appBar: const TagAppBar(leading: TagAppBarBackIconButton()),
+              menu: const TagVerticalMenu(),
+              title: widget.title!,
+              description: "",
+              path: ["Professor", widget.title!],
+              body: Column(children: [
+                TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  labelColor: TagColors.colorBaseProductDark,
+                  indicatorColor: TagColors.colorBaseProductDark,
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                  onTap: (value) => controller.goToTab(value),
+                  tabs: _tabs,
+                ),
+                if (state.status == InstructorFormStatus.Loading)
+                  const Center(
+                    child: CircularProgressIndicator(),
                   ),
-                  if (state.status == InstructorFormStatus.Loading)
-                    const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  if (state.status == InstructorFormStatus.Loaded)
-                    LayoutBuilder(builder: (context, constraints) {
-                      return ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height - 200,
-                          maxWidth: 800,
-                        ),
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: [
-                            PersonalDataFormPage(
-                              instructor: state,
-                              editMode: widget.editMode,
-                            ),
-                            AddressFormPage(
-                              instructor: state,
-                              editMode: widget.editMode,
-                            ),
-                            InstructoEducationPage(
-                              instructor: state,
-                              editMode: widget.editMode,
-                            )
-                          ],
-                        ),
-                      );
-                    }),
-                ]);
+                if (state.status == InstructorFormStatus.Loaded)
+                  LayoutBuilder(builder: (context, constraints) {
+                    return ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.of(context).size.height - 200,
+                        maxWidth: 800,
+                      ),
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          PersonalDataFormPage(
+                            instructor: state,
+                            editMode: widget.editMode,
+                          ),
+                          AddressFormPage(
+                            instructor: state,
+                            editMode: widget.editMode,
+                          ),
+                          InstructoEducationPage(
+                            instructor: state,
+                            editMode: widget.editMode,
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+              ]),
+            );
           }),
     );
   }
