@@ -1,3 +1,6 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/extensions/enum_by_id.dart';
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/enrollment.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/admission_type_enum.dart';
@@ -8,9 +11,6 @@ import 'package:br_ipti_tag_app/app/features/student/domain/enums/unified_class_
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/util/extensions/enum_by_id.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

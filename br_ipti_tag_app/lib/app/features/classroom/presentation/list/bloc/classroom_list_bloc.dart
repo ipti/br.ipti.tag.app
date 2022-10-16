@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'classroom_list_states.dart';

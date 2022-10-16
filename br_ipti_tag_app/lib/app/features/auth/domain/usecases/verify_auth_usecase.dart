@@ -10,6 +10,9 @@ class VerifyAuthUsecase implements Usecase<String, NoParams> {
   @override
   Future<Either<Exception, String>> call(NoParams params) async {
     final result = await _repository.getAccessToken();
+    if (result.isRight()) {
+      await _repository.fetchUserData();
+    }
 
     return result;
   }

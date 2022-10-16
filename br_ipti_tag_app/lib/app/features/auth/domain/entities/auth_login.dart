@@ -4,6 +4,16 @@ class AuthLogin {
     required this.password,
   });
 
-  String username;
-  String password;
+  final String username;
+  final String password;
+
+  AuthLogin copyWith({
+    String? username,
+    String? password,
+  }) {
+    return AuthLogin(
+      username: username ?? this.username,
+      password: password ?? this.password,
+    );
+  }
 }

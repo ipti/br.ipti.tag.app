@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_cargo_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/professor_tipo_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
@@ -5,7 +6,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructo
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_states.dart';
-import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

@@ -1,5 +1,5 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:equatable/equatable.dart';
 
 class TeacherListState extends Equatable {

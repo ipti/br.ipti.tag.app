@@ -1,8 +1,8 @@
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/create_instructor_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/get_teachers_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/update_instructor_usecase.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

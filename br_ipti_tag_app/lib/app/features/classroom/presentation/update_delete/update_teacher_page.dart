@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/edcenso_disciplines_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
@@ -5,7 +6,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/update_teacher/update_teacher_states.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/add_teacher_dialog.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/tag_button_icon.dart';
-import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

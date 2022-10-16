@@ -217,7 +217,7 @@ class ClassroomCreateBloc
         ),
       );
 
-  String _getEdcensoStage(int? idEdcenso) {
+  String _getEdcensoStage(int idEdcenso) {
     switch (idEdcenso) {
       case 0:
         return "MA";

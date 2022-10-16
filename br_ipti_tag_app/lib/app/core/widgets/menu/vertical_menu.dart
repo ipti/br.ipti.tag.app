@@ -1,7 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
-import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
+import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 

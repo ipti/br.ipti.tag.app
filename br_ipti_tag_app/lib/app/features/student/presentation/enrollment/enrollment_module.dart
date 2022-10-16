@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/repositories/classroom_repository.dart';
@@ -6,28 +7,23 @@ import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_clas
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
-
 import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_doc_address_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_enrollment_remote_datasource.dart';
-
 import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_docs_addrs_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_enrollment_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_doc_address_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_enrollment_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student_repositories.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
-
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_docs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_enrollment_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 

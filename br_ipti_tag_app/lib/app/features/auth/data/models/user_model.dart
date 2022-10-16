@@ -9,6 +9,7 @@ class UserModel extends User {
     super.name,
     super.schools,
     super.username,
+    super.active,
   });
 
   UserModel copyWith({
@@ -16,12 +17,14 @@ class UserModel extends User {
     String? name,
     List<SchoolModel>? schools,
     String? username,
+    int? active,
   }) {
     return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       schools: schools ?? this.schools as List<SchoolModel>?,
       username: username ?? this.username,
+      active: active ?? this.active,
     );
   }
 
@@ -35,6 +38,7 @@ class UserModel extends User {
           )
           .toList(),
       'username': username,
+      'active': active,
     };
   }
 
@@ -50,6 +54,7 @@ class UserModel extends User {
         ),
       ),
       username: map['username'],
+      active: map['active'],
     );
   }
 
@@ -63,7 +68,7 @@ class UserModel extends User {
 
   @override
   String toString() {
-    return '''UserModel(id: $id, name: $name, schools: $schools, username: $username)''';
+    return '''UserModel(id: $id, name: $name, schools: $schools, username: $username, active $active)''';
   }
 
   @override
@@ -75,11 +80,16 @@ class UserModel extends User {
         other.id == id &&
         other.name == name &&
         listEquals(other.schools, schools) &&
-        other.username == username;
+        other.username == username &&
+        other.active == active;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ name.hashCode ^ schools.hashCode ^ username.hashCode;
+    return id.hashCode ^
+        name.hashCode ^
+        schools.hashCode ^
+        username.hashCode ^
+        active.hashCode;
   }
 }

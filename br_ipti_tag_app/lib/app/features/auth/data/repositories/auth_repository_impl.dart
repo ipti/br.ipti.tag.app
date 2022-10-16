@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/school.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/user.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -116,6 +117,17 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, bool>> storeSchoolYear(String year) async {
     try {
       final result = await sessionService.setSchoolYear(year);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, User>> fetchUserData() async {
+    try {
+      final result = await sessionService.getCurrentUser();
 
       return Right(result);
     } on Exception catch (e) {

@@ -1,3 +1,6 @@
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
+import 'package:br_ipti_tag_app/app/core/util/util.dart';
+import 'package:br_ipti_tag_app/app/core/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/etapa_ensino_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/mediacao_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/modalidades_enum.dart';
@@ -7,9 +10,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/classroom_update_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_update_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_update_widget.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/util.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

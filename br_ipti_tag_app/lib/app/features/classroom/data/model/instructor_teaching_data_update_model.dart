@@ -5,7 +5,7 @@ class InstructorTeachingDataUpdateModel
   InstructorTeachingDataUpdateModel({
     super.role,
     super.contractType,
-    super.discipline1Fk,
+    required super.discipline1Fk,
     super.discipline2Fk,
     super.discipline3Fk,
     super.discipline4Fk,

@@ -1,7 +1,7 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

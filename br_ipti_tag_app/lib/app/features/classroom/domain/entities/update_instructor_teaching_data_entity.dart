@@ -1,9 +1,9 @@
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_update_model.dart';
 
 class InstructorTeachingDataUpdateEntity {
-  int? role;
+  int role;
   int? contractType;
-  String? discipline1Fk;
+  String discipline1Fk;
   String? discipline2Fk;
   String? discipline3Fk;
   String? discipline4Fk;
@@ -21,7 +21,7 @@ class InstructorTeachingDataUpdateEntity {
   InstructorTeachingDataUpdateEntity({
     this.role = 0,
     this.contractType = 0,
-    this.discipline1Fk,
+    required this.discipline1Fk,
     this.discipline2Fk,
     this.discipline3Fk,
     this.discipline4Fk,

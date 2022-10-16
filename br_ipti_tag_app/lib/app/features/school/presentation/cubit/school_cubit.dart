@@ -1,9 +1,9 @@
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/edit_school_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/usecases/show_school_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
