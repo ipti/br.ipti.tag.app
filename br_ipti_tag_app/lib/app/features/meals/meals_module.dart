@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/meals_
 import 'package:br_ipti_tag_app/app/features/meals/data/repositories/meals_menu_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_menu_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'data/datasources/remote/meals_remote_datasource.dart';
 import 'mappers/meal_menu_api_to_entity.dart';
 import 'presentation/meals_menu/details_meal/details_meal_page.dart';
@@ -32,7 +33,7 @@ class MealsModule extends Module {
     Bind.singleton((i) => ListMealsMenuUsecase(
           i.get(),
         )),
-    Bind.singleton((i) => ListMealsBloc(
+    BlocBind.singleton((i) => ListMealsBloc(
           i.get(),
         )),
   ];

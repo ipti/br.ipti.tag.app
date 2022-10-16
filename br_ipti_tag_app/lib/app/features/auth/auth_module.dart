@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/auth/presentation/pages/auth_login_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'data/datasources/local/auth_local_datasource.dart';
 import 'domain/usecases/verify_auth_usecase.dart';
@@ -40,7 +41,7 @@ class AuthModule extends Module {
           i.get(),
         )),
     // bloc
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => LoginBloc(
         i.get<AuthLoginUsecase>(),
         i.get<VerifyAuthUsecase>(),

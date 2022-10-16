@@ -56,7 +56,7 @@ packages:
       name: bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.1"
+    version: "8.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -271,7 +271,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.3"
+    version: "8.1.1"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -462,6 +462,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  modular_bloc_bind:
+    dependency: "direct main"
+    description:
+      name: modular_bloc_bind
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   modular_core:
     dependency: transitive
     description:
@@ -754,6 +761,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   string_scanner:
     dependency: transitive
     description:

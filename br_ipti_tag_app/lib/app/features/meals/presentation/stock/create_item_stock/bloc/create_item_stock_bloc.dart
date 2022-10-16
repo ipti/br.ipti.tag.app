@@ -6,17 +6,7 @@ import 'create_item_stock_states.dart';
 
 class CreateItemStockBloc
     extends Bloc<CreateItemStockEvent, CreateItemStockState> {
-  CreateItemStockBloc()
-      : super(
-          const CreateItemStockState(),
-        );
-
-  @override
-  Stream<CreateItemStockState> mapEventToState(
-    CreateItemStockEvent event,
-  ) async* {
-    yield state;
-  }
+  CreateItemStockBloc() : super(const CreateItemStockState());
 
   void tabNavigation(int index) {
     switch (index) {
