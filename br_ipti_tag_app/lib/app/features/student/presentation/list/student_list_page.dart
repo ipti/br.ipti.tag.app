@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
@@ -55,13 +56,6 @@ class StudentPageState extends State<StudentPage> {
                   child: CircularProgressIndicator(),
                 ),
               );
-            case Status.failure:
-              return SizedBox(
-                height: 200,
-                child: Center(
-                  child: Text(state.error!),
-                ),
-              );
             case Status.success:
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -94,6 +88,12 @@ class StudentPageState extends State<StudentPage> {
                     data: state.students,
                   ),
                 ),
+              );
+            default:
+              return TagEmpty(
+                onPressedRetry: () {
+                  controller.fetchListStudents();
+                },
               );
           }
         },

@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/list_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -7,9 +8,7 @@ import 'student_list_states.dart';
 
 class StudentListBloc extends Cubit<StudentListState> {
   StudentListBloc(this._listClassromsUsecase)
-      : super(
-          const StudentListState(status: Status.initial, students: []),
-        );
+      : super(const StudentListState(status: Status.initial, students: []));
 
   final ListStudentsUsecase _listClassromsUsecase;
   final session = Modular.get<SessionBloc>();

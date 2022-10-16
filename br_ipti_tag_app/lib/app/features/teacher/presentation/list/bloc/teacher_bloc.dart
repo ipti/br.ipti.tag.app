@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/usecases/list_teachers_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_state.dart';
+import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TeacherListBloc extends Cubit<TeacherListState> {
@@ -13,13 +16,7 @@ class TeacherListBloc extends Cubit<TeacherListState> {
 
   void startLoading() {
     emit(
-      state.copyWith(loading: true),
-    );
-  }
-
-  void stopLoading() {
-    emit(
-      state.copyWith(loading: false),
+      state.copyWith(status: Status.loading),
     );
   }
 
@@ -29,13 +26,17 @@ class TeacherListBloc extends Cubit<TeacherListState> {
       NoParams(),
     );
     resultEither.fold(
-      (Exception failure) => emit(FailedState(
-        message: failure.toString(),
-      )),
-      (teachers) => emit(
-        LoadedState(teachers: teachers),
-      ),
+      (Exception failure) {
+        log(failure.toString());
+        emit(FailedState(
+          message: failure.toString(),
+        ));
+      },
+      (teachers) {
+        emit(
+          LoadedState(teachers: teachers),
+        );
+      },
     );
-    stopLoading();
   }
 }

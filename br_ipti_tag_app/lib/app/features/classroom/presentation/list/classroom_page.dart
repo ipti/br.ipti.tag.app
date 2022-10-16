@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/shared/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -44,32 +45,38 @@ class ClassroomPageState extends State<ClassroomPage> {
             child: BlocBuilder<ClassroomListBloc, ClassroomListState>(
               bloc: controller,
               builder: (context, state) {
-                if (state.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                switch (state.status) {
+                  case Status.loading:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  case Status.success:
+                    return TagDataTable(
+                      onTapRow: (index) => Modular.to.pushNamed(
+                        "updatePage",
+                        arguments: state.classrooms[index],
+                      ),
+                      columns: const [
+                        DataColumn(
+                          label: Text("Nome"),
+                        ),
+                        DataColumn(
+                          label: Text("Etapa"),
+                        ),
+                        DataColumn(
+                          label: Text("Horário "),
+                        ),
+                      ],
+                      source: ClassroomDatatable(
+                        data: state.classrooms,
+                      ),
+                    );
+                  default:
+                    return TagEmpty(
+                      onPressedRetry: () =>
+                          controller.fetchListClassroomsEvent(),
+                    );
                 }
-
-                return TagDataTable(
-                  onTapRow: (index) => Modular.to.pushNamed(
-                    "updatePage",
-                    arguments: state.classrooms[index],
-                  ),
-                  columns: const [
-                    DataColumn(
-                      label: Text("Nome"),
-                    ),
-                    DataColumn(
-                      label: Text("Etapa"),
-                    ),
-                    DataColumn(
-                      label: Text("Horário "),
-                    ),
-                  ],
-                  source: ClassroomDatatable(
-                    data: state.classrooms,
-                  ),
-                );
               },
             ),
           ),
