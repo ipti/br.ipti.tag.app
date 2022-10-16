@@ -19,7 +19,8 @@ class StudentPage extends StatefulWidget {
   StudentPageState createState() => StudentPageState();
 }
 
-class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
+class StudentPageState extends State<StudentPage> {
+  final controller = Modular.get<StudentListBloc>();
   final session = Modular.get<SessionBloc>();
 
   @override
@@ -143,15 +144,21 @@ class StudentDatatable extends DataTableSource {
       cells: [
         DataCell(
           ToggleMobileDesktop(
-            desktop: Text(data[index].name!.toUpperCase()),
+            desktop: Text(
+              data[index].name!.toUpperCase(),
+            ),
             mobile: Text(
               data[index].name!.toUpperCase(),
               style: TagTextStyles.textTableColumnHeader,
             ),
           ),
         ),
-        DataCell(Text(data[index].birthday ?? "")),
-        DataCell(Text(data[index].responsableName ?? "")),
+        DataCell(
+          Text(data[index].birthday ?? ""),
+        ),
+        DataCell(
+          Text(data[index].responsableName ?? ""),
+        ),
       ],
     );
   }
@@ -181,7 +188,10 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       height: maxExtent,
       color: TagColors.colorBaseWhiteNormal,

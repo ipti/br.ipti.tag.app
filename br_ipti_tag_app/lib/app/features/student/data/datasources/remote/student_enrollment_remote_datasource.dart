@@ -29,7 +29,9 @@ class StudentEnrollmenrRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) => StudentEnrollmentModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => StudentEnrollmentModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList.first;
@@ -50,10 +52,11 @@ class StudentEnrollmenrRemoteDataSource {
     StudentEnrollmentModel model,
   ) async {
     final response = await _httpClient.request(
-        route: PutStudentEnrollmentEndPoint(
-      id: id,
-      model: model,
-    ));
+      route: PutStudentEnrollmentEndPoint(
+        id: id,
+        model: model,
+      ),
+    );
 
     final mappedValue = StudentEnrollmentModel.fromMap(response.data!);
 

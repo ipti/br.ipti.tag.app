@@ -68,6 +68,7 @@ class SchoolModel extends SchoolEntity {
   });
 
   @override
+  // ignore: long-method
   SchoolModel copyWith({
     String? id,
     String? createdAt,
@@ -208,6 +209,7 @@ class SchoolModel extends SchoolEntity {
       logoFileContent: logoFileContent ?? this.logoFileContent,
       actOfAcknowledgement: actOfAcknowledgement ?? this.actOfAcknowledgement,
     );
+
     return schoolModel;
   }
 
@@ -223,6 +225,7 @@ class SchoolModel extends SchoolEntity {
     return map;
   }
 
+  // ignore: long-method
   factory SchoolModel.fromMap(Map<String, dynamic> map) {
     final schoolModel = SchoolModel(
       id: map['id'] ?? '',
@@ -294,14 +297,18 @@ class SchoolModel extends SchoolEntity {
       logoFileContent: map['logo_file_content'],
       actOfAcknowledgement: map['act_of_acknowledgement'],
     );
+
     return schoolModel;
   }
 
   @override
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory SchoolModel.fromJson(String source) =>
-      SchoolModel.fromMap(json.decode(source));
+  factory SchoolModel.fromJson(String source) => SchoolModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() => '''
@@ -322,6 +329,7 @@ SchoolModel(id: $id, registerType: $registerType, inepId: $inepId, managerCpf: $
   int get hashCode =>
       id.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ super.hashCode;
 
+  // ignore: long-method
   factory SchoolModel.empty() {
     return SchoolModel(
       id: '',

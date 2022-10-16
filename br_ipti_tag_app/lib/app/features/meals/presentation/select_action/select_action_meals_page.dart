@@ -70,6 +70,7 @@ class _SelectActionNavigatorItem extends StatelessWidget {
       fontSize: 16,
       color: TagColors.colorBaseInkNormal,
     );
+
     return TagBox(
       padding: EdgeInsets.zero,
       child: ListTile(

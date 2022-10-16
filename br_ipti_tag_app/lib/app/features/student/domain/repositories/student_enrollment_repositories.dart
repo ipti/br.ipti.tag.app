@@ -5,7 +5,10 @@ abstract class StudentEnrollmentRepository {
   Future<Either<Exception, StudentEnrollment>> getById(int id);
   Future<Either<Exception, StudentEnrollment>> getStudentById(int id);
   Future<Either<Exception, StudentEnrollment>> create(
-      StudentEnrollment studentdosStudentEnrollment);
+    StudentEnrollment studentdosStudentEnrollment,
+  );
   Future<Either<Exception, StudentEnrollment>> update(
-      String id, StudentEnrollment student);
+    String id,
+    StudentEnrollment student,
+  );
 }

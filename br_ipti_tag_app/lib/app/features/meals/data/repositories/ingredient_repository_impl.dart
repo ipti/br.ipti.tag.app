@@ -17,6 +17,7 @@ class IngredientRepositoryImpl implements IngredientRepository {
   Future<Either<Exception, List<Ingredient>>> list() async {
     try {
       final result = await remoteDataSource.list();
+
       return Right(result);
     } catch (e) {
       return Left(

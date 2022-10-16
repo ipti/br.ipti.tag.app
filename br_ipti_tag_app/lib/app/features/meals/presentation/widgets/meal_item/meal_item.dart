@@ -31,6 +31,7 @@ class MealItem extends StatelessWidget {
 
   String _formatIngredients(List<Ingredient> ingredients) {
     final resultJoin = ingredients.join(', ');
+
     return resultJoin;
   }
 }
@@ -114,11 +115,11 @@ class _Card extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
-          const Icon(Icons.arrow_forward_ios)
+          const Icon(Icons.arrow_forward_ios),
         ],
       ),
     );

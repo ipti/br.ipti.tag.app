@@ -15,7 +15,9 @@ class LoginBloc extends Cubit<LoginState> {
     this.authLoginUsecase,
     this.verifyAuthUsecase,
     this.servicePkgInfo,
-  ) : super(LoginInitial());
+  ) : super(
+          LoginInitial(),
+        );
 
   final AuthLoginUsecase authLoginUsecase;
   final VerifyAuthUsecase verifyAuthUsecase;
@@ -23,7 +25,10 @@ class LoginBloc extends Cubit<LoginState> {
 
   final yearSequence = [
     for (var i = 2014; i <= DateTime.now().year; i++)
-      MapEntry(i.toString(), i.toString())
+      MapEntry(
+        i.toString(),
+        i.toString(),
+      ),
   ];
 
   String? username = "";
@@ -45,7 +50,9 @@ class LoginBloc extends Cubit<LoginState> {
   }
 
   Future verifyAuthToken() async {
-    final result = await verifyAuthUsecase(NoParams());
+    final result = await verifyAuthUsecase(
+      NoParams(),
+    );
     result.fold(
       (error) => log("Não há token válido"),
       (token) => Modular.to.pushReplacementNamed("/turmas/"),
@@ -63,7 +70,9 @@ class LoginBloc extends Cubit<LoginState> {
 
     result.fold(
       (error) {
-        emit(LoginErrorState(error.toString()));
+        emit(LoginErrorState(
+          error.toString(),
+        ));
         emit(
           LoginLoadedState(
             username: username!,

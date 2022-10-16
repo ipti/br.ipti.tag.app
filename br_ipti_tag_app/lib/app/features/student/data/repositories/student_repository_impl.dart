@@ -13,14 +13,18 @@ class StudentRepositoryImpl implements StudentRepository {
   final StudentRemoteDataSource _studentDataSource;
 
   @override
-  Future<Either<Exception, List<Student>>> listAll(
-      {required String schoolId}) async {
+  Future<Either<Exception, List<Student>>> listAll({
+    required String schoolId,
+  }) async {
     try {
       final results = await _studentDataSource.listAll(schoolId: schoolId);
 
       return Right(results);
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint(
+        e.toString(),
+      );
+
       return Left(
         Exception("Não foi possível listar estudantes, tente novamente"),
       );
@@ -34,9 +38,12 @@ class StudentRepositoryImpl implements StudentRepository {
   }) async {
     try {
       final result = await _studentDataSource.getById(id, schoolId: schoolId);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
@@ -48,7 +55,9 @@ class StudentRepositoryImpl implements StudentRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudante"));
+      return Left(
+        Exception("Não foi possível adicionar estudante"),
+      );
     }
   }
 
@@ -57,9 +66,12 @@ class StudentRepositoryImpl implements StudentRepository {
     try {
       final model = StudentModel.fromEntity(student);
       final result = await _studentDataSource.update(id, model);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível alterar estudante"));
+      return Left(
+        Exception("Não foi possível alterar estudante"),
+      );
     }
   }
 
@@ -67,9 +79,12 @@ class StudentRepositoryImpl implements StudentRepository {
   Future<Either<Exception, bool>> delete(String id) async {
     try {
       final result = await _studentDataSource.delete(id);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível deletar estudante"));
+      return Left(
+        Exception("Não foi possível deletar estudante"),
+      );
     }
   }
 }

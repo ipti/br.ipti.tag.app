@@ -12,7 +12,8 @@ class AddDocumentsAndAddressToStudentUsecase
 
   @override
   Future<Either<Exception, StudentDocsAddress>> call(
-      AddDocumentsAndAddressToStudentParams params) async {
+    AddDocumentsAndAddressToStudentParams params,
+  ) async {
     final result = await _documentsAddressRepository.create(
       params.studentDocumentsAddress,
     );

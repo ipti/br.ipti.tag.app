@@ -10,6 +10,7 @@ class ListSchoolsUsecase implements Usecase<List<SchoolEntity>, NoParams> {
   @override
   Future<Either<Exception, List<SchoolEntity>>> call(NoParams params) async {
     final result = await _repository.getAll();
+
     return result;
   }
 }

@@ -68,40 +68,57 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
           value: schoolName,
           validator: requiredValidator,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("PlaceHolder")),
+            child: withPadding(
+              inputSchoolName("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputInepCode("PlaceHolder")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputAdminDep()),
-          ),
-          Flexible(
-            child: withPadding(inputStatus()),
+            child: withPadding(
+              inputInepCode("PlaceHolder"),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRegionalAdmin()),
+            child: withPadding(
+              inputAdminDep(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputStartDate("PlaceHolder")),
+            child: withPadding(
+              inputStatus(),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRecognitionAct("PlaceHolder")),
+            child: withPadding(
+              inputRegionalAdmin(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputEndDate("PlaceHolder")),
+            child: withPadding(
+              inputStartDate("PlaceHolder"),
+            ),
+          ),
+        ]),
+        RowToColumn(children: [
+          Flexible(
+            child: withPadding(
+              inputRecognitionAct("PlaceHolder"),
+            ),
+          ),
+          Flexible(
+            child: withPadding(
+              inputEndDate("PlaceHolder"),
+            ),
           ),
         ]),
       ],

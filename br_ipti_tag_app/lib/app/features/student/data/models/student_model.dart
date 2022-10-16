@@ -71,7 +71,7 @@ class StudentModel extends Student {
     super.filiation2Scholarity,
     super.filiation2Job,
   });
-
+  // ignore: long-method
   factory StudentModel.fromEntity(Student student) {
     return StudentModel(
       id: student.id,
@@ -146,7 +146,7 @@ class StudentModel extends Student {
       filiation2Job: student.filiation2Job,
     );
   }
-
+  // ignore: long-method
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -221,10 +221,13 @@ class StudentModel extends Student {
     };
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory StudentModel.fromJson(String source) =>
-      StudentModel.fromMap(json.decode(source));
+  factory StudentModel.fromJson(String source) => StudentModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {
@@ -232,6 +235,7 @@ class StudentModel extends Student {
   }
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -311,6 +315,7 @@ class StudentModel extends Student {
   }
 
   @override
+  // ignore: long-method
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
@@ -380,6 +385,7 @@ class StudentModel extends Student {
         filiation2Job.hashCode;
   }
 
+  // ignore: long-method
   factory StudentModel.fromMap(Map<String, dynamic> map) {
     var schoolInepFk = map['school_inep_id_fk'];
 

@@ -16,22 +16,25 @@ class InstructorFormStateSuccess extends InstructorFormState {
   final List<EdcensoDisciplinesEntity>? disciplines;
   final String? currentInstructor;
   final String? instructorDiscipline;
-  const InstructorFormStateSuccess(
-      {this.instructors,
-      this.disciplines,
-      this.currentInstructor,
-      this.instructorDiscipline});
+  const InstructorFormStateSuccess({
+    this.instructors,
+    this.disciplines,
+    this.currentInstructor,
+    this.instructorDiscipline,
+  });
 
-  InstructorFormStateSuccess copyWith(
-      {List<InstructorEntity>? instructors,
-      List<EdcensoDisciplinesEntity>? disciplines,
-      String? currentInstructor,
-      String? instructorDiscipline}) {
+  InstructorFormStateSuccess copyWith({
+    List<InstructorEntity>? instructors,
+    List<EdcensoDisciplinesEntity>? disciplines,
+    String? currentInstructor,
+    String? instructorDiscipline,
+  }) {
     return InstructorFormStateSuccess(
-        instructors: instructors,
-        disciplines: disciplines,
-        currentInstructor: currentInstructor,
-        instructorDiscipline: instructorDiscipline);
+      instructors: instructors,
+      disciplines: disciplines,
+      currentInstructor: currentInstructor,
+      instructorDiscipline: instructorDiscipline,
+    );
   }
 
   @override

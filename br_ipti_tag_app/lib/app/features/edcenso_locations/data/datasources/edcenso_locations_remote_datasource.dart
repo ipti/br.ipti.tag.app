@@ -15,7 +15,9 @@ class EdcensoLocationsRemoteDatasource {
     );
 
     final mappedList = response.data!
-        .map((e) => EdCensoCityModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => EdCensoCityModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;
@@ -27,7 +29,9 @@ class EdcensoLocationsRemoteDatasource {
     );
 
     final mappedList = response.data!
-        .map((e) => EdCensoUfModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => EdCensoUfModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;

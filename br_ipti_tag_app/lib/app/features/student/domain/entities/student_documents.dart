@@ -85,6 +85,7 @@ class StudentDocsAddress {
     required this.edcensoCityFk,
   });
 
+  // ignore: long-method
   StudentDocsAddress copyWith({
     String? id,
     String? registerType,

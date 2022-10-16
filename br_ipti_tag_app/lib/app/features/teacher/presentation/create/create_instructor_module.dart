@@ -69,7 +69,10 @@ class CreateInstructorModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const InstructorFormPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const InstructorFormPage(),
+    ),
     ChildRoute(
       "/editar",
       child: (_, args) => UpdateInstructorPage(

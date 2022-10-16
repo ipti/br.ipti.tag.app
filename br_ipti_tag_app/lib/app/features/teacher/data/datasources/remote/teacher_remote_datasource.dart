@@ -18,7 +18,9 @@ class TeacherRemoteDataSource {
 
     final responseData = response.data?.data ?? [];
 
-    final mappedList = responseData.map((e) => InstructorModel.fromMap(e));
+    final mappedList = responseData.map(
+      (e) => InstructorModel.fromMap(e),
+    );
 
     return mappedList.toList();
   }

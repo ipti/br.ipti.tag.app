@@ -36,7 +36,9 @@ class SessionServiceImpl extends SessionService {
 
     if (schoolsJsonString == null) throw Exception("Não há escolas dispoíveis");
 
-    final result = schoolsJsonString.map((e) => SchoolModel.fromJson(e));
+    final result = schoolsJsonString.map(
+      (e) => SchoolModel.fromJson(e),
+    );
 
     return result.toList();
   }
@@ -45,7 +47,9 @@ class SessionServiceImpl extends SessionService {
   Future<bool> setCurrentUserSchools(List<School> schools) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
-    final mappedSchools = schools.map((x) => (x as SchoolModel).toJson());
+    final mappedSchools = schools.map(
+      (x) => (x as SchoolModel).toJson(),
+    );
 
     final result = _sharedPreferences.setStringList(
       KEY_SESSION_USER_SCHOOLS,
@@ -153,6 +157,7 @@ class SessionServiceImpl extends SessionService {
 
     if (result != null) {
       final school = SchoolModel.fromJson(result);
+
       return school;
     }
 

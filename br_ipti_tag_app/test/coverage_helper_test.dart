@@ -359,4 +359,5 @@ import 'package:br_ipti_tag_app/firebase_options.dart';
 // import 'package:br_ipti_tag_app/generated_plugin_registrant.dart';
 import 'package:br_ipti_tag_app/main.dart';
 
+// ignore: no-empty-block
 void main() {}

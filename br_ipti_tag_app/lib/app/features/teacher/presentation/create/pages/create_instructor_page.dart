@@ -28,9 +28,9 @@ class InstructorFormPage extends StatefulWidget {
   InstructorFormPageState createState() => InstructorFormPageState();
 }
 
-class InstructorFormPageState
-    extends ModularState<InstructorFormPage, CreateInstructorBloc>
+class InstructorFormPageState extends State<InstructorFormPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<CreateInstructorBloc>();
   static const List<Tab> _tabs = [
     Tab(
       child: Text("Dados do pessoais"),
@@ -108,6 +108,7 @@ class InstructorFormPageState
                 if (state.status == InstructorFormStatus.Loaded) {
                   return _buildWithData(state);
                 }
+
                 return _buildWithoutData();
               },
             ),
@@ -129,7 +130,7 @@ class InstructorFormPageState
         ),
         InstructoEducationPage(
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }

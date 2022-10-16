@@ -96,11 +96,21 @@ class ClassroomCreateBloc
           schooling: value,
         ),
       );
-  void setName(String name) => add(NameChanged(name));
-  void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
-  void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
-  void setModality(int? modalityId) => add(ModalityChanged(modalityId!));
-  void setStage(int? stageId) => add(StageChanged(stageId!));
+  void setName(String name) => add(
+        NameChanged(name),
+      );
+  void setStartTime(TimeOfDay startTime) => add(
+        StartTimeChanged(startTime),
+      );
+  void setEndTime(TimeOfDay endTime) => add(
+        EndTimeChanged(endTime),
+      );
+  void setModality(int? modalityId) => add(
+        ModalityChanged(modalityId!),
+      );
+  void setStage(int? stageId) => add(
+        StageChanged(stageId!),
+      );
   void setMediacao(int? mediacao) => add(
         TypePedagogicalMediationChanged(
           mediacao!,
@@ -126,7 +136,8 @@ class ClassroomCreateBloc
       );
     } else if (event is TypePedagogicalMediationChanged) {
       newState = state.copyWith(
-          typePedagogicMediationId: event.typePedagogicMediationId);
+        typePedagogicMediationId: event.typePedagogicMediationId,
+      );
     } else if (event is SchoolingChanged) {
       newState = state.copyWith(
         schooling: event.schooling,

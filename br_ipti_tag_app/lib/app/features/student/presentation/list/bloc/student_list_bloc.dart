@@ -15,7 +15,9 @@ class StudentListBloc extends Cubit<StudentListState> {
   final session = Modular.get<SessionBloc>();
 
   void startLoading() {
-    emit(state.copyWith(status: Status.loading));
+    emit(
+      state.copyWith(status: Status.loading),
+    );
   }
 
   Future<void> fetchListStudents() async {
@@ -25,17 +27,22 @@ class StudentListBloc extends Cubit<StudentListState> {
 
     final schoolId = currentSchool.inepId!;
 
-    final resultEither =
-        await _listClassromsUsecase(ListStudentsParams(schoolId));
+    final resultEither = await _listClassromsUsecase(
+      ListStudentsParams(schoolId),
+    );
     resultEither.fold(
-      (Exception failure) => emit(state.copyWith(
-        status: Status.failure,
-        error: failure.toString(),
-      )),
-      (students) => emit(state.copyWith(
-        status: Status.success,
-        students: students,
-      )),
+      (Exception failure) => emit(
+        state.copyWith(
+          status: Status.failure,
+          error: failure.toString(),
+        ),
+      ),
+      (students) => emit(
+        state.copyWith(
+          status: Status.success,
+          students: students,
+        ),
+      ),
     );
   }
 }

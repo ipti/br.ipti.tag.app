@@ -49,93 +49,98 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
     return Form(
       key: _formKey,
       child: BlocBuilder<EnrollmentPersonalBloc, EnrollmentPersonalState>(
-          bloc: controller,
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    heading1,
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameField(
-                            name: state.name,
-                            controller: controller,
-                          ),
+        bloc: controller,
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  heading1,
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameField(
+                          name: state.name,
+                          controller: controller,
                         ),
-                        Flexible(
-                            child: _BirthdayField(
+                      ),
+                      Flexible(
+                        child: _BirthdayField(
                           birthday: state.birthday,
                           controller: controller,
-                        )),
-                      ],
-                    ),
-                    RowToColumn(children: [
-                      Flexible(
-                          child: _ColorRaceField(
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _ColorRaceField(
                         colorRace: state.colorRace,
                         controller: controller,
-                      )),
-                      Flexible(
-                          child: _SexField(
+                      ),
+                    ),
+                    Flexible(
+                      child: _SexField(
                         sex: state.sex,
                         controller: controller,
-                      )),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _NationalityField(
-                          nationality: state.nationality,
-                          controller: controller,
-                        ),
                       ),
-                      Flexible(
-                          child: _FiliationField(
+                    ),
+                  ]),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _NationalityField(
+                        nationality: state.nationality,
+                        controller: controller,
+                      ),
+                    ),
+                    Flexible(
+                      child: _FiliationField(
                         filiation: state.filiation,
                         controller: controller,
-                      )),
-                    ]),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 36, bottom: 16),
-                      child: heading2,
-                    ),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _FormDeficiency(
-                          controller: controller,
-                          state: state,
-                        ),
-                      ),
-                      Flexible(
-                        child: _FoodRestrictionField(
-                          foodRestriction: state.foodRestrictions,
-                          controller: controller,
-                        ),
-                      ),
-                    ]),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 56),
-                      child: SubmitButtonsRow(
-                        onSubmitAndGo: () {
-                          if (_formKey.currentState!.validate()) {
-                            controller.submitPersonalForm(widget.editMode);
-                          }
-                        },
-                        onSubmitAndStay: () {
-                          if (_formKey.currentState!.validate()) {
-                            controller.submitPersonalForm(widget.editMode);
-                          }
-                        },
                       ),
                     ),
-                  ],
-                ),
+                  ]),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 36, bottom: 16),
+                    child: heading2,
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _FormDeficiency(
+                        controller: controller,
+                        state: state,
+                      ),
+                    ),
+                    Flexible(
+                      child: _FoodRestrictionField(
+                        foodRestriction: state.foodRestrictions,
+                        controller: controller,
+                      ),
+                    ),
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
+                    child: SubmitButtonsRow(
+                      onSubmitAndGo: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitPersonalForm(widget.editMode);
+                        }
+                      },
+                      onSubmitAndStay: () {
+                        if (_formKey.currentState!.validate()) {
+                          controller.submitPersonalForm(widget.editMode);
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

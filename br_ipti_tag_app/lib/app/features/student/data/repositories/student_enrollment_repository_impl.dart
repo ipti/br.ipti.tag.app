@@ -16,9 +16,12 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   Future<Either<Exception, StudentEnrollment>> getById(int id) async {
     try {
       final result = await _enrollmenrRemoteDataSource.getById(id);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
@@ -30,16 +33,23 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
       final result = await _enrollmenrRemoteDataSource.getByStudentId(
         studentId,
       );
+
       return Right(result);
     } catch (e) {
-      debugPrint(e.toString());
-      return Left(Exception("Não foi possível listar"));
+      debugPrint(
+        e.toString(),
+      );
+
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
   @override
   Future<Either<Exception, StudentEnrollment>> create(
-      StudentEnrollment studentEnrollment) async {
+    StudentEnrollment studentEnrollment,
+  ) async {
     try {
       final result = await _enrollmenrRemoteDataSource.create(
         StudentEnrollmentModel.fromEntity(studentEnrollment),
@@ -47,13 +57,17 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudante"));
+      return Left(
+        Exception("Não foi possível adicionar estudante"),
+      );
     }
   }
 
   @override
   Future<Either<Exception, StudentEnrollment>> update(
-      String id, StudentEnrollment studentEnrollment) async {
+    String id,
+    StudentEnrollment studentEnrollment,
+  ) async {
     try {
       final result = await _enrollmenrRemoteDataSource.update(
         id,
@@ -62,7 +76,9 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível alterar estudante"));
+      return Left(
+        Exception("Não foi possível alterar estudante"),
+      );
     }
   }
 }

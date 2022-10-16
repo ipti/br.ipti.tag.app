@@ -42,10 +42,13 @@ class EdCensoUfModel extends EdCensoUF {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory EdCensoUfModel.fromJson(String source) =>
-      EdCensoUfModel.fromMap(json.decode(source));
+  factory EdCensoUfModel.fromJson(String source) => EdCensoUfModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

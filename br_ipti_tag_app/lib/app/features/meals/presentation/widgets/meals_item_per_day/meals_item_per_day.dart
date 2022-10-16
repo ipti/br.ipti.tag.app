@@ -47,12 +47,13 @@ class MealsItemDay extends StatelessWidget {
           itemCount: meals.length,
           itemBuilder: (context, index) {
             final meal = meals[index];
+
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: InkWell(
                 onTap: () => Modular.to.pushNamed("details", arguments: {
                   'meal': meal,
-                  'mealComponent': meal.components[0]
+                  'mealComponent': meal.components[0],
                 }),
                 child: MealItem(
                   meal: meal,

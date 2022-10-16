@@ -95,6 +95,7 @@ class StudentEnrollment {
     this.status,
   });
 
+  // ignore: long-method
   StudentEnrollment copyWith({
     String? id,
     int? oldId,

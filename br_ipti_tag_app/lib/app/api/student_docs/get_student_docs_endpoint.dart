@@ -30,6 +30,7 @@ class GetStudentDocsEndPoint extends EndPointAPI {
         if (studentId != null) {
           params.addEntries([MapEntry("student", studentId)]);
         }
+
         return params;
       };
 }

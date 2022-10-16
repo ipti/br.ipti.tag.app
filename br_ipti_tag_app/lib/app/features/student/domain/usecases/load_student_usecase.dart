@@ -10,8 +10,11 @@ class LoadStudentUsecase implements Usecase<Student, LoadStudentParams> {
 
   @override
   Future<Either<Exception, Student>> call(LoadStudentParams params) async {
-    final result = await _repositoryStudent.getById(params.studentId,
-        schoolId: params.schoolId);
+    final result = await _repositoryStudent.getById(
+      params.studentId,
+      schoolId: params.schoolId,
+    );
+
     return result;
   }
 }

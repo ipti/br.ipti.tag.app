@@ -17,7 +17,8 @@ class TeacherPage extends StatefulWidget {
   TeacherPageState createState() => TeacherPageState();
 }
 
-class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
+class TeacherPageState extends State<TeacherPage> {
+  final controller = Modular.get<TeacherListBloc>();
   @override
   void initState() {
     controller.fetchListTeachersEvent();
@@ -46,16 +47,23 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
         bloc: controller,
         builder: (context, state) {
           if (state.loading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
+
           return TagDataTable(
             onTapRow: (row) => Modular.to.pushNamed(
               "registro/editar",
               arguments: state.teachers[row],
             ),
             columns: const [
-              DataColumn(label: Text("Nome")),
-              DataColumn(label: Text("Email")),
+              DataColumn(
+                label: Text("Nome"),
+              ),
+              DataColumn(
+                label: Text("Email"),
+              ),
             ],
             source: TeacherDatatable(
               data: state.teachers,
@@ -77,8 +85,12 @@ class TeacherDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name!.toUpperCase())),
-      DataCell(Text(data[index].email ?? " - ")),
+      DataCell(Text(
+        data[index].name!.toUpperCase(),
+      )),
+      DataCell(
+        Text(data[index].email ?? " - "),
+      ),
     ]);
   }
 
@@ -101,8 +113,12 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final isDesktop = MediaQuery.of(context).size.width > 992;
+
     return Container(
       height: maxExtent,
       color: TagColors.colorBaseWhiteNormal,

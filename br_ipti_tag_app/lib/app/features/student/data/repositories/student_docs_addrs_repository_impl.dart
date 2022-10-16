@@ -16,22 +16,29 @@ class StudentDocumentsAddressRepositoryImpl
   Future<Either<Exception, StudentDocsAddress>> getByStudentId(int id) async {
     try {
       final result = await _addressRemoteDataSource.getByStudentId(id);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
   @override
   Future<Either<Exception, StudentDocsAddress>> create(
-      StudentDocsAddress studentDocuments) async {
+    StudentDocsAddress studentDocuments,
+  ) async {
     try {
       final result = await _addressRemoteDataSource.create(
         StudentDocumentsAddressModel.fromEntity(studentDocuments),
       );
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível adicionar estudante"));
+      return Left(
+        Exception("Não foi possível adicionar estudante"),
+      );
     }
   }
 
@@ -48,7 +55,9 @@ class StudentDocumentsAddressRepositoryImpl
 
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível alterar estudante"));
+      return Left(
+        Exception("Não foi possível alterar estudante"),
+      );
     }
   }
 }

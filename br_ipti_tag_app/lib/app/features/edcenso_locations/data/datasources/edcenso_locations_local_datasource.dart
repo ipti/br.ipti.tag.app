@@ -9,8 +9,11 @@ class EdcensoLocationsLocalDatasource {
     final stringJson = _sharedPreferences.getStringList("EDCENSO_CITIES");
 
     if (stringJson != null) {
-      final mappedList =
-          stringJson.map((e) => EdCensoCityModel.fromJson(e)).toList();
+      final mappedList = stringJson
+          .map(
+            (e) => EdCensoCityModel.fromJson(e),
+          )
+          .toList();
 
       if (edcensoUfId != null) {
         return mappedList
@@ -29,7 +32,11 @@ class EdcensoLocationsLocalDatasource {
   ) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
-    final encodedJson = cities.map((e) => e.toJson()).toList();
+    final encodedJson = cities
+        .map(
+          (e) => e.toJson(),
+        )
+        .toList();
 
     await _sharedPreferences.setStringList("EDCENSO_CITIES", encodedJson);
 

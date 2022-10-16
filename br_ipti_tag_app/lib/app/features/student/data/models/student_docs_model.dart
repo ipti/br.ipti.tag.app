@@ -149,7 +149,8 @@ class StudentDocumentsAddressModel extends StudentDocsAddress {
   }
 
   factory StudentDocumentsAddressModel.fromEntity(
-      StudentDocsAddress studentDocuments) {
+    StudentDocsAddress studentDocuments,
+  ) {
     return StudentDocumentsAddressModel(
       id: studentDocuments.id,
       registerType: studentDocuments.registerType,
@@ -291,10 +292,14 @@ class StudentDocumentsAddressModel extends StudentDocsAddress {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   factory StudentDocumentsAddressModel.fromJson(String source) =>
-      StudentDocumentsAddressModel.fromMap(json.decode(source));
+      StudentDocumentsAddressModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

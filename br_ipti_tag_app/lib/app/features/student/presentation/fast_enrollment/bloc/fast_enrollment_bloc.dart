@@ -8,7 +8,9 @@ import 'fast_enrollment_states.dart';
 class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
   FastEnrollmentBloc(
     this._enrollmentUsecase,
-  ) : super(const FastEnrollmentState());
+  ) : super(
+          const FastEnrollmentState(),
+        );
 
   final FastEnrollmentUsecase _enrollmentUsecase;
 
@@ -34,7 +36,7 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
   final nationalityItems = <int, String>{
     1: "Brasileira",
     2: "Brasileira: Nascido no exterior ou Naturalizado",
-    3: "Estrangeira"
+    3: "Estrangeira",
   };
 
   final residenceZoneItems = <int, String>{
@@ -47,25 +49,47 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
     2: "Turma 2",
   };
 
-  void setName(String value) => emit(state.copyWith(name: value));
-  void setCPF(String value) => emit(state.copyWith(name: value));
-  void setBirthday(String value) => emit(state.copyWith(birthday: value));
-  void setSex(int? value) => emit(state.copyWith(sex: value));
-  void setColorRace(int? value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(int? value) => emit(state.copyWith(filiation: value));
-  void setNationality(int? value) => emit(state.copyWith(nationality: value));
-  void setResidenceZone(int? value) => emit(state.copyWith(
-        residenceZone: value,
-      ));
-  void setDeficiency({required bool? value}) => emit(state.copyWith(
-        deficiency: value,
-      ));
-  void setFoodRestriction(String value) => emit(state.copyWith(
-        foodRestrictions: value,
-      ));
+  void setName(String value) => emit(
+        state.copyWith(name: value),
+      );
+  void setCPF(String value) => emit(
+        state.copyWith(name: value),
+      );
+  void setBirthday(String value) => emit(
+        state.copyWith(birthday: value),
+      );
+  void setSex(int? value) => emit(
+        state.copyWith(sex: value),
+      );
+  void setColorRace(int? value) => emit(
+        state.copyWith(colorRace: value),
+      );
+  void setFiliation(int? value) => emit(
+        state.copyWith(filiation: value),
+      );
+  void setNationality(int? value) => emit(
+        state.copyWith(nationality: value),
+      );
+  void setResidenceZone(int? value) => emit(
+        state.copyWith(
+          residenceZone: value,
+        ),
+      );
+  void setDeficiency({required bool? value}) => emit(
+        state.copyWith(
+          deficiency: value,
+        ),
+      );
+  void setFoodRestriction(String value) => emit(
+        state.copyWith(
+          foodRestrictions: value,
+        ),
+      );
 
   // Turma
-  void setStudentClass(int? value) => emit(state.copyWith(studentClass: value));
+  void setStudentClass(int? value) => emit(
+        state.copyWith(studentClass: value),
+      );
 
   Future<void> submitPersonalForm() async {
     final student = Student(
@@ -79,8 +103,13 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
       foodRestrictions: state.foodRestrictions,
     );
 
-    final result = await _enrollmentUsecase(EnrollmentParams(student));
-    result.fold((l) => null, (r) => emit(state));
+    final result = await _enrollmentUsecase(
+      EnrollmentParams(student),
+    );
+    result.fold(
+      (l) => null,
+      (r) => emit(state),
+    );
   }
 
   void tabNavigation(int index) {

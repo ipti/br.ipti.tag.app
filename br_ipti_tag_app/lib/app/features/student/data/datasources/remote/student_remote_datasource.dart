@@ -20,7 +20,9 @@ class StudentRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) => StudentModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => StudentModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;

@@ -31,6 +31,7 @@ class SchoolRemoteDataSource implements DataSource<SchoolEntity, SchoolModel> {
     );
 
     final data = SchoolModel.fromMap(response.data!);
+
     return data;
   }
 
@@ -40,6 +41,7 @@ class SchoolRemoteDataSource implements DataSource<SchoolEntity, SchoolModel> {
       route: PutSchoolEndPoint(uuid, schoolDto),
     );
     final data = SchoolModel.fromMap(response.data!);
+
     return data;
   }
 

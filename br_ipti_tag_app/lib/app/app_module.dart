@@ -18,11 +18,23 @@ class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
   final List<Bind> binds = [
-    Bind.singleton<SessionService>((i) => SessionServiceImpl()),
-    Bind.singleton<SessionBloc>((i) => SessionBloc(i.get())),
-    Bind.singleton((i) => PackageInfoServiceImpl()),
-    Bind.factory((i) => ClientHTTPConfiguration.apply(Dio())),
-    Bind.factory((i) => RouterAPI(i.get<Dio>()))
+    Bind.singleton<SessionService>(
+      (i) => SessionServiceImpl(),
+    ),
+    Bind.singleton<SessionBloc>((i) => SessionBloc(
+          i.get<SessionService>(),
+        )),
+    Bind.singleton(
+      (i) => PackageInfoServiceImpl(),
+    ),
+    Bind.factory((i) => ClientHTTPConfiguration.apply(
+          Dio(),
+        )),
+    Bind.factory(
+      (i) => RouterAPI(
+        i.get<Dio>(),
+      ),
+    ),
   ];
 
   // Provide all the routes for your module
@@ -57,6 +69,6 @@ class AppModule extends Module {
       "/escola",
       module: SchoolModule(),
       transition: TransitionType.noTransition,
-    )
+    ),
   ];
 }

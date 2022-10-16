@@ -20,6 +20,7 @@ class SocialForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = controller.state;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

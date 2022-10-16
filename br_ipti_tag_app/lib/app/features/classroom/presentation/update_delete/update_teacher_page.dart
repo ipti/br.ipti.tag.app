@@ -37,29 +37,37 @@ class _ClassroomTeacherPageState extends State<ClassroomTeacherPage> {
       child: Column(
         children: [
           BlocBuilder<UpdateTeacherBloc, UpdateTeacherState>(
-              bloc: controller,
-              builder: (context, state) {
-                if (state is UpdateTeacherStateLoading) {
-                  return const CircularProgressIndicator();
-                }
-                if (state is UpdateTeacherStateSuccess) {
-                  return TagDataTable(
-                    columns: const [
-                      DataColumn(label: Text("Nome")),
-                      DataColumn(label: Text("Etapa")),
-                      DataColumn(label: Text("")),
-                    ],
-                    source: InstructorDatatable(
-                      data: state.instructors,
-                      disciplines: state.disciplinesOfInstructor,
-                      classroomId: widget.classroomId,
-                      context: context,
-                      instructorTeachingData: state.instructorsTeachingData,
+            bloc: controller,
+            builder: (context, state) {
+              if (state is UpdateTeacherStateLoading) {
+                return const CircularProgressIndicator();
+              }
+              if (state is UpdateTeacherStateSuccess) {
+                return TagDataTable(
+                  columns: const [
+                    DataColumn(
+                      label: Text("Nome"),
                     ),
-                  );
-                }
-                return Container();
-              }),
+                    DataColumn(
+                      label: Text("Etapa"),
+                    ),
+                    DataColumn(
+                      label: Text(""),
+                    ),
+                  ],
+                  source: InstructorDatatable(
+                    data: state.instructors,
+                    disciplines: state.disciplinesOfInstructor,
+                    classroomId: widget.classroomId,
+                    context: context,
+                    instructorTeachingData: state.instructorsTeachingData,
+                  ),
+                );
+              }
+
+              return Container();
+            },
+          ),
           TagButtonIcon(
             buttonStyle: ElevatedButton.styleFrom(
               elevation: 0,
@@ -132,20 +140,25 @@ class InstructorDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(disciplines[index].map((e) => e.name).join(','))),
+      DataCell(Text(
+        data[index].name.toUpperCase(),
+      )),
+      DataCell(Text(
+        disciplines[index].map((e) => e.name).join(','),
+      )),
       DataCell(
         GestureDetector(
           onTap: () async => showDialog(
-              context: context,
-              builder: (context) {
-                return AddTeacherDialog(
-                  classroomId: classroomId,
-                  disciplineIdFk: disciplines[index].first.id,
-                  instructorEntity: data[index],
-                  instructorTeachingDataEntity: instructorTeachingData[index],
-                );
-              }),
+            context: context,
+            builder: (context) {
+              return AddTeacherDialog(
+                classroomId: classroomId,
+                disciplineIdFk: disciplines[index].first.id,
+                instructorEntity: data[index],
+                instructorTeachingDataEntity: instructorTeachingData[index],
+              );
+            },
+          ),
           child: const Icon(
             Icons.edit,
           ),

@@ -26,8 +26,7 @@ dart_code_metrics:
     - prefer-trailing-comma
     - prefer-conditional-expressions
     - no-equal-then-else
-  anti-patterns:
-    - long-method
+  anti-patterns:    
     - long-parameter-list
 
 

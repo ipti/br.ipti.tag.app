@@ -84,6 +84,7 @@ class InstructorModel extends Instructor {
     super.updatedAt,
   });
 
+  // ignore: long-parameter-list
   Instructor copyWith({
     String? neighborhood,
     String? complement,
@@ -434,11 +435,15 @@ class InstructorModel extends Instructor {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory InstructorModel.fromJson(String source) =>
-      InstructorModel.fromMap(json.decode(source));
+  factory InstructorModel.fromJson(String source) => InstructorModel.fromMap(
+        json.decode(source),
+      );
 
+  // ignore: long-method
   factory InstructorModel.fromEntity(Instructor entity) {
     return InstructorModel(
       neighborhood: entity.neighborhood,
@@ -534,6 +539,7 @@ class InstructorModel extends Instructor {
   }
 
   @override
+  // ignore: long-method
   int get hashCode {
     return neighborhood.hashCode ^
         complement.hashCode ^
@@ -616,6 +622,7 @@ class InstructorModel extends Instructor {
   }
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 

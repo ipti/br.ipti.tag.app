@@ -47,6 +47,6 @@ class InstructorTeachingDataCreateModel
         "discipline_12_fk": discipline12Fk,
         "discipline_13_fk": discipline13Fk,
         "discipline_14_fk": discipline14Fk,
-        "discipline_15_fk": discipline15Fk
+        "discipline_15_fk": discipline15Fk,
       };
 }

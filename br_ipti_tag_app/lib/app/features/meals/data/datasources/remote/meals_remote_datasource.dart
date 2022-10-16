@@ -14,8 +14,11 @@ class MealsMenuRemoteDataSource {
       route: GetFoodMenuEndPoint(),
     );
 
-    final List<FoodMenuModel> mappedList =
-        response.data!.map((e) => FoodMenuModel.fromMap(e)).toList();
+    final List<FoodMenuModel> mappedList = response.data!
+        .map(
+          (e) => FoodMenuModel.fromMap(e),
+        )
+        .toList();
 
     return mappedList;
   }

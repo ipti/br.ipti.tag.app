@@ -19,10 +19,13 @@ class ListMealsPage extends StatefulWidget {
   ListMealsPageState createState() => ListMealsPageState();
 }
 
-class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
+class ListMealsPageState extends State<ListMealsPage> {
+  final controller = Modular.get<ListMealsBloc>();
   @override
   void initState() {
-    controller.add(GetListMealsEvent());
+    controller.add(
+      GetListMealsEvent(),
+    );
     super.initState();
   }
 
@@ -31,9 +34,10 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
     final pageController = PageController();
 
     const labelStyle = TextStyle(
-        color: TagColors.colorBaseInkNormal,
-        fontWeight: FontWeight.w600,
-        fontSize: 14);
+      color: TagColors.colorBaseInkNormal,
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+    );
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
@@ -54,19 +58,25 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
                     labelColor: TagColors.colorBaseProductDark,
                     indicatorColor: TagColors.colorBaseProductDark,
                     labelStyle: labelStyle,
-                    onTap: (index) => pageController.animateToPage(index,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn),
+                    onTap: (index) => pageController.animateToPage(
+                      index,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeIn,
+                    ),
                     labelPadding: const EdgeInsets.symmetric(horizontal: 8),
                     tabs: state.mealsOfDay
-                        .map((e) => Tab(child: Text(e.fullnameDay!)))
+                        .map((e) => Tab(
+                              child: Text(e.fullnameDay!),
+                            ))
                         .toList(),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height,
                     child: TabBarView(
                       children: state.mealsOfDay
-                          .map((e) => _DailyMeals(mealsOfDay: e))
+                          .map(
+                            (e) => _DailyMeals(mealsOfDay: e),
+                          )
                           .toList(),
                     ),
                   ),
@@ -74,6 +84,7 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
               ),
             );
           }
+
           return const CircularProgressIndicator();
         },
       ),
@@ -137,7 +148,7 @@ class _FilterStudentType extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -156,9 +167,13 @@ class _FilterTurn extends StatelessWidget {
       return _FilterButton(
         onPressed: (bool isActive) {
           if (isActive) {
-            controller.add(FilterByTurnEvent(turn));
+            controller.add(
+              FilterByTurnEvent(turn),
+            );
           } else {
-            controller.add(CleanFilterByTurnEvent(turn));
+            controller.add(
+              CleanFilterByTurnEvent(turn),
+            );
           }
         },
         child: Text(
@@ -169,6 +184,7 @@ class _FilterTurn extends StatelessWidget {
         ),
       );
     }).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -182,7 +198,7 @@ class _FilterTurn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: buttons,
           ),
-        )
+        ),
       ],
     );
   }

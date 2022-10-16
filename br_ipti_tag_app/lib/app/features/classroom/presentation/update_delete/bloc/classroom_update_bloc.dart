@@ -83,8 +83,10 @@ class ClassroomUpdateDeleteBloc
         ),
       );
   @override
+  // ignore: long-method
   Stream<ClassroomUpdateDeleteState> mapEventToState(
-      ClassroomUpdateDeleteEvent event) async* {
+    ClassroomUpdateDeleteEvent event,
+  ) async* {
     ClassroomUpdateDeleteState newState = state;
     if (event is NameChanged) {
       newState =
@@ -263,17 +265,27 @@ class ClassroomUpdateDeleteBloc
           schooling: value,
         ),
       );
-  void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
+  void setEndTime(TimeOfDay endTime) => add(
+        EndTimeChanged(endTime),
+      );
   void setMediacao(int? mediacao) => add(
         TypePedagogicalMediationChanged(
           mediacao!,
         ),
       );
-  void setModality(int? modalityId) => add(ModalityChanged(modalityId!));
-  void setName(String name) => add(NameChanged(name));
-  void setStage(int? stageId) => add(StageChanged(stageId!));
+  void setModality(int? modalityId) => add(
+        ModalityChanged(modalityId!),
+      );
+  void setName(String name) => add(
+        NameChanged(name),
+      );
+  void setStage(int? stageId) => add(
+        StageChanged(stageId!),
+      );
 
-  void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
+  void setStartTime(TimeOfDay startTime) => add(
+        StartTimeChanged(startTime),
+      );
 
   String _getEdcensoStage(int idEdcenso) {
     switch (idEdcenso) {

@@ -35,20 +35,24 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                   maxWidth: MediaQuery.of(context).size.width / 3 * 2,
                 ),
                 child: BlocBuilder<SessionBloc, SessionState>(
-                    bloc: sessionController,
-                    builder: (context, state) {
-                      final schools = state.schools ?? [];
-                      return TagDropdownField<School>(
-                        label: "",
-                        value: state.currentSchool,
-                        onChanged: (school) => sessionController.changeSchool(
-                          school!,
-                        ),
-                        items: Map.fromEntries(schools.map(
+                  bloc: sessionController,
+                  builder: (context, state) {
+                    final schools = state.schools ?? [];
+
+                    return TagDropdownField<School>(
+                      label: "",
+                      value: state.currentSchool,
+                      onChanged: (school) => sessionController.changeSchool(
+                        school!,
+                      ),
+                      items: Map.fromEntries(
+                        schools.map(
                           (e) => MapEntry(e, e.name!),
-                        )),
-                      );
-                    }),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

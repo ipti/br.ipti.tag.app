@@ -19,7 +19,9 @@ class AuthLoginPage extends StatefulWidget {
   AuthLoginPageState createState() => AuthLoginPageState();
 }
 
-class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
+class AuthLoginPageState extends State<AuthLoginPage> {
+  final controller = Modular.get<LoginBloc>();
+
   @override
   void initState() {
     controller.verifyAuthToken();
@@ -68,8 +70,11 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
                         builder: (context, state) {
                           if (state is LoginLoadedState) {
                             return _Footer(
-                                version: state.appVersion, year: state.year);
+                              version: state.appVersion,
+                              year: state.year,
+                            );
                           }
+
                           return _Footer(
                             version: "0.0.0",
                             year: controller.yearSequence.first.toString(),
@@ -152,6 +157,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final focus = FocusNode();
+
     return RawKeyboardListener(
       autofocus: true,
       focusNode: focus,
@@ -184,9 +190,15 @@ class Body extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  withPadding(inputUsername(controller.username)),
-                  withPadding(inputPassword(controller.password)),
-                  withPadding(dropdownYear(controller.schoolYear)),
+                  withPadding(
+                    inputUsername(controller.username),
+                  ),
+                  withPadding(
+                    inputPassword(controller.password),
+                  ),
+                  withPadding(
+                    dropdownYear(controller.schoolYear),
+                  ),
                   Flexible(
                     child: withPadding(
                       TagButton(
@@ -256,7 +268,7 @@ class _Footer extends StatelessWidget {
                 TextSpan(text: year),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

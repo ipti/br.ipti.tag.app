@@ -11,26 +11,39 @@ class SchoolModule extends Module {
   // TODO: implement binds
   List<Bind<Object>> get binds => [
         // Datasources
-        Bind.singleton((i) => SchoolRemoteDataSource(i.get())),
+        Bind.singleton((i) => SchoolRemoteDataSource(
+              i.get(),
+            )),
 
         // Repositories
-        Bind.singleton((i) => SchoolRepositoryImpl(i.get())),
+        Bind.singleton((i) => SchoolRepositoryImpl(
+              i.get(),
+            )),
 
         // UseCases
-        Bind.singleton((i) => EditSchoolUsecase(
-              i.get<SchoolRepositoryImpl>(),
+        Bind.singleton(
+          (i) => EditSchoolUsecase(
+            i.get<SchoolRepositoryImpl>(),
+          ),
+        ),
+        Bind.singleton((i) => ShowSchoolUsecase(
+              i.get(),
             )),
-        Bind.singleton((i) => ShowSchoolUsecase(i.get())),
 
         // Cubic(States)
-        Bind.singleton((i) => SchoolCubit(
-              i.get<EditSchoolUsecase>(),
-              i.get<ShowSchoolUsecase>(),
-            ))
+        Bind.singleton(
+          (i) => SchoolCubit(
+            i.get<EditSchoolUsecase>(),
+            i.get<ShowSchoolUsecase>(),
+          ),
+        ),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute("/editar", child: (_, args) => const SchoolEditPage()),
+        ChildRoute(
+          "/editar",
+          child: (_, args) => const SchoolEditPage(),
+        ),
       ];
 }

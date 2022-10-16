@@ -11,21 +11,35 @@ class TeacherModule extends Module {
   @override
   final List<Bind> binds = [
     // datasources
-    Bind.factory((i) => TeacherRemoteDataSource(i.get())),
+    Bind.factory((i) => TeacherRemoteDataSource(
+          i.get(),
+        )),
 
     // repositories
-    Bind.factory((i) => InstructorRepositoryImpl(i.get())),
+    Bind.factory((i) => InstructorRepositoryImpl(
+          i.get(),
+        )),
 
     // usecases
-    Bind.factory((i) => ListInstructorsUsecase(i.get())),
+    Bind.factory((i) => ListInstructorsUsecase(
+          i.get(),
+        )),
 
     // list
-    Bind.factory((i) => TeacherListBloc(i.get())),
+    Bind.factory((i) => TeacherListBloc(
+          i.get(),
+        )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const TeacherPage()),
-    ModuleRoute("/registro", module: CreateInstructorModule()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const TeacherPage(),
+    ),
+    ModuleRoute(
+      "/registro",
+      module: CreateInstructorModule(),
+    ),
   ];
 }

@@ -8,6 +8,7 @@ class SchoolEducationalDataTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController _controllerEducationalData = ScrollController();
+
     return Scrollbar(
       thumbVisibility: true,
       controller: _controllerEducationalData,

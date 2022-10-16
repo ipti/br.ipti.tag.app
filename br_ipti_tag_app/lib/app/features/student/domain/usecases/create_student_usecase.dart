@@ -12,6 +12,7 @@ class CreateStudentsUsecase implements Usecase<Student, CreateStudentParams> {
   @override
   Future<Either<Exception, Student>> call(CreateStudentParams params) async {
     final result = await _repositoryStudent.create(params.student);
+
     return result;
   }
 }

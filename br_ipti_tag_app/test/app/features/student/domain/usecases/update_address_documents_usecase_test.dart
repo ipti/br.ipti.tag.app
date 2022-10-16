@@ -11,49 +11,72 @@ class MockStudentDocumentsAddressRepository extends Mock
     implements StudentDocumentsAddressRepository {}
 
 void main() {
-  testWidgets("UpdateDocumentsAndAddressUsecase when update a right value",
-      (tester) async {
-    final studentDocsAddress = StudentDocsAddress(
+  testWidgets(
+    "UpdateDocumentsAndAddressUsecase when update a right value",
+    (tester) async {
+      final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk");
-    final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.update('', studentDocsAddress))
-        .thenAnswer((invocation) => Future.value(right(studentDocsAddress)));
+        edcensoCityFk: "edcensoCityFk",
+      );
+      final repository = MockStudentDocumentsAddressRepository();
+      when(
+        () => repository.update('', studentDocsAddress),
+      ).thenAnswer((invocation) => Future.value(
+            right(studentDocsAddress),
+          ));
 
-    final usercase = UpdateDocumentsAndAddressUsecase(repository);
-    final params = UpdateDocumentsAndAddressParams(
-        studentDocsId: '', studentDocumentsAndAddress: studentDocsAddress);
+      final usercase = UpdateDocumentsAndAddressUsecase(repository);
+      final params = UpdateDocumentsAndAddressParams(
+        studentDocsId: '',
+        studentDocumentsAndAddress: studentDocsAddress,
+      );
 
-    final either = await usercase(params);
-    expect(either.isRight(), isTrue);
+      final either = await usercase(params);
+      expect(either.isRight(), isTrue);
 
-    final result = either.fold(id, id);
-    expect(result, isA<StudentDocsAddress>());
-  });
-  testWidgets("UpdateDocumentsAndAddressUsecase when update a left value",
-      (tester) async {
-    final studentDocsAddress = StudentDocsAddress(
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<StudentDocsAddress>(),
+      );
+    },
+  );
+  testWidgets(
+    "UpdateDocumentsAndAddressUsecase when update a left value",
+    (tester) async {
+      final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk");
-    final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.update('', studentDocsAddress)).thenAnswer(
-        (invocation) =>
-            Future.value(left(const SocketException("Ocorreu um erro"))));
+        edcensoCityFk: "edcensoCityFk",
+      );
+      final repository = MockStudentDocumentsAddressRepository();
+      when(
+        () => repository.update('', studentDocsAddress),
+      ).thenAnswer(
+        (invocation) => Future.value(left(
+          const SocketException("Ocorreu um erro"),
+        )),
+      );
 
-    final usercase = UpdateDocumentsAndAddressUsecase(repository);
-    final params = UpdateDocumentsAndAddressParams(
-        studentDocsId: '', studentDocumentsAndAddress: studentDocsAddress);
+      final usercase = UpdateDocumentsAndAddressUsecase(repository);
+      final params = UpdateDocumentsAndAddressParams(
+        studentDocsId: '',
+        studentDocumentsAndAddress: studentDocsAddress,
+      );
 
-    final either = await usercase(params);
-    expect(either.isLeft(), isTrue);
+      final either = await usercase(params);
+      expect(either.isLeft(), isTrue);
 
-    final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
-  });
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<SocketException>(),
+      );
+    },
+  );
 }

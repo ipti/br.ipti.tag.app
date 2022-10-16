@@ -22,7 +22,9 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     this._listClassroomsUsecase,
     this._createStudentEnrollmentUsecase,
     this._updateStudentEnrollmentUsecase,
-  ) : super(const EmptyEnrollmentClassroomState());
+  ) : super(
+          const EmptyEnrollmentClassroomState(),
+        );
 
   final ListClassroomsUsecase _listClassroomsUsecase;
   final CreateStudentEnrollmentUsecase _createStudentEnrollmentUsecase;
@@ -31,9 +33,11 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
-  void setStudentClass(String? classroomid) => emit(state.copyWith(
-        classroomId: classroomid,
-      ));
+  void setStudentClass(String? classroomid) => emit(
+        state.copyWith(
+          classroomId: classroomid,
+        ),
+      );
 
   void setCurrentStageSituation(CurrentStageSituation? currentStageSituation) =>
       emit(
@@ -61,25 +65,28 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       );
 
   void loadStudentEnrollment(StudentEnrollment studentEnrollment) {
-    emit(state.copyWith(
-      studentEnrollment: studentEnrollment,
-      classroomId: studentEnrollment.classroomFk,
-      anotherScholarizationPlace: studentEnrollment.anotherScholarizationPlace,
-      currentStageSituation: CurrentStageSituation.values.byId(
-        studentEnrollment.currentStageSituation,
+    emit(
+      state.copyWith(
+        studentEnrollment: studentEnrollment,
+        classroomId: studentEnrollment.classroomFk,
+        anotherScholarizationPlace:
+            studentEnrollment.anotherScholarizationPlace,
+        currentStageSituation: CurrentStageSituation.values.byId(
+          studentEnrollment.currentStageSituation,
+        ),
+        edcensoStageVsModalityFk: studentEnrollment.edcensoStageVsModalityFk,
+        // stage: Stage.values.byId(studentEnrollment.stage),
+        status: studentEnrollment.status,
+        unifiedClass: UnifiedClass.values.byId(studentEnrollment.unifiedClass),
+        schoolAdmissionDate: studentEnrollment.schoolAdmissionDate,
+        studentEntryForm: AdmissionType.values.byId(
+          studentEnrollment.studentEntryForm,
+        ),
+        previousStageSituation: PreviousStageSituation.values.byId(
+          studentEnrollment.previousStageSituation,
+        ),
       ),
-      edcensoStageVsModalityFk: studentEnrollment.edcensoStageVsModalityFk,
-      // stage: Stage.values.byId(studentEnrollment.stage),
-      status: studentEnrollment.status,
-      unifiedClass: UnifiedClass.values.byId(studentEnrollment.unifiedClass),
-      schoolAdmissionDate: studentEnrollment.schoolAdmissionDate,
-      studentEntryForm: AdmissionType.values.byId(
-        studentEnrollment.studentEntryForm,
-      ),
-      previousStageSituation: PreviousStageSituation.values.byId(
-        studentEnrollment.previousStageSituation,
-      ),
-    ));
+    );
   }
 
   Future fetchClassrooms() async {
@@ -146,7 +153,9 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     final result = await _createStudentEnrollmentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (studentEnrollment) {
         _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
         _enrollmentBloc.notifySuccess(
@@ -165,7 +174,9 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     final result = await _updateStudentEnrollmentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (studentEnrollment) {
         _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
         _enrollmentBloc.notifySuccess(

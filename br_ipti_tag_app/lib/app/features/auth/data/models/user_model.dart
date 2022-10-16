@@ -29,27 +29,37 @@ class UserModel extends User {
     return {
       'id': id,
       'name': name,
-      'schools': schools?.map((x) => (x as SchoolModel).toMap()).toList(),
+      'schools': schools
+          ?.map(
+            (x) => (x as SchoolModel).toMap(),
+          )
+          .toList(),
       'username': username,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     final schools = List.from(map['schools'] ?? []);
+
     return UserModel(
       id: map['id'],
       name: map['name'],
       schools: List<SchoolModel>.from(
-        schools.map((x) => SchoolModel.fromMap(x)),
+        schools.map(
+          (x) => SchoolModel.fromMap(x),
+        ),
       ),
       username: map['username'],
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source));
+  factory UserModel.fromJson(String source) => UserModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

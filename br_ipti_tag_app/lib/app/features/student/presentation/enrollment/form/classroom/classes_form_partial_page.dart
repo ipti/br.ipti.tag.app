@@ -51,94 +51,94 @@ class ClassesFormPageState extends State<ClassesFormPage> {
 
     return SingleChildScrollView(
       child: BlocBuilder<EnrollmentClassroomBloc, EnrollmentClassroomState>(
-          bloc: controller,
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _AdmissionDateField(
-                            schoolAdmissionDate: state.schoolAdmissionDate,
-                            controller: controller,
-                          ),
+        bloc: controller,
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  withPadding(heading),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _AdmissionDateField(
+                          schoolAdmissionDate: state.schoolAdmissionDate,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _AdmissionTypeField(
-                            studentEntryForm: state.studentEntryForm,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _AdmissionTypeField(
+                          studentEntryForm: state.studentEntryForm,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _ClassroomField(
-                            classroomId: state.classroomId,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _ClassroomField(
+                          classroomId: state.classroomId,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CurrentStageField(
-                            currentStageSituation: state.currentStageSituation,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CurrentStageField(
+                          currentStageSituation: state.currentStageSituation,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _UnifiedClassField(
-                            unifiedClass: state.unifiedClass,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _UnifiedClassField(
+                          unifiedClass: state.unifiedClass,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _PreviousStageField(
-                            previousStageSituation:
-                                state.previousStageSituation,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _PreviousStageField(
+                          previousStageSituation: state.previousStageSituation,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _StageField(
-                            stage: state.stage,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _StageField(
+                          stage: state.stage,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submit(widget.editMode);
-                        }
-                      },
-                      onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submit(widget.editMode);
-                        }
-                      },
-                    ),
-                    // withPadding(selectClass(state.classroomId)),
-                  ],
-                ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  SubmitButtonsRow(
+                    onSubmitAndGo: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submit(widget.editMode);
+                      }
+                    },
+                    onSubmitAndStay: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submit(widget.editMode);
+                      }
+                    },
+                  ),
+                  // withPadding(selectClass(state.classroomId),),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -182,7 +182,9 @@ class _AdmissionTypeField extends StatelessWidget {
       value: studentEntryForm,
       onChanged: controller.setAdmissionType,
       items: Map.fromEntries(
-        AdmissionType.values.map((e) => MapEntry(e, e.name)),
+        AdmissionType.values.map(
+          (e) => MapEntry(e, e.name),
+        ),
       ),
     );
   }
@@ -207,9 +209,11 @@ class _ClassroomField extends StatelessWidget {
       value: classroomId,
       onChanged: controller.setStudentClass,
       validator: requiredValidator,
-      items: Map.fromEntries(items.map(
-        (e) => MapEntry(e.id, e.name),
-      )),
+      items: Map.fromEntries(
+        items.map(
+          (e) => MapEntry(e.id, e.name),
+        ),
+      ),
     );
   }
 }
@@ -231,7 +235,9 @@ class _CurrentStageField extends StatelessWidget {
       value: currentStageSituation,
       onChanged: controller.setCurrentStageSituation,
       items: Map.fromEntries(
-        CurrentStageSituation.values.map((e) => MapEntry(e, e.name)),
+        CurrentStageSituation.values.map(
+          (e) => MapEntry(e, e.name),
+        ),
       ),
     );
   }
@@ -254,7 +260,9 @@ class _UnifiedClassField extends StatelessWidget {
       value: unifiedClass,
       onChanged: controller.setUnifiedClass,
       items: Map.fromEntries(
-        UnifiedClass.values.map((e) => MapEntry(e, e.name)),
+        UnifiedClass.values.map(
+          (e) => MapEntry(e, e.name),
+        ),
       ),
     );
   }
@@ -302,7 +310,9 @@ class _StageField extends StatelessWidget {
       value: stage,
       onChanged: controller.setStage,
       items: Map.fromEntries(
-        Stage.values.map((e) => MapEntry(e, e.name)),
+        Stage.values.map(
+          (e) => MapEntry(e, e.name),
+        ),
       ),
     );
   }

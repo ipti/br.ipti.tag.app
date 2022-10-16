@@ -14,8 +14,8 @@ class FastEnrollmentPage extends StatefulWidget {
   FastEnrollmentPageState createState() => FastEnrollmentPageState();
 }
 
-class FastEnrollmentPageState
-    extends ModularState<FastEnrollmentPage, FastEnrollmentBloc> {
+class FastEnrollmentPageState extends State<FastEnrollmentPage> {
+  final controller = Modular.get<FastEnrollmentBloc>();
   @override
   void initState() {
     Modular.to.navigate('/alunos/matricula-rapida/personal');
@@ -30,8 +30,9 @@ class FastEnrollmentPageState
       ),
       Tab(
         child: Text("Matrícula"),
-      )
+      ),
     ];
+
     return DefaultTabController(
       length: tabs.length,
       child: TagScaffold(

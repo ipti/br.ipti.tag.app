@@ -10,7 +10,9 @@ class EdcensoLocationsModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton(
-      (i) => EdcensoLocationsRemoteDatasource(i.get()),
+      (i) => EdcensoLocationsRemoteDatasource(
+        i.get(),
+      ),
       export: true,
     ),
     Bind.singleton(
@@ -18,15 +20,22 @@ class EdcensoLocationsModule extends Module {
       export: true,
     ),
     Bind.singleton(
-      (i) => EdcensoLocationsRepositoryImpl(i.get(), i.get()),
+      (i) => EdcensoLocationsRepositoryImpl(
+        i.get(),
+        i.get(),
+      ),
       export: true,
     ),
     Bind.singleton(
-      (i) => ListCitiesUsecase(i.get()),
+      (i) => ListCitiesUsecase(
+        i.get(),
+      ),
       export: true,
     ),
     Bind.singleton(
-      (i) => ListUFsUsecase(i.get()),
+      (i) => ListUFsUsecase(
+        i.get(),
+      ),
       export: true,
     ),
   ];

@@ -34,7 +34,9 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
 
       return Right(filteredResults);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
@@ -49,7 +51,9 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
 
       return Right(results);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 }

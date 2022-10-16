@@ -18,6 +18,7 @@ class _SchoolIdTabState extends State<SchoolIdTab> {
   @override
   Widget build(BuildContext context) {
     final ScrollController _controllerId = ScrollController();
+
     return Scrollbar(
       thumbVisibility: true,
       controller: _controllerId,
@@ -29,7 +30,7 @@ class _SchoolIdTabState extends State<SchoolIdTab> {
             SchoolAdminDataForm(),
             SchoolBodiesAffiliatedDataForm(),
             SchoolBodyRegulationSphereDataForm(),
-            SchoolOthersDataForm()
+            SchoolOthersDataForm(),
           ],
         ),
       ),

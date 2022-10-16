@@ -37,174 +37,176 @@ class FiliationFormPageState extends State<FiliationFormPage> {
         Heading(text: "Mãe do aluno", type: HeadingType.Title3);
 
     return BlocBuilder<EnrollmentFiliationBloc, EnrollmentFiliationState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    headingResponsable,
-                    // Responsable
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameResponsableField(
-                            name: state.nameResponsable,
-                            controller: controller,
-                          ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  headingResponsable,
+                  // Responsable
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameResponsableField(
+                          name: state.nameResponsable,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfResponsableField(
-                            cpf: state.cpfResponsable,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfResponsableField(
+                          cpf: state.cpfResponsable,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                            child: _RGResponsableField(
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGResponsableField(
                           rg: state.rgResponsable,
                           controller: controller,
-                        )),
-                        Flexible(
-                          child: _ScholarityResponsableField(
-                            scholarity: state.scholarityResponsable,
-                            controller: controller,
-                          ),
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobResponsableField(
-                            job: state.jobResponsable,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityResponsableField(
+                          scholarity: state.scholarityResponsable,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    // Filiation1
-                    headingFiliation1,
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameFilliation1Field(
-                            name: state.nameFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobResponsableField(
+                          job: state.jobResponsable,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfFilliation1Field(
-                            cpf: state.cpfFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  // Filiation1
+                  headingFiliation1,
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameFilliation1Field(
+                          name: state.nameFiliation1,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _RGFilliation1Field(
-                            rg: state.rgFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfFilliation1Field(
+                          cpf: state.cpfFiliation1,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _ScholarityFilliation1Field(
-                            scholarity: state.scholarityFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGFilliation1Field(
+                          rg: state.rgFiliation1,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobFilliation1Field(
-                            job: state.jobFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityFilliation1Field(
+                          scholarity: state.scholarityFiliation1,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    // Filiation2
-                    headingFiliation2,
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameFilliation2Field(
-                            name: state.nameFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobFilliation1Field(
+                          job: state.jobFiliation1,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfFilliation2Field(
-                            cpf: state.cpfFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  // Filiation2
+                  headingFiliation2,
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameFilliation2Field(
+                          name: state.nameFiliation2,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _RGFilliation2Field(
-                            rg: state.rgFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfFilliation2Field(
+                          cpf: state.cpfFiliation2,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _ScholarityFilliation2Field(
-                            scholarity: state.scholarityFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGFilliation2Field(
+                          rg: state.rgFiliation2,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobFilliation2Field(
-                            job: state.jobFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityFilliation2Field(
+                          scholarity: state.scholarityFiliation2,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitFiliationForm();
-                        }
-                      },
-                      onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitFiliationForm();
-                        }
-                      },
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobFilliation2Field(
+                          job: state.jobFiliation2,
+                          controller: controller,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  SubmitButtonsRow(
+                    onSubmitAndGo: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitFiliationForm();
+                      }
+                    },
+                    onSubmitAndStay: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitFiliationForm();
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 

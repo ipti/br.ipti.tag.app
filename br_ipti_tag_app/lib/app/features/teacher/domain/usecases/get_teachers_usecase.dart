@@ -13,6 +13,7 @@ class GetInstructorsUsecase
   @override
   Future<Either<Exception, Instructor>> call(GetInstructorParams params) async {
     final result = await _repositoryInstructor.getById(params.instructorId);
+
     return result;
   }
 }

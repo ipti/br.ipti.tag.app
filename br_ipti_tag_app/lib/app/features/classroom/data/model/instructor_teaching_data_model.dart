@@ -11,10 +11,11 @@ class InstructorTeachingDataModel extends InstructorTeachingDataEntity {
 
   factory InstructorTeachingDataModel.fromJson(Map<String, dynamic> map) {
     return InstructorTeachingDataModel(
-        instructorId: map['_id'],
-        disciplineId: map['discipline_1_fk'],
-        instructorFk: map['instructor_fk'],
-        contractType: map['contract_type'],
-        role: map['role']);
+      instructorId: map['_id'],
+      disciplineId: map['discipline_1_fk'],
+      instructorFk: map['instructor_fk'],
+      contractType: map['contract_type'],
+      role: map['role'],
+    );
   }
 }

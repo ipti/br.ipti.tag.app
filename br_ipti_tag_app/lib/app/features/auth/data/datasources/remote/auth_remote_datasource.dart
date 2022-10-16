@@ -19,6 +19,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     if (response.data != null) {
       final result = AuthModel.fromMap(response.data!);
+
       return result;
     }
 

@@ -11,6 +11,7 @@ class DeleteStudentsUsecase implements Usecase<bool, DeleteStudentParams> {
   @override
   Future<Either<Exception, bool>> call(DeleteStudentParams params) async {
     final result = await _repositoryStudent.delete(params.id);
+
     return result;
   }
 }

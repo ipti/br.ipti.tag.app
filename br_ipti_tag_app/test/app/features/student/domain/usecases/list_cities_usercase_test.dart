@@ -13,8 +13,12 @@ void main() {
   group("NoParams when returns a", () {
     testWidgets("right empty value", (tester) async {
       final repository = MockStudentRepository();
-      when(() => repository.listAll(schoolId: '')).thenAnswer(
-        (realInvocation) => Future.value(right([])),
+      when(
+        () => repository.listAll(schoolId: ''),
+      ).thenAnswer(
+        (realInvocation) => Future.value(
+          right([]),
+        ),
       );
 
       final usecase = ListStudentsUsecase(repository);
@@ -29,9 +33,12 @@ void main() {
     });
     testWidgets("left ConnexionExpection", (tester) async {
       final repository = MockStudentRepository();
-      when(() => repository.listAll(schoolId: '')).thenAnswer(
-        (realInvocation) =>
-            Future.value(left(const SocketException("Conexão invalida"))),
+      when(
+        () => repository.listAll(schoolId: ''),
+      ).thenAnswer(
+        (realInvocation) => Future.value(left(
+          const SocketException("Conexão invalida"),
+        )),
       );
       final usecase = ListStudentsUsecase(repository);
       final params = NoParams();
@@ -42,7 +49,10 @@ void main() {
 
       final result = either.fold(id, id);
 
-      expect(result, isA<SocketException>());
+      expect(
+        result,
+        isA<SocketException>(),
+      );
     });
   });
 }

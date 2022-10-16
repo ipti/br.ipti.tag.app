@@ -17,8 +17,10 @@ class StudentDocumentsAndAddressRemoteDataSource {
     );
 
     final mappedList = response.data!
-        .map((e) =>
-            StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) =>
+              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;
@@ -32,8 +34,10 @@ class StudentDocumentsAndAddressRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) =>
-            StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) =>
+              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList.first;

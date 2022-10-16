@@ -6,11 +6,15 @@ import 'create_item_stock_states.dart';
 
 class CreateItemStockBloc
     extends Bloc<CreateItemStockEvent, CreateItemStockState> {
-  CreateItemStockBloc() : super(const CreateItemStockState());
+  CreateItemStockBloc()
+      : super(
+          const CreateItemStockState(),
+        );
 
   @override
   Stream<CreateItemStockState> mapEventToState(
-      CreateItemStockEvent event) async* {
+    CreateItemStockEvent event,
+  ) async* {
     yield state;
   }
 

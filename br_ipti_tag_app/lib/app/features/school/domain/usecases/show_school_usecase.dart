@@ -10,6 +10,7 @@ class ShowSchoolUsecase implements Usecase<SchoolModel, ShowSchoolParams> {
   @override
   Future<Either<Exception, SchoolModel>> call(ShowSchoolParams params) async {
     final result = await _repository.getById(params.uuid);
+
     return result;
   }
 }

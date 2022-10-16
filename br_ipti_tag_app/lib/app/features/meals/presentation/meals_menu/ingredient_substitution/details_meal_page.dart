@@ -29,6 +29,7 @@ class DetailsMealPageState extends State<DetailsMealPage> {
     const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
 
     final ingredients = widget.mealComponent.ingredients;
+
     return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.mealComponent.description,

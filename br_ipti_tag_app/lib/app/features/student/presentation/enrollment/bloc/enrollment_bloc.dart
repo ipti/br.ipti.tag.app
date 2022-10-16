@@ -12,7 +12,9 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
   EnrollmentBloc(
     this._loadStudentDocsUsecase,
     this._loadStudentEnrollmentUsecase,
-  ) : super(const EnrollmentInitialState());
+  ) : super(
+          const EnrollmentInitialState(),
+        );
 
   final LoadStudentDocsUsecase _loadStudentDocsUsecase;
   final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
@@ -36,20 +38,24 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
 
   void loadStudentDocs(StudentDocsAddress? studentDocs) {
     this.studentDocs = studentDocs;
-    emit(EnrollmentLoadedState(
-      student: student,
-      studentDocs: studentDocs,
-      studentEnrollment: studentEnrollment,
-    ));
+    emit(
+      EnrollmentLoadedState(
+        student: student,
+        studentDocs: studentDocs,
+        studentEnrollment: studentEnrollment,
+      ),
+    );
   }
 
   void loadStudentsEnrollment(StudentEnrollment studentEnrollment) {
     this.studentEnrollment = studentEnrollment;
-    emit(EnrollmentLoadedState(
-      student: student,
-      studentDocs: studentDocs,
-      studentEnrollment: studentEnrollment,
-    ));
+    emit(
+      EnrollmentLoadedState(
+        student: student,
+        studentDocs: studentDocs,
+        studentEnrollment: studentEnrollment,
+      ),
+    );
   }
 
   Future fetchStudentDocs(int studentId, String schoolId) async {
@@ -71,16 +77,22 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
   }
 
   void nextTab() {
-    emit(EnrollmentNextTabState(
-      tabIndex: tabIndex + 1,
-    ));
+    emit(
+      EnrollmentNextTabState(
+        tabIndex: tabIndex + 1,
+      ),
+    );
   }
 
   void notifyError(String message) {
-    emit(EnrollmenErrorState(message: message));
+    emit(
+      EnrollmenErrorState(message: message),
+    );
   }
 
   void notifySuccess(String message) {
-    emit(EnrollmenSuccessState(message: message));
+    emit(
+      EnrollmenSuccessState(message: message),
+    );
   }
 }

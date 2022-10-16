@@ -34,16 +34,21 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
           value: inepCode,
           validator: requiredValidator,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("PlaceHolder")),
+            child: withPadding(
+              inputSchoolName("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputInepCode("PlaceHolder")),
+            child: withPadding(
+              inputInepCode("PlaceHolder"),
+            ),
           ),
         ]),
       ],

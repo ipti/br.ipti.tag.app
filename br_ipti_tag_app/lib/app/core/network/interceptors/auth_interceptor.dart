@@ -11,6 +11,7 @@ class AuthInterceptor extends InterceptorsWrapper {
       final sessionService = SessionServiceImpl();
       final token = await sessionService.getToken();
       options.headers['Authorization'] = 'Bearer $token';
+
       return super.onRequest(options, handler);
     } catch (e) {
       return super.onRequest(options, handler);

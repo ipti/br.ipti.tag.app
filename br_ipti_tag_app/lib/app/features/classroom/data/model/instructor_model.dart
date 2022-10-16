@@ -9,8 +9,9 @@ class InstructorModel extends InstructorEntity {
 
   factory InstructorModel.fromJson(Map<String, dynamic> map) {
     return InstructorModel(
-        id: map['_id'],
-        name: map['name'],
-        schoolInepIdFk: map['school_inep_id_fk']);
+      id: map['_id'],
+      name: map['name'],
+      schoolInepIdFk: map['school_inep_id_fk'],
+    );
   }
 }

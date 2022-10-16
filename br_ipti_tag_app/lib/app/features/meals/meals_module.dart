@@ -13,27 +13,49 @@ import 'presentation/stock/stock_module.dart';
 class MealsModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.factory((i) => MealsMenuEntityMapper()),
-    Bind.singleton((i) => MealsMenuDumbDataSourceImpl()),
-    Bind.singleton((i) => MealsMenuRemoteDataSource(httpClient: i.get())),
+    Bind.factory(
+      (i) => MealsMenuEntityMapper(),
+    ),
+    Bind.singleton(
+      (i) => MealsMenuDumbDataSourceImpl(),
+    ),
+    Bind.singleton((i) => MealsMenuRemoteDataSource(
+          httpClient: i.get(),
+        )),
     Bind.singleton(
       (i) => MealsMenuRepositoryImpl(
-          dumbDataSource: i.get(), remoteDataSource: i.get(), mapper: i.get()),
+        dumbDataSource: i.get(),
+        remoteDataSource: i.get(),
+        mapper: i.get(),
+      ),
     ),
-    Bind.singleton((i) => ListMealsMenuUsecase(i.get())),
-    Bind.singleton((i) => ListMealsBloc(i.get())),
+    Bind.singleton((i) => ListMealsMenuUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => ListMealsBloc(
+          i.get(),
+        )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const SelectActionMealsPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const SelectActionMealsPage(),
+    ),
     ChildRoute(
       "/details",
       child: (_, args) => DetailsMealPage(
         meal: (args.data as Map)['mealComponent'],
       ),
     ),
-    ChildRoute("/refeicoes", child: (_, args) => const ListMealsPage()),
-    ModuleRoute("/estoque", module: StockModule())
+    ChildRoute(
+      "/refeicoes",
+      child: (_, args) => const ListMealsPage(),
+    ),
+    ModuleRoute(
+      "/estoque",
+      module: StockModule(),
+    ),
   ];
 }

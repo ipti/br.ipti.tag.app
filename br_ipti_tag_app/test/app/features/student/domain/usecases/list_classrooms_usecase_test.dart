@@ -17,8 +17,12 @@ void main() {
     testWidgets("right empty value", (tester) async {
       final repository = MockClassroomRepository();
       final params = classroom_domain.ClassroomParams();
-      when(() => repository.listAll(any())).thenAnswer(
-        (realInvocation) => Future.value(right([])),
+      when(() => repository.listAll(
+            any(),
+          )).thenAnswer(
+        (realInvocation) => Future.value(
+          right([]),
+        ),
       );
 
       final usecase = ListClassroomsUsecase(repository);
@@ -33,9 +37,12 @@ void main() {
 
     testWidgets("left ConnexionExpection", (tester) async {
       final repository = MockClassroomRepository();
-      when(() => repository.listAll(any())).thenAnswer(
-        (realInvocation) =>
-            Future.value(left(const SocketException("Conexão invalida"))),
+      when(() => repository.listAll(
+            any(),
+          )).thenAnswer(
+        (realInvocation) => Future.value(left(
+          const SocketException("Conexão invalida"),
+        )),
       );
 
       final usecase = ListClassroomsUsecase(repository);
@@ -47,7 +54,10 @@ void main() {
 
       final result = either.fold(id, id);
 
-      expect(result, isA<SocketException>());
+      expect(
+        result,
+        isA<SocketException>(),
+      );
     });
   });
 }

@@ -44,133 +44,134 @@ class AddressFormPageState extends State<AddressFormPage> {
 
     return SingleChildScrollView(
       child: BlocBuilder<InstructorAddressBloc, InstructorAddressState>(
-          bloc: controller,
-          builder: (context, state) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(top: 24, bottom: 16),
-                      child: Heading(
-                        text: "Endereço",
-                        type: HeadingType.Title3,
+        bloc: controller,
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 24, bottom: 16),
+                    child: Heading(
+                      text: "Endereço",
+                      type: HeadingType.Title3,
+                    ),
+                  ),
+                  // First Row
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: _CEPField(
+                          cep: state.cep,
+                          controller: controller,
+                        ),
                       ),
-                    ),
-                    // First Row
-                    RowToColumn(
+                      Flexible(
+                        child: _UFField(
+                          edcensoUfFk: state.edcensoUfFk,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: _CityField(
+                          edcensoCityFk: state.edcensoCityFk,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Second Row
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: _AddressField(
+                          address: state.address,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Third Row
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: _AddressNumberField(
+                          number: state.number,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        flex: 4,
+                        child: _NeighborhoodField(
+                          neighborhood: state.neighborhood,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Fourth Row
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: _ComplementField(
+                          complement: state.complement,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        flex: 4,
+                        child: _ZoneField(
+                          residenceZone: state.residenceZone,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
+                    child: RowToColumn(
+                      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Flexible(
-                          flex: 3,
-                          child: _CEPField(
-                            cep: state.cep,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          child: _UFField(
-                            edcensoUfFk: state.edcensoUfFk,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          flex: 3,
-                          child: _CityField(
-                            edcensoCityFk: state.edcensoCityFk,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // Second Row
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: _AddressField(
-                            address: state.address,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // Third Row
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: _AddressNumberField(
-                            number: state.number,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          flex: 4,
-                          child: _NeighborhoodField(
-                            neighborhood: state.neighborhood,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // Fourth Row
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: _ComplementField(
-                            complement: state.complement,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          flex: 4,
-                          child: _ZoneField(
-                            residenceZone: state.residenceZone,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 56),
-                      child: RowToColumn(
-                        columnCrossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Flexible(
-                            fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 8,
-                              ),
-                              child: TagButton(
-                                backgroundColor: TagColors.colorBaseCloudNormal,
-                                textButtonColor: TagColors.colorBaseInkNormal,
-                                text: "Salvar dados e Avançar",
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    controller.submitAddressForm();
-                                  }
-                                },
-                              ),
+                          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: TagButton(
+                              backgroundColor: TagColors.colorBaseCloudNormal,
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              text: "Salvar dados e Avançar",
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  controller.submitAddressForm();
+                                }
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

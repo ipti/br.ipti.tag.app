@@ -14,11 +14,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class InstructorFormBloc
     extends Bloc<InstructorFormEvent, InstructorFormState> {
   InstructorFormBloc(
-      this._instructorsUseCase,
-      this._edcensoDisciplinesUseCase,
-      this._createInstructorTeachingDataUseCase,
-      this._updateInstructorTeachingDataUseCase)
-      : super(InstructorFormStateLoading());
+    this._instructorsUseCase,
+    this._edcensoDisciplinesUseCase,
+    this._createInstructorTeachingDataUseCase,
+    this._updateInstructorTeachingDataUseCase,
+  ) : super(
+          InstructorFormStateLoading(),
+        );
 
   final ListEdcensoDisciplinesUseCase _edcensoDisciplinesUseCase;
   final ListInstructorsUseCase _instructorsUseCase;
@@ -27,33 +29,51 @@ class InstructorFormBloc
   final UpdateInstructorTeachingDataUseCase
       _updateInstructorTeachingDataUseCase;
 
-  Future<void> fetchInstructorsAndDisciplines(
-      {String? instructorFk, String? instructorDiscipline}) async {
+  Future<void> fetchInstructorsAndDisciplines({
+    String? instructorFk,
+    String? instructorDiscipline,
+  }) async {
     final requests = await Future.wait([
-      _instructorsUseCase(NoParams()),
-      _edcensoDisciplinesUseCase(NoParams())
+      _instructorsUseCase(
+        NoParams(),
+      ),
+      _edcensoDisciplinesUseCase(
+        NoParams(),
+      ),
     ]);
 
     List<InstructorEntity> instructors = [];
     List<EdcensoDisciplinesEntity> disciplines = [];
 
     requests.first.fold(
-        (error) => add(InstructorFormEventInsertError()),
-        (instructorsResponse) =>
-            instructors = instructorsResponse as List<InstructorEntity>);
+      (error) => add(
+        InstructorFormEventInsertError(),
+      ),
+      (instructorsResponse) =>
+          instructors = instructorsResponse as List<InstructorEntity>,
+    );
 
     requests.last.fold(
-        (error) => add(InstructorFormEventInsertError()),
-        (disciplinesResponse) => disciplines =
-            disciplinesResponse as List<EdcensoDisciplinesEntity>);
+      (error) => add(
+        InstructorFormEventInsertError(),
+      ),
+      (disciplinesResponse) =>
+          disciplines = disciplinesResponse as List<EdcensoDisciplinesEntity>,
+    );
 
     if (instructors.isNotEmpty && disciplines.isNotEmpty) {
       currentInstructor = instructorFk ?? instructors.first.id;
       changeCurrentDiscipline = instructorDiscipline ?? disciplines.first.id;
-      add(InstructorFormEventSuccess(
-          instructors: instructors, disciplines: disciplines));
+      add(
+        InstructorFormEventSuccess(
+          instructors: instructors,
+          disciplines: disciplines,
+        ),
+      );
     } else {
-      add(InstructorFormEventInsertError());
+      add(
+        InstructorFormEventInsertError(),
+      );
     }
   }
 
@@ -81,14 +101,52 @@ class InstructorFormBloc
   int get currentContractType => _contractType - 1;
 
   @override
+  // ignore: long-method
   Stream<InstructorFormState> mapEventToState(
-      InstructorFormEvent event) async* {
+    InstructorFormEvent event,
+  ) async* {
     InstructorFormState newState = state;
     if (event is SubmitInstructorForm) {
       final params = InstructorTeachingDataCreateEntity(
-          schoolInepIdFk: '61a9433412656f31249d2aa2',
-          instructorFk: _currentInstructor!,
-          classroomIdFk: _classroomId!,
+        schoolInepIdFk: '61a9433412656f31249d2aa2',
+        instructorFk: _currentInstructor!,
+        classroomIdFk: _classroomId!,
+        discipline1Fk: selectedDisciplines[0],
+        discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
+        discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
+        discipline4Fk: getIdDiscipline(selectedDisciplines, 3),
+        discipline5Fk: getIdDiscipline(selectedDisciplines, 4),
+        discipline6Fk: getIdDiscipline(selectedDisciplines, 5),
+        discipline7Fk: getIdDiscipline(selectedDisciplines, 6),
+        discipline8Fk: getIdDiscipline(selectedDisciplines, 7),
+        discipline9Fk: getIdDiscipline(selectedDisciplines, 8),
+        discipline10Fk: getIdDiscipline(selectedDisciplines, 9),
+        discipline11Fk: getIdDiscipline(selectedDisciplines, 10),
+        discipline12Fk: getIdDiscipline(selectedDisciplines, 11),
+        discipline13Fk: getIdDiscipline(selectedDisciplines, 12),
+        discipline14Fk: getIdDiscipline(selectedDisciplines, 13),
+        discipline15Fk: getIdDiscipline(selectedDisciplines, 14),
+        role: _role,
+        contractType: _contractType,
+      );
+      final createInstructorRequestResponse =
+          await _createInstructorTeachingDataUseCase(params);
+      createInstructorRequestResponse.fold(
+        (error) => add(
+          InstructorFormEventInsertError(),
+        ),
+        (success) => add(
+          InstructorFormEventInsertSuccess(),
+        ),
+      );
+      newState = state;
+    }
+    if (event is SubmitUpdateInstructorForm) {
+      final params = UpdateInstructorTeachingDataParams(
+        event.instructorTeachingDataId,
+        InstructorTeachingDataUpdateEntity(
+          role: _role,
+          // contractType: _contractType,
           discipline1Fk: selectedDisciplines[0],
           discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
           discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
@@ -104,37 +162,8 @@ class InstructorFormBloc
           discipline13Fk: getIdDiscipline(selectedDisciplines, 12),
           discipline14Fk: getIdDiscipline(selectedDisciplines, 13),
           discipline15Fk: getIdDiscipline(selectedDisciplines, 14),
-          role: _role,
-          contractType: _contractType);
-      final createInstructorRequestResponse =
-          await _createInstructorTeachingDataUseCase(params);
-      createInstructorRequestResponse.fold(
-          (error) => add(InstructorFormEventInsertError()),
-          (success) => add(InstructorFormEventInsertSuccess()));
-      newState = state;
-    }
-    if (event is SubmitUpdateInstructorForm) {
-      final params = UpdateInstructorTeachingDataParams(
-          event.instructorTeachingDataId,
-          InstructorTeachingDataUpdateEntity(
-            role: _role,
-            // contractType: _contractType,
-            discipline1Fk: selectedDisciplines[0],
-            discipline2Fk: getIdDiscipline(selectedDisciplines, 1),
-            discipline3Fk: getIdDiscipline(selectedDisciplines, 2),
-            discipline4Fk: getIdDiscipline(selectedDisciplines, 3),
-            discipline5Fk: getIdDiscipline(selectedDisciplines, 4),
-            discipline6Fk: getIdDiscipline(selectedDisciplines, 5),
-            discipline7Fk: getIdDiscipline(selectedDisciplines, 6),
-            discipline8Fk: getIdDiscipline(selectedDisciplines, 7),
-            discipline9Fk: getIdDiscipline(selectedDisciplines, 8),
-            discipline10Fk: getIdDiscipline(selectedDisciplines, 9),
-            discipline11Fk: getIdDiscipline(selectedDisciplines, 10),
-            discipline12Fk: getIdDiscipline(selectedDisciplines, 11),
-            discipline13Fk: getIdDiscipline(selectedDisciplines, 12),
-            discipline14Fk: getIdDiscipline(selectedDisciplines, 13),
-            discipline15Fk: getIdDiscipline(selectedDisciplines, 14),
-          ));
+        ),
+      );
 
       await _updateInstructorTeachingDataUseCase(params);
     }
@@ -144,8 +173,9 @@ class InstructorFormBloc
     }
     if (event is UpdateInstructorForm) {
       await fetchInstructorsAndDisciplines(
-          instructorFk: event.instructorFk,
-          instructorDiscipline: event.discipline1Fk);
+        instructorFk: event.instructorFk,
+        instructorDiscipline: event.discipline1Fk,
+      );
       newState = state;
     }
     yield newState;

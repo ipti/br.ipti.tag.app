@@ -12,6 +12,7 @@ class ListMealsMenuUsecase implements Usecase<List<MealsMenu>, NoParams> {
   @override
   Future<Either<Exception, List<MealsMenu>>> call(NoParams params) async {
     final result = await _repositoryMealsMenu.list();
+
     return result;
   }
 }

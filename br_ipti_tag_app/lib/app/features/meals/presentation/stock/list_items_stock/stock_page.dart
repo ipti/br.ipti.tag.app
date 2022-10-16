@@ -18,10 +18,13 @@ class StockPage extends StatefulWidget {
   StockPageState createState() => StockPageState();
 }
 
-class StockPageState extends ModularState<StockPage, StockBloc> {
+class StockPageState extends State<StockPage> {
+  final controller = Modular.get<StockBloc>();
   @override
   void initState() {
-    controller.add(GetListStockEvent());
+    controller.add(
+      GetListStockEvent(),
+    );
     super.initState();
   }
 
@@ -35,11 +38,9 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
       body: BlocBuilder<StockBloc, ListStockState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is LoadedState) {
-            return IngredientsList(ingredients: state.ingredients);
-          } else {
-            return Container();
-          }
+          return state is LoadedState
+              ? IngredientsList(ingredients: state.ingredients)
+              : Container();
         },
       ),
     );

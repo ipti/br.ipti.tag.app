@@ -32,6 +32,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   @override
   Future<bool> cleanCacheToken() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
+
     return _sharedPreferences.remove("AUTH_TOKEN");
   }
 }

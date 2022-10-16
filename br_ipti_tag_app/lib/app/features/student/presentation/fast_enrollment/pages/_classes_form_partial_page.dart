@@ -32,20 +32,23 @@ class ClassesFormPageState extends State<ClassesFormPage> {
         );
 
     return BlocBuilder<FastEnrollmentBloc, FastEnrollmentState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  withPadding(heading),
-                  withPadding(selectClass(state.studentClass)),
-                ],
-              ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                withPadding(heading),
+                withPadding(
+                  selectClass(state.studentClass),
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

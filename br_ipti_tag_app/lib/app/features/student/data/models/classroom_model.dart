@@ -32,10 +32,13 @@ class ClassroomModel extends Classroom {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory ClassroomModel.fromJson(String source) =>
-      ClassroomModel.fromMap(json.decode(source));
+  factory ClassroomModel.fromJson(String source) => ClassroomModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() => 'ClassroomModel(id: $id, name: $name)';

@@ -72,11 +72,13 @@ class RestClientException extends DioError {
       default:
         if (response!.data is Map) {
           final data = response!.data as Map;
+
           return data['error_description'] as String? ?? DEFAULT_ERROR;
         }
         if (response!.statusMessage?.isNotEmpty == true) {
           return response!.statusMessage ?? DEFAULT_ERROR;
         }
+
         return "Erro não mapeado ${response?.statusCode ?? 'Sem código'}";
     }
   }

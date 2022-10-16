@@ -9,13 +9,18 @@ class HomeModule extends Module {
 
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => HomeController()),
-    // Bind.singleton((i) => UserService(i.get())),
+    Bind.singleton(
+      (i) => HomeController(),
+    ),
+    // Bind.singleton((i) => UserService(i.get(),)),
   ];
 
   // Provide all the routes for your module
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, args) => const HomePage())
+    ChildRoute(
+      '/',
+      child: (_, args) => const HomePage(),
+    ),
   ];
 }

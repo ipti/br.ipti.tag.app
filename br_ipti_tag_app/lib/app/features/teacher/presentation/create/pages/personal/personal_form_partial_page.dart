@@ -62,128 +62,132 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
     return Form(
       key: _formKey,
       child: BlocBuilder<InstructorPersonalBloc, InstructorPersonalState>(
-          bloc: controller,
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(top: 24, bottom: 16),
-                      child: heading1,
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameField(
-                            name: state.name,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          child: _BirthdayField(
-                            birthday: state.birthdayDate,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _CPFField(
-                            cpf: state.cpf,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          child: _EmailField(
-                            email: state.email,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RowToColumn(children: [
+        bloc: controller,
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 24, bottom: 16),
+                    child: heading1,
+                  ),
+                  RowToColumn(
+                    children: [
                       Flexible(
-                          child: _ColorRaceField(
+                        child: _NameField(
+                          name: state.name,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        child: _BirthdayField(
+                          birthday: state.birthdayDate,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _CPFField(
+                          cpf: state.cpf,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        child: _EmailField(
+                          email: state.email,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _ColorRaceField(
                         colorRace: state.colorRace,
                         controller: controller,
-                      )),
-                      Flexible(
-                          child: _SexField(
+                      ),
+                    ),
+                    Flexible(
+                      child: _SexField(
                         sex: state.sex,
                         controller: controller,
-                      )),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _NationalityField(
-                          nationality: state.nationality,
-                          controller: controller,
-                        ),
                       ),
-                      Flexible(
-                          child: _FiliationField(
+                    ),
+                  ]),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _NationalityField(
+                        nationality: state.nationality,
+                        controller: controller,
+                      ),
+                    ),
+                    Flexible(
+                      child: _FiliationField(
                         filiation: 1,
                         controller: controller,
-                      )),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _ScholarityField(
-                          controller: controller,
-                          scholarity: state.scholarity,
-                        ),
                       ),
-                      const Spacer()
-                    ]),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 36, bottom: 16),
-                      child: heading2,
                     ),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _FormDeficiency(
-                          controller: controller,
-                          state: state,
-                        ),
+                  ]),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _ScholarityField(
+                        controller: controller,
+                        scholarity: state.scholarity,
                       ),
-                    ]),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 56),
-                      child: RowToColumn(
-                        columnCrossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Flexible(
-                            fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 8,
-                              ),
-                              child: TagButton(
-                                backgroundColor: TagColors.colorBaseCloudNormal,
-                                textButtonColor: TagColors.colorBaseInkNormal,
-                                text: "Salvar dados e Avançar",
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    controller.submitPersonalForm();
-                                  }
-                                },
-                              ),
+                    ),
+                    const Spacer(),
+                  ]),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 36, bottom: 16),
+                    child: heading2,
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _FormDeficiency(
+                        controller: controller,
+                        state: state,
+                      ),
+                    ),
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
+                    child: RowToColumn(
+                      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Flexible(
+                          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: TagButton(
+                              backgroundColor: TagColors.colorBaseCloudNormal,
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              text: "Salvar dados e Avançar",
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  controller.submitPersonalForm();
+                                }
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

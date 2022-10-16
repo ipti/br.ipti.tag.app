@@ -19,6 +19,7 @@ class DailyMealsList extends StatelessWidget {
       itemCount: mealsOfDay.length,
       itemBuilder: (context, index) {
         final current = mealsOfDay[index];
+
         return MealsItemDay(
           fullnameDay: current.fullnameDay,
           currentDate: current.currentDate,

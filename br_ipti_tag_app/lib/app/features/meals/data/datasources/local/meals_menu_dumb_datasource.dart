@@ -17,7 +17,9 @@ class MealsMenuDumbDataSourceImpl implements MealsMenuDumbDataSource {
     final jsonResult = jsonDecode(data) as List;
 
     return jsonResult
-        .map((e) => FoodMenuModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => FoodMenuModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
   }
 }

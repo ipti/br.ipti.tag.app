@@ -3,10 +3,10 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
 class DeleteStudentsEndPoint extends EndPointAPI {
   DeleteStudentsEndPoint({
-    this.id,
+    required this.id,
   });
 
-  final String? id;
+  final String id;
 
   @override
   String get path =&gt; '/student-identification/$id';

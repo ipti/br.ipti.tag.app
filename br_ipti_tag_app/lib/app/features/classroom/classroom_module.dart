@@ -39,32 +39,76 @@ class ClassroomModule extends Module {
     ),
 
     // List
-    Bind.singleton((i) => ListClassroomsUsecase(i.get())),
-    Bind.singleton((i) => ClassroomListBloc(i.get())),
-    Bind.singleton((i) => ListInstructorsUseCase(i.get())),
-    Bind.singleton((i) => ListInstructorsTeachingDataUseCase(i.get())),
-    Bind.singleton((i) => ListEdcensoDisciplinesUseCase(i.get())),
+    Bind.singleton((i) => ListClassroomsUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => ClassroomListBloc(
+          i.get(),
+        )),
+    Bind.singleton((i) => ListInstructorsUseCase(
+          i.get(),
+        )),
+    Bind.singleton((i) => ListInstructorsTeachingDataUseCase(
+          i.get(),
+        )),
+    Bind.singleton((i) => ListEdcensoDisciplinesUseCase(
+          i.get(),
+        )),
 
     // Create
-    Bind.singleton((i) => CreateClassroomUsecase(i.get())),
-    Bind.singleton((i) => ClassroomCreateBloc(i.get())),
-    Bind.singleton((i) => CreateInstructorTeachingDataUseCase(i.get())),
+    Bind.singleton((i) => CreateClassroomUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => ClassroomCreateBloc(
+          i.get(),
+        )),
+    Bind.singleton((i) => CreateInstructorTeachingDataUseCase(
+          i.get(),
+        )),
 
     //UpdateDelete
-    Bind.singleton((i) => UpdateClassroomUsecase(i.get())),
-    Bind.singleton((i) => DeleteClassroomUsecase(i.get())),
-    Bind.singleton((i) => CreateInstructorTeachingDataUseCase(i.get())),
-    Bind.singleton((i) => UpdateInstructorTeachingDataUseCase(i.get())),
-    Bind.factory((i) => InstructorFormBloc(i.get(), i.get(), i.get(), i.get())),
-    Bind.singleton((i) => ClassroomUpdateDeleteBloc(i.get(), i.get())),
-    Bind.singleton((i) => TabControllerCubit()),
-    Bind.singleton((i) => UpdateTeacherBloc(i.get(), i.get(), i.get())),
+    Bind.singleton((i) => UpdateClassroomUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => DeleteClassroomUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => CreateInstructorTeachingDataUseCase(
+          i.get(),
+        )),
+    Bind.singleton((i) => UpdateInstructorTeachingDataUseCase(
+          i.get(),
+        )),
+    Bind.factory((i) => InstructorFormBloc(
+          i.get(),
+          i.get(),
+          i.get(),
+          i.get(),
+        )),
+    Bind.singleton((i) => ClassroomUpdateDeleteBloc(
+          i.get(),
+          i.get(),
+        )),
+    Bind.singleton(
+      (i) => TabControllerCubit(),
+    ),
+    Bind.singleton((i) => UpdateTeacherBloc(
+          i.get(),
+          i.get(),
+          i.get(),
+        )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const ClassroomPage()),
-    ChildRoute("/create", child: (_, args) => const ClassroomCreatePage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const ClassroomPage(),
+    ),
+    ChildRoute(
+      "/create",
+      child: (_, args) => const ClassroomCreatePage(),
+    ),
     ChildRoute(
       "/updatePage",
       child: (_, args) => UpdateDeleteClassroomPage(
@@ -77,9 +121,13 @@ class ClassroomModule extends Module {
         classroomId: args.data,
       ),
     ),
-    ChildRoute("/updateStudent",
-        child: (_, args) => const ClassroomStudentPage()),
-    ChildRoute("/updateInfos",
-        child: (_, args) => const ClassroomBasicDataForm()),
+    ChildRoute(
+      "/updateStudent",
+      child: (_, args) => const ClassroomStudentPage(),
+    ),
+    ChildRoute(
+      "/updateInfos",
+      child: (_, args) => const ClassroomBasicDataForm(),
+    ),
   ];
 }

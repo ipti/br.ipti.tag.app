@@ -11,6 +11,7 @@ class ListStudentsUsecase implements Usecase<List<Student>, NoParams> {
   @override
   Future<Either<Exception, List<Student>>> call(NoParams params) async {
     final result = await _repositoryStudent.listAll(schoolId: "");
+
     return result;
   }
 }

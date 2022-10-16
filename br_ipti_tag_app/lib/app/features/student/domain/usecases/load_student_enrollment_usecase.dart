@@ -16,6 +16,7 @@ class LoadStudentEnrollmentUsecase
     final result = await _studentEnrollmentRepository.getStudentById(
       params.studentId,
     );
+
     return result;
   }
 }

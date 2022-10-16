@@ -62,10 +62,13 @@ class EdCensoCityModel extends EdCensoCity {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory EdCensoCityModel.fromJson(String source) =>
-      EdCensoCityModel.fromMap(json.decode(source));
+  factory EdCensoCityModel.fromJson(String source) => EdCensoCityModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

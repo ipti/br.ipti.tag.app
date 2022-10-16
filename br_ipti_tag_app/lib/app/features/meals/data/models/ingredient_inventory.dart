@@ -28,11 +28,15 @@ class InvetoryIngredientModel extends InvetoryIngredient {
 
   static List<InvetoryIngredient> fromList(List list) {
     final result = list
-        .map((e) => InvetoryIngredientModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => InvetoryIngredientModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
+
     return result;
   }
 
+  // ignore: long-parameter-list
   InvetoryIngredient copyWith({
     String? foodId,
     String? schoolId,
@@ -61,7 +65,9 @@ class InvetoryIngredientModel extends InvetoryIngredient {
     };
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   @override
   String toString() {

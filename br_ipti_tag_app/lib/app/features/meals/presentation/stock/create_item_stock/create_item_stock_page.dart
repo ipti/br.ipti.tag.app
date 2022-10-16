@@ -13,11 +13,13 @@ class CreateItemStockPage extends StatefulWidget {
   CreateItemStockPageState createState() => CreateItemStockPageState();
 }
 
-class CreateItemStockPageState
-    extends ModularState<CreateItemStockPage, CreateItemStockBloc> {
+class CreateItemStockPageState extends State<CreateItemStockPage> {
+  final controller = Modular.get<CreateItemStockBloc>();
   @override
   void initState() {
-    controller.add(StartEditing());
+    controller.add(
+      StartEditing(),
+    );
     super.initState();
   }
 

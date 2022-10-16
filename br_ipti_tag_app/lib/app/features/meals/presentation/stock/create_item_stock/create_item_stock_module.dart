@@ -8,6 +8,9 @@ class CreateItemStockModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const CreateItemStockPage())
+    ChildRoute(
+      "/",
+      child: (_, args) => const CreateItemStockPage(),
+    ),
   ];
 }

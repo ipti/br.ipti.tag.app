@@ -14,7 +14,9 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
   EnrollmentSocialBloc(
     this._addressToStudentUsecase,
     this._updateDocumentsAndAddressUsecase,
-  ) : super(const EmptyEnrollmentSocialState());
+  ) : super(
+          const EmptyEnrollmentSocialState(),
+        );
 
   final _session = Modular.get<SessionBloc>();
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
@@ -23,23 +25,31 @@ class EnrollmentSocialBloc extends Cubit<EnrollmentSocialState> {
   final UpdateDocumentsAndAddressUsecase _updateDocumentsAndAddressUsecase;
 
   // Social
-  void setNis(String value) => emit(state.copyWith(
-        nis: value,
-      ));
+  void setNis(String value) => emit(
+        state.copyWith(
+          nis: value,
+        ),
+      );
 
-  void setInepId(String value) => emit(state.copyWith(
-        inepId: value,
-      ));
+  void setInepId(String value) => emit(
+        state.copyWith(
+          inepId: value,
+        ),
+      );
 
-  void setBfParticipator({bool value = false}) => emit(state.copyWith(
-        bfParticipator: value,
-      ));
+  void setBfParticipator({bool value = false}) => emit(
+        state.copyWith(
+          bfParticipator: value,
+        ),
+      );
 
   Future loadStudentDocsAddress(StudentDocsAddress studentDocuments) async {
-    emit(state.copyWith(
-      nis: studentDocuments.nis,
-      inepId: _session.state.currentSchool?.inepId ?? '',
-    ));
+    emit(
+      state.copyWith(
+        nis: studentDocuments.nis,
+        inepId: _session.state.currentSchool?.inepId ?? '',
+      ),
+    );
   }
 
   Future<void> submitSocialForm(EditMode mode) async {

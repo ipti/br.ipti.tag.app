@@ -12,35 +12,70 @@ class MockStudentRepository extends Mock implements StudentRepository {}
 void main() {
   testWidgets("UpdateStudentUsecase when update a right value", (tester) async {
     final repository = MockStudentRepository();
-    when(() => repository.update(any(), Student()))
-        .thenAnswer((invocation) => Future.value(right(Student())));
+    when(() => repository.update(
+          any(),
+          Student(),
+        )).thenAnswer(
+      (invocation) => Future.value(right(
+        Student(),
+      )),
+    );
     final usercase = UpdateStudentUsecase(repository);
-    final params = UpdateStudentParams(id: 1, student: Student());
+    final params = UpdateStudentParams(
+      id: 1,
+      student: Student(),
+    );
     final either = await usercase(params);
     expect(either.isRight(), isTrue);
 
     final result = either.fold(id, id);
-    expect(result, isA<Student>());
+    expect(
+      result,
+      isA<Student>(),
+    );
   });
 
-  testWidgets("UpdateStudentUsecase when params is equal value",
-      (tester) async {
-    final params = UpdateStudentParams(id: 1, student: Student());
-    final params2 = UpdateStudentParams(id: 1, student: Student());
+  testWidgets(
+    "UpdateStudentUsecase when params is equal value",
+    (tester) async {
+      final params = UpdateStudentParams(
+        id: 1,
+        student: Student(),
+      );
+      final params2 = UpdateStudentParams(
+        id: 1,
+        student: Student(),
+      );
 
-    expect(params.props, equals(params2.props));
-  });
+      expect(
+        params.props,
+        equals(params2.props),
+      );
+    },
+  );
 
   testWidgets("UpdateStudentUsecase when update a left value", (tester) async {
     final repository = MockStudentRepository();
-    when(() => repository.update(any(), Student())).thenAnswer((invocation) =>
-        Future.value(left(const SocketException("Ocorreu um erro"))));
+    when(() => repository.update(
+          any(),
+          Student(),
+        )).thenAnswer(
+      (invocation) => Future.value(left(
+        const SocketException("Ocorreu um erro"),
+      )),
+    );
     final usercase = UpdateStudentUsecase(repository);
-    final params = UpdateStudentParams(id: 1, student: Student());
+    final params = UpdateStudentParams(
+      id: 1,
+      student: Student(),
+    );
     final either = await usercase(params);
     expect(either.isLeft(), isTrue);
 
     final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
+    expect(
+      result,
+      isA<SocketException>(),
+    );
   });
 }

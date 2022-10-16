@@ -33,10 +33,13 @@ class AuthModel extends AuthResponse {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory AuthModel.fromJson(String source) =>
-      AuthModel.fromMap(json.decode(source));
+  factory AuthModel.fromJson(String source) => AuthModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() => 'AuthModel(accessToken: $accessToken, user: $user)';

@@ -6,8 +6,8 @@ class InstructorTeachingDataCreateEntity {
   String? classroomInepId;
   String classroomIdFk;
   int role;
-  int? contractType;
-  String? discipline1Fk;
+  int contractType;
+  String discipline1Fk;
   String? discipline2Fk;
   String? discipline3Fk;
   String? discipline4Fk;
@@ -28,8 +28,8 @@ class InstructorTeachingDataCreateEntity {
     this.classroomInepId,
     required this.classroomIdFk,
     this.role = 0,
-    this.contractType,
-    this.discipline1Fk,
+    required this.contractType,
+    required this.discipline1Fk,
     this.discipline2Fk,
     this.discipline3Fk,
     this.discipline4Fk,

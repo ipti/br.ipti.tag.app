@@ -44,7 +44,12 @@ class ComponentModel {
       'id': id,
       'description': description,
       'observation': observation,
-      'ingredients': ingredients?.map((x) => x.toMap()).toList() ?? [],
+      'ingredients': ingredients
+              ?.map(
+                (x) => x.toMap(),
+              )
+              .toList() ??
+          [],
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -52,20 +57,28 @@ class ComponentModel {
 
   factory ComponentModel.fromMap(Map<String, dynamic> map) {
     final ingredients = List.from(map['ingredients'] ?? []);
+
     return ComponentModel(
       id: map['id'],
       description: map['description'],
       observation: map['observation'],
-      ingredients: ingredients.map((x) => IngredientModel.fromMap(x)).toList(),
+      ingredients: ingredients
+          .map(
+            (x) => IngredientModel.fromMap(x),
+          )
+          .toList(),
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory ComponentModel.fromJson(String source) =>
-      ComponentModel.fromMap(json.decode(source));
+  factory ComponentModel.fromJson(String source) => ComponentModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

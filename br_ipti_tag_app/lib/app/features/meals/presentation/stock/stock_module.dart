@@ -13,22 +13,37 @@ import 'list_items_stock/stock_page.dart';
 class StockModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => IngredientDumbDataSourceImpl()),
-    Bind.lazySingleton((i) => IngredientRemoteDataSourceImpl(i.get())),
+    Bind.lazySingleton(
+      (i) => IngredientDumbDataSourceImpl(),
+    ),
+    Bind.lazySingleton((i) => IngredientRemoteDataSourceImpl(
+          i.get(),
+        )),
     Bind.lazySingleton(
       (i) => IngredientRepositoryImpl(
-          dumbDataSource: i.get(), remoteDataSource: i.get()),
+        dumbDataSource: i.get(),
+        remoteDataSource: i.get(),
+      ),
     ),
-    Bind.lazySingleton((i) => ListIngredientUsecase(i.get())),
-    Bind.lazySingleton((i) => StockBloc(i.get())),
+    Bind.lazySingleton((i) => ListIngredientUsecase(
+          i.get(),
+        )),
+    Bind.lazySingleton((i) => StockBloc(
+          i.get(),
+        )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const StockPage()),
-    ChildRoute("/ingrediente",
-        child: (_, args) => DetailsItemStockPage(
-              ingredient: args.data as Ingredient,
-            )),
+    ChildRoute(
+      "/",
+      child: (_, args) => const StockPage(),
+    ),
+    ChildRoute(
+      "/ingrediente",
+      child: (_, args) => DetailsItemStockPage(
+        ingredient: args.data as Ingredient,
+      ),
+    ),
   ];
 }

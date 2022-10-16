@@ -16,7 +16,9 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     this._createInstructorsUsecase,
     this._updateInstructorsUsecase,
     this._getInstructorsUsecase,
-  ) : super(const EmptyInstructorState());
+  ) : super(
+          const EmptyInstructorState(),
+        );
 
   final CreateInstructorsUsecase _createInstructorsUsecase;
   final UpdateInstructorsUsecase _updateInstructorsUsecase;
@@ -25,18 +27,24 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   final _session = Modular.get<SessionBloc>();
 
   void goToTab(int index) {
-    emit(state.copyWith(tabIndex: index));
+    emit(
+      state.copyWith(tabIndex: index),
+    );
   }
 
   void notifyError(String message) {
     final cacheState = state.copyWith();
-    emit(CreateInstructorErrorState(message: message));
+    emit(
+      CreateInstructorErrorState(message: message),
+    );
     emit(cacheState);
   }
 
   void notifySuccess(String message) {
     final cacheState = state.copyWith();
-    emit(CreateInstructorSuccessState(message: message));
+    emit(
+      CreateInstructorSuccessState(message: message),
+    );
     emit(cacheState);
   }
 
@@ -206,7 +214,9 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     final param = GetInstructorParams(objectId);
     final result = await _getInstructorsUsecase(param);
     result.fold(
-      (error) => notifyError(error.toString()),
+      (error) => notifyError(
+        error.toString(),
+      ),
       (instructor) => loadInstructorData(instructor: instructor),
     );
   }
@@ -218,6 +228,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       notifyError(
         "Verifique se todos os campos obrigatórios foram preenchidos",
       );
+
       return;
     }
     await _session.fetchCurrentSchool();
@@ -293,7 +304,9 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     final result = await _createInstructorsUsecase(params);
 
     result.fold(
-      (error) => notifyError(error.toString()),
+      (error) => notifyError(
+        error.toString(),
+      ),
       (student) {
         notifySuccess("Professor cadastrado com sucesso");
       },
@@ -307,6 +320,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       notifyError(
         "Verifique se todos os campos obrigatórios foram preenchidos",
       );
+
       return;
     }
     await _session.fetchCurrentSchool();
@@ -383,7 +397,9 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     final result = await _updateInstructorsUsecase(params);
 
     result.fold(
-      (error) => notifyError(error.toString()),
+      (error) => notifyError(
+        error.toString(),
+      ),
       (teacher) => notifySuccess(
         "Dados do professor ${teacher.name} atualizados com sucesso",
       ),

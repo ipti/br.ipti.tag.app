@@ -12,6 +12,7 @@ class MealsMenuEntityMapper extends CoreMapper<FoodMenuModel, MealsMenu> {
   @override
   MealsMenu call(FoodMenuModel foodMenuResponse) {
     final meals = foodMenuResponse.meals?.map(mapResponseToMeal).toList() ?? [];
+
     return MealsMenu(
       meals: meals,
       fullnameDay: foodMenuResponse.referenceDates?.join(','),
@@ -29,6 +30,7 @@ class MealsMenuEntityMapper extends CoreMapper<FoodMenuModel, MealsMenu> {
       components:
           mealResponse.components?.map(mapToMealComponent).toList() ?? [],
     );
+
     return meal;
   }
 

@@ -9,20 +9,31 @@ class StudentListModule extends Module {
   @override
   final List<Bind> binds = [
     // datasources
-    Bind.factory((i) => StudentRemoteDataSource(i.get())),
+    Bind.factory((i) => StudentRemoteDataSource(
+          i.get(),
+        )),
 
     // repositories
-    Bind.factory((i) => StudentRepositoryImpl(i.get())),
+    Bind.factory((i) => StudentRepositoryImpl(
+          i.get(),
+        )),
 
     // usecases
-    Bind.factory((i) => ListStudentsUsecase(i.get())),
+    Bind.factory((i) => ListStudentsUsecase(
+          i.get(),
+        )),
 
     // list
-    Bind.factory((i) => StudentListBloc(i.get())),
+    Bind.factory((i) => StudentListBloc(
+          i.get(),
+        )),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const StudentPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const StudentPage(),
+    ),
   ];
 }

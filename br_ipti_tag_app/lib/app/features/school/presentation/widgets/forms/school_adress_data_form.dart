@@ -41,50 +41,70 @@ class _SchoolAdressDataFormState extends State<SchoolAdressDataForm> {
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
-            ),
-          ],
-        ),
-        RowToColumn(
-          children: [
-            Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
-            ),
-            Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
-            ),
-          ],
-        ),
-        RowToColumn(
-          children: [
-            Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
-            ),
-            Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
+            ),
+          ],
+        ),
+        RowToColumn(
+          children: [
+            Flexible(
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
+            ),
+            Flexible(
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
+            ),
+          ],
+        ),
+        RowToColumn(
+          children: [
+            Flexible(
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
+            ),
+            Flexible(
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),

@@ -17,12 +17,18 @@ class FoodModel extends Food {
     );
   }
   static List<Food> fromList(List list) {
-    final result =
-        list.map((e) => FoodModel.fromMap(e as Map<String, dynamic>)).toList();
+    final result = list
+        .map(
+          (e) => FoodModel.fromMap(e as Map<String, dynamic>),
+        )
+        .toList();
+
     return result;
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   FoodModel copyWith({
     num? tacoId,

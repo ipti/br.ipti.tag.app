@@ -11,6 +11,7 @@ class VerifyAuthUsecase implements Usecase<List<School>, NoParams> {
   @override
   Future<Either<Exception, List<School>>> call(NoParams params) async {
     final result = await _repository.getCurrentUserSchools();
+
     return result;
   }
 }

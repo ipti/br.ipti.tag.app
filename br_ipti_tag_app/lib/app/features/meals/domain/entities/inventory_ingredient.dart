@@ -1,6 +1,7 @@
 import 'food.dart';
 
 enum FoodSource { Varejista, AgriculturaFamiliar }
+
 enum MeasurementUnits { Gramas, Quilogramas, Litros, Pacote, Unidade }
 
 class InvetoryIngredient {

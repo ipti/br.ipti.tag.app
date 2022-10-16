@@ -19,15 +19,26 @@ class SchoolEditPage extends StatefulWidget {
   SchoolEditPageState createState() => SchoolEditPageState();
 }
 
-class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
+class SchoolEditPageState extends State<SchoolEditPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<SchoolCubit>();
   late TabController _tabController;
   static const List<Tab> _tabs = [
-    Tab(child: Text("Identificação")),
-    Tab(child: Text("Endereço e contato")),
-    Tab(child: Text("Estrutura")),
-    Tab(child: Text("Equipamentos")),
-    Tab(child: Text("Dados educacionais")),
+    Tab(
+      child: Text("Identificação"),
+    ),
+    Tab(
+      child: Text("Endereço e contato"),
+    ),
+    Tab(
+      child: Text("Estrutura"),
+    ),
+    Tab(
+      child: Text("Equipamentos"),
+    ),
+    Tab(
+      child: Text("Dados educacionais"),
+    ),
   ];
   static const _padding = EdgeInsets.all(8.0);
 
@@ -124,6 +135,7 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
                       state.currentSchoolData != null) {
                     return _buildWithData();
                   }
+
                   return _buildWithoutData();
                 },
               ),
@@ -133,7 +145,9 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 RowToColumn(children: [
-                  Flexible(child: withPadding(buttonSubmit)),
+                  Flexible(
+                    child: withPadding(buttonSubmit),
+                  ),
                 ]),
               ],
             ),
@@ -160,11 +174,21 @@ class SchoolEditPageState extends ModularState<SchoolEditPage, SchoolCubit>
     return TabBarView(
       controller: _tabController,
       children: const [
-        Center(child: CircularProgressIndicator()),
-        Center(child: CircularProgressIndicator()),
-        Center(child: CircularProgressIndicator()),
-        Center(child: CircularProgressIndicator()),
-        Center(child: CircularProgressIndicator())
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+        Center(
+          child: CircularProgressIndicator(),
+        ),
       ],
     );
   }

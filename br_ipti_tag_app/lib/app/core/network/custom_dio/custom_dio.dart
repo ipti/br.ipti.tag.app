@@ -8,12 +8,19 @@ import 'package:dio/dio.dart';
 class ClientHTTPConfiguration {
   static Dio apply(Dio client) {
     // if (Environment().config.debugRequests) {
-    client.interceptors.add(DebugInterceptor());
+    client.interceptors.add(
+      DebugInterceptor(),
+    );
     // }
-    client.interceptors.add(AuthInterceptor());
-    client.interceptors.add(ErrorInterceptor());
+    client.interceptors.add(
+      AuthInterceptor(),
+    );
+    client.interceptors.add(
+      ErrorInterceptor(),
+    );
 
     client.options.baseUrl = Environment().config.apiHost;
+
     return client;
   }
 }

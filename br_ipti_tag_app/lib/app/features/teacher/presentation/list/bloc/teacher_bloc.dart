@@ -4,24 +4,37 @@ import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teac
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TeacherListBloc extends Cubit<TeacherListState> {
-  TeacherListBloc(this._listTeachersUsecase) : super(const EmptyState());
+  TeacherListBloc(this._listTeachersUsecase)
+      : super(
+          const EmptyState(),
+        );
 
   final ListInstructorsUsecase _listTeachersUsecase;
 
   void startLoading() {
-    emit(state.copyWith(loading: true));
+    emit(
+      state.copyWith(loading: true),
+    );
   }
 
   void stopLoading() {
-    emit(state.copyWith(loading: false));
+    emit(
+      state.copyWith(loading: false),
+    );
   }
 
   Future<void> fetchListTeachersEvent() async {
     startLoading();
-    final resultEither = await _listTeachersUsecase(NoParams());
+    final resultEither = await _listTeachersUsecase(
+      NoParams(),
+    );
     resultEither.fold(
-      (Exception failure) => emit(FailedState(message: failure.toString())),
-      (teachers) => emit(LoadedState(teachers: teachers)),
+      (Exception failure) => emit(FailedState(
+        message: failure.toString(),
+      )),
+      (teachers) => emit(
+        LoadedState(teachers: teachers),
+      ),
     );
     stopLoading();
   }

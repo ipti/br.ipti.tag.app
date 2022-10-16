@@ -13,13 +13,18 @@ class MockStudentDocumentsAddressRepository extends Mock
 void main() {
   testWidgets("LoadStudentDocsUsecase when load a right value", (tester) async {
     final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.getByStudentId(1)).thenAnswer(
-      (realInvocation) => Future.value(right(StudentDocsAddress(
+    when(
+      () => repository.getByStudentId(1),
+    ).thenAnswer(
+      (realInvocation) => Future.value(right(
+        StudentDocsAddress(
           schoolInepIdFk: "schoolInepIdFk",
           studentFk: 1,
           rgNumber: "rgNumber",
           edcensoUfFk: "edcensoUfFk",
-          edcensoCityFk: "edcensoCityFk"))),
+          edcensoCityFk: "edcensoCityFk",
+        ),
+      )),
     );
     final usecase = LoadStudentDocsUsecase(repository);
     final params = LoadStudentDocsParams(1, "");
@@ -28,19 +33,28 @@ void main() {
     expect(either.isRight(), isTrue);
 
     final result = either.fold(id, id);
-    expect(result, isA<StudentDocsAddress>());
+    expect(
+      result,
+      isA<StudentDocsAddress>(),
+    );
   });
   testWidgets("LoadStudentDocsUsecase when load a left value", (tester) async {
     final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.getByStudentId(1)).thenAnswer(
-      (realInvocation) =>
-          Future.value(left(const SocketException("Ocorreu um erro"))),
+    when(
+      () => repository.getByStudentId(1),
+    ).thenAnswer(
+      (realInvocation) => Future.value(left(
+        const SocketException("Ocorreu um erro"),
+      )),
     );
     final usecase = LoadStudentDocsUsecase(repository);
     final params = LoadStudentDocsParams(1, "");
     final either = await usecase(params);
     expect(either.isLeft(), isTrue);
     final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
+    expect(
+      result,
+      isA<SocketException>(),
+    );
   });
 }

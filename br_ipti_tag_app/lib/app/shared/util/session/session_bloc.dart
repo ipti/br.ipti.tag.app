@@ -4,31 +4,44 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SessionBloc extends Cubit<SessionState> {
-  SessionBloc(this._sessionService) : super(SessionInitial());
+  SessionBloc(this._sessionService)
+      : super(
+          SessionInitial(),
+        );
 
   final SessionService _sessionService;
 
   Future changeSchool(School school) async {
     _sessionService.setCurrentSchool(school);
-    emit(state.copyWith(currentSchool: school));
+    emit(
+      state.copyWith(currentSchool: school),
+    );
   }
 
   Future fetchSchools() async {
     final schools = await _sessionService.getCurrentUserSchools();
-    emit(state.copyWith(
-      schools: schools,
-    ));
+    emit(
+      state.copyWith(
+        schools: schools,
+      ),
+    );
   }
 
   Future<School> fetchCurrentSchool() async {
     final currentSchool = await _sessionService.getCurrentSchool();
-    emit(state.copyWith(currentSchool: currentSchool));
+    emit(
+      state.copyWith(currentSchool: currentSchool),
+    );
+
     return currentSchool;
   }
 
   Future<String> getYear() async {
     final year = await _sessionService.getSchoolYear();
-    emit(state.copyWith(year: year));
+    emit(
+      state.copyWith(year: year),
+    );
+
     return year;
   }
 }

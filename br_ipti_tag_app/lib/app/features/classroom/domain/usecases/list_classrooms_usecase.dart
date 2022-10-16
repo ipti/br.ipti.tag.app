@@ -11,8 +11,10 @@ class ListClassroomsUsecase
 
   @override
   Future<Either<Exception, List<ClassroomEntity>>> call(
-      ClassroomParams params) async {
+    ClassroomParams params,
+  ) async {
     final result = await _repositoryClassroom.list(params);
+
     return result;
   }
 }

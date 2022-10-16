@@ -4,6 +4,7 @@ extension EnumById<T extends Enum> on Iterable<T> {
     for (final value in this) {
       if (value.index + 1 == id) return value;
     }
+
     return null;
   }
 }

@@ -25,11 +25,14 @@ class ClassroomCreatePage extends StatefulWidget {
   ClassroomCreatePageState createState() => ClassroomCreatePageState();
 }
 
-class ClassroomCreatePageState
-    extends ModularState<ClassroomCreatePage, ClassroomCreateBloc> {
+class ClassroomCreatePageState extends State<ClassroomCreatePage> {
+  final controller = Modular.get<ClassroomCreateBloc>();
+
   @override
   void initState() {
-    controller.add(StartEditing());
+    controller.add(
+      StartEditing(),
+    );
     super.initState();
   }
 
@@ -113,7 +116,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
-            controller.setStartTime(stringToTimeOfDay(value));
+            controller.setStartTime(
+              stringToTimeOfDay(value),
+            );
           },
           value: startTime.format(context),
           validator: requiredTimeValidator,
@@ -124,7 +129,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
-            controller.setEndTime(stringToTimeOfDay(value));
+            controller.setEndTime(
+              stringToTimeOfDay(value),
+            );
           },
           value: endTime.format(context),
           validator: requiredTimeValidator,
@@ -171,26 +178,36 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                     RowToColumn(
                       children: [
                         Flexible(
-                          child: withPadding(inputName(state.name)),
+                          child: withPadding(
+                            inputName(state.name),
+                          ),
                         ),
                         Flexible(
-                          child: withPadding(inputStartTime(state.startTime)),
-                        )
+                          child: withPadding(
+                            inputStartTime(state.startTime),
+                          ),
+                        ),
                       ],
                     ),
                     RowToColumn(
                       children: [
                         Flexible(
-                          child: withPadding(selectModality(state.modalityId)),
+                          child: withPadding(
+                            selectModality(state.modalityId),
+                          ),
                         ),
                         Flexible(
-                          child: withPadding(inputEndTime(state.endTime)),
-                        )
+                          child: withPadding(
+                            inputEndTime(state.endTime),
+                          ),
+                        ),
                       ],
                     ),
                     RowToColumn(children: [
                       Flexible(
-                        child: withPadding(selectStage(state.stageId)),
+                        child: withPadding(
+                          selectStage(state.stageId),
+                        ),
                       ),
                     ]),
                     RowToColumn(children: [
@@ -287,6 +304,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
               ),
             );
           }
+
           return const Center(
             child: CircularProgressIndicator(),
           );

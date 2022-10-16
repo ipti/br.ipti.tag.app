@@ -36,6 +36,7 @@ class RouterAPI implements NetworkRouter {
     try {
       final requestOptions = _buildRequest(route: route);
       final response = await _client.fetch(requestOptions);
+
       return NetworkResponse(
         response.data as Iterable,
         response,
@@ -58,6 +59,7 @@ class RouterAPI implements NetworkRouter {
   }) async {
     final requestOptions = _buildRequest(route: route);
     final response = await _client.fetch(requestOptions);
+
     return NetworkResponse(
       PaginatedResponse.fromMap(response.data as Map<String, dynamic>),
       response,
@@ -73,15 +75,21 @@ class RouterAPI implements NetworkRouter {
     final data = {};
 
     if (route.headers != null) {
-      headers.addAll(route.headers!());
+      headers.addAll(
+        route.headers!(),
+      );
     }
 
     if (route.urlParameters != null) {
-      queryParameters.addAll(route.urlParameters!());
+      queryParameters.addAll(
+        route.urlParameters!(),
+      );
     }
 
     if (route.bodyParameters != null) {
-      data.addAll(route.bodyParameters!());
+      data.addAll(
+        route.bodyParameters!(),
+      );
     }
 
     final request = RequestOptions(

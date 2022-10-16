@@ -9,7 +9,8 @@ class ListEdcensoDisciplinesUseCase
   ListEdcensoDisciplinesUseCase(this._repositoryClassroom);
   @override
   Future<Either<Exception, List<EdcensoDisciplinesEntity>>> call(
-      NoParams params) async {
+    NoParams params,
+  ) async {
     return _repositoryClassroom.listEdcensoDisciplines();
   }
 }

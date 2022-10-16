@@ -17,6 +17,7 @@ class ListClassroomsUsecase
     ClassroomParams params,
   ) async {
     final result = await _repositoryStudent.listAll(params);
+
     return result;
   }
 }

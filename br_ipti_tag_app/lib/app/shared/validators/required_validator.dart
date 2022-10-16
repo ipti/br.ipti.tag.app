@@ -17,6 +17,7 @@ class DropdownRequiredValidator<T> extends FieldValidator<T> {
     if (isNull) {
       return false;
     }
+
     return true;
   }
 }

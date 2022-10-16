@@ -18,8 +18,9 @@ class ClassroomPage extends StatefulWidget {
   ClassroomPageState createState() => ClassroomPageState();
 }
 
-class ClassroomPageState
-    extends ModularState<ClassroomPage, ClassroomListBloc> {
+class ClassroomPageState extends State<ClassroomPage> {
+  final controller = Modular.get<ClassroomListBloc>();
+
   @override
   void initState() {
     controller.fetchListClassroomsEvent();
@@ -44,17 +45,26 @@ class ClassroomPageState
               bloc: controller,
               builder: (context, state) {
                 if (state.loading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
+
                 return TagDataTable(
                   onTapRow: (index) => Modular.to.pushNamed(
                     "updatePage",
                     arguments: state.classrooms[index],
                   ),
                   columns: const [
-                    DataColumn(label: Text("Nome")),
-                    DataColumn(label: Text("Etapa")),
-                    DataColumn(label: Text("Horário ")),
+                    DataColumn(
+                      label: Text("Nome"),
+                    ),
+                    DataColumn(
+                      label: Text("Etapa"),
+                    ),
+                    DataColumn(
+                      label: Text("Horário "),
+                    ),
                   ],
                   source: ClassroomDatatable(
                     data: state.classrooms,
@@ -62,7 +72,7 @@ class ClassroomPageState
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -98,9 +108,15 @@ class ClassroomDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stage)),
-      DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
+      DataCell(Text(
+        data[index].name.toUpperCase(),
+      )),
+      DataCell(
+        Text(data[index].stage),
+      ),
+      DataCell(
+        Text('${data[index].startTime} - ${data[index].endTime}'),
+      ),
     ]);
   }
 
@@ -129,7 +145,10 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       height: maxExtent,
       color: TagColors.colorBaseWhiteNormal,

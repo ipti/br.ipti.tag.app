@@ -10,8 +10,11 @@ class MockStudentRepository extends Mock implements StudentRepository {}
 void main() {
   testWidgets("DeleteStudentsUsecase when delet a right value", (tester) async {
     final repository = MockStudentRepository();
-    when(() => repository.delete(any()))
-        .thenAnswer((invocation) => Future.value(right(true)));
+    when(() => repository.delete(
+          any(),
+        )).thenAnswer((invocation) => Future.value(
+          right(true),
+        ));
     final usercase = DeleteStudentsUsecase(repository);
     const params = DeleteStudentParams(id: "");
     final either = await usercase(params);
@@ -19,21 +22,34 @@ void main() {
     expect(result, isTrue);
   });
 
-  testWidgets("DeleteStudentsUsecase when params is equal value",
-      (tester) async {
-    const params = DeleteStudentParams(id: "1");
-    const params2 = DeleteStudentParams(id: "1");
+  testWidgets(
+    "DeleteStudentsUsecase when params is equal value",
+    (tester) async {
+      const params = DeleteStudentParams(id: "1");
+      const params2 = DeleteStudentParams(id: "1");
 
-    expect(params.props, equals([params2.id]));
-  });
+      expect(
+        params.props,
+        equals([params2.id]),
+      );
+    },
+  );
   testWidgets("DeleteStudentsUsecase when delet a left value", (tester) async {
     final repository = MockStudentRepository();
-    when(() => repository.delete(any())).thenAnswer((invocation) =>
-        Future.value(left(const SocketException("Ocorreu um erro"))));
+    when(() => repository.delete(
+          any(),
+        )).thenAnswer(
+      (invocation) => Future.value(left(
+        const SocketException("Ocorreu um erro"),
+      )),
+    );
     final usercase = DeleteStudentsUsecase(repository);
     const params = DeleteStudentParams(id: "");
     final either = await usercase(params);
     final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
+    expect(
+      result,
+      isA<SocketException>(),
+    );
   });
 }

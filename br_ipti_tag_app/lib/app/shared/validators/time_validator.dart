@@ -13,6 +13,7 @@ class TimeValidator extends TextFieldValidator {
       final int hour = int.parse(value!.split(":")[0]);
       final int minute = int.parse(value.split(":")[1]);
       TimeOfDay(hour: hour, minute: minute);
+
       return hour < 24 && minute < 60 && hour >= 0 && minute >= 0;
     } catch (e) {
       return false;

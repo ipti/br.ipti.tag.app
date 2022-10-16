@@ -32,9 +32,10 @@ class UpdateInstructorPage extends StatefulWidget {
   UpdateInstructorPageState createState() => UpdateInstructorPageState();
 }
 
-class UpdateInstructorPageState
-    extends ModularState<UpdateInstructorPage, CreateInstructorBloc>
+class UpdateInstructorPageState extends State<UpdateInstructorPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<CreateInstructorBloc>();
+
   UpdateInstructorPageState() : super();
 
   final List<Tab> _tabs = const [
@@ -73,79 +74,80 @@ class UpdateInstructorPageState
     return DefaultTabController(
       length: _tabs.length,
       child: BlocConsumer<CreateInstructorBloc, InstructorFormState>(
-          listener: (context, state) {
-            if (state is CreateInstructorErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: TagColors.colorRedDark,
-                  content: Text(state.message),
-                ),
-              );
-            }
-            if (state is CreateInstructorSuccessState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  backgroundColor: TagColors.colorBaseProductNormal,
-                  content: Text(state.message),
-                ),
-              );
-            }
-          },
-          buildWhen: (previou, current) {
-            return [InstructorFormStatus.Loaded, InstructorFormStatus.Empty]
-                .contains(current.status);
-          },
-          bloc: controller,
-          builder: (context, state) {
-            return TagScaffold(
-              // appBar: const TagAppBar(leading: TagAppBarBackIconButton()),
-              menu: const TagVerticalMenu(),
-              title: widget.title!,
-              description: "",
-              path: ["Professor", widget.title!],
-              body: Column(children: [
-                TabBar(
-                  controller: _tabController,
-                  isScrollable: true,
-                  labelColor: TagColors.colorBaseProductDark,
-                  indicatorColor: TagColors.colorBaseProductDark,
-                  labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                  onTap: (value) => controller.goToTab(value),
-                  tabs: _tabs,
-                ),
-                if (state.status == InstructorFormStatus.Loading)
-                  const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                if (state.status == InstructorFormStatus.Loaded)
-                  LayoutBuilder(builder: (context, constraints) {
-                    return ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height - 200,
-                        maxWidth: 800,
-                      ),
-                      child: TabBarView(
-                        controller: _tabController,
-                        children: [
-                          PersonalDataFormPage(
-                            instructor: state,
-                            editMode: widget.editMode,
-                          ),
-                          AddressFormPage(
-                            instructor: state,
-                            editMode: widget.editMode,
-                          ),
-                          InstructoEducationPage(
-                            instructor: state,
-                            editMode: widget.editMode,
-                          )
-                        ],
-                      ),
-                    );
-                  }),
-              ]),
+        listener: (context, state) {
+          if (state is CreateInstructorErrorState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: TagColors.colorRedDark,
+                content: Text(state.message),
+              ),
             );
-          }),
+          }
+          if (state is CreateInstructorSuccessState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: TagColors.colorBaseProductNormal,
+                content: Text(state.message),
+              ),
+            );
+          }
+        },
+        buildWhen: (previou, current) {
+          return [InstructorFormStatus.Loaded, InstructorFormStatus.Empty]
+              .contains(current.status);
+        },
+        bloc: controller,
+        builder: (context, state) {
+          return TagScaffold(
+            // appBar: const TagAppBar(leading: TagAppBarBackIconButton(),),
+            menu: const TagVerticalMenu(),
+            title: widget.title!,
+            description: "",
+            path: ["Professor", widget.title!],
+            body: Column(children: [
+              TabBar(
+                controller: _tabController,
+                isScrollable: true,
+                labelColor: TagColors.colorBaseProductDark,
+                indicatorColor: TagColors.colorBaseProductDark,
+                labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                onTap: (value) => controller.goToTab(value),
+                tabs: _tabs,
+              ),
+              if (state.status == InstructorFormStatus.Loading)
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              if (state.status == InstructorFormStatus.Loaded)
+                LayoutBuilder(builder: (context, constraints) {
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: MediaQuery.of(context).size.height - 200,
+                      maxWidth: 800,
+                    ),
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        PersonalDataFormPage(
+                          instructor: state,
+                          editMode: widget.editMode,
+                        ),
+                        AddressFormPage(
+                          instructor: state,
+                          editMode: widget.editMode,
+                        ),
+                        InstructoEducationPage(
+                          instructor: state,
+                          editMode: widget.editMode,
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+            ]),
+          );
+        },
+      ),
     );
   }
 

@@ -15,6 +15,10 @@ class IngredientDumbDataSourceImpl implements IngredientDumbDataSource {
     );
     final jsonResult = jsonDecode(data) as List;
 
-    return jsonResult.map((e) => IngredientModel.fromMap(e)).toList();
+    return jsonResult
+        .map(
+          (e) => IngredientModel.fromMap(e),
+        )
+        .toList();
   }
 }

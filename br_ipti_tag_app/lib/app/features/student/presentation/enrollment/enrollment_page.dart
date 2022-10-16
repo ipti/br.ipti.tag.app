@@ -33,8 +33,9 @@ class EnrollmentPage extends StatefulWidget {
   EnrollmentPageState createState() => EnrollmentPageState();
 }
 
-class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
+class EnrollmentPageState extends State<EnrollmentPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<EnrollmentBloc>();
   static const List<Tab> _tabs = [
     Tab(
       child: Text("Dados do aluno"),
@@ -47,7 +48,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
     ),
     Tab(
       child: Text("Matrícula"),
-    )
+    ),
   ];
 
   late TabController _tabController;
@@ -137,6 +138,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
               if (state is EnrollmentLoadedState) {
                 return _buildWithData(state);
               }
+
               return _buildWithoutData();
             },
           ),
@@ -163,7 +165,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
         ClassesFormPage(
           model: state.studentEnrollment,
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }
@@ -183,7 +185,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
         ),
         ClassesFormPage(
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }

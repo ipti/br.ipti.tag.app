@@ -92,42 +92,60 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           builder: (context, state) {
             return RowToColumn(children: [
               Flexible(
-                child: withPadding(inputSchoolName(
-                    controller.state.currentSchoolData?.name ?? "")),
+                child: withPadding(
+                  inputSchoolName(
+                    controller.state.currentSchoolData?.name ?? "",
+                  ),
+                ),
               ),
               Flexible(
-                child: withPadding(inputInepCode(
-                    controller.state.currentSchoolData?.inepId ?? "")),
+                child: withPadding(
+                  inputInepCode(
+                    controller.state.currentSchoolData?.inepId ?? "",
+                  ),
+                ),
               ),
             ]);
           },
         ),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputAdminDep()),
+            child: withPadding(
+              inputAdminDep(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputStatus()),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRegionalAdmin()),
-          ),
-          Flexible(
-            child: withPadding(inputStartDate(
-                controller.state.currentSchoolData?.initialDate ?? "")),
+            child: withPadding(
+              inputStatus(),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRecognitionAct(
-                controller.state.currentSchoolData?.actOfAcknowledgement ??
-                    "")),
+            child: withPadding(
+              inputRegionalAdmin(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputEndDate(
-                controller.state.currentSchoolData?.finalDate ?? "")),
+            child: withPadding(
+              inputStartDate(
+                controller.state.currentSchoolData?.initialDate ?? "",
+              ),
+            ),
+          ),
+        ]),
+        RowToColumn(children: [
+          Flexible(
+            child: withPadding(
+              inputRecognitionAct(
+                controller.state.currentSchoolData?.actOfAcknowledgement ?? "",
+              ),
+            ),
+          ),
+          Flexible(
+            child: withPadding(
+              inputEndDate(controller.state.currentSchoolData?.finalDate ?? ""),
+            ),
           ),
         ]),
       ],

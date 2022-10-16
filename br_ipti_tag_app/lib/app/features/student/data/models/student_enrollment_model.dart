@@ -205,10 +205,14 @@ class StudentEnrollmentModel extends StudentEnrollment {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   factory StudentEnrollmentModel.fromJson(String source) =>
-      StudentEnrollmentModel.fromMap(json.decode(source));
+      StudentEnrollmentModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

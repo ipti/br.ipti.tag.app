@@ -15,10 +15,16 @@ class AuthModule extends Module {
   final List<Bind> binds = [
     // datasources
     Bind.singleton<AuthRemoteDataSource>(
-      (i) => AuthRemoteDataSourceImpl(i.get()),
+      (i) => AuthRemoteDataSourceImpl(
+        i.get(),
+      ),
     ),
-    Bind.singleton<AuthLocalDataSource>((i) => AuthLocalDataSourceImpl()),
-    Bind.singleton<SessionService>((i) => SessionServiceImpl()),
+    Bind.singleton<AuthLocalDataSource>(
+      (i) => AuthLocalDataSourceImpl(),
+    ),
+    Bind.singleton<SessionService>(
+      (i) => SessionServiceImpl(),
+    ),
     // repository
     Bind.singleton(
       (i) => AuthRespositoryImpl(
@@ -27,8 +33,12 @@ class AuthModule extends Module {
       ),
     ),
     // usecases
-    Bind.singleton((i) => AuthLoginUsecase(i.get())),
-    Bind.singleton((i) => VerifyAuthUsecase(i.get())),
+    Bind.singleton((i) => AuthLoginUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => VerifyAuthUsecase(
+          i.get(),
+        )),
     // bloc
     Bind.singleton(
       (i) => LoginBloc(
@@ -41,6 +51,9 @@ class AuthModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const AuthLoginPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const AuthLoginPage(),
+    ),
   ];
 }

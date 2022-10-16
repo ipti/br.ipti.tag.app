@@ -41,7 +41,8 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> createInstructorsTeachingData(
-      InstructorTeachingDataCreateModel instructor) async {
+    InstructorTeachingDataCreateModel instructor,
+  ) async {
     final response = await _httpClient.request(
       route: PostInstructorTeachingDataEndpoint(instructor),
     );
@@ -71,8 +72,11 @@ class ClassroomRemoteDataSource {
     );
 
     final mappedList = (response.data!['data'] as List)
-        .map((e) => ClassroomModel.fromJson(e))
+        .map(
+          (e) => ClassroomModel.fromJson(e),
+        )
         .toList();
+
     return mappedList;
   }
 
@@ -81,8 +85,11 @@ class ClassroomRemoteDataSource {
       route: GetEdcensoDisciplinesEndpoint(),
     );
 
-    final mappedList =
-        response.data!.map((e) => EdcensoDisciplineModel.fromJson(e)).toList();
+    final mappedList = response.data!
+        .map(
+          (e) => EdcensoDisciplineModel.fromJson(e),
+        )
+        .toList();
 
     return mappedList;
   }
@@ -93,20 +100,25 @@ class ClassroomRemoteDataSource {
     );
 
     final mappedList = (response.data!['data'] as List)
-        .map((e) => InstructorModel.fromJson(e))
+        .map(
+          (e) => InstructorModel.fromJson(e),
+        )
         .toList();
 
     return mappedList;
   }
 
   Future<List<InstructorTeachingDataEntity>> listInstructorsTeachingData(
-      ListInstructorsTeachingDataParams param) async {
+    ListInstructorsTeachingDataParams param,
+  ) async {
     final response = await _httpClient.request(
       route: GetInstructorsTeachingDataEndPoint(param),
     );
 
     final mappedList = (response.data!['data'] as List)
-        .map((e) => InstructorTeachingDataModel.fromJson(e))
+        .map(
+          (e) => InstructorTeachingDataModel.fromJson(e),
+        )
         .toList();
 
     return mappedList;
@@ -131,7 +143,9 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> updateInstructorsTeachingData(
-      String id, InstructorTeachingDataUpdateModel instructor) async {
+    String id,
+    InstructorTeachingDataUpdateModel instructor,
+  ) async {
     final response = await _httpClient.request(
       route: PutInstructorTeachingDataEndpoint(instructor, id),
     );

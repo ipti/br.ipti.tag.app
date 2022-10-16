@@ -67,6 +67,7 @@ class SchoolModel extends School {
     super.updatedAt,
   });
 
+  // ignore: long-method
   SchoolModel copyWith({
     String? id,
     String? registerType,
@@ -352,10 +353,13 @@ class SchoolModel extends School {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory SchoolModel.fromJson(String source) =>
-      SchoolModel.fromMap(json.decode(source));
+  factory SchoolModel.fromJson(String source) => SchoolModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {
@@ -363,6 +367,7 @@ class SchoolModel extends School {
   }
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 

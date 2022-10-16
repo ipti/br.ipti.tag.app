@@ -51,24 +51,33 @@ class _SchoolContactDataFormState extends State<SchoolContactDataForm> {
           hint: "Digite o site ou blog da escola",
           value: primaryPhone,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputPrimaryPhone("PlaceHolder")),
+            child: withPadding(
+              inputPrimaryPhone("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputSecondaryPhone("PlaceHolder")),
+            child: withPadding(
+              inputSecondaryPhone("PlaceHolder"),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputEmail("PlaceHolder")),
+            child: withPadding(
+              inputEmail("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputSite("PlaceHolder")),
+            child: withPadding(
+              inputSite("PlaceHolder"),
+            ),
           ),
         ]),
       ],

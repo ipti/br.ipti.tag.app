@@ -11,37 +11,59 @@ class MockStudentEnrollmentRepository extends Mock
     implements StudentEnrollmentRepository {}
 
 void main() {
-  testWidgets("CreateStudentEnrollmentUsecase when create a right value",
-      (tester) async {
-    final studentEnrollment = StudentEnrollment(
+  testWidgets(
+    "CreateStudentEnrollmentUsecase when create a right value",
+    (tester) async {
+      final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
-        classroomFk: "classroomFk");
-    final repository = MockStudentEnrollmentRepository();
-    when(() => repository.create(studentEnrollment))
-        .thenAnswer((invocation) => Future.value(right(studentEnrollment)));
+        classroomFk: "classroomFk",
+      );
+      final repository = MockStudentEnrollmentRepository();
+      when(
+        () => repository.create(studentEnrollment),
+      ).thenAnswer((invocation) => Future.value(
+            right(studentEnrollment),
+          ));
 
-    final usercase = CreateStudentEnrollmentUsecase(repository);
-    final params = CreateStudentEnrollmentParams(enrollment: studentEnrollment);
-    final either = await usercase(params);
-    final result = either.fold(id, id);
-    expect(result, isA<StudentEnrollment>());
-  });
-  testWidgets("CreateStudentEnrollmentUsecase when create a left value",
-      (tester) async {
-    final studentEnrollment = StudentEnrollment(
+      final usercase = CreateStudentEnrollmentUsecase(repository);
+      final params =
+          CreateStudentEnrollmentParams(enrollment: studentEnrollment);
+      final either = await usercase(params);
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<StudentEnrollment>(),
+      );
+    },
+  );
+  testWidgets(
+    "CreateStudentEnrollmentUsecase when create a left value",
+    (tester) async {
+      final studentEnrollment = StudentEnrollment(
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
-        classroomFk: "classroomFk");
-    final repository = MockStudentEnrollmentRepository();
-    when(() => repository.create(studentEnrollment)).thenAnswer((invocation) =>
-        Future.value(left(const SocketException("Ocorreu um erro"))));
+        classroomFk: "classroomFk",
+      );
+      final repository = MockStudentEnrollmentRepository();
+      when(
+        () => repository.create(studentEnrollment),
+      ).thenAnswer(
+        (invocation) => Future.value(left(
+          const SocketException("Ocorreu um erro"),
+        )),
+      );
 
-    final usercase = CreateStudentEnrollmentUsecase(repository);
-    final params = CreateStudentEnrollmentParams(enrollment: studentEnrollment);
+      final usercase = CreateStudentEnrollmentUsecase(repository);
+      final params =
+          CreateStudentEnrollmentParams(enrollment: studentEnrollment);
 
-    final either = await usercase(params);
-    final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
-  });
+      final either = await usercase(params);
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<SocketException>(),
+      );
+    },
+  );
 }
