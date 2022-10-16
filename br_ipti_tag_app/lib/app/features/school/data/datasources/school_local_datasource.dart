@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/data/data_source.dart';
+import 'package:br_ipti_tag_app/app/core/defaults/data_source.dart';
 import 'package:br_ipti_tag_app/app/features/school/data/models/school_model.dart';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 

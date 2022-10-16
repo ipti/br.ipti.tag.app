@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';

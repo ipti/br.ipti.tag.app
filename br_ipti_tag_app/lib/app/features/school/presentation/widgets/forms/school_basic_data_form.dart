@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
 import 'package:flutter/material.dart';

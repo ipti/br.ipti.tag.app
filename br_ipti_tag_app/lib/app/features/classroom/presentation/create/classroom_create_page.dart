@@ -1,6 +1,4 @@
-import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
-import 'package:br_ipti_tag_app/app/core/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/etapa_ensino_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/mediacao_enum.dart';
@@ -117,7 +115,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
             controller.setStartTime(
-              stringToTimeOfDay(value),
+              value.parseTimeOfDay,
             );
           },
           value: startTime.format(context),
@@ -130,7 +128,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
             controller.setEndTime(
-              stringToTimeOfDay(value),
+              value.parseTimeOfDay,
             );
           },
           value: endTime.format(context),

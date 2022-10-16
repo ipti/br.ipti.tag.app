@@ -1,5 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
-import 'package:br_ipti_tag_app/app/core/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
