@@ -4,13 +4,13 @@ import 'package:tag_ui/tag_ui.dart';
 
 class TagButtonIcon extends StatelessWidget {
   const TagButtonIcon({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     required this.icon,
     this.buttonStyle,
     this.textStyle,
-  }) : super(key: key);
+  });
   final Function() onPressed;
   final String label;
   final String icon;

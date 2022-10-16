@@ -11,7 +11,7 @@ import 'package:tag_ui/tag_ui.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthLoginPage extends StatefulWidget {
-  const AuthLoginPage({Key? key, this.title = 'Login'}) : super(key: key);
+  const AuthLoginPage({super.key, this.title = 'Login'});
 
   final String title;
 
@@ -94,9 +94,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({
-    Key? key,
-  }) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +113,9 @@ class _Logo extends StatelessWidget {
 
 class Body extends StatelessWidget {
   const Body({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final LoginBloc controller;
 
   static final _formKey = GlobalKey<FormState>();
@@ -215,10 +213,9 @@ class Body extends StatelessWidget {
 
 class _Footer extends StatelessWidget {
   const _Footer({
-    Key? key,
     required this.version,
     required this.year,
-  }) : super(key: key);
+  });
 
   final String version;
   final String year;

@@ -17,9 +17,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class ClassroomBasicDataForm extends StatefulWidget {
   const ClassroomBasicDataForm({
-    Key? key,
+    super.key,
     @required this.classroomEntity,
-  }) : super(key: key);
+  });
   final ClassroomEntity? classroomEntity;
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();

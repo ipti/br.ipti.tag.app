@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolAdminDataForm extends StatefulWidget {
-  const SchoolAdminDataForm({Key? key}) : super(key: key);
+  const SchoolAdminDataForm({super.key});
 
   @override
   State<SchoolAdminDataForm> createState() => _SchoolAdminDataFormState();

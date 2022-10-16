@@ -9,7 +9,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class TeacherPage extends StatefulWidget {
-  const TeacherPage({Key? key, this.title = 'Professores'}) : super(key: key);
+  const TeacherPage({super.key, this.title = 'Professores'});
 
   final String title;
 

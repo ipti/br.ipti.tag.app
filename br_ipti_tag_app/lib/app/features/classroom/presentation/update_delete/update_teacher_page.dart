@@ -12,8 +12,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class ClassroomTeacherPage extends StatefulWidget {
-  const ClassroomTeacherPage({Key? key, required this.classroomId})
-      : super(key: key);
+  const ClassroomTeacherPage({super.key, required this.classroomId});
   final String classroomId;
 
   @override

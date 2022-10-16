@@ -27,8 +27,8 @@ class ClassroomEntity {
 
   final String name;
   final String id;
-  final String? startTime;
-  final String? endTime;
+  final String startTime;
+  final String endTime;
   final int? modalityId;
   final String stage;
   final int? typePedagogicMediationId;

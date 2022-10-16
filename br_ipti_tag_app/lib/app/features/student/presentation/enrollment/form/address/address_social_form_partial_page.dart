@@ -12,10 +12,10 @@ import 'bloc/enrollment_address_bloc.dart';
 
 class AddressFormPage extends StatefulWidget {
   const AddressFormPage({
-    Key? key,
+    super.key,
     this.editMode = EditMode.Create,
     this.model,
-  }) : super(key: key);
+  });
 
   final StudentDocsAddress? model;
   final EditMode editMode;

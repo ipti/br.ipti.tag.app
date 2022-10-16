@@ -4,8 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SelectActionMealsPage extends StatefulWidget {
-  const SelectActionMealsPage({Key? key, this.title = 'Merenda escolar'})
-      : super(key: key);
+  const SelectActionMealsPage({super.key, this.title = 'Merenda escolar'});
 
   final String title;
 
@@ -55,11 +54,10 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
 
 class _SelectActionNavigatorItem extends StatelessWidget {
   const _SelectActionNavigatorItem({
-    Key? key,
     required this.onTap,
     required this.title,
     required this.subtitle,
-  }) : super(key: key);
+  });
 
   final Function() onTap;
   final String title;

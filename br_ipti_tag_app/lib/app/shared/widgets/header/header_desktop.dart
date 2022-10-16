@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class HeaderDesktop extends StatefulWidget {
-  const HeaderDesktop({Key? key}) : super(key: key);
+  const HeaderDesktop({super.key});
 
   @override
   State<HeaderDesktop> createState() => _HeaderDesktopState();

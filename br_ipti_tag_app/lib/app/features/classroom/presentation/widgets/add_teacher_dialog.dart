@@ -14,12 +14,12 @@ import 'package:tag_ui/tag_ui.dart';
 
 class AddTeacherDialog extends StatefulWidget {
   const AddTeacherDialog({
-    Key? key,
+    super.key,
     required this.classroomId,
     this.instructorTeachingDataEntity,
     this.instructorEntity,
     this.disciplineIdFk,
-  }) : super(key: key);
+  });
   final String classroomId;
   final InstructorEntity? instructorEntity;
   final String? disciplineIdFk;

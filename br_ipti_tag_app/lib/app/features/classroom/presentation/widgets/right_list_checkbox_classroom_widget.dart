@@ -5,7 +5,7 @@ import 'package:tag_ui/tag_ui.dart';
 
 class RightListClasroomWidget extends StatelessWidget {
   const RightListClasroomWidget({
-    Key? key,
+    super.key,
     required this.onChangedAeeBraille,
     required this.onChangedAeeOpticalNonOptical,
     required this.state,
@@ -18,7 +18,7 @@ class RightListClasroomWidget extends StatelessWidget {
     required this.onChangedAeePortuguese,
     required this.onChangedAeeSoroban,
     required this.onChangedAeeAutonomousLife,
-  }) : super(key: key);
+  });
   final ClassroomCreateFormState state;
   final void Function(bool?)? onChangedAeeBraille;
   final void Function(bool?)? onChangedAeeOpticalNonOptical;

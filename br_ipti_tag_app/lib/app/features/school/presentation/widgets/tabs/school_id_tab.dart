@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 class SchoolIdTab extends StatefulWidget {
   const SchoolIdTab({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SchoolIdTab> createState() => _SchoolIdTabState();

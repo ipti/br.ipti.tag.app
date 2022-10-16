@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class ClassesFormPage extends StatefulWidget {
-  const ClassesFormPage({Key? key}) : super(key: key);
+  const ClassesFormPage({super.key});
 
   @override
   ClassesFormPageState createState() => ClassesFormPageState();

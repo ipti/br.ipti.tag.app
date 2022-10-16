@@ -12,7 +12,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolEditPage extends StatefulWidget {
-  const SchoolEditPage({Key? key, this.title = "Escola"}) : super(key: key);
+  const SchoolEditPage({super.key, this.title = "Escola"});
 
   final String title;
   @override

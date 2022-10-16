@@ -11,7 +11,7 @@ import 'bloc/list_meals_events.dart';
 import 'bloc/list_meals_states.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({Key? key, this.title = 'Refeições'}) : super(key: key);
+  const ListMealsPage({super.key, this.title = 'Refeições'});
 
   final String title;
 
@@ -83,9 +83,8 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
 
 class _DailyMeals extends StatelessWidget {
   const _DailyMeals({
-    Key? key,
     required this.mealsOfDay,
-  }) : super(key: key);
+  });
 
   final MealsMenu mealsOfDay;
 
@@ -104,9 +103,7 @@ class _DailyMeals extends StatelessWidget {
 
 // ignore: unused_element
 class _FilterStudentType extends StatelessWidget {
-  const _FilterStudentType({
-    Key? key,
-  }) : super(key: key);
+  const _FilterStudentType();
 
   @override
   Widget build(BuildContext context) {
@@ -149,9 +146,8 @@ class _FilterStudentType extends StatelessWidget {
 // ignore: unused_element
 class _FilterTurn extends StatelessWidget {
   const _FilterTurn({
-    Key? key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ListMealsBloc controller;
 
   @override
@@ -194,10 +190,9 @@ class _FilterTurn extends StatelessWidget {
 
 class _FilterButton extends StatefulWidget {
   const _FilterButton({
-    Key? key,
     required this.onPressed,
     required this.child,
-  }) : super(key: key);
+  });
 
   final void Function(bool) onPressed;
   final Widget child;

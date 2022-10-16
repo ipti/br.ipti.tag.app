@@ -5,9 +5,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class IngredientItem extends StatelessWidget {
   const IngredientItem({
-    Key? key,
+    super.key,
     required this.ingredient,
-  }) : super(key: key);
+  });
 
   final Ingredient ingredient;
 

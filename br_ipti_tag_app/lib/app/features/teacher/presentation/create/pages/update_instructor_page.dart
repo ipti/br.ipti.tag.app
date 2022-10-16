@@ -18,11 +18,11 @@ import 'personal/personal_form_partial_page.dart';
 
 class UpdateInstructorPage extends StatefulWidget {
   const UpdateInstructorPage({
-    Key? key,
+    super.key,
     this.title = 'Editar',
     this.instructor,
     this.editMode = EditMode.Edit,
-  }) : super(key: key);
+  });
 
   final String? title;
   final EditMode editMode;

@@ -6,7 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class TagVerticalMenu extends StatelessWidget {
-  const TagVerticalMenu({Key? key}) : super(key: key);
+  const TagVerticalMenu({super.key});
 
   @override
   Widget build(BuildContext context) {

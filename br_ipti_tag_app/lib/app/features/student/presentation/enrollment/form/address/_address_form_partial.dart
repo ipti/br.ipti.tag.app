@@ -11,10 +11,10 @@ const padding = EdgeInsets.symmetric(vertical: 8);
 
 class AddressForm extends StatelessWidget {
   const AddressForm({
-    Key? key,
+    super.key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final EnrollmentAddressBloc controller;
   final EnrollmentAddressState state;
@@ -114,10 +114,9 @@ class AddressForm extends StatelessWidget {
 
 class _CEPField extends StatelessWidget {
   const _CEPField({
-    Key? key,
     required this.cep,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String cep;
   final EnrollmentAddressBloc controller;
@@ -140,10 +139,9 @@ class _CEPField extends StatelessWidget {
 
 class _UFField extends StatelessWidget {
   const _UFField({
-    Key? key,
     required this.edcensoUfFk,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String edcensoUfFk;
   final EnrollmentAddressBloc controller;
@@ -163,10 +161,9 @@ class _UFField extends StatelessWidget {
 
 class _CityField extends StatelessWidget {
   const _CityField({
-    Key? key,
     required this.edcensoCityFk,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? edcensoCityFk;
   final EnrollmentAddressBloc controller;
@@ -186,10 +183,9 @@ class _CityField extends StatelessWidget {
 
 class _AddressField extends StatelessWidget {
   const _AddressField({
-    Key? key,
     required this.address,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String address;
   final EnrollmentAddressBloc controller;
@@ -208,10 +204,9 @@ class _AddressField extends StatelessWidget {
 
 class _AddressNumberField extends StatelessWidget {
   const _AddressNumberField({
-    Key? key,
     required this.number,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String number;
   final EnrollmentAddressBloc controller;
@@ -230,10 +225,9 @@ class _AddressNumberField extends StatelessWidget {
 
 class _NeighborhoodField extends StatelessWidget {
   const _NeighborhoodField({
-    Key? key,
     required this.neighborhood,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String neighborhood;
   final EnrollmentAddressBloc controller;
@@ -252,10 +246,9 @@ class _NeighborhoodField extends StatelessWidget {
 
 class _ComplementField extends StatelessWidget {
   const _ComplementField({
-    Key? key,
     required this.complement,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String complement;
   final EnrollmentAddressBloc controller;
@@ -274,10 +267,9 @@ class _ComplementField extends StatelessWidget {
 
 class _ZoneField extends StatelessWidget {
   const _ZoneField({
-    Key? key,
     required this.residenceZone,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int residenceZone;
   final EnrollmentAddressBloc controller;

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class ClassroomStudentPage extends StatelessWidget {
-  const ClassroomStudentPage({Key? key}) : super(key: key);
+  const ClassroomStudentPage({super.key});
 
   @override
   Widget build(BuildContext context) {

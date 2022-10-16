@@ -10,8 +10,7 @@ import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
-  const ClassroomPage({Key? key, this.title = 'Listagem de Turmas'})
-      : super(key: key);
+  const ClassroomPage({super.key, this.title = 'Listagem de Turmas'});
 
   final String title;
 
@@ -71,9 +70,7 @@ class ClassroomPageState
 }
 
 class _Actions extends StatelessWidget {
-  const _Actions({
-    Key? key,
-  }) : super(key: key);
+  const _Actions();
 
   @override
   Widget build(BuildContext context) {

@@ -6,9 +6,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class DetailsItemStockPage extends StatefulWidget {
   const DetailsItemStockPage({
-    Key? key,
+    super.key,
     required this.ingredient,
-  }) : super(key: key);
+  });
 
   final Ingredient ingredient;
 

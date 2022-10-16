@@ -4,7 +4,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolContactDataForm extends StatefulWidget {
-  const SchoolContactDataForm({Key? key}) : super(key: key);
+  const SchoolContactDataForm({super.key});
 
   @override
   State<SchoolContactDataForm> createState() => _SchoolContactDataFormState();

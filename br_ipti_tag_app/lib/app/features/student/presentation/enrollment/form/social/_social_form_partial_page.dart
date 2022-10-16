@@ -11,8 +11,8 @@ import 'bloc/enrollment_social_bloc.dart';
 import 'bloc/enrollment_social_states.dart';
 
 class SocialFormPage extends StatefulWidget {
-  const SocialFormPage({Key? key, this.model, this.editMode = EditMode.Create})
-      : super(key: key);
+  const SocialFormPage(
+      {super.key, this.model, this.editMode = EditMode.Create});
 
   final StudentDocsAddress? model;
   final EditMode editMode;

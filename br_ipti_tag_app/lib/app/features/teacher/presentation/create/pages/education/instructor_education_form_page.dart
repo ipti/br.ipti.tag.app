@@ -10,10 +10,10 @@ import 'bloc/instructor_education_states.dart';
 
 class InstructoEducationPage extends StatefulWidget {
   const InstructoEducationPage({
-    Key? key,
+    super.key,
     this.instructor,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final EditMode editMode;
   final InstructorFormState? instructor;
@@ -127,10 +127,9 @@ class InstructoEducationPageState extends State<InstructoEducationPage> {
 
 class _FormPosGraduate extends StatelessWidget {
   const _FormPosGraduate({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorEducationBloc controller;
   final InstructorEducationState state;
@@ -161,10 +160,9 @@ class _FormPosGraduate extends StatelessWidget {
 
 class _FormOtherCourses extends StatelessWidget {
   const _FormOtherCourses({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorEducationBloc controller;
   final InstructorEducationState state;

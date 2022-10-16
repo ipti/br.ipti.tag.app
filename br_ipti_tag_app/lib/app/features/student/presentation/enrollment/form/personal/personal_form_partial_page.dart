@@ -12,10 +12,10 @@ import 'package:tag_ui/tag_ui.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
-    Key? key,
+    super.key,
     this.student,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final Student? student;
   final EditMode editMode;
@@ -142,10 +142,9 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
 class _SexField extends StatelessWidget {
   const _SexField({
-    Key? key,
     required this.controller,
     this.sex,
-  }) : super(key: key);
+  });
   final int? sex;
   final EnrollmentPersonalBloc controller;
 
@@ -165,10 +164,9 @@ class _SexField extends StatelessWidget {
 
 class _ColorRaceField extends StatelessWidget {
   const _ColorRaceField({
-    Key? key,
     required this.controller,
     this.colorRace,
-  }) : super(key: key);
+  });
 
   final EnrollmentPersonalBloc controller;
   final int? colorRace;
@@ -189,10 +187,9 @@ class _ColorRaceField extends StatelessWidget {
 
 class _FiliationField extends StatelessWidget {
   const _FiliationField({
-    Key? key,
     required this.controller,
     this.filiation,
-  }) : super(key: key);
+  });
 
   final int? filiation;
   final EnrollmentPersonalBloc controller;
@@ -213,10 +210,9 @@ class _FiliationField extends StatelessWidget {
 
 class _NationalityField extends StatelessWidget {
   const _NationalityField({
-    Key? key,
     required this.controller,
     this.nationality,
-  }) : super(key: key);
+  });
   final int? nationality;
   final EnrollmentPersonalBloc controller;
 
@@ -236,10 +232,9 @@ class _NationalityField extends StatelessWidget {
 
 class _FoodRestrictionField extends StatelessWidget {
   const _FoodRestrictionField({
-    Key? key,
     required this.controller,
     this.foodRestriction,
-  }) : super(key: key);
+  });
   final String? foodRestriction;
   final EnrollmentPersonalBloc controller;
 
@@ -259,10 +254,9 @@ class _FoodRestrictionField extends StatelessWidget {
 
 class _BirthdayField extends StatelessWidget {
   const _BirthdayField({
-    Key? key,
     this.birthday,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? birthday;
   final EnrollmentPersonalBloc controller;
@@ -286,10 +280,9 @@ class _BirthdayField extends StatelessWidget {
 
 class _NameField extends StatelessWidget {
   const _NameField({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final EnrollmentPersonalBloc controller;
   final String? name;
@@ -314,10 +307,9 @@ class _NameField extends StatelessWidget {
 
 class _FormDeficiency extends StatelessWidget {
   const _FormDeficiency({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final EnrollmentPersonalBloc controller;
   final EnrollmentPersonalState state;
@@ -401,12 +393,11 @@ class _FormDeficiency extends StatelessWidget {
 
 class _TagCheckbox extends StatelessWidget {
   const _TagCheckbox({
-    Key? key,
     required this.onChange,
     this.value = false,
     this.disabled = false,
     required this.label,
-  }) : super(key: key);
+  });
 
   final void Function(bool?) onChange;
   final bool? value;

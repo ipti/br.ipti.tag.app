@@ -17,10 +17,10 @@ import 'bloc/enrollment_classroom_states.dart';
 
 class ClassesFormPage extends StatefulWidget {
   const ClassesFormPage({
-    Key? key,
+    super.key,
     this.model,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final StudentEnrollment? model;
   final EditMode editMode;
@@ -145,10 +145,9 @@ class ClassesFormPageState extends State<ClassesFormPage> {
 
 class _AdmissionDateField extends StatelessWidget {
   const _AdmissionDateField({
-    Key? key,
     this.schoolAdmissionDate,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? schoolAdmissionDate;
   final EnrollmentClassroomBloc controller;
@@ -168,10 +167,9 @@ class _AdmissionDateField extends StatelessWidget {
 
 class _AdmissionTypeField extends StatelessWidget {
   const _AdmissionTypeField({
-    Key? key,
     this.studentEntryForm,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final AdmissionType? studentEntryForm;
   final EnrollmentClassroomBloc controller;
@@ -192,10 +190,9 @@ class _AdmissionTypeField extends StatelessWidget {
 
 class _ClassroomField extends StatelessWidget {
   const _ClassroomField({
-    Key? key,
     this.classroomId,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? classroomId;
   final EnrollmentClassroomBloc controller;
@@ -219,10 +216,9 @@ class _ClassroomField extends StatelessWidget {
 
 class _CurrentStageField extends StatelessWidget {
   const _CurrentStageField({
-    Key? key,
     this.currentStageSituation,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final CurrentStageSituation? currentStageSituation;
   final EnrollmentClassroomBloc controller;
@@ -243,10 +239,9 @@ class _CurrentStageField extends StatelessWidget {
 
 class _UnifiedClassField extends StatelessWidget {
   const _UnifiedClassField({
-    Key? key,
     this.unifiedClass,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final UnifiedClass? unifiedClass;
   final EnrollmentClassroomBloc controller;
@@ -267,10 +262,9 @@ class _UnifiedClassField extends StatelessWidget {
 
 class _PreviousStageField extends StatelessWidget {
   const _PreviousStageField({
-    Key? key,
     this.previousStageSituation,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final PreviousStageSituation? previousStageSituation;
   final EnrollmentClassroomBloc controller;
@@ -293,10 +287,9 @@ class _PreviousStageField extends StatelessWidget {
 
 class _StageField extends StatelessWidget {
   const _StageField({
-    Key? key,
     this.stage,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final Stage? stage;
   final EnrollmentClassroomBloc controller;

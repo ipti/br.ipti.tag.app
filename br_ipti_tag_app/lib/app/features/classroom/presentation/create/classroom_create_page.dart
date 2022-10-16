@@ -17,8 +17,7 @@ import 'bloc/classroom_create_events.dart';
 import 'bloc/classroom_states.dart';
 
 class ClassroomCreatePage extends StatefulWidget {
-  const ClassroomCreatePage({Key? key, this.title = 'Adicionar Turma'})
-      : super(key: key);
+  const ClassroomCreatePage({super.key, this.title = 'Adicionar Turma'});
 
   final String title;
 
@@ -61,7 +60,7 @@ class ClassroomCreatePageState
 }
 
 class ClassroomBasicDataForm extends StatefulWidget {
-  const ClassroomBasicDataForm({Key? key}) : super(key: key);
+  const ClassroomBasicDataForm({super.key});
 
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();

@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolBasicDataForm extends StatefulWidget {
-  const SchoolBasicDataForm({Key? key}) : super(key: key);
+  const SchoolBasicDataForm({super.key});
 
   @override
   State<SchoolBasicDataForm> createState() => _SchoolBasicDataFormState();

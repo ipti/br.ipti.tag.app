@@ -11,7 +11,7 @@ import 'bloc/student_list_bloc.dart';
 import 'bloc/student_list_states.dart';
 
 class StudentPage extends StatefulWidget {
-  const StudentPage({Key? key, this.title = 'Alunos'}) : super(key: key);
+  const StudentPage({super.key, this.title = 'Alunos'});
 
   final String title;
 
@@ -102,9 +102,7 @@ class StudentPageState extends ModularState<StudentPage, StudentListBloc> {
 }
 
 class _Actions extends StatelessWidget {
-  const _Actions({
-    Key? key,
-  }) : super(key: key);
+  const _Actions();
 
   @override
   Widget build(BuildContext context) {

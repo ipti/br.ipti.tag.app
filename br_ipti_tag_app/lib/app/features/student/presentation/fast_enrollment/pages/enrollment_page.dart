@@ -6,8 +6,7 @@ import 'package:tag_ui/tag_ui.dart';
 import '../bloc/fast_enrollment_bloc.dart';
 
 class FastEnrollmentPage extends StatefulWidget {
-  const FastEnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
-      : super(key: key);
+  const FastEnrollmentPage({super.key, this.title = 'Matrícula rápida'});
 
   final String title;
 

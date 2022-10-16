@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolBodyRegulationSphereDataForm extends StatefulWidget {
-  const SchoolBodyRegulationSphereDataForm({Key? key}) : super(key: key);
+  const SchoolBodyRegulationSphereDataForm({super.key});
 
   @override
   State<SchoolBodyRegulationSphereDataForm> createState() =>

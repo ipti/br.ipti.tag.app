@@ -12,10 +12,10 @@ import 'bloc/instructor_personal_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
-    Key? key,
+    super.key,
     this.instructor,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final EditMode editMode;
   final InstructorFormState? instructor;
@@ -190,10 +190,9 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
 
 class _SexField extends StatelessWidget {
   const _SexField({
-    Key? key,
     required this.controller,
     this.sex,
-  }) : super(key: key);
+  });
   final int? sex;
   final InstructorPersonalBloc controller;
 
@@ -213,10 +212,9 @@ class _SexField extends StatelessWidget {
 
 class _ColorRaceField extends StatelessWidget {
   const _ColorRaceField({
-    Key? key,
     required this.controller,
     this.colorRace,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final int? colorRace;
@@ -237,10 +235,9 @@ class _ColorRaceField extends StatelessWidget {
 
 class _FiliationField extends StatelessWidget {
   const _FiliationField({
-    Key? key,
     required this.controller,
     this.filiation,
-  }) : super(key: key);
+  });
 
   final int? filiation;
   final InstructorPersonalBloc controller;
@@ -261,10 +258,9 @@ class _FiliationField extends StatelessWidget {
 
 class _NationalityField extends StatelessWidget {
   const _NationalityField({
-    Key? key,
     required this.controller,
     this.nationality,
-  }) : super(key: key);
+  });
   final int? nationality;
   final InstructorPersonalBloc controller;
 
@@ -284,10 +280,9 @@ class _NationalityField extends StatelessWidget {
 
 class _BirthdayField extends StatelessWidget {
   const _BirthdayField({
-    Key? key,
     this.birthday,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? birthday;
   final InstructorPersonalBloc controller;
@@ -311,10 +306,9 @@ class _BirthdayField extends StatelessWidget {
 
 class _NameField extends StatelessWidget {
   const _NameField({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? name;
@@ -339,10 +333,9 @@ class _NameField extends StatelessWidget {
 
 class _EmailField extends StatelessWidget {
   const _EmailField({
-    Key? key,
     this.email,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? email;
@@ -366,10 +359,9 @@ class _EmailField extends StatelessWidget {
 
 class _CPFField extends StatelessWidget {
   const _CPFField({
-    Key? key,
     this.cpf,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? cpf;
@@ -394,10 +386,9 @@ class _CPFField extends StatelessWidget {
 
 class _ScholarityField extends StatelessWidget {
   const _ScholarityField({
-    Key? key,
     this.scholarity,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int? scholarity;
   final InstructorPersonalBloc controller;
@@ -416,10 +407,9 @@ class _ScholarityField extends StatelessWidget {
 
 class _FormDeficiency extends StatelessWidget {
   const _FormDeficiency({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final InstructorPersonalState state;

@@ -6,10 +6,10 @@ import 'package:tag_ui/tag_ui.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
-    Key? key,
+    super.key,
     required this.mealComponent,
     required this.meal,
-  }) : super(key: key);
+  });
 
   final MealComponent mealComponent;
   final Meal meal;
@@ -37,14 +37,13 @@ class MealItem extends StatelessWidget {
 
 class _Card extends StatelessWidget {
   const _Card({
-    Key? key,
     required this.tacoCode,
     required this.foodName,
     required this.turn,
     required this.mealType,
     required this.studentType,
     required this.ingredients,
-  }) : super(key: key);
+  });
 
   final String? tacoCode;
   final String? foodName;
@@ -128,9 +127,8 @@ class _Card extends StatelessWidget {
 
 class _LabelInfoTurnAndType extends StatelessWidget {
   const _LabelInfoTurnAndType({
-    Key? key,
     required this.text,
-  }) : super(key: key);
+  });
 
   final String? text;
 
@@ -152,9 +150,8 @@ class _LabelInfoTurnAndType extends StatelessWidget {
 
 class _MealTypeLabel extends StatelessWidget {
   const _MealTypeLabel({
-    Key? key,
     required this.mealType,
-  }) : super(key: key);
+  });
 
   final String? mealType;
 

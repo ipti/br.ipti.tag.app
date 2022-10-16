@@ -19,11 +19,11 @@ import 'form/personal/personal_form_partial_page.dart';
 
 class EnrollmentPage extends StatefulWidget {
   const EnrollmentPage({
-    Key? key,
+    super.key,
     this.title = 'Matrícula',
     this.student,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final String title;
   final Student? student;

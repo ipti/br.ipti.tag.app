@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
-  const PersonalDataFormPage({Key? key}) : super(key: key);
+  const PersonalDataFormPage({super.key});
 
   @override
   _PersonalDataFormPageState createState() => _PersonalDataFormPageState();

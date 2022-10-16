@@ -6,11 +6,11 @@ import 'package:tag_ui/tag_ui.dart';
 
 class MealsItemDay extends StatelessWidget {
   const MealsItemDay({
-    Key? key,
+    super.key,
     required this.meals,
     required this.fullnameDay,
     required this.currentDate,
-  }) : super(key: key);
+  });
 
   final List<Meal> meals;
   final String? fullnameDay;

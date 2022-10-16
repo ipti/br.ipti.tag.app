@@ -16,10 +16,10 @@ import 'personal/personal_form_partial_page.dart';
 
 class InstructorFormPage extends StatefulWidget {
   const InstructorFormPage({
-    Key? key,
+    super.key,
     this.title = 'Cadastrar',
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final String title;
   final EditMode editMode;

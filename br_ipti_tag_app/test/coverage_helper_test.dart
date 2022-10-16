@@ -334,7 +334,6 @@ import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teac
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_state.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/pages/teacher_list_page.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/teacher_module.dart';
-import 'package:br_ipti_tag_app/app/shared/constants/configurations_constants.dart';
 import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/shared/util/extensions/enum_by_id.dart';

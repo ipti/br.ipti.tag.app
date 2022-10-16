@@ -3,10 +3,10 @@ import 'package:tag_ui/tag_ui.dart';
 
 class SubmitButtonsRow extends StatelessWidget {
   const SubmitButtonsRow({
-    Key? key,
+    super.key,
     required this.onSubmitAndGo,
     required this.onSubmitAndStay,
-  }) : super(key: key);
+  });
 
   final dynamic Function() onSubmitAndGo;
   final dynamic Function() onSubmitAndStay;

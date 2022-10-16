@@ -11,9 +11,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class UpdateDeleteClassroomPage extends StatefulWidget {
   const UpdateDeleteClassroomPage({
-    Key? key,
+    super.key,
     @required this.classroomEntity,
-  }) : super(key: key);
+  });
   final ClassroomEntity? classroomEntity;
   @override
   _UpdateDeleteClassroomPageState createState() =>

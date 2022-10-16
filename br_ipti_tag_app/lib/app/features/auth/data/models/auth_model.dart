@@ -5,12 +5,9 @@ import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.
 
 class AuthModel extends AuthResponse {
   AuthModel({
-    String? accessToken,
-    UserModel? user,
-  }) : super(
-          accessToken: accessToken,
-          user: user,
-        );
+    super.accessToken,
+    super.user,
+  });
 
   AuthModel copyWith({
     String? accessToken,

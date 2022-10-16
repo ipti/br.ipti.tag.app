@@ -7,9 +7,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class DetailsMealPage extends StatefulWidget {
   const DetailsMealPage({
-    Key? key,
+    super.key,
     required this.mealComponent,
-  }) : super(key: key);
+  });
 
   final MealComponent mealComponent;
 

@@ -5,9 +5,9 @@ import '../meals_item_per_day/meals_item_per_day.dart';
 
 class DailyMealsList extends StatelessWidget {
   const DailyMealsList({
-    Key? key,
+    super.key,
     required this.mealsOfDay,
-  }) : super(key: key);
+  });
 
   final List<MealsMenu> mealsOfDay;
 
