@@ -55,7 +55,7 @@ class SchoolCubit extends Cubit<SchoolState> {
   Future<void> fetchCurrentSchoolData() async {
     _startLoading();
     await _session.fetchCurrentSchool();
-    final schoolId = _session.state.currentSchool!.id!;
+    final schoolId = _session.state.currentSchool!.inepId!;
     final result = await _showSchoolUsecase(
       ShowSchoolParams(uuid: schoolId),
     );
@@ -112,18 +112,18 @@ class SchoolCubit extends Cubit<SchoolState> {
               state.currentSchoolData!.copyWith(registerType: registerType),
         ),
       );
-  void setCurrentSchoolEdcensoUfFk(String edcensoUfFk) => emit(
+  void setCurrentSchoolEdcensoUfFk(int edcensoUfFk) => emit(
         SchoolDataChangeState(
           currentSchool:
               state.currentSchoolData!.copyWith(edcensoUfFk: edcensoUfFk),
         ),
       );
-  void setCurrentSchoolEdcensoCityFk(String edcensoCityFk) =>
+  void setCurrentSchoolEdcensoCityFk(int edcensoCityFk) =>
       emit(SchoolDataChangeState(
         currentSchool:
             state.currentSchoolData!.copyWith(edcensoCityFk: edcensoCityFk),
       ));
-  void setCurrentSchoolEdcensoDistrictFk(String edcensoDistrictFk) =>
+  void setCurrentSchoolEdcensoDistrictFk(int edcensoDistrictFk) =>
       emit(SchoolDataChangeState(
         currentSchool: state.currentSchoolData!
             .copyWith(edcensoDistrictFk: edcensoDistrictFk),

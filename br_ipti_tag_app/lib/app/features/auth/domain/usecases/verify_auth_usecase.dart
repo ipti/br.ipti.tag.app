@@ -12,6 +12,8 @@ class VerifyAuthUsecase implements Usecase<String, NoParams> {
     final result = await _repository.getAccessToken();
     if (result.isRight()) {
       await _repository.fetchUserData();
+    } else {
+      _repository.logout();
     }
 
     return result;

@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_crea
 import 'package:flutter/material.dart';
 
 class ClassroomCreateEntity {
+  // final String inepId;
   final String name;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
@@ -33,6 +34,7 @@ class ClassroomCreateEntity {
   final String schoolId;
 
   ClassroomCreateEntity({
+    // required this.inepId,
     this.schooling = false,
     this.complementaryActivity = false,
     this.aee = false,

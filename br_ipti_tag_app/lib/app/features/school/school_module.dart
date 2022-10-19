@@ -8,7 +8,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class SchoolModule extends Module {
   @override
-  // TODO: implement binds
   List<Bind<Object>> get binds => [
         // Datasources
         Bind.singleton((i) => SchoolRemoteDataSource(
@@ -42,7 +41,7 @@ class SchoolModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(
-          "/editar",
+          "/",
           child: (_, args) => const SchoolEditPage(),
         ),
       ];

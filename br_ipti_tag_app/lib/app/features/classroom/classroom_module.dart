@@ -43,7 +43,7 @@ class ClassroomModule extends Module {
     Bind.singleton((i) => ListClassroomsUsecase(
           i.get(),
         )),
-    BlocBind.singleton((i) => ClassroomListBloc(
+    Bind.singleton((i) => ClassroomListBloc(
           i.get(),
         )),
     Bind.singleton((i) => ListInstructorsUseCase(

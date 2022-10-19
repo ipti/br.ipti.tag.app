@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/network/custom_dio/custom_dio.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
+import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:dio/dio.dart';
@@ -42,6 +43,11 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ModuleRoute(
       "/",
+      module: SplashScreenModule(),
+      transition: TransitionType.noTransition,
+    ),
+    ModuleRoute(
+      "/auth",
       module: AuthModule(),
       transition: TransitionType.noTransition,
     ),

@@ -13,26 +13,26 @@ class TagVerticalMenu extends StatelessWidget {
     final items = [
       TagMenuItem(
         title: "Escola",
-        route: '/escola/editar',
+        route: '/escola/',
         isActive: currentRoute!.contains('/escola/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_HOME_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_HOME_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
         title: "Turmas",
-        route: '/turmas',
+        route: '/turmas/',
         isActive: currentRoute.contains('/turmas/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -44,7 +44,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -56,7 +56,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -68,7 +68,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -80,7 +80,7 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
         ),
         onTap: (String routeName) {
-          Modular.to.pushReplacementNamed(routeName);
+          Modular.to.popAndPushNamed(routeName);
         },
       ),
       TagMenuItem(
@@ -95,7 +95,7 @@ class TagVerticalMenu extends StatelessWidget {
           sessionService.cleanToken();
           sessionService.cleanSchoolYear();
           sessionService.cleanCurrentUserSchools();
-          Modular.to.pushReplacementNamed("/");
+          Modular.to.popAndPushNamed("/");
         },
       ),
     ];

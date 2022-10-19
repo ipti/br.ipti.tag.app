@@ -23,9 +23,9 @@ class SchoolEntity {
   String? addressNumber;
   String? addressComplement;
   String? addressNeighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
-  String? edcensoDistrictFk;
+  int? edcensoUfFk;
+  int? edcensoCityFk;
+  int? edcensoDistrictFk;
   String? ddd;
   String? phoneNumber;
   String? publicPhoneNumber;
@@ -147,9 +147,9 @@ class SchoolEntity {
     String? addressNumber,
     String? addressComplement,
     String? addressNeighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    String? edcensoDistrictFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
+    int? edcensoDistrictFk,
     String? ddd,
     String? phoneNumber,
     String? publicPhoneNumber,
@@ -572,9 +572,9 @@ SchoolEntity(registerType: $registerType, inepId: $inepId, managerCpf: $managerC
       addressNumber: '',
       addressComplement: '',
       addressNeighborhood: '',
-      edcensoUfFk: '',
-      edcensoCityFk: '',
-      edcensoDistrictFk: '',
+      edcensoUfFk: 1,
+      edcensoCityFk: 1,
+      edcensoDistrictFk: 1,
       ddd: '',
       phoneNumber: '',
       publicPhoneNumber: '',

@@ -24,7 +24,6 @@ class AuthLoginPageState extends State<AuthLoginPage> {
 
   @override
   void initState() {
-    controller.verifyAuthToken();
     controller.fetchVersion();
 
     super.initState();

@@ -72,22 +72,21 @@ class SchoolEditPageState extends State<SchoolEditPage>
         title: widget.title,
         description: 'Edite as informações da sua escola',
         path: const [],
-        body: Column(
+        tabBar: TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          labelColor: TagColors.colorBaseInkLight,
+          unselectedLabelColor: TagColors.colorBaseInkLight,
+          indicatorColor: TagColors.colorBaseProductDark,
+          labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+          tabs: _tabs,
+        ),
+        body: Stack(
+          fit: StackFit.passthrough,
           children: <Widget>[
-            TabBar(
-              controller: _tabController,
-              isScrollable: true,
-              labelColor: TagColors.colorBaseInkLight,
-              // labelStyle: TagTextStyles.textTabBarLabel,
-              unselectedLabelColor: TagColors.colorBaseInkLight,
-              // unselectedLabelStyle: TagTextStyles.textTabBarLabelUnselected,
-              indicatorColor: TagColors.colorBaseProductDark,
-              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-              tabs: _tabs,
-            ),
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height - 320,
+                maxHeight: MediaQuery.of(context).size.height - 200,
                 maxWidth: 800,
               ),
               child: BlocConsumer<SchoolCubit, SchoolState>(
@@ -140,16 +139,23 @@ class SchoolEditPageState extends State<SchoolEditPage>
                 },
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                RowToColumn(children: [
-                  Flexible(
-                    child: withPadding(buttonSubmit),
-                  ),
-                ]),
-              ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                color: TagColors.colorBaseWhiteNormal,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    RowToColumn(children: [
+                      Flexible(
+                        child: withPadding(buttonSubmit),
+                      ),
+                    ]),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

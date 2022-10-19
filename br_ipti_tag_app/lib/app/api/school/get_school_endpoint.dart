@@ -7,7 +7,7 @@ class GetSchoolEndPoint extends EndPointAPI {
   GetSchoolEndPoint(this.schoolId);
 
   @override
-  String get path => "/school/$schoolId";
+  String get path => "/school-identification/$schoolId";
 
   @override
   HTTPMethod get httpMethod => HTTPMethod.GET;

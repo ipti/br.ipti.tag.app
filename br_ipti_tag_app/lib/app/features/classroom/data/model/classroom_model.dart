@@ -30,7 +30,7 @@ class ClassroomModel extends ClassroomEntity {
   factory ClassroomModel.fromJson(Map<String, dynamic> map) {
     return ClassroomModel(
       name: map['name'],
-      id: map['_id'],
+      id: map['inep_id'],
       startTime: '${map['initial_hour']}:${map['initial_minute']}',
       endTime: '${map['final_hour']}:${map['final_minute']}',
       modalityId: map['modality'],
