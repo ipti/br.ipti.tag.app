@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/api/food_menu/get_food_menu_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/food_menu/get_food_menu_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/food_menu_model.dart';
 

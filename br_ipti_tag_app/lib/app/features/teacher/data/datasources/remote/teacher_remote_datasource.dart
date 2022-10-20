@@ -1,6 +1,6 @@
-import 'package:br_ipti_tag_app/app/api/instructor/get_instructor_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/instructor/post_instructor_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/instructor/put_instructor_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/instructor/get_instructor_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/instructor/post_instructor_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/instructor/put_instructor_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/data/models/instructor_model.dart';
 

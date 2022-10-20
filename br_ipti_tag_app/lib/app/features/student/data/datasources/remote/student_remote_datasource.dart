@@ -1,7 +1,7 @@
-import 'package:br_ipti_tag_app/app/api/students/delete_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/get_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/post_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/put_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/delete_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/get_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/post_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/put_students_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 

@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/api/auth/post_auth_login.dart';
-import 'package:br_ipti_tag_app/app/api/users/get_users_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/auth/post_auth_login.dart';
+import 'package:br_ipti_tag_app/app/core/api/users/get_users_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/models/auth_model.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/models/user_model.dart';

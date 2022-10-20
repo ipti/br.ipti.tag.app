@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/api/food_inventory/get_food_inventory_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/food_inventory/get_food_inventory_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/ingredient_inventory.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/ingredient.dart';

@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/api/classroom/get_classroom_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/classroom/get_classroom_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/classroom_model.dart';
