@@ -18,63 +18,67 @@ import 'features/teacher/teacher_module.dart';
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
-  final List<Bind> binds = [
-    Bind.singleton<SessionService>(
-      (i) => SessionServiceImpl(),
-    ),
-    BlocBind.singleton<SessionBloc>((i) => SessionBloc(
-          i.get<SessionService>(),
-        )),
-    Bind.singleton(
-      (i) => PackageInfoServiceImpl(),
-    ),
-    Bind.factory((i) => ClientHTTPConfiguration.apply(
-          Dio(),
-        )),
-    Bind.factory(
-      (i) => RouterAPI(
-        i.get<Dio>(),
-      ),
-    ),
-  ];
+  List<Bind> get binds => [
+        Bind.singleton<SessionService>(
+          (i) => SessionServiceImpl(),
+        ),
+        BlocBind.singleton<SessionBloc>((i) => SessionBloc(
+              i.get<SessionService>(),
+            )),
+        Bind.singleton(
+          (i) => PackageInfoServiceImpl(),
+        ),
+        Bind.factory<Dio>(
+          (i) => ClientHTTPConfiguration.apply(
+            Dio(),
+          ),
+          export: true,
+        ),
+        Bind.factory(
+          (i) => RouterAPI(
+            i.get<Dio>(),
+          ),
+          export: true,
+        ),
+      ];
 
   // Provide all the routes for your module
   @override
-  final List<ModularRoute> routes = [
-    ModuleRoute(
-      "/",
-      module: SplashScreenModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/auth",
-      module: AuthModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/merenda",
-      module: MealsModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/alunos",
-      module: StudentModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/professores",
-      module: TeacherModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/turmas/",
-      module: ClassroomModule(),
-      transition: TransitionType.noTransition,
-    ),
-    ModuleRoute(
-      "/escola",
-      module: SchoolModule(),
-      transition: TransitionType.noTransition,
-    ),
-  ];
+  List<ModularRoute> get routes => [
+        ModuleRoute(
+          "/",
+          module: SplashScreenModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/auth",
+          module: AuthModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/merenda",
+          module: MealsModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/alunos",
+          module: StudentModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/professores",
+          module: TeacherModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/turmas/",
+          module: ClassroomModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/escola",
+          module: SchoolModule(),
+          transition: TransitionType.noTransition,
+        ),
+      ];
 }

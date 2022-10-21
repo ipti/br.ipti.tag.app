@@ -3,9 +3,9 @@ import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/models/food_menu_model.dart';
 
 class MealsMenuRemoteDataSource {
-  MealsMenuRemoteDataSource({
-    required this.httpClient,
-  });
+  MealsMenuRemoteDataSource(
+    this.httpClient,
+  );
 
   final RouterAPI httpClient;
 

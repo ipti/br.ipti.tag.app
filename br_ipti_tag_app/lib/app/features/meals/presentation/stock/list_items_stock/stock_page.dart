@@ -38,9 +38,13 @@ class StockPageState extends State<StockPage> {
       body: BlocBuilder<StockBloc, ListStockState>(
         bloc: controller,
         builder: (context, state) {
-          return state is LoadedState
-              ? IngredientsList(ingredients: state.ingredients)
-              : Container();
+          if (state is LoadedState && state.ingredients.isNotEmpty) {
+            return IngredientsList(ingredients: state.ingredients);
+          }
+
+          return TagEmpty(
+            onPressedRetry: () => controller.add(GetListStockEvent()),
+          );
         },
       ),
     );

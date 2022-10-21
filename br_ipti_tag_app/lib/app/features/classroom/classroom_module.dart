@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
@@ -24,6 +25,11 @@ import 'presentation/list/bloc/classroom_list_bloc.dart';
 import 'presentation/list/classroom_page.dart';
 
 class ClassroomModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // Datasource
