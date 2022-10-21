@@ -15,7 +15,10 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
       (event, emit) async => emit(await _mapFilterByTurnToState(event)),
     );
     on<GetListMealsEvent>(
-      (event, emit) async => emit(await _mapGetListMealsToState()),
+      (event, emit) async {
+        emit(LoadingState());
+        emit(await _mapGetListMealsToState());
+      },
     );
   }
 
@@ -40,6 +43,11 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
       },
       (mealsOfDay) {
         mealsOfDayCached = mealsOfDay;
+        if (mealsOfDay.isEmpty) {
+          return FailedState(
+            message: "Nenhuma refeição no dia",
+          );
+        }
 
         return LoadedState(mealsOfDay: mealsOfDayCached);
       },

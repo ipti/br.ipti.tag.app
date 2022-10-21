@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_it
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/list_meals_bloc.dart';
@@ -39,55 +40,73 @@ class ListMealsPageState extends State<ListMealsPage> {
       fontSize: 14,
     );
 
-    return TagScaffold(
-      menu: const TagVerticalMenu(),
-      title: widget.title,
-      description: "Cardápio semanal da sua escola",
-      path: ["Merenda Escolar", widget.title],
-      body: BlocBuilder<ListMealsBloc, ListMealsState>(
-        bloc: controller,
-        builder: (context, state) {
-          if (state is LoadedState) {
-            return DefaultTabController(
-              length: state.mealsOfDay.length,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TabBar(
-                    isScrollable: true,
-                    labelColor: TagColors.colorBaseProductDark,
-                    indicatorColor: TagColors.colorBaseProductDark,
-                    labelStyle: labelStyle,
-                    onTap: (index) => pageController.animateToPage(
-                      index,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeIn,
-                    ),
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                    tabs: state.mealsOfDay
-                        .map((e) => Tab(
-                              child: Text(e.fullnameDay!),
-                            ))
-                        .toList(),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: TabBarView(
-                      children: state.mealsOfDay
-                          .map(
-                            (e) => _DailyMeals(mealsOfDay: e),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
+    return BlocBuilder<ListMealsBloc, ListMealsState>(
+      bloc: controller,
+      builder: (context, state) {
+        List<Widget> tabs = [];
+        List<Widget> tabViews = [];
 
-          return const CircularProgressIndicator();
-        },
-      ),
+        if (state is LoadedState) {
+          tabs = state.mealsOfDay
+              .map((e) => Tab(
+                    child: Text(DateFormat('EEEE', 'pt_BR')
+                        .format(DateTime.parse(e.fullnameDay!))),
+                  ))
+              .toList();
+          tabViews = state.mealsOfDay
+              .map(
+                (e) => _DailyMeals(mealsOfDay: e),
+              )
+              .toList();
+        }
+        if (state is FailedState) {
+          tabs = [
+            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+          ];
+          tabViews = [
+            TagEmpty(
+              onPressedRetry: () => controller.add(GetListMealsEvent()),
+            ),
+          ];
+        }
+
+        if (state is LoadingState) {
+          tabs = [
+            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+          ];
+          tabViews = [
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ];
+        }
+
+        return DefaultTabController(
+          length: tabs.length,
+          child: TagScaffold(
+            menu: const TagVerticalMenu(),
+            title: widget.title,
+            description: "Cardápio semanal da sua escola",
+            path: ["Merenda Escolar", widget.title],
+            tabBar: TabBar(
+              isScrollable: true,
+              labelColor: TagColors.colorBaseProductDark,
+              indicatorColor: TagColors.colorBaseProductDark,
+              labelStyle: labelStyle,
+              onTap: (index) => pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeIn,
+              ),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              tabs: tabs,
+            ),
+            body: TabBarView(
+              children: tabViews,
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -102,10 +121,10 @@ class _DailyMeals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 34),
+      padding: const EdgeInsets.only(top: 34, left: 8, right: 8),
       child: MealsItemDay(
-        fullnameDay: mealsOfDay.fullnameDay,
-        currentDate: mealsOfDay.currentDate,
+        fullnameDay: mealsOfDay.fullnameDay ?? "",
+        currentDate: mealsOfDay.currentDate ?? "",
         meals: mealsOfDay.meals,
       ),
     );

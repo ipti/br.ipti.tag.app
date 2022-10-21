@@ -19,31 +19,34 @@ class IngredientsList extends StatelessWidget {
       fontWeight: FontWeight.bold,
     );
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const Padding(
-        padding: EdgeInsets.all(12.0),
-        child: Text(
-          "Item",
-          style: itemSectionTitle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Text(
+            "Item",
+            style: itemSectionTitle,
+          ),
         ),
-      ),
-      Container(
-        height: 1,
-        color: TagColors.colorBaseProductNormal,
-      ),
-      ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
-        child: ListView.builder(
-          shrinkWrap: true, //just set this property
-          padding: const EdgeInsets.all(8.0),
-          itemCount: ingredients!.length,
-          itemBuilder: (context, index) {
-            return IngredientItem(
-              ingredient: ingredients![index],
-            );
-          },
+        Container(
+          height: 1,
+          color: TagColors.colorBaseProductNormal,
         ),
-      ),
-    ]);
+        ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
+          child: ListView.builder(
+            shrinkWrap: true, //just set this property
+            padding: const EdgeInsets.all(8.0),
+            itemCount: ingredients!.length,
+            itemBuilder: (context, index) {
+              return IngredientItem(
+                ingredient: ingredients![index],
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

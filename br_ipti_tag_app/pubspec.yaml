@@ -34,6 +34,7 @@ dependencies:
   flutter_modular: ^5.0.3
   flutter_svg: any  
   form_field_validator: any  
+  intl: ^0.17.0
   meta: ^1.1.6
   modular_bloc_bind: ^1.0.1
   package_info_plus: 1.4.2

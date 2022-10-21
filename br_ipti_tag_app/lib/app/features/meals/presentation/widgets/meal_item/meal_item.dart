@@ -60,27 +60,33 @@ class _Card extends StatelessWidget {
       background: TagColors.colorBaseCloudLight,
       padding: const EdgeInsets.all(24),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Wrap(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _MealTypeLabel(
-                        mealType: mealType,
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _MealTypeLabel(
+                          mealType: mealType,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _LabelInfoTurnAndType(text: turn),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _LabelInfoTurnAndType(text: turn),
+                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _LabelInfoTurnAndType(text: studentType),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _LabelInfoTurnAndType(text: studentType),
+                      ),
                     ),
                   ],
                 ),

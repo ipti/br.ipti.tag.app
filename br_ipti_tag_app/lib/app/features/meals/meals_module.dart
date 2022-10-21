@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/datasources/local/meals_menu_dumb_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/meals/data/repositories/meals_menu_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/usecases/list_meals_menu_usecase.dart';
@@ -21,7 +22,7 @@ class MealsModule extends Module {
       (i) => MealsMenuDumbDataSourceImpl(),
     ),
     Bind.singleton((i) => MealsMenuRemoteDataSource(
-          httpClient: i.get(),
+          httpClient: i.get<RouterAPI>(),
         )),
     Bind.singleton(
       (i) => MealsMenuRepositoryImpl(

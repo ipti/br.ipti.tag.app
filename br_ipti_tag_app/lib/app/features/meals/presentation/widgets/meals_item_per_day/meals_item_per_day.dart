@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meal_item/meal_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class MealsItemDay extends StatelessWidget {
@@ -25,7 +26,8 @@ class MealsItemDay extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                fullnameDay!,
+                DateFormat('EEEE', 'pt_BR')
+                    .format(DateTime.parse(fullnameDay!)),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
