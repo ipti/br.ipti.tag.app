@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/repositories/auth_repository_impl.dart';
@@ -10,6 +11,11 @@ import 'data/datasources/local/auth_local_datasource.dart';
 import 'domain/usecases/verify_auth_usecase.dart';
 
 class AuthModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // datasources

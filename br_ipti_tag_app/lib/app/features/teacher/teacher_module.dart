@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/pages/teacher_list_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,6 +10,11 @@ import 'domain/usecases/list_teachers_usecase.dart';
 import 'presentation/create/create_instructor_module.dart';
 
 class TeacherModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // datasources

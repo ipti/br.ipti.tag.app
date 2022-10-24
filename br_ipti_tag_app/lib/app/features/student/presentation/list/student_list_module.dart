@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/datasources/remote/student_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/repositories/student_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/list_student_usecase.dart';
@@ -7,6 +8,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class StudentListModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // datasources
