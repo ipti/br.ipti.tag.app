@@ -11,6 +11,7 @@ import 'core/network/service/router.dart';
 import 'core/plataform/pkg_info_service.dart';
 import 'features/auth/auth_module.dart';
 import 'features/classroom/classroom_module.dart';
+import 'features/frequency/frequency_module.dart';
 import 'features/meals/meals_module.dart';
 import 'features/student/student_module.dart';
 import 'features/teacher/teacher_module.dart';
@@ -78,6 +79,11 @@ class AppModule extends Module {
         ModuleRoute(
           "/escola",
           module: SchoolModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/frequencia",
+          module: FrequencyModule(),
           transition: TransitionType.noTransition,
         ),
       ];

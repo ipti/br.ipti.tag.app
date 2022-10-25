@@ -60,9 +60,9 @@ class TagVerticalMenu extends StatelessWidget {
         },
       ),
       TagMenuItem(
-        title: "Transporte",
-        route: '/transporte/',
-        isActive: currentRoute.contains('/transporte/'),
+        title: "Frequencia",
+        route: '/frequencia/',
+        isActive: currentRoute.contains('/frequencia/'),
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
