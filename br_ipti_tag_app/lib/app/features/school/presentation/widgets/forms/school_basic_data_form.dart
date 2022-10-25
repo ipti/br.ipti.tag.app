@@ -18,7 +18,7 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    const heading = Heading(text: "Dados básicos", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados básicos", type: HeadingType.Title3);
     const padding = EdgeInsets.all(8.0);
 
     Widget withPadding(Widget widget) =>

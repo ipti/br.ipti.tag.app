@@ -101,7 +101,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    const heading = Heading(text: "Dados Básicos", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados Básicos", type: HeadingType.Title3);
 
     Widget inputName(String name) => TagTextField(
           label: "Nome",

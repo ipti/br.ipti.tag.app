@@ -83,7 +83,7 @@ class SocialFormPageState extends State<SocialFormPage> {
       builder: (context, state) {
         return SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
             child: Form(
               key: _formKey,
               child: Column(
