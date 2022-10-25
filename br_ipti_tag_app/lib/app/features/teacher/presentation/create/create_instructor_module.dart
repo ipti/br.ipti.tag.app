@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
@@ -17,6 +18,12 @@ import 'pages/address/bloc/instructor_address_bloc.dart';
 import 'pages/personal/bloc/instructor_personal_bloc.dart';
 
 class CreateInstructorModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+        EdcensoLocationsModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // Datasources
@@ -60,13 +67,6 @@ class CreateInstructorModule extends Module {
       (i) => InstructorEducationBloc(),
     ),
   ];
-
-  @override
-  List<Module> get imports {
-    return [
-      EdcensoLocationsModule(),
-    ];
-  }
 
   @override
   final List<ModularRoute> routes = [
