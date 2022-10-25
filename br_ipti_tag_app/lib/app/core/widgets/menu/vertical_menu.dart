@@ -101,6 +101,7 @@ class TagVerticalMenu extends StatelessWidget {
     ];
 
     return TagMenu(
+      currentPathMenu: currentRoute,
       items: items,
     );
   }
