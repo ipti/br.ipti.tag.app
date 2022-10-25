@@ -8,16 +8,18 @@ import 'package:tag_ui/tag_ui.dart';
 
 import '../cubit/frequency_cubit.dart';
 
-class FrequencyPage extends StatefulWidget {
-  const FrequencyPage({super.key, this.title = "Frequência"});
+class FrequencySelectClassroomPage extends StatefulWidget {
+  const FrequencySelectClassroomPage({super.key, this.title = "Frequência"});
 
   final String title;
 
   @override
-  State<FrequencyPage> createState() => _FrequencyPageState();
+  State<FrequencySelectClassroomPage> createState() =>
+      _FrequencySelectClassroomPageState();
 }
 
-class _FrequencyPageState extends State<FrequencyPage> {
+class _FrequencySelectClassroomPageState
+    extends State<FrequencySelectClassroomPage> {
   final controller = Modular.get<FrequencyCubit>();
 
   @override
@@ -42,7 +44,7 @@ class _FrequencyPageState extends State<FrequencyPage> {
                   case Status.success:
                     return TagDataTable(
                       onTapRow: (index) => Modular.to.pushNamed(
-                        "updatePage",
+                        "selectDiscipline",
                         arguments: state.classrooms[index],
                       ),
                       columns: const [

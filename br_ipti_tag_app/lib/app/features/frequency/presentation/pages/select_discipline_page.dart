@@ -8,23 +8,30 @@ import 'package:tag_ui/tag_ui.dart';
 
 import '../cubit/frequency_cubit.dart';
 
-class FrequencyPage extends StatefulWidget {
-  const FrequencyPage({super.key, this.title = "Frequência"});
+class FrequencySelectDisciplinePage extends StatefulWidget {
+  const FrequencySelectDisciplinePage({
+    super.key,
+    this.title = "Disciplina",
+    required this.classroom,
+  });
 
   final String title;
+  final ClassroomEntity classroom;
 
   @override
-  State<FrequencyPage> createState() => _FrequencyPageState();
+  State<FrequencySelectDisciplinePage> createState() =>
+      _FrequencySelectDisciplinePageState();
 }
 
-class _FrequencyPageState extends State<FrequencyPage> {
+class _FrequencySelectDisciplinePageState
+    extends State<FrequencySelectDisciplinePage> {
   final controller = Modular.get<FrequencyCubit>();
 
   @override
   Widget build(BuildContext context) {
     return TagScaffold(
-      title: "Frequencia",
-      path: [widget.title],
+      title: widget.title,
+      path: ["Frequência", widget.classroom.name, widget.title],
       description: "",
       menu: const TagVerticalMenu(),
       body: Column(
