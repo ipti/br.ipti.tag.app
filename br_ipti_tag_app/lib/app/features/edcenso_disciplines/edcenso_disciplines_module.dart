@@ -1,40 +1,35 @@
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/datasources/edcenso_locations_remote_datasource.dart';
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/repositories/edcenso_locations_repositories_impl.dart';
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
+import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/data/datasources/edcenso_locations_remote_datasource.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/data/repositories/edcenso_disciplines_repositories_impl.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/repositories/edcenso_disciplines_repositories.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'data/datasources/edcenso_locations_local_datasource.dart';
+import 'domain/usecases/list_disciplines_usecase.dart';
 
-class EdcensoLocationsModule extends Module {
+class EdcensoDiciplinesModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton(
-      (i) => EdcensoLocationsRemoteDatasource(
-        i.get(),
+      (i) => EdcensoDisciplinesRemoteDatasource(
+        i.get<RouterAPI>(),
       ),
       export: true,
     ),
     Bind.singleton(
-      (i) => EdcensoLocationsLocalDatasource(),
+      (i) => EdcensoDisciplinesLocalDatasource(),
       export: true,
     ),
     Bind.singleton(
-      (i) => EdcensoLocationsRepositoryImpl(
-        i.get(),
-        i.get(),
+      (i) => EdcensoDisciplinesRepositoryImpl(
+        i.get<EdcensoDisciplinesRemoteDatasource>(),
+        i.get<EdcensoDisciplinesLocalDatasource>(),
       ),
       export: true,
     ),
     Bind.singleton(
-      (i) => ListCitiesUsecase(
-        i.get(),
-      ),
-      export: true,
-    ),
-    Bind.singleton(
-      (i) => ListUFsUsecase(
-        i.get(),
+      (i) => ListEdcensoDisciplineUsecase(
+        i.get<EdcensoDisciplinesRepository>(),
       ),
       export: true,
     ),

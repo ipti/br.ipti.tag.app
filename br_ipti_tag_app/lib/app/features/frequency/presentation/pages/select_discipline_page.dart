@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/entities/edcenso_discipline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -28,6 +29,12 @@ class _FrequencySelectDisciplinePageState
   final controller = Modular.get<FrequencyCubit>();
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    controller.fetchListDisciplinesEvent();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TagScaffold(
       title: widget.title,
@@ -49,28 +56,25 @@ class _FrequencySelectDisciplinePageState
                   case Status.success:
                     return TagDataTable(
                       onTapRow: (index) => Modular.to.pushNamed(
-                        "updatePage",
-                        arguments: state.classrooms[index],
+                        "frequencia",
+                        arguments: {
+                          "classroom": widget.classroom,
+                          "discipline": state.disciplines[index],
+                        },
                       ),
                       columns: const [
                         DataColumn(
                           label: Text("Nome"),
                         ),
-                        DataColumn(
-                          label: Text("Etapa"),
-                        ),
-                        DataColumn(
-                          label: Text("Horário "),
-                        ),
                       ],
-                      source: ClassroomDatatable(
-                        data: state.classrooms,
+                      source: DisciplineDatatable(
+                        data: state.disciplines,
                       ),
                     );
                   default:
                     return TagEmpty(
                       onPressedRetry: () =>
-                          controller.fetchListClassroomsEvent(),
+                          controller.fetchListDisciplinesEvent(),
                     );
                 }
               },
@@ -82,25 +86,19 @@ class _FrequencySelectDisciplinePageState
   }
 }
 
-class ClassroomDatatable extends DataTableSource {
-  ClassroomDatatable({
+class DisciplineDatatable extends DataTableSource {
+  DisciplineDatatable({
     required this.data,
   });
 
-  final List<ClassroomEntity> data;
+  final List<EdcensoDiscipline> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name.toUpperCase(),
+        data[index].name,
       )),
-      DataCell(
-        Text(data[index].stage),
-      ),
-      DataCell(
-        Text('${data[index].startTime} - ${data[index].endTime}'),
-      ),
     ]);
   }
 

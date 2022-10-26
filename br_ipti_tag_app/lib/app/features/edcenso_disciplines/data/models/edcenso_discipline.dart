@@ -5,7 +5,7 @@ import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/entities
 class EdcensoDisciplineModel extends EdcensoDiscipline {
   EdcensoDisciplineModel({required super.id, required super.name});
   EdcensoDiscipline copyWith({
-    String? id,
+    int? id,
     String? name,
   }) {
     return EdcensoDisciplineModel(
@@ -23,8 +23,8 @@ class EdcensoDisciplineModel extends EdcensoDiscipline {
 
   factory EdcensoDisciplineModel.fromMap(Map<String, dynamic> map) {
     return EdcensoDisciplineModel(
-      id: map['id'] != null ? map['id'] as String : null,
-      name: map['name'] != null ? map['name'] as String : null,
+      id: map['id'],
+      name: map['name'],
     );
   }
 

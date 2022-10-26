@@ -16,24 +16,36 @@ class StudentListModule extends Module {
   @override
   final List<Bind> binds = [
     // datasources
-    Bind.factory((i) => StudentRemoteDataSource(
-          i.get(),
-        )),
+    Bind.factory(
+      (i) => StudentRemoteDataSource(
+        i.get(),
+      ),
+      export: true,
+    ),
 
     // repositories
-    Bind.factory((i) => StudentRepositoryImpl(
-          i.get(),
-        )),
+    Bind.factory(
+      (i) => StudentRepositoryImpl(
+        i.get(),
+      ),
+      export: true,
+    ),
 
     // usecases
-    Bind.factory((i) => ListStudentsUsecase(
-          i.get(),
-        )),
+    Bind.factory(
+      (i) => ListStudentsUsecase(
+        i.get(),
+      ),
+      export: true,
+    ),
 
     // list
-    BlocBind.factory((i) => StudentListBloc(
-          i.get(),
-        )),
+    BlocBind.factory(
+      (i) => StudentListBloc(
+        i.get(),
+      ),
+      export: true,
+    ),
   ];
 
   @override

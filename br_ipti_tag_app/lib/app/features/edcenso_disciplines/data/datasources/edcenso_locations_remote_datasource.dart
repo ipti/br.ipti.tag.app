@@ -1,36 +1,20 @@
-import 'package:br_ipti_tag_app/app/core/api/edcenso_city/get_edcenso_city_endpoint.dart';
-import 'package:br_ipti_tag_app/app/core/api/edcenso_city/get_edcenso_uf_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/classroom/get_edcenso_disciplines_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_city_model.dart';
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_uf_models.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/data/models/edcenso_discipline.dart';
 
-class EdcensoLocationsRemoteDatasource {
+class EdcensoDisciplinesRemoteDatasource {
   final RouterAPI _httpClient;
 
-  EdcensoLocationsRemoteDatasource(this._httpClient);
+  EdcensoDisciplinesRemoteDatasource(this._httpClient);
 
-  Future<List<EdCensoCityModel>> listCities() async {
+  Future<List<EdcensoDisciplineModel>> listAll() async {
     final response = await _httpClient.requestListFrom(
-      route: GetEdcensoCityEndPoint(),
+      route: GetEdcensoDisciplinesEndpoint(),
     );
 
     final mappedList = response.data!
         .map(
-          (e) => EdCensoCityModel.fromMap(e as Map<String, dynamic>),
-        )
-        .toList();
-
-    return mappedList;
-  }
-
-  Future<List<EdCensoUfModel>> listUFs() async {
-    final response = await _httpClient.requestListFrom(
-      route: GetEdcensoUfEndPoint(),
-    );
-
-    final mappedList = response.data!
-        .map(
-          (e) => EdCensoUfModel.fromMap(e as Map<String, dynamic>),
+          (e) => EdcensoDisciplineModel.fromMap(e as Map<String, dynamic>),
         )
         .toList();
 

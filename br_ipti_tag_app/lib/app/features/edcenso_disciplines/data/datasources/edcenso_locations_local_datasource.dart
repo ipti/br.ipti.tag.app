@@ -1,25 +1,21 @@
-import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_city_model.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/entities/edcenso_discipline.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class EdcensoLocationsLocalDatasource {
-  EdcensoLocationsLocalDatasource();
+import '../models/edcenso_discipline.dart';
 
-  Future<List<EdCensoCityModel>> listCities([String? edcensoUfId]) async {
+class EdcensoDisciplinesLocalDatasource {
+  EdcensoDisciplinesLocalDatasource();
+
+  Future<List<EdcensoDiscipline>> listAll([String? edcensoUfId]) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
-    final stringJson = _sharedPreferences.getStringList("EDCENSO_CITIES");
+    final stringJson = _sharedPreferences.getStringList("EDCENSO_DISCIPLINES");
 
     if (stringJson != null) {
       final mappedList = stringJson
           .map(
-            (e) => EdCensoCityModel.fromJson(e),
+            (e) => EdcensoDisciplineModel.fromJson(e),
           )
           .toList();
-
-      if (edcensoUfId != null) {
-        return mappedList
-            .where((element) => element.edcensoUfId == edcensoUfId)
-            .toList();
-      }
 
       return mappedList;
     }
@@ -27,19 +23,19 @@ class EdcensoLocationsLocalDatasource {
     return [];
   }
 
-  Future<List<EdCensoCityModel>> storeCities(
-    List<EdCensoCityModel> cities,
+  Future<List<EdcensoDisciplineModel>> storeDisciplines(
+    List<EdcensoDisciplineModel> disciplines,
   ) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
-    final encodedJson = cities
+    final encodedJson = disciplines
         .map(
           (e) => e.toJson(),
         )
         .toList();
 
-    await _sharedPreferences.setStringList("EDCENSO_CITIES", encodedJson);
+    await _sharedPreferences.setStringList("EDCENSO_DISCIPLINES", encodedJson);
 
-    return cities;
+    return disciplines;
   }
 }

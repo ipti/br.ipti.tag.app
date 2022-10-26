@@ -3,7 +3,7 @@ import 'package:br_ipti_tag_app/app/core/network/manager/http_method.dart';
 
 class GetEdcensoDisciplinesEndpoint extends EndPointAPI {
   @override
-  String get path => '/edcenso_discipline';
+  String get path => '/edcenso-discipline';
 
   @override
   Parameters? get bodyParameters => null;

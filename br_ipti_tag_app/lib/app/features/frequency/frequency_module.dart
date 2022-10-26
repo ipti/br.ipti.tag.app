@@ -3,15 +3,24 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/datasource/classroom
 import 'package:br_ipti_tag_app/app/features/classroom/data/repositories/classroom_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/list_classrooms_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/entities/edcenso_discipline.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/usecases/list_disciplines_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/edcenso_disciplines_module.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/cubit/frequency_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/pages/select_classroom_page.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/pages/select_discipline_page.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/list_student_usecase.dart';
+import 'package:br_ipti_tag_app/app/features/student/presentation/list/student_list_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import 'presentation/pages/frequency_page.dart';
 
 class FrequencyModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        EdcensoDiciplinesModule(),
+        StudentListModule(),
       ];
 
   @override
@@ -36,7 +45,9 @@ class FrequencyModule extends Module {
 
     // Cubit
     Bind.singleton((i) => FrequencyCubit(
-          i.get(),
+          i.get<ListClassroomsUsecase>(),
+          i.get<ListEdcensoDisciplineUsecase>(),
+          i.get<ListStudentsUsecase>(),
         )),
   ];
 
@@ -50,6 +61,13 @@ class FrequencyModule extends Module {
       "/selectDiscipline",
       child: (_, args) => FrequencySelectDisciplinePage(
         classroom: args.data as ClassroomEntity,
+      ),
+    ),
+    ChildRoute(
+      "/frequencia",
+      child: (_, args) => FrequencyPage(
+        classroom: (args.data as Map)["classroom"] as ClassroomEntity,
+        discipline: (args.data as Map)["discipline"] as EdcensoDiscipline,
       ),
     ),
   ];

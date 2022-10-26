@@ -1,6 +1,8 @@
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
+import 'package:br_ipti_tag_app/app/features/edcenso_disciplines/domain/entities/edcenso_discipline.dart';
+import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,9 +11,16 @@ import 'package:tag_ui/tag_ui.dart';
 import '../cubit/frequency_cubit.dart';
 
 class FrequencyPage extends StatefulWidget {
-  const FrequencyPage({super.key, this.title = "Frequência"});
+  const FrequencyPage({
+    super.key,
+    this.title = "Frequência",
+    required this.classroom,
+    required this.discipline,
+  });
 
   final String title;
+  final ClassroomEntity classroom;
+  final EdcensoDiscipline discipline;
 
   @override
   State<FrequencyPage> createState() => _FrequencyPageState();
@@ -21,10 +30,16 @@ class _FrequencyPageState extends State<FrequencyPage> {
   final controller = Modular.get<FrequencyCubit>();
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    controller.fetchListStudentEvent();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TagScaffold(
       title: "Frequencia",
-      path: [widget.title],
+      path: ["Frequencia", widget.classroom.name, widget.discipline.name],
       description: "",
       menu: const TagVerticalMenu(),
       body: Column(
@@ -43,27 +58,20 @@ class _FrequencyPageState extends State<FrequencyPage> {
                     return TagDataTable(
                       onTapRow: (index) => Modular.to.pushNamed(
                         "updatePage",
-                        arguments: state.classrooms[index],
+                        arguments: state.students[index],
                       ),
                       columns: const [
                         DataColumn(
                           label: Text("Nome"),
                         ),
-                        DataColumn(
-                          label: Text("Etapa"),
-                        ),
-                        DataColumn(
-                          label: Text("Horário "),
-                        ),
                       ],
-                      source: ClassroomDatatable(
-                        data: state.classrooms,
+                      source: StudentsDatatable(
+                        data: state.students,
                       ),
                     );
                   default:
                     return TagEmpty(
-                      onPressedRetry: () =>
-                          controller.fetchListClassroomsEvent(),
+                      onPressedRetry: () => controller.fetchListStudentEvent(),
                     );
                 }
               },
@@ -75,25 +83,19 @@ class _FrequencyPageState extends State<FrequencyPage> {
   }
 }
 
-class ClassroomDatatable extends DataTableSource {
-  ClassroomDatatable({
+class StudentsDatatable extends DataTableSource {
+  StudentsDatatable({
     required this.data,
   });
 
-  final List<ClassroomEntity> data;
+  final List<Student> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name.toUpperCase(),
+        data[index].name!,
       )),
-      DataCell(
-        Text(data[index].stage),
-      ),
-      DataCell(
-        Text('${data[index].startTime} - ${data[index].endTime}'),
-      ),
     ]);
   }
 
