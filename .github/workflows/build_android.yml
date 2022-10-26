@@ -17,7 +17,7 @@ on:
         default: "."
       flutter_version:
         type: string
-        default: '2.10.4'
+        default: '3.3.5'
        
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ inputs.flutter_version }}
-          cache: true
+          channel: 'stable'
           
       - name: 🔑 Decode Android keystore
         id: android_keystore
