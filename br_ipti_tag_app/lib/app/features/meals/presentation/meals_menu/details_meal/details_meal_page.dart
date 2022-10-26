@@ -1,15 +1,15 @@
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meal_component.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class DetailsMealPage extends StatefulWidget {
   const DetailsMealPage({
-    Key? key,
+    super.key,
     required this.meal,
-  }) : super(key: key);
+  });
 
   final MealComponent meal;
 

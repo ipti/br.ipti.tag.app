@@ -2,6 +2,7 @@ import 'package:br_ipti_tag_app/app/features/classroom/data/model/classroom_crea
 import 'package:flutter/material.dart';
 
 class ClassroomCreateEntity {
+  // final String inepId;
   final String name;
   final TimeOfDay startTime;
   final TimeOfDay endTime;
@@ -33,6 +34,7 @@ class ClassroomCreateEntity {
   final String schoolId;
 
   ClassroomCreateEntity({
+    // required this.inepId,
     this.schooling = false,
     this.complementaryActivity = false,
     this.aee = false,
@@ -69,16 +71,16 @@ class ClassroomCreateEntity {
       startTime: startTime,
       endTime: endTime,
       edcensoStageVsModalityFk: edcensoStageVsModalityFk,
-      modality: modalityId,
+      modalityId: modalityId,
       name: name,
       typePedagogicMediationId: typePedagogicMediationId,
-      weekDayFriday: weekDaysFriday,
-      weekDayMonday: weekDaysMonday,
-      weekDaySaturday: weekDaysSaturday,
-      weekDaySunday: weekDaysSunday,
-      weekDayThursday: weekDaysThursday,
-      weekDayTuesday: weekDaysTuesday,
-      weekDayWednesday: weekDaysWednesday,
+      weekDaysFriday: weekDaysFriday,
+      weekDaysMonday: weekDaysMonday,
+      weekDaysSaturday: weekDaysSaturday,
+      weekDaysSunday: weekDaysSunday,
+      weekDaysThursday: weekDaysThursday,
+      weekDaysTuesday: weekDaysTuesday,
+      weekDaysWednesday: weekDaysWednesday,
       schooling: schooling,
       complementaryActivity: complementaryActivity,
       aee: aee,
@@ -86,11 +88,11 @@ class ClassroomCreateEntity {
       aeeAutonomousLife: aeeAutonomousLife,
       aeeBraille: aeeBraille,
       aeeCaa: aeeCaa,
-      aeeCognitiveFunction: aeeCognitiveFunctions,
+      aeeCognitiveFunctions: aeeCognitiveFunctions,
       aeeCurriculumEnrichment: aeeCurriculumEnrichment,
       aeeLibras: aeeLibras,
       aeeMobilityTechniques: aeeMobilityTechniques,
-      aeeOpticalNonoptical: aeeOpticalNonOptical,
+      aeeOpticalNonOptical: aeeOpticalNonOptical,
       aeePortuguese: aeePortuguese,
       aeeSoroban: aeeSoroban,
       moreEducationParticipator: moreEducationParticipator,

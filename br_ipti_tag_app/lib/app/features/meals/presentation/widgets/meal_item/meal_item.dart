@@ -6,10 +6,10 @@ import 'package:tag_ui/tag_ui.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
-    Key? key,
+    super.key,
     required this.mealComponent,
     required this.meal,
-  }) : super(key: key);
+  });
 
   final MealComponent mealComponent;
   final Meal meal;
@@ -31,20 +31,20 @@ class MealItem extends StatelessWidget {
 
   String _formatIngredients(List<Ingredient> ingredients) {
     final resultJoin = ingredients.join(', ');
+
     return resultJoin;
   }
 }
 
 class _Card extends StatelessWidget {
   const _Card({
-    Key? key,
     required this.tacoCode,
     required this.foodName,
     required this.turn,
     required this.mealType,
     required this.studentType,
     required this.ingredients,
-  }) : super(key: key);
+  });
 
   final String? tacoCode;
   final String? foodName;
@@ -60,27 +60,33 @@ class _Card extends StatelessWidget {
       background: TagColors.colorBaseCloudLight,
       padding: const EdgeInsets.all(24),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                Wrap(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _MealTypeLabel(
-                        mealType: mealType,
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _MealTypeLabel(
+                          mealType: mealType,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _LabelInfoTurnAndType(text: turn),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _LabelInfoTurnAndType(text: turn),
+                      ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: _LabelInfoTurnAndType(text: studentType),
+                    Flexible(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: _LabelInfoTurnAndType(text: studentType),
+                      ),
                     ),
                   ],
                 ),
@@ -115,11 +121,11 @@ class _Card extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
-          const Icon(Icons.arrow_forward_ios)
+          const Icon(Icons.arrow_forward_ios),
         ],
       ),
     );
@@ -128,9 +134,8 @@ class _Card extends StatelessWidget {
 
 class _LabelInfoTurnAndType extends StatelessWidget {
   const _LabelInfoTurnAndType({
-    Key? key,
     required this.text,
-  }) : super(key: key);
+  });
 
   final String? text;
 
@@ -152,9 +157,8 @@ class _LabelInfoTurnAndType extends StatelessWidget {
 
 class _MealTypeLabel extends StatelessWidget {
   const _MealTypeLabel({
-    Key? key,
     required this.mealType,
-  }) : super(key: key);
+  });
 
   final String? mealType;
 

@@ -21,7 +21,9 @@ class ClassroomRepositoryImpl implements ClassroomRepository {
 
       return Right(mappedResults);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 }

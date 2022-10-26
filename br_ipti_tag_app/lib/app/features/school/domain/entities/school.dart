@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 class SchoolEntity {
+  String? id;
+  String? createdAt;
+  String? updatedAt;
   String? registerType;
   String? inepId;
   String? managerCpf;
@@ -20,9 +23,9 @@ class SchoolEntity {
   String? addressNumber;
   String? addressComplement;
   String? addressNeighborhood;
-  String? edcensoUfFk;
-  String? edcensoCityFk;
-  String? edcensoDistrictFk;
+  int? edcensoUfFk;
+  int? edcensoCityFk;
+  int? edcensoDistrictFk;
   String? ddd;
   String? phoneNumber;
   String? publicPhoneNumber;
@@ -60,6 +63,9 @@ class SchoolEntity {
   String? logoFileContent;
   String? actOfAcknowledgement;
   SchoolEntity({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
     this.registerType,
     this.inepId,
     this.managerCpf,
@@ -120,6 +126,7 @@ class SchoolEntity {
     this.actOfAcknowledgement,
   });
 
+  // ignore: long-method
   SchoolEntity copyWith({
     String? registerType,
     String? inepId,
@@ -140,9 +147,9 @@ class SchoolEntity {
     String? addressNumber,
     String? addressComplement,
     String? addressNeighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    String? edcensoDistrictFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
+    int? edcensoDistrictFk,
     String? ddd,
     String? phoneNumber,
     String? publicPhoneNumber,
@@ -256,6 +263,7 @@ class SchoolEntity {
     );
   }
 
+  // ignore: long-method
   Map<String, dynamic> toMap() {
     return {
       'register_type': registerType,
@@ -323,6 +331,7 @@ class SchoolEntity {
     };
   }
 
+  // ignore: long-method
   factory SchoolEntity.fromMap(Map<String, dynamic> map) {
     return SchoolEntity(
       registerType: map['register_type'],
@@ -393,10 +402,13 @@ class SchoolEntity {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory SchoolEntity.fromJson(String source) =>
-      SchoolEntity.fromMap(json.decode(source));
+  factory SchoolEntity.fromJson(String source) => SchoolEntity.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {
@@ -405,6 +417,7 @@ SchoolEntity(registerType: $registerType, inepId: $inepId, managerCpf: $managerC
   }
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -475,6 +488,7 @@ SchoolEntity(registerType: $registerType, inepId: $inepId, managerCpf: $managerC
   }
 
   @override
+  // ignore: long-method
   int get hashCode {
     return registerType.hashCode ^
         inepId.hashCode ^
@@ -536,6 +550,7 @@ SchoolEntity(registerType: $registerType, inepId: $inepId, managerCpf: $managerC
         actOfAcknowledgement.hashCode;
   }
 
+  // ignore: long-method
   factory SchoolEntity.empty() {
     return SchoolEntity(
       registerType: '',
@@ -557,9 +572,9 @@ SchoolEntity(registerType: $registerType, inepId: $inepId, managerCpf: $managerC
       addressNumber: '',
       addressComplement: '',
       addressNeighborhood: '',
-      edcensoUfFk: '',
-      edcensoCityFk: '',
-      edcensoDistrictFk: '',
+      edcensoUfFk: 1,
+      edcensoCityFk: 1,
+      edcensoDistrictFk: 1,
       ddd: '',
       phoneNumber: '',
       publicPhoneNumber: '',

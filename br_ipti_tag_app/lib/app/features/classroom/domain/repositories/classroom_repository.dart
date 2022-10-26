@@ -12,7 +12,8 @@ import 'package:dartz/dartz.dart';
 abstract class ClassroomRepository {
   Future<Either<Exception, bool>> create(ClassroomCreateEntity classroom);
   Future<Either<Exception, bool>> createInstructorTeachingData(
-      InstructorTeachingDataCreateEntity instructor);
+    InstructorTeachingDataCreateEntity instructor,
+  );
   Future<Either<Exception, List<ClassroomEntity>>> list(ClassroomParams params);
   Future<Either<Exception, bool>> update({
     required String id,

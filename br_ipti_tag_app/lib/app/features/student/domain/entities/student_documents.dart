@@ -2,7 +2,7 @@ class StudentDocsAddress {
   String? id;
   String? registerType;
   String schoolInepIdFk;
-  String studentFk;
+  int studentFk;
   int? oldId;
   String rgNumber;
   String? rgNumberEdcensoOrganIdEmitterFk;
@@ -85,11 +85,12 @@ class StudentDocsAddress {
     required this.edcensoCityFk,
   });
 
+  // ignore: long-method
   StudentDocsAddress copyWith({
     String? id,
     String? registerType,
     String? schoolInepIdFk,
-    String? studentFk,
+    int? studentFk,
     int? oldId,
     String? rgNumber,
     String? rgNumberEdcensoOrganIdEmitterFk,

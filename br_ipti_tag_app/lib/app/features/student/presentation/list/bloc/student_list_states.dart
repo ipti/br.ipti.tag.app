@@ -1,8 +1,7 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-
-enum Status { initial, loading, success, failure }
 
 @immutable
 class StudentListState extends Equatable {

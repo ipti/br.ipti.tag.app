@@ -1,7 +1,7 @@
-import 'package:br_ipti_tag_app/app/api/students/delete_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/get_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/post_students_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/students/put_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/delete_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/get_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/post_students_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/students/put_students_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_model.dart';
 
@@ -20,7 +20,9 @@ class StudentRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) => StudentModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => StudentModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;
@@ -46,7 +48,7 @@ class StudentRemoteDataSource {
     return mappedValue;
   }
 
-  Future<StudentModel> update(String id, StudentModel model) async {
+  Future<StudentModel> update(int id, StudentModel model) async {
     final response = await _httpClient.request(
       route: PutStudentsEndPoint(id: id, model: model),
     );

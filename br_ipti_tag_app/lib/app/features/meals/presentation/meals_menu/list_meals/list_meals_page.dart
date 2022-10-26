@@ -1,9 +1,10 @@
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/domain/entities/meals_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import 'bloc/list_meals_bloc.dart';
@@ -11,7 +12,7 @@ import 'bloc/list_meals_events.dart';
 import 'bloc/list_meals_states.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({Key? key, this.title = 'Refeições'}) : super(key: key);
+  const ListMealsPage({super.key, this.title = 'Refeições'});
 
   final String title;
 
@@ -19,10 +20,13 @@ class ListMealsPage extends StatefulWidget {
   ListMealsPageState createState() => ListMealsPageState();
 }
 
-class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
+class ListMealsPageState extends State<ListMealsPage> {
+  final controller = Modular.get<ListMealsBloc>();
   @override
   void initState() {
-    controller.add(GetListMealsEvent());
+    controller.add(
+      GetListMealsEvent(),
+    );
     super.initState();
   }
 
@@ -31,71 +35,96 @@ class ListMealsPageState extends ModularState<ListMealsPage, ListMealsBloc> {
     final pageController = PageController();
 
     const labelStyle = TextStyle(
-        color: TagColors.colorBaseInkNormal,
-        fontWeight: FontWeight.w600,
-        fontSize: 14);
+      color: TagColors.colorBaseInkNormal,
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+    );
 
-    return TagScaffold(
-      menu: const TagVerticalMenu(),
-      title: widget.title,
-      description: "Cardápio semanal da sua escola",
-      path: ["Merenda Escolar", widget.title],
-      body: BlocBuilder<ListMealsBloc, ListMealsState>(
-        bloc: controller,
-        builder: (context, state) {
-          if (state is LoadedState) {
-            return DefaultTabController(
-              length: state.mealsOfDay.length,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TabBar(
-                    isScrollable: true,
-                    labelColor: TagColors.colorBaseProductDark,
-                    indicatorColor: TagColors.colorBaseProductDark,
-                    labelStyle: labelStyle,
-                    onTap: (index) => pageController.animateToPage(index,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn),
-                    labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                    tabs: state.mealsOfDay
-                        .map((e) => Tab(child: Text(e.fullnameDay!)))
-                        .toList(),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    child: TabBarView(
-                      children: state.mealsOfDay
-                          .map((e) => _DailyMeals(mealsOfDay: e))
-                          .toList(),
-                    ),
-                  ),
-                ],
+    return BlocBuilder<ListMealsBloc, ListMealsState>(
+      bloc: controller,
+      builder: (context, state) {
+        List<Widget> tabs = [];
+        List<Widget> tabViews = [];
+
+        if (state is LoadedState) {
+          tabs = state.mealsOfDay
+              .map((e) => Tab(
+                    child: Text(DateFormat('EEEE', 'pt_BR')
+                        .format(DateTime.parse(e.fullnameDay!))),
+                  ))
+              .toList();
+          tabViews = state.mealsOfDay
+              .map(
+                (e) => _DailyMeals(mealsOfDay: e),
+              )
+              .toList();
+        }
+        if (state is FailedState) {
+          tabs = [
+            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+          ];
+          tabViews = [
+            TagEmpty(
+              onPressedRetry: () => controller.add(GetListMealsEvent()),
+            ),
+          ];
+        }
+
+        if (state is LoadingState) {
+          tabs = [
+            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+          ];
+          tabViews = [
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ];
+        }
+
+        return DefaultTabController(
+          length: tabs.length,
+          child: TagScaffold(
+            menu: const TagVerticalMenu(),
+            title: widget.title,
+            description: "Cardápio semanal da sua escola",
+            path: ["Merenda Escolar", widget.title],
+            tabBar: TabBar(
+              isScrollable: true,
+              labelColor: TagColors.colorBaseProductDark,
+              indicatorColor: TagColors.colorBaseProductDark,
+              labelStyle: labelStyle,
+              onTap: (index) => pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeIn,
               ),
-            );
-          }
-          return const CircularProgressIndicator();
-        },
-      ),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+              tabs: tabs,
+            ),
+            body: TabBarView(
+              children: tabViews,
+            ),
+          ),
+        );
+      },
     );
   }
 }
 
 class _DailyMeals extends StatelessWidget {
   const _DailyMeals({
-    Key? key,
     required this.mealsOfDay,
-  }) : super(key: key);
+  });
 
   final MealsMenu mealsOfDay;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 34),
+      padding: const EdgeInsets.only(top: 34, left: 8, right: 8),
       child: MealsItemDay(
-        fullnameDay: mealsOfDay.fullnameDay,
-        currentDate: mealsOfDay.currentDate,
+        fullnameDay: mealsOfDay.fullnameDay ?? "",
+        currentDate: mealsOfDay.currentDate ?? "",
         meals: mealsOfDay.meals,
       ),
     );
@@ -104,9 +133,7 @@ class _DailyMeals extends StatelessWidget {
 
 // ignore: unused_element
 class _FilterStudentType extends StatelessWidget {
-  const _FilterStudentType({
-    Key? key,
-  }) : super(key: key);
+  const _FilterStudentType();
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +167,7 @@ class _FilterStudentType extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -149,9 +176,8 @@ class _FilterStudentType extends StatelessWidget {
 // ignore: unused_element
 class _FilterTurn extends StatelessWidget {
   const _FilterTurn({
-    Key? key,
     required this.controller,
-  }) : super(key: key);
+  });
   final ListMealsBloc controller;
 
   @override
@@ -160,9 +186,13 @@ class _FilterTurn extends StatelessWidget {
       return _FilterButton(
         onPressed: (bool isActive) {
           if (isActive) {
-            controller.add(FilterByTurnEvent(turn));
+            controller.add(
+              FilterByTurnEvent(turn),
+            );
           } else {
-            controller.add(CleanFilterByTurnEvent(turn));
+            controller.add(
+              CleanFilterByTurnEvent(turn),
+            );
           }
         },
         child: Text(
@@ -173,6 +203,7 @@ class _FilterTurn extends StatelessWidget {
         ),
       );
     }).toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -186,7 +217,7 @@ class _FilterTurn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: buttons,
           ),
-        )
+        ),
       ],
     );
   }
@@ -194,10 +225,9 @@ class _FilterTurn extends StatelessWidget {
 
 class _FilterButton extends StatefulWidget {
   const _FilterButton({
-    Key? key,
     required this.onPressed,
     required this.child,
-  }) : super(key: key);
+  });
 
   final void Function(bool) onPressed;
   final Widget child;

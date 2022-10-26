@@ -14,6 +14,7 @@ class UpdateStudentUsecase implements Usecase<Student, UpdateStudentParams> {
     final Student student = params.student;
 
     final result = await _repositoryStudent.update(params.id, student);
+
     return result;
   }
 }
@@ -25,7 +26,7 @@ class UpdateStudentParams extends Equatable {
   });
 
   final Student student;
-  final String id;
+  final int id;
 
   @override
   List<Object> get props => [id, student.hashCode];

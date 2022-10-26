@@ -11,7 +11,9 @@ import 'enrollment_filiation_states.dart';
 class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
   EnrollmentFiliationBloc(
     this._changeFiliationStudentUsecase,
-  ) : super(const EmptyEnrollmentFiliationState());
+  ) : super(
+          const EmptyEnrollmentFiliationState(),
+        );
 
   final UpdateStudentUsecase _changeFiliationStudentUsecase;
 
@@ -22,23 +24,25 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
   );
 
   Future loadStudent(Student student) async {
-    emit(state.copyWith(
-      nameFiliation1: student.filiation1,
-      cpfFiliation1: student.filiation1Cpf,
-      rgFiliation1: student.filiation1Rg,
-      jobFiliation1: student.filiation1Job,
-      scholarityFiliation1: student.filiation1Scholarity,
-      nameFiliation2: student.filiation2,
-      cpfFiliation2: student.filiation2Cpf,
-      rgFiliation2: student.filiation2Rg,
-      jobFiliation2: student.filiation2Job,
-      scholarityFiliation2: student.filiation2Scholarity,
-      nameResponsable: student.responsableName,
-      cpfResponsable: student.responsableCpf,
-      rgResponsable: student.responsableRg,
-      jobResponsable: student.responsableJob,
-      scholarityResponsable: student.responsableScholarity,
-    ));
+    emit(
+      state.copyWith(
+        nameFiliation1: student.filiation1,
+        cpfFiliation1: student.filiation1Cpf,
+        rgFiliation1: student.filiation1Rg,
+        jobFiliation1: student.filiation1Job,
+        scholarityFiliation1: student.filiation1Scholarity,
+        nameFiliation2: student.filiation2,
+        cpfFiliation2: student.filiation2Cpf,
+        rgFiliation2: student.filiation2Rg,
+        jobFiliation2: student.filiation2Job,
+        scholarityFiliation2: student.filiation2Scholarity,
+        nameResponsable: student.responsableName,
+        cpfResponsable: student.responsableCpf,
+        rgResponsable: student.responsableRg,
+        jobResponsable: student.responsableJob,
+        scholarityResponsable: student.responsableScholarity,
+      ),
+    );
   }
 
   // Responsable
@@ -166,7 +170,9 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     final result = await _changeFiliationStudentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (studentFiliation) {
         _enrollmentBloc.loadStudent(studentFiliation);
         _enrollmentBloc.notifySuccess(

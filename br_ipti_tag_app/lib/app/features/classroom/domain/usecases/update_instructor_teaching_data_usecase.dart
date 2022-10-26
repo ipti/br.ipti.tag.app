@@ -10,9 +10,12 @@ class UpdateInstructorTeachingDataUseCase
   UpdateInstructorTeachingDataUseCase(this._classroomRepository);
   @override
   Future<Either<Exception, bool>> call(
-      UpdateInstructorTeachingDataParams params) async {
+    UpdateInstructorTeachingDataParams params,
+  ) async {
     return _classroomRepository.updateInstructorTeachingData(
-        id: params.id, instructor: params.instructor);
+      id: params.id,
+      instructor: params.instructor,
+    );
   }
 }
 

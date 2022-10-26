@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/api/edcenso_city/get_edcenso_city_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/edcenso_city/get_edcenso_uf_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/edcenso_city/get_edcenso_city_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/edcenso_city/get_edcenso_uf_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_city_model.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/data/models/edcenso_uf_models.dart';
@@ -15,7 +15,9 @@ class EdcensoLocationsRemoteDatasource {
     );
 
     final mappedList = response.data!
-        .map((e) => EdCensoCityModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => EdCensoCityModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;
@@ -27,7 +29,9 @@ class EdcensoLocationsRemoteDatasource {
     );
 
     final mappedList = response.data!
-        .map((e) => EdCensoUfModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => EdCensoUfModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;

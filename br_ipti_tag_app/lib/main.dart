@@ -30,35 +30,44 @@ void main() {
 }
 
 void _runAppWithFirebase() {
-  runZonedGuarded<Future<void>>(() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  runZonedGuarded<Future<void>>(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
 
-    // Initialize Firebase
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+      // Initialize Firebase
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
 
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
-      Environment().config.reportErrors && !kDebugMode,
-    );
+      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
+        Environment().config.reportErrors && !kDebugMode,
+      );
 
-    if (Environment().config.reportErrors) {
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-    }
+      if (Environment().config.reportErrors) {
+        FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+      }
 
-    await FirebasePerformance.instance.setPerformanceCollectionEnabled(
-      Environment().config.reportPerformance && !kDebugMode,
-    );
+      await FirebasePerformance.instance.setPerformanceCollectionEnabled(
+        Environment().config.reportPerformance && !kDebugMode,
+      );
 
-    runApp(ModularApp(module: AppModule(), child: AppWidget()));
-  }, (error, stack) {
-    if (Environment().config.reportErrors) {
-      FirebaseCrashlytics.instance.recordError(error, stack);
-    }
-  });
+      runApp(ModularApp(
+        module: AppModule(),
+        child: AppWidget(),
+      ));
+    },
+    (error, stack) {
+      if (Environment().config.reportErrors) {
+        FirebaseCrashlytics.instance.recordError(error, stack);
+      }
+    },
+  );
 }
 
 void _runWithoutFirebase() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(ModularApp(module: AppModule(), child: AppWidget()));
+  runApp(ModularApp(
+    module: AppModule(),
+    child: AppWidget(),
+  ));
 }

@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 
 class SchoolAddressTab extends StatelessWidget {
   const SchoolAddressTab({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final ScrollController _controllerAddress = ScrollController();
+
     return Scrollbar(
-      isAlwaysShown: true,
+      thumbVisibility: true,
       controller: _controllerAddress,
       child: SingleChildScrollView(
         controller: _controllerAddress,

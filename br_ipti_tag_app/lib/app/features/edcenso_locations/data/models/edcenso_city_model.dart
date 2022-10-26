@@ -4,24 +4,15 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/e
 
 class EdCensoCityModel extends EdCensoCity {
   EdCensoCityModel({
-    required String id,
-    String? oldId,
-    required String name,
-    String? cepInitial,
-    String? cepFinal,
-    String? ddd1,
-    String? ddd2,
-    String? edcensoUfId,
-  }) : super(
-          id: id,
-          oldId: oldId,
-          name: name,
-          cepInitial: cepInitial,
-          cepFinal: cepFinal,
-          ddd1: ddd1,
-          ddd2: ddd2,
-          edcensoUfId: edcensoUfId,
-        );
+    required super.id,
+    super.oldId,
+    required super.name,
+    super.cepInitial,
+    super.cepFinal,
+    super.ddd1,
+    super.ddd2,
+    super.edcensoUfId,
+  });
 
   EdCensoCityModel copyWith({
     String? id,
@@ -71,10 +62,13 @@ class EdCensoCityModel extends EdCensoCity {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory EdCensoCityModel.fromJson(String source) =>
-      EdCensoCityModel.fromMap(json.decode(source));
+  factory EdCensoCityModel.fromJson(String source) => EdCensoCityModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

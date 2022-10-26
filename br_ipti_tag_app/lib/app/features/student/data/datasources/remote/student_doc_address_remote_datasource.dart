@@ -1,6 +1,6 @@
-import 'package:br_ipti_tag_app/app/api/student_docs/get_student_docs_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/student_docs/post_student_docs_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/student_docs/put_student_docs_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_docs/get_student_docs_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_docs/post_student_docs_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_docs/put_student_docs_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_docs_model.dart';
 
@@ -17,14 +17,16 @@ class StudentDocumentsAndAddressRemoteDataSource {
     );
 
     final mappedList = response.data!
-        .map((e) =>
-            StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) =>
+              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList;
   }
 
-  Future<StudentDocumentsAddressModel> getByStudentId(String studentId) async {
+  Future<StudentDocumentsAddressModel> getByStudentId(int studentId) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentDocsEndPoint(studentId: studentId),
     );
@@ -32,8 +34,10 @@ class StudentDocumentsAndAddressRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) =>
-            StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) =>
+              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList.first;

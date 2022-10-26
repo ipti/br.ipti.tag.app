@@ -1,9 +1,9 @@
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolOthersDataForm extends StatefulWidget {
-  const SchoolOthersDataForm({Key? key}) : super(key: key);
+  const SchoolOthersDataForm({super.key});
 
   @override
   State<SchoolOthersDataForm> createState() => _SchoolOthersDataFormState();
@@ -34,16 +34,21 @@ class _SchoolOthersDataFormState extends State<SchoolOthersDataForm> {
           value: inepCode,
           validator: requiredValidator,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("PlaceHolder")),
+            child: withPadding(
+              inputSchoolName("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputInepCode("PlaceHolder")),
+            child: withPadding(
+              inputInepCode("PlaceHolder"),
+            ),
           ),
         ]),
       ],

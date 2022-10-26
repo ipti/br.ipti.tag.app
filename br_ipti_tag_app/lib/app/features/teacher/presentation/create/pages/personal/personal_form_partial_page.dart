@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,10 +12,10 @@ import 'bloc/instructor_personal_states.dart';
 
 class PersonalDataFormPage extends StatefulWidget {
   const PersonalDataFormPage({
-    Key? key,
+    super.key,
     this.instructor,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final EditMode editMode;
   final InstructorFormState? instructor;
@@ -62,138 +62,142 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
     return Form(
       key: _formKey,
       child: BlocBuilder<InstructorPersonalBloc, InstructorPersonalState>(
-          bloc: controller,
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(top: 24, bottom: 16),
-                      child: heading1,
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameField(
-                            name: state.name,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          child: _BirthdayField(
-                            birthday: state.birthdayDate,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _CPFField(
-                            cpf: state.cpf,
-                            controller: controller,
-                          ),
-                        ),
-                        Flexible(
-                          child: _EmailField(
-                            email: state.email,
-                            controller: controller,
-                          ),
-                        ),
-                      ],
-                    ),
-                    RowToColumn(children: [
+        bloc: controller,
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const Padding(
+                    padding: EdgeInsets.only(top: 24, bottom: 16),
+                    child: heading1,
+                  ),
+                  RowToColumn(
+                    children: [
                       Flexible(
-                          child: _ColorRaceField(
+                        child: _NameField(
+                          name: state.name,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        child: _BirthdayField(
+                          birthday: state.birthdayDate,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _CPFField(
+                          cpf: state.cpf,
+                          controller: controller,
+                        ),
+                      ),
+                      Flexible(
+                        child: _EmailField(
+                          email: state.email,
+                          controller: controller,
+                        ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _ColorRaceField(
                         colorRace: state.colorRace,
                         controller: controller,
-                      )),
-                      Flexible(
-                          child: _SexField(
+                      ),
+                    ),
+                    Flexible(
+                      child: _SexField(
                         sex: state.sex,
                         controller: controller,
-                      )),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _NationalityField(
-                          nationality: state.nationality,
-                          controller: controller,
-                        ),
                       ),
-                      Flexible(
-                          child: _FiliationField(
+                    ),
+                  ]),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _NationalityField(
+                        nationality: state.nationality,
+                        controller: controller,
+                      ),
+                    ),
+                    Flexible(
+                      child: _FiliationField(
                         filiation: 1,
                         controller: controller,
-                      )),
-                    ]),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _ScholarityField(
-                          controller: controller,
-                          scholarity: state.scholarity,
-                        ),
                       ),
-                      const Spacer()
-                    ]),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 36, bottom: 16),
-                      child: heading2,
                     ),
-                    RowToColumn(children: [
-                      Flexible(
-                        child: _FormDeficiency(
-                          controller: controller,
-                          state: state,
-                        ),
+                  ]),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _ScholarityField(
+                        controller: controller,
+                        scholarity: state.scholarity,
                       ),
-                    ]),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 56),
-                      child: RowToColumn(
-                        columnCrossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Flexible(
-                            fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                vertical: 8,
-                                horizontal: 8,
-                              ),
-                              child: TagButton(
-                                backgroundColor: TagColors.colorBaseCloudNormal,
-                                textButtonColor: TagColors.colorBaseInkNormal,
-                                text: "Salvar dados e Avançar",
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    controller.submitPersonalForm();
-                                  }
-                                },
-                              ),
+                    ),
+                    const Spacer(),
+                  ]),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 36, bottom: 16),
+                    child: heading2,
+                  ),
+                  RowToColumn(children: [
+                    Flexible(
+                      child: _FormDeficiency(
+                        controller: controller,
+                        state: state,
+                      ),
+                    ),
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 56),
+                    child: RowToColumn(
+                      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Flexible(
+                          fit: isDesktop ? FlexFit.loose : FlexFit.tight,
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: TagButton(
+                              backgroundColor: TagColors.colorBaseCloudNormal,
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              text: "Salvar dados e Avançar",
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  controller.submitPersonalForm();
+                                }
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class _SexField extends StatelessWidget {
   const _SexField({
-    Key? key,
     required this.controller,
     this.sex,
-  }) : super(key: key);
+  });
   final int? sex;
   final InstructorPersonalBloc controller;
 
@@ -213,10 +217,9 @@ class _SexField extends StatelessWidget {
 
 class _ColorRaceField extends StatelessWidget {
   const _ColorRaceField({
-    Key? key,
     required this.controller,
     this.colorRace,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final int? colorRace;
@@ -237,10 +240,9 @@ class _ColorRaceField extends StatelessWidget {
 
 class _FiliationField extends StatelessWidget {
   const _FiliationField({
-    Key? key,
     required this.controller,
     this.filiation,
-  }) : super(key: key);
+  });
 
   final int? filiation;
   final InstructorPersonalBloc controller;
@@ -261,10 +263,9 @@ class _FiliationField extends StatelessWidget {
 
 class _NationalityField extends StatelessWidget {
   const _NationalityField({
-    Key? key,
     required this.controller,
     this.nationality,
-  }) : super(key: key);
+  });
   final int? nationality;
   final InstructorPersonalBloc controller;
 
@@ -284,10 +285,9 @@ class _NationalityField extends StatelessWidget {
 
 class _BirthdayField extends StatelessWidget {
   const _BirthdayField({
-    Key? key,
     this.birthday,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? birthday;
   final InstructorPersonalBloc controller;
@@ -311,10 +311,9 @@ class _BirthdayField extends StatelessWidget {
 
 class _NameField extends StatelessWidget {
   const _NameField({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? name;
@@ -339,10 +338,9 @@ class _NameField extends StatelessWidget {
 
 class _EmailField extends StatelessWidget {
   const _EmailField({
-    Key? key,
     this.email,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? email;
@@ -366,10 +364,9 @@ class _EmailField extends StatelessWidget {
 
 class _CPFField extends StatelessWidget {
   const _CPFField({
-    Key? key,
     this.cpf,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final String? cpf;
@@ -394,10 +391,9 @@ class _CPFField extends StatelessWidget {
 
 class _ScholarityField extends StatelessWidget {
   const _ScholarityField({
-    Key? key,
     this.scholarity,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int? scholarity;
   final InstructorPersonalBloc controller;
@@ -416,10 +412,9 @@ class _ScholarityField extends StatelessWidget {
 
 class _FormDeficiency extends StatelessWidget {
   const _FormDeficiency({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorPersonalBloc controller;
   final InstructorPersonalState state;

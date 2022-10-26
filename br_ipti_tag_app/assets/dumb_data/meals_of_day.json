@@ -1,113 +1,122 @@
 [
   {
-    "fullnameDay": "Segunda-Feira",
-    "currentDate": "09/11",
+    "description": "ewew",
+    "observation": "string",
+    "ageRange": [0],
+    "schoolLevel": "Ensino fundamental",
+    "referenceDates": ["2022-10-20T23:09:37.703Z"],
+    "createdAt": "2022-10-20T23:09:37.703Z",
+    "updatedAt": "2022-10-20T23:09:37.703Z",
     "meals": [
       {
-        "hour": "Dejejum",
-        "tacoCode": "C0004K",
-        "foodName": "Mingau de milho",
-        "turn": "Manhã",
-        "studentType": "Fundamental",
-        "ingredients": [
+        "description": "Arroz com Ovo",
+        "observation": "string",
+        "mealType": "Café da manhã",
+        "weekDays": ["sunday"],
+        "sequence": 0,
+        "components": [
           {
-            "name": "Leite",
-            "avaliable": true,
-            "sugestionSubstituion": []
+            "description": "Componente 1",
+            "observation": "string",
+            "ingredients": [
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              },
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              }
+            ]
           },
           {
-            "name": "Fubá",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Canela",
-            "avaliable": true,
-            "sugestionSubstituion": []
+            "description": "Componente 2",
+            "observation": "string",
+            "ingredients": [
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              },
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              }
+            ]
           }
         ],
-        "consistence": "Pastosa"
+        "createdAt": "2022-10-20T23:09:37.703Z",
+        "updatedAt": "2022-10-20T23:09:37.703Z"
       },
       {
-        "hour": "Jantar",
-        "tacoCode": "C0004K",
-        "foodName": "Mingau de milho",
-        "turn": "Noite",
-        "studentType": "EJA",
-        "ingredients": [
+        "description": "Mingau de aveia",
+        "observation": "string",
+        "mealType": "Café da manhã",
+        "weekDays": ["sunday"],
+        "sequence": 0,
+        "components": [
           {
-            "name": "Leite",
-            "avaliable": true,
-            "sugestionSubstituion": []
+            "description": "Mingau de Aveia",
+            "observation": "string",
+            "ingredients": [
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              },
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              }
+            ]
           },
           {
-            "name": "Fubá",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Canela",
-            "avaliable": true,
-            "sugestionSubstituion": []
+            "description": "Mingau de Milho",
+            "observation": "string",
+            "ingredients": [
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              },
+              {
+                "foodId": "dsadsadsa",
+                "observation": "string",
+                "amount": 0,
+                "measurementUnit": "g",
+                "replaceable": true,
+                "alternatives": []
+              }
+            ]
           }
         ],
-        "consistence": "Solida"
-      }
-    ]
-  },
-  {
-    "fullnameDay": "Terça-Feira",
-    "currentDate": "10/11",
-    "meals": [
-      {
-        "hour": "Dejejum",
-        "tacoCode": "C0004K",
-        "foodName": "Mingau de puba",
-        "turn": "Manhã",
-        "studentType": "Fundamental",
-        "ingredients": [
-          {
-            "name": "Leite",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Fubá",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Canela",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          }
-        ],
-        "consistence": "Pastosa"
-      },
-      {
-        "hour": "Jantar",
-        "tacoCode": "C0004K",
-        "foodName": "Mingau de puba",
-        "turn": "Noite",
-        "studentType": "EJA",
-        "ingredients": [
-          {
-            "name": "Leite",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Fubá",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          },
-          {
-            "name": "Canela",
-            "avaliable": true,
-            "sugestionSubstituion": []
-          }
-        ],
-        "consistence": "Liquida"
+        "createdAt": "2022-10-20T23:09:37.703Z",
+        "updatedAt": "2022-10-20T23:09:37.703Z"
       }
     ]
   }

@@ -63,17 +63,20 @@ class IngredientModel {
         map['alternatives'] != null ? map['alternatives'] as List : [];
 
     return IngredientModel(
-        id: map['id'] as String?,
-        foodId: map['foodId'] as String?,
-        amount: map['amount'] as num?,
-        measurementUnit: map['measurementUnit'] as String?,
-        replaceable: map['replaceable'] as bool?,
-        createdAt: map['createdAt'] as String?,
-        updatedAt: map['updatedAt'] as String?,
-        alternatives: List<String>.from(alternatives));
+      id: map['id'] as String?,
+      foodId: map['foodId'] as String?,
+      amount: map['amount'] as num?,
+      measurementUnit: map['measurementUnit'] as String?,
+      replaceable: map['replaceable'] as bool?,
+      createdAt: map['createdAt'] as String?,
+      updatedAt: map['updatedAt'] as String?,
+      alternatives: List<String>.from(alternatives),
+    );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   factory IngredientModel.fromJson(String source) =>
       IngredientModel.fromMap(json.decode(source) as Map<String, dynamic>);

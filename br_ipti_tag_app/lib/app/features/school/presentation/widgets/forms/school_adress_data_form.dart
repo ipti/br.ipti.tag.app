@@ -1,9 +1,9 @@
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolAdressDataForm extends StatefulWidget {
-  const SchoolAdressDataForm({Key? key}) : super(key: key);
+  const SchoolAdressDataForm({super.key});
 
   @override
   State<SchoolAdressDataForm> createState() => _SchoolAdressDataFormState();
@@ -41,50 +41,70 @@ class _SchoolAdressDataFormState extends State<SchoolAdressDataForm> {
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
-            ),
-          ],
-        ),
-        RowToColumn(
-          children: [
-            Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
-            ),
-            Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
-            ),
-          ],
-        ),
-        RowToColumn(
-          children: [
-            Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
-            ),
-            Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),
         RowToColumn(
           children: [
             Flexible(
-              child: withPadding(inputCep("PlaceHolder")),
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
             ),
             Flexible(
-              child: withPadding(inputStreet("PlaceHolder")),
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
+            ),
+          ],
+        ),
+        RowToColumn(
+          children: [
+            Flexible(
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
+            ),
+            Flexible(
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
+            ),
+          ],
+        ),
+        RowToColumn(
+          children: [
+            Flexible(
+              child: withPadding(
+                inputCep("PlaceHolder"),
+              ),
+            ),
+            Flexible(
+              child: withPadding(
+                inputStreet("PlaceHolder"),
+              ),
             ),
           ],
         ),

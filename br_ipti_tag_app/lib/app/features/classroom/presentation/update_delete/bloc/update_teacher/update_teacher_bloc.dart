@@ -11,9 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 final initialState = UpdateTeacherStateLoading();
 
 class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
-  UpdateTeacherBloc(this._instructorsTeachingDataUseCase,
-      this._disciplinesUseCase, this._instructorsUseCase)
-      : super(initialState);
+  UpdateTeacherBloc(
+    this._instructorsTeachingDataUseCase,
+    this._disciplinesUseCase,
+    this._instructorsUseCase,
+  ) : super(initialState);
 
   final ListInstructorsTeachingDataUseCase _instructorsTeachingDataUseCase;
   final ListEdcensoDisciplinesUseCase _disciplinesUseCase;
@@ -25,28 +27,38 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   Future<void> fetchListClassroomsEvent() async {
     final requests = await Future.wait([
       _instructorsTeachingDataUseCase(
-          ListInstructorsTeachingDataParams(classroomId: _classroomId!)),
-      _disciplinesUseCase(NoParams()),
-      _instructorsUseCase(NoParams())
+        ListInstructorsTeachingDataParams(
+          classroomId: _classroomId!,
+        ),
+      ),
+      _disciplinesUseCase(
+        NoParams(),
+      ),
+      _instructorsUseCase(
+        NoParams(),
+      ),
     ]);
     List<InstructorTeachingDataEntity> instructorsTeachingData = [];
     List<EdcensoDisciplinesEntity> edcensoDisciplines = [];
     List<InstructorEntity> instructors = [];
 
     requests.first.fold(
-        (l) => null,
-        (instructorsTeachingResponse) => instructorsTeachingData =
-            instructorsTeachingResponse as List<InstructorTeachingDataEntity>);
+      (l) => null,
+      (instructorsTeachingResponse) => instructorsTeachingData =
+          instructorsTeachingResponse as List<InstructorTeachingDataEntity>,
+    );
 
     requests[1].fold(
-        (l) => null,
-        (disciplinesResponse) => edcensoDisciplines =
-            disciplinesResponse as List<EdcensoDisciplinesEntity>);
+      (l) => null,
+      (disciplinesResponse) => edcensoDisciplines =
+          disciplinesResponse as List<EdcensoDisciplinesEntity>,
+    );
 
     requests.last.fold(
-        (l) => null,
-        (instructorsResponse) =>
-            instructors = instructorsResponse as List<InstructorEntity>);
+      (l) => null,
+      (instructorsResponse) =>
+          instructors = instructorsResponse as List<InstructorEntity>,
+    );
 
     if (instructorsTeachingData.isNotEmpty && edcensoDisciplines.isNotEmpty) {
       emit(
@@ -60,7 +72,9 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
         ),
       );
     } else {
-      emit(UpdateTeacherStateEmpty());
+      emit(
+        UpdateTeacherStateEmpty(),
+      );
     }
   }
 
@@ -70,10 +84,15 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   ) {
     final List<List<EdcensoDisciplinesEntity>> instructorDisciplinesResult = [];
     for (final userDiscipline in instructorDisciplines) {
-      instructorDisciplinesResult.addAll(edcensoDisciplines
-          .where((discipline) => discipline.id.contains(userDiscipline))
-          .map((e) => [e]));
+      instructorDisciplinesResult.addAll(
+        edcensoDisciplines
+            .where(
+              (discipline) => discipline.id.contains(userDiscipline),
+            )
+            .map((e) => [e]),
+      );
     }
+
     return instructorDisciplinesResult;
   }
 
@@ -83,9 +102,11 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   ) {
     final List<InstructorEntity> instructorsTeachingDataResult = [];
     for (final instructorTeaching in instructorsTeachingData) {
-      instructorsTeachingDataResult.addAll(instructors.where((instructor) =>
-          instructorTeaching.instructorFk.contains(instructor.id)));
+      instructorsTeachingDataResult.addAll(instructors.where(
+        (instructor) => instructorTeaching.instructorFk.contains(instructor.id),
+      ));
     }
+
     return instructorsTeachingDataResult;
   }
 }

@@ -4,6 +4,7 @@ import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/entities/school.dart';
+import 'package:br_ipti_tag_app/app/features/auth/domain/entities/user.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -23,9 +24,12 @@ class AuthRespositoryImpl extends AuthRepository {
   ) async {
     try {
       final result = await authRemoteDataSource.login(username, password);
+
       return Right(result);
     } on RestClientException catch (e) {
-      return Left(Exception(e.handledError()));
+      return Left(Exception(
+        e.handledError(),
+      ));
     }
   }
 
@@ -33,9 +37,11 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, String>> getAccessToken() async {
     try {
       final result = await sessionService.getToken();
+
       return Right(result);
     } on Exception catch (e) {
       // TODO: implementar erro padrão para quando não existir valor em store
+
       return Left(e);
     }
   }
@@ -44,6 +50,7 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, bool>> storeAccessToken(String token) async {
     try {
       final result = await sessionService.setToken(token);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -58,7 +65,10 @@ class AuthRespositoryImpl extends AuthRepository {
         sessionService.cleanSchoolYear(),
         sessionService.cleanCurrentUserSchools(),
       ]);
-      return Right(response.any((element) => element));
+
+      return Right(
+        response.any((element) => element),
+      );
     } on Exception catch (e) {
       return Left(e);
     }
@@ -68,9 +78,11 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, List<School>>> getCurrentUserSchools() async {
     try {
       final result = await sessionService.getCurrentUserSchools();
+
       return Right(result);
     } on Exception catch (e) {
       // TODO: implementar erro padrão para quando não existir valor em store
+
       return Left(e);
     }
   }
@@ -79,9 +91,11 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, String>> getSchoolYear() async {
     try {
       final result = await sessionService.getSchoolYear();
+
       return Right(result);
     } on Exception catch (e) {
       // TODO: implementar erro padrão para quando não existir valor em store
+
       return Left(e);
     }
   }
@@ -92,6 +106,7 @@ class AuthRespositoryImpl extends AuthRepository {
   ) async {
     try {
       final result = await sessionService.setCurrentUserSchools(schools);
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);
@@ -102,6 +117,18 @@ class AuthRespositoryImpl extends AuthRepository {
   Future<Either<Exception, bool>> storeSchoolYear(String year) async {
     try {
       final result = await sessionService.setSchoolYear(year);
+
+      return Right(result);
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, User>> fetchUserData() async {
+    try {
+      final result = await sessionService.getCurrentUser();
+
       return Right(result);
     } on Exception catch (e) {
       return Left(e);

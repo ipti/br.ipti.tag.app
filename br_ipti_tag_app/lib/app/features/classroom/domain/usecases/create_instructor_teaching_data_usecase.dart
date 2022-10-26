@@ -9,7 +9,8 @@ class CreateInstructorTeachingDataUseCase
   CreateInstructorTeachingDataUseCase(this._classroomRepository);
   @override
   Future<Either<Exception, bool>> call(
-      InstructorTeachingDataCreateEntity param) async {
+    InstructorTeachingDataCreateEntity param,
+  ) async {
     return _classroomRepository.createInstructorTeachingData(param);
   }
 }

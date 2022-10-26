@@ -1,12 +1,12 @@
 import 'package:br_ipti_tag_app/app/core/defaults/usecase.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_documents_and_address.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,7 +19,9 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     this._listUFsUsecase,
     this._updateDocumentsAndAddressUsecase,
     this._addAddressToStudentUsecase,
-  ) : super(const EmptyEnrollmentAddressState());
+  ) : super(
+          const EmptyEnrollmentAddressState(),
+        );
 
   final ListCitiesUsecase _listCitiesUsecase;
   final ListUFsUsecase _listUFsUsecase;
@@ -34,56 +36,79 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
           cep: cep.replaceAll('-', ''),
         ),
       );
-  void setAddress(String address) => emit(state.copyWith(address: address));
+  void setAddress(String address) => emit(
+        state.copyWith(address: address),
+      );
   void setComplement(String complement) => emit(
         state.copyWith(complement: complement),
       );
-  void setCity(String? city) => emit(state.copyWith(edcensoCityFk: city));
+  void setCity(String? city) => emit(
+        state.copyWith(edcensoCityFk: city),
+      );
 
   void setNeighborhood(String neighborhood) => emit(
         state.copyWith(neighborhood: neighborhood),
       );
-  void setNumber(String number) => emit(state.copyWith(number: number));
-  void setZone(int residenceZone) =>
-      emit(state.copyWith(residenceZone: residenceZone));
+  void setNumber(String number) => emit(
+        state.copyWith(number: number),
+      );
+  void setZone(int residenceZone) => emit(
+        state.copyWith(residenceZone: residenceZone),
+      );
 
   void setUf(String? uf) {
     fetchCities(uf);
-    emit(state.copyWith(edcensoUfFk: uf));
+    emit(
+      state.copyWith(edcensoUfFk: uf),
+    );
   }
 
-  void setNis(String value) => emit(state.copyWith(
-        nis: value,
-      ));
+  void setNis(String value) => emit(
+        state.copyWith(
+          nis: value,
+        ),
+      );
 
-  void setInepId(String value) => emit(state.copyWith(
-        inepId: value,
-      ));
+  void setInepId(String value) => emit(
+        state.copyWith(
+          inepId: value,
+        ),
+      );
 
   Future fetchCities([String? uf]) async {
-    final result = await _listCitiesUsecase(FilterUFParams(uf: uf));
+    final result = await _listCitiesUsecase(
+      FilterUFParams(uf: uf),
+    );
     result.fold(id, (cities) {
       final mappedValues = <String, String>{};
-      mappedValues.addEntries(cities.map((e) => MapEntry<String, String>(
-            e.id,
-            e.name,
-          )));
-      emit(state.copyWith(
-        cities: mappedValues,
-        edcensoCityFk: mappedValues.entries.first.key,
+      mappedValues.addEntries(cities.map(
+        (e) => MapEntry<String, String>(
+          e.id,
+          e.name,
+        ),
       ));
+      emit(
+        state.copyWith(
+          cities: mappedValues,
+          edcensoCityFk: mappedValues.entries.first.key,
+        ),
+      );
     });
   }
 
   Future fetchUFs() async {
     if (state.ufs.isEmpty) {
-      final result = await _listUFsUsecase(NoParams());
+      final result = await _listUFsUsecase(
+        NoParams(),
+      );
       result.fold(id, (ufs) async {
         final mappedValues = <String, String>{};
-        mappedValues.addEntries(ufs.map((e) => MapEntry<String, String>(
-              e.id,
-              e.acronym,
-            )));
+        mappedValues.addEntries(ufs.map(
+          (e) => MapEntry<String, String>(
+            e.id,
+            e.acronym,
+          ),
+        ));
 
         final currentUf = state.edcensoUfFk.isEmpty
             ? mappedValues.entries.first.key
@@ -101,18 +126,20 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
   }
 
   Future loadStudentDocsAddress(StudentDocsAddress studentDocuments) async {
-    emit(state.copyWith(
-      docsAddress: studentDocuments,
-      cep: studentDocuments.cep,
-      address: studentDocuments.address,
-      neighborhood: studentDocuments.neighborhood,
-      residenceZone: studentDocuments.residenceZone,
-      number: studentDocuments.number,
-      complement: studentDocuments.complement,
-      edcensoUfFk: studentDocuments.edcensoUfFk,
-      edcensoCityFk: studentDocuments.edcensoCityFk,
-      nis: studentDocuments.nis,
-    ));
+    emit(
+      state.copyWith(
+        docsAddress: studentDocuments,
+        cep: studentDocuments.cep,
+        address: studentDocuments.address,
+        neighborhood: studentDocuments.neighborhood,
+        residenceZone: studentDocuments.residenceZone,
+        number: studentDocuments.number,
+        complement: studentDocuments.complement,
+        edcensoUfFk: studentDocuments.edcensoUfFk,
+        edcensoCityFk: studentDocuments.edcensoCityFk,
+        nis: studentDocuments.nis,
+      ),
+    );
   }
 
   Future submitAddressForm(EditMode mode) async {
@@ -135,7 +162,9 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
 
     final result = await _addAddressToStudentUsecase(params);
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (studentDocs) {
         _enrollmentBloc.loadStudentDocs(studentDocs);
         _enrollmentBloc.notifySuccess(
@@ -166,7 +195,9 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     final result = await _updateDocumentsAndAddressUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (docsAddress) {
         _enrollmentBloc.loadStudentDocs(docsAddress);
         _enrollmentBloc.notifySuccess(

@@ -1,5 +1,5 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
-import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:br_ipti_tag_app/app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/usecases/login_usecase.dart';
@@ -12,13 +12,21 @@ import 'domain/usecases/verify_auth_usecase.dart';
 
 class AuthModule extends Module {
   @override
+  List<Module> get imports => [
+        AppModule(),
+      ];
+
+  @override
   final List<Bind> binds = [
     // datasources
     Bind.singleton<AuthRemoteDataSource>(
-      (i) => AuthRemoteDataSourceImpl(i.get()),
+      (i) => AuthRemoteDataSourceImpl(
+        i.get(),
+      ),
     ),
-    Bind.singleton<AuthLocalDataSource>((i) => AuthLocalDataSourceImpl()),
-    Bind.singleton<SessionService>((i) => SessionServiceImpl()),
+    Bind.singleton<AuthLocalDataSource>(
+      (i) => AuthLocalDataSourceImpl(),
+    ),
     // repository
     Bind.singleton(
       (i) => AuthRespositoryImpl(
@@ -27,13 +35,16 @@ class AuthModule extends Module {
       ),
     ),
     // usecases
-    Bind.singleton((i) => AuthLoginUsecase(i.get())),
-    Bind.singleton((i) => VerifyAuthUsecase(i.get())),
+    Bind.singleton((i) => AuthLoginUsecase(
+          i.get(),
+        )),
+    Bind.singleton((i) => VerifyAuthUsecase(
+          i.get(),
+        )),
     // bloc
     Bind.singleton(
       (i) => LoginBloc(
         i.get<AuthLoginUsecase>(),
-        i.get<VerifyAuthUsecase>(),
         i.get<PackageInfoService>(),
       ),
     ),
@@ -41,6 +52,9 @@ class AuthModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const AuthLoginPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const AuthLoginPage(),
+    ),
   ];
 }

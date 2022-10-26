@@ -54,7 +54,11 @@ class MealModel {
       'description': description,
       'observation': observation,
       'mealType': mealType,
-      'components': components?.map((x) => x.toMap()).toList(),
+      'components': components
+          ?.map(
+            (x) => x.toMap(),
+          )
+          .toList(),
       'createdAt': createdAt,
       'updatedAt': updatedAt,
     };
@@ -62,6 +66,7 @@ class MealModel {
 
   factory MealModel.fromMap(Map<String, dynamic> map) {
     final components = List.from(map['components'] ?? []);
+
     return MealModel(
       weekDays:
           map['weekDays'] != null ? List<String>.from(map['weekDays']) : null,
@@ -69,16 +74,23 @@ class MealModel {
       description: map['description'],
       observation: map['observation'],
       mealType: map['mealType'],
-      components: components.map((x) => ComponentModel.fromMap(x)).toList(),
+      components: components
+          .map(
+            (x) => ComponentModel.fromMap(x),
+          )
+          .toList(),
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory MealModel.fromJson(String source) =>
-      MealModel.fromMap(json.decode(source));
+  factory MealModel.fromJson(String source) => MealModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

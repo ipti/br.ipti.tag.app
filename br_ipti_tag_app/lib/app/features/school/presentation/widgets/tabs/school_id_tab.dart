@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 class SchoolIdTab extends StatefulWidget {
   const SchoolIdTab({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SchoolIdTab> createState() => _SchoolIdTabState();
@@ -18,8 +18,9 @@ class _SchoolIdTabState extends State<SchoolIdTab> {
   @override
   Widget build(BuildContext context) {
     final ScrollController _controllerId = ScrollController();
+
     return Scrollbar(
-      isAlwaysShown: true,
+      thumbVisibility: true,
       controller: _controllerId,
       child: SingleChildScrollView(
         controller: _controllerId,
@@ -29,7 +30,7 @@ class _SchoolIdTabState extends State<SchoolIdTab> {
             SchoolAdminDataForm(),
             SchoolBodiesAffiliatedDataForm(),
             SchoolBodyRegulationSphereDataForm(),
-            SchoolOthersDataForm()
+            SchoolOthersDataForm(),
           ],
         ),
       ),

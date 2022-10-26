@@ -34,11 +34,12 @@ class UpdateInstructorForm extends InstructorFormEvent {
   final String instructorFk;
   final String discipline1Fk;
   final int role;
-  UpdateInstructorForm(
-      {required this.schoolInepIdFk,
-      required this.discipline1Fk,
-      required this.instructorFk,
-      required this.role});
+  UpdateInstructorForm({
+    required this.schoolInepIdFk,
+    required this.discipline1Fk,
+    required this.instructorFk,
+    required this.role,
+  });
 
   @override
   List<Object?> get props =>

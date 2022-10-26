@@ -1,7 +1,8 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/domain/entities/instructor.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teacher_state.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class TeacherPage extends StatefulWidget {
-  const TeacherPage({Key? key, this.title = 'Professores'}) : super(key: key);
+  const TeacherPage({super.key, this.title = 'Professores'});
 
   final String title;
 
@@ -17,7 +18,8 @@ class TeacherPage extends StatefulWidget {
   TeacherPageState createState() => TeacherPageState();
 }
 
-class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
+class TeacherPageState extends State<TeacherPage> {
+  final controller = Modular.get<TeacherListBloc>();
   @override
   void initState() {
     controller.fetchListTeachersEvent();
@@ -32,35 +34,37 @@ class TeacherPageState extends ModularState<TeacherPage, TeacherListBloc> {
       description: "",
       path: ["Início", widget.title],
       actionsHeader: _SliverHeaderActionDelegate(),
-      body: BlocConsumer<TeacherListBloc, TeacherListState>(
-        listener: (context, state) {
-          if (state is FailedState) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: TagColors.colorRedDark,
-                content: Text(state.message),
-              ),
-            );
-          }
-        },
+      body: BlocBuilder<TeacherListBloc, TeacherListState>(
         bloc: controller,
         builder: (context, state) {
-          if (state.loading) {
-            return const Center(child: CircularProgressIndicator());
+          switch (state.status) {
+            case Status.loading:
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            case Status.success:
+              return TagDataTable(
+                onTapRow: (row) => Modular.to.pushNamed(
+                  "registro/editar",
+                  arguments: state.teachers[row],
+                ),
+                columns: const [
+                  DataColumn(
+                    label: Text("Nome"),
+                  ),
+                  DataColumn(
+                    label: Text("Email"),
+                  ),
+                ],
+                source: TeacherDatatable(
+                  data: state.teachers,
+                ),
+              );
+            default:
+              return TagEmpty(
+                onPressedRetry: () => controller.fetchListTeachersEvent(),
+              );
           }
-          return TagDataTable(
-            onTapRow: (row) => Modular.to.pushNamed(
-              "registro/editar",
-              arguments: state.teachers[row],
-            ),
-            columns: const [
-              DataColumn(label: Text("Nome")),
-              DataColumn(label: Text("Email")),
-            ],
-            source: TeacherDatatable(
-              data: state.teachers,
-            ),
-          );
         },
       ),
     );
@@ -77,8 +81,12 @@ class TeacherDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name!.toUpperCase())),
-      DataCell(Text(data[index].email ?? " - ")),
+      DataCell(Text(
+        data[index].name!.toUpperCase(),
+      )),
+      DataCell(
+        Text(data[index].email ?? " - "),
+      ),
     ]);
   }
 
@@ -101,8 +109,12 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     final isDesktop = MediaQuery.of(context).size.width > 992;
+
     return Container(
       height: maxExtent,
       color: TagColors.colorBaseWhiteNormal,

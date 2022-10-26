@@ -5,8 +5,7 @@ import 'bloc/create_item_stock_bloc.dart';
 import 'bloc/create_item_stock_events.dart';
 
 class CreateItemStockPage extends StatefulWidget {
-  const CreateItemStockPage({Key? key, this.title = 'Matrícula rápida'})
-      : super(key: key);
+  const CreateItemStockPage({super.key, this.title = 'Matrícula rápida'});
 
   final String title;
 
@@ -14,11 +13,13 @@ class CreateItemStockPage extends StatefulWidget {
   CreateItemStockPageState createState() => CreateItemStockPageState();
 }
 
-class CreateItemStockPageState
-    extends ModularState<CreateItemStockPage, CreateItemStockBloc> {
+class CreateItemStockPageState extends State<CreateItemStockPage> {
+  final controller = Modular.get<CreateItemStockBloc>();
   @override
   void initState() {
-    controller.add(StartEditing());
+    controller.add(
+      StartEditing(),
+    );
     super.initState();
   }
 

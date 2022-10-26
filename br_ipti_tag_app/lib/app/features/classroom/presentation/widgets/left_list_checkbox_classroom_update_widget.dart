@@ -5,13 +5,13 @@ import 'package:tag_ui/tag_ui.dart';
 
 class LeftListClassroomUpdateWidget extends StatelessWidget {
   const LeftListClassroomUpdateWidget({
-    Key? key,
+    super.key,
     required this.onChangedSchooling,
     required this.onChangedAee,
     required this.onChangedComplementaryActivity,
     required this.onChangedMoreEducatorParticipator,
     required this.state,
-  }) : super(key: key);
+  });
   final void Function(bool?)? onChangedSchooling;
   final void Function(bool?)? onChangedComplementaryActivity;
   final void Function(bool?)? onChangedAee;

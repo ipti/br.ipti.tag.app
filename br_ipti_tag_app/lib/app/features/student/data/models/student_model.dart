@@ -4,144 +4,74 @@ import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dar
 
 class StudentModel extends Student {
   StudentModel({
-    String? id,
-    String? name,
-    String? registerType,
-    String? schoolInepIdFk,
-    String? inepId,
-    String? birthday,
-    int? sex,
-    int? colorRace,
-    int? filiation,
-    String? filiation1,
-    String? filiation2,
-    int? nationality,
-    int? noDocumentDesc,
-    int? scholarity,
-    String? idEmail,
-    String? edcensoNationFk,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    bool? deficiency,
-    bool? deficiencyTypeBlindness,
-    bool? deficiencyTypeLowVision,
-    bool? deficiencyTypeDeafness,
-    bool? deficiencyTypeDisabilityHearing,
-    bool? deficiencyTypeDeafblindness,
-    bool? deficiencyTypePhisicalDisability,
-    bool? deficiencyTypeIntelectualDisability,
-    bool? deficiencyTypeMultipleDisabilities,
-    bool? deficiencyTypeAutism,
-    bool? deficiencyTypeAspengerSyndrome,
-    bool? deficiencyTypeRettSyndrome,
-    bool? deficiencyTypeChildhoodDisintegrativeDisorder,
-    bool? deficiencyTypeGifted,
-    bool? resourceAidLector,
-    bool? resourceAidTranscription,
-    bool? resourceInterpreterGuide,
-    bool? resourceInterpreterLibras,
-    bool? resourceLipReading,
-    bool? resourceZoomedTest16,
-    bool? resourceZoomedTest18,
-    bool? resourceZoomedTest20,
-    bool? resourceZoomedTest24,
-    bool? resourceCdAudio,
-    bool? resourceProofLanguage,
-    bool? resourceVideoLibras,
-    bool? resourceBrailleTest,
-    bool? resourceNone,
-    int? sendYear,
-    String? lastChange,
-    int? responsable,
-    String? responsableName,
-    String? responsableRg,
-    String? responsableCpf,
-    int? responsableScholarity,
-    String? responsableJob,
-    bool? bfParticipator,
-    String? foodRestrictions,
-    String? responsableTelephone,
-    int? hash,
-    String? filiation1Rg,
-    String? filiation1Cpf,
-    int? filiation1Scholarity,
-    String? filiation1Job,
-    String? filiation2Rg,
-    String? filiation2Cpf,
-    int? filiation2Scholarity,
-    String? filiation2Job,
-  }) : super(
-          id: id,
-          name: name,
-          registerType: registerType,
-          schoolInepIdFk: schoolInepIdFk,
-          inepId: inepId,
-          birthday: birthday,
-          sex: sex,
-          colorRace: colorRace,
-          filiation: filiation,
-          filiation1: filiation1,
-          filiation2: filiation2,
-          nationality: nationality,
-          noDocumentDesc: noDocumentDesc,
-          scholarity: scholarity,
-          idEmail: idEmail,
-          edcensoNationFk: edcensoNationFk,
-          edcensoUfFk: edcensoUfFk,
-          edcensoCityFk: edcensoCityFk,
-          deficiency: deficiency,
-          deficiencyTypeBlindness: deficiencyTypeBlindness,
-          deficiencyTypeLowVision: deficiencyTypeLowVision,
-          deficiencyTypeDeafness: deficiencyTypeDeafness,
-          deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing,
-          deficiencyTypeDeafblindness: deficiencyTypeDeafblindness,
-          deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability,
-          deficiencyTypeIntelectualDisability:
-              deficiencyTypeIntelectualDisability,
-          deficiencyTypeMultipleDisabilities:
-              deficiencyTypeMultipleDisabilities,
-          deficiencyTypeAutism: deficiencyTypeAutism,
-          deficiencyTypeAspengerSyndrome: deficiencyTypeAspengerSyndrome,
-          deficiencyTypeRettSyndrome: deficiencyTypeRettSyndrome,
-          deficiencyTypeChildhoodDisintegrativeDisorder:
-              deficiencyTypeChildhoodDisintegrativeDisorder,
-          deficiencyTypeGifted: deficiencyTypeGifted,
-          resourceAidLector: resourceAidLector,
-          resourceAidTranscription: resourceAidTranscription,
-          resourceInterpreterGuide: resourceInterpreterGuide,
-          resourceInterpreterLibras: resourceInterpreterLibras,
-          resourceLipReading: resourceLipReading,
-          resourceZoomedTest16: resourceZoomedTest16,
-          resourceZoomedTest18: resourceZoomedTest18,
-          resourceZoomedTest20: resourceZoomedTest20,
-          resourceZoomedTest24: resourceZoomedTest24,
-          resourceCdAudio: resourceCdAudio,
-          resourceProofLanguage: resourceProofLanguage,
-          resourceVideoLibras: resourceVideoLibras,
-          resourceBrailleTest: resourceBrailleTest,
-          resourceNone: resourceNone,
-          sendYear: sendYear,
-          lastChange: lastChange,
-          responsable: responsable,
-          responsableName: responsableName,
-          responsableRg: responsableRg,
-          responsableCpf: responsableCpf,
-          responsableScholarity: responsableScholarity,
-          responsableJob: responsableJob,
-          bfParticipator: bfParticipator,
-          foodRestrictions: foodRestrictions,
-          responsableTelephone: responsableTelephone,
-          hash: hash,
-          filiation1Rg: filiation1Rg,
-          filiation1Cpf: filiation1Cpf,
-          filiation1Scholarity: filiation1Scholarity,
-          filiation1Job: filiation1Job,
-          filiation2Rg: filiation2Rg,
-          filiation2Cpf: filiation2Cpf,
-          filiation2Scholarity: filiation2Scholarity,
-          filiation2Job: filiation2Job,
-        );
-
+    super.id,
+    super.name,
+    super.registerType,
+    super.schoolInepIdFk,
+    super.inepId,
+    super.birthday,
+    super.sex,
+    super.colorRace,
+    super.filiation,
+    super.filiation1,
+    super.filiation2,
+    super.nationality,
+    super.noDocumentDesc,
+    super.scholarity,
+    super.idEmail,
+    super.edcensoNationFk,
+    super.edcensoUfFk,
+    super.edcensoCityFk,
+    super.deficiency,
+    super.deficiencyTypeBlindness,
+    super.deficiencyTypeLowVision,
+    super.deficiencyTypeDeafness,
+    super.deficiencyTypeDisabilityHearing,
+    super.deficiencyTypeDeafblindness,
+    super.deficiencyTypePhisicalDisability,
+    super.deficiencyTypeIntelectualDisability,
+    super.deficiencyTypeMultipleDisabilities,
+    super.deficiencyTypeAutism,
+    super.deficiencyTypeAspengerSyndrome,
+    super.deficiencyTypeRettSyndrome,
+    super.deficiencyTypeChildhoodDisintegrativeDisorder,
+    super.deficiencyTypeGifted,
+    super.resourceAidLector,
+    super.resourceAidTranscription,
+    super.resourceInterpreterGuide,
+    super.resourceInterpreterLibras,
+    super.resourceLipReading,
+    super.resourceZoomedTest16,
+    super.resourceZoomedTest18,
+    super.resourceZoomedTest20,
+    super.resourceZoomedTest24,
+    super.resourceCdAudio,
+    super.resourceProofLanguage,
+    super.resourceVideoLibras,
+    super.resourceBrailleTest,
+    super.resourceNone,
+    super.sendYear,
+    super.lastChange,
+    super.responsable,
+    super.responsableName,
+    super.responsableRg,
+    super.responsableCpf,
+    super.responsableScholarity,
+    super.responsableJob,
+    super.bfParticipator,
+    super.foodRestrictions,
+    super.responsableTelephone,
+    super.hash,
+    super.filiation1Rg,
+    super.filiation1Cpf,
+    super.filiation1Scholarity,
+    super.filiation1Job,
+    super.filiation2Rg,
+    super.filiation2Cpf,
+    super.filiation2Scholarity,
+    super.filiation2Job,
+  });
+  // ignore: long-method
   factory StudentModel.fromEntity(Student student) {
     return StudentModel(
       id: student.id,
@@ -216,7 +146,7 @@ class StudentModel extends Student {
       filiation2Job: student.filiation2Job,
     );
   }
-
+  // ignore: long-method
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -291,10 +221,13 @@ class StudentModel extends Student {
     };
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory StudentModel.fromJson(String source) =>
-      StudentModel.fromMap(json.decode(source));
+  factory StudentModel.fromJson(String source) => StudentModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {
@@ -302,6 +235,7 @@ class StudentModel extends Student {
   }
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -381,6 +315,7 @@ class StudentModel extends Student {
   }
 
   @override
+  // ignore: long-method
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
@@ -450,6 +385,7 @@ class StudentModel extends Student {
         filiation2Job.hashCode;
   }
 
+  // ignore: long-method
   factory StudentModel.fromMap(Map<String, dynamic> map) {
     var schoolInepFk = map['school_inep_id_fk'];
 
@@ -458,7 +394,7 @@ class StudentModel extends Student {
     }
 
     return StudentModel(
-      id: map['_id'],
+      id: map['id'],
       name: map['name'],
       registerType: map['register_type'],
       schoolInepIdFk: schoolInepFk as String?,

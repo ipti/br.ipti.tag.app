@@ -168,7 +168,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
       weekDaysThursday,
       weekDaysTuesday,
       weekDaysWednesday,
-      moreEducationParticipator
+      moreEducationParticipator,
     ];
   }
 }

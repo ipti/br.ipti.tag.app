@@ -12,6 +12,7 @@ class ListInstructorsUsecase implements Usecase<List<Instructor>, NoParams> {
   @override
   Future<Either<Exception, List<Instructor>>> call(NoParams params) async {
     final result = await _repositoryInstructor.listAll();
+
     return result;
   }
 }

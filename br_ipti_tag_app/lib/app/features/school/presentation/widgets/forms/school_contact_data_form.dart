@@ -1,10 +1,10 @@
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolContactDataForm extends StatefulWidget {
-  const SchoolContactDataForm({Key? key}) : super(key: key);
+  const SchoolContactDataForm({super.key});
 
   @override
   State<SchoolContactDataForm> createState() => _SchoolContactDataFormState();
@@ -51,24 +51,33 @@ class _SchoolContactDataFormState extends State<SchoolContactDataForm> {
           hint: "Digite o site ou blog da escola",
           value: primaryPhone,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputPrimaryPhone("PlaceHolder")),
+            child: withPadding(
+              inputPrimaryPhone("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputSecondaryPhone("PlaceHolder")),
+            child: withPadding(
+              inputSecondaryPhone("PlaceHolder"),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputEmail("PlaceHolder")),
+            child: withPadding(
+              inputEmail("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputSite("PlaceHolder")),
+            child: withPadding(
+              inputSite("PlaceHolder"),
+            ),
           ),
         ]),
       ],

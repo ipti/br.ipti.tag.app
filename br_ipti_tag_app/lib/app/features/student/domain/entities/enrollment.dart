@@ -4,7 +4,7 @@ class StudentEnrollment {
   String? registerType;
   String schoolInepIdFk;
   String? studentInepId;
-  String studentFk;
+  int studentFk;
   String? classroomInepId;
   String classroomFk;
   String? enrollmentId;
@@ -95,13 +95,14 @@ class StudentEnrollment {
     this.status,
   });
 
+  // ignore: long-method
   StudentEnrollment copyWith({
     String? id,
     int? oldId,
     String? registerType,
     String? schoolInepIdFk,
     String? studentInepId,
-    String? studentFk,
+    int? studentFk,
     String? classroomInepId,
     String? classroomFk,
     String? enrollmentId,

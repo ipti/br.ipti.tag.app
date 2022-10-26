@@ -16,12 +16,13 @@ class LoadStudentEnrollmentUsecase
     final result = await _studentEnrollmentRepository.getStudentById(
       params.studentId,
     );
+
     return result;
   }
 }
 
 class LoadStudentEnrollmentParams {
-  final String studentId;
+  final int studentId;
   final String schoolId;
 
   LoadStudentEnrollmentParams(this.studentId, this.schoolId);

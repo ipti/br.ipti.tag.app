@@ -8,43 +8,57 @@ import 'package:mocktail/mocktail.dart';
 class MockStudentRepository extends Mock implements StudentRepository {}
 
 void main() {
-  testWidgets("ListStudentUsecase when returns a right empty value",
-      (tester) async {
-    final repository = MockStudentRepository();
+  testWidgets(
+    "ListStudentUsecase when returns a right empty value",
+    (tester) async {
+      final repository = MockStudentRepository();
 
-    when(() => repository.listAll(schoolId: '')).thenAnswer(
-      (realInvocation) => Future.value(right([])),
-    );
+      when(
+        () => repository.listAll(schoolId: ''),
+      ).thenAnswer(
+        (realInvocation) => Future.value(
+          right([]),
+        ),
+      );
 
-    final usecase = ListStudentsUsecase(repository);
-    final params = ListStudentsParams('');
+      final usecase = ListStudentsUsecase(repository);
+      final params = ListStudentsParams('');
 
-    final either = await usecase(params);
+      final either = await usecase(params);
 
-    expect(either.isRight(), isTrue);
+      expect(either.isRight(), isTrue);
 
-    final result = either.fold(id, id);
-    expect(result, isEmpty);
-  });
+      final result = either.fold(id, id);
+      expect(result, isEmpty);
+    },
+  );
 
-  testWidgets("ListStudentUsecase when returns a left ConnexionExpection",
-      (tester) async {
-    final repository = MockStudentRepository();
+  testWidgets(
+    "ListStudentUsecase when returns a left ConnexionExpection",
+    (tester) async {
+      final repository = MockStudentRepository();
 
-    when(() => repository.listAll(schoolId: '')).thenAnswer(
-      (realInvocation) =>
-          Future.value(left(const SocketException("Conexão invalida"))),
-    );
+      when(
+        () => repository.listAll(schoolId: ''),
+      ).thenAnswer(
+        (realInvocation) => Future.value(left(
+          const SocketException("Conexão invalida"),
+        )),
+      );
 
-    final usecase = ListStudentsUsecase(repository);
-    final params = ListStudentsParams('');
+      final usecase = ListStudentsUsecase(repository);
+      final params = ListStudentsParams('');
 
-    final either = await usecase(params);
+      final either = await usecase(params);
 
-    expect(either.isLeft(), isTrue);
+      expect(either.isLeft(), isTrue);
 
-    final result = either.fold(id, id);
+      final result = either.fold(id, id);
 
-    expect(result, isA<SocketException>());
-  });
+      expect(
+        result,
+        isA<SocketException>(),
+      );
+    },
+  );
 }

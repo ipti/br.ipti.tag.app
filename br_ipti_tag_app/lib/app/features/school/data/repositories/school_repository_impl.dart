@@ -31,20 +31,28 @@ class SchoolRepositoryImpl extends SchoolRepository {
   Future<Either<Exception, SchoolModel>> getById(String uuid) async {
     try {
       final result = await _schoolRemoteDataSource.getOne(uuid);
+
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível encontrar os dados da escola"));
+      return Left(
+        Exception("Não foi possível encontrar os dados da escola"),
+      );
     }
   }
 
   @override
   Future<Either<Exception, SchoolModel>> update(
-      String uuid, SchoolEntity school) async {
+    String uuid,
+    SchoolEntity school,
+  ) async {
     try {
       final results = await _schoolRemoteDataSource.update(uuid, school);
+
       return Right(results);
     } catch (e) {
-      return Left(Exception("Não foi possível atualizar dados da escola"));
+      return Left(
+        Exception("Não foi possível atualizar dados da escola"),
+      );
     }
   }
 }

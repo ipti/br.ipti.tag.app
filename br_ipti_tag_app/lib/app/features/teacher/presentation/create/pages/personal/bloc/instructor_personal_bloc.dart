@@ -13,7 +13,10 @@ import '../../../bloc/instructor_states.dart';
 import 'instructor_personal_states.dart';
 
 class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
-  InstructorPersonalBloc() : super(const EmptyInstructorPersonalState());
+  InstructorPersonalBloc()
+      : super(
+          const EmptyInstructorPersonalState(),
+        );
 
   final _createInstructorBloc = Modular.get<CreateInstructorBloc>();
 
@@ -78,15 +81,33 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
     emit(loadState);
   }
 
-  void setName(String value) => emit(state.copyWith(name: value));
-  void setCPF(String value) => emit(state.copyWith(cpf: value));
-  void setEmail(String value) => emit(state.copyWith(email: value));
-  void setBirthday(String value) => emit(state.copyWith(birthdayDate: value));
-  void setSex(int? value) => emit(state.copyWith(sex: value));
-  void setColorRace(int? value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(int? value) => emit(state.copyWith(filiation: value));
-  void setNationality(int? value) => emit(state.copyWith(nationality: value));
-  void setScholarity(int? value) => emit(state.copyWith(scholarity: value));
+  void setName(String value) => emit(
+        state.copyWith(name: value),
+      );
+  void setCPF(String value) => emit(
+        state.copyWith(cpf: value),
+      );
+  void setEmail(String value) => emit(
+        state.copyWith(email: value),
+      );
+  void setBirthday(String value) => emit(
+        state.copyWith(birthdayDate: value),
+      );
+  void setSex(int? value) => emit(
+        state.copyWith(sex: value),
+      );
+  void setColorRace(int? value) => emit(
+        state.copyWith(colorRace: value),
+      );
+  void setFiliation(int? value) => emit(
+        state.copyWith(filiation: value),
+      );
+  void setNationality(int? value) => emit(
+        state.copyWith(nationality: value),
+      );
+  void setScholarity(int? value) => emit(
+        state.copyWith(scholarity: value),
+      );
 
   // Cegueira
   // Baixa visão
@@ -100,49 +121,70 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   // Altas Habilidades / Super Dotação
   void setDeficiency(bool? deficiency) {
     if (deficiency!) {
-      emit(state.copyWith(deficiency: deficiency));
+      emit(
+        state.copyWith(deficiency: deficiency),
+      );
     } else {
-      emit(state.copyWith(
-        deficiency: deficiency,
-        deficiencyTypeBlindness: false,
-        deficiencyTypeLowVision: false,
-        deficiencyTypeDeafness: false,
-        deficiencyTypeDisabilityHearing: false,
-        deficiencyTypeDeafblindness: false,
-        deficiencyTypePhisicalDisability: false,
-        deficiencyTypeIntelectualDisability: false,
-        deficiencyTypeMultipleDisabilities: false,
-        deficiencyTypeAutism: false,
-        deficiencyTypeGifted: false,
-      ));
+      emit(
+        state.copyWith(
+          deficiency: deficiency,
+          deficiencyTypeBlindness: false,
+          deficiencyTypeLowVision: false,
+          deficiencyTypeDeafness: false,
+          deficiencyTypeDisabilityHearing: false,
+          deficiencyTypeDeafblindness: false,
+          deficiencyTypePhisicalDisability: false,
+          deficiencyTypeIntelectualDisability: false,
+          deficiencyTypeMultipleDisabilities: false,
+          deficiencyTypeAutism: false,
+          deficiencyTypeGifted: false,
+        ),
+      );
     }
   }
 
-  void setDeficiencyTypeBlindness(bool? typeBlindness) =>
-      emit(state.copyWith(deficiencyTypeBlindness: typeBlindness));
-  void setDeficiencyTypeLowVision(bool? typeLowVision) =>
-      emit(state.copyWith(deficiencyTypeLowVision: typeLowVision));
-  void setDeficiencyTypeDeafness(bool? typeDeafness) =>
-      emit(state.copyWith(deficiencyTypeDeafness: typeDeafness));
+  void setDeficiencyTypeBlindness(bool? typeBlindness) => emit(
+        state.copyWith(deficiencyTypeBlindness: typeBlindness),
+      );
+  void setDeficiencyTypeLowVision(bool? typeLowVision) => emit(
+        state.copyWith(deficiencyTypeLowVision: typeLowVision),
+      );
+  void setDeficiencyTypeDeafness(bool? typeDeafness) => emit(
+        state.copyWith(deficiencyTypeDeafness: typeDeafness),
+      );
   void setDeficiencyTypeDisabilityHearing(bool? typeDisabilityHearing) => emit(
-      state.copyWith(deficiencyTypeDisabilityHearing: typeDisabilityHearing));
-  void setDeficiencyTypeDeafblindness(bool? typeDeafblindness) =>
-      emit(state.copyWith(deficiencyTypeDeafblindness: typeDeafblindness));
+        state.copyWith(deficiencyTypeDisabilityHearing: typeDisabilityHearing),
+      );
+  void setDeficiencyTypeDeafblindness(bool? typeDeafblindness) => emit(
+        state.copyWith(deficiencyTypeDeafblindness: typeDeafblindness),
+      );
   void setDeficiencyTypePhisicalDisability(bool? typePhisicalDisability) =>
-      emit(state.copyWith(
-          deficiencyTypePhisicalDisability: typePhisicalDisability));
+      emit(
+        state.copyWith(
+          deficiencyTypePhisicalDisability: typePhisicalDisability,
+        ),
+      );
   void setDeficiencyTypeIntelectualDisability(
-          bool? typeIntelectualDisability) =>
-      emit(state.copyWith(
-          deficiencyTypeIntelectualDisability: typeIntelectualDisability));
+    bool? typeIntelectualDisability,
+  ) =>
+      emit(
+        state.copyWith(
+          deficiencyTypeIntelectualDisability: typeIntelectualDisability,
+        ),
+      );
   void setDeficiencyTypeMultipleDisabilities(bool? typeMultipleDisabilities) =>
-      emit(state.copyWith(
-          deficiencyTypeMultipleDisabilities: typeMultipleDisabilities));
-  void setDeficiencyTypeAutism(bool? typeAutism) =>
-      emit(state.copyWith(deficiencyTypeAutism: typeAutism));
+      emit(
+        state.copyWith(
+          deficiencyTypeMultipleDisabilities: typeMultipleDisabilities,
+        ),
+      );
+  void setDeficiencyTypeAutism(bool? typeAutism) => emit(
+        state.copyWith(deficiencyTypeAutism: typeAutism),
+      );
 
-  void setDeficiencyTypeGifted(bool? typeGifted) =>
-      emit(state.copyWith(deficiencyTypeGifted: typeGifted));
+  void setDeficiencyTypeGifted(bool? typeGifted) => emit(
+        state.copyWith(deficiencyTypeGifted: typeGifted),
+      );
 
   Future<void> submitPersonalForm() async {
     _createInstructorBloc.loadPersonalData(

@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_positional_boolean_parameters
 
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/color_race_enum.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/enums/filliation_type_enum.dart';
@@ -9,8 +11,6 @@ import 'package:br_ipti_tag_app/app/features/student/domain/enums/sex_enum.dart'
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/create_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -20,7 +20,9 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   EnrollmentPersonalBloc(
     this._createStudentsUsecase,
     this._updateStudentsUsecase,
-  ) : super(const EmptyEnrollmentPersonalState());
+  ) : super(
+          const EmptyEnrollmentPersonalState(),
+        );
 
   final CreateStudentsUsecase _createStudentsUsecase;
   final UpdateStudentUsecase _updateStudentsUsecase;
@@ -59,44 +61,59 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   );
 
   Future loadStudent(Student student) async {
-    emit(state.copyWith(
-      student: student,
-      name: student.name,
-      birthday: student.birthday,
-      sex: student.sex,
-      colorRace: student.colorRace,
-      filiation: student.filiation,
-      nationality: student.nationality,
-      deficiency: student.deficiency,
-      foodRestrictions: student.foodRestrictions,
-      deficiencyTypeBlindness: student.deficiencyTypeBlindness,
-      deficiencyTypeLowVision: student.deficiencyTypeLowVision,
-      deficiencyTypeDeafness: student.deficiencyTypeDeafness,
-      deficiencyTypeDisabilityHearing: student.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafblindness: student.deficiencyTypeDeafblindness,
-      deficiencyTypePhisicalDisability:
-          student.deficiencyTypePhisicalDisability,
-      deficiencyTypeIntelectualDisability:
-          student.deficiencyTypeIntelectualDisability,
-      deficiencyTypeMultipleDisabilities:
-          student.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeAutism: student.deficiencyTypeAutism,
-      deficiencyTypeAspengerSyndrome: student.deficiencyTypeAspengerSyndrome,
-      deficiencyTypeRettSyndrome: student.deficiencyTypeRettSyndrome,
-      deficiencyTypeChildhoodDisintegrativeDisorder:
-          student.deficiencyTypeChildhoodDisintegrativeDisorder,
-      deficiencyTypeGifted: student.deficiencyTypeGifted,
-    ));
+    emit(
+      state.copyWith(
+        student: student,
+        name: student.name,
+        birthday: student.birthday,
+        sex: student.sex,
+        colorRace: student.colorRace,
+        filiation: student.filiation,
+        nationality: student.nationality,
+        deficiency: student.deficiency,
+        foodRestrictions: student.foodRestrictions,
+        deficiencyTypeBlindness: student.deficiencyTypeBlindness,
+        deficiencyTypeLowVision: student.deficiencyTypeLowVision,
+        deficiencyTypeDeafness: student.deficiencyTypeDeafness,
+        deficiencyTypeDisabilityHearing:
+            student.deficiencyTypeDisabilityHearing,
+        deficiencyTypeDeafblindness: student.deficiencyTypeDeafblindness,
+        deficiencyTypePhisicalDisability:
+            student.deficiencyTypePhisicalDisability,
+        deficiencyTypeIntelectualDisability:
+            student.deficiencyTypeIntelectualDisability,
+        deficiencyTypeMultipleDisabilities:
+            student.deficiencyTypeMultipleDisabilities,
+        deficiencyTypeAutism: student.deficiencyTypeAutism,
+        deficiencyTypeAspengerSyndrome: student.deficiencyTypeAspengerSyndrome,
+        deficiencyTypeRettSyndrome: student.deficiencyTypeRettSyndrome,
+        deficiencyTypeChildhoodDisintegrativeDisorder:
+            student.deficiencyTypeChildhoodDisintegrativeDisorder,
+        deficiencyTypeGifted: student.deficiencyTypeGifted,
+      ),
+    );
   }
 
-  void setName(String value) => emit(state.copyWith(
-        name: value,
-      ));
-  void setBirthday(String value) => emit(state.copyWith(birthday: value));
-  void setSex(int? value) => emit(state.copyWith(sex: value));
-  void setColorRace(int? value) => emit(state.copyWith(colorRace: value));
-  void setFiliation(int? value) => emit(state.copyWith(filiation: value));
-  void setNationality(int? value) => emit(state.copyWith(nationality: value));
+  void setName(String value) => emit(
+        state.copyWith(
+          name: value,
+        ),
+      );
+  void setBirthday(String value) => emit(
+        state.copyWith(birthday: value),
+      );
+  void setSex(int? value) => emit(
+        state.copyWith(sex: value),
+      );
+  void setColorRace(int? value) => emit(
+        state.copyWith(colorRace: value),
+      );
+  void setFiliation(int? value) => emit(
+        state.copyWith(filiation: value),
+      );
+  void setNationality(int? value) => emit(
+        state.copyWith(nationality: value),
+      );
 
   // Cegueira
   // Baixa visão
@@ -110,60 +127,87 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   // Altas Habilidades / Super Dotação
   void setDeficiency(bool? deficiency) {
     if (deficiency!) {
-      emit(state.copyWith(deficiency: deficiency));
+      emit(
+        state.copyWith(deficiency: deficiency),
+      );
     } else {
-      emit(state.copyWith(
-        deficiency: deficiency,
-        deficiencyTypeBlindness: false,
-        deficiencyTypeLowVision: false,
-        deficiencyTypeDeafness: false,
-        deficiencyTypeDisabilityHearing: false,
-        deficiencyTypeDeafblindness: false,
-        deficiencyTypePhisicalDisability: false,
-        deficiencyTypeIntelectualDisability: false,
-        deficiencyTypeMultipleDisabilities: false,
-        deficiencyTypeAutism: false,
-        deficiencyTypeAspengerSyndrome: false,
-        deficiencyTypeRettSyndrome: false,
-        deficiencyTypeChildhoodDisintegrativeDisorder: false,
-        deficiencyTypeGifted: false,
-      ));
+      emit(
+        state.copyWith(
+          deficiency: deficiency,
+          deficiencyTypeBlindness: false,
+          deficiencyTypeLowVision: false,
+          deficiencyTypeDeafness: false,
+          deficiencyTypeDisabilityHearing: false,
+          deficiencyTypeDeafblindness: false,
+          deficiencyTypePhisicalDisability: false,
+          deficiencyTypeIntelectualDisability: false,
+          deficiencyTypeMultipleDisabilities: false,
+          deficiencyTypeAutism: false,
+          deficiencyTypeAspengerSyndrome: false,
+          deficiencyTypeRettSyndrome: false,
+          deficiencyTypeChildhoodDisintegrativeDisorder: false,
+          deficiencyTypeGifted: false,
+        ),
+      );
     }
   }
 
-  void setDeficiencyTypeBlindness(bool? typeBlindness) =>
-      emit(state.copyWith(deficiencyTypeBlindness: typeBlindness));
-  void setDeficiencyTypeLowVision(bool? typeLowVision) =>
-      emit(state.copyWith(deficiencyTypeLowVision: typeLowVision));
-  void setDeficiencyTypeDeafness(bool? typeDeafness) =>
-      emit(state.copyWith(deficiencyTypeDeafness: typeDeafness));
+  void setDeficiencyTypeBlindness(bool? typeBlindness) => emit(
+        state.copyWith(deficiencyTypeBlindness: typeBlindness),
+      );
+  void setDeficiencyTypeLowVision(bool? typeLowVision) => emit(
+        state.copyWith(deficiencyTypeLowVision: typeLowVision),
+      );
+  void setDeficiencyTypeDeafness(bool? typeDeafness) => emit(
+        state.copyWith(deficiencyTypeDeafness: typeDeafness),
+      );
   void setDeficiencyTypeDisabilityHearing(bool? typeDisabilityHearing) => emit(
-      state.copyWith(deficiencyTypeDisabilityHearing: typeDisabilityHearing));
-  void setDeficiencyTypeDeafblindness(bool? typeDeafblindness) =>
-      emit(state.copyWith(deficiencyTypeDeafblindness: typeDeafblindness));
+        state.copyWith(deficiencyTypeDisabilityHearing: typeDisabilityHearing),
+      );
+  void setDeficiencyTypeDeafblindness(bool? typeDeafblindness) => emit(
+        state.copyWith(deficiencyTypeDeafblindness: typeDeafblindness),
+      );
   void setDeficiencyTypePhisicalDisability(bool? typePhisicalDisability) =>
-      emit(state.copyWith(
-          deficiencyTypePhisicalDisability: typePhisicalDisability));
+      emit(
+        state.copyWith(
+          deficiencyTypePhisicalDisability: typePhisicalDisability,
+        ),
+      );
   void setDeficiencyTypeIntelectualDisability(
-          bool? typeIntelectualDisability) =>
-      emit(state.copyWith(
-          deficiencyTypeIntelectualDisability: typeIntelectualDisability));
+    bool? typeIntelectualDisability,
+  ) =>
+      emit(
+        state.copyWith(
+          deficiencyTypeIntelectualDisability: typeIntelectualDisability,
+        ),
+      );
   void setDeficiencyTypeMultipleDisabilities(bool? typeMultipleDisabilities) =>
-      emit(state.copyWith(
-          deficiencyTypeMultipleDisabilities: typeMultipleDisabilities));
-  void setDeficiencyTypeAutism(bool? typeAutism) =>
-      emit(state.copyWith(deficiencyTypeAutism: typeAutism));
+      emit(
+        state.copyWith(
+          deficiencyTypeMultipleDisabilities: typeMultipleDisabilities,
+        ),
+      );
+  void setDeficiencyTypeAutism(bool? typeAutism) => emit(
+        state.copyWith(deficiencyTypeAutism: typeAutism),
+      );
   void setDeficiencyTypeAspengerSyndrome(bool? typeAspengerSyndrome) => emit(
-      state.copyWith(deficiencyTypeAspengerSyndrome: typeAspengerSyndrome));
-  void setDeficiencyTypeRettSyndrome(bool? typeRettSyndrome) =>
-      emit(state.copyWith(deficiencyTypeRettSyndrome: typeRettSyndrome));
+        state.copyWith(deficiencyTypeAspengerSyndrome: typeAspengerSyndrome),
+      );
+  void setDeficiencyTypeRettSyndrome(bool? typeRettSyndrome) => emit(
+        state.copyWith(deficiencyTypeRettSyndrome: typeRettSyndrome),
+      );
   void setDeficiencyTypeChildhoodDisintegrativeDisorder(
-          bool? typeChildhoodDisintegrativeDisorder) =>
-      emit(state.copyWith(
+    bool? typeChildhoodDisintegrativeDisorder,
+  ) =>
+      emit(
+        state.copyWith(
           deficiencyTypeChildhoodDisintegrativeDisorder:
-              typeChildhoodDisintegrativeDisorder));
-  void setDeficiencyTypeGifted(bool? typeGifted) =>
-      emit(state.copyWith(deficiencyTypeGifted: typeGifted));
+              typeChildhoodDisintegrativeDisorder,
+        ),
+      );
+  void setDeficiencyTypeGifted(bool? typeGifted) => emit(
+        state.copyWith(deficiencyTypeGifted: typeGifted),
+      );
 
   void setFoodRestriction(String value) => emit(
         state.copyWith(foodRestrictions: value),
@@ -197,7 +241,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       edcensoUfFk: school.edcensoUfFk,
       edcensoCityFk: school.edcensoCityFk,
       edcensoDistrictFk: school.edcensoDistrictFk,
-      edcensoNationFk: "61ee3e877652254244a8b224",
+      edcensoNationFk: 76,
       schoolInepIdFk: school.id,
       deficiencyTypeBlindness: state.deficiencyTypeBlindness,
       deficiencyTypeLowVision: state.deficiencyTypeLowVision,
@@ -224,7 +268,9 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
     );
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (student) {
         _enrollmentBloc.loadStudent(student);
         _enrollmentBloc.notifySuccess(
@@ -272,7 +318,9 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
     final result = await _updateStudentsUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(error.toString()),
+      (error) => _enrollmentBloc.notifyError(
+        error.toString(),
+      ),
       (student) {
         _enrollmentBloc.loadStudent(student);
         _enrollmentBloc.notifySuccess(

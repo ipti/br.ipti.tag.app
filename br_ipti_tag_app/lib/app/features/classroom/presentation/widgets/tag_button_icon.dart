@@ -4,13 +4,13 @@ import 'package:tag_ui/tag_ui.dart';
 
 class TagButtonIcon extends StatelessWidget {
   const TagButtonIcon({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     required this.icon,
     this.buttonStyle,
     this.textStyle,
-  }) : super(key: key);
+  });
   final Function() onPressed;
   final String label;
   final String icon;
@@ -23,7 +23,7 @@ class TagButtonIcon extends StatelessWidget {
         style: buttonStyle ??
             ElevatedButton.styleFrom(
               elevation: 0,
-              primary: TagColors.colorBaseCloudNormal,
+              backgroundColor: TagColors.colorBaseCloudNormal,
               padding: TagSpancing.paddingButtonNormal,
               minimumSize: const Size(40, TagSizes.heightButtonNormal),
               shape: const RoundedRectangleBorder(

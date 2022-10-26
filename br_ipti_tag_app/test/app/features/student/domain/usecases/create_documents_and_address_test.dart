@@ -12,43 +12,64 @@ class MockStudentDocumentsAddressRepository extends Mock
 
 void main() {
   testWidgets(
-      "AddDocumentsAndAddressToStudentUsecase when create a right value",
-      (tester) async {
-    final studentDocsAddress = StudentDocsAddress(
+    "AddDocumentsAndAddressToStudentUsecase when create a right value",
+    (tester) async {
+      final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk");
+        edcensoCityFk: "edcensoCityFk",
+      );
 
-    final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.create(studentDocsAddress))
-        .thenAnswer((invocation) => Future.value(right(studentDocsAddress)));
-    final usercase = AddDocumentsAndAddressToStudentUsecase(repository);
-    final params = AddDocumentsAndAddressToStudentParams(
-        studentDocumentsAddress: studentDocsAddress);
+      final repository = MockStudentDocumentsAddressRepository();
+      when(
+        () => repository.create(studentDocsAddress),
+      ).thenAnswer((invocation) => Future.value(
+            right(studentDocsAddress),
+          ));
+      final usercase = AddDocumentsAndAddressToStudentUsecase(repository);
+      final params = AddDocumentsAndAddressToStudentParams(
+        studentDocumentsAddress: studentDocsAddress,
+      );
 
-    final either = await usercase(params);
-    final result = either.fold(id, id);
-    expect(result, isA<StudentDocsAddress>());
-  });
-  testWidgets("AddDocumentsAndAddressToStudentUsecase when create a left value",
-      (tester) async {
-    final studentDocsAddress = StudentDocsAddress(
+      final either = await usercase(params);
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<StudentDocsAddress>(),
+      );
+    },
+  );
+  testWidgets(
+    "AddDocumentsAndAddressToStudentUsecase when create a left value",
+    (tester) async {
+      final studentDocsAddress = StudentDocsAddress(
         schoolInepIdFk: "schoolInepIdFk",
-        studentFk: "studentFk",
+        studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk");
-    final repository = MockStudentDocumentsAddressRepository();
-    when(() => repository.create(studentDocsAddress)).thenAnswer((invocation) =>
-        Future.value(left(const SocketException("Ocorreu um erro"))));
-    final usercase = AddDocumentsAndAddressToStudentUsecase(repository);
-    final params = AddDocumentsAndAddressToStudentParams(
-        studentDocumentsAddress: studentDocsAddress);
+        edcensoCityFk: "edcensoCityFk",
+      );
+      final repository = MockStudentDocumentsAddressRepository();
+      when(
+        () => repository.create(studentDocsAddress),
+      ).thenAnswer(
+        (invocation) => Future.value(left(
+          const SocketException("Ocorreu um erro"),
+        )),
+      );
+      final usercase = AddDocumentsAndAddressToStudentUsecase(repository);
+      final params = AddDocumentsAndAddressToStudentParams(
+        studentDocumentsAddress: studentDocsAddress,
+      );
 
-    final either = await usercase(params);
-    final result = either.fold(id, id);
-    expect(result, isA<SocketException>());
-  });
+      final either = await usercase(params);
+      final result = either.fold(id, id);
+      expect(
+        result,
+        isA<SocketException>(),
+      );
+    },
+  );
 }

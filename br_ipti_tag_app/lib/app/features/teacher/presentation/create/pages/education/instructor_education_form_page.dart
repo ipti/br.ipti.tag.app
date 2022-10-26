@@ -1,5 +1,5 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/bloc/instructor_states.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,10 +10,10 @@ import 'bloc/instructor_education_states.dart';
 
 class InstructoEducationPage extends StatefulWidget {
   const InstructoEducationPage({
-    Key? key,
+    super.key,
     this.instructor,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final EditMode editMode;
   final InstructorFormState? instructor;
@@ -55,7 +55,7 @@ class InstructoEducationPageState extends State<InstructoEducationPage> {
       builder: (context, state) {
         return SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
             child: Form(
               key: _formKey,
               child: Column(
@@ -127,10 +127,9 @@ class InstructoEducationPageState extends State<InstructoEducationPage> {
 
 class _FormPosGraduate extends StatelessWidget {
   const _FormPosGraduate({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorEducationBloc controller;
   final InstructorEducationState state;
@@ -161,10 +160,9 @@ class _FormPosGraduate extends StatelessWidget {
 
 class _FormOtherCourses extends StatelessWidget {
   const _FormOtherCourses({
-    Key? key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final InstructorEducationBloc controller;
   final InstructorEducationState state;

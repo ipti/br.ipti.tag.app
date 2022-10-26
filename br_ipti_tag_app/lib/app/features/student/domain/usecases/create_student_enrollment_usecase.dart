@@ -14,6 +14,7 @@ class CreateStudentEnrollmentUsecase
     CreateStudentEnrollmentParams params,
   ) async {
     final result = await _repositoryStudent.create(params.enrollment);
+
     return result;
   }
 }

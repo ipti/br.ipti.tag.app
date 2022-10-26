@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:equatable/equatable.dart';
 
@@ -5,23 +6,23 @@ class ClassroomListState extends Equatable {
   const ClassroomListState({
     required this.classrooms,
     required this.message,
-    required this.loading,
+    required this.status,
   });
 
-  final bool loading;
+  final Status status;
   final List<ClassroomEntity> classrooms;
   final String message;
 
   @override
-  List<Object> get props => [classrooms, message, loading];
+  List<Object> get props => [classrooms, message, status];
 
   ClassroomListState copyWith({
-    bool? loading,
+    Status? status,
     List<ClassroomEntity>? classrooms,
     String? message,
   }) {
     return ClassroomListState(
-      loading: loading ?? this.loading,
+      status: status ?? this.status,
       classrooms: classrooms ?? this.classrooms,
       message: message ?? this.message,
     );
@@ -29,23 +30,23 @@ class ClassroomListState extends Equatable {
 }
 
 class EmptyState extends ClassroomListState {
-  const EmptyState() : super(loading: false, message: "", classrooms: const []);
+  const EmptyState()
+      : super(status: Status.empty, message: "", classrooms: const []);
 }
 
 class LoadingState extends ClassroomListState {
-  const LoadingState({
-    required bool loading,
-  }) : super(loading: loading, message: "", classrooms: const []);
+  const LoadingState()
+      : super(status: Status.loading, message: "", classrooms: const []);
 }
 
 class LoadedState extends ClassroomListState {
   const LoadedState({
     required List<ClassroomEntity> classrooms,
-  }) : super(loading: false, message: "", classrooms: classrooms);
+  }) : super(status: Status.success, message: "", classrooms: classrooms);
 }
 
 class FailedState extends ClassroomListState {
   const FailedState({
     required String message,
-  }) : super(loading: false, message: message, classrooms: const []);
+  }) : super(status: Status.failure, message: message, classrooms: const []);
 }

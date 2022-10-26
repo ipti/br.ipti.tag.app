@@ -11,6 +11,7 @@ class CreateInstructorsUsecase
   final InstructorRepository _repositoryInstructor;
 
   @override
+  // ignore: long-method
   Future<Either<Exception, Instructor>> call(
     CreateInstructorParams params,
   ) async {
@@ -82,6 +83,7 @@ class CreateInstructorsUsecase
     );
 
     final result = await _repositoryInstructor.create(instructor);
+
     return result;
   }
 }

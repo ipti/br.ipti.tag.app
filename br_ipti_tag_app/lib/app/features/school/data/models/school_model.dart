@@ -3,136 +3,72 @@ import 'dart:convert';
 import 'package:br_ipti_tag_app/app/features/school/domain/entities/school.dart';
 
 class SchoolModel extends SchoolEntity {
-  String? id;
-  String? createdAt;
-  String? updatedAt;
   SchoolModel({
-    this.id,
-    this.createdAt,
-    this.updatedAt,
-    String? registerType,
-    String? inepId,
-    String? managerCpf,
-    String? managerName,
-    int? managerRole,
-    String? managerEmail,
-    String? managerAccessCriterion,
-    int? managerContractType,
-    int? situation,
-    String? initialDate,
-    String? finalDate,
-    String? name,
-    String? latitude,
-    String? longitude,
-    String? cep,
-    String? address,
-    String? addressNumber,
-    String? addressComplement,
-    String? addressNeighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    String? edcensoDistrictFk,
-    String? ddd,
-    String? phoneNumber,
-    String? publicPhoneNumber,
-    String? otherPhoneNumber,
-    String? faxNumber,
-    String? email,
-    String? edcensoRegionalEducationOrganFk,
-    int? administrativeDependence,
-    int? location,
-    int? idDifflocation,
-    bool? linkedMec,
-    bool? linkedArmy,
-    bool? linkedHelth,
-    bool? linkedOther,
-    int? privateSchoolCategory,
-    int? publicContract,
-    bool? privateSchoolBusinessOrIndividual,
-    bool? privateSchoolSyndicateOrAssociation,
-    bool? privateSchoolOngOrOscip,
-    bool? privateSchoolNonProfitInstitutions,
-    bool? privateSchoolSSystem,
-    bool? privateSchoolOrganizationCivilSociety,
-    String? privateSchoolMaintainerCnpj,
-    String? privateSchoolCnpj,
-    int? regulation,
-    int? regulationOrgan,
-    bool? regulationOrganFederal,
-    bool? regulationOrganState,
-    bool? regulationOrganMunicipal,
-    int? offerOrLinkedUnity,
-    String? inepHeadSchool,
-    String? iesCode,
-    String? logoFileName,
-    String? logoFileType,
-    String? logoFileContent,
-    String? actOfAcknowledgement,
-  }) : super(
-          registerType: registerType,
-          inepId: inepId,
-          managerCpf: managerCpf,
-          managerName: managerName,
-          managerRole: managerRole,
-          managerEmail: managerEmail,
-          managerAccessCriterion: managerAccessCriterion,
-          managerContractType: managerContractType,
-          situation: situation,
-          initialDate: initialDate,
-          finalDate: finalDate,
-          name: name,
-          latitude: latitude,
-          longitude: longitude,
-          cep: cep,
-          address: address,
-          addressNumber: addressNumber,
-          addressComplement: addressComplement,
-          addressNeighborhood: addressNeighborhood,
-          edcensoUfFk: edcensoUfFk,
-          edcensoCityFk: edcensoCityFk,
-          edcensoDistrictFk: edcensoDistrictFk,
-          ddd: ddd,
-          phoneNumber: phoneNumber,
-          publicPhoneNumber: publicPhoneNumber,
-          otherPhoneNumber: otherPhoneNumber,
-          faxNumber: faxNumber,
-          email: email,
-          edcensoRegionalEducationOrganFk: edcensoRegionalEducationOrganFk,
-          administrativeDependence: administrativeDependence,
-          location: location,
-          idDifflocation: idDifflocation,
-          linkedMec: linkedMec,
-          linkedArmy: linkedArmy,
-          linkedHelth: linkedHelth,
-          linkedOther: linkedOther,
-          privateSchoolCategory: privateSchoolCategory,
-          publicContract: publicContract,
-          privateSchoolBusinessOrIndividual: privateSchoolBusinessOrIndividual,
-          privateSchoolSyndicateOrAssociation:
-              privateSchoolSyndicateOrAssociation,
-          privateSchoolOngOrOscip: privateSchoolOngOrOscip,
-          privateSchoolNonProfitInstitutions:
-              privateSchoolNonProfitInstitutions,
-          privateSchoolSSystem: privateSchoolSSystem,
-          privateSchoolOrganizationCivilSociety:
-              privateSchoolOrganizationCivilSociety,
-          privateSchoolMaintainerCnpj: privateSchoolMaintainerCnpj,
-          privateSchoolCnpj: privateSchoolCnpj,
-          regulation: regulation,
-          regulationOrgan: regulationOrgan,
-          regulationOrganFederal: regulationOrganFederal,
-          regulationOrganState: regulationOrganState,
-          regulationOrganMunicipal: regulationOrganMunicipal,
-          offerOrLinkedUnity: offerOrLinkedUnity,
-          inepHeadSchool: inepHeadSchool,
-          iesCode: iesCode,
-          logoFileName: logoFileName,
-          logoFileType: logoFileType,
-          logoFileContent: logoFileContent,
-          actOfAcknowledgement: actOfAcknowledgement,
-        );
+    super.id,
+    super.createdAt,
+    super.updatedAt,
+    super.registerType,
+    super.inepId,
+    super.managerCpf,
+    super.managerName,
+    super.managerRole,
+    super.managerEmail,
+    super.managerAccessCriterion,
+    super.managerContractType,
+    super.situation,
+    super.initialDate,
+    super.finalDate,
+    super.name,
+    super.latitude,
+    super.longitude,
+    super.cep,
+    super.address,
+    super.addressNumber,
+    super.addressComplement,
+    super.addressNeighborhood,
+    super.edcensoUfFk,
+    super.edcensoCityFk,
+    super.edcensoDistrictFk,
+    super.ddd,
+    super.phoneNumber,
+    super.publicPhoneNumber,
+    super.otherPhoneNumber,
+    super.faxNumber,
+    super.email,
+    super.edcensoRegionalEducationOrganFk,
+    super.administrativeDependence,
+    super.location,
+    super.idDifflocation,
+    super.linkedMec,
+    super.linkedArmy,
+    super.linkedHelth,
+    super.linkedOther,
+    super.privateSchoolCategory,
+    super.publicContract,
+    super.privateSchoolBusinessOrIndividual,
+    super.privateSchoolSyndicateOrAssociation,
+    super.privateSchoolOngOrOscip,
+    super.privateSchoolNonProfitInstitutions,
+    super.privateSchoolSSystem,
+    super.privateSchoolOrganizationCivilSociety,
+    super.privateSchoolMaintainerCnpj,
+    super.privateSchoolCnpj,
+    super.regulation,
+    super.regulationOrgan,
+    super.regulationOrganFederal,
+    super.regulationOrganState,
+    super.regulationOrganMunicipal,
+    super.offerOrLinkedUnity,
+    super.inepHeadSchool,
+    super.iesCode,
+    super.logoFileName,
+    super.logoFileType,
+    super.logoFileContent,
+    super.actOfAcknowledgement,
+  });
 
   @override
+  // ignore: long-method
   SchoolModel copyWith({
     String? id,
     String? createdAt,
@@ -156,9 +92,9 @@ class SchoolModel extends SchoolEntity {
     String? addressNumber,
     String? addressComplement,
     String? addressNeighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
-    String? edcensoDistrictFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
+    int? edcensoDistrictFk,
     String? ddd,
     String? phoneNumber,
     String? publicPhoneNumber,
@@ -273,6 +209,7 @@ class SchoolModel extends SchoolEntity {
       logoFileContent: logoFileContent ?? this.logoFileContent,
       actOfAcknowledgement: actOfAcknowledgement ?? this.actOfAcknowledgement,
     );
+
     return schoolModel;
   }
 
@@ -288,6 +225,7 @@ class SchoolModel extends SchoolEntity {
     return map;
   }
 
+  // ignore: long-method
   factory SchoolModel.fromMap(Map<String, dynamic> map) {
     final schoolModel = SchoolModel(
       id: map['id'] ?? '',
@@ -301,7 +239,7 @@ class SchoolModel extends SchoolEntity {
       managerEmail: map['manager_email'],
       managerAccessCriterion: map['manager_access_criterion'],
       managerContractType: int.tryParse(map['manager_contract_type'] ?? ''),
-      situation: int.tryParse(map['situation'] ?? ''),
+      situation: map['situation'],
       initialDate: map['initial_date'],
       finalDate: map['final_date'],
       name: map['name'],
@@ -323,9 +261,7 @@ class SchoolModel extends SchoolEntity {
       email: map['email'],
       edcensoRegionalEducationOrganFk:
           map['edcenso_regional_education_organ_fk'],
-      administrativeDependence: int.tryParse(
-        map['administrative_dependence'] ?? '',
-      ),
+      administrativeDependence: map['administrative_dependence'],
       location: map['location'],
       idDifflocation: int.tryParse(map['id_difflocation'] ?? ''),
       linkedMec: map['linked_mec'],
@@ -351,7 +287,7 @@ class SchoolModel extends SchoolEntity {
       regulationOrganFederal: map['regulation_organ_federal'],
       regulationOrganState: map['regulation_organ_state'],
       regulationOrganMunicipal: map['regulation_organ_municipal'],
-      offerOrLinkedUnity: int.tryParse(map['offer_or_linked_unity'] ?? ''),
+      offerOrLinkedUnity: map['offer_or_linked_unity'],
       inepHeadSchool: map['inep_head_school'],
       iesCode: map['ies_code'],
       logoFileName: map['logo_file_name'],
@@ -359,14 +295,18 @@ class SchoolModel extends SchoolEntity {
       logoFileContent: map['logo_file_content'],
       actOfAcknowledgement: map['act_of_acknowledgement'],
     );
+
     return schoolModel;
   }
 
   @override
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory SchoolModel.fromJson(String source) =>
-      SchoolModel.fromMap(json.decode(source));
+  factory SchoolModel.fromJson(String source) => SchoolModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() => '''
@@ -387,6 +327,7 @@ SchoolModel(id: $id, registerType: $registerType, inepId: $inepId, managerCpf: $
   int get hashCode =>
       id.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ super.hashCode;
 
+  // ignore: long-method
   factory SchoolModel.empty() {
     return SchoolModel(
       id: '',
@@ -411,9 +352,9 @@ SchoolModel(id: $id, registerType: $registerType, inepId: $inepId, managerCpf: $
       addressNumber: '',
       addressComplement: '',
       addressNeighborhood: '',
-      edcensoUfFk: '',
-      edcensoCityFk: '',
-      edcensoDistrictFk: '',
+      edcensoUfFk: 1,
+      edcensoCityFk: 1,
+      edcensoDistrictFk: 1,
       ddd: '',
       phoneNumber: '',
       publicPhoneNumber: '',

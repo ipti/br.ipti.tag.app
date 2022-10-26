@@ -1,13 +1,13 @@
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolBasicDataForm extends StatefulWidget {
-  const SchoolBasicDataForm({Key? key}) : super(key: key);
+  const SchoolBasicDataForm({super.key});
 
   @override
   State<SchoolBasicDataForm> createState() => _SchoolBasicDataFormState();
@@ -18,7 +18,7 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
 
   @override
   Widget build(BuildContext context) {
-    const heading = Heading(text: "Dados básicos", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados básicos", type: HeadingType.Title3);
     const padding = EdgeInsets.all(8.0);
 
     Widget withPadding(Widget widget) =>
@@ -92,42 +92,60 @@ class _SchoolBasicDataFormState extends State<SchoolBasicDataForm> {
           builder: (context, state) {
             return RowToColumn(children: [
               Flexible(
-                child: withPadding(inputSchoolName(
-                    controller.state.currentSchoolData?.name ?? "")),
+                child: withPadding(
+                  inputSchoolName(
+                    controller.state.currentSchoolData?.name ?? "",
+                  ),
+                ),
               ),
               Flexible(
-                child: withPadding(inputInepCode(
-                    controller.state.currentSchoolData?.inepId ?? "")),
+                child: withPadding(
+                  inputInepCode(
+                    controller.state.currentSchoolData?.inepId ?? "",
+                  ),
+                ),
               ),
             ]);
           },
         ),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputAdminDep()),
+            child: withPadding(
+              inputAdminDep(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputStatus()),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputRegionalAdmin()),
-          ),
-          Flexible(
-            child: withPadding(inputStartDate(
-                controller.state.currentSchoolData?.initialDate ?? "")),
+            child: withPadding(
+              inputStatus(),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRecognitionAct(
-                controller.state.currentSchoolData?.actOfAcknowledgement ??
-                    "")),
+            child: withPadding(
+              inputRegionalAdmin(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputEndDate(
-                controller.state.currentSchoolData?.finalDate ?? "")),
+            child: withPadding(
+              inputStartDate(
+                controller.state.currentSchoolData?.initialDate ?? "",
+              ),
+            ),
+          ),
+        ]),
+        RowToColumn(children: [
+          Flexible(
+            child: withPadding(
+              inputRecognitionAct(
+                controller.state.currentSchoolData?.actOfAcknowledgement ?? "",
+              ),
+            ),
+          ),
+          Flexible(
+            child: withPadding(
+              inputEndDate(controller.state.currentSchoolData?.finalDate ?? ""),
+            ),
           ),
         ]),
       ],

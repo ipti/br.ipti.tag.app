@@ -1,78 +1,79 @@
 class Student {
-  Student(
-      {this.id,
-      this.name,
-      this.nis,
-      this.edcensoDistrictFk,
-      this.registerType,
-      this.schoolInepIdFk,
-      this.inepId,
-      this.birthday,
-      this.sex,
-      this.colorRace,
-      this.filiation,
-      this.filiation1,
-      this.filiation2,
-      this.nationality,
-      this.noDocumentDesc,
-      this.scholarity,
-      this.idEmail,
-      this.edcensoNationFk,
-      this.edcensoUfFk,
-      this.edcensoCityFk,
-      this.deficiency,
-      this.deficiencyTypeBlindness,
-      this.deficiencyTypeLowVision,
-      this.deficiencyTypeDeafness,
-      this.deficiencyTypeDisabilityHearing,
-      this.deficiencyTypeDeafblindness,
-      this.deficiencyTypePhisicalDisability,
-      this.deficiencyTypeIntelectualDisability,
-      this.deficiencyTypeMultipleDisabilities,
-      this.deficiencyTypeAutism,
-      this.deficiencyTypeAspengerSyndrome,
-      this.deficiencyTypeRettSyndrome,
-      this.deficiencyTypeChildhoodDisintegrativeDisorder,
-      this.deficiencyTypeGifted,
-      this.resourceAidLector,
-      this.resourceAidTranscription,
-      this.resourceInterpreterGuide,
-      this.resourceInterpreterLibras,
-      this.resourceLipReading,
-      this.resourceZoomedTest16,
-      this.resourceZoomedTest18,
-      this.resourceZoomedTest20,
-      this.resourceZoomedTest24,
-      this.resourceCdAudio,
-      this.resourceProofLanguage,
-      this.resourceVideoLibras,
-      this.resourceBrailleTest,
-      this.resourceNone,
-      this.sendYear,
-      this.lastChange,
-      this.responsable,
-      this.responsableName,
-      this.responsableRg,
-      this.responsableCpf,
-      this.responsableScholarity,
-      this.responsableJob,
-      this.bfParticipator,
-      this.foodRestrictions,
-      this.responsableTelephone,
-      this.hash,
-      this.filiation1Rg,
-      this.filiation1Cpf,
-      this.filiation1Scholarity,
-      this.filiation1Job,
-      this.filiation2Rg,
-      this.filiation2Cpf,
-      this.filiation2Scholarity,
-      this.filiation2Job});
+  Student({
+    this.id,
+    this.name,
+    this.nis,
+    this.edcensoDistrictFk,
+    this.registerType,
+    this.schoolInepIdFk,
+    this.inepId,
+    this.birthday,
+    this.sex,
+    this.colorRace,
+    this.filiation,
+    this.filiation1,
+    this.filiation2,
+    this.nationality,
+    this.noDocumentDesc,
+    this.scholarity,
+    this.idEmail,
+    this.edcensoNationFk,
+    this.edcensoUfFk,
+    this.edcensoCityFk,
+    this.deficiency,
+    this.deficiencyTypeBlindness,
+    this.deficiencyTypeLowVision,
+    this.deficiencyTypeDeafness,
+    this.deficiencyTypeDisabilityHearing,
+    this.deficiencyTypeDeafblindness,
+    this.deficiencyTypePhisicalDisability,
+    this.deficiencyTypeIntelectualDisability,
+    this.deficiencyTypeMultipleDisabilities,
+    this.deficiencyTypeAutism,
+    this.deficiencyTypeAspengerSyndrome,
+    this.deficiencyTypeRettSyndrome,
+    this.deficiencyTypeChildhoodDisintegrativeDisorder,
+    this.deficiencyTypeGifted,
+    this.resourceAidLector,
+    this.resourceAidTranscription,
+    this.resourceInterpreterGuide,
+    this.resourceInterpreterLibras,
+    this.resourceLipReading,
+    this.resourceZoomedTest16,
+    this.resourceZoomedTest18,
+    this.resourceZoomedTest20,
+    this.resourceZoomedTest24,
+    this.resourceCdAudio,
+    this.resourceProofLanguage,
+    this.resourceVideoLibras,
+    this.resourceBrailleTest,
+    this.resourceNone,
+    this.sendYear,
+    this.lastChange,
+    this.responsable,
+    this.responsableName,
+    this.responsableRg,
+    this.responsableCpf,
+    this.responsableScholarity,
+    this.responsableJob,
+    this.bfParticipator,
+    this.foodRestrictions,
+    this.responsableTelephone,
+    this.hash,
+    this.filiation1Rg,
+    this.filiation1Cpf,
+    this.filiation1Scholarity,
+    this.filiation1Job,
+    this.filiation2Rg,
+    this.filiation2Cpf,
+    this.filiation2Scholarity,
+    this.filiation2Job,
+  });
 
-  final String? id;
+  final int? id;
   final String? name;
   final String? nis;
-  final String? edcensoDistrictFk;
+  final int? edcensoDistrictFk;
   final String? registerType;
   final String? schoolInepIdFk;
   final String? inepId;
@@ -86,9 +87,9 @@ class Student {
   final int? noDocumentDesc;
   final int? scholarity;
   final String? idEmail;
-  final String? edcensoNationFk;
-  final String? edcensoUfFk;
-  final String? edcensoCityFk;
+  final int? edcensoNationFk;
+  final int? edcensoUfFk;
+  final int? edcensoCityFk;
   final bool? deficiency;
   final bool? deficiencyTypeBlindness;
   final bool? deficiencyTypeLowVision;
@@ -139,6 +140,7 @@ class Student {
   final String? filiation2Job;
 
   @override
+  // ignore: long-method
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
@@ -220,6 +222,7 @@ class Student {
   }
 
   @override
+  // ignore: long-method
   int get hashCode {
     return id.hashCode ^
         name.hashCode ^
@@ -291,11 +294,12 @@ class Student {
         filiation2Job.hashCode;
   }
 
+  // ignore: long-method
   Student copyWith({
-    String? id,
+    int? id,
     String? name,
     String? nis,
-    String? edcensoDistrictFk,
+    int? edcensoDistrictFk,
     String? registerType,
     String? schoolInepIdFk,
     String? inepId,
@@ -309,9 +313,9 @@ class Student {
     int? noDocumentDesc,
     int? scholarity,
     String? idEmail,
-    String? edcensoNationFk,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
+    int? edcensoNationFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
     bool? deficiency,
     bool? deficiencyTypeBlindness,
     bool? deficiencyTypeLowVision,

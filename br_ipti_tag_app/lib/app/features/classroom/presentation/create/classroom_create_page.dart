@@ -1,12 +1,10 @@
+import 'package:br_ipti_tag_app/app/core/util/util.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/etapa_ensino_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/mediacao_enum.dart';
 import 'package:br_ipti_tag_app/app/features/auth/domain/enums/modalidades_enum.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
-import 'package:br_ipti_tag_app/app/shared/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/util.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,8 +15,7 @@ import 'bloc/classroom_create_events.dart';
 import 'bloc/classroom_states.dart';
 
 class ClassroomCreatePage extends StatefulWidget {
-  const ClassroomCreatePage({Key? key, this.title = 'Adicionar Turma'})
-      : super(key: key);
+  const ClassroomCreatePage({super.key, this.title = 'Adicionar Turma'});
 
   final String title;
 
@@ -26,11 +23,14 @@ class ClassroomCreatePage extends StatefulWidget {
   ClassroomCreatePageState createState() => ClassroomCreatePageState();
 }
 
-class ClassroomCreatePageState
-    extends ModularState<ClassroomCreatePage, ClassroomCreateBloc> {
+class ClassroomCreatePageState extends State<ClassroomCreatePage> {
+  final controller = Modular.get<ClassroomCreateBloc>();
+
   @override
   void initState() {
-    controller.add(StartEditing());
+    controller.add(
+      StartEditing(),
+    );
     super.initState();
   }
 
@@ -61,7 +61,7 @@ class ClassroomCreatePageState
 }
 
 class ClassroomBasicDataForm extends StatefulWidget {
-  const ClassroomBasicDataForm({Key? key}) : super(key: key);
+  const ClassroomBasicDataForm({super.key});
 
   @override
   _ClassroomBasicDataFormState createState() => _ClassroomBasicDataFormState();
@@ -99,7 +99,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     Widget withPadding(Widget widget) =>
         Padding(padding: padding, child: widget);
 
-    const heading = Heading(text: "Dados Básicos", type: HeadingType.Title2);
+    const heading = Heading(text: "Dados Básicos", type: HeadingType.Title3);
 
     Widget inputName(String name) => TagTextField(
           label: "Nome",
@@ -114,7 +114,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
-            controller.setStartTime(stringToTimeOfDay(value));
+            controller.setStartTime(
+              value.parseTimeOfDay,
+            );
           },
           value: startTime.format(context),
           validator: requiredTimeValidator,
@@ -125,7 +127,9 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
           hint: "Somente números",
           formatters: [TagMasks.maskTime],
           onChanged: (String value) {
-            controller.setEndTime(stringToTimeOfDay(value));
+            controller.setEndTime(
+              value.parseTimeOfDay,
+            );
           },
           value: endTime.format(context),
           validator: requiredTimeValidator,
@@ -172,26 +176,36 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                     RowToColumn(
                       children: [
                         Flexible(
-                          child: withPadding(inputName(state.name)),
+                          child: withPadding(
+                            inputName(state.name),
+                          ),
                         ),
                         Flexible(
-                          child: withPadding(inputStartTime(state.startTime)),
-                        )
+                          child: withPadding(
+                            inputStartTime(state.startTime),
+                          ),
+                        ),
                       ],
                     ),
                     RowToColumn(
                       children: [
                         Flexible(
-                          child: withPadding(selectModality(state.modalityId)),
+                          child: withPadding(
+                            selectModality(state.modalityId),
+                          ),
                         ),
                         Flexible(
-                          child: withPadding(inputEndTime(state.endTime)),
-                        )
+                          child: withPadding(
+                            inputEndTime(state.endTime),
+                          ),
+                        ),
                       ],
                     ),
                     RowToColumn(children: [
                       Flexible(
-                        child: withPadding(selectStage(state.stageId)),
+                        child: withPadding(
+                          selectStage(state.stageId),
+                        ),
                       ),
                     ]),
                     RowToColumn(children: [
@@ -279,7 +293,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                       text: "Criar turma",
                       onPressed: () => controller.add(
                         SubmitClassroom(
-                          id: _session.state.currentSchool!.id!,
+                          id: _session.state.currentSchool!.inepId!,
                         ),
                       ),
                     ),
@@ -288,6 +302,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
               ),
             );
           }
+
           return const Center(
             child: CircularProgressIndicator(),
           );

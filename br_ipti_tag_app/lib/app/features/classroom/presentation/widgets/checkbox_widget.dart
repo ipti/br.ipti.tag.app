@@ -3,11 +3,11 @@ import 'package:tag_ui/tag_ui.dart';
 
 class CheckboxWidget extends StatelessWidget {
   const CheckboxWidget({
-    Key? key,
+    super.key,
     required this.onChanged,
     required this.label,
     this.value = false,
-  }) : super(key: key);
+  });
   final void Function(bool?)? onChanged;
   final bool value;
   final String label;

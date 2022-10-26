@@ -1,9 +1,9 @@
 import 'package:br_ipti_tag_app/app/features/classroom/data/model/instructor_teaching_data_update_model.dart';
 
 class InstructorTeachingDataUpdateEntity {
-  int? role;
+  int role;
   int? contractType;
-  String? discipline1Fk;
+  String discipline1Fk;
   String? discipline2Fk;
   String? discipline3Fk;
   String? discipline4Fk;
@@ -21,7 +21,7 @@ class InstructorTeachingDataUpdateEntity {
   InstructorTeachingDataUpdateEntity({
     this.role = 0,
     this.contractType = 0,
-    this.discipline1Fk,
+    required this.discipline1Fk,
     this.discipline2Fk,
     this.discipline3Fk,
     this.discipline4Fk,
@@ -40,22 +40,22 @@ class InstructorTeachingDataUpdateEntity {
 
   InstructorTeachingDataUpdateModel fromEntity() =>
       InstructorTeachingDataUpdateModel(
-        role,
-        contractType,
-        discipline1Fk,
-        discipline2Fk,
-        discipline3Fk,
-        discipline4Fk,
-        discipline5Fk,
-        discipline6Fk,
-        discipline7Fk,
-        discipline8Fk,
-        discipline9Fk,
-        discipline10Fk,
-        discipline11Fk,
-        discipline12Fk,
-        discipline13Fk,
-        discipline14Fk,
-        discipline15Fk,
+        role: role,
+        contractType: contractType,
+        discipline1Fk: discipline1Fk,
+        discipline2Fk: discipline2Fk,
+        discipline3Fk: discipline3Fk,
+        discipline4Fk: discipline4Fk,
+        discipline5Fk: discipline5Fk,
+        discipline6Fk: discipline6Fk,
+        discipline7Fk: discipline7Fk,
+        discipline8Fk: discipline8Fk,
+        discipline9Fk: discipline9Fk,
+        discipline10Fk: discipline10Fk,
+        discipline11Fk: discipline11Fk,
+        discipline12Fk: discipline12Fk,
+        discipline13Fk: discipline13Fk,
+        discipline14Fk: discipline14Fk,
+        discipline15Fk: discipline15Fk,
       );
 }

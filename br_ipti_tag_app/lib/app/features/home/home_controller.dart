@@ -6,7 +6,9 @@ class HomeController extends Disposable {
   StreamController<HomeEvent> states = StreamController.broadcast();
 
   Future<void> fetchUsers() async {
-    states.add(HomeLoading());
+    states.add(
+      HomeLoading(),
+    );
   }
 
   void navigateToLogin() {

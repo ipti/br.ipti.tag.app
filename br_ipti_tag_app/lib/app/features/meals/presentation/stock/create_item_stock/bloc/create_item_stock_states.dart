@@ -57,6 +57,6 @@ class CreateItemStockState extends Equatable {
         nationality!,
         deficiency!,
         residenceZone!,
-        studentClass!
+        studentClass!,
       ];
 }

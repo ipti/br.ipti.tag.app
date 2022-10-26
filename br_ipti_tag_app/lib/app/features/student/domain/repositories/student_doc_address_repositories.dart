@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class StudentDocumentsAddressRepository {
   Future<Either<Exception, StudentDocsAddress>> getByStudentId(
-    String id,
+    int id,
   );
   Future<Either<Exception, StudentDocsAddress>> create(
     StudentDocsAddress studentdosStudentDocuments,

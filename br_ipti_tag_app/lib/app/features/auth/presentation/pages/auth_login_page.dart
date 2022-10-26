@@ -1,6 +1,6 @@
+import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/strings/file_paths.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +11,7 @@ import 'package:tag_ui/tag_ui.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthLoginPage extends StatefulWidget {
-  const AuthLoginPage({Key? key, this.title = 'Login'}) : super(key: key);
+  const AuthLoginPage({super.key, this.title = 'Login'});
 
   final String title;
 
@@ -19,10 +19,11 @@ class AuthLoginPage extends StatefulWidget {
   AuthLoginPageState createState() => AuthLoginPageState();
 }
 
-class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
+class AuthLoginPageState extends State<AuthLoginPage> {
+  final controller = Modular.get<LoginBloc>();
+
   @override
   void initState() {
-    controller.verifyAuthToken();
     controller.fetchVersion();
 
     super.initState();
@@ -68,8 +69,11 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
                         builder: (context, state) {
                           if (state is LoginLoadedState) {
                             return _Footer(
-                                version: state.appVersion, year: state.year);
+                              version: state.appVersion,
+                              year: state.year,
+                            );
                           }
+
                           return _Footer(
                             version: "0.0.0",
                             year: controller.yearSequence.first.toString(),
@@ -94,9 +98,7 @@ class AuthLoginPageState extends ModularState<AuthLoginPage, LoginBloc> {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({
-    Key? key,
-  }) : super(key: key);
+  const _Logo();
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +117,9 @@ class _Logo extends StatelessWidget {
 
 class Body extends StatelessWidget {
   const Body({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key);
+  });
   final LoginBloc controller;
 
   static final _formKey = GlobalKey<FormState>();
@@ -154,6 +156,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final focus = FocusNode();
+
     return RawKeyboardListener(
       autofocus: true,
       focusNode: focus,
@@ -186,9 +189,15 @@ class Body extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  withPadding(inputUsername(controller.username)),
-                  withPadding(inputPassword(controller.password)),
-                  withPadding(dropdownYear(controller.schoolYear)),
+                  withPadding(
+                    inputUsername(controller.username),
+                  ),
+                  withPadding(
+                    inputPassword(controller.password),
+                  ),
+                  withPadding(
+                    dropdownYear(controller.schoolYear),
+                  ),
                   Flexible(
                     child: withPadding(
                       TagButton(
@@ -215,10 +224,9 @@ class Body extends StatelessWidget {
 
 class _Footer extends StatelessWidget {
   const _Footer({
-    Key? key,
     required this.version,
     required this.year,
-  }) : super(key: key);
+  });
 
   final String version;
   final String year;
@@ -259,7 +267,7 @@ class _Footer extends StatelessWidget {
                 TextSpan(text: year),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

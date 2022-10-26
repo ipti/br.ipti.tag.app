@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolBodiesAffiliatedDataForm extends StatefulWidget {
-  const SchoolBodiesAffiliatedDataForm({Key? key}) : super(key: key);
+  const SchoolBodiesAffiliatedDataForm({super.key});
 
   @override
   State<SchoolBodiesAffiliatedDataForm> createState() =>

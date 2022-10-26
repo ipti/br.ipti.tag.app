@@ -175,7 +175,7 @@ class ClassroomUpdateDeleteFormState extends ClassroomUpdateDeleteState {
       weekDaysThursday,
       weekDaysTuesday,
       weekDaysWednesday,
-      moreEducationParticipator
+      moreEducationParticipator,
     ];
   }
 }

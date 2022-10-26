@@ -1,9 +1,8 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/address/bloc/enrollment_address_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,11 +18,11 @@ import 'form/personal/personal_form_partial_page.dart';
 
 class EnrollmentPage extends StatefulWidget {
   const EnrollmentPage({
-    Key? key,
+    super.key,
     this.title = 'Matrícula',
     this.student,
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final String title;
   final Student? student;
@@ -33,8 +32,9 @@ class EnrollmentPage extends StatefulWidget {
   EnrollmentPageState createState() => EnrollmentPageState();
 }
 
-class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
+class EnrollmentPageState extends State<EnrollmentPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<EnrollmentBloc>();
   static const List<Tab> _tabs = [
     Tab(
       child: Text("Dados do aluno"),
@@ -47,7 +47,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
     ),
     Tab(
       child: Text("Matrícula"),
-    )
+    ),
   ];
 
   late TabController _tabController;
@@ -69,14 +69,14 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
 
       controller.loadStudent(student);
 
-      controller.fetchStudentDocs(
-        student.id!,
-        student.schoolInepIdFk!,
-      );
-      controller.fetchStudentsEnrollment(
-        student.id!,
-        student.schoolInepIdFk!,
-      );
+      // controller.fetchStudentDocs(
+      //   int.tryParse(student.inepId!) ?? 0,
+      //   student.schoolInepIdFk!,
+      // );
+      // controller.fetchStudentsEnrollment(
+      //   student.id!,
+      //   student.schoolInepIdFk!,
+      // );
     }
 
     controller.stream.listen((state) {
@@ -137,6 +137,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
               if (state is EnrollmentLoadedState) {
                 return _buildWithData(state);
               }
+
               return _buildWithoutData();
             },
           ),
@@ -163,7 +164,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
         ClassesFormPage(
           model: state.studentEnrollment,
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }
@@ -183,7 +184,7 @@ class EnrollmentPageState extends ModularState<EnrollmentPage, EnrollmentBloc>
         ),
         ClassesFormPage(
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }

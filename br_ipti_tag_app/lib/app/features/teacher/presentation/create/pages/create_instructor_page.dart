@@ -1,5 +1,5 @@
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,7 +8,6 @@ import 'package:tag_ui/tag_ui.dart';
 import '../bloc/create_instructor_bloc.dart';
 import '../bloc/instructor_states.dart';
 import 'address/address_social_form_partial_page.dart';
-
 import 'address/bloc/instructor_address_bloc.dart';
 import 'education/instructor_education_form_page.dart';
 import 'personal/bloc/instructor_personal_bloc.dart';
@@ -16,10 +15,10 @@ import 'personal/personal_form_partial_page.dart';
 
 class InstructorFormPage extends StatefulWidget {
   const InstructorFormPage({
-    Key? key,
+    super.key,
     this.title = 'Cadastrar',
     this.editMode = EditMode.Create,
-  }) : super(key: key);
+  });
 
   final String title;
   final EditMode editMode;
@@ -28,9 +27,9 @@ class InstructorFormPage extends StatefulWidget {
   InstructorFormPageState createState() => InstructorFormPageState();
 }
 
-class InstructorFormPageState
-    extends ModularState<InstructorFormPage, CreateInstructorBloc>
+class InstructorFormPageState extends State<InstructorFormPage>
     with SingleTickerProviderStateMixin {
+  final controller = Modular.get<CreateInstructorBloc>();
   static const List<Tab> _tabs = [
     Tab(
       child: Text("Dados do pessoais"),
@@ -108,6 +107,7 @@ class InstructorFormPageState
                 if (state.status == InstructorFormStatus.Loaded) {
                   return _buildWithData(state);
                 }
+
                 return _buildWithoutData();
               },
             ),
@@ -129,7 +129,7 @@ class InstructorFormPageState
         ),
         InstructoEducationPage(
           editMode: widget.editMode,
-        )
+        ),
       ],
     );
   }

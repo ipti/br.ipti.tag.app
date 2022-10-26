@@ -4,14 +4,10 @@ import 'package:br_ipti_tag_app/app/features/meals/domain/entities/food.dart';
 
 class FoodModel extends Food {
   FoodModel({
-    required num tacoId,
-    required String description,
-    required String scientificName,
-  }) : super(
-          tacoId: tacoId,
-          description: description,
-          scientificName: scientificName,
-        );
+    required super.tacoId,
+    required super.description,
+    required super.scientificName,
+  });
 
   factory FoodModel.fromMap(Map<String, dynamic> map) {
     return FoodModel(
@@ -21,12 +17,18 @@ class FoodModel extends Food {
     );
   }
   static List<Food> fromList(List list) {
-    final result =
-        list.map((e) => FoodModel.fromMap(e as Map<String, dynamic>)).toList();
+    final result = list
+        .map(
+          (e) => FoodModel.fromMap(e as Map<String, dynamic>),
+        )
+        .toList();
+
     return result;
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   FoodModel copyWith({
     num? tacoId,

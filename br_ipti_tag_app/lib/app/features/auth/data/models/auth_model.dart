@@ -5,12 +5,9 @@ import 'package:br_ipti_tag_app/app/features/auth/domain/entities/auth_response.
 
 class AuthModel extends AuthResponse {
   AuthModel({
-    String? accessToken,
-    UserModel? user,
-  }) : super(
-          accessToken: accessToken,
-          user: user,
-        );
+    super.accessToken,
+    super.user,
+  });
 
   AuthModel copyWith({
     String? accessToken,
@@ -36,10 +33,13 @@ class AuthModel extends AuthResponse {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory AuthModel.fromJson(String source) =>
-      AuthModel.fromMap(json.decode(source));
+  factory AuthModel.fromJson(String source) => AuthModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() => 'AuthModel(accessToken: $accessToken, user: $user)';

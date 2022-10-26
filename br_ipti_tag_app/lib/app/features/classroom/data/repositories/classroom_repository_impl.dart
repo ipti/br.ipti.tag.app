@@ -25,6 +25,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
       final result = await classroomRemoteDataSource.create(
         classroom.fromEntity(),
       );
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -33,9 +34,11 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<Exception, List<ClassroomEntity>>> list(
-      ClassroomParams params) async {
+    ClassroomParams params,
+  ) async {
     try {
       final result = await classroomRemoteDataSource.listAll(params);
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -46,6 +49,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   Future<Either<Exception, bool>> delete({required String id}) async {
     try {
       final result = await classroomRemoteDataSource.delete(id);
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -62,6 +66,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
         classroomCreateEntity.fromEntity(),
         id,
       );
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -73,6 +78,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
       listEdcensoDisciplines() async {
     try {
       final result = await classroomRemoteDataSource.listEdcensoDisciplines();
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -83,6 +89,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   Future<Either<Exception, List<InstructorEntity>>> listInstructors() async {
     try {
       final result = await classroomRemoteDataSource.listInstructors();
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -91,11 +98,13 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<Exception, List<InstructorTeachingDataEntity>>>
-      listInstructorsTeachingData(
-          {required ListInstructorsTeachingDataParams param}) async {
+      listInstructorsTeachingData({
+    required ListInstructorsTeachingDataParams param,
+  }) async {
     try {
       final result =
           await classroomRemoteDataSource.listInstructorsTeachingData(param);
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -104,10 +113,14 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<Exception, bool>> createInstructorTeachingData(
-      InstructorTeachingDataCreateEntity instructor) async {
+    InstructorTeachingDataCreateEntity instructor,
+  ) async {
     try {
-      final result = await classroomRemoteDataSource
-          .createInstructorsTeachingData(instructor.fromEntity());
+      final result =
+          await classroomRemoteDataSource.createInstructorsTeachingData(
+        instructor.fromEntity(),
+      );
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);
@@ -115,12 +128,17 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> updateInstructorTeachingData(
-      {required String id,
-      required InstructorTeachingDataUpdateEntity instructor}) async {
+  Future<Either<Exception, bool>> updateInstructorTeachingData({
+    required String id,
+    required InstructorTeachingDataUpdateEntity instructor,
+  }) async {
     try {
-      final result = await classroomRemoteDataSource
-          .updateInstructorsTeachingData(id, instructor.fromEntity());
+      final result =
+          await classroomRemoteDataSource.updateInstructorsTeachingData(
+        id,
+        instructor.fromEntity(),
+      );
+
       return Right(result);
     } on RestClientException catch (e) {
       return Left(e);

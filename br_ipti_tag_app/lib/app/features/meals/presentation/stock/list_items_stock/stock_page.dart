@@ -1,5 +1,5 @@
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,7 +10,7 @@ import 'bloc/stock_events.dart';
 import 'bloc/stock_states.dart';
 
 class StockPage extends StatefulWidget {
-  const StockPage({Key? key, this.title = 'Estoque'}) : super(key: key);
+  const StockPage({super.key, this.title = 'Estoque'});
 
   final String title;
 
@@ -18,10 +18,13 @@ class StockPage extends StatefulWidget {
   StockPageState createState() => StockPageState();
 }
 
-class StockPageState extends ModularState<StockPage, StockBloc> {
+class StockPageState extends State<StockPage> {
+  final controller = Modular.get<StockBloc>();
   @override
   void initState() {
-    controller.add(GetListStockEvent());
+    controller.add(
+      GetListStockEvent(),
+    );
     super.initState();
   }
 
@@ -35,11 +38,13 @@ class StockPageState extends ModularState<StockPage, StockBloc> {
       body: BlocBuilder<StockBloc, ListStockState>(
         bloc: controller,
         builder: (context, state) {
-          if (state is LoadedState) {
+          if (state is LoadedState && state.ingredients.isNotEmpty) {
             return IngredientsList(ingredients: state.ingredients);
-          } else {
-            return Container();
           }
+
+          return TagEmpty(
+            onPressedRetry: () => controller.add(GetListStockEvent()),
+          );
         },
       ),
     );

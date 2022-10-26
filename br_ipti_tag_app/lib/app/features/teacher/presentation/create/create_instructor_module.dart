@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_cities_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/usecases/list_ufs_usecase.dart';
 import 'package:br_ipti_tag_app/app/features/edcenso_locations/edcenso_locations_module.dart';
@@ -11,11 +12,18 @@ import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/c
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/update_instructor_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 import 'pages/address/bloc/instructor_address_bloc.dart';
 import 'pages/personal/bloc/instructor_personal_bloc.dart';
 
 class CreateInstructorModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+        EdcensoLocationsModule(),
+      ];
+
   @override
   final List<Bind> binds = [
     // Datasources
@@ -39,7 +47,7 @@ class CreateInstructorModule extends Module {
       ),
     ),
     // Blocs
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => CreateInstructorBloc(
         i.get<CreateInstructorsUsecase>(),
         i.get<UpdateInstructorsUsecase>(),
@@ -49,27 +57,23 @@ class CreateInstructorModule extends Module {
     Bind.singleton(
       (i) => InstructorPersonalBloc(),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => InstructorAddressBloc(
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
       ),
     ),
-    Bind.singleton(
+    BlocBind.singleton(
       (i) => InstructorEducationBloc(),
     ),
   ];
 
   @override
-  List<Module> get imports {
-    return [
-      EdcensoLocationsModule(),
-    ];
-  }
-
-  @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) => const InstructorFormPage()),
+    ChildRoute(
+      "/",
+      child: (_, args) => const InstructorFormPage(),
+    ),
     ChildRoute(
       "/editar",
       child: (_, args) => UpdateInstructorPage(

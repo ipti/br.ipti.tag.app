@@ -1,6 +1,6 @@
-import 'package:br_ipti_tag_app/app/api/student_enrollment/get_student_enrollment_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/student_enrollment/post_student_enrollment_endpoint.dart';
-import 'package:br_ipti_tag_app/app/api/student_enrollment/put_student_enrollment_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_enrollment/get_student_enrollment_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_enrollment/post_student_enrollment_endpoint.dart';
+import 'package:br_ipti_tag_app/app/core/api/student_enrollment/put_student_enrollment_endpoint.dart';
 import 'package:br_ipti_tag_app/app/core/network/service/router.dart';
 import 'package:br_ipti_tag_app/app/features/student/data/models/student_enrollment_model.dart';
 
@@ -11,7 +11,7 @@ class StudentEnrollmenrRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<StudentEnrollmentModel> getById(String id) async {
+  Future<StudentEnrollmentModel> getById(int id) async {
     final response = await _httpClient.request(
       route: GetStudentEnrollmentEndPoint(id: id),
     );
@@ -21,7 +21,7 @@ class StudentEnrollmenrRemoteDataSource {
     return mappedValue;
   }
 
-  Future<StudentEnrollmentModel> getByStudentId(String studentId) async {
+  Future<StudentEnrollmentModel> getByStudentId(int studentId) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentEnrollmentEndPoint(studentId: studentId),
     );
@@ -29,7 +29,9 @@ class StudentEnrollmenrRemoteDataSource {
     final data = response.data?.data ?? [];
 
     final mappedList = data
-        .map((e) => StudentEnrollmentModel.fromMap(e as Map<String, dynamic>))
+        .map(
+          (e) => StudentEnrollmentModel.fromMap(e as Map<String, dynamic>),
+        )
         .toList();
 
     return mappedList.first;
@@ -50,10 +52,11 @@ class StudentEnrollmenrRemoteDataSource {
     StudentEnrollmentModel model,
   ) async {
     final response = await _httpClient.request(
-        route: PutStudentEnrollmentEndPoint(
-      id: id,
-      model: model,
-    ));
+      route: PutStudentEnrollmentEndPoint(
+        id: id,
+        model: model,
+      ),
+    );
 
     final mappedValue = StudentEnrollmentModel.fromMap(response.data!);
 

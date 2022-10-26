@@ -11,7 +11,8 @@ class UpdateDocumentsAndAddressUsecase
 
   @override
   Future<Either<Exception, StudentDocsAddress>> call(
-      UpdateDocumentsAndAddressParams params) async {
+    UpdateDocumentsAndAddressParams params,
+  ) async {
     final result = await _documentsAddressRepository.update(
       params.studentDocsId,
       params.studentDocumentsAndAddress,

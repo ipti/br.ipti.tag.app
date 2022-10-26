@@ -26,7 +26,7 @@ class AuthLoginUsecase implements Usecase<AuthResponse, LoginParams> {
     final year = response.schoolYear;
     final schools = response.user?.schools;
 
-    await Future.any([
+    await Future.wait([
       _repository.storeAccessToken(token!),
       _repository.storeSchoolYear(year!),
       _repository.storeCurrentUserSchools(schools!),

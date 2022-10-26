@@ -1,4 +1,4 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -6,8 +6,7 @@ import 'package:tag_ui/tag_ui.dart';
 import '../bloc/fast_enrollment_bloc.dart';
 
 class FastEnrollmentPage extends StatefulWidget {
-  const FastEnrollmentPage({Key? key, this.title = 'Matrícula rápida'})
-      : super(key: key);
+  const FastEnrollmentPage({super.key, this.title = 'Matrícula rápida'});
 
   final String title;
 
@@ -15,8 +14,8 @@ class FastEnrollmentPage extends StatefulWidget {
   FastEnrollmentPageState createState() => FastEnrollmentPageState();
 }
 
-class FastEnrollmentPageState
-    extends ModularState<FastEnrollmentPage, FastEnrollmentBloc> {
+class FastEnrollmentPageState extends State<FastEnrollmentPage> {
+  final controller = Modular.get<FastEnrollmentBloc>();
   @override
   void initState() {
     Modular.to.navigate('/alunos/matricula-rapida/personal');
@@ -31,8 +30,9 @@ class FastEnrollmentPageState
       ),
       Tab(
         child: Text("Matrícula"),
-      )
+      ),
     ];
+
     return DefaultTabController(
       length: tabs.length,
       child: TagScaffold(

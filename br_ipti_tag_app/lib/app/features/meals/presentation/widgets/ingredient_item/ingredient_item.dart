@@ -5,9 +5,9 @@ import 'package:tag_ui/tag_ui.dart';
 
 class IngredientItem extends StatelessWidget {
   const IngredientItem({
-    Key? key,
+    super.key,
     required this.ingredient,
-  }) : super(key: key);
+  });
 
   final Ingredient ingredient;
 
@@ -15,7 +15,7 @@ class IngredientItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Modular.to.pushNamed(
-        "/merenda/estoque/ingrediente",
+        "/merenda/estoque/ingrediente/",
         arguments: ingredient,
       ),
       child: TagBox(

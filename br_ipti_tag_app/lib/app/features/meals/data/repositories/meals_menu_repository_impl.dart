@@ -19,8 +19,13 @@ class MealsMenuRepositoryImpl implements MealsMenuRepository {
   @override
   Future<Either<Exception, List<MealsMenu>>> list() async {
     try {
-      final result = await remoteDataSource.listAll();
-      final mappedResult = result.map((e) => mapper(e)).toList();
+      final result = await dumbDataSource.listAll();
+      final mappedResult = result
+          .map(
+            (e) => mapper(e),
+          )
+          .toList();
+
       return Right(mappedResult);
     } catch (e) {
       return Left(

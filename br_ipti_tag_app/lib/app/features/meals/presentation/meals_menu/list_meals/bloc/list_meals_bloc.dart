@@ -7,7 +7,20 @@ import 'list_meals_events.dart';
 import 'list_meals_states.dart';
 
 class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
-  ListMealsBloc(this.listMealsMenuUsecase) : super(EmptyState());
+  ListMealsBloc(this.listMealsMenuUsecase) : super(EmptyState()) {
+    on<CleanFilterByTurnEvent>(
+      (event, emit) async => emit(await _mapCleanFilterToState(event)),
+    );
+    on<FilterByTurnEvent>(
+      (event, emit) async => emit(await _mapFilterByTurnToState(event)),
+    );
+    on<GetListMealsEvent>(
+      (event, emit) async {
+        emit(LoadingState());
+        emit(await _mapGetListMealsToState());
+      },
+    );
+  }
 
   final ListMealsMenuUsecase listMealsMenuUsecase;
 
@@ -17,45 +30,48 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
 
   List<MealsMenu> mealsOfDayCached = [];
 
-  @override
-  Stream<ListMealsState> mapEventToState(ListMealsEvent event) async* {
-    yield LoadingState();
-    if (event is CleanFilterByTurnEvent) {
-      yield await _mapCleanFilterToState(event);
-    } else if (event is FilterByTurnEvent) {
-      yield await _mapFilterByTurnToState(event);
-    } else if (event is GetListMealsEvent) {
-      yield await _mapGetListMealsToState();
-    }
-  }
-
   Future<ListMealsState> _mapGetListMealsToState() async {
-    final resultEither = await listMealsMenuUsecase(NoParams());
+    final resultEither = await listMealsMenuUsecase(
+      NoParams(),
+    );
+
     return resultEither.fold(
       (failure) {
-        return FailedState(message: failure.toString());
+        return FailedState(
+          message: failure.toString(),
+        );
       },
       (mealsOfDay) {
         mealsOfDayCached = mealsOfDay;
+        if (mealsOfDay.isEmpty) {
+          return FailedState(
+            message: "Nenhuma refeição no dia",
+          );
+        }
+
         return LoadedState(mealsOfDay: mealsOfDayCached);
       },
     );
   }
 
   Future<ListMealsState> _mapFilterByTurnToState(
-      FilterByTurnEvent event) async {
+    FilterByTurnEvent event,
+  ) async {
     turnsFilters.add(event.turn);
     final filteredDailyMeals = _applyTurnFilter(turnsFilters);
+
     return LoadedState(mealsOfDay: filteredDailyMeals);
   }
 
   Future<ListMealsState> _mapCleanFilterToState(
-      CleanFilterByTurnEvent event) async {
+    CleanFilterByTurnEvent event,
+  ) async {
     turnsFilters.remove(event.turn);
     if (turnsFilters.isEmpty) {
       return LoadedState(mealsOfDay: mealsOfDayCached);
     } else {
       final filteredDailyMeals = _applyTurnFilter(turnsFilters);
+
       return LoadedState(mealsOfDay: filteredDailyMeals);
     }
   }
@@ -67,6 +83,7 @@ class ListMealsBloc extends Bloc<ListMealsEvent, ListMealsState> {
             (meal) => turnsFilters.contains(meal.turn),
           )
           .toList();
+
       return MealsMenu(
         meals: meals,
         fullnameDay: day.fullnameDay,

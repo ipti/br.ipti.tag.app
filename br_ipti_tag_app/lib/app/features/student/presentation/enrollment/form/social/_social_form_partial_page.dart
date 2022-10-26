@@ -1,7 +1,7 @@
+import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/submit_buttons_row/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
-import 'package:br_ipti_tag_app/app/shared/util/enums/edit_mode.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,8 +11,11 @@ import 'bloc/enrollment_social_bloc.dart';
 import 'bloc/enrollment_social_states.dart';
 
 class SocialFormPage extends StatefulWidget {
-  const SocialFormPage({Key? key, this.model, this.editMode = EditMode.Create})
-      : super(key: key);
+  const SocialFormPage({
+    super.key,
+    this.model,
+    this.editMode = EditMode.Create,
+  });
 
   final StudentDocsAddress? model;
   final EditMode editMode;
@@ -76,48 +79,53 @@ class SocialFormPageState extends State<SocialFormPage> {
         );
 
     return BlocBuilder<EnrollmentSocialBloc, EnrollmentSocialState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    withPadding(heading),
-                    RowToColumn(
-                      children: [
-                        Flexible(child: inputNis(state.nis)),
-                        Flexible(child: inputInepId(state.inepId)),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: bfParticipatorCheck(
-                            bfParticipator: state.bfParticipator,
-                          ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  withPadding(heading),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: inputNis(state.nis),
+                      ),
+                      Flexible(
+                        child: inputInepId(state.inepId),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: bfParticipatorCheck(
+                          bfParticipator: state.bfParticipator,
                         ),
-                        Flexible(
-                          child: posCensoCheck(posCenso: state.posCenso),
-                        ),
-                      ],
-                    ),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        controller.submitSocialForm(widget.editMode);
-                      },
-                      onSubmitAndStay: () {
-                        controller.submitSocialForm(widget.editMode);
-                      },
-                    ),
-                  ],
-                ),
+                      ),
+                      Flexible(
+                        child: posCensoCheck(posCenso: state.posCenso),
+                      ),
+                    ],
+                  ),
+                  SubmitButtonsRow(
+                    onSubmitAndGo: () {
+                      controller.submitSocialForm(widget.editMode);
+                    },
+                    onSubmitAndStay: () {
+                      controller.submitSocialForm(widget.editMode);
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

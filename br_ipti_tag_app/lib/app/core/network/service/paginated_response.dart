@@ -53,10 +53,14 @@ class PaginatedResponse {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
   factory PaginatedResponse.fromJson(String source) =>
-      PaginatedResponse.fromMap(json.decode(source));
+      PaginatedResponse.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

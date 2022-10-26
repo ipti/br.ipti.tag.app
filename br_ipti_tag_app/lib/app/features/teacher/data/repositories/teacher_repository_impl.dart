@@ -20,8 +20,13 @@ class InstructorRepositoryImpl implements InstructorRepository {
 
       return Right(mappedResults);
     } catch (e) {
-      debugPrint(e.toString());
-      return Left(Exception("Não foi possível listar"));
+      debugPrint(
+        e.toString(),
+      );
+
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
@@ -32,7 +37,9 @@ class InstructorRepositoryImpl implements InstructorRepository {
 
       return Right(result);
     } catch (e) {
-      return Left(Exception("Não foi possível listar"));
+      return Left(
+        Exception("Não foi possível listar"),
+      );
     }
   }
 
@@ -41,23 +48,37 @@ class InstructorRepositoryImpl implements InstructorRepository {
     try {
       final instructorModel = InstructorModel.fromEntity(instructor);
       final results = await _instructorDataSource.create(instructorModel);
+
       return Right(results);
     } catch (e) {
-      debugPrint(e.toString());
-      return Left(Exception("Não foi possível adicionar professor"));
+      debugPrint(
+        e.toString(),
+      );
+
+      return Left(
+        Exception("Não foi possível adicionar professor"),
+      );
     }
   }
 
   @override
   Future<Either<Exception, Instructor>> update(
-      String id, Instructor instructor) async {
+    String id,
+    Instructor instructor,
+  ) async {
     try {
       final instructorModel = InstructorModel.fromEntity(instructor);
       final results = await _instructorDataSource.update(id, instructorModel);
+
       return Right(results);
     } catch (e) {
-      debugPrint(e.toString());
-      return Left(Exception("Não foi possível atualizar dados do professor"));
+      debugPrint(
+        e.toString(),
+      );
+
+      return Left(
+        Exception("Não foi possível atualizar dados do professor"),
+      );
     }
   }
 }

@@ -13,7 +13,8 @@ class ListInstructorsTeachingDataUseCase
 
   @override
   Future<Either<Exception, List<InstructorTeachingDataEntity>>> call(
-      ListInstructorsTeachingDataParams param) async {
+    ListInstructorsTeachingDataParams param,
+  ) async {
     return _repositoryClassroom.listInstructorsTeachingData(param: param);
   }
 }
@@ -22,8 +23,11 @@ class ListInstructorsTeachingDataParams extends Equatable {
   final String classroomId;
   final String perPage;
   final String page;
-  const ListInstructorsTeachingDataParams(
-      {required this.classroomId, this.page = "1", this.perPage = '100'});
+  const ListInstructorsTeachingDataParams({
+    required this.classroomId,
+    this.page = "1",
+    this.perPage = '100',
+  });
   @override
   // TODO: implement props
   List<Object?> get props => [classroomId, perPage, page];
@@ -31,6 +35,6 @@ class ListInstructorsTeachingDataParams extends Equatable {
   Map<String, dynamic> toJson() => <String, dynamic>{
         "page": page,
         "perPage": perPage,
-        "classroomId": classroomId
+        "classroomId": classroomId,
       };
 }

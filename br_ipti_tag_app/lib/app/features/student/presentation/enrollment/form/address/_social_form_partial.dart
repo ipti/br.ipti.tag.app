@@ -9,10 +9,10 @@ const padding = EdgeInsets.symmetric(vertical: 8);
 
 class SocialForm extends StatelessWidget {
   const SocialForm({
-    Key? key,
+    super.key,
     required this.controller,
     required this.state,
-  }) : super(key: key);
+  });
 
   final EnrollmentAddressBloc controller;
   final EnrollmentAddressState state;
@@ -20,6 +20,7 @@ class SocialForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = controller.state;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -53,10 +54,9 @@ class SocialForm extends StatelessWidget {
 
 class _INEPField extends StatelessWidget {
   const _INEPField({
-    Key? key,
     required this.inepId,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String inepId;
   final EnrollmentAddressBloc controller;
@@ -75,10 +75,9 @@ class _INEPField extends StatelessWidget {
 
 class _NISField extends StatelessWidget {
   const _NISField({
-    Key? key,
     required this.nis,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String nis;
   final EnrollmentAddressBloc controller;

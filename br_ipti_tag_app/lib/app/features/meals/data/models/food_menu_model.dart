@@ -67,12 +67,10 @@ class FoodMenuModel {
 
   factory FoodMenuModel.fromMap(Map<String, dynamic> map) {
     final meals = List.from(map['meals'] ?? []);
+
     return FoodMenuModel(
-      referenceDates: map['referenceDates'] != null
-          ? List<String>.from(map['referenceDates'])
-          : null,
-      ageRange:
-          map['ageRange'] != null ? List<int>.from(map['ageRange']) : null,
+      referenceDates: List<String>.from(map['referenceDates'] ?? []),
+      ageRange: List<int>.from(map['ageRange'] ?? []),
       id: map['id'],
       description: map['description'],
       observation: map['observation'],
@@ -85,8 +83,9 @@ class FoodMenuModel {
 
   String toJson() => json.encode(toMap());
 
-  factory FoodMenuModel.fromJson(String source) =>
-      FoodMenuModel.fromMap(json.decode(source));
+  factory FoodMenuModel.fromJson(String source) => FoodMenuModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

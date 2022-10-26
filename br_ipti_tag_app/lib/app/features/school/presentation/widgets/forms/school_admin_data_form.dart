@@ -1,9 +1,9 @@
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolAdminDataForm extends StatefulWidget {
-  const SchoolAdminDataForm({Key? key}) : super(key: key);
+  const SchoolAdminDataForm({super.key});
 
   @override
   State<SchoolAdminDataForm> createState() => _SchoolAdminDataFormState();
@@ -68,40 +68,57 @@ class _SchoolAdminDataFormState extends State<SchoolAdminDataForm> {
           value: schoolName,
           validator: requiredValidator,
         );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         withPadding(heading),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputSchoolName("PlaceHolder")),
+            child: withPadding(
+              inputSchoolName("PlaceHolder"),
+            ),
           ),
           Flexible(
-            child: withPadding(inputInepCode("PlaceHolder")),
-          ),
-        ]),
-        RowToColumn(children: [
-          Flexible(
-            child: withPadding(inputAdminDep()),
-          ),
-          Flexible(
-            child: withPadding(inputStatus()),
+            child: withPadding(
+              inputInepCode("PlaceHolder"),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRegionalAdmin()),
+            child: withPadding(
+              inputAdminDep(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputStartDate("PlaceHolder")),
+            child: withPadding(
+              inputStatus(),
+            ),
           ),
         ]),
         RowToColumn(children: [
           Flexible(
-            child: withPadding(inputRecognitionAct("PlaceHolder")),
+            child: withPadding(
+              inputRegionalAdmin(),
+            ),
           ),
           Flexible(
-            child: withPadding(inputEndDate("PlaceHolder")),
+            child: withPadding(
+              inputStartDate("PlaceHolder"),
+            ),
+          ),
+        ]),
+        RowToColumn(children: [
+          Flexible(
+            child: withPadding(
+              inputRecognitionAct("PlaceHolder"),
+            ),
+          ),
+          Flexible(
+            child: withPadding(
+              inputEndDate("PlaceHolder"),
+            ),
           ),
         ]),
       ],

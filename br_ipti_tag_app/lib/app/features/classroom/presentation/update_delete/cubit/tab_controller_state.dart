@@ -10,10 +10,8 @@ abstract class TabControllerState extends Equatable {
 
 class ValueChanged extends TabControllerState {
   const ValueChanged({
-    required int value,
-  }) : super(
-          value: value,
-        );
+    required super.value,
+  });
 
   @override
   List<Object?> get props => [value];

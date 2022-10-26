@@ -9,27 +9,29 @@ import 'stock_states.dart';
 class StockBloc extends Bloc<ListStockEvent, ListStockState> {
   StockBloc(
     this.listIngredientsUsecase,
-  ) : super(EmptyState());
+  ) : super(EmptyState()) {
+    on<GetListStockEvent>(
+      (event, emit) async => emit(await _mapGetListStockToState()),
+    );
+  }
 
   final ListIngredientUsecase listIngredientsUsecase;
   List<Ingredient> ingredientsCached = [];
 
-  @override
-  Stream<ListStockState> mapEventToState(ListStockEvent event) async* {
-    yield LoadingState();
-    if (event is GetListStockEvent) {
-      yield await _mapGetListStockToState();
-    }
-  }
-
   Future<ListStockState> _mapGetListStockToState() async {
-    final resultEither = await listIngredientsUsecase(NoParams());
+    final resultEither = await listIngredientsUsecase(
+      NoParams(),
+    );
+
     return resultEither.fold(
       (failure) {
-        return FailedState(message: failure.toString());
+        return FailedState(
+          message: failure.toString(),
+        );
       },
       (ingredients) {
         ingredientsCached = ingredients;
+
         return LoadedState(ingredients: ingredientsCached);
       },
     );

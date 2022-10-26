@@ -11,6 +11,7 @@ class ListIngredientUsecase implements Usecase<List<Ingredient>, NoParams> {
   @override
   Future<Either<Exception, List<Ingredient>>> call(NoParams params) async {
     final result = await _repositoryIngredient.list();
+
     return result;
   }
 }

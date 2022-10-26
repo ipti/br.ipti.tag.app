@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/features/classroom/domain/entities/classroom_create_entity.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/domain/usecases/create_classroom_usecase.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,105 @@ final _initialState = ClassroomCreateFormState(
 
 class ClassroomCreateBloc
     extends Bloc<ClassroomCreateEvent, ClassroomCreateFormState> {
-  ClassroomCreateBloc(this._usecaseCreateClassroom) : super(_initialState);
+  ClassroomCreateBloc(this._usecaseCreateClassroom) : super(_initialState) {
+    on<StartEditing>((event, emit) => log("Start creating a new Classroom"));
+    on<NameChanged>((event, emit) => emit(state.copyWith(name: event.name)));
+    on<StartTimeChanged>((event, emit) => emit(state.copyWith(
+          startTime: event.startTime,
+        )));
+    on<EndTimeChanged>((event, emit) => emit(state.copyWith(
+          endTime: event.endTime,
+        )));
+    on<ModalityChanged>((event, emit) => emit(state.copyWith(
+          modalityId: event.modalityId,
+        )));
+    on<StageChanged>((event, emit) => emit(state.copyWith(
+          stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
+        )));
+    on<TypePedagogicalMediationChanged>((event, emit) => emit(state.copyWith(
+          typePedagogicMediationId: event.typePedagogicMediationId,
+        )));
+    on<SchoolingChanged>((event, emit) => emit(state.copyWith(
+          schooling: event.schooling,
+        )));
+    on<ComplementaryActivityChanged>((event, emit) => emit(state.copyWith(
+          complementaryActivity: event.complementaryActivity,
+        )));
+    on<AeeChanged>((event, emit) => emit(state.copyWith(
+          aee: event.aee,
+        )));
+    on<MoreEducationParticipatorChanged>((event, emit) => emit(state.copyWith(
+          moreEducationParticipator: event.moreEducationParticipator,
+        )));
+    on<AeeBrailleChanged>((event, emit) => emit(state.copyWith(
+          aeeBraille: event.aeeBraille,
+        )));
+    on<AeeOpticalNonOpticalChanged>((event, emit) => emit(state.copyWith(
+          aeeOpticalNonOptical: event.aeeOpticalNonOptical,
+        )));
+    on<AeeMobilityTechniquesChanged>((event, emit) => emit(state.copyWith(
+          aeeMobilityTechniques: event.aeeMobilityTechniques,
+        )));
+    on<AeeCognitiveFunctionsChanged>((event, emit) => emit(state.copyWith(
+          aeeCognitiveFunctions: event.aeeCognitiveFunctions,
+        )));
+    on<AeeLibrasChanged>((event, emit) => emit(state.copyWith(
+          aeeLibras: event.aeeLibras,
+        )));
+    on<AeeCaaChanged>((event, emit) => emit(state.copyWith(
+          aeeCaa: event.aeeCaa,
+        )));
+    on<AeeCurriculumEnrichmentChanged>((event, emit) => emit(state.copyWith(
+          aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
+        )));
+    on<AeeAccessibleTeachingChanged>((event, emit) => emit(state.copyWith(
+          aeeAccessibleTeaching: event.aeeAccessibleTeaching,
+        )));
+    on<AeePortugueseChanged>((event, emit) => emit(state.copyWith(
+          aeePortuguese: event.aeePortuguese,
+        )));
+    on<AeeSorobanChanged>((event, emit) => emit(state.copyWith(
+          aeeSoroban: event.aeeSoroban,
+        )));
+    on<AeeAutonomousLifeChanged>((event, emit) => emit(state.copyWith(
+          aeeAutonomousLife: event.aeeAutonomousLife,
+        )));
+    on<SubmitClassroom>((event, emit) {
+      final params = ClassroomCreateEntity(
+        schoolId: event.id,
+        moreEducationParticipator: state.moreEducationParticipator,
+        name: state.name,
+        startTime: state.startTime,
+        endTime: state.endTime,
+        modalityId: state.modalityId,
+        typePedagogicMediationId: state.typePedagogicMediationId,
+        complementaryActivity: state.complementaryActivity,
+        aeeCaa: state.aeeCaa,
+        aeeAccessibleTeaching: state.aeeAccessibleTeaching,
+        aee: state.aee,
+        aeeAutonomousLife: state.aeeAutonomousLife,
+        aeeBraille: state.aeeBraille,
+        aeeCognitiveFunctions: state.aeeCognitiveFunctions,
+        aeeCurriculumEnrichment: state.aeeCurriculumEnrichment,
+        aeeLibras: state.aeeLibras,
+        aeeMobilityTechniques: state.aeeMobilityTechniques,
+        aeeOpticalNonOptical: state.aeeOpticalNonOptical,
+        aeePortuguese: state.aeePortuguese,
+        aeeSoroban: state.aeeSoroban,
+        schooling: state.schooling,
+        edcensoStageVsModalityFk: state.stageVsModalityFk,
+        weekDaysFriday: state.weekDaysFriday,
+        weekDaysMonday: state.weekDaysMonday,
+        weekDaysSaturday: state.weekDaysSaturday,
+        weekDaysSunday: state.weekDaysSunday,
+        weekDaysThursday: state.weekDaysThursday,
+        weekDaysTuesday: state.weekDaysTuesday,
+        weekDaysWednesday: state.weekDaysWednesday,
+      );
+
+      _usecaseCreateClassroom.call(params);
+    });
+  }
 
   final CreateClassroomUsecase _usecaseCreateClassroom;
   void aeeBraille({bool value = false}) => add(
@@ -96,134 +196,28 @@ class ClassroomCreateBloc
           schooling: value,
         ),
       );
-  void setName(String name) => add(NameChanged(name));
-  void setStartTime(TimeOfDay startTime) => add(StartTimeChanged(startTime));
-  void setEndTime(TimeOfDay endTime) => add(EndTimeChanged(endTime));
-  void setModality(int? modalityId) => add(ModalityChanged(modalityId!));
-  void setStage(int? stageId) => add(StageChanged(stageId!));
+  void setName(String name) => add(
+        NameChanged(name),
+      );
+  void setStartTime(TimeOfDay startTime) => add(
+        StartTimeChanged(startTime),
+      );
+  void setEndTime(TimeOfDay endTime) => add(
+        EndTimeChanged(endTime),
+      );
+  void setModality(int? modalityId) => add(
+        ModalityChanged(modalityId!),
+      );
+  void setStage(int? stageId) => add(
+        StageChanged(stageId!),
+      );
   void setMediacao(int? mediacao) => add(
         TypePedagogicalMediationChanged(
           mediacao!,
         ),
       );
 
-  @override
-  Stream<ClassroomCreateFormState> mapEventToState(
-    ClassroomCreateEvent event,
-  ) async* {
-    ClassroomCreateFormState newState = state;
-    if (event is NameChanged) {
-      newState = state.copyWith(name: event.name);
-    } else if (event is StartTimeChanged) {
-      newState = state.copyWith(startTime: event.startTime);
-    } else if (event is EndTimeChanged) {
-      newState = state.copyWith(endTime: event.endTime);
-    } else if (event is ModalityChanged) {
-      newState = state.copyWith(modalityId: event.modalityId);
-    } else if (event is StageChanged) {
-      newState = state.copyWith(
-        stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
-      );
-    } else if (event is TypePedagogicalMediationChanged) {
-      newState = state.copyWith(
-          typePedagogicMediationId: event.typePedagogicMediationId);
-    } else if (event is SchoolingChanged) {
-      newState = state.copyWith(
-        schooling: event.schooling,
-      );
-    } else if (event is ComplementaryActivityChanged) {
-      newState = state.copyWith(
-        complementaryActivity: event.complementaryActivity,
-      );
-    } else if (event is AeeChanged) {
-      newState = state.copyWith(
-        aee: event.aee,
-      );
-    } else if (event is MoreEducationParticipatorChanged) {
-      newState = state.copyWith(
-        moreEducationParticipator: event.moreEducationParticipator,
-      );
-    } else if (event is AeeBrailleChanged) {
-      newState = state.copyWith(
-        aeeBraille: event.aeeBraille,
-      );
-    } else if (event is AeeOpticalNonOpticalChanged) {
-      newState = state.copyWith(
-        aeeOpticalNonOptical: event.aeeOpticalNonOptical,
-      );
-    } else if (event is AeeMobilityTechniquesChanged) {
-      newState = state.copyWith(
-        aeeMobilityTechniques: event.aeeMobilityTechniques,
-      );
-    } else if (event is AeeCognitiveFunctionsChanged) {
-      newState =
-          state.copyWith(aeeCognitiveFunctions: event.aeeCognitiveFunctions);
-    } else if (event is AeeLibrasChanged) {
-      newState = state.copyWith(aeeLibras: event.aeeLibras);
-    } else if (event is AeeCaaChanged) {
-      newState = state.copyWith(
-        aeeCaa: event.aeeCaa,
-      );
-    } else if (event is AeeCurriculumEnrichmentChanged) {
-      newState = state.copyWith(
-        aeeCurriculumEnrichment: event.aeeCurriculumEnrichment,
-      );
-    } else if (event is AeeAccessibleTeachingChanged) {
-      newState = state.copyWith(
-        aeeAccessibleTeaching: event.aeeAccessibleTeaching,
-      );
-    } else if (event is AeePortugueseChanged) {
-      newState = state.copyWith(
-        aeePortuguese: event.aeePortuguese,
-      );
-    } else if (event is AeeSorobanChanged) {
-      newState = state.copyWith(
-        aeeSoroban: event.aeeSoroban,
-      );
-    } else if (event is AeeAutonomousLifeChanged) {
-      newState = state.copyWith(
-        aeeAutonomousLife: event.aeeAutonomousLife,
-      );
-    } else if (event is SubmitClassroom) {
-      final params = ClassroomCreateEntity(
-        schoolId: event.id,
-        moreEducationParticipator: state.moreEducationParticipator,
-        name: state.name,
-        startTime: state.startTime,
-        endTime: state.endTime,
-        modalityId: state.modalityId,
-        typePedagogicMediationId: state.typePedagogicMediationId,
-        complementaryActivity: state.complementaryActivity,
-        aeeCaa: state.aeeCaa,
-        aeeAccessibleTeaching: state.aeeAccessibleTeaching,
-        aee: state.aee,
-        aeeAutonomousLife: state.aeeAutonomousLife,
-        aeeBraille: state.aeeBraille,
-        aeeCognitiveFunctions: state.aeeCognitiveFunctions,
-        aeeCurriculumEnrichment: state.aeeCurriculumEnrichment,
-        aeeLibras: state.aeeLibras,
-        aeeMobilityTechniques: state.aeeMobilityTechniques,
-        aeeOpticalNonOptical: state.aeeOpticalNonOptical,
-        aeePortuguese: state.aeePortuguese,
-        aeeSoroban: state.aeeSoroban,
-        schooling: state.schooling,
-        edcensoStageVsModalityFk: state.stageVsModalityFk,
-        weekDaysFriday: state.weekDaysFriday,
-        weekDaysMonday: state.weekDaysMonday,
-        weekDaysSaturday: state.weekDaysSaturday,
-        weekDaysSunday: state.weekDaysSunday,
-        weekDaysThursday: state.weekDaysThursday,
-        weekDaysTuesday: state.weekDaysTuesday,
-        weekDaysWednesday: state.weekDaysWednesday,
-      );
-
-      _usecaseCreateClassroom.call(params);
-    }
-
-    yield newState;
-  }
-
-  String _getEdcensoStage(int? idEdcenso) {
+  String _getEdcensoStage(int idEdcenso) {
     switch (idEdcenso) {
       case 0:
         return "MA";

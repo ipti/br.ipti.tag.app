@@ -1,1 +1,0 @@
-const kFirebaseInit = false;

@@ -4,11 +4,11 @@ import 'package:br_ipti_tag_app/app/features/edcenso_locations/domain/entities/e
 
 class EdCensoUfModel extends EdCensoUF {
   EdCensoUfModel({
-    required String id,
-    String? oldId,
-    required String name,
-    required String acronym,
-  }) : super(id: id, oldId: oldId, name: name, acronym: acronym);
+    required super.id,
+    super.oldId,
+    required super.name,
+    required super.acronym,
+  });
 
   EdCensoUfModel copyWith({
     String? id,
@@ -42,10 +42,13 @@ class EdCensoUfModel extends EdCensoUF {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => json.encode(
+        toMap(),
+      );
 
-  factory EdCensoUfModel.fromJson(String source) =>
-      EdCensoUfModel.fromMap(json.decode(source));
+  factory EdCensoUfModel.fromJson(String source) => EdCensoUfModel.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() {

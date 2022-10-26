@@ -1,4 +1,5 @@
-import 'package:br_ipti_tag_app/app/shared/widgets/menu/vertical_menu.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,7 @@ import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
-  const ClassroomPage({Key? key, this.title = 'Listagem de Turmas'})
-      : super(key: key);
+  const ClassroomPage({super.key, this.title = 'Listagem de Turmas'});
 
   final String title;
 
@@ -19,8 +19,9 @@ class ClassroomPage extends StatefulWidget {
   ClassroomPageState createState() => ClassroomPageState();
 }
 
-class ClassroomPageState
-    extends ModularState<ClassroomPage, ClassroomListBloc> {
+class ClassroomPageState extends State<ClassroomPage> {
+  final controller = Modular.get<ClassroomListBloc>();
+
   @override
   void initState() {
     controller.fetchListClassroomsEvent();
@@ -44,26 +45,41 @@ class ClassroomPageState
             child: BlocBuilder<ClassroomListBloc, ClassroomListState>(
               bloc: controller,
               builder: (context, state) {
-                if (state.loading) {
-                  return const Center(child: CircularProgressIndicator());
+                switch (state.status) {
+                  case Status.loading:
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  case Status.success:
+                    return TagDataTable(
+                      onTapRow: (index) => Modular.to.pushNamed(
+                        "updatePage",
+                        arguments: state.classrooms[index],
+                      ),
+                      columns: const [
+                        DataColumn(
+                          label: Text("Nome"),
+                        ),
+                        DataColumn(
+                          label: Text("Etapa"),
+                        ),
+                        DataColumn(
+                          label: Text("Horário "),
+                        ),
+                      ],
+                      source: ClassroomDatatable(
+                        data: state.classrooms,
+                      ),
+                    );
+                  default:
+                    return TagEmpty(
+                      onPressedRetry: () =>
+                          controller.fetchListClassroomsEvent(),
+                    );
                 }
-                return TagDataTable(
-                  onTapRow: (index) => Modular.to.pushNamed(
-                    "updatePage",
-                    arguments: state.classrooms[index],
-                  ),
-                  columns: const [
-                    DataColumn(label: Text("Nome")),
-                    DataColumn(label: Text("Etapa")),
-                    DataColumn(label: Text("Horário ")),
-                  ],
-                  source: ClassroomDatatable(
-                    data: state.classrooms,
-                  ),
-                );
               },
             ),
-          )
+          ),
         ],
       ),
     );
@@ -71,9 +87,7 @@ class ClassroomPageState
 }
 
 class _Actions extends StatelessWidget {
-  const _Actions({
-    Key? key,
-  }) : super(key: key);
+  const _Actions();
 
   @override
   Widget build(BuildContext context) {
@@ -101,9 +115,15 @@ class ClassroomDatatable extends DataTableSource {
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text(data[index].name.toUpperCase())),
-      DataCell(Text(data[index].stage)),
-      DataCell(Text('${data[index].startTime} - ${data[index].endTime}')),
+      DataCell(Text(
+        data[index].name.toUpperCase(),
+      )),
+      DataCell(
+        Text(data[index].stage),
+      ),
+      DataCell(
+        Text('${data[index].startTime} - ${data[index].endTime}'),
+      ),
     ]);
   }
 
@@ -132,7 +152,10 @@ class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       height: maxExtent,
       color: TagColors.colorBaseWhiteNormal,

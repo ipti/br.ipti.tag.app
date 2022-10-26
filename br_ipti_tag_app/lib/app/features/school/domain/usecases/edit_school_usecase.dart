@@ -11,6 +11,7 @@ class EditSchoolUsecase implements Usecase<SchoolEntity, EditSchoolParams> {
   @override
   Future<Either<Exception, SchoolModel>> call(EditSchoolParams params) async {
     final result = await _repository.update(params.uuid, params.data);
+
     return result;
   }
 }

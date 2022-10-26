@@ -13,34 +13,49 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
   InstructorAddressBloc(
     this._listCitiesUsecase,
     this._listUFsUsecase,
-  ) : super(const EmptyInstructorAddressState());
+  ) : super(
+          const EmptyInstructorAddressState(),
+        );
 
   final _createInstructorBloc = Modular.get<CreateInstructorBloc>();
 
   final ListCitiesUsecase _listCitiesUsecase;
   final ListUFsUsecase _listUFsUsecase;
 
-  void setCEP(String cep) => emit(state.copyWith(cep: cep.replaceAll('-', '')));
-  void setAddress(String address) => emit(state.copyWith(address: address));
+  void setCEP(String cep) => emit(state.copyWith(
+        cep: cep.replaceAll('-', ''),
+      ));
+  void setAddress(String address) => emit(
+        state.copyWith(address: address),
+      );
   void setComplement(String complement) => emit(
         state.copyWith(complement: complement),
       );
-  void setCity(String? city) => emit(state.copyWith(edcensoCityFk: city));
+  void setCity(String? city) => emit(
+        state.copyWith(edcensoCityFk: city),
+      );
 
   void setNeighborhood(String neighborhood) => emit(
         state.copyWith(neighborhood: neighborhood),
       );
-  void setNumber(String number) => emit(state.copyWith(number: number));
-  void setZone(int residenceZone) =>
-      emit(state.copyWith(residenceZone: residenceZone));
+  void setNumber(String number) => emit(
+        state.copyWith(number: number),
+      );
+  void setZone(int residenceZone) => emit(
+        state.copyWith(residenceZone: residenceZone),
+      );
 
   Future<void> setUf(String? uf) async {
     fetchCities(uf);
-    emit(state.copyWith(edcensoUfFk: uf));
+    emit(
+      state.copyWith(edcensoUfFk: uf),
+    );
   }
 
   Future fetchCities([String? uf]) async {
-    final result = await _listCitiesUsecase(FilterUFParams(uf: uf));
+    final result = await _listCitiesUsecase(
+      FilterUFParams(uf: uf),
+    );
     result.fold(id, (cities) {
       final mappedValues = {for (var city in cities) city.id: city.name};
 
@@ -59,7 +74,9 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
 
   Future fetchUFs() async {
     if (state.ufs.isEmpty) {
-      final result = await _listUFsUsecase(NoParams());
+      final result = await _listUFsUsecase(
+        NoParams(),
+      );
       result.fold(id, (ufs) async {
         final mappedValues = {for (var uf in ufs) uf.id: uf.acronym};
 

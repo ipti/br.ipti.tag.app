@@ -1,6 +1,6 @@
+import 'package:br_ipti_tag_app/app/core/util/validators/validators.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/submit_buttons_row/submit_buttons_row.dart';
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student.dart';
-import 'package:br_ipti_tag_app/app/shared/validators/validators.dart';
-import 'package:br_ipti_tag_app/app/shared/widgets/submit_buttons_row/submit_buttons_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,7 +11,7 @@ import 'bloc/enrollment_filiation_bloc.dart';
 import 'bloc/enrollment_filiation_states.dart';
 
 class FiliationFormPage extends StatefulWidget {
-  const FiliationFormPage({Key? key, this.student}) : super(key: key);
+  const FiliationFormPage({super.key, this.student});
   final Student? student;
   @override
   FiliationFormPageState createState() => FiliationFormPageState();
@@ -37,183 +37,184 @@ class FiliationFormPageState extends State<FiliationFormPage> {
         Heading(text: "Mãe do aluno", type: HeadingType.Title3);
 
     return BlocBuilder<EnrollmentFiliationBloc, EnrollmentFiliationState>(
-        bloc: controller,
-        builder: (context, state) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    headingResponsable,
-                    // Responsable
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameResponsableField(
-                            name: state.nameResponsable,
-                            controller: controller,
-                          ),
+      bloc: controller,
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  headingResponsable,
+                  // Responsable
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameResponsableField(
+                          name: state.nameResponsable,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfResponsableField(
-                            cpf: state.cpfResponsable,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfResponsableField(
+                          cpf: state.cpfResponsable,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                            child: _RGResponsableField(
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGResponsableField(
                           rg: state.rgResponsable,
                           controller: controller,
-                        )),
-                        Flexible(
-                          child: _ScholarityResponsableField(
-                            scholarity: state.scholarityResponsable,
-                            controller: controller,
-                          ),
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobResponsableField(
-                            job: state.jobResponsable,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityResponsableField(
+                          scholarity: state.scholarityResponsable,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    // Filiation1
-                    headingFiliation1,
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameFilliation1Field(
-                            name: state.nameFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobResponsableField(
+                          job: state.jobResponsable,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfFilliation1Field(
-                            cpf: state.cpfFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  // Filiation1
+                  headingFiliation1,
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameFilliation1Field(
+                          name: state.nameFiliation1,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _RGFilliation1Field(
-                            rg: state.rgFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfFilliation1Field(
+                          cpf: state.cpfFiliation1,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _ScholarityFilliation1Field(
-                            scholarity: state.scholarityFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGFilliation1Field(
+                          rg: state.rgFiliation1,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobFilliation1Field(
-                            job: state.jobFiliation1,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityFilliation1Field(
+                          scholarity: state.scholarityFiliation1,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    // Filiation2
-                    headingFiliation2,
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _NameFilliation2Field(
-                            name: state.nameFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobFilliation1Field(
+                          job: state.jobFiliation1,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _CpfFilliation2Field(
-                            cpf: state.cpfFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  // Filiation2
+                  headingFiliation2,
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _NameFilliation2Field(
+                          name: state.nameFiliation2,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _RGFilliation2Field(
-                            rg: state.rgFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _CpfFilliation2Field(
+                          cpf: state.cpfFiliation2,
+                          controller: controller,
                         ),
-                        Flexible(
-                          child: _ScholarityFilliation2Field(
-                            scholarity: state.scholarityFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _RGFilliation2Field(
+                          rg: state.rgFiliation2,
+                          controller: controller,
                         ),
-                      ],
-                    ),
-                    RowToColumn(
-                      children: [
-                        Flexible(
-                          child: _JobFilliation2Field(
-                            job: state.jobFiliation2,
-                            controller: controller,
-                          ),
+                      ),
+                      Flexible(
+                        child: _ScholarityFilliation2Field(
+                          scholarity: state.scholarityFiliation2,
+                          controller: controller,
                         ),
-                        const Spacer()
-                      ],
-                    ),
-                    SubmitButtonsRow(
-                      onSubmitAndGo: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitFiliationForm();
-                        }
-                      },
-                      onSubmitAndStay: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.submitFiliationForm();
-                        }
-                      },
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  RowToColumn(
+                    children: [
+                      Flexible(
+                        child: _JobFilliation2Field(
+                          job: state.jobFiliation2,
+                          controller: controller,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  SubmitButtonsRow(
+                    onSubmitAndGo: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitFiliationForm();
+                      }
+                    },
+                    onSubmitAndStay: () {
+                      if (_formKey.currentState!.validate()) {
+                        controller.submitFiliationForm();
+                      }
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 
 class _NameResponsableField extends StatelessWidget {
   const _NameResponsableField({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? name;
   final EnrollmentFiliationBloc controller;
@@ -236,10 +237,9 @@ class _NameResponsableField extends StatelessWidget {
 
 class _CpfResponsableField extends StatelessWidget {
   const _CpfResponsableField({
-    Key? key,
     this.cpf,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? cpf;
   final EnrollmentFiliationBloc controller;
@@ -263,10 +263,9 @@ class _CpfResponsableField extends StatelessWidget {
 
 class _RGResponsableField extends StatelessWidget {
   const _RGResponsableField({
-    Key? key,
     this.rg,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? rg;
   final EnrollmentFiliationBloc controller;
@@ -288,10 +287,9 @@ class _RGResponsableField extends StatelessWidget {
 
 class _ScholarityResponsableField extends StatelessWidget {
   const _ScholarityResponsableField({
-    Key? key,
     this.scholarity,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int? scholarity;
   final EnrollmentFiliationBloc controller;
@@ -310,10 +308,9 @@ class _ScholarityResponsableField extends StatelessWidget {
 
 class _JobResponsableField extends StatelessWidget {
   const _JobResponsableField({
-    Key? key,
     this.job,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? job;
   final EnrollmentFiliationBloc controller;
@@ -334,10 +331,9 @@ class _JobResponsableField extends StatelessWidget {
 
 class _NameFilliation1Field extends StatelessWidget {
   const _NameFilliation1Field({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? name;
   final EnrollmentFiliationBloc controller;
@@ -359,10 +355,9 @@ class _NameFilliation1Field extends StatelessWidget {
 
 class _CpfFilliation1Field extends StatelessWidget {
   const _CpfFilliation1Field({
-    Key? key,
     this.cpf,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? cpf;
   final EnrollmentFiliationBloc controller;
@@ -383,10 +378,9 @@ class _CpfFilliation1Field extends StatelessWidget {
 
 class _RGFilliation1Field extends StatelessWidget {
   const _RGFilliation1Field({
-    Key? key,
     this.rg,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? rg;
   final EnrollmentFiliationBloc controller;
@@ -406,10 +400,9 @@ class _RGFilliation1Field extends StatelessWidget {
 
 class _ScholarityFilliation1Field extends StatelessWidget {
   const _ScholarityFilliation1Field({
-    Key? key,
     this.scholarity,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int? scholarity;
   final EnrollmentFiliationBloc controller;
@@ -428,10 +421,9 @@ class _ScholarityFilliation1Field extends StatelessWidget {
 
 class _JobFilliation1Field extends StatelessWidget {
   const _JobFilliation1Field({
-    Key? key,
     this.job,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? job;
   final EnrollmentFiliationBloc controller;
@@ -452,10 +444,9 @@ class _JobFilliation1Field extends StatelessWidget {
 
 class _NameFilliation2Field extends StatelessWidget {
   const _NameFilliation2Field({
-    Key? key,
     this.name,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? name;
   final EnrollmentFiliationBloc controller;
@@ -475,10 +466,9 @@ class _NameFilliation2Field extends StatelessWidget {
 
 class _CpfFilliation2Field extends StatelessWidget {
   const _CpfFilliation2Field({
-    Key? key,
     this.cpf,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? cpf;
   final EnrollmentFiliationBloc controller;
@@ -499,10 +489,9 @@ class _CpfFilliation2Field extends StatelessWidget {
 
 class _RGFilliation2Field extends StatelessWidget {
   const _RGFilliation2Field({
-    Key? key,
     this.rg,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? rg;
   final EnrollmentFiliationBloc controller;
@@ -522,10 +511,9 @@ class _RGFilliation2Field extends StatelessWidget {
 
 class _ScholarityFilliation2Field extends StatelessWidget {
   const _ScholarityFilliation2Field({
-    Key? key,
     this.scholarity,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final int? scholarity;
   final EnrollmentFiliationBloc controller;
@@ -544,10 +532,9 @@ class _ScholarityFilliation2Field extends StatelessWidget {
 
 class _JobFilliation2Field extends StatelessWidget {
   const _JobFilliation2Field({
-    Key? key,
     this.job,
     required this.controller,
-  }) : super(key: key);
+  });
 
   final String? job;
   final EnrollmentFiliationBloc controller;
