@@ -12,15 +12,15 @@
         "description": "Arroz com Ovo",
         "observation": "string",
         "mealType": "Café da manhã",
-        "weekDays": ["sunday"],
+        "weekDays": ["Segunda-feira"],
         "sequence": 0,
         "components": [
           {
-            "description": "Componente 1",
+            "description": "Sopa de Frango",
             "observation": "string",
             "ingredients": [
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Arroz",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -28,7 +28,7 @@
                 "alternatives": []
               },
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Frango",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -38,11 +38,11 @@
             ]
           },
           {
-            "description": "Componente 2",
+            "description": "Mingau de Aveia",
             "observation": "string",
             "ingredients": [
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Leite",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -50,7 +50,7 @@
                 "alternatives": []
               },
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Aveia",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -67,7 +67,7 @@
         "description": "Mingau de aveia",
         "observation": "string",
         "mealType": "Café da manhã",
-        "weekDays": ["sunday"],
+        "weekDays": ["Segunda-feira"],
         "sequence": 0,
         "components": [
           {
@@ -75,7 +75,7 @@
             "observation": "string",
             "ingredients": [
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Leite",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -83,7 +83,7 @@
                 "alternatives": []
               },
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Aveia",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -97,7 +97,7 @@
             "observation": "string",
             "ingredients": [
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Arroz",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",
@@ -105,7 +105,7 @@
                 "alternatives": []
               },
               {
-                "foodId": "dsadsadsa",
+                "foodId": "Arroz",
                 "observation": "string",
                 "amount": 0,
                 "measurementUnit": "g",

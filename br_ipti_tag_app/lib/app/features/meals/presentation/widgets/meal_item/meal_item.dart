@@ -66,9 +66,12 @@ class _Card extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Wrap(
+                Flex(
+                  direction: Axis.horizontal,
+                  clipBehavior: Clip.antiAlias,
                   children: [
                     Flexible(
+                      fit: FlexFit.tight,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: _MealTypeLabel(
@@ -77,15 +80,10 @@ class _Card extends StatelessWidget {
                       ),
                     ),
                     Flexible(
+                      fit: FlexFit.tight,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: _LabelInfoTurnAndType(text: turn),
-                      ),
-                    ),
-                    Flexible(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: _LabelInfoTurnAndType(text: studentType),
                       ),
                     ),
                   ],

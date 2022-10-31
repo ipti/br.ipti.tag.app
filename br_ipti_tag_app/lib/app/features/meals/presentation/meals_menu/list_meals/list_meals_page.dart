@@ -59,7 +59,8 @@ class ListMealsPageState extends State<ListMealsPage> {
               )
               .toList();
         }
-        if (state is FailedState) {
+        if (state is FailedState ||
+            (state is LoadedState && state.mealsOfDay.isEmpty)) {
           tabs = [
             Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
           ];
