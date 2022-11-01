@@ -6,13 +6,13 @@
     "configurations": [
         {
             "name": "br_ipti_tag_app",
-            "cwd": "br_ipti_tag_app",
+            "cwd": "apps/br_ipti_tag_app",
             "request": "launch",
             "type": "dart"
         },
         {
             "name": "br_ipti_tag_app (profile mode)",
-            "cwd": "br_ipti_tag_app",
+            "cwd": "apps/br_ipti_tag_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

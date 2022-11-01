@@ -1,0 +1,10 @@
+export 'admission_type_enum.dart';
+export 'color_race_enum.dart';
+export 'current_stage_situation_enum.dart';
+export 'filliation_type_enum.dart';
+export 'nationality_enum.dart';
+export 'previous_stage_situation_enum.dart';
+export 'scholarity_enum.dart';
+export 'sex_enum.dart';
+export 'stage_enum.dart';
+export 'unified_class_enum.dart';

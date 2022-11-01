@@ -1,0 +1,26 @@
+import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
+import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
+
+class ListStudentsUsecase
+    implements Usecase<List<Student>, ListStudentsParams> {
+  ListStudentsUsecase(this._repositoryStudent);
+
+  final StudentRepository _repositoryStudent;
+
+  @override
+  Future<Either<Exception, List<Student>>> call(
+    ListStudentsParams params,
+  ) async {
+    final result = await _repositoryStudent.listAll(schoolId: params.schoolId);
+
+    return result;
+  }
+}
+
+class ListStudentsParams {
+  final String schoolId;
+
+  ListStudentsParams(this.schoolId);
+}
