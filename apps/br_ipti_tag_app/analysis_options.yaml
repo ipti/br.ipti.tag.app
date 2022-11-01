@@ -1,0 +1,46 @@
+include: package:lint/analysis_options.yaml
+
+
+analyzer:
+  plugins:
+    - dart_code_metrics
+  exclude: [build/**]
+  language:
+    strict-raw-types: false
+  strong-mode:
+    implicit-casts: true
+      
+    # implicit-dynamic: false
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    number-of-parameters: 4
+    maximum-nesting-level: 5
+  metrics-exclude:
+    - test/**
+  rules:
+    - newline-before-return
+    - no-boolean-literal-compare
+    - no-empty-block
+    - prefer-trailing-comma
+    - prefer-conditional-expressions
+    - no-equal-then-else
+  anti-patterns:    
+    - long-parameter-list
+
+
+
+linter:
+  rules:
+    constant_identifier_names: false
+    cancel_subscriptions: true
+    sort_constructors_first: false
+    type_annotate_public_apis: true
+    lines_longer_than_80_chars: true
+    use_setters_to_change_properties: true
+    avoid_classes_with_only_static_members: true
+    always_use_package_imports: false
+    require_trailing_commas: false
+
+    

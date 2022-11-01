@@ -1,0 +1,8 @@
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":986688,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/home/igorgoncalves/Projetos/ipti/br.ipti.tag.app/br_ipti_tag_app/test/app/modules/enrollment/widget_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /home/igorgoncalves/Projetos/ipti/br.ipti.tag.app/br_ipti_tag_app/test/app/modules/enrollment/widget_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":1,"type":"allSuites","time":16}
+
+[{"event":"test.startedProcess","params":{"observatoryUri":"http://127.0.0.1:38269/V6hc76imyPA=/"}}]
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":2299}
+{"success":true,"type":"done","time":2494}
