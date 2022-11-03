@@ -159,9 +159,9 @@ class UpdateInstructorParams {
   int sex;
   int colorRace;
   int nationality;
-  String edcensoNationFk;
-  String edcensoUfFk;
-  String edcensoCityFk;
+  int edcensoNationFk;
+  int edcensoUfFk;
+  int edcensoCityFk;
   bool deficiency = false;
   int scholarity;
 

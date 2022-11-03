@@ -4,7 +4,7 @@ import 'package:tag_sdk/src/features/edcenso_locations/domain/entities/edcenso_u
 
 abstract class EdcensoLocationsRepository {
   Future<Either<Exception, List<EdCensoCity>>> listCities([
-    String? edCensoUfId,
+    int? edCensoUfId,
   ]);
   Future<Either<Exception, List<EdCensoUF>>> listUfs();
 }

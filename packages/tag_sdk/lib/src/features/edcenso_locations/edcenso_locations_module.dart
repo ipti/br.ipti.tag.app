@@ -8,7 +8,7 @@ import 'domain/repositories/edcenso_locations_repositories.dart';
 import 'domain/usecases/list_cities_usecase.dart';
 import 'domain/usecases/list_ufs_usecase.dart';
 
-class EdcensoLocationsModule extends Module {
+class EdcensoLocationsSDKModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton(

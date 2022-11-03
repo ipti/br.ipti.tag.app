@@ -11,7 +11,7 @@ class EdCensoUfModel extends EdCensoUF {
   });
 
   EdCensoUfModel copyWith({
-    String? id,
+    int? id,
     String? oldId,
     String? name,
     String? acronym,

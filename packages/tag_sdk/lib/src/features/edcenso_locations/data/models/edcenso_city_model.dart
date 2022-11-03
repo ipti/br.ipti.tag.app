@@ -15,14 +15,14 @@ class EdCensoCityModel extends EdCensoCity {
   });
 
   EdCensoCityModel copyWith({
-    String? id,
+    int? id,
     String? oldId,
     String? name,
     String? cepInitial,
     String? cepFinal,
     String? ddd1,
     String? ddd2,
-    String? edcensoUfId,
+    int? edcensoUfId,
   }) {
     return EdCensoCityModel(
       id: id ?? this.id,

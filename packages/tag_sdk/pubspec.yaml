@@ -22,6 +22,7 @@ dependencies:
     path: ../tag_network
   flutter:
     sdk: flutter
+  equatable: ^2.0.5
 
 
 flutter:

@@ -19,5 +19,5 @@ class FilterUFParams {
     this.uf,
   });
 
-  final String? uf;
+  final int? uf;
 }

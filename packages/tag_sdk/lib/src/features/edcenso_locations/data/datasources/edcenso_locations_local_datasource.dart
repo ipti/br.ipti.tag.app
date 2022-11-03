@@ -4,7 +4,7 @@ import 'package:tag_sdk/src/features/edcenso_locations/data/models/edcenso_city_
 class EdcensoLocationsLocalDatasource {
   EdcensoLocationsLocalDatasource();
 
-  Future<List<EdCensoCityModel>> listCities([String? edcensoUfId]) async {
+  Future<List<EdCensoCityModel>> listCities([int? edcensoUfId]) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final stringJson = sharedPreferences.getStringList("EDCENSO_CITIES");
 

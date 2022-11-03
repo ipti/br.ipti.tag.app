@@ -7,7 +7,6 @@ class StudentModel extends Student {
     super.id,
     super.name,
     super.registerType,
-    super.schoolInepIdFk,
     super.inepId,
     super.birthday,
     super.sex,
@@ -58,6 +57,7 @@ class StudentModel extends Student {
     super.responsableCpf,
     super.responsableScholarity,
     super.responsableJob,
+    super.schoolIdentification,
     super.bfParticipator,
     super.foodRestrictions,
     super.responsableTelephone,
@@ -75,9 +75,9 @@ class StudentModel extends Student {
   factory StudentModel.fromEntity(Student student) {
     return StudentModel(
       id: student.id,
+      schoolIdentification: student.schoolIdentification,
       name: student.name,
       registerType: student.registerType,
-      schoolInepIdFk: student.schoolInepIdFk,
       inepId: student.inepId,
       birthday: student.birthday,
       sex: student.sex,
@@ -152,7 +152,6 @@ class StudentModel extends Student {
       'id': id,
       'name': name,
       'register_type': registerType,
-      'school_inep_id_fk': schoolInepIdFk,
       'inep_id': inepId,
       'birthday': birthday,
       'sex': sex,
@@ -164,9 +163,9 @@ class StudentModel extends Student {
       'no_document_desc': noDocumentDesc,
       'scholarity': scholarity,
       'id_email': idEmail,
-      'edcenso_nation_fk': edcensoNationFk,
-      'edcenso_uf_fk': edcensoUfFk,
-      'edcenso_city_fk': edcensoCityFk,
+      'edcenso_nation': edcensoNationFk,
+      'edcenso_uf': edcensoUfFk,
+      'edcenso_city': edcensoCityFk,
       'deficiency': deficiency,
       'deficiency_type_blindness': deficiencyTypeBlindness,
       'deficiency_type_low_vision': deficiencyTypeLowVision,
@@ -210,6 +209,7 @@ class StudentModel extends Student {
       'food_restrictions': foodRestrictions,
       'responsable_telephone': responsableTelephone,
       'hash': hash,
+      'school_identification': schoolIdentification,
       'filiation1_rg': filiation1Rg,
       'filiation1_cpf': filiation1Cpf,
       'filiation1_scholarity': filiation1Scholarity,
@@ -231,7 +231,7 @@ class StudentModel extends Student {
 
   @override
   String toString() {
-    return '''StudentModel(id: $id, name: $name, registerType: $registerType, schoolInepIdFk: $schoolInepIdFk, inepId: $inepId, birthday: $birthday, sex: $sex, colorRace: $colorRace, filiation: $filiation, filiation1: $filiation1, filiation2: $filiation2, nationality: $nationality, noDocumentDesc: $noDocumentDesc, scholarity: $scholarity, idEmail: $idEmail, edcensoNationFk: $edcensoNationFk, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, deficiency: $deficiency, deficiencyTypeBlindness: $deficiencyTypeBlindness, deficiencyTypeLowVision: $deficiencyTypeLowVision, deficiencyTypeDeafness: $deficiencyTypeDeafness, deficiencyTypeDisabilityHearing: $deficiencyTypeDisabilityHearing, deficiencyTypeDeafblindness: $deficiencyTypeDeafblindness, deficiencyTypePhisicalDisability: $deficiencyTypePhisicalDisability, deficiencyTypeIntelectualDisability: $deficiencyTypeIntelectualDisability, deficiencyTypeMultipleDisabilities: $deficiencyTypeMultipleDisabilities, deficiencyTypeAutism: $deficiencyTypeAutism, deficiencyTypeAspengerSyndrome: $deficiencyTypeAspengerSyndrome, deficiencyTypeRettSyndrome: $deficiencyTypeRettSyndrome, deficiencyTypeChildhoodDisintegrativeDisorder: $deficiencyTypeChildhoodDisintegrativeDisorder, deficiencyTypeGifted: $deficiencyTypeGifted, resourceAidLector: $resourceAidLector, resourceAidTranscription: $resourceAidTranscription, resourceInterpreterGuide: $resourceInterpreterGuide, resourceInterpreterLibras: $resourceInterpreterLibras, resourceLipReading: $resourceLipReading, resourceZoomedTest16: $resourceZoomedTest16, resourceZoomedTest18: $resourceZoomedTest18, resourceZoomedTest20: $resourceZoomedTest20, resourceZoomedTest24: $resourceZoomedTest24, resourceCdAudio: $resourceCdAudio, resourceProofLanguage: $resourceProofLanguage, resourceVideoLibras: $resourceVideoLibras, resourceBrailleTest: $resourceBrailleTest, resourceNone: $resourceNone, sendYear: $sendYear, lastChange: $lastChange, responsable: $responsable, responsableName: $responsableName, responsableRg: $responsableRg, responsableCpf: $responsableCpf, responsableScholarity: $responsableScholarity, responsableJob: $responsableJob, bfParticipator: $bfParticipator, foodRestrictions: $foodRestrictions, responsableTelephone: $responsableTelephone, hash: $hash, filiation1Rg: $filiation1Rg, filiation1Cpf: $filiation1Cpf, filiation1Scholarity: $filiation1Scholarity, filiation1Job: $filiation1Job, filiation2Rg: $filiation2Rg, filiation2Cpf: $filiation2Cpf, filiation2Scholarity: $filiation2Scholarity, filiation2Job: $filiation2Job)''';
+    return '''StudentModel(id: $id, name: $name, registerType: $registerType, schoolIdentification: $schoolIdentification, inepId: $inepId, birthday: $birthday, sex: $sex, colorRace: $colorRace, filiation: $filiation, filiation1: $filiation1, filiation2: $filiation2, nationality: $nationality, noDocumentDesc: $noDocumentDesc, scholarity: $scholarity, idEmail: $idEmail, edcensoNationFk: $edcensoNationFk, edcensoUfFk: $edcensoUfFk, edcensoCityFk: $edcensoCityFk, deficiency: $deficiency, deficiencyTypeBlindness: $deficiencyTypeBlindness, deficiencyTypeLowVision: $deficiencyTypeLowVision, deficiencyTypeDeafness: $deficiencyTypeDeafness, deficiencyTypeDisabilityHearing: $deficiencyTypeDisabilityHearing, deficiencyTypeDeafblindness: $deficiencyTypeDeafblindness, deficiencyTypePhisicalDisability: $deficiencyTypePhisicalDisability, deficiencyTypeIntelectualDisability: $deficiencyTypeIntelectualDisability, deficiencyTypeMultipleDisabilities: $deficiencyTypeMultipleDisabilities, deficiencyTypeAutism: $deficiencyTypeAutism, deficiencyTypeAspengerSyndrome: $deficiencyTypeAspengerSyndrome, deficiencyTypeRettSyndrome: $deficiencyTypeRettSyndrome, deficiencyTypeChildhoodDisintegrativeDisorder: $deficiencyTypeChildhoodDisintegrativeDisorder, deficiencyTypeGifted: $deficiencyTypeGifted, resourceAidLector: $resourceAidLector, resourceAidTranscription: $resourceAidTranscription, resourceInterpreterGuide: $resourceInterpreterGuide, resourceInterpreterLibras: $resourceInterpreterLibras, resourceLipReading: $resourceLipReading, resourceZoomedTest16: $resourceZoomedTest16, resourceZoomedTest18: $resourceZoomedTest18, resourceZoomedTest20: $resourceZoomedTest20, resourceZoomedTest24: $resourceZoomedTest24, resourceCdAudio: $resourceCdAudio, resourceProofLanguage: $resourceProofLanguage, resourceVideoLibras: $resourceVideoLibras, resourceBrailleTest: $resourceBrailleTest, resourceNone: $resourceNone, sendYear: $sendYear, lastChange: $lastChange, responsable: $responsable, responsableName: $responsableName, responsableRg: $responsableRg, responsableCpf: $responsableCpf, responsableScholarity: $responsableScholarity, responsableJob: $responsableJob, bfParticipator: $bfParticipator, foodRestrictions: $foodRestrictions, responsableTelephone: $responsableTelephone, hash: $hash, filiation1Rg: $filiation1Rg, filiation1Cpf: $filiation1Cpf, filiation1Scholarity: $filiation1Scholarity, filiation1Job: $filiation1Job, filiation2Rg: $filiation2Rg, filiation2Cpf: $filiation2Cpf, filiation2Scholarity: $filiation2Scholarity, filiation2Job: $filiation2Job)''';
   }
 
   @override
@@ -243,7 +243,7 @@ class StudentModel extends Student {
         other.id == id &&
         other.name == name &&
         other.registerType == registerType &&
-        other.schoolInepIdFk == schoolInepIdFk &&
+        other.schoolIdentification == schoolIdentification &&
         other.inepId == inepId &&
         other.birthday == birthday &&
         other.sex == sex &&
@@ -304,6 +304,7 @@ class StudentModel extends Student {
         other.foodRestrictions == foodRestrictions &&
         other.responsableTelephone == responsableTelephone &&
         other.hash == hash &&
+        other.schoolIdentification == schoolIdentification &&
         other.filiation1Rg == filiation1Rg &&
         other.filiation1Cpf == filiation1Cpf &&
         other.filiation1Scholarity == filiation1Scholarity &&
@@ -320,7 +321,7 @@ class StudentModel extends Student {
     return id.hashCode ^
         name.hashCode ^
         registerType.hashCode ^
-        schoolInepIdFk.hashCode ^
+        schoolIdentification.hashCode ^
         inepId.hashCode ^
         birthday.hashCode ^
         sex.hashCode ^
@@ -331,6 +332,7 @@ class StudentModel extends Student {
         nationality.hashCode ^
         noDocumentDesc.hashCode ^
         scholarity.hashCode ^
+        schoolIdentification.hashCode ^
         idEmail.hashCode ^
         edcensoNationFk.hashCode ^
         edcensoUfFk.hashCode ^
@@ -387,17 +389,11 @@ class StudentModel extends Student {
 
   // ignore: long-method
   factory StudentModel.fromMap(Map<String, dynamic> map) {
-    var schoolInepFk = map['school_inep_id_fk'];
-
-    if (schoolInepFk is Map) {
-      schoolInepFk = schoolInepFk['_id'];
-    }
-
     return StudentModel(
       id: map['id'],
       name: map['name'],
       registerType: map['register_type'],
-      schoolInepIdFk: schoolInepFk as String?,
+      schoolIdentification: map['school_identification'],
       inepId: map['inep_id'],
       birthday: map['birthday'],
       sex: map['sex'],
@@ -409,9 +405,9 @@ class StudentModel extends Student {
       noDocumentDesc: map['no_document_desc'],
       scholarity: map['scholarity'],
       idEmail: map['id_email'],
-      edcensoNationFk: map['edcenso_nation_fk'],
-      edcensoUfFk: map['edcenso_uf_fk'],
-      edcensoCityFk: map['edcenso_city_fk'],
+      edcensoNationFk: map['edcenso_nation'],
+      edcensoUfFk: map['edcenso_uf'],
+      edcensoCityFk: map['edcenso_city'],
       deficiency: map['deficiency'],
       deficiencyTypeBlindness: map['deficiency_type_blindness'],
       deficiencyTypeLowVision: map['deficiency_type_low_vision'],

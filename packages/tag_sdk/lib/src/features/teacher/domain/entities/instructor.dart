@@ -72,9 +72,9 @@ class Instructor {
   final int? sex;
   final int? colorRace;
   final int? nationality;
-  final String? edcensoNationFk;
-  final String? edcensoUfFk;
-  final String? edcensoCityFk;
+  final int? edcensoNationFk;
+  final int? edcensoUfFk;
+  final int? edcensoCityFk;
   final bool deficiency;
   final int? scholarity;
   final String? createdAt;

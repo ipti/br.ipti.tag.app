@@ -1,11 +1,13 @@
-class Student {
+import 'package:equatable/equatable.dart';
+
+class Student extends Equatable {
   Student({
     this.id,
     this.name,
     this.nis,
+    this.schoolIdentification,
     this.edcensoDistrictFk,
     this.registerType,
-    this.schoolInepIdFk,
     this.inepId,
     this.birthday,
     this.sex,
@@ -73,9 +75,9 @@ class Student {
   final int? id;
   final String? name;
   final String? nis;
+  final String? schoolIdentification;
   final int? edcensoDistrictFk;
   final String? registerType;
-  final String? schoolInepIdFk;
   final String? inepId;
   final String? birthday;
   final int? sex;
@@ -140,168 +142,85 @@ class Student {
   final String? filiation2Job;
 
   @override
-  // ignore: long-method
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Student &&
-        other.id == id &&
-        other.name == name &&
-        other.nis == nis &&
-        other.edcensoDistrictFk == edcensoDistrictFk &&
-        other.registerType == registerType &&
-        other.schoolInepIdFk == schoolInepIdFk &&
-        other.inepId == inepId &&
-        other.birthday == birthday &&
-        other.sex == sex &&
-        other.colorRace == colorRace &&
-        other.filiation == filiation &&
-        other.filiation1 == filiation1 &&
-        other.filiation2 == filiation2 &&
-        other.nationality == nationality &&
-        other.noDocumentDesc == noDocumentDesc &&
-        other.scholarity == scholarity &&
-        other.idEmail == idEmail &&
-        other.edcensoNationFk == edcensoNationFk &&
-        other.edcensoUfFk == edcensoUfFk &&
-        other.edcensoCityFk == edcensoCityFk &&
-        other.deficiency == deficiency &&
-        other.deficiencyTypeBlindness == deficiencyTypeBlindness &&
-        other.deficiencyTypeLowVision == deficiencyTypeLowVision &&
-        other.deficiencyTypeDeafness == deficiencyTypeDeafness &&
-        other.deficiencyTypeDisabilityHearing ==
-            deficiencyTypeDisabilityHearing &&
-        other.deficiencyTypeDeafblindness == deficiencyTypeDeafblindness &&
-        other.deficiencyTypePhisicalDisability ==
-            deficiencyTypePhisicalDisability &&
-        other.deficiencyTypeIntelectualDisability ==
-            deficiencyTypeIntelectualDisability &&
-        other.deficiencyTypeMultipleDisabilities ==
-            deficiencyTypeMultipleDisabilities &&
-        other.deficiencyTypeAutism == deficiencyTypeAutism &&
-        other.deficiencyTypeAspengerSyndrome ==
-            deficiencyTypeAspengerSyndrome &&
-        other.deficiencyTypeRettSyndrome == deficiencyTypeRettSyndrome &&
-        other.deficiencyTypeChildhoodDisintegrativeDisorder ==
-            deficiencyTypeChildhoodDisintegrativeDisorder &&
-        other.deficiencyTypeGifted == deficiencyTypeGifted &&
-        other.resourceAidLector == resourceAidLector &&
-        other.resourceAidTranscription == resourceAidTranscription &&
-        other.resourceInterpreterGuide == resourceInterpreterGuide &&
-        other.resourceInterpreterLibras == resourceInterpreterLibras &&
-        other.resourceLipReading == resourceLipReading &&
-        other.resourceZoomedTest16 == resourceZoomedTest16 &&
-        other.resourceZoomedTest18 == resourceZoomedTest18 &&
-        other.resourceZoomedTest20 == resourceZoomedTest20 &&
-        other.resourceZoomedTest24 == resourceZoomedTest24 &&
-        other.resourceCdAudio == resourceCdAudio &&
-        other.resourceProofLanguage == resourceProofLanguage &&
-        other.resourceVideoLibras == resourceVideoLibras &&
-        other.resourceBrailleTest == resourceBrailleTest &&
-        other.resourceNone == resourceNone &&
-        other.sendYear == sendYear &&
-        other.lastChange == lastChange &&
-        other.responsable == responsable &&
-        other.responsableName == responsableName &&
-        other.responsableRg == responsableRg &&
-        other.responsableCpf == responsableCpf &&
-        other.responsableScholarity == responsableScholarity &&
-        other.responsableJob == responsableJob &&
-        other.bfParticipator == bfParticipator &&
-        other.foodRestrictions == foodRestrictions &&
-        other.responsableTelephone == responsableTelephone &&
-        other.hash == hash &&
-        other.filiation1Rg == filiation1Rg &&
-        other.filiation1Cpf == filiation1Cpf &&
-        other.filiation1Scholarity == filiation1Scholarity &&
-        other.filiation1Job == filiation1Job &&
-        other.filiation2Rg == filiation2Rg &&
-        other.filiation2Cpf == filiation2Cpf &&
-        other.filiation2Scholarity == filiation2Scholarity &&
-        other.filiation2Job == filiation2Job;
+  List<Object?> get props {
+    return [
+      id,
+      name,
+      nis,
+      edcensoDistrictFk,
+      registerType,
+      inepId,
+      birthday,
+      sex,
+      colorRace,
+      filiation,
+      filiation1,
+      filiation2,
+      nationality,
+      noDocumentDesc,
+      scholarity,
+      idEmail,
+      edcensoNationFk,
+      edcensoUfFk,
+      edcensoCityFk,
+      deficiency,
+      deficiencyTypeBlindness,
+      deficiencyTypeLowVision,
+      deficiencyTypeDeafness,
+      deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafblindness,
+      deficiencyTypePhisicalDisability,
+      deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities,
+      deficiencyTypeAutism,
+      deficiencyTypeAspengerSyndrome,
+      deficiencyTypeRettSyndrome,
+      deficiencyTypeChildhoodDisintegrativeDisorder,
+      deficiencyTypeGifted,
+      resourceAidLector,
+      resourceAidTranscription,
+      resourceInterpreterGuide,
+      resourceInterpreterLibras,
+      resourceLipReading,
+      resourceZoomedTest16,
+      resourceZoomedTest18,
+      resourceZoomedTest20,
+      resourceZoomedTest24,
+      resourceCdAudio,
+      resourceProofLanguage,
+      resourceVideoLibras,
+      resourceBrailleTest,
+      resourceNone,
+      sendYear,
+      lastChange,
+      responsable,
+      responsableName,
+      responsableRg,
+      responsableCpf,
+      responsableScholarity,
+      responsableJob,
+      bfParticipator,
+      foodRestrictions,
+      responsableTelephone,
+      hash,
+      filiation1Rg,
+      filiation1Cpf,
+      filiation1Scholarity,
+      filiation1Job,
+      filiation2Rg,
+      filiation2Cpf,
+      filiation2Scholarity,
+      filiation2Job,
+    ];
   }
 
-  @override
-  // ignore: long-method
-  int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
-        nis.hashCode ^
-        edcensoDistrictFk.hashCode ^
-        registerType.hashCode ^
-        schoolInepIdFk.hashCode ^
-        inepId.hashCode ^
-        birthday.hashCode ^
-        sex.hashCode ^
-        colorRace.hashCode ^
-        filiation.hashCode ^
-        filiation1.hashCode ^
-        filiation2.hashCode ^
-        nationality.hashCode ^
-        noDocumentDesc.hashCode ^
-        scholarity.hashCode ^
-        idEmail.hashCode ^
-        edcensoNationFk.hashCode ^
-        edcensoUfFk.hashCode ^
-        edcensoCityFk.hashCode ^
-        deficiency.hashCode ^
-        deficiencyTypeBlindness.hashCode ^
-        deficiencyTypeLowVision.hashCode ^
-        deficiencyTypeDeafness.hashCode ^
-        deficiencyTypeDisabilityHearing.hashCode ^
-        deficiencyTypeDeafblindness.hashCode ^
-        deficiencyTypePhisicalDisability.hashCode ^
-        deficiencyTypeIntelectualDisability.hashCode ^
-        deficiencyTypeMultipleDisabilities.hashCode ^
-        deficiencyTypeAutism.hashCode ^
-        deficiencyTypeAspengerSyndrome.hashCode ^
-        deficiencyTypeRettSyndrome.hashCode ^
-        deficiencyTypeChildhoodDisintegrativeDisorder.hashCode ^
-        deficiencyTypeGifted.hashCode ^
-        resourceAidLector.hashCode ^
-        resourceAidTranscription.hashCode ^
-        resourceInterpreterGuide.hashCode ^
-        resourceInterpreterLibras.hashCode ^
-        resourceLipReading.hashCode ^
-        resourceZoomedTest16.hashCode ^
-        resourceZoomedTest18.hashCode ^
-        resourceZoomedTest20.hashCode ^
-        resourceZoomedTest24.hashCode ^
-        resourceCdAudio.hashCode ^
-        resourceProofLanguage.hashCode ^
-        resourceVideoLibras.hashCode ^
-        resourceBrailleTest.hashCode ^
-        resourceNone.hashCode ^
-        sendYear.hashCode ^
-        lastChange.hashCode ^
-        responsable.hashCode ^
-        responsableName.hashCode ^
-        responsableRg.hashCode ^
-        responsableCpf.hashCode ^
-        responsableScholarity.hashCode ^
-        responsableJob.hashCode ^
-        bfParticipator.hashCode ^
-        foodRestrictions.hashCode ^
-        responsableTelephone.hashCode ^
-        hash.hashCode ^
-        filiation1Rg.hashCode ^
-        filiation1Cpf.hashCode ^
-        filiation1Scholarity.hashCode ^
-        filiation1Job.hashCode ^
-        filiation2Rg.hashCode ^
-        filiation2Cpf.hashCode ^
-        filiation2Scholarity.hashCode ^
-        filiation2Job.hashCode;
-  }
-
-  // ignore: long-method
   Student copyWith({
     int? id,
     String? name,
     String? nis,
+    String? schoolIdentification,
     int? edcensoDistrictFk,
     String? registerType,
-    String? schoolInepIdFk,
     String? inepId,
     String? birthday,
     int? sex,
@@ -369,9 +288,9 @@ class Student {
       id: id ?? this.id,
       name: name ?? this.name,
       nis: nis ?? this.nis,
+      schoolIdentification: schoolIdentification ?? this.schoolIdentification,
       edcensoDistrictFk: edcensoDistrictFk ?? this.edcensoDistrictFk,
       registerType: registerType ?? this.registerType,
-      schoolInepIdFk: schoolInepIdFk ?? this.schoolInepIdFk,
       inepId: inepId ?? this.inepId,
       birthday: birthday ?? this.birthday,
       sex: sex ?? this.sex,

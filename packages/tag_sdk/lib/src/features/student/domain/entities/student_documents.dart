@@ -38,8 +38,8 @@ class StudentDocsAddress {
   String? number;
   String? complement;
   String? neighborhood;
-  String edcensoUfFk;
-  String edcensoCityFk;
+  int edcensoUfFk;
+  int edcensoCityFk;
 
   StudentDocsAddress({
     this.id,
@@ -126,8 +126,8 @@ class StudentDocsAddress {
     String? number,
     String? complement,
     String? neighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
   }) {
     return StudentDocsAddress(
       id: id ?? this.id,

@@ -1,12 +1,12 @@
 class EdCensoCity {
-  final String id;
+  final int id;
   final String? oldId;
   final String name;
   final String? cepInitial;
   final String? cepFinal;
   final String? ddd1;
   final String? ddd2;
-  final String? edcensoUfId;
+  final int? edcensoUfId;
 
   EdCensoCity({
     required this.id,
