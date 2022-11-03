@@ -14,7 +14,7 @@ class CreateInstructorModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
-        EdcensoLocationsModule(),
+        EdcensoLocationsSDKModule(),
       ];
 
   @override

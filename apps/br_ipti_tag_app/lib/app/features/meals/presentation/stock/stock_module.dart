@@ -12,13 +12,16 @@ class StockModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        MealsSDKModule(),
       ];
 
   @override
   final List<Bind> binds = [
-    BlocBind.lazySingleton((i) => StockBloc(
-          i.get(),
-        )),
+    BlocBind.lazySingleton(
+      (i) => StockBloc(
+        i.get<ListIngredientUsecase>(),
+      ),
+    ),
   ];
 
   @override

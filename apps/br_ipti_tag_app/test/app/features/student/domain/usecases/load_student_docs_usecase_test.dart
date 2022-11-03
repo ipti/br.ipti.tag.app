@@ -19,8 +19,8 @@ void main() {
           schoolInepIdFk: "schoolInepIdFk",
           studentFk: 1,
           rgNumber: "rgNumber",
-          edcensoUfFk: "edcensoUfFk",
-          edcensoCityFk: "edcensoCityFk",
+          edcensoUfFk: 1,
+          edcensoCityFk: 1,
         ),
       )),
     );

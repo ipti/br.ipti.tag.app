@@ -40,7 +40,7 @@ class AddressForm extends StatelessWidget {
             ),
             Flexible(
               child: _UFField(
-                edcensoUfFk: state.edcensoUfFk,
+                edcensoUfFk: state.edcensoUfFk!,
                 controller: controller,
               ),
             ),
@@ -143,12 +143,12 @@ class _UFField extends StatelessWidget {
     required this.controller,
   });
 
-  final String edcensoUfFk;
+  final int edcensoUfFk;
   final EnrollmentAddressBloc controller;
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField<String>(
+    return TagDropdownField<int>(
       key: const Key("STUDENT_ENROLLMENT_ADDRESS_UF"),
       label: "UF",
       hint: "Selecione a UF",
@@ -165,12 +165,12 @@ class _CityField extends StatelessWidget {
     required this.controller,
   });
 
-  final String? edcensoCityFk;
+  final int? edcensoCityFk;
   final EnrollmentAddressBloc controller;
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField<String>(
+    return TagDropdownField<int>(
       key: const Key("STUDENT_ENROLLMENT_ADDRESS_CITY"),
       label: 'Cidade',
       hint: "Selecione a cidade",

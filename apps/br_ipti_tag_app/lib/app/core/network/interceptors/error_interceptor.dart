@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
@@ -32,6 +33,12 @@ class ErrorInterceptor extends InterceptorsWrapper {
         Modular.to.pushReplacementNamed('/');
       }
     }
+
+    log(
+      err.response?.data.toString() ?? err.message,
+      stackTrace: err.stackTrace,
+      error: err.error,
+    );
 
     super.onError(RestClientException(err), handler);
   }

@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
@@ -11,6 +12,12 @@ import 'form/filliation/bloc/enrollment_filiation_bloc.dart';
 import 'form/personal/bloc/enrollment_personal_bloc.dart';
 
 class EnrollmentModule extends Module {
+  @override
+  List<Module> get imports => [
+        AppModule(),
+        StudentSDKModule(),
+        EdcensoLocationsSDKModule(),
+      ];
   @override
   final List<Bind> binds = [
     // Blocs
@@ -47,11 +54,6 @@ class EnrollmentModule extends Module {
       ),
     ),
   ];
-
-  @override
-  List<Module> get imports => [
-        EdcensoLocationsModule(),
-      ];
 
   @override
   final List<ModularRoute> routes = [

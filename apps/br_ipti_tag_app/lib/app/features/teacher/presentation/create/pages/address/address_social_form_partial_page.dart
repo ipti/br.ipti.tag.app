@@ -208,12 +208,12 @@ class _UFField extends StatelessWidget {
     required this.controller,
   });
 
-  final String? edcensoUfFk;
+  final int? edcensoUfFk;
   final InstructorAddressBloc controller;
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField<String?>(
+    return TagDropdownField<int?>(
       key: const Key("INSTRUCTOR_ADDRESS_UF"),
       label: "UF",
       hint: "Selecione a UF",
@@ -231,12 +231,12 @@ class _CityField extends StatelessWidget {
     required this.controller,
   });
 
-  final String? edcensoCityFk;
+  final int? edcensoCityFk;
   final InstructorAddressBloc controller;
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField<String>(
+    return TagDropdownField<int>(
       key: const Key("INSTRUCTOR_ADDRESS_CITY"),
       label: 'Cidade',
       hint: "Selecione a cidade",

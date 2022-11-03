@@ -79,9 +79,9 @@ class InstructorFormState extends Equatable {
   final int? sex;
   final int? colorRace;
   final int? nationality;
-  final String? edcensoNationFk;
-  final String? edcensoUfFk;
-  final String? edcensoCityFk;
+  final int? edcensoNationFk;
+  final int? edcensoUfFk;
+  final int? edcensoCityFk;
   final bool deficiency;
   final int? scholarity;
   const InstructorFormState({
@@ -332,9 +332,9 @@ class InstructorFormState extends Equatable {
     int? sex,
     int? colorRace,
     int? nationality,
-    String? edcensoNationFk,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
+    int? edcensoNationFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
     bool? deficiency,
     int? scholarity,
   }) {

@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/enrollment/bloc/enrollment_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

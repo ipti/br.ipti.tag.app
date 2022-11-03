@@ -2,7 +2,7 @@
 
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/enrollment/bloc/enrollment_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
@@ -235,7 +235,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       edcensoCityFk: school.edcensoCityFk,
       edcensoDistrictFk: school.edcensoDistrictFk,
       edcensoNationFk: 76,
-      schoolInepIdFk: school.id,
+      schoolIdentification: school.inepId,
       deficiencyTypeBlindness: state.deficiencyTypeBlindness,
       deficiencyTypeLowVision: state.deficiencyTypeLowVision,
       deficiencyTypeDeafness: state.deficiencyTypeDeafness,

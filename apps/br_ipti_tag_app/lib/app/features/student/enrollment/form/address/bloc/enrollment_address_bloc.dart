@@ -1,6 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/enums.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/enrollment/bloc/enrollment_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/student/enrollment/bloc/enrollment_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -37,7 +37,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
   void setComplement(String complement) => emit(
         state.copyWith(complement: complement),
       );
-  void setCity(String? city) => emit(
+  void setCity(int? city) => emit(
         state.copyWith(edcensoCityFk: city),
       );
 
@@ -51,7 +51,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
         state.copyWith(residenceZone: residenceZone),
       );
 
-  void setUf(String? uf) {
+  void setUf(int? uf) {
     fetchCities(uf);
     emit(
       state.copyWith(edcensoUfFk: uf),
@@ -70,14 +70,14 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
         ),
       );
 
-  Future fetchCities([String? uf]) async {
+  Future fetchCities([int? uf]) async {
     final result = await _listCitiesUsecase(
       FilterUFParams(uf: uf),
     );
     result.fold(id, (cities) {
-      final mappedValues = <String, String>{};
+      final mappedValues = <int, String>{};
       mappedValues.addEntries(cities.map(
-        (e) => MapEntry<String, String>(
+        (e) => MapEntry<int, String>(
           e.id,
           e.name,
         ),
@@ -97,17 +97,15 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
         EmptyParams(),
       );
       result.fold(id, (ufs) async {
-        final mappedValues = <String, String>{};
+        final mappedValues = <int, String>{};
         mappedValues.addEntries(ufs.map(
-          (e) => MapEntry<String, String>(
+          (e) => MapEntry<int, String>(
             e.id,
             e.acronym,
           ),
         ));
 
-        final currentUf = state.edcensoUfFk.isEmpty
-            ? mappedValues.entries.first.key
-            : state.edcensoUfFk;
+        final currentUf = state.edcensoUfFk ?? mappedValues.entries.first.key;
 
         await fetchCities(currentUf);
         emit(
@@ -212,7 +210,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
       schoolInepIdFk: school.id!,
       studentFk: student.id!,
       rgNumber: '354511254',
-      edcensoUfFk: state.edcensoUfFk,
+      edcensoUfFk: state.edcensoUfFk!,
       edcensoCityFk: state.edcensoCityFk!,
       cep: state.cep,
       address: state.address,

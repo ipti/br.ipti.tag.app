@@ -29,7 +29,7 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
   void setComplement(String complement) => emit(
         state.copyWith(complement: complement),
       );
-  void setCity(String? city) => emit(
+  void setCity(int? city) => emit(
         state.copyWith(edcensoCityFk: city),
       );
 
@@ -43,14 +43,14 @@ class InstructorAddressBloc extends Cubit<InstructorAddressState> {
         state.copyWith(residenceZone: residenceZone),
       );
 
-  Future<void> setUf(String? uf) async {
+  Future<void> setUf(int? uf) async {
     fetchCities(uf);
     emit(
       state.copyWith(edcensoUfFk: uf),
     );
   }
 
-  Future fetchCities([String? uf]) async {
+  Future fetchCities([int? uf]) async {
     final result = await _listCitiesUsecase(
       FilterUFParams(uf: uf),
     );

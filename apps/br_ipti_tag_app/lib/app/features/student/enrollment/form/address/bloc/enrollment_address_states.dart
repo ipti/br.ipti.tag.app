@@ -2,8 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 class EnrollmentAddressState extends Equatable {
-  final Map<String, String> cities;
-  final Map<String, String> ufs;
+  final Map<int, String> cities;
+  final Map<int, String> ufs;
 
   final String cep;
   final String address;
@@ -11,8 +11,8 @@ class EnrollmentAddressState extends Equatable {
   final String complement;
   final int residenceZone;
   final String neighborhood;
-  final String edcensoUfFk;
-  final String? edcensoCityFk;
+  final int? edcensoUfFk;
+  final int? edcensoCityFk;
 
   final String nis;
   final String inepId;
@@ -46,7 +46,7 @@ class EnrollmentAddressState extends Equatable {
       number,
       complement,
       neighborhood,
-      edcensoUfFk,
+      edcensoUfFk ?? "",
       edcensoCityFk ?? "",
       residenceZone,
       nis,
@@ -64,15 +64,15 @@ class EnrollmentAddressState extends Equatable {
     String? number,
     String? complement,
     String? neighborhood,
-    String? edcensoUfFk,
-    String? edcensoCityFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
     int? residenceZone,
     String? nis,
     String? inepId,
     bool? bfParticipator,
     bool? posCenso,
-    Map<String, String>? cities,
-    Map<String, String>? ufs,
+    Map<int, String>? cities,
+    Map<int, String>? ufs,
     StudentDocsAddress? docsAddress,
   }) {
     return EnrollmentAddressState(
@@ -102,7 +102,7 @@ class EmptyEnrollmentAddressState extends EnrollmentAddressState {
           address: "",
           complement: "",
           edcensoCityFk: null,
-          edcensoUfFk: "",
+          edcensoUfFk: 1,
           neighborhood: "",
           number: "",
           residenceZone: 0,

@@ -2,7 +2,7 @@ import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/cubit/frequency_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/pages/select_classroom_page.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/pages/select_discipline_page.dart';
-import 'package:br_ipti_tag_app/app/features/student/presentation/list/student_list_module.dart';
+import 'package:br_ipti_tag_app/app/features/student/list/student_list_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 

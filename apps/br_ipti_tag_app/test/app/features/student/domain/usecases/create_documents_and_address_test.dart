@@ -16,8 +16,8 @@ void main() {
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
         rgNumber: "rgNumber",
-        edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk",
+        edcensoUfFk: 1,
+        edcensoCityFk: 1,
       );
 
       final repository = MockStudentDocumentsAddressRepository();
@@ -46,8 +46,8 @@ void main() {
         schoolInepIdFk: "schoolInepIdFk",
         studentFk: 1,
         rgNumber: "rgNumber",
-        edcensoUfFk: "edcensoUfFk",
-        edcensoCityFk: "edcensoCityFk",
+        edcensoUfFk: 1,
+        edcensoCityFk: 1,
       );
       final repository = MockStudentDocumentsAddressRepository();
       when(
