@@ -1,7 +1,7 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/api/student_docs/get_student_docs_endpoint.dart';
-import 'package:tag_sdk/src/api/student_docs/post_student_docs_endpoint.dart';
-import 'package:tag_sdk/src/api/student_docs/put_student_docs_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_docs/get_student_docs_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_docs/post_student_docs_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_docs/put_student_docs_endpoint.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_docs_model.dart';
 
 class StudentDocumentsAndAddressRemoteDataSource {

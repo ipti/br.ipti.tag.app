@@ -1,5 +1,5 @@
-import 'package:tag_sdk/src/api/auth/post_auth_login.dart';
-import 'package:tag_sdk/src/api/users/get_users_endpoint.dart';
+import 'package:tag_sdk/src/core/api/auth/post_auth_login.dart';
+import 'package:tag_sdk/src/core/api/users/get_users_endpoint.dart';
 import 'package:tag_sdk/src/features/auth/data/models/auth_model.dart';
 import 'package:tag_network/tag_network.dart';
 import 'package:tag_sdk/src/features/auth/data/models/user_model.dart';

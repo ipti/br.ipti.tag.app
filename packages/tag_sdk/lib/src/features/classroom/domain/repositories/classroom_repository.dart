@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/api/classroom/get_classroom_endpoint.dart';
+import 'package:tag_sdk/src/core/api/classroom/get_classroom_endpoint.dart';
 
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_create_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_entity.dart';

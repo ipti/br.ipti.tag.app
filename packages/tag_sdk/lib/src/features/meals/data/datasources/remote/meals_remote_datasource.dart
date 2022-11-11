@@ -1,5 +1,5 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/api/food_menu/get_food_menu_endpoint.dart';
+import 'package:tag_sdk/src/core/api/food_menu/get_food_menu_endpoint.dart';
 import 'package:tag_sdk/src/features/meals/data/models/food_menu_model.dart';
 
 class MealsMenuRemoteDataSource {

@@ -1,7 +1,7 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/api/student_enrollment/get_student_enrollment_endpoint.dart';
-import 'package:tag_sdk/src/api/student_enrollment/post_student_enrollment_endpoint.dart';
-import 'package:tag_sdk/src/api/student_enrollment/put_student_enrollment_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_enrollment/get_student_enrollment_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_enrollment/post_student_enrollment_endpoint.dart';
+import 'package:tag_sdk/src/core/api/student_enrollment/put_student_enrollment_endpoint.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_enrollment_model.dart';
 
 class StudentEnrollmenrRemoteDataSource {

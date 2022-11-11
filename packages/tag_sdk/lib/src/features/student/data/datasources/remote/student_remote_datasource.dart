@@ -1,8 +1,8 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/api/students/delete_students_endpoint.dart';
-import 'package:tag_sdk/src/api/students/get_students_endpoint.dart';
-import 'package:tag_sdk/src/api/students/post_students_endpoint.dart';
-import 'package:tag_sdk/src/api/students/put_students_endpoint.dart';
+import 'package:tag_sdk/src/core/api/students/delete_students_endpoint.dart';
+import 'package:tag_sdk/src/core/api/students/get_students_endpoint.dart';
+import 'package:tag_sdk/src/core/api/students/post_students_endpoint.dart';
+import 'package:tag_sdk/src/core/api/students/put_students_endpoint.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_model.dart';
 
 class StudentRemoteDataSource {

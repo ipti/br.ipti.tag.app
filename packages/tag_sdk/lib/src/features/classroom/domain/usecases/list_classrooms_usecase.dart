@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/api/classroom/classroom.dart';
+import 'package:tag_sdk/src/core/api/classroom/classroom.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/repositories/classroom_repository.dart';

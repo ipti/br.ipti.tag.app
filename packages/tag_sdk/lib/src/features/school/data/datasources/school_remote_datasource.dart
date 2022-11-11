@@ -1,6 +1,6 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/api/school/get_school_endpoint.dart';
-import 'package:tag_sdk/src/api/school/put_school_endpoint.dart';
+import 'package:tag_sdk/src/core/api/school/get_school_endpoint.dart';
+import 'package:tag_sdk/src/core/api/school/put_school_endpoint.dart';
 import 'package:tag_sdk/src/core/defaults/data_source.dart';
 import 'package:tag_sdk/src/features/school/data/models/school_model.dart';
 
