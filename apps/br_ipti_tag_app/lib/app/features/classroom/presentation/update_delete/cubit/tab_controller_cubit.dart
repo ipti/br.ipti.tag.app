@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
-part 'tab_controller_state.dart';
+import 'tab_controller_state.dart';
 
 class TabControllerCubit extends Cubit<TabControllerState> {
   TabControllerCubit()

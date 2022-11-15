@@ -71,5 +71,7 @@ jobs:
         with:
           name: project_folder
           path: |
-            br_ipti_tag_app
-            tag_ui
+            apps/br_ipti_tag_app
+            packages/tag_ui
+            packages/tag_sdk
+            packages/tag_network

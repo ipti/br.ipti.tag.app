@@ -15,10 +15,11 @@ scripts:
     run: melos exec -- "flutter format . --set-exit-if-changed"
     description: Run `flutter format .` in all packages
 
-  test:
-    # Only run the test command when the package has a test directory
-    run: melos exec --dir-exists=test -- "flutter test"
-    description: Run `flutter test` in all packages
+  test:selective_unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run Flutter tests for a specific package in this project.
+    select-package:      
+      dir-exists: test
   
   run:tag:web:
     run: melos exec -- flutter run lib/main.dart
@@ -29,6 +30,13 @@ scripts:
     run: melos exec -- flutter run -d linux lib/main.dart
     select-package:
       scope: 'br_ipti_tag_app'
+
+  gen_coverage: 
+    run:      
+      melos exec -c 1 -- "\$MELOS_ROOT_PATH/combine_coverage.sh"
+      & genhtml coverage_report/lcov.info -o coverage_report/html
+
+  prepare_coverage: melos exec -- "\$MELOS_ROOT_PATH/prepare_coverage.sh"
 
 
 command:

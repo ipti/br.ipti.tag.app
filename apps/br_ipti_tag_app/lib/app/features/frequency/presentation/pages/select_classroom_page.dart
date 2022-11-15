@@ -8,6 +8,7 @@ import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import '../cubit/frequency_cubit.dart';
+import '../cubit/frequency_state.dart';
 
 class FrequencySelectClassroomPage extends StatefulWidget {
   const FrequencySelectClassroomPage({super.key, this.title = "Frequência"});

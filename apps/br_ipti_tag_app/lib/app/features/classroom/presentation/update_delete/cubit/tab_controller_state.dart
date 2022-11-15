@@ -1,6 +1,5 @@
-part of 'tab_controller_cubit.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
 abstract class TabControllerState extends Equatable {
   const TabControllerState({
     required this.value,

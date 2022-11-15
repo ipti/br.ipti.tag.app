@@ -22,8 +22,7 @@ on:
 
 jobs:
   build:      
-    runs-on: ${{ inputs.runs_on }}
-    # environment: ${{ inputs.environment }}
+    runs-on: ${{ inputs.runs_on }}    
     env:
       ENVIRONMENT: ${{ inputs.environment }}
     steps:
@@ -53,7 +52,7 @@ jobs:
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
       - name: ⚙ Create key.properties
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
         run: |
           echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
@@ -61,15 +60,15 @@ jobs:
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
       
       - name: 📦 Download pub dependencies
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
         run: flutter pub get
 
       - name: 🤖 Build Android App Bundle
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app
+        working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
         run: flutter build appbundle
       
       - name: 🔼 Upload Android App Bundle
         uses: actions/upload-artifact@v2
         with:
           name: appbundle
-          path: ${{ steps.project-folder.outputs.download-path }}/br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab       
+          path: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app/build/app/outputs/bundle/release/app-release.aab       

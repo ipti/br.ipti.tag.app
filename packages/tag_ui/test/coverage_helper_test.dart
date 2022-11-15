@@ -1,5 +1,5 @@
 // Helper file to make coverage work for all dart files\n
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, directives_ordering
 import 'package:tag_ui/tag_ui.dart';
 import 'package:tag_ui/src/components/checkbox/tag_checkbox.dart';
 import 'package:tag_ui/src/components/link_button/tag_link_button.dart';
@@ -55,5 +55,5 @@ import 'package:tag_ui/src/responsive_helpers/responsive_helpers.dart';
 import 'package:tag_ui/src/responsive_helpers/show_on_desktop.dart';
 import 'package:tag_ui/src/responsive_helpers/toggle_mobile_desktop.dart';
 import 'package:tag_ui/src/strings/file_paths.dart';
-
-void main() {}
+// ignore: no-empty-block
+void main(){}

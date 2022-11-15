@@ -1,4 +1,6 @@
-part of 'frequency_cubit.dart';
+import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:equatable/equatable.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class FrequencyState extends Equatable {
   const FrequencyState({
