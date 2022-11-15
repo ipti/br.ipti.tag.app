@@ -1,0 +1,3 @@
+[submodule "tag_ui"]
+	path = tag_ui
+	url = git@github.com:ipti/br.tag.app.ui.git

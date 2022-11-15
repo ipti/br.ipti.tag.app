@@ -1,0 +1,75 @@
+name: Generate firebase configurations
+
+on:
+  workflow_call:
+    inputs:
+      runs_on:
+        required: false
+        type: string
+        default: "ubuntu-latest"
+      workspace:
+        required: true
+        type: string
+      environment:
+        required: false
+        type: string
+        default: "development"
+      firebase-project:
+        required: true
+        type: string
+        default: "development"
+      working_directory:
+        required: false
+        type: string
+        default: "."
+    
+
+
+      
+jobs:
+  build:
+    runs-on: ${{ inputs.runs_on }}
+    environment: ${{ inputs.env }}    
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          
+      - name: 🎯 Setup Dart 
+        uses: dart-lang/setup-dart@v1
+
+      - name: 🔥 Setup Firebase-tools
+        run: |
+          sudo npm install firebase-tools --location=global
+          
+      - name: Clone flutterfire_cli docs repository
+        uses: actions/checkout@v2        
+        with:
+          fetch-depth: 0
+          repository: exaby73/flutterfire_cli           
+          ref: 'feature/token-option'
+          path: 'flutterfire'
+      
+      - name: ❤️ Show Files
+        run: ls -la
+
+      - name: ❤️‍🔥 Setup Flutterfire
+        working-directory: flutterfire
+        run: |
+          dart pub global activate --source="path" . --executable="flutterfire" --overwrite
+
+      - name: 👩‍🚒 Generate Firebase Configuration Files
+        working-directory: ${{inputs.working_directory}}
+        run: |          
+          flutterfire configure --project='${{ inputs.firebase-project }}' --platforms='android,ios,web,linux,windows' --android-package-name="${{secrets.ANDROID_PACKAGE_NAME}}" --ios-bundle-id=br.org.ipti.tag --macos-bundle-id=br.org.ipti.tag --token="${{ secrets.FIREBASE_TOKEN }}" -y
+      
+      - name: 🔼 Upload folder to build        
+        uses: actions/upload-artifact@v3
+        with:
+          name: project_folder
+          path: |
+            br_ipti_tag_app
+            tag_ui

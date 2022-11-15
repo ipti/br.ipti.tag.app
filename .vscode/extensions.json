@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "kiritchoukc.flutter-clean-architecture",
+        "BendixMa.dart-data-class-generator",
+        "eamodio.gitlens",
+        "dart-code.dart-code",
+        "dart-code.flutter",
+        "donjayamanne.githistory",
+        "nash.awesome-flutter-snippets",
+        "felixangelov.bloc",
+        "ryanluker.vscode-coverage-gutters",
+        "circlecodesolution.ccs-flutter-color"
+    ]
+}

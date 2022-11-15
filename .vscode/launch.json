@@ -1,0 +1,34 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "br_ipti_tag_app",
+            "cwd": "apps/br_ipti_tag_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "br_ipti_tag_app (profile mode)",
+            "cwd": "apps/br_ipti_tag_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "tag_ui",
+            "cwd": "tag_ui",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "tag_ui (profile mode)",
+            "cwd": "tag_ui",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        }
+    ]
+}

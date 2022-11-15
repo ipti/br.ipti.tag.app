@@ -1,0 +1,38 @@
+name: TAG
+
+repository: https://github.com/ipti/br.ipti.tag.app
+
+packages:
+  - packages/**
+  - apps/**
+
+scripts:
+  analyze:
+    run: melos exec -- "flutter analyze"
+    description: Run `flutter analyze` in all packages
+  
+  format:
+    run: melos exec -- "flutter format . --set-exit-if-changed"
+    description: Run `flutter format .` in all packages
+
+  test:
+    # Only run the test command when the package has a test directory
+    run: melos exec --dir-exists=test -- "flutter test"
+    description: Run `flutter test` in all packages
+  
+  run:tag:web:
+    run: melos exec -- flutter run lib/main.dart
+    select-package:
+      scope: 'br_ipti_tag_app'
+  
+  run:tag:linux:
+    run: melos exec -- flutter run -d linux lib/main.dart
+    select-package:
+      scope: 'br_ipti_tag_app'
+
+
+command:
+  bootstrap:    
+    runPubGetInParallel: false
+  version:
+    branch: main
