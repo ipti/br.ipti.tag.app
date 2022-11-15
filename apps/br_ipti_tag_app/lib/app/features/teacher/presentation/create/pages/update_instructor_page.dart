@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class UpdateInstructorPage extends StatefulWidget {
     this.editMode = EditMode.Edit,
   });
 
-  final String? title;
+  final String title;
   final EditMode editMode;
   final Instructor? instructor;
 
@@ -98,11 +99,12 @@ class UpdateInstructorPageState extends State<UpdateInstructorPage>
         bloc: controller,
         builder: (context, state) {
           return TagScaffold(
-            // appBar: const TagAppBar(leading: TagAppBarBackIconButton(),),
             menu: const TagVerticalMenu(),
-            title: widget.title!,
+            title: widget.title,
             description: "",
-            path: ["Professor", widget.title!],
+            path: [AppRoutes.professores, TagPath("", widget.title)],
+            onTapBreadcrumb: (route) =>
+                Modular.to.pushNamed(route, forRoot: true),
             body: Column(children: [
               TabBar(
                 controller: _tabController,

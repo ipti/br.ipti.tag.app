@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -9,83 +10,52 @@ class TagVerticalMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentRoute = ModalRoute.of(context)!.settings.name;
+    final currentRoute = ModalRoute.of(context)?.settings.name ?? "/";
     final items = [
-      TagMenuItem(
-        title: "Escola",
-        route: '/escola/',
-        isActive: currentRoute!.contains('/escola/'),
+      TagMenuItemProps(
+        path: AppRoutes.escola,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_HOME_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_HOME_GREY_SVG,
         ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
       ),
-      TagMenuItem(
-        title: "Turmas",
-        route: '/turmas/',
-        isActive: currentRoute.contains('/turmas/'),
+      TagMenuItemProps(
+        path: AppRoutes.turmas,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
       ),
-      TagMenuItem(
-        title: "Alunos",
-        route: '/alunos/',
-        isActive: currentRoute.contains('/alunos/'),
+      TagMenuItemProps(
+        path: AppRoutes.alunos,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PERSONS_GREY_SVG,
         ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
       ),
-      TagMenuItem(
-        title: "Professores",
-        route: '/professores/',
-        isActive: currentRoute.contains('/professores/'),
+      TagMenuItemProps(
+        path: AppRoutes.professores,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
         ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
       ),
-      TagMenuItem(
-        title: "Frequencia",
-        route: '/frequencia/',
-        isActive: currentRoute.contains('/frequencia/'),
-        icon: TagIcon(
-          defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
-          disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
-        ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
-      ),
-      TagMenuItem(
-        title: "Merenda",
-        route: '/merenda/',
-        isActive: currentRoute.contains('/merenda/'),
+      // TagMenuItemProps(
+      //   path: AppRoutes,
+      //   icon: TagIcon(
+      //     defaultVersionPath: FilePaths.ICON_TRUCK_BLUE_SVG,
+      //     disabledVersionPath: FilePaths.ICON_TRUCK_GREY_SVG,
+      //   ),
+      // ),
+      TagMenuItemProps(
+        path: AppRoutes.merenda,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
         ),
-        onTap: (String routeName) {
-          Modular.to.popAndPushNamed(routeName);
-        },
       ),
-      TagMenuItem(
-        title: "Logout",
-        route: '/logout/',
+      TagMenuItemProps(
+        path: AppRoutes.logout,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
           disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
@@ -95,14 +65,17 @@ class TagVerticalMenu extends StatelessWidget {
           sessionService.cleanToken();
           sessionService.cleanSchoolYear();
           sessionService.cleanCurrentUserSchools();
-          Modular.to.popAndPushNamed("/");
+          Modular.to.pushNamed("/", forRoot: true);
         },
       ),
     ];
 
     return TagMenu(
-      currentPathMenu: currentRoute,
       items: items,
+      currentPathMenu: currentRoute,
+      onTapDefault: (String routeName) {
+        Modular.to.pushNamed(routeName, forRoot: true);
+      },
     );
   }
 }

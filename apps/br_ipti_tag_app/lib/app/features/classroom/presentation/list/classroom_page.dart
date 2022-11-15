@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -34,7 +35,8 @@ class ClassroomPageState extends State<ClassroomPage> {
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
-      path: ["Turmas", widget.title],
+      path: [AppRoutes.turmas, TagPath("", widget.title)],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       actionsHeader: _SliverHeaderActionDelegate(
         actionsHeader: const _Actions(),
       ),

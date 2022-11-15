@@ -25,7 +25,7 @@ class TeacherListBloc extends Cubit<TeacherListState> {
       EmptyParams(),
     );
     resultEither.fold(
-      (Exception failure) {
+      (failure) {
         log(failure.toString());
         emit(FailedState(
           message: failure.toString(),

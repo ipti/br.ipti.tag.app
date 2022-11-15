@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 
@@ -28,7 +29,8 @@ class _FrequencySelectClassroomPageState
   Widget build(BuildContext context) {
     return TagScaffold(
       title: "Frequencia",
-      path: [widget.title],
+      path: const [AppRoutes.frequencia],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "",
       menu: const TagVerticalMenu(),
       body: Column(

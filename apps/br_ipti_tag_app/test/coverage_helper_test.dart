@@ -174,7 +174,6 @@ import 'package:br_ipti_tag_app/app/core/util/enums/enums.dart';
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/core/util/errors/errors.dart';
 import 'package:br_ipti_tag_app/app/core/network/custom_dio/custom_dio.dart';
-import 'package:br_ipti_tag_app/app/core/network/interceptors/debug_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/guard_token_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/error_interceptor.dart';
 import 'package:br_ipti_tag_app/app/core/network/interceptors/auth_interceptor.dart';
@@ -183,5 +182,6 @@ import 'package:br_ipti_tag_app/app/core/config/enviroment.dart';
 import 'package:br_ipti_tag_app/app/core/config/dev_config.dart';
 import 'package:br_ipti_tag_app/app/core/config/base_config.dart';
 import 'package:br_ipti_tag_app/main.dart';
+
 // ignore: no-empty-block
-void main(){}
+void main() {}

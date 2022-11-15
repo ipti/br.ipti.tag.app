@@ -32,7 +32,7 @@ class FrequencyCubit extends Cubit<FrequencyState> {
       ClassroomParams(),
     );
     resultEither.fold(
-      (Exception failure) {
+      (failure) {
         log(failure.toString());
         emit(FailedState(
           message: failure.toString(),
@@ -60,7 +60,7 @@ class FrequencyCubit extends Cubit<FrequencyState> {
     );
 
     resultEither.fold(
-      (Exception failure) {
+      (failure) {
         log(failure.toString());
         emit(FailedState(
           message: failure.toString(),
@@ -92,7 +92,7 @@ class FrequencyCubit extends Cubit<FrequencyState> {
     );
 
     resultEither.fold(
-      (Exception failure) {
+      (failure) {
         log(failure.toString());
         emit(FailedState(
           message: failure.toString(),

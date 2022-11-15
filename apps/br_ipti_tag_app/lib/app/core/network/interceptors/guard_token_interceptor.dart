@@ -9,7 +9,7 @@ class GuardTokenInterceptor extends InterceptorsWrapper {
     ErrorInterceptorHandler handler,
   ) {
     final sessionService = SessionServiceImpl();
-    if (err.response!.statusCode == 401) {
+    if (err.response != null && err.response!.statusCode == 401) {
       if (!Modular.to.path.contains('auth')) {
         sessionService.cleanToken();
         sessionService.cleanSchoolYear();

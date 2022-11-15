@@ -27,7 +27,7 @@ class ClassroomListBloc extends Cubit<ClassroomListState> {
       ClassroomParams(),
     );
     resultEither.fold(
-      (Exception failure) {
+      (failure) {
         log(failure.toString());
         emit(FailedState(
           message: failure.toString(),

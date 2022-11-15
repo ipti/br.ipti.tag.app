@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -36,13 +37,19 @@ class CreateItemStockPageState extends State<CreateItemStockPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 50,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TagBreadcrumb(
+                        onTapDefault: (route) {
+                          Modular.to.pushNamed(route, forRoot: true);
+                        },
                         rootItem: "Tag",
-                        paths: ["Alunos", "Matricula Rápida"],
+                        paths: const [
+                          AppRoutes.alunos,
+                          TagPath("", "Matricula Rápida"),
+                        ],
                       ),
                     ),
                   ),

@@ -54,7 +54,7 @@ class LoginBloc extends Cubit<LoginState> {
     result.fold(
       (error) {
         emit(LoginErrorState(
-          error.toString(),
+          error.message,
         ));
         emit(
           LoginLoadedState(

@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
@@ -41,7 +42,8 @@ class ClassroomCreatePageState extends State<ClassroomCreatePage> {
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
-        path: ["Turmas", widget.title],
+        path: [AppRoutes.turmas, TagPath("", widget.title)],
+        onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
         tabBar: const TabBar(
           isScrollable: true,
           labelColor: TagColors.colorBaseProductDark,

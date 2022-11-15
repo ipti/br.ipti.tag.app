@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,8 @@ class StudentPageState extends State<StudentPage> {
       menu: const TagVerticalMenu(),
       title: widget.title,
       description: "",
-      path: ["Alunos", widget.title],
+      path: [AppRoutes.alunos, TagPath("", widget.title)],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       actionsHeader: _SliverHeaderActionDelegate(
         actionsHeader: const _Actions(),
       ),
@@ -60,7 +62,7 @@ class StudentPageState extends State<StudentPage> {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TagDataTable(
-                  onTapRow: (index) => Modular.to.pushReplacementNamed(
+                  onTapRow: (index) => Modular.to.pushNamed(
                     "matricula/edit",
                     arguments: state.students[index],
                   ),
@@ -119,8 +121,7 @@ class _Actions extends StatelessWidget {
                 fit: isDesktop ? FlexFit.loose : FlexFit.tight,
                 child: TagButton(
                   text: "Matricula",
-                  onPressed: () =>
-                      Modular.to.pushReplacementNamed("matricula/"),
+                  onPressed: () => Modular.to.pushNamed("matricula/"),
                 ),
               ),
             ],

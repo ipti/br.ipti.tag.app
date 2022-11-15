@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meals_item_per_day/meals_item_per_day.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,9 @@ class ListMealsPageState extends State<ListMealsPage> {
             menu: const TagVerticalMenu(),
             title: widget.title,
             description: "Cardápio semanal da sua escola",
-            path: ["Merenda Escolar", widget.title],
+            path: [AppRoutes.merenda, TagPath("", widget.title)],
+            onTapBreadcrumb: (route) =>
+                Modular.to.pushNamed(route, forRoot: true),
             tabBar: TabBar(
               isScrollable: true,
               labelColor: TagColors.colorBaseProductDark,

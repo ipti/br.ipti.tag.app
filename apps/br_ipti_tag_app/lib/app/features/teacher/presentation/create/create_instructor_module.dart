@@ -70,7 +70,7 @@ class CreateInstructorModule extends Module {
     ChildRoute(
       "/editar",
       child: (_, args) => UpdateInstructorPage(
-        title: (args.data as Instructor?)?.name,
+        title: (args.data as Instructor?)?.name ?? "Editar Professor",
         instructor: args.data as Instructor?,
       ),
     ),

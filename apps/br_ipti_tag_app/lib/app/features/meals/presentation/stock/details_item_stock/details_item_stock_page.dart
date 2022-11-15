@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -29,6 +30,7 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
       title: widget.ingredient.name,
       description: "Estoque de item",
       path: const [],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       body: Container(),
     );
   }

@@ -1,7 +1,7 @@
 import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:modular_bloc_bind/modular_bloc_bind.dart';
+
 import 'package:tag_sdk/tag_sdk.dart';
 
 import 'bloc/enrollment_bloc.dart';
@@ -21,19 +21,19 @@ class EnrollmentModule extends Module {
   @override
   final List<Bind> binds = [
     // Blocs
-    BlocBind.singleton(
+    Bind.factory(
       (i) => EnrollmentBloc(
         i.get<LoadStudentDocsUsecase>(),
         i.get<LoadStudentEnrollmentUsecase>(),
       ),
     ),
-    BlocBind.singleton(
+    Bind.factory(
       (i) => EnrollmentPersonalBloc(
         i.get<CreateStudentsUsecase>(),
         i.get<UpdateStudentUsecase>(),
       ),
     ),
-    BlocBind.singleton(
+    Bind.factory(
       (i) => EnrollmentAddressBloc(
         i.get<ListCitiesUsecase>(),
         i.get<ListUFsUsecase>(),
@@ -41,12 +41,12 @@ class EnrollmentModule extends Module {
         i.get<AddDocumentsAndAddressToStudentUsecase>(),
       ),
     ),
-    BlocBind.singleton(
+    Bind.factory(
       (i) => EnrollmentFiliationBloc(
         i.get<UpdateStudentUsecase>(),
       ),
     ),
-    BlocBind.singleton(
+    Bind.factory(
       (i) => EnrollmentClassroomBloc(
         i.get<ListClassroomsUsecase>(),
         i.get<CreateStudentEnrollmentUsecase>(),

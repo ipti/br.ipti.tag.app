@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/classroom_update_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/cubit/tab_controller_cubit.dart';
@@ -14,9 +15,13 @@ import 'cubit/tab_controller_state.dart';
 class UpdateDeleteClassroomPage extends StatefulWidget {
   const UpdateDeleteClassroomPage({
     super.key,
-    @required this.classroomEntity,
+    required this.classroomEntity,
+    this.title = "Atualizar Turmas",
   });
+
   final ClassroomEntity? classroomEntity;
+  final String title;
+
   @override
   _UpdateDeleteClassroomPageState createState() =>
       _UpdateDeleteClassroomPageState();
@@ -34,9 +39,14 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
           length: 3,
           child: TagScaffold(
             menu: const TagVerticalMenu(),
-            title: 'Atualizar Turmas',
+            title: widget.title,
             description: "",
-            path: const ["Turmas", 'Atualizar Turmas'],
+            path: [
+              AppRoutes.turmas,
+              TagPath("", widget.classroomEntity?.name ?? widget.title),
+            ],
+            onTapBreadcrumb: (route) =>
+                Modular.to.pushNamed(route, forRoot: true),
             tabBar: TabBar(
               isScrollable: true,
               labelColor: TagColors.colorBaseProductDark,

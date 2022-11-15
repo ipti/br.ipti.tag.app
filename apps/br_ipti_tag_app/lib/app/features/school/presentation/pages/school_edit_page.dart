@@ -67,11 +67,11 @@ class SchoolEditPageState extends State<SchoolEditPage>
       length: _tabs.length,
       child: TagScaffold(
         menu: const TagVerticalMenu(),
-        // header: const HeaderDesktop(),
         aside: Container(),
         title: widget.title,
         description: 'Edite as informações da sua escola',
         path: const [],
+        onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
         tabBar: TabBar(
           controller: _tabController,
           isScrollable: true,

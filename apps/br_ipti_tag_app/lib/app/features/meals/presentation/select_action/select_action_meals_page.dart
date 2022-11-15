@@ -26,6 +26,7 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
       description:
           "Acompanhe o calendário e o estoque de alimentos da sua escola",
       path: const [],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       body: Container(
         padding: const EdgeInsets.all(12),
         child: Column(

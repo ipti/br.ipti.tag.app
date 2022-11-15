@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +68,8 @@ class InstructorFormPageState extends State<InstructorFormPage>
         menu: const TagVerticalMenu(),
         title: widget.title,
         description: "",
-        path: ["Professor", widget.title],
+        path: [AppRoutes.professores, TagPath("", widget.title)],
+        onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
         tabBar: TabBar(
           controller: _tabController,
           isScrollable: true,

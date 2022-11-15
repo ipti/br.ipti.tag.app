@@ -30,7 +30,7 @@ class StudentListBloc extends Cubit<StudentListState> {
       ListStudentsParams(schoolId),
     );
     resultEither.fold(
-      (Exception failure) => emit(
+      (failure) => emit(
         state.copyWith(
           status: Status.failure,
           error: failure.toString(),

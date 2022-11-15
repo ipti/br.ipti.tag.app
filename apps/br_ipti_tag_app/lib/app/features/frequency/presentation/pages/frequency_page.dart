@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/frequency/presentation/cubit/frequency_state.dart';
@@ -38,7 +39,12 @@ class _FrequencyPageState extends State<FrequencyPage> {
   Widget build(BuildContext context) {
     return TagScaffold(
       title: "Frequencia",
-      path: ["Frequencia", widget.classroom.name, widget.discipline.name],
+      path: [
+        AppRoutes.frequencia,
+        TagPath(AppRoutes.frequencia.path, widget.classroom.name),
+        TagPath(AppRoutes.frequencia.path, widget.discipline.name),
+      ],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "",
       menu: const TagVerticalMenu(),
       body: Column(

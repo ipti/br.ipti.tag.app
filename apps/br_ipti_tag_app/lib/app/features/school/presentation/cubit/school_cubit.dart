@@ -58,7 +58,7 @@ class SchoolCubit extends Cubit<SchoolState> {
       ShowSchoolParams(uuid: schoolId),
     );
     result.fold(
-      (Exception failure) => emit(SchoolFailedState(
+      (failure) => emit(SchoolFailedState(
         message: failure.toString(),
       )),
       (school) => _stopLoading(school),
@@ -85,7 +85,7 @@ class SchoolCubit extends Cubit<SchoolState> {
     );
     final result = await _editSchoolUsecase(params);
     result.fold(
-      (Exception failure) => emit(SchoolFailedState(
+      (failure) => emit(SchoolFailedState(
         message: failure.toString(),
       )),
       (school) => _stopSending(school),

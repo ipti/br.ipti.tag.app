@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,8 @@ class StockPageState extends State<StockPage> {
     return TagScaffold(
       menu: const TagVerticalMenu(),
       title: widget.title,
-      path: ["Merenda Escolar", widget.title],
+      path: [AppRoutes.merenda, TagPath("", widget.title)],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "Verifique o estoque de alimentos da escola",
       body: BlocBuilder<StockBloc, ListStockState>(
         bloc: controller,
