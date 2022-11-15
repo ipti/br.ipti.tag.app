@@ -5,8 +5,9 @@ on:
     branches:
       - develop
       - refactor/monorepo
-    paths:
-      - "apps/br_ipti_tag_app"
+    # paths:
+      # - "**apps/br_ipti_tag_app**"
+      
       
   
 jobs:
