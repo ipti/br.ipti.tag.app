@@ -40,6 +40,13 @@ class TagVerticalMenu extends StatelessWidget {
           disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
         ),
       ),
+      TagMenuItemProps(
+        path: AppRoutes.frequencia,
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,
+        ),
+      ),
       // TagMenuItemProps(
       //   path: AppRoutes,
       //   icon: TagIcon(

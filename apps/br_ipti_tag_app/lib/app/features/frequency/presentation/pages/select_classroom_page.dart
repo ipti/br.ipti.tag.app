@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _FrequencySelectClassroomPageState
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "",
       menu: const TagVerticalMenu(),
+      appBar: const CustomAppBar(),
       body: Column(
         children: <Widget>[
           const SizedBox(height: 30),

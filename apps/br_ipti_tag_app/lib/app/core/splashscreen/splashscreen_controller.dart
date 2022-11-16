@@ -12,7 +12,7 @@ class SplashScreenController {
     );
     result.fold(
       (error) => Modular.to.pushReplacementNamed("/auth/"),
-      (token) => Modular.to.pushReplacementNamed("/turmas/"),
+      (token) => Modular.to.pushReplacementNamed("/home/"),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/teacher/presentation/create/pages/education/bloc/instructor_education_bloc.dart';
 import 'package:flutter/material.dart';
@@ -100,6 +101,7 @@ class UpdateInstructorPageState extends State<UpdateInstructorPage>
         builder: (context, state) {
           return TagScaffold(
             menu: const TagVerticalMenu(),
+            appBar: const CustomAppBar(),
             title: widget.title,
             description: "",
             path: [AppRoutes.professores, TagPath("", widget.title)],

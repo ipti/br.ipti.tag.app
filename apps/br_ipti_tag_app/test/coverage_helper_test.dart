@@ -40,9 +40,6 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/class
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_create_events.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_create_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/create/bloc/classroom_states.dart';
-import 'package:br_ipti_tag_app/app/features/home/home_page.dart';
-import 'package:br_ipti_tag_app/app/features/home/home_events.dart';
-import 'package:br_ipti_tag_app/app/features/home/home_controller.dart';
 import 'package:br_ipti_tag_app/app/features/home/home_module.dart';
 import 'package:br_ipti_tag_app/app/features/auth/auth_module.dart';
 import 'package:br_ipti_tag_app/app/features/auth/presentation/bloc/login_bloc.dart';

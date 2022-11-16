@@ -2,6 +2,7 @@ import 'package:tag_ui/tag_ui.dart';
 
 abstract class AppRoutes {
   static const auth = TagPath("/auth/", "Login");
+  static const home = TagPath("/home/", "Início");
   // School
   static const escola = TagPath("/escola/", "Escola");
   // Classroom

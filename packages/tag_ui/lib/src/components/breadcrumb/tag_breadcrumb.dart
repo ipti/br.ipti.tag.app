@@ -36,7 +36,7 @@ class TagBreadcrumb extends StatelessWidget {
             title: paths[index].label,
             isLast: paths.length - 1 == index,
             action: () {
-              onTapDefault(paths[index].path);
+              if (paths[index].path.isNotEmpty) onTapDefault(paths[index].path);
             },
           ),
         );

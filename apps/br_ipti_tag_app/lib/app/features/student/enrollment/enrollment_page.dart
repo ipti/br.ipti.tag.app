@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/edit_mode.dart';
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/student/enrollment/form/address/bloc/enrollment_address_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/student/enrollment/form/personal/bloc/enrollment_personal_bloc.dart';
@@ -96,7 +97,7 @@ class EnrollmentPageState extends State<EnrollmentPage>
     return DefaultTabController(
       length: _tabs.length,
       child: TagScaffold(
-        appBar: const TagAppBar(leading: TagAppBarBackIconButton()),
+        appBar: const CustomAppBar(),
         menu: const TagVerticalMenu(),
         title: widget.student?.name ?? widget.title,
         path: [AppRoutes.alunos, TagPath("", widget.title)],

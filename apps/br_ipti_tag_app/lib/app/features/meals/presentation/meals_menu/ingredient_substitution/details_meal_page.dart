@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,6 +34,7 @@ class DetailsMealPageState extends State<DetailsMealPage> {
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
+      appBar: const CustomAppBar(),
       title: widget.mealComponent.description,
       description: "Ingredientes para a refeição",
       path: const [],

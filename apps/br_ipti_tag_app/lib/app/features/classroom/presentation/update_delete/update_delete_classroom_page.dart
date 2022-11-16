@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/classroom_update_page.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/cubit/tab_controller_cubit.dart';
@@ -39,6 +40,7 @@ class _UpdateDeleteClassroomPageState extends State<UpdateDeleteClassroomPage> {
           length: 3,
           child: TagScaffold(
             menu: const TagVerticalMenu(),
+            appBar: const CustomAppBar(),
             title: widget.title,
             description: "",
             path: [

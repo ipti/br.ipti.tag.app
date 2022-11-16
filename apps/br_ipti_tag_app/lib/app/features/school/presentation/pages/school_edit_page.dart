@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_cubit.dart';
 import 'package:br_ipti_tag_app/app/features/school/presentation/cubit/school_state.dart';
@@ -67,6 +68,7 @@ class SchoolEditPageState extends State<SchoolEditPage>
       length: _tabs.length,
       child: TagScaffold(
         menu: const TagVerticalMenu(),
+        appBar: const CustomAppBar(),
         aside: Container(),
         title: widget.title,
         description: 'Edite as informações da sua escola',

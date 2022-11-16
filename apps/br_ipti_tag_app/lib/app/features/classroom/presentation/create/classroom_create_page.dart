@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/left_list_checkbox_classroom_widget.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/right_list_checkbox_classroom_widget.dart';
@@ -40,6 +41,7 @@ class ClassroomCreatePageState extends State<ClassroomCreatePage> {
       length: 1,
       child: TagScaffold(
         menu: const TagVerticalMenu(),
+        appBar: const CustomAppBar(),
         title: widget.title,
         description: "",
         path: [AppRoutes.turmas, TagPath("", widget.title)],

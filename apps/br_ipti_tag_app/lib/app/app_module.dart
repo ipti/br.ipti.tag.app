@@ -12,6 +12,7 @@ import 'core/plataform/pkg_info_service.dart';
 import 'features/auth/auth_module.dart';
 import 'features/classroom/classroom_module.dart';
 import 'features/frequency/frequency_module.dart';
+import 'features/home/home_module.dart';
 import 'features/meals/meals_module.dart';
 import 'features/student/student_module.dart';
 import 'features/teacher/teacher_module.dart';
@@ -49,6 +50,11 @@ class AppModule extends Module {
         ModuleRoute(
           "/",
           module: SplashScreenModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/home",
+          module: HomeModule(),
           transition: TransitionType.noTransition,
         ),
         ModuleRoute(

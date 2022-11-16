@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
   Widget build(BuildContext context) {
     return TagScaffold(
       menu: const TagVerticalMenu(),
+      appBar: const CustomAppBar(),
       title: widget.ingredient.name,
       description: "Estoque de item",
       path: const [],

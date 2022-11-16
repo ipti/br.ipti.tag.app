@@ -2,48 +2,41 @@ import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
-import 'package:br_ipti_tag_app/app/features/frequency/presentation/cubit/frequency_state.dart';
+import 'package:br_ipti_tag_app/app/features/home/presentation/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../cubit/frequency_cubit.dart';
+import '../cubit/home_state.dart';
 
-class FrequencyPage extends StatefulWidget {
-  const FrequencyPage({
+class HomePage extends StatefulWidget {
+  const HomePage({
     super.key,
-    this.title = "Frequência",
-    required this.classroom,
-    required this.discipline,
+    this.title = "Inicio",
   });
 
   final String title;
-  final ClassroomEntity classroom;
-  final EdcensoDiscipline discipline;
 
   @override
-  State<FrequencyPage> createState() => _FrequencyPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _FrequencyPageState extends State<FrequencyPage> {
-  final controller = Modular.get<FrequencyCubit>();
+class _HomePageState extends State<HomePage> {
+  final controller = Modular.get<HomeCubit>();
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller.fetchListStudentEvent();
   }
 
   @override
   Widget build(BuildContext context) {
     return TagScaffold(
-      title: "Frequencia",
-      path: [
-        AppRoutes.frequencia,
-        TagPath(AppRoutes.frequencia.path, widget.classroom.name),
-        TagPath(AppRoutes.frequencia.path, widget.discipline.name),
+      title: "Bem Vinda(o)!",
+      path: const [
+        AppRoutes.home,
       ],
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "",
@@ -53,7 +46,7 @@ class _FrequencyPageState extends State<FrequencyPage> {
         children: <Widget>[
           const SizedBox(height: 30),
           Flexible(
-            child: BlocBuilder<FrequencyCubit, FrequencyState>(
+            child: BlocBuilder<HomeCubit, HomeState>(
               bloc: controller,
               builder: (context, state) {
                 switch (state.status) {
@@ -77,9 +70,7 @@ class _FrequencyPageState extends State<FrequencyPage> {
                       ),
                     );
                   default:
-                    return TagEmpty(
-                      onPressedRetry: () => controller.fetchListStudentEvent(),
-                    );
+                    return const TagEmpty();
                 }
               },
             ),

@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_app/app/core/util/enums/status_fetch.dart';
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -33,6 +34,7 @@ class ClassroomPageState extends State<ClassroomPage> {
   Widget build(BuildContext context) {
     return TagScaffold(
       menu: const TagVerticalMenu(),
+      appBar: const CustomAppBar(),
       title: widget.title,
       description: "",
       path: [AppRoutes.turmas, TagPath("", widget.title)],
