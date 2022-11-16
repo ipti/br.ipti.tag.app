@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:tag_ui/src/components/shared/path.dart';
 
 import 'tag_breadcrumb_item.dart';
 
 class TagBreadcrumb extends StatelessWidget {
-  const TagBreadcrumb({super.key, this.rootItem, required this.paths});
+  const TagBreadcrumb({
+    super.key,
+    this.rootItem,
+    required this.paths,
+    required this.onTapDefault,
+  });
 
   final String? rootItem;
-  final List<String> paths;
+  final List<TagPath> paths;
+  final void Function(String route) onTapDefault;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +33,11 @@ class TagBreadcrumb extends StatelessWidget {
         return Container(
           alignment: Alignment.centerLeft,
           child: TagBreadcrumbItem(
-            title: paths[index],
+            title: paths[index].label,
             isLast: paths.length - 1 == index,
-            action: () {},
+            action: () {
+              onTapDefault(paths[index].path);
+            },
           ),
         );
       },

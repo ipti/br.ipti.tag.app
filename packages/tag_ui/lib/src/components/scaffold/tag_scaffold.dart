@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tag_ui/tag_ui.dart';
+import 'package:tag_ui/src/components/breadcrumb/tag_breadcrumb.dart';
+import 'package:tag_ui/src/components/headings/heading.dart';
+import 'package:tag_ui/src/components/shared/path.dart';
+import 'package:tag_ui/src/components/templates/main_layout_adaptativy.dart';
+import 'package:tag_ui/src/design_tokens/colors.dart';
 
 class TagScaffold extends StatelessWidget {
   final String title;
-  final List<String> path;
-  final String description;
+  final List<TagPath> path;
+  final void Function(String route)? onTapBreadcrumb;
+  final String? description;
+  final PreferredSize? appBar;
   final Widget body;
   final Widget menu;
   final Widget? aside;
@@ -18,19 +24,22 @@ class TagScaffold extends StatelessWidget {
     super.key,
     required this.title,
     required this.path,
-    required this.description,
     required this.body,
     required this.menu,
+    this.description,
+    this.appBar,
     this.aside,
     this.header,
     this.tabBar,
     this.actionsHeader,
+    this.onTapBreadcrumb,
   });
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: MainLayoutAdaptativy(
+        appBar: appBar,
         left: menu,
         body: Align(
           alignment: Alignment.topLeft,
@@ -47,6 +56,7 @@ class TagScaffold extends StatelessWidget {
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverPersistentHeader(
                   delegate: _SliverHeaderBreadcrumbDelegate(
+                    onTapBreadcrumb: onTapBreadcrumb,
                     path: path,
                   ),
                   pinned: isDesktop,
@@ -144,10 +154,12 @@ class _SliverHeaderDelegate extends SliverPersistentHeaderDelegate {
 class _SliverHeaderBreadcrumbDelegate extends SliverPersistentHeaderDelegate {
   _SliverHeaderBreadcrumbDelegate({
     required this.path,
+    this.onTapBreadcrumb,
   });
 
-  final List<String> path;
+  final List<TagPath> path;
 
+  final void Function(String route)? onTapBreadcrumb;
   @override
   double get maxExtent => 50;
 
@@ -161,6 +173,7 @@ class _SliverHeaderBreadcrumbDelegate extends SliverPersistentHeaderDelegate {
       color: TagColors.colorBaseWhiteNormal,
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TagBreadcrumb(
+        onTapDefault: onTapBreadcrumb ?? (route) {},
         rootItem: "Tag",
         paths: path,
       ),

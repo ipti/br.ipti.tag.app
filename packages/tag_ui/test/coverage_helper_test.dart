@@ -30,7 +30,6 @@ import 'package:tag_ui/src/components/logo/logo_light.dart';
 import 'package:tag_ui/src/components/logo/logo.dart';
 import 'package:tag_ui/src/components/logo/logo_grey.dart';
 import 'package:tag_ui/src/components/menu/tag_menu.dart';
-import 'package:tag_ui/src/components/menu/i_tag_menu_item.dart';
 import 'package:tag_ui/src/components/menu/menu_item/tag_menu_item.dart';
 import 'package:tag_ui/src/components/datepicker/tag_datepicker_field.dart';
 import 'package:tag_ui/src/design_tokens/colors.dart';
@@ -55,5 +54,6 @@ import 'package:tag_ui/src/responsive_helpers/responsive_helpers.dart';
 import 'package:tag_ui/src/responsive_helpers/show_on_desktop.dart';
 import 'package:tag_ui/src/responsive_helpers/toggle_mobile_desktop.dart';
 import 'package:tag_ui/src/strings/file_paths.dart';
+
 // ignore: no-empty-block
-void main(){}
+void main() {}

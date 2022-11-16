@@ -15,11 +15,12 @@ void main() {
     });
 
     testWidgets("render", (WidgetTester tester) async {
+      const path = TagPath("titulo", "");
       final tagMenuItem = TagMenuItem(
-        title: "titulo",
-        route: "",
+        props: TagMenuItemProps(path: path),
         onTap: (rota) {},
       );
+
       await tester.pumpWidget(
         wrapWithBaseApp(tagMenuItem),
       );
@@ -27,10 +28,10 @@ void main() {
       expect(resultSearch, findsOneWidget);
     });
     testWidgets("render with text", (WidgetTester tester) async {
+      const path = TagPath("titulo", "");
       final tagMenuItem = TagMenuItem(
-        title: "titulo",
-        route: "",
-        onTap: (route) {},
+        props: TagMenuItemProps(path: path),
+        onTap: (rota) {},
       );
       await tester.pumpWidget(
         wrapWithBaseApp(tagMenuItem),
@@ -39,13 +40,15 @@ void main() {
       expect(resultSearch, findsOneWidget);
     });
     testWidgets("render with icon", (WidgetTester tester) async {
+      const path = TagPath("titulo", "");
       final tagMenuItem = TagMenuItem(
-        title: "titulo",
-        route: "",
+        props: TagMenuItemProps(
+          path: path,
+          icon: TagIcon(
+              defaultVersionPath: FilePaths.LOGO_LIGHT_PATH_SVG,
+              disabledVersionPath: FilePaths.LOGO_GREY_PATH_SVG),
+        ),
         onTap: (rota) {},
-        icon: TagIcon(
-            defaultVersionPath: FilePaths.LOGO_LIGHT_PATH_SVG,
-            disabledVersionPath: FilePaths.LOGO_GREY_PATH_SVG),
       );
       await tester.pumpWidget(
         wrapWithBaseAppAndBundle(tagMenuItem),
@@ -58,9 +61,9 @@ void main() {
       when(() => dumb.callWithParam1(
             any(),
           )).thenAnswer((invocation) {});
+      const path = TagPath("titulo", "/rota");
       final tagMenuItem = TagMenuItem(
-        title: "titulo",
-        route: "/rota",
+        props: TagMenuItemProps(path: path),
         onTap: (rota) {
           dumb.callWithParam1(rota);
         },

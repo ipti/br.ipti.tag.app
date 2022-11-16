@@ -18,6 +18,7 @@ void main() {
     });
     testWidgets("render", (WidgetTester tester) async {
       final tagBreadcrumb = TagBreadcrumb(
+        onTapDefault: (route) {},
         paths: [],
       );
       await tester.pumpWidget(
@@ -28,7 +29,12 @@ void main() {
     });
     testWidgets("render all items", (WidgetTester tester) async {
       final tagBreadcrumb = TagBreadcrumb(
-        paths: ["menu", "mangás", "Aventura"],
+        onTapDefault: (route) {},
+        paths: [
+          TagPath("", "menu"),
+          TagPath("", "mangás"),
+          TagPath("", "Aventura")
+        ],
       );
       await tester.pumpWidget(
         wrapWithBaseApp(tagBreadcrumb),
@@ -44,7 +50,12 @@ void main() {
 
     testWidgets("render the correct first item", (WidgetTester tester) async {
       final tagBreadcrumb = TagBreadcrumb(
-        paths: ["Menu", "Mangás", "Aventura"],
+        onTapDefault: (route) {},
+        paths: [
+          TagPath("", "Menu"),
+          TagPath("", "Mangás"),
+          TagPath("", "Aventura")
+        ],
       );
 
       await tester.pumpWidget(
@@ -59,7 +70,12 @@ void main() {
 
     testWidgets("render the correct last item", (WidgetTester tester) async {
       final tagBreadcrumb = TagBreadcrumb(
-        paths: ["Menu", "Mangás", "Aventura"],
+        onTapDefault: (route) {},
+        paths: [
+          TagPath("", "Menu"),
+          TagPath("", "Mangás"),
+          TagPath("", "Aventura")
+        ],
       );
 
       await tester.pumpWidget(

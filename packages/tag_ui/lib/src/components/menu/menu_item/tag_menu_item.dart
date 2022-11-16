@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../i_tag_menu_item.dart';
-
 enum MenuItemState { Normal, Hover, Click, Disabled }
 
-class TagMenuItem extends ITagMenuItem {
-  const TagMenuItem({
-    required super.title,
-    required super.route,
-    required super.onTap,
-    super.isActive = false,
-    this.icon,
-    this.menuItemState,
-  });
-
-  final TagIcon? icon;
-  final MenuItemState? menuItemState;
+class TagMenuItem extends StatelessWidget {
+  const TagMenuItem({required this.props, required this.onTap});
+  final TagMenuItemProps props;
+  final void Function(String route) onTap;
 
   @override
   Widget build(BuildContext context) {
-    final textColor =
-        isActive ? TagColors.colorBaseProductDark : TagColors.colorBaseInkLight;
+    final textColor = props.isActive
+        ? TagColors.colorBaseProductDark
+        : TagColors.colorBaseInkLight;
 
     final textStyle = TextStyle(
       color: textColor,
@@ -29,7 +20,7 @@ class TagMenuItem extends ITagMenuItem {
       fontSize: TagFontSize.fontSizeHeadingTitle3,
     );
     final indicatorColor =
-        isActive ? TagColors.colorBaseProductDark : Colors.transparent;
+        props.isActive ? TagColors.colorBaseProductDark : Colors.transparent;
 
     return LayoutBuilder(builder: (context, constraints) {
       return Stack(
@@ -57,7 +48,7 @@ class TagMenuItem extends ITagMenuItem {
                 TagBorderRadiusValues.borderRadiusLarge,
               ),
               onTap: () {
-                onTap.call(route);
+                onTap(props.path.path);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -71,12 +62,13 @@ class TagMenuItem extends ITagMenuItem {
                   constraints: constraints,
                   child: Row(
                     children: [
-                      if (icon != null) icon!..disabled = !isActive,
+                      if (props.icon != null)
+                        props.icon!..disabled = !props.isActive,
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
-                            title,
+                            props.path.label,
                             style: textStyle,
                           ),
                         ),

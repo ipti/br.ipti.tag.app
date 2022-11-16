@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
-import 'i_tag_menu_item.dart';
 
 class TagMenu extends StatelessWidget {
-  const TagMenu(
-      {super.key, required this.items, required this.currentPathMenu});
+  const TagMenu({
+    super.key,
+    required this.items,
+    required this.currentPathMenu,
+    required this.onTapDefault,
+  });
 
-  final List<ITagMenuItem> items;
+  final List<TagMenuItemProps> items;
   final String currentPathMenu;
+  final void Function(String route) onTapDefault;
 
   @override
   Widget build(BuildContext context) {
+    final _items = [
+      for (var i in items)
+        TagMenuItem(
+          props: TagMenuItemProps(
+            path: i.path,
+            isActive: currentPathMenu.contains(i.path.path),
+            icon: i.icon,
+          ),
+          onTap: i.onTap ?? onTapDefault,
+        ),
+    ];
     return Theme(
       data: Theme.of(context).copyWith(
         canvasColor: TagColors.colorBaseProductLight,
@@ -35,7 +50,7 @@ class TagMenu extends StatelessWidget {
                       width: 64,
                     ),
                   ),
-                  ...items
+                  ..._items
                 ],
               ),
             ),

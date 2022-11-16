@@ -10,6 +10,7 @@ void main() {
     });
     testWidgets("render", (WidgetTester tester) async {
       final tagMenu = TagMenu(
+        onTapDefault: (route) {},
         currentPathMenu: '',
         items: [],
       );
@@ -21,14 +22,11 @@ void main() {
     });
     testWidgets("render with itens", (WidgetTester tester) async {
       final tagMenu = TagMenu(
+        onTapDefault: (route) {},
         currentPathMenu: '',
         items: [
           for (var i = 0; i < 30; i++)
-            TagMenuItem(
-              onTap: (rota) {},
-              title: "titulo $i",
-              route: "",
-            ),
+            TagMenuItemProps(path: TagPath("", "titulo $i")),
         ],
       );
       await tester.pumpWidget(

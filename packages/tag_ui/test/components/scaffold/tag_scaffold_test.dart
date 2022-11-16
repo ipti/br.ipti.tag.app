@@ -36,7 +36,7 @@ void main() {
         (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -58,7 +58,7 @@ void main() {
         (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -79,7 +79,7 @@ void main() {
     testWidgets("render with body", (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -100,7 +100,7 @@ void main() {
     testWidgets("render with actionsHeader", (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -122,7 +122,7 @@ void main() {
     testWidgets("render with aside", (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -146,7 +146,7 @@ void main() {
     testWidgets("render with tabBar", (WidgetTester tester) async {
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: Container(
           key: Key("Body"),
@@ -188,7 +188,7 @@ void main() {
       );
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: TabBarView(children: [
           Container(
@@ -250,7 +250,7 @@ void main() {
       );
       final tagScaffold = TagScaffold(
         title: "titulo",
-        path: ["menu", "mangás"],
+        path: [TagPath("", "menu"), TagPath("", "mangás")],
         description: "descrição",
         body: TabBarView(children: [
           Container(
