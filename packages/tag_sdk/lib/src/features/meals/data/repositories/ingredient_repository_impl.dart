@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/meals/data/datasources/local/ingredient_dumb_datasource.dart';
 import 'package:tag_sdk/src/features/meals/data/datasources/remote/stock_remote_datasource.dart';
 import 'package:tag_sdk/src/features/meals/domain/entities/ingredient.dart';
@@ -14,14 +15,14 @@ class IngredientRepositoryImpl implements IngredientRepository {
   final IngredientRemoteDataSource remoteDataSource;
 
   @override
-  Future<Either<Exception, List<Ingredient>>> list() async {
+  Future<Either<Failure, List<Ingredient>>> list() async {
     try {
       final result = await remoteDataSource.list();
 
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível ler dados do JSON"),
+        Failure("Não foi possível ler dados do JSON"),
       );
     }
   }

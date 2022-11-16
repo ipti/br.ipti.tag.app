@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 
 abstract class InstructorRepository {
-  Future<Either<Exception, List<Instructor>>> listAll();
-  Future<Either<Exception, Instructor>> getById(String id);
-  Future<Either<Exception, Instructor>> create(Instructor instructor);
-  Future<Either<Exception, Instructor>> update(
+  Future<Either<Failure, List<Instructor>>> listAll();
+  Future<Either<Failure, Instructor>> getById(String id);
+  Future<Either<Failure, Instructor>> create(Instructor instructor);
+  Future<Either<Failure, Instructor>> update(
     String id,
     Instructor instructor,
   );

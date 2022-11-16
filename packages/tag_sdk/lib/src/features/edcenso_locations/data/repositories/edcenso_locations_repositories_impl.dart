@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/edcenso_locations/data/datasources/edcenso_locations_local_datasource.dart';
 import 'package:tag_sdk/src/features/edcenso_locations/data/datasources/edcenso_locations_remote_datasource.dart';
 import 'package:tag_sdk/src/features/edcenso_locations/domain/entities/edcenso_city.dart';
@@ -13,7 +14,7 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
   EdcensoLocationsRepositoryImpl(this._remoteDatasource, this._localDatasource);
 
   @override
-  Future<Either<Exception, List<EdCensoCity>>> listCities([
+  Future<Either<Failure, List<EdCensoCity>>> listCities([
     int? edCensoUfId,
   ]) async {
     try {
@@ -35,13 +36,13 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
       return Right(filteredResults);
     } catch (e) {
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, List<EdCensoUF>>> listUfs() async {
+  Future<Either<Failure, List<EdCensoUF>>> listUfs() async {
     try {
       final results = await _remoteDatasource.listUFs();
 
@@ -52,7 +53,7 @@ class EdcensoLocationsRepositoryImpl extends EdcensoLocationsRepository {
       return Right(results);
     } catch (e) {
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }

@@ -1,13 +1,14 @@
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/enrollment.dart';
 
 abstract class StudentEnrollmentRepository {
-  Future<Either<Exception, StudentEnrollment>> getById(int id);
-  Future<Either<Exception, StudentEnrollment>> getStudentById(int id);
-  Future<Either<Exception, StudentEnrollment>> create(
+  Future<Either<Failure, StudentEnrollment>> getById(int id);
+  Future<Either<Failure, StudentEnrollment>> getStudentById(int id);
+  Future<Either<Failure, StudentEnrollment>> create(
     StudentEnrollment studentdosStudentEnrollment,
   );
-  Future<Either<Exception, StudentEnrollment>> update(
+  Future<Either<Failure, StudentEnrollment>> update(
     String id,
     StudentEnrollment student,
   );

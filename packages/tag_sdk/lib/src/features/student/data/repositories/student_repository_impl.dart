@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_remote_datasource.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_model.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
@@ -14,7 +15,7 @@ class StudentRepositoryImpl implements StudentRepository {
   final StudentRemoteDataSource _studentDataSource;
 
   @override
-  Future<Either<Exception, List<Student>>> listAll({
+  Future<Either<Failure, List<Student>>> listAll({
     required String schoolId,
   }) async {
     try {
@@ -27,13 +28,13 @@ class StudentRepositoryImpl implements StudentRepository {
       );
 
       return Left(
-        Exception("Não foi possível listar estudantes, tente novamente"),
+        Failure("Não foi possível listar estudantes, tente novamente"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Student>> getById(
+  Future<Either<Failure, Student>> getById(
     String id, {
     required String schoolId,
   }) async {
@@ -43,13 +44,13 @@ class StudentRepositoryImpl implements StudentRepository {
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Student>> create(Student student) async {
+  Future<Either<Failure, Student>> create(Student student) async {
     try {
       final model = StudentModel.fromEntity(student);
       final result = await _studentDataSource.create(model);
@@ -57,13 +58,13 @@ class StudentRepositoryImpl implements StudentRepository {
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível adicionar estudante"),
+        Failure("Não foi possível adicionar estudante"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Student>> update(int id, Student student) async {
+  Future<Either<Failure, Student>> update(int id, Student student) async {
     try {
       final model = StudentModel.fromEntity(student);
       final result = await _studentDataSource.update(id, model);
@@ -71,20 +72,20 @@ class StudentRepositoryImpl implements StudentRepository {
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível alterar estudante"),
+        Failure("Não foi possível alterar estudante"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, bool>> delete(String id) async {
+  Future<Either<Failure, bool>> delete(String id) async {
     try {
       final result = await _studentDataSource.delete(id);
 
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível deletar estudante"),
+        Failure("Não foi possível deletar estudante"),
       );
     }
   }

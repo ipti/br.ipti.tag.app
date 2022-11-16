@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 import 'package:tag_sdk/src/features/teacher/domain/repositories/instructor_repository.dart';
 
@@ -11,7 +12,7 @@ class UpdateInstructorsUsecase
 
   @override
   // ignore: long-method
-  Future<Either<Exception, Instructor>> call(
+  Future<Either<Failure, Instructor>> call(
     UpdateInstructorParams params,
   ) async {
     final instructor = Instructor(

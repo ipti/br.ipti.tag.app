@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
 
 class DeleteStudentsUsecase implements Usecase<bool, DeleteStudentParams> {
@@ -8,7 +9,7 @@ class DeleteStudentsUsecase implements Usecase<bool, DeleteStudentParams> {
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Exception, bool>> call(DeleteStudentParams params) async {
+  Future<Either<Failure, bool>> call(DeleteStudentParams params) async {
     final result = await _repositoryStudent.delete(params.id);
 
     return result;

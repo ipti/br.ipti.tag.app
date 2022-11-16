@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/edcenso_disciplines/data/datasources/edcenso_locations_local_datasource.dart';
 import 'package:tag_sdk/src/features/edcenso_disciplines/data/datasources/edcenso_locations_remote_datasource.dart';
 import 'package:tag_sdk/src/features/edcenso_disciplines/domain/entities/edcenso_discipline.dart';
@@ -17,7 +18,7 @@ class EdcensoDisciplinesRepositoryImpl extends EdcensoDisciplinesRepository {
   );
 
   @override
-  Future<Either<Exception, List<EdcensoDiscipline>>> listAll([
+  Future<Either<Failure, List<EdcensoDiscipline>>> listAll([
     String? edCensoUfId,
   ]) async {
     try {
@@ -39,7 +40,7 @@ class EdcensoDisciplinesRepositoryImpl extends EdcensoDisciplinesRepository {
       log(e.toString());
 
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }

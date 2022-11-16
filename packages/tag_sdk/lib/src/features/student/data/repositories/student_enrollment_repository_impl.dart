@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_enrollment_remote_datasource.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_enrollment_model.dart';
@@ -15,20 +16,20 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
   final StudentEnrollmenrRemoteDataSource _enrollmenrRemoteDataSource;
 
   @override
-  Future<Either<Exception, StudentEnrollment>> getById(int id) async {
+  Future<Either<Failure, StudentEnrollment>> getById(int id) async {
     try {
       final result = await _enrollmenrRemoteDataSource.getById(id);
 
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, StudentEnrollment>> getStudentById(
+  Future<Either<Failure, StudentEnrollment>> getStudentById(
     int studentId,
   ) async {
     try {
@@ -43,13 +44,13 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
       );
 
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, StudentEnrollment>> create(
+  Future<Either<Failure, StudentEnrollment>> create(
     StudentEnrollment studentEnrollment,
   ) async {
     try {
@@ -60,13 +61,13 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível adicionar estudante"),
+        Failure("Não foi possível adicionar estudante"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, StudentEnrollment>> update(
+  Future<Either<Failure, StudentEnrollment>> update(
     String id,
     StudentEnrollment studentEnrollment,
   ) async {
@@ -79,7 +80,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível alterar estudante"),
+        Failure("Não foi possível alterar estudante"),
       );
     }
   }

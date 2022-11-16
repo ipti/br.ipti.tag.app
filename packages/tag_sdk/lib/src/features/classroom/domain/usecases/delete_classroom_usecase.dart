@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/classroom/domain/repositories/classroom_repository.dart';
 
 class DeleteClassroomUsecase extends Usecase<bool, String> {
@@ -8,7 +9,7 @@ class DeleteClassroomUsecase extends Usecase<bool, String> {
   final ClassroomRepository _repositoryClassroom;
 
   @override
-  Future<Either<Exception, bool>> call(
+  Future<Either<Failure, bool>> call(
     String params,
   ) async {
     return _repositoryClassroom.delete(

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_create_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/repositories/classroom_repository.dart';
 
@@ -9,7 +10,7 @@ class UpdateClassroomUsecase extends Usecase<bool, UpdateClassroomParams> {
   final ClassroomRepository _repositoryClassroom;
 
   @override
-  Future<Either<Exception, bool>> call(
+  Future<Either<Failure, bool>> call(
     UpdateClassroomParams params,
   ) async {
     return _repositoryClassroom.update(

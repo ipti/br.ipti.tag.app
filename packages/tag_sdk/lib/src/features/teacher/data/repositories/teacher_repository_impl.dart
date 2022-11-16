@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 
 import 'package:tag_sdk/src/features/teacher/data/datasources/remote/teacher_remote_datasource.dart';
 import 'package:tag_sdk/src/features/teacher/data/models/instructor_model.dart';
@@ -13,7 +14,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
   final TeacherRemoteDataSource _instructorDataSource;
 
   @override
-  Future<Either<Exception, List<Instructor>>> listAll() async {
+  Future<Either<Failure, List<Instructor>>> listAll() async {
     try {
       final results = await _instructorDataSource.listAll();
 
@@ -26,26 +27,26 @@ class InstructorRepositoryImpl implements InstructorRepository {
       );
 
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Instructor>> getById(String id) async {
+  Future<Either<Failure, Instructor>> getById(String id) async {
     try {
       final result = await _instructorDataSource.getById(id);
 
       return Right(result);
     } catch (e) {
       return Left(
-        Exception("Não foi possível listar"),
+        Failure("Não foi possível listar"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Instructor>> create(Instructor instructor) async {
+  Future<Either<Failure, Instructor>> create(Instructor instructor) async {
     try {
       final instructorModel = InstructorModel.fromEntity(instructor);
       final results = await _instructorDataSource.create(instructorModel);
@@ -57,13 +58,13 @@ class InstructorRepositoryImpl implements InstructorRepository {
       );
 
       return Left(
-        Exception("Não foi possível adicionar professor"),
+        Failure("Não foi possível adicionar professor"),
       );
     }
   }
 
   @override
-  Future<Either<Exception, Instructor>> update(
+  Future<Either<Failure, Instructor>> update(
     String id,
     Instructor instructor,
   ) async {
@@ -78,7 +79,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
       );
 
       return Left(
-        Exception("Não foi possível atualizar dados do professor"),
+        Failure("Não foi possível atualizar dados do professor"),
       );
     }
   }

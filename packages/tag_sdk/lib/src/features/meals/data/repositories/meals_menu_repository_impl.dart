@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/meals/data/datasources/local/meals_menu_dumb_datasource.dart';
 import 'package:tag_sdk/src/features/meals/data/datasources/remote/meals_remote_datasource.dart';
 import 'package:tag_sdk/src/features/meals/domain/entities/meals_menu.dart';
@@ -17,7 +18,7 @@ class MealsMenuRepositoryImpl implements MealsMenuRepository {
   final MealsMenuEntityMapper mapper;
 
   @override
-  Future<Either<Exception, List<MealsMenu>>> list() async {
+  Future<Either<Failure, List<MealsMenu>>> list() async {
     try {
       final result = await dumbDataSource.listAll();
       final mappedResult = result
@@ -29,7 +30,7 @@ class MealsMenuRepositoryImpl implements MealsMenuRepository {
       return Right(mappedResult);
     } catch (e) {
       return Left(
-        Exception("Não foi possível ler dados do JSON"),
+        Failure("Não foi possível ler dados do JSON"),
       );
     }
   }

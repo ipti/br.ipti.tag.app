@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/defaults/usecase.dart';
+import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
 
@@ -10,7 +11,7 @@ class ListStudentsUsecase
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Exception, List<Student>>> call(
+  Future<Either<Failure, List<Student>>> call(
     ListStudentsParams params,
   ) async {
     final result = await _repositoryStudent.listAll(schoolId: params.schoolId);
