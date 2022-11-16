@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:tag_network/src/network/endpoint/endpoint.dart';
 import 'package:tag_network/src/network/service/paginated_response.dart';
@@ -23,7 +25,8 @@ class RouterAPI implements NetworkRouter {
         response,
         null,
       );
-    } catch (e) {
+    } on DioError catch (e) {
+      log(e.message);
       rethrow;
     }
   }
