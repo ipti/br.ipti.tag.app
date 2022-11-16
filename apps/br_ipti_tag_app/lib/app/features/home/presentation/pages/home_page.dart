@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_app/app/features/home/presentation/cubit/home_cubit.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -70,7 +71,18 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   default:
-                    return const TagEmpty();
+                    return TableCalendar(
+                      locale: 'pt_BR',
+                      firstDay: DateTime.utc(2010, 10, 16),
+                      lastDay: DateTime.utc(2030, 3, 14),
+                      focusedDay: DateTime.now(),
+                      // headerVisible: false
+                      headerStyle: const HeaderStyle(
+                        titleCentered: true,
+                        formatButtonVisible: false,
+                      ),
+                      daysOfWeekVisible: false,
+                    );
                 }
               },
             ),
