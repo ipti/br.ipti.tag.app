@@ -58,10 +58,17 @@ jobs:
           echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
           echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
           echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
-      
-      - name: 📦 Download pub dependencies
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
-        run: flutter pub get      
+            
+      - name: Setup Melos
+        working-directory: flutterfire
+        run: |
+          flutter pub global activate melos
+
+      - name: 📦 Melos bootstrap
+        run: flutter pub global run melos bootstrap
+
+      - name: 🏃 Running coding genarate        
+        run: flutter pub global run melos run gen_code:sdk
 
       - name: 🤖 Build Android App Bundle
         working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
