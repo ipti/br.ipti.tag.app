@@ -31,6 +31,10 @@ scripts:
     select-package:
       scope: 'br_ipti_tag_app'
 
+  gen_code:sdk:
+    run: melos exec -- flutter pub run build_runner build -d
+    select-package:
+      scope: 'br_ipti_tag_app'
   gen_coverage: 
     run:      
       melos exec -c 1 -- "\$MELOS_ROOT_PATH/combine_coverage.sh"

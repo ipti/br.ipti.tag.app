@@ -60,6 +60,18 @@ jobs:
         working-directory: flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
+      
+      - name: Setup Melos
+        working-directory: flutterfire
+        run: |
+          dart pub global activate melos
+
+
+      - name: 🏃 Running coding genarate        
+        run: flutter pub global run melos bootstrap
+
+      - name: 🏃 Running coding genarate        
+        run: flutter pub global run melos run gen_code:sdk
 
       - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ${{inputs.working_directory}}

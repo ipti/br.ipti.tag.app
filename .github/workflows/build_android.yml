@@ -61,11 +61,7 @@ jobs:
       
       - name: 📦 Download pub dependencies
         working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
-        run: flutter pub get
-
-      - name: 🏃 Running coding genarate
-        working-directory: ${{ steps.project-folder.outputs.download-path }}/packages/tag_sdk
-        run: flutter pub get & flutter pub run build_runner build --delete-conflicting-outputs
+        run: flutter pub get      
 
       - name: 🤖 Build Android App Bundle
         working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app
