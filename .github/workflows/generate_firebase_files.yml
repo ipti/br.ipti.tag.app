@@ -68,10 +68,10 @@ jobs:
 
 
       - name: 🏃 Running coding genarate        
-        run: flutter pub global run melos bootstrap
+        run: dart pub global run melos bootstrap
 
       - name: 🏃 Running coding genarate        
-        run: flutter pub global run melos run gen_code:sdk
+        run: dart pub global run melos run gen_code:sdk
 
       - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ${{inputs.working_directory}}
