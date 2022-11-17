@@ -49,7 +49,7 @@ class StudentDocumentsAddressModel extends StudentDocsAddress {
 
   @override
   StudentDocumentsAddressModel copyWith({
-    String? id,
+    int? id,
     String? registerType,
     String? schoolInepIdFk,
     int? studentFk,

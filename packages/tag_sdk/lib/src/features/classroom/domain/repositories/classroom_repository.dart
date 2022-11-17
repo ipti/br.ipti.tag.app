@@ -19,15 +19,15 @@ abstract class ClassroomRepository {
   Future<Either<Failure, List<ClassroomEntity>>> listAll(
       ClassroomParams params);
   Future<Either<Failure, bool>> update({
-    required String id,
+    required int id,
     required ClassroomCreateEntity classroomCreateEntity,
   });
   Future<Either<Failure, bool>> updateInstructorTeachingData({
-    required String id,
+    required int id,
     required InstructorTeachingDataUpdateEntity instructor,
   });
   Future<Either<Failure, bool>> delete({
-    required String id,
+    required int id,
   });
 
   Future<Either<Failure, List<InstructorTeachingDataEntity>>>

@@ -90,13 +90,13 @@ void main() {
     testWidgets("update has right value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(
-        () => datasource.update("", studentDocsAddressModel),
+        () => datasource.update(1, studentDocsAddressModel),
       ).thenAnswer(
         (invocation) => Future.value(studentDocsAddressModel),
       );
 
       final repository = StudentDocumentsAddressRepositoryImpl(datasource);
-      final params = await repository.update("", studentDocsAddressModel);
+      final params = await repository.update(1, studentDocsAddressModel);
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
       expect(
@@ -107,13 +107,13 @@ void main() {
     testWidgets("alterar has left value", (tester) async {
       final datasource = MockStudentDocumentsAndAddressRemoteDataSource();
       when(
-        () => datasource.update("", studentDocsAddressModel),
+        () => datasource.update(1, studentDocsAddressModel),
       ).thenThrow(
         (invocation) => Failure("Não foi possível alterar estudante"),
       );
 
       final repository = StudentDocumentsAddressRepositoryImpl(datasource);
-      final params = await repository.update("", studentDocsAddressModel);
+      final params = await repository.update(1, studentDocsAddressModel);
 
       expect(params.isLeft(), isTrue);
       final result = params.fold(id, id);

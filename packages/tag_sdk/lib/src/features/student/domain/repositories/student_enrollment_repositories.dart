@@ -9,7 +9,7 @@ abstract class StudentEnrollmentRepository {
     StudentEnrollment studentdosStudentEnrollment,
   );
   Future<Either<Failure, StudentEnrollment>> update(
-    String id,
+    int id,
     StudentEnrollment student,
   );
 }

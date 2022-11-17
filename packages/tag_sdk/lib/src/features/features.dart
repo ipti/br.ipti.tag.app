@@ -7,6 +7,7 @@ export 'auth/data/models/user_model.dart';
 export 'auth/data/repositories/auth_repository_impl.dart';
 export 'auth/domain/entities/auth_login.dart';
 export 'auth/domain/entities/auth_response.dart';
+export 'auth/domain/entities/auth_school.dart';
 export 'auth/domain/entities/user.dart';
 export 'auth/domain/repositories/auth_repository.dart';
 export 'auth/domain/usecases/login_usecase.dart';

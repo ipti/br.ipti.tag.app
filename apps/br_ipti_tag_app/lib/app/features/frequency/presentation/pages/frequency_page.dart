@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
@@ -15,13 +17,9 @@ class FrequencyPage extends StatefulWidget {
   const FrequencyPage({
     super.key,
     this.title = "Frequência",
-    required this.classroom,
-    required this.discipline,
   });
 
   final String title;
-  final ClassroomEntity classroom;
-  final EdcensoDiscipline discipline;
 
   @override
   State<FrequencyPage> createState() => _FrequencyPageState();
@@ -33,17 +31,16 @@ class _FrequencyPageState extends State<FrequencyPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    controller.fetchListStudentEvent();
+    controller.fetchListClassroomsEvent();
+    controller.fetchListDisciplinesEvent();
   }
 
   @override
   Widget build(BuildContext context) {
     return TagScaffold(
       title: "Frequencia",
-      path: [
+      path: const [
         AppRoutes.frequencia,
-        TagPath(AppRoutes.frequencia.path, widget.classroom.name),
-        TagPath(AppRoutes.frequencia.path, widget.discipline.name),
       ],
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "",
@@ -62,19 +59,9 @@ class _FrequencyPageState extends State<FrequencyPage> {
                       child: CircularProgressIndicator(),
                     );
                   case Status.success:
-                    return TagDataTable(
-                      onTapRow: (index) => Modular.to.pushNamed(
-                        "updatePage",
-                        arguments: state.students[index],
-                      ),
-                      columns: const [
-                        DataColumn(
-                          label: Text("Nome"),
-                        ),
-                      ],
-                      source: StudentsDatatable(
-                        data: state.students,
-                      ),
+                    return _FormFilter(
+                      classrooms: state.classrooms,
+                      disciplines: state.disciplines,
                     );
                   default:
                     return TagEmpty(
@@ -90,18 +77,54 @@ class _FrequencyPageState extends State<FrequencyPage> {
   }
 }
 
+class _FormFilter extends StatelessWidget {
+  const _FormFilter({
+    Key? key,
+    required this.classrooms,
+    required this.disciplines,
+  }) : super(key: key);
+
+  final List<ClassroomEntity> classrooms;
+  final List<EdcensoDiscipline> disciplines;
+
+  @override
+  Widget build(BuildContext context) {
+    final classroomsItens = {for (var c in classrooms) c: c.name};
+    final disciplinesItens = {for (var d in disciplines) d: d.name};
+
+    return RowToColumn(
+      children: [
+        Flexible(
+          child: TagDropdownField<ClassroomEntity>(
+            onChanged: (e) => log(e.toString()),
+            label: "Turma",
+            items: classroomsItens,
+          ),
+        ),
+        Flexible(
+          child: TagDropdownField<EdcensoDiscipline>(
+            onChanged: (e) => log(e.toString()),
+            label: "Disciplinas",
+            items: disciplinesItens,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class StudentsDatatable extends DataTableSource {
   StudentsDatatable({
     required this.data,
   });
 
-  final List<Student> data;
+  final List<StudentIdentification> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name!,
+        data[index].name,
       )),
     ]);
   }

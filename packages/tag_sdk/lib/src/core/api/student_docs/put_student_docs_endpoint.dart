@@ -8,7 +8,7 @@ class PutStudentDocsEndPoint extends EndPointAPI {
   });
 
   final StudentDocumentsAddressModel model;
-  final String id;
+  final int id;
 
   @override
   String get path => '/student-docs-and-address/$id';

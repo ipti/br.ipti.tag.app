@@ -139,7 +139,7 @@ class StudentDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Student> data;
+  final List<StudentIdentification> data;
 
   @override
   DataRow getRow(int index) {
@@ -148,16 +148,16 @@ class StudentDatatable extends DataTableSource {
         DataCell(
           ToggleMobileDesktop(
             desktop: Text(
-              data[index].name!.toUpperCase(),
+              data[index].name.toUpperCase(),
             ),
             mobile: Text(
-              data[index].name!.toUpperCase(),
+              data[index].name.toUpperCase(),
               style: TagTextStyles.textTableColumnHeader,
             ),
           ),
         ),
         DataCell(
-          Text(data[index].birthday ?? ""),
+          Text(data[index].birthday),
         ),
         DataCell(
           Text(data[index].responsableName ?? ""),

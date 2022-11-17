@@ -14,7 +14,7 @@ class FrequencyState extends Equatable {
   final Status status;
   final List<ClassroomEntity> classrooms;
   final List<EdcensoDiscipline> disciplines;
-  final List<Student> students;
+  final List<StudentIdentification> students;
   final String message;
 
   @override
@@ -25,7 +25,7 @@ class FrequencyState extends Equatable {
     Status? status,
     List<ClassroomEntity>? classrooms,
     List<EdcensoDiscipline>? disciplines,
-    List<Student>? students,
+    List<StudentIdentification>? students,
     String? message,
   }) {
     return FrequencyState(
@@ -64,7 +64,7 @@ class LoadedState extends FrequencyState {
   const LoadedState({
     required List<ClassroomEntity> classrooms,
     required List<EdcensoDiscipline> disciplines,
-    required List<Student> students,
+    required List<StudentIdentification> students,
   }) : super(
           status: Status.success,
           message: "",

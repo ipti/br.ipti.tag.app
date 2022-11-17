@@ -207,7 +207,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     emit(loadedEducationDataState);
   }
 
-  Future fetch(String objectId) async {
+  Future fetch(int objectId) async {
     final param = GetInstructorParams(objectId);
     final result = await _getInstructorsUsecase(param);
     result.fold(
@@ -232,7 +232,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
     final school = _session.state.currentSchool!;
 
     final params = CreateInstructorParams(
-      schoolInepIdFk: school.id!,
+      schoolInepIdFk: school.inepId,
       cpf: state.cpf,
       deficiencyTypeGifted: state.deficiencyTypeGifted,
       deficiencyTypeAutism: state.deficiencyTypeAutism,
@@ -325,7 +325,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
 
     final params = UpdateInstructorParams(
       id: state.id!,
-      schoolInepIdFk: school.id!,
+      schoolInepIdFk: school.inepId,
       cpf: state.cpf,
       deficiencyTypeGifted: state.deficiencyTypeGifted,
       deficiencyTypeAutism: state.deficiencyTypeAutism,

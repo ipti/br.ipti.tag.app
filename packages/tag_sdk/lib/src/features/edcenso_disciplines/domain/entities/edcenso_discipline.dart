@@ -1,5 +1,5 @@
 class EdcensoDiscipline {
-  final String id;
+  final int id;
   final String name;
 
   EdcensoDiscipline({

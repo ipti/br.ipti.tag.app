@@ -40,7 +40,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                   builder: (context, state) {
                     final schools = state.schools ?? [];
 
-                    return TagDropdownField<School>(
+                    return TagDropdownField<AuthSchool>(
                       label: "",
                       value: state.currentSchool,
                       onChanged: (school) => sessionController.changeSchool(
@@ -48,7 +48,7 @@ class _HeaderDesktopState extends State<HeaderDesktop> {
                       ),
                       items: Map.fromEntries(
                         schools.map(
-                          (e) => MapEntry(e, e.name!),
+                          (e) => MapEntry(e, e.name),
                         ),
                       ),
                     );

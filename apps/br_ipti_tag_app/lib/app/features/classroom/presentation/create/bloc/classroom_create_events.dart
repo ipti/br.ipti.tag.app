@@ -10,12 +10,12 @@ abstract class ClassroomCreateEvent extends Equatable {
 class StartEditing extends ClassroomCreateEvent {}
 
 class SubmitClassroom extends ClassroomCreateEvent {
-  final String id;
+  final String schoolId;
 
-  const SubmitClassroom({required this.id});
+  const SubmitClassroom({required this.schoolId});
   @override
   List<Object> get props => [
-        id,
+        schoolId,
       ];
 }
 

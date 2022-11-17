@@ -44,7 +44,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> delete({required String id}) async {
+  Future<Either<Failure, bool>> delete({required int id}) async {
     try {
       final result = await classroomRemoteDataSource.delete(id);
 
@@ -56,7 +56,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<Failure, bool>> update({
-    required String id,
+    required int id,
     required ClassroomCreateEntity classroomCreateEntity,
   }) async {
     try {
@@ -104,7 +104,7 @@ class ClassroomRepositoryImpl extends ClassroomRepository {
 
   @override
   Future<Either<Failure, bool>> updateInstructorTeachingData({
-    required String id,
+    required int id,
     required InstructorTeachingDataUpdateEntity instructor,
   }) async {
     try {

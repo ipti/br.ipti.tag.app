@@ -25,7 +25,7 @@ class TeacherRemoteDataSource {
     return mappedList.toList();
   }
 
-  Future<InstructorModel> getById(String id) async {
+  Future<InstructorModel> getById(int id) async {
     final response = await _httpClient.request(
       route: GetInstructorEndPoint(id: id),
     );
@@ -43,7 +43,7 @@ class TeacherRemoteDataSource {
     return mappedValue;
   }
 
-  Future<InstructorModel> update(String id, InstructorModel instructor) async {
+  Future<InstructorModel> update(int id, InstructorModel instructor) async {
     final response = await _httpClient.request(
       route: PutInstructorEndPoint(objectId: id, model: instructor),
     );

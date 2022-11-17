@@ -6,9 +6,9 @@ import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/auth/data/datasources/local/auth_local_datasource.dart';
 import 'package:tag_sdk/src/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:tag_sdk/src/features/auth/domain/entities/auth_response.dart';
+import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
 import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
 import 'package:tag_sdk/src/features/auth/domain/repositories/auth_repository.dart';
-import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
 
 class AuthRespositoryImpl extends AuthRepository {
   AuthRespositoryImpl({
@@ -78,7 +78,7 @@ class AuthRespositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, List<School>>> getCurrentUserSchools() async {
+  Future<Either<Failure, List<AuthSchool>>> getCurrentUserSchools() async {
     try {
       final result = await authLocalDataSource.getCurrentUserSchools();
 
@@ -105,7 +105,7 @@ class AuthRespositoryImpl extends AuthRepository {
 
   @override
   Future<Either<Failure, bool>> storeCurrentUserSchools(
-    List<School> schools,
+    List<AuthSchool> schools,
   ) async {
     try {
       final result = await authLocalDataSource.setCurrentUserSchools(schools);

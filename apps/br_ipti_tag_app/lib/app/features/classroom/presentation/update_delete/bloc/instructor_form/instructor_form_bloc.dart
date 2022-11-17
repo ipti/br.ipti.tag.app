@@ -14,7 +14,8 @@ class InstructorFormBloc
   ) : super(InstructorFormStateLoading()) {
     on<SubmitInstructorForm>((event, emit) async {
       final params = InstructorTeachingDataCreateEntity(
-        schoolInepIdFk: '61a9433412656f31249d2aa2',
+        // TODO: Add school inep
+        schoolInepIdFk: 1,
         instructorFk: _currentInstructor!,
         classroomIdFk: _classroomId!,
         discipline1Fk: selectedDisciplines[0],
@@ -94,8 +95,8 @@ class InstructorFormBloc
       _updateInstructorTeachingDataUseCase;
 
   Future<void> fetchInstructorsAndDisciplines({
-    String? instructorFk,
-    String? instructorDiscipline,
+    int? instructorFk,
+    int? instructorDiscipline,
   }) async {
     final requests = await Future.wait([
       _instructorsUseCase(
@@ -126,7 +127,7 @@ class InstructorFormBloc
     );
 
     if (instructors.isNotEmpty && disciplines.isNotEmpty) {
-      currentInstructor = instructorFk ?? instructors.first.id ?? '1';
+      currentInstructor = instructorFk ?? instructors.first.id ?? 1;
       changeCurrentDiscipline = instructorDiscipline ?? disciplines.first.id;
       add(
         InstructorFormEventSuccess(
@@ -141,20 +142,20 @@ class InstructorFormBloc
     }
   }
 
-  late String? _currentInstructor;
-  set currentInstructor(String selectedInstructorId) =>
+  late int? _currentInstructor;
+  set currentInstructor(int selectedInstructorId) =>
       _currentInstructor = selectedInstructorId;
-  String get currentInstructor => _currentInstructor!;
+  int get currentInstructor => _currentInstructor!;
 
-  late String? _currentDiscipline;
-  set changeCurrentDiscipline(String selectedDisciplineId) =>
+  late int? _currentDiscipline;
+  set changeCurrentDiscipline(int selectedDisciplineId) =>
       _currentDiscipline = selectedDisciplineId;
-  String get changeCurrentDiscipline => _currentDiscipline!;
-  List<String> selectedDisciplines = [];
+  int get changeCurrentDiscipline => _currentDiscipline!;
+  List<int> selectedDisciplines = [];
 
-  late String? _classroomId;
-  set classroomId(String classroomId) => _classroomId = classroomId;
-  String get classroomId => _classroomId!;
+  late int? _classroomId;
+  set classroomId(int classroomId) => _classroomId = classroomId;
+  int get classroomId => _classroomId!;
 
   int _role = 1;
   void changeRole(int? role) => _role = role! + 1;
@@ -164,7 +165,7 @@ class InstructorFormBloc
   void changeContractType(int contractType) => _contractType = contractType + 1;
   int get currentContractType => _contractType - 1;
 
-  String? getIdDiscipline(List<String> disciplinesList, int index) {
+  int? getIdDiscipline(List<int> disciplinesList, int index) {
     try {
       return disciplinesList.elementAt(index);
     } catch (e) {

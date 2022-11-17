@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
@@ -15,16 +17,16 @@ abstract class SessionService {
   Future<bool> setToken(String token);
   Future<bool> cleanToken();
 
-  Future<List<School>> getCurrentUserSchools();
-  Future<bool> setCurrentUserSchools(List<School> schools);
+  Future<List<AuthSchool>> getCurrentUserSchools();
+  Future<bool> setCurrentUserSchools(List<AuthSchool> schools);
   Future<bool> cleanCurrentUserSchools();
 
   Future<String> getSchoolYear();
   Future<bool> setSchoolYear(String year);
   Future<bool> cleanSchoolYear();
 
-  Future<School> getCurrentSchool();
-  Future<bool> setCurrentSchool(School school);
+  Future<AuthSchool> getCurrentSchool();
+  Future<bool> setCurrentSchool(AuthSchool school);
   Future<bool> cleanCurrentSchool();
 }
 
@@ -59,7 +61,7 @@ class SessionServiceImpl extends SessionService {
   }
 
   @override
-  Future<List<School>> getCurrentUserSchools() async {
+  Future<List<AuthSchool>> getCurrentUserSchools() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final schoolsJsonString = _sharedPreferences.getStringList(
@@ -68,16 +70,17 @@ class SessionServiceImpl extends SessionService {
 
     if (schoolsJsonString == null) throw Exception("Não há escolas dispoíveis");
 
-    final result = schoolsJsonString.map((e) => SchoolModel.fromJson(e));
+    final result =
+        schoolsJsonString.map((e) => AuthSchool.fromJson(jsonDecode(e)));
 
     return result.toList();
   }
 
   @override
-  Future<bool> setCurrentUserSchools(List<School> schools) async {
+  Future<bool> setCurrentUserSchools(List<AuthSchool> schools) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
-    final mappedSchools = schools.map((x) => (x as SchoolModel).toJson());
+    final mappedSchools = schools.map((x) => jsonEncode(x));
 
     final result = _sharedPreferences.setStringList(
       KEY_SESSION_USER_SCHOOLS,
@@ -178,13 +181,13 @@ class SessionServiceImpl extends SessionService {
   }
 
   @override
-  Future<School> getCurrentSchool() async {
+  Future<AuthSchool> getCurrentSchool() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final result = _sharedPreferences.getString(KEY_SESSION_CURRENT_SCHOOL);
 
     if (result != null) {
-      final school = SchoolModel.fromJson(result);
+      final school = AuthSchool.fromJson(jsonDecode(result));
 
       return school;
     }
@@ -197,12 +200,12 @@ class SessionServiceImpl extends SessionService {
   }
 
   @override
-  Future<bool> setCurrentSchool(School school) async {
+  Future<bool> setCurrentSchool(AuthSchool school) async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final result = _sharedPreferences.setString(
       KEY_SESSION_CURRENT_SCHOOL,
-      (school as SchoolModel).toJson(),
+      jsonEncode(school.toJson()),
     );
 
     return result;

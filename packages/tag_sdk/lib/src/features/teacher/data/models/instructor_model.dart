@@ -150,7 +150,7 @@ class InstructorModel extends Instructor {
     String? email,
     String? inepId,
     String? registerType,
-    String? id,
+    int? id,
     String? schoolInepIdFk,
     String? name,
     String? birthdayDate,

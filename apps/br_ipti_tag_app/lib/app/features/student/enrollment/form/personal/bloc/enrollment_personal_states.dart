@@ -23,7 +23,7 @@ class EnrollmentPersonalState extends Equatable {
   final bool? deficiencyTypeRettSyndrome;
   final bool? deficiencyTypeChildhoodDisintegrativeDisorder;
   final bool? deficiencyTypeGifted;
-  final Student? student;
+  final StudentIdentification? student;
 
   const EnrollmentPersonalState({
     required this.name,
@@ -72,7 +72,7 @@ class EnrollmentPersonalState extends Equatable {
     bool? deficiencyTypeRettSyndrome,
     bool? deficiencyTypeChildhoodDisintegrativeDisorder,
     bool? deficiencyTypeGifted,
-    Student? student,
+    StudentIdentification? student,
   }) {
     return EnrollmentPersonalState(
       name: name ?? this.name,

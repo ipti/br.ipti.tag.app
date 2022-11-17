@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/school/data/datasources/school_remote_datasource.dart';
-import 'package:tag_sdk/src/features/school/data/models/school_model.dart';
 import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
 import 'package:tag_sdk/src/features/school/domain/repositories/school_repositories.dart';
 
@@ -11,7 +10,7 @@ class SchoolRepositoryImpl extends SchoolRepository {
   final SchoolRemoteDataSource _schoolRemoteDataSource;
 
   @override
-  Future<Either<Failure, SchoolModel>> create(School school) {
+  Future<Either<Failure, School>> create(School school) {
     throw UnimplementedError();
   }
 
@@ -21,12 +20,12 @@ class SchoolRepositoryImpl extends SchoolRepository {
   }
 
   @override
-  Future<Either<Failure, List<SchoolModel>>> getAll() {
+  Future<Either<Failure, List<School>>> getAll() {
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, SchoolModel>> getById(String uuid) async {
+  Future<Either<Failure, School>> getById(String uuid) async {
     try {
       final result = await _schoolRemoteDataSource.getOne(uuid);
 
@@ -39,7 +38,7 @@ class SchoolRepositoryImpl extends SchoolRepository {
   }
 
   @override
-  Future<Either<Failure, SchoolModel>> update(
+  Future<Either<Failure, School>> update(
     String uuid,
     School school,
   ) async {

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_remote_datasource.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_model.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
 
@@ -15,7 +14,7 @@ class StudentRepositoryImpl implements StudentRepository {
   final StudentRemoteDataSource _studentDataSource;
 
   @override
-  Future<Either<Failure, List<Student>>> listAll({
+  Future<Either<Failure, List<StudentIdentification>>> listAll({
     required String schoolId,
   }) async {
     try {
@@ -34,7 +33,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, Student>> getById(
+  Future<Either<Failure, StudentIdentification>> getById(
     String id, {
     required String schoolId,
   }) async {
@@ -50,10 +49,10 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, Student>> create(Student student) async {
+  Future<Either<Failure, StudentIdentification>> create(
+      StudentIdentification student) async {
     try {
-      final model = StudentModel.fromEntity(student);
-      final result = await _studentDataSource.create(model);
+      final result = await _studentDataSource.create(student);
 
       return Right(result);
     } catch (e) {
@@ -64,10 +63,10 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, Student>> update(int id, Student student) async {
+  Future<Either<Failure, StudentIdentification>> update(
+      int id, StudentIdentification student) async {
     try {
-      final model = StudentModel.fromEntity(student);
-      final result = await _studentDataSource.update(id, model);
+      final result = await _studentDataSource.update(id, student);
 
       return Right(result);
     } catch (e) {

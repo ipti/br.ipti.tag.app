@@ -22,7 +22,7 @@ class PutSchoolEndPoint extends EndPointAPI {
       };
 
   @override
-  Parameters? get bodyParameters => () => schoolDto.toMap();
+  Parameters? get bodyParameters => () => schoolDto.toJson();
   @override
   Parameters? get urlParameters => null;
 }

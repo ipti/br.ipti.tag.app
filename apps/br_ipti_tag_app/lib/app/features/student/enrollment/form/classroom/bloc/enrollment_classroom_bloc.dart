@@ -23,7 +23,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
-  void setStudentClass(String? classroomid) => emit(
+  void setStudentClass(int? classroomid) => emit(
         state.copyWith(
           classroomId: classroomid,
         ),
@@ -80,7 +80,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   }
 
   Future fetchClassrooms() async {
-    final schoolId = _session.state.currentSchool!.id!;
+    final schoolId = _session.state.currentSchool?.inepId;
     final params = ClassroomParams(schoolId: schoolId);
     final result = await _listClassroomsUsecase(params);
     result.fold(
@@ -96,7 +96,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   Future submit(EditMode mode) async {
     final _enrollmentBloc = Modular.get<EnrollmentBloc>();
 
-    final schoolId = _session.state.currentSchool!.id!;
+    final schoolId = _session.state.currentSchool!.inepId;
     final studentId = _enrollmentBloc.student!.id!;
 
     switch (mode) {
@@ -155,7 +155,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     );
   }
 
-  Future _update(String id, StudentEnrollment enrollment) async {
+  Future _update(int id, StudentEnrollment enrollment) async {
     final params = UpdateStudentEnrollmentParams(
       enrollmentId: id,
       enrollment: enrollment,

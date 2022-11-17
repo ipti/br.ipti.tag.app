@@ -12,7 +12,7 @@ class EnrollmentInitialState extends EnrollmentState {
 }
 
 class EnrollmentLoadedState extends EnrollmentState {
-  final Student? student;
+  final StudentIdentification? student;
   final StudentDocsAddress? studentDocs;
   final StudentEnrollment? studentEnrollment;
 
@@ -31,7 +31,7 @@ class EnrollmentLoadedState extends EnrollmentState {
 
   EnrollmentLoadedState copyWith({
     int tabIndex = 0,
-    Student? student,
+    StudentIdentification? student,
     StudentDocsAddress? studentDocs,
     StudentEnrollment? studentEnrollment,
   }) {

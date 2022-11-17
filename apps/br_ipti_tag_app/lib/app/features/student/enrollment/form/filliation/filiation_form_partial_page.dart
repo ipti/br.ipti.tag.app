@@ -13,7 +13,7 @@ import 'bloc/enrollment_filiation_states.dart';
 
 class FiliationFormPage extends StatefulWidget {
   const FiliationFormPage({super.key, this.student});
-  final Student? student;
+  final StudentIdentification? student;
   @override
   FiliationFormPageState createState() => FiliationFormPageState();
 }

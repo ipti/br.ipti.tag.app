@@ -12,22 +12,46 @@ void main() {
     (tester) async {
       final repository = MockStudentRepository();
       when(() => repository.create(
-            Student(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           )).thenAnswer(
         (invocation) => Future.value(right(
-          Student(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
         )),
       );
 
       final usercase = FastEnrollmentUsecase(repository);
       final params = EnrollmentParams(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
       final either = await usercase(params);
       final result = either.fold(id, id);
       expect(
         result,
-        isA<Student>(),
+        isA<StudentIdentification>(),
       );
     },
   );
@@ -36,10 +60,26 @@ void main() {
     "FastEnrollmentUsecase whenEmptyParams is equal value",
     (tester) async {
       final params = EnrollmentParams(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
       final params2 = EnrollmentParams(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(
@@ -51,7 +91,15 @@ void main() {
   testWidgets("FastEnrollmentUsecase when create a left value", (tester) async {
     final repository = MockStudentRepository();
     when(() => repository.create(
-          Student(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
         )).thenAnswer(
       (invocation) => Future.value(left(
         const RestFailure("Ocorreu um erro"),
@@ -60,7 +108,15 @@ void main() {
 
     final usercase = FastEnrollmentUsecase(repository);
     final params = EnrollmentParams(
-      Student(),
+      StudentIdentification(
+        registerType: "00",
+        schoolInepIdFk: "21212121",
+        name: "Aluno",
+        birthday: "2002-02-02",
+        sex: 1,
+        colorRace: 1,
+        filiation: 1,
+      ),
     );
     final either = await usercase(params);
     final result = either.fold(id, id);

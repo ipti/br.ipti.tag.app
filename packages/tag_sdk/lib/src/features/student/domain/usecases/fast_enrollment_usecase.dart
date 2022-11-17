@@ -7,16 +7,18 @@ import 'package:tag_sdk/src/features/student/domain/repositories/student_reposit
 class EnrollmentParams {
   const EnrollmentParams(this.student);
 
-  final Student student;
+  final StudentIdentification student;
 }
 
-class FastEnrollmentUsecase implements Usecase<Student, EnrollmentParams> {
+class FastEnrollmentUsecase
+    implements Usecase<StudentIdentification, EnrollmentParams> {
   FastEnrollmentUsecase(this._service);
 
   final StudentRepository _service;
 
   @override
-  Future<Either<Failure, Student>> call(EnrollmentParams params) async {
+  Future<Either<Failure, StudentIdentification>> call(
+      EnrollmentParams params) async {
     return _service.create(params.student);
   }
 }

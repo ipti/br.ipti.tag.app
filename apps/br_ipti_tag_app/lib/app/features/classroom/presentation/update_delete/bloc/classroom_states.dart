@@ -57,7 +57,7 @@ class ClassroomUpdateDeleteFormState extends ClassroomUpdateDeleteState {
   final bool weekDaysThursday;
   final bool weekDaysFriday;
   final bool weekDaysSaturday;
-  final String stageVsModalityFk;
+  final int stageVsModalityFk;
   final int? schoolYear;
   final bool schooling;
   final bool complementaryActivity;
@@ -90,7 +90,7 @@ class ClassroomUpdateDeleteFormState extends ClassroomUpdateDeleteState {
     bool? weekDaysThursday,
     bool? weekDaysFriday,
     bool? weekDaysSaturday,
-    String? stageVsModalityFk,
+    int? stageVsModalityFk,
     int? schoolYear,
     bool? schooling,
     bool? complementaryActivity,

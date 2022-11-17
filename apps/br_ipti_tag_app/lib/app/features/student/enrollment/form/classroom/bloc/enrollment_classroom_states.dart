@@ -19,11 +19,11 @@ class EnrollmentClassroomState extends Equatable {
 
   final List<ClassroomEntity> classrooms;
   final StudentEnrollment? studentEnrollment;
-  final String? classroomId;
+  final int? classroomId;
   final String? schoolAdmissionDate;
   final UnifiedClass? unifiedClass;
   final Stage? stage;
-  final String? edcensoStageVsModalityFk;
+  final int? edcensoStageVsModalityFk;
   final AdmissionType? studentEntryForm;
   final int? status;
   final int? anotherScholarizationPlace;
@@ -33,11 +33,11 @@ class EnrollmentClassroomState extends Equatable {
   EnrollmentClassroomState copyWith({
     StudentEnrollment? studentEnrollment,
     List<ClassroomEntity>? classrooms,
-    String? classroomId,
+    int? classroomId,
     String? schoolAdmissionDate,
     UnifiedClass? unifiedClass,
     Stage? stage,
-    String? edcensoStageVsModalityFk,
+    int? edcensoStageVsModalityFk,
     AdmissionType? studentEntryForm,
     int? status,
     int? anotherScholarizationPlace,

@@ -7,7 +7,7 @@ import 'classroom_states.dart';
 
 final _initialState = ClassroomCreateFormState(
   name: "",
-  stageVsModalityFk: 'MN',
+  stageVsModalityFk: 1,
   startTime: DateTime.now(),
   endTime: DateTime.now(),
   modalityId: 0,
@@ -30,9 +30,9 @@ class ClassroomCreateBloc
     on<ModalityChanged>((event, emit) => emit(state.copyWith(
           modalityId: event.modalityId,
         )));
-    on<StageChanged>((event, emit) => emit(state.copyWith(
-          stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
-        )));
+    // on<StageChanged>((event, emit) => emit(state.copyWith(
+    //       stageVsModalityFk: _getEdcensoStage(event.idEdcenso),
+    //     )));
     on<TypePedagogicalMediationChanged>((event, emit) => emit(state.copyWith(
           typePedagogicMediationId: event.typePedagogicMediationId,
         )));
@@ -83,7 +83,7 @@ class ClassroomCreateBloc
         )));
     on<SubmitClassroom>((event, emit) {
       final params = ClassroomCreateEntity(
-        schoolId: event.id,
+        schoolId: event.schoolId,
         moreEducationParticipator: state.moreEducationParticipator,
         name: state.name,
         startTime: state.startTime,

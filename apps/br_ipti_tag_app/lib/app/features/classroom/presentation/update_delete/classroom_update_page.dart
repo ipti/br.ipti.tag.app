@@ -49,7 +49,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
         controller.add(
           UpdateClassroom(
             edcensoStageVsModalityFk:
-                widget.classroomEntity?.edcensoStageVsModalityFk ?? 'MA',
+                widget.classroomEntity?.edcensoStageVsModalityFk ?? 1,
             name: widget.classroomEntity?.name ?? 'NoName',
             startTime:
                 (widget.classroomEntity?.startTime ?? DateTime.now().toString())
@@ -61,7 +61,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
             typePedagogicMeditationId:
                 widget.classroomEntity?.typePedagogicMediationId ?? 0,
             stage: widget.classroomEntity?.stage ?? 'STAGE NOT DEFINED',
-            id: widget.classroomEntity?.id ?? 'ID NOT DEFINED',
+            id: widget.classroomEntity?.id ?? 1,
             schooling: widget.classroomEntity?.schooling ?? false,
             aee: widget.classroomEntity?.aee ?? false,
             aeeAccessibleTeaching:
@@ -293,7 +293,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                           text: "Salvar Alterações",
                           onPressed: () => controller.add(
                             SubmitUpdateClassroom(
-                              schoolId: _session.state.currentSchool!.id!,
+                              schoolId: _session.state.currentSchool!.inepId,
                               id: widget.classroomEntity!.id,
                             ),
                           ),

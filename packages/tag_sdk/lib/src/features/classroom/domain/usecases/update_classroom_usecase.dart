@@ -21,7 +21,7 @@ class UpdateClassroomUsecase extends Usecase<bool, UpdateClassroomParams> {
 }
 
 class UpdateClassroomParams {
-  final String id;
+  final int id;
   final ClassroomCreateEntity classroomCreateEntity;
 
   UpdateClassroomParams(this.id, this.classroomCreateEntity);

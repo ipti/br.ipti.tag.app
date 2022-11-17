@@ -16,7 +16,7 @@ abstract class SchoolState extends Equatable {
   final bool sending;
   final String message;
   final Color? messageColor;
-  final SchoolModel? currentSchoolData;
+  final School? currentSchoolData;
 
   @override
   List<Object> get props => [loading, sending, message];
@@ -69,7 +69,7 @@ class SchoolLoadingState extends SchoolState {
 
 class SchoolLoadedState extends SchoolState {
   const SchoolLoadedState({
-    required SchoolModel currentSchool,
+    required School currentSchool,
   }) : super(
           loading: false,
           sending: false,
@@ -81,7 +81,7 @@ class SchoolLoadedState extends SchoolState {
 
 class SchoolSendingState extends SchoolState {
   const SchoolSendingState({
-    SchoolModel? currentSchool,
+    School? currentSchool,
   }) : super(
           loading: true,
           sending: false,
@@ -93,7 +93,7 @@ class SchoolSendingState extends SchoolState {
 
 class SchoolSentState extends SchoolState {
   const SchoolSentState({
-    required SchoolModel currentSchool,
+    required School currentSchool,
   }) : super(
           loading: false,
           sending: false,
@@ -105,7 +105,7 @@ class SchoolSentState extends SchoolState {
 
 class SchoolSentFailState extends SchoolState {
   const SchoolSentFailState({
-    required SchoolModel currentSchool,
+    required School currentSchool,
   }) : super(
           loading: false,
           sending: false,
@@ -117,7 +117,7 @@ class SchoolSentFailState extends SchoolState {
 
 class SchoolDataChangeState extends SchoolState {
   const SchoolDataChangeState({
-    required SchoolModel currentSchool,
+    required School currentSchool,
   }) : super(
           loading: false,
           sending: false,

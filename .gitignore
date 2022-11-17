@@ -49,3 +49,6 @@
 
 **/coverage_report
 **/coverage
+
+*.g.dart
+*.freezed.dart

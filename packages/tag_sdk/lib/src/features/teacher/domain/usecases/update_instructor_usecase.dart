@@ -89,7 +89,7 @@ class UpdateInstructorsUsecase
 }
 
 class UpdateInstructorParams {
-  String id;
+  int id;
   String? neighborhood;
   String? complement;
   String? addressNumber;

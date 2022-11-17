@@ -26,13 +26,13 @@ class ClassroomEntity {
   });
 
   final String name;
-  final String id;
+  final int id;
   final String startTime;
   final String endTime;
   final int? modalityId;
   final String stage;
   final int? typePedagogicMediationId;
-  final String edcensoStageVsModalityFk;
+  final int edcensoStageVsModalityFk;
   final bool schooling;
   final bool complementaryActivity;
   final bool aee;

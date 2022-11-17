@@ -3,7 +3,7 @@ import 'package:tag_sdk/src/features/classroom/data/model/instructor_teaching_da
 
 class PutInstructorTeachingDataEndpoint extends EndPointAPI {
   final InstructorTeachingDataUpdateModel instructorQuery;
-  final String id;
+  final int id;
   PutInstructorTeachingDataEndpoint(this.instructorQuery, this.id);
 
   @override

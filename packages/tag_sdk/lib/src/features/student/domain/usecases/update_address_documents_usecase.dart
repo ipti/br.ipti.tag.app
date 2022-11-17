@@ -25,7 +25,7 @@ class UpdateDocumentsAndAddressUsecase
 
 class UpdateDocumentsAndAddressParams {
   final StudentDocsAddress studentDocumentsAndAddress;
-  final String studentDocsId;
+  final int studentDocsId;
 
   UpdateDocumentsAndAddressParams({
     required this.studentDocsId,

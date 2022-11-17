@@ -192,14 +192,14 @@ class _ClassroomField extends StatelessWidget {
     required this.controller,
   });
 
-  final String? classroomId;
+  final int? classroomId;
   final EnrollmentClassroomBloc controller;
 
   @override
   Widget build(BuildContext context) {
     final items = controller.state.classrooms;
 
-    return TagDropdownField<String>(
+    return TagDropdownField<int>(
       key: const Key("STUDENT_ENROLLMENT_CLASSROOM_CLASSROOM"),
       label: "Turma",
       value: classroomId,

@@ -23,7 +23,7 @@ class SchoolCubit extends Cubit<SchoolState> {
     );
   }
 
-  void _stopLoading(SchoolModel currentSchool) {
+  void _stopLoading(School currentSchool) {
     emit(
       SchoolLoadedState(currentSchool: currentSchool),
     );
@@ -37,7 +37,7 @@ class SchoolCubit extends Cubit<SchoolState> {
     );
   }
 
-  void _stopSending(SchoolModel currentSchool) {
+  void _stopSending(School currentSchool) {
     emit(
       SchoolSentState(currentSchool: currentSchool),
     );
@@ -53,7 +53,7 @@ class SchoolCubit extends Cubit<SchoolState> {
   Future<void> fetchCurrentSchoolData() async {
     _startLoading();
     await _session.fetchCurrentSchool();
-    final schoolId = _session.state.currentSchool!.inepId!;
+    final schoolId = _session.state.currentSchool!.inepId;
     final result = await _showSchoolUsecase(
       ShowSchoolParams(uuid: schoolId),
     );
@@ -67,20 +67,19 @@ class SchoolCubit extends Cubit<SchoolState> {
 
   Future<void> updateCurrentSchoolData() async {
     _startSending();
-    final String schoolId = _session.state.currentSchool!.id!;
-
+    final String schoolId = _session.state.currentSchool!.inepId;
+    if (state.currentSchoolData != null) return;
+    final school = state.currentSchoolData!;
     final params = EditSchoolParams(
       uuid: schoolId,
       data: School(
-        name: state.currentSchoolData?.name,
-        inepId: state.currentSchoolData?.inepId,
-        registerType: state.currentSchoolData?.registerType,
-        edcensoUfFk: state.currentSchoolData?.edcensoUfFk,
-        edcensoCityFk: state.currentSchoolData?.edcensoCityFk,
-        edcensoDistrictFk: state.currentSchoolData?.edcensoDistrictFk,
-        // initialDate: state.currentSchoolData!.initialDate,
-        // finalDate: state.currentSchoolData!.finalDate,
-        // actOfAcknowledgement: state.currentSchoolData!.actOfAcknowledgement,
+        name: school.name,
+        inepId: school.inepId,
+        registerType: school.registerType,
+        edcensoUfFk: school.edcensoUfFk,
+        edcensoCityFk: school.edcensoCityFk,
+        edcensoDistrictFk: school.edcensoDistrictFk,
+        situation: 1,
       ),
     );
     final result = await _editSchoolUsecase(params);

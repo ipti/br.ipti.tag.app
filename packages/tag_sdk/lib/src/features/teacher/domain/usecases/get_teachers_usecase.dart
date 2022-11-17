@@ -19,7 +19,7 @@ class GetInstructorsUsecase
 }
 
 class GetInstructorParams {
-  final String instructorId;
+  final int instructorId;
 
   GetInstructorParams(this.instructorId);
 }

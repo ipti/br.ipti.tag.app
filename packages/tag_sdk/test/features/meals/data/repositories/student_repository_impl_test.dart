@@ -50,9 +50,19 @@ void main() {
     testWidgets("has right value", (tester) async {
       when(
         () => datasource.getById('', schoolId: ''),
-      ).thenAnswer((invocation) => Future.value(
-            StudentModel(),
-          ));
+      ).thenAnswer(
+        (invocation) => Future.value(
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
+        ),
+      );
 
       final repository = StudentRepositoryImpl(datasource);
       final params = await repository.getById('', schoolId: '');
@@ -61,7 +71,7 @@ void main() {
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentModel>(),
+        isA<StudentIdentification>(),
       );
     });
     testWidgets("has left value", (tester) async {
@@ -86,33 +96,73 @@ void main() {
     final datasource = MockStudentRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(() => datasource.create(
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           )).thenAnswer((invocation) => Future.value(
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           ));
 
       final repository = StudentRepositoryImpl(datasource);
       final params = await repository.create(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentModel>(),
+        isA<StudentIdentification>(),
       );
     });
     testWidgets("has left value", (tester) async {
       when(() => datasource.create(
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           )).thenThrow(
         (invocation) => Failure("Não foi possível adicionar estudante"),
       );
 
       final repository = StudentRepositoryImpl(datasource);
       final params = await repository.create(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(params.isLeft(), isTrue);
@@ -128,35 +178,75 @@ void main() {
     testWidgets("has right value", (tester) async {
       when(() => datasource.update(
             1,
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           )).thenAnswer((invocation) => Future.value(
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           ));
 
       final repository = StudentRepositoryImpl(datasource);
       final params = await repository.update(
         1,
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentModel>(),
+        isA<StudentIdentification>(),
       );
     });
     testWidgets("has left value", (tester) async {
       when(() => datasource.update(
             1,
-            StudentModel(),
+            StudentIdentification(
+              registerType: "00",
+              schoolInepIdFk: "21212121",
+              name: "Aluno",
+              birthday: "2002-02-02",
+              sex: 1,
+              colorRace: 1,
+              filiation: 1,
+            ),
           )).thenThrow(
         (invocation) => Failure("Não foi possível alterar estudante"),
       );
 
       final repository = StudentRepositoryImpl(datasource);
       final params = await repository.create(
-        StudentModel(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(params.isLeft(), isTrue);

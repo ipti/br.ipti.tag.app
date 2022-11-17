@@ -60,14 +60,14 @@ class EnrollmentModule extends Module {
     ChildRoute(
       "/",
       child: (_, args) => EnrollmentPage(
-        student: args.data as Student?,
+        student: args.data as StudentIdentification?,
       ),
     ),
     ChildRoute(
       "/edit",
       child: (_, args) => EnrollmentPage(
         editMode: EditMode.Edit,
-        student: args.data as Student?,
+        student: args.data as StudentIdentification?,
       ),
     ),
   ];

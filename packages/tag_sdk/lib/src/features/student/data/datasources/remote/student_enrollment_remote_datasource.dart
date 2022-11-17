@@ -48,7 +48,7 @@ class StudentEnrollmenrRemoteDataSource {
   }
 
   Future<StudentEnrollmentModel> update(
-    String id,
+    int id,
     StudentEnrollmentModel model,
   ) async {
     final response = await _httpClient.request(

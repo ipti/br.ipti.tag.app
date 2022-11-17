@@ -1,27 +1,27 @@
 import 'package:tag_sdk/src/features/classroom/data/model/instructor_teaching_data_create_model.dart';
 
 class InstructorTeachingDataCreateEntity {
-  String schoolInepIdFk;
-  String instructorFk;
-  String? classroomInepId;
-  String classroomIdFk;
+  int schoolInepIdFk;
+  int instructorFk;
+  int? classroomInepId;
+  int classroomIdFk;
   int role;
   int contractType;
-  String discipline1Fk;
-  String? discipline2Fk;
-  String? discipline3Fk;
-  String? discipline4Fk;
-  String? discipline5Fk;
-  String? discipline6Fk;
-  String? discipline7Fk;
-  String? discipline8Fk;
-  String? discipline9Fk;
-  String? discipline10Fk;
-  String? discipline11Fk;
-  String? discipline12Fk;
-  String? discipline13Fk;
-  String? discipline14Fk;
-  String? discipline15Fk;
+  int discipline1Fk;
+  int? discipline2Fk;
+  int? discipline3Fk;
+  int? discipline4Fk;
+  int? discipline5Fk;
+  int? discipline6Fk;
+  int? discipline7Fk;
+  int? discipline8Fk;
+  int? discipline9Fk;
+  int? discipline10Fk;
+  int? discipline11Fk;
+  int? discipline12Fk;
+  int? discipline13Fk;
+  int? discipline14Fk;
+  int? discipline15Fk;
   InstructorTeachingDataCreateEntity({
     required this.schoolInepIdFk,
     required this.instructorFk,

@@ -17,9 +17,9 @@ class AddTeacherDialog extends StatefulWidget {
     this.instructor,
     this.disciplineIdFk,
   });
-  final String classroomId;
+  final int classroomId;
   final Instructor? instructor;
-  final String? disciplineIdFk;
+  final int? disciplineIdFk;
   final InstructorTeachingDataEntity? instructorTeachingDataEntity;
 
   @override
@@ -107,7 +107,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                   if (state is InstructorFormStateSuccess) {
                     return Column(
                       children: [
-                        TagDropdownField<String>(
+                        TagDropdownField<int>(
                           items: Map.fromEntries(
                             state.instructors!.map(
                               (e) => MapEntry(e.id!, e.name!),
@@ -122,7 +122,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                         const SizedBox(
                           height: 36,
                         ),
-                        TagDropdownField<String>(
+                        TagDropdownField<int>(
                           items: Map.fromEntries(
                             state.disciplines!.map(
                               (e) => MapEntry(e.id, e.name),

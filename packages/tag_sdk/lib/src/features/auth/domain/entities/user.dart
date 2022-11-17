@@ -1,9 +1,9 @@
-import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
+import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
 
 class User {
   final int? id;
   final String? name;
-  final List<School>? schools;
+  final List<AuthSchool>? schools;
   final String? username;
   final int? active;
 

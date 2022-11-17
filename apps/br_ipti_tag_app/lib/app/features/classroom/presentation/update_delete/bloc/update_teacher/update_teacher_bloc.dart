@@ -14,9 +14,9 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
   final ListInstructorsTeachingDataUseCase _instructorsTeachingDataUseCase;
   final ListEdcensoDisciplineUsecase _disciplinesUseCase;
   final ListInstructorsUsecase _instructorsUseCase;
-  late String? _classroomId;
-  set classroomId(String classroomId) => _classroomId = classroomId;
-  String get classroomId => _classroomId!;
+  late int? _classroomId;
+  set classroomId(int classroomId) => _classroomId = classroomId;
+  int get classroomId => _classroomId!;
 
   Future<void> fetchListClassroomsEvent() async {
     final requests = await Future.wait([
@@ -74,7 +74,7 @@ class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {
 
   List<List<EdcensoDiscipline>> _bindDisciplines(
     List<EdcensoDiscipline> edcensoDisciplines,
-    List<String> instructorDisciplines,
+    List<int> instructorDisciplines,
   ) {
     final List<List<EdcensoDiscipline>> instructorDisciplinesResult = [];
     for (final userDiscipline in instructorDisciplines) {

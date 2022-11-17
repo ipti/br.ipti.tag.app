@@ -12,7 +12,7 @@ class SessionBloc extends Cubit<SessionState> {
 
   final SessionService _sessionService;
 
-  Future changeSchool(School school) async {
+  Future changeSchool(AuthSchool school) async {
     _sessionService.setCurrentSchool(school);
     emit(
       state.copyWith(currentSchool: school),
@@ -28,7 +28,7 @@ class SessionBloc extends Cubit<SessionState> {
     );
   }
 
-  Future<School> fetchCurrentSchool() async {
+  Future<AuthSchool> fetchCurrentSchool() async {
     final currentSchool = await _sessionService.getCurrentSchool();
     emit(
       state.copyWith(currentSchool: currentSchool),
@@ -48,8 +48,8 @@ class SessionBloc extends Cubit<SessionState> {
 }
 
 class SessionState {
-  final School? currentSchool;
-  final List<School>? schools;
+  final AuthSchool? currentSchool;
+  final List<AuthSchool>? schools;
   final String? year;
 
   SessionState({
@@ -59,8 +59,8 @@ class SessionState {
   });
 
   SessionState copyWith({
-    School? currentSchool,
-    List<School>? schools,
+    AuthSchool? currentSchool,
+    List<AuthSchool>? schools,
     String? year,
   }) {
     return SessionState(

@@ -33,7 +33,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
   }
 
   @override
-  Future<Either<Failure, Instructor>> getById(String id) async {
+  Future<Either<Failure, Instructor>> getById(int id) async {
     try {
       final result = await _instructorDataSource.getById(id);
 
@@ -65,7 +65,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
 
   @override
   Future<Either<Failure, Instructor>> update(
-    String id,
+    int id,
     Instructor instructor,
   ) async {
     try {

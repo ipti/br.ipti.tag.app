@@ -12,9 +12,9 @@ void main() {
     "UpdateStudentEnrollmentUsecase when update a right value",
     (tester) async {
       final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "schoolInepIdFk",
+        schoolInepIdFk: "1",
         studentFk: 1,
-        classroomFk: "classroomFk",
+        classroomFk: 1,
       );
 
       final repository = MockStudentEnrollmentRepository();
@@ -27,7 +27,7 @@ void main() {
 
       final usercase = UpdateStudentEnrollmentUsecase(repository);
       final params = UpdateStudentEnrollmentParams(
-        enrollmentId: "enrollmentId",
+        enrollmentId: 1,
         enrollment: studentEnrollment,
       );
 
@@ -45,15 +45,15 @@ void main() {
     "UpdateStudentEnrollmentUsecase when update a left value",
     (tester) async {
       final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "schoolInepIdFk",
+        schoolInepIdFk: "1",
         studentFk: 1,
-        classroomFk: "classroomFk",
+        classroomFk: 1,
       );
 
       final repository = MockStudentEnrollmentRepository();
 
       when(
-        () => repository.update('', studentEnrollment),
+        () => repository.update(1, studentEnrollment),
       ).thenAnswer(
         (invocation) => Future.value(left(
           const RestFailure("Ocorreu um erro"),
@@ -62,7 +62,7 @@ void main() {
 
       final usercase = UpdateStudentEnrollmentUsecase(repository);
       final params = UpdateStudentEnrollmentParams(
-        enrollmentId: "",
+        enrollmentId: 1,
         enrollment: studentEnrollment,
       );
 

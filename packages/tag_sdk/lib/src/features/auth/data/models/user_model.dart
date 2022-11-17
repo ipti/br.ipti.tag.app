@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-
+import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
 import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
-import 'package:tag_sdk/src/features/school/data/models/school_model.dart';
 
 class UserModel extends User {
   UserModel({
@@ -17,14 +16,14 @@ class UserModel extends User {
   UserModel copyWith({
     int? id,
     String? name,
-    List<SchoolModel>? schools,
+    List<AuthSchool>? schools,
     String? username,
     int? active,
   }) {
     return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      schools: schools ?? this.schools as List<SchoolModel>?,
+      schools: schools ?? this.schools,
       username: username ?? this.username,
       active: active ?? this.active,
     );
@@ -36,7 +35,7 @@ class UserModel extends User {
       'name': name,
       'schools': schools
           ?.map(
-            (x) => (x as SchoolModel).toMap(),
+            (x) => x.toJson(),
           )
           .toList(),
       'username': username,
@@ -50,9 +49,9 @@ class UserModel extends User {
     return UserModel(
       id: map['id'],
       name: map['name'],
-      schools: List<SchoolModel>.from(
+      schools: List<AuthSchool>.from(
         schools.map(
-          (x) => SchoolModel.fromMap(x),
+          (x) => AuthSchool.fromJson(x),
         ),
       ),
       username: map['username'],

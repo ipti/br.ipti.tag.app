@@ -17,9 +17,9 @@ void main() {
       ).thenAnswer(
         (invocation) => Future.value(right(
           StudentEnrollment(
-            schoolInepIdFk: "schoolInepIdFk",
+            schoolInepIdFk: "1",
             studentFk: 1,
-            classroomFk: "classroomFk",
+            classroomFk: 1,
           ),
         )),
       );

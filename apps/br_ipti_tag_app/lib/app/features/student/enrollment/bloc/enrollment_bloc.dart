@@ -15,13 +15,13 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
   final LoadStudentDocsUsecase _loadStudentDocsUsecase;
   final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
 
-  Student? student;
+  StudentIdentification? student;
   StudentDocsAddress? studentDocs;
   StudentEnrollment? studentEnrollment;
 
   int tabIndex = 0;
 
-  void loadStudent(Student? student) {
+  void loadStudent(StudentIdentification? student) {
     this.student = student;
     emit(
       EnrollmentLoadedState(

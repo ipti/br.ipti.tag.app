@@ -3,7 +3,7 @@ import 'package:tag_sdk/src/core/api/students/delete_students_endpoint.dart';
 import 'package:tag_sdk/src/core/api/students/get_students_endpoint.dart';
 import 'package:tag_sdk/src/core/api/students/post_students_endpoint.dart';
 import 'package:tag_sdk/src/core/api/students/put_students_endpoint.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_model.dart';
+import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 
 class StudentRemoteDataSource {
   StudentRemoteDataSource(
@@ -12,7 +12,8 @@ class StudentRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<List<StudentModel>> listAll({required String schoolId}) async {
+  Future<List<StudentIdentification>> listAll(
+      {required String schoolId}) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentsEndPoint(schoolId: schoolId),
     );
@@ -21,39 +22,41 @@ class StudentRemoteDataSource {
 
     final mappedList = data
         .map(
-          (e) => StudentModel.fromMap(e as Map<String, dynamic>),
+          (e) => StudentIdentification.fromJson(e as Map<String, dynamic>),
         )
         .toList();
 
     return mappedList;
   }
 
-  Future<StudentModel> getById(String id, {required String schoolId}) async {
+  Future<StudentIdentification> getById(String id,
+      {required String schoolId}) async {
     final response = await _httpClient.request(
       route: GetStudentsEndPoint(id: id, schoolId: schoolId),
     );
 
-    final mappedValue = StudentModel.fromMap(response.data!);
+    final mappedValue = StudentIdentification.fromJson(response.data!);
 
     return mappedValue;
   }
 
-  Future<StudentModel> create(StudentModel model) async {
+  Future<StudentIdentification> create(StudentIdentification model) async {
     final response = await _httpClient.request(
       route: PostStudentsEndPoint(model: model),
     );
 
-    final mappedValue = StudentModel.fromMap(response.data!);
+    final mappedValue = StudentIdentification.fromJson(response.data!);
 
     return mappedValue;
   }
 
-  Future<StudentModel> update(int id, StudentModel model) async {
+  Future<StudentIdentification> update(
+      int id, StudentIdentification model) async {
     final response = await _httpClient.request(
       route: PutStudentsEndPoint(id: id, model: model),
     );
 
-    final mappedValue = StudentModel.fromMap(response.data!);
+    final mappedValue = StudentIdentification.fromJson(response.data!);
 
     return mappedValue;
   }

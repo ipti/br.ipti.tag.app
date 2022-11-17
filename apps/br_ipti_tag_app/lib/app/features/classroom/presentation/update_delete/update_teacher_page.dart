@@ -12,7 +12,7 @@ import 'package:tag_ui/tag_ui.dart';
 
 class ClassroomTeacherPage extends StatefulWidget {
   const ClassroomTeacherPage({super.key, required this.classroomId});
-  final String classroomId;
+  final int classroomId;
 
   @override
   State<ClassroomTeacherPage> createState() => _ClassroomTeacherPageState();
@@ -132,7 +132,7 @@ class InstructorDatatable extends DataTableSource {
 
   final List<Instructor> data;
   final List<List<EdcensoDiscipline>> disciplines;
-  final String classroomId;
+  final int classroomId;
   final BuildContext context;
   final List<InstructorTeachingDataEntity> instructorTeachingData;
 

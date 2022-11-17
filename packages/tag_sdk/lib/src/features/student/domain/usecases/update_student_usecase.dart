@@ -4,14 +4,16 @@ import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
 
-class UpdateStudentUsecase implements Usecase<Student, UpdateStudentParams> {
+class UpdateStudentUsecase
+    implements Usecase<StudentIdentification, UpdateStudentParams> {
   UpdateStudentUsecase(this._repositoryStudent);
 
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Failure, Student>> call(UpdateStudentParams params) async {
-    final Student student = params.student;
+  Future<Either<Failure, StudentIdentification>> call(
+      UpdateStudentParams params) async {
+    final StudentIdentification student = params.student;
 
     final result = await _repositoryStudent.update(params.id, student);
 
@@ -25,6 +27,6 @@ class UpdateStudentParams {
     required this.student,
   });
 
-  final Student student;
+  final StudentIdentification student;
   final int id;
 }

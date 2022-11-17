@@ -53,7 +53,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
     ),
   );
 
-  Future loadStudent(Student student) async {
+  Future loadStudent(StudentIdentification student) async {
     emit(
       state.copyWith(
         student: student,
@@ -220,7 +220,7 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
   Future _create() async {
     final school = _session.state.currentSchool!;
     final year = await _session.getYear();
-    final student = Student(
+    final student = StudentIdentification(
       name: state.name,
       birthday: state.birthday,
       sex: state.sex,
@@ -231,11 +231,10 @@ class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {
       filiation: state.filiation,
       registerType: "rg",
       sendYear: int.parse(year),
-      edcensoUfFk: school.edcensoUfFk,
-      edcensoCityFk: school.edcensoCityFk,
-      edcensoDistrictFk: school.edcensoDistrictFk,
+      // edcensoUfFk: school.edcensoUfFk,
+      // edcensoCityFk: school.edcensoCityFk,
       edcensoNationFk: 76,
-      schoolIdentification: school.inepId,
+      schoolInepIdFk: school.inepId,
       deficiencyTypeBlindness: state.deficiencyTypeBlindness,
       deficiencyTypeLowVision: state.deficiencyTypeLowVision,
       deficiencyTypeDeafness: state.deficiencyTypeDeafness,

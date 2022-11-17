@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tag_sdk/src/features/auth/data/models/user_model.dart';
+import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
 import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
-import 'package:tag_sdk/src/features/school/data/models/school_model.dart';
 import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
@@ -18,15 +20,15 @@ abstract class AuthLocalDataSource {
   Future<bool> setToken(String token);
   Future<bool> cleanToken();
 
-  Future<List<School>> getCurrentUserSchools();
-  Future<bool> setCurrentUserSchools(List<School> schools);
+  Future<List<AuthSchool>> getCurrentUserSchools();
+  Future<bool> setCurrentUserSchools(List<AuthSchool> schools);
   Future<bool> cleanCurrentUserSchools();
 
   Future<String> getSchoolYear();
   Future<bool> setSchoolYear(String year);
   Future<bool> cleanSchoolYear();
 
-  Future<School> getCurrentSchool();
+  Future<AuthSchool> getCurrentSchool();
   Future<bool> setCurrentSchool(School school);
   Future<bool> cleanCurrentSchool();
 }
@@ -62,7 +64,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   }
 
   @override
-  Future<List<School>> getCurrentUserSchools() async {
+  Future<List<AuthSchool>> getCurrentUserSchools() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final schoolsJsonString = sharedPreferences.getStringList(
@@ -70,17 +72,18 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     );
 
     if (schoolsJsonString != null) {
-      final result = schoolsJsonString.map((e) => SchoolModel.fromJson(e));
+      final result =
+          schoolsJsonString.map((e) => AuthSchool.fromJson(jsonDecode(e)));
       return result.toList();
     }
     return [];
   }
 
   @override
-  Future<bool> setCurrentUserSchools(List<School> schools) async {
+  Future<bool> setCurrentUserSchools(List<AuthSchool> schools) async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
-    final mappedSchools = schools.map((x) => (x as SchoolModel).toJson());
+    final mappedSchools = schools.map((x) => jsonEncode(x.toJson()));
 
     final result = sharedPreferences.setStringList(
       KEY_SESSION_USER_SCHOOLS,
@@ -181,13 +184,13 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   }
 
   @override
-  Future<School> getCurrentSchool() async {
+  Future<AuthSchool> getCurrentSchool() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final result = sharedPreferences.getString(KEY_SESSION_CURRENT_SCHOOL);
 
     if (result != null) {
-      final school = SchoolModel.fromJson(result);
+      final school = AuthSchool.fromJson(jsonDecode(result));
 
       return school;
     }
@@ -205,7 +208,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
     final result = sharedPreferences.setString(
       KEY_SESSION_CURRENT_SCHOOL,
-      (school as SchoolModel).toJson(),
+      school.toJson().toString(),
     );
 
     return result;

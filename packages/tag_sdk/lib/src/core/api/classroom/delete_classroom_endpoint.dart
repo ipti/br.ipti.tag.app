@@ -5,7 +5,7 @@ class DeleteClasroomEndPoint extends EndPointAPI {
     this.id,
   );
 
-  String id;
+  int id;
 
   @override
   String get path => '/classroom/$id';

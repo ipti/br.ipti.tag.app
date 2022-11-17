@@ -5,7 +5,7 @@ class GetInstructorEndPoint extends EndPointAPI {
     this.id,
   });
 
-  final String? id;
+  final int? id;
 
   @override
   String get path => id == null ? '/instructor' : '/instructor/$id';

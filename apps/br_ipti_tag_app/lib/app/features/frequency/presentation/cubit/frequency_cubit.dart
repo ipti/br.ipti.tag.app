@@ -85,7 +85,7 @@ class FrequencyCubit extends Cubit<FrequencyState> {
 
     final currentSchool = await session.fetchCurrentSchool();
 
-    final schoolId = currentSchool.inepId!;
+    final schoolId = currentSchool.inepId;
 
     final resultEither = await _listStudentUsecase(
       ListStudentsParams(schoolId),

@@ -20,7 +20,7 @@ class UpdateInstructorTeachingDataUseCase
 }
 
 class UpdateInstructorTeachingDataParams {
-  final String id;
+  final int id;
   final InstructorTeachingDataUpdateEntity instructor;
   const UpdateInstructorTeachingDataParams(this.id, this.instructor);
 }

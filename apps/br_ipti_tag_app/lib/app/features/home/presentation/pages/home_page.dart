@@ -98,13 +98,13 @@ class StudentsDatatable extends DataTableSource {
     required this.data,
   });
 
-  final List<Student> data;
+  final List<StudentIdentification> data;
 
   @override
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name!,
+        data[index].name,
       )),
     ]);
   }

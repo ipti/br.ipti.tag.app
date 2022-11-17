@@ -10,7 +10,7 @@ abstract class StudentDocumentsAddressRepository {
     StudentDocsAddress studentdosStudentDocuments,
   );
   Future<Either<Failure, StudentDocsAddress>> update(
-    String id,
+    int id,
     StudentDocsAddress student,
   );
 }

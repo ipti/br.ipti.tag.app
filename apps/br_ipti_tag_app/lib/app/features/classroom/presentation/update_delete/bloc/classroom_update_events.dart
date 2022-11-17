@@ -10,17 +10,16 @@ abstract class ClassroomUpdateDeleteEvent extends Equatable {
 class StartEditing extends ClassroomUpdateDeleteEvent {}
 
 class SubmitUpdateClassroom extends ClassroomUpdateDeleteEvent {
-  final String id;
-  final String schoolId;
   const SubmitUpdateClassroom({
     required this.id,
     required this.schoolId,
   });
+
+  final int id;
+  final String schoolId;
+
   @override
-  List<Object> get props => [
-        id,
-        schoolId,
-      ];
+  List<Object> get props => [id, schoolId];
 }
 
 class SubmitedSuccess extends ClassroomUpdateDeleteEvent {}
@@ -51,14 +50,14 @@ class UpdateClassroom extends ClassroomUpdateDeleteEvent {
     this.aeePortuguese = false,
     this.aeeAutonomousLife = false,
   });
-  final String edcensoStageVsModalityFk;
+  final int edcensoStageVsModalityFk;
   final String name;
   final DateTime startTime;
   final DateTime endTime;
   final int modalityId;
   final int typePedagogicMeditationId;
   final String stage;
-  final String id;
+  final int id;
   final bool schooling;
   final bool complementaryActivity;
   final bool aee;
@@ -302,7 +301,7 @@ class ModalityChanged extends ClassroomUpdateDeleteEvent {
 class DeleteClassroom extends ClassroomUpdateDeleteEvent {
   const DeleteClassroom({required this.id});
 
-  final String id;
+  final int id;
 
   @override
   List<Object> get props => [id];

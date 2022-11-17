@@ -45,7 +45,7 @@ class StudentDocumentsAddressRepositoryImpl
 
   @override
   Future<Either<Failure, StudentDocsAddress>> update(
-    String id,
+    int id,
     StudentDocsAddress student,
   ) async {
     try {

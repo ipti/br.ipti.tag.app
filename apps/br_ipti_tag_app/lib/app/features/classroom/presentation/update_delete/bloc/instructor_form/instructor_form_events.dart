@@ -30,8 +30,8 @@ class InstructorFormEventSuccess extends InstructorFormEvent {
 
 class UpdateInstructorForm extends InstructorFormEvent {
   final String schoolInepIdFk;
-  final String instructorFk;
-  final String discipline1Fk;
+  final int instructorFk;
+  final int discipline1Fk;
   final int role;
   UpdateInstructorForm({
     required this.schoolInepIdFk,
@@ -46,7 +46,7 @@ class UpdateInstructorForm extends InstructorFormEvent {
 }
 
 class SubmitUpdateInstructorForm extends InstructorFormEvent {
-  final String instructorTeachingDataId;
+  final int instructorTeachingDataId;
 
   SubmitUpdateInstructorForm({required this.instructorTeachingDataId});
   @override

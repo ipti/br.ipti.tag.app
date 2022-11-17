@@ -5,7 +5,7 @@ import 'package:tag_sdk/src/features/edcenso_disciplines/domain/entities/edcenso
 class EdcensoDisciplineModel extends EdcensoDiscipline {
   EdcensoDisciplineModel({required super.id, required super.name});
   EdcensoDiscipline copyWith({
-    String? id,
+    int? id,
     String? name,
   }) {
     return EdcensoDisciplineModel(

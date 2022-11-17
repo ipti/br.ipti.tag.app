@@ -11,16 +11,40 @@ void main() {
     final repository = MockStudentRepository();
     when(() => repository.update(
           any(),
-          Student(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
         )).thenAnswer(
       (invocation) => Future.value(right(
-        Student(),
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       )),
     );
     final usercase = UpdateStudentUsecase(repository);
     final params = UpdateStudentParams(
       id: 1,
-      student: Student(),
+      student: StudentIdentification(
+        registerType: "00",
+        schoolInepIdFk: "21212121",
+        name: "Aluno",
+        birthday: "2002-02-02",
+        sex: 1,
+        colorRace: 1,
+        filiation: 1,
+      ),
     );
     final either = await usercase(params);
     expect(either.isRight(), isTrue);
@@ -28,7 +52,7 @@ void main() {
     final result = either.fold(id, id);
     expect(
       result,
-      isA<Student>(),
+      isA<StudentIdentification>(),
     );
   });
 
@@ -37,11 +61,27 @@ void main() {
     (tester) async {
       final params = UpdateStudentParams(
         id: 1,
-        student: Student(),
+        student: StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
       final params2 = UpdateStudentParams(
         id: 1,
-        student: Student(),
+        student: StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
       );
 
       expect(
@@ -55,7 +95,15 @@ void main() {
     final repository = MockStudentRepository();
     when(() => repository.update(
           any(),
-          Student(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
         )).thenAnswer(
       (invocation) => Future.value(left(
         const RestFailure("Ocorreu um erro"),
@@ -64,7 +112,15 @@ void main() {
     final usercase = UpdateStudentUsecase(repository);
     final params = UpdateStudentParams(
       id: 1,
-      student: Student(),
+      student: StudentIdentification(
+        registerType: "00",
+        schoolInepIdFk: "21212121",
+        name: "Aluno",
+        birthday: "2002-02-02",
+        sex: 1,
+        colorRace: 1,
+        filiation: 1,
+      ),
     );
     final either = await usercase(params);
     expect(either.isLeft(), isTrue);

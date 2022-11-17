@@ -7,7 +7,7 @@ class PutStudentEnrollmentEndPoint extends EndPointAPI {
     required this.model,
   });
 
-  final String id;
+  final int id;
   final StudentEnrollmentModel model;
 
   @override

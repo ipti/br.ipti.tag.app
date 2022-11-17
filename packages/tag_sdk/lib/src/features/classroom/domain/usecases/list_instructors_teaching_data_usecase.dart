@@ -20,7 +20,7 @@ class ListInstructorsTeachingDataUseCase
 }
 
 class ListInstructorsTeachingDataParams {
-  final String classroomId;
+  final int classroomId;
   final String perPage;
   final String page;
   const ListInstructorsTeachingDataParams({

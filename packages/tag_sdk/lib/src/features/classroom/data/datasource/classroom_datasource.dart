@@ -44,7 +44,7 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> delete(
-    String id,
+    int id,
   ) async {
     final response = await _httpClient.request(
       route: DeleteClasroomEndPoint(
@@ -91,7 +91,7 @@ class ClassroomRemoteDataSource {
 
   Future<bool> update(
     ClassroomCreateModel classroomModel,
-    String id,
+    int id,
   ) async {
     final response = await _httpClient.request(
       route: PutClasroomEndPoint(
@@ -108,7 +108,7 @@ class ClassroomRemoteDataSource {
   }
 
   Future<bool> updateInstructorsTeachingData(
-    String id,
+    int id,
     InstructorTeachingDataUpdateModel instructor,
   ) async {
     final response = await _httpClient.request(

@@ -68,7 +68,7 @@ class StudentEnrollmentRepositoryImpl implements StudentEnrollmentRepository {
 
   @override
   Future<Either<Failure, StudentEnrollment>> update(
-    String id,
+    int id,
     StudentEnrollment studentEnrollment,
   ) async {
     try {

@@ -24,7 +24,7 @@ class UpdateStudentEnrollmentUsecase
 }
 
 class UpdateStudentEnrollmentParams {
-  final String enrollmentId;
+  final int enrollmentId;
   final StudentEnrollment enrollment;
 
   UpdateStudentEnrollmentParams({

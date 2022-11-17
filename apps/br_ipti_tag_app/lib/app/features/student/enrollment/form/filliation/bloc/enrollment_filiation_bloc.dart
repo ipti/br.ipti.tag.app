@@ -20,7 +20,7 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     ),
   );
 
-  Future loadStudent(Student student) async {
+  Future loadStudent(StudentIdentification student) async {
     emit(
       state.copyWith(
         nameFiliation1: student.filiation1,

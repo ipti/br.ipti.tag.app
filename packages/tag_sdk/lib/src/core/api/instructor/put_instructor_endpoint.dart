@@ -8,7 +8,7 @@ class PutInstructorEndPoint extends EndPointAPI {
   });
 
   final InstructorModel model;
-  final String objectId;
+  final int objectId;
 
   @override
   String get path => '/instructor/$objectId';

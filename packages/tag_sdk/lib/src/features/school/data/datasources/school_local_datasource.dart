@@ -1,10 +1,9 @@
 import 'package:tag_sdk/src/core/defaults/data_source.dart';
-import 'package:tag_sdk/src/features/school/data/models/school_model.dart';
 import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
 
-class SchoolLocalDataSource implements DataSource<School, SchoolModel> {
+class SchoolLocalDataSource implements DataSource<School, School> {
   @override
-  Future<SchoolModel> create(School data) {
+  Future<School> create(School data) {
     throw UnimplementedError();
   }
 
@@ -14,17 +13,17 @@ class SchoolLocalDataSource implements DataSource<School, SchoolModel> {
   }
 
   @override
-  Future<List<SchoolModel>> getAll() {
+  Future<List<School>> getAll() {
     throw UnimplementedError();
   }
 
   @override
-  Future<SchoolModel> getOne(String uuid) {
+  Future<School> getOne(String uuid) {
     throw UnimplementedError();
   }
 
   @override
-  Future<SchoolModel> update(String uuid, School data) {
+  Future<School> update(String uuid, School data) {
     throw UnimplementedError();
   }
 }

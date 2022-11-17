@@ -1,5 +1,5 @@
 class StudentDocsAddress {
-  String? id;
+  int? id;
   String? registerType;
   String schoolInepIdFk;
   int studentFk;
@@ -87,7 +87,7 @@ class StudentDocsAddress {
 
   // ignore: long-method
   StudentDocsAddress copyWith({
-    String? id,
+    int? id,
     String? registerType,
     String? schoolInepIdFk,
     int? studentFk,

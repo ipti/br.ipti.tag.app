@@ -12,7 +12,7 @@ class StudentListState extends Equatable {
   });
 
   final Status status;
-  final List<Student> students;
+  final List<StudentIdentification> students;
   final String? error;
 
   @override
@@ -20,7 +20,7 @@ class StudentListState extends Equatable {
 
   StudentListState copyWith({
     Status? status,
-    List<Student>? students,
+    List<StudentIdentification>? students,
     String? error,
   }) {
     return StudentListState(

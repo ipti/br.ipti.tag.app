@@ -12,9 +12,9 @@ void main() {
     "CreateStudentEnrollmentUsecase when create a right value",
     (tester) async {
       final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "schoolInepIdFk",
+        schoolInepIdFk: "1",
         studentFk: 1,
-        classroomFk: "classroomFk",
+        classroomFk: 1,
       );
       final repository = MockStudentEnrollmentRepository();
       when(
@@ -38,9 +38,9 @@ void main() {
     "CreateStudentEnrollmentUsecase when create a left value",
     (tester) async {
       final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "schoolInepIdFk",
+        schoolInepIdFk: "1",
         studentFk: 1,
-        classroomFk: "classroomFk",
+        classroomFk: 1,
       );
       final repository = MockStudentEnrollmentRepository();
       when(

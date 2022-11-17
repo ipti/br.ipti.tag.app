@@ -65,7 +65,7 @@ class Instructor {
   final String? email;
   final String? inepId;
   final String? registerType;
-  final String? id;
+  final int? id;
   final String? schoolInepIdFk;
   final String? name;
   final String? birthdayDate;

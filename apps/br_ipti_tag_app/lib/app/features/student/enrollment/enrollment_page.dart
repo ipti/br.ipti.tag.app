@@ -27,7 +27,7 @@ class EnrollmentPage extends StatefulWidget {
   });
 
   final String title;
-  final Student? student;
+  final StudentIdentification? student;
   final EditMode editMode;
 
   @override

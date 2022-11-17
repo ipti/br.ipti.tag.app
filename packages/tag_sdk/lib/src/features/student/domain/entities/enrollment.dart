@@ -1,15 +1,15 @@
 class StudentEnrollment {
-  String? id;
+  int? id;
   int? oldId;
   String? registerType;
   String schoolInepIdFk;
   String? studentInepId;
   int studentFk;
   String? classroomInepId;
-  String classroomFk;
-  String? enrollmentId;
+  int classroomFk;
+  int? enrollmentId;
   int? unifiedClass;
-  String? edcensoStageVsModalityFk;
+  int? edcensoStageVsModalityFk;
   int? anotherScholarizationPlace;
   int? multi;
   bool? aeeCognitiveFunctions;
@@ -97,17 +97,17 @@ class StudentEnrollment {
 
   // ignore: long-method
   StudentEnrollment copyWith({
-    String? id,
+    int? id,
     int? oldId,
     String? registerType,
     String? schoolInepIdFk,
     String? studentInepId,
     int? studentFk,
     String? classroomInepId,
-    String? classroomFk,
-    String? enrollmentId,
+    int? classroomFk,
+    int? enrollmentId,
     int? unifiedClass,
-    String? edcensoStageVsModalityFk,
+    int? edcensoStageVsModalityFk,
     int? anotherScholarizationPlace,
     int? multi,
     bool? aeeCognitiveFunctions,

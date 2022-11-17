@@ -18,7 +18,7 @@ class PersonalDataFormPage extends StatefulWidget {
     this.editMode = EditMode.Create,
   });
 
-  final Student? student;
+  final StudentIdentification? student;
   final EditMode editMode;
 
   @override

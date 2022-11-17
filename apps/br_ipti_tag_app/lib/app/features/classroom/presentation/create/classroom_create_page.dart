@@ -292,7 +292,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
                       text: "Criar turma",
                       onPressed: () => controller.add(
                         SubmitClassroom(
-                          id: _session.state.currentSchool!.inepId!,
+                          schoolId: _session.state.currentSchool!.inepId,
                         ),
                       ),
                     ),

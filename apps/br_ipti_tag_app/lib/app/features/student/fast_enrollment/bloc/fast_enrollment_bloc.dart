@@ -91,13 +91,15 @@ class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {
       );
 
   Future<void> submitPersonalForm() async {
-    final student = Student(
-      name: state.name,
-      birthday: state.birthday,
-      sex: state.sex,
-      colorRace: state.colorRace,
+    final student = StudentIdentification(
+      registerType: '00',
+      schoolInepIdFk: '1111111111111111111',
+      name: state.name!,
+      birthday: state.birthday!,
+      sex: state.sex!,
+      colorRace: state.colorRace!,
       nationality: state.nationality,
-      filiation: state.filiation,
+      filiation: state.filiation!,
       deficiency: state.deficiency ?? false,
       foodRestrictions: state.foodRestrictions,
     );

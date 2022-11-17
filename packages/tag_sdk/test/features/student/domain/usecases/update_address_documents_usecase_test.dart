@@ -20,14 +20,14 @@ void main() {
       );
       final repository = MockStudentDocumentsAddressRepository();
       when(
-        () => repository.update('', studentDocsAddress),
+        () => repository.update(1, studentDocsAddress),
       ).thenAnswer((invocation) => Future.value(
             right(studentDocsAddress),
           ));
 
       final usercase = UpdateDocumentsAndAddressUsecase(repository);
       final params = UpdateDocumentsAndAddressParams(
-        studentDocsId: '',
+        studentDocsId: 1,
         studentDocumentsAndAddress: studentDocsAddress,
       );
 
@@ -53,7 +53,7 @@ void main() {
       );
       final repository = MockStudentDocumentsAddressRepository();
       when(
-        () => repository.update('', studentDocsAddress),
+        () => repository.update(1, studentDocsAddress),
       ).thenAnswer(
         (invocation) => Future.value(left(
           const RestFailure("Ocorreu um erro"),
@@ -62,7 +62,7 @@ void main() {
 
       final usercase = UpdateDocumentsAndAddressUsecase(repository);
       final params = UpdateDocumentsAndAddressParams(
-        studentDocsId: '',
+        studentDocsId: 1,
         studentDocumentsAndAddress: studentDocsAddress,
       );
 

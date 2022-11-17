@@ -72,8 +72,8 @@ class InstructorFormState extends Equatable {
   final String? email;
   final String? inepId;
   final String? registerType;
-  final String? id;
-  final String? schoolInepIdFk;
+  final int? id;
+  final int? schoolInepIdFk;
   final String? name;
   final String? birthdayDate;
   final int? sex;
@@ -325,8 +325,8 @@ class InstructorFormState extends Equatable {
     String? email,
     String? inepId,
     String? registerType,
-    String? id,
-    String? schoolInepIdFk,
+    int? id,
+    int? schoolInepIdFk,
     String? name,
     String? birthdayDate,
     int? sex,
