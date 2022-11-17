@@ -76,3 +76,5 @@ jobs:
             packages/tag_ui
             packages/tag_sdk
             packages/tag_network
+            melos.yaml
+            melos_tag.iml
