@@ -6,13 +6,13 @@ import 'package:tag_sdk/src/features/student/domain/repositories/student_doc_add
 
 class AddDocumentsAndAddressToStudentUsecase
     implements
-        Usecase<StudentDocsAddress, AddDocumentsAndAddressToStudentParams> {
+        Usecase<StudentDocsAndAddress, AddDocumentsAndAddressToStudentParams> {
   AddDocumentsAndAddressToStudentUsecase(this._documentsAddressRepository);
 
   final StudentDocumentsAddressRepository _documentsAddressRepository;
 
   @override
-  Future<Either<Failure, StudentDocsAddress>> call(
+  Future<Either<Failure, StudentDocsAndAddress>> call(
     AddDocumentsAndAddressToStudentParams params,
   ) async {
     final result = await _documentsAddressRepository.create(
@@ -24,7 +24,7 @@ class AddDocumentsAndAddressToStudentUsecase
 }
 
 class AddDocumentsAndAddressToStudentParams {
-  final StudentDocsAddress studentDocumentsAddress;
+  final StudentDocsAndAddress studentDocumentsAddress;
   AddDocumentsAndAddressToStudentParams({
     required this.studentDocumentsAddress,
   });

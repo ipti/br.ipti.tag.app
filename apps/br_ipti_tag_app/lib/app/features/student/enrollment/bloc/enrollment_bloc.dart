@@ -16,8 +16,8 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
   final LoadStudentEnrollmentUsecase _loadStudentEnrollmentUsecase;
 
   StudentIdentification? student;
-  StudentDocsAddress? studentDocs;
-  StudentEnrollment? studentEnrollment;
+  StudentDocsAndAddress? studentDocs;
+  StudentEnrollment? classroom;
 
   int tabIndex = 0;
 
@@ -27,29 +27,29 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
       EnrollmentLoadedState(
         student: student,
         studentDocs: studentDocs,
-        studentEnrollment: studentEnrollment,
+        classroom: classroom,
       ),
     );
   }
 
-  void loadStudentDocs(StudentDocsAddress? studentDocs) {
+  void loadStudentDocs(StudentDocsAndAddress? studentDocs) {
     this.studentDocs = studentDocs;
     emit(
       EnrollmentLoadedState(
         student: student,
         studentDocs: studentDocs,
-        studentEnrollment: studentEnrollment,
+        classroom: classroom,
       ),
     );
   }
 
-  void loadStudentsEnrollment(StudentEnrollment studentEnrollment) {
-    this.studentEnrollment = studentEnrollment;
+  void loadStudentsEnrollment(StudentEnrollment Classroom) {
+    this.classroom = Classroom;
     emit(
       EnrollmentLoadedState(
         student: student,
         studentDocs: studentDocs,
-        studentEnrollment: studentEnrollment,
+        classroom: classroom,
       ),
     );
   }

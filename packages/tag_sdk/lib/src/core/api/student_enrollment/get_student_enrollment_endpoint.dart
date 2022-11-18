@@ -11,7 +11,7 @@ class GetStudentEnrollmentEndPoint extends EndPointAPI {
 
   @override
   String get path =>
-      id == null ? '/studentEnrollment' : '/studentEnrollment/$id';
+      id == null ? '/student-enrollment' : '/student-enrollment/$id';
 
   @override
   Parameters? get bodyParameters => null;

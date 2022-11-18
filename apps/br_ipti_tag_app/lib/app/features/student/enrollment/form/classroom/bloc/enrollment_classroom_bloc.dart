@@ -54,26 +54,24 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         state.copyWith(unifiedClass: unifiedClass),
       );
 
-  void loadStudentEnrollment(StudentEnrollment studentEnrollment) {
+  void loadStudentEnrollment(StudentEnrollment Classroom) {
     emit(
       state.copyWith(
-        studentEnrollment: studentEnrollment,
-        classroomId: studentEnrollment.classroomFk,
-        anotherScholarizationPlace:
-            studentEnrollment.anotherScholarizationPlace,
+        Classroom: Classroom,
+        classroomId: Classroom.classroom,
+        anotherScholarizationPlace: Classroom.anotherScholarizationPlace,
         currentStageSituation: CurrentStageSituation.values.byId(
-          studentEnrollment.currentStageSituation,
+          Classroom.currentStageSituation,
         ),
-        edcensoStageVsModalityFk: studentEnrollment.edcensoStageVsModalityFk,
-        // stage: Stage.values.byId(studentEnrollment.stage),
-        status: studentEnrollment.status,
-        unifiedClass: UnifiedClass.values.byId(studentEnrollment.unifiedClass),
-        schoolAdmissionDate: studentEnrollment.schoolAdmissionDate,
+        edcensoStageVsModalityFk: Classroom.edcensoStageVsModality,
+        // stage: Stage.values.byId(Classroom),
+        unifiedClass: UnifiedClass.values.byId(Classroom.unifiedClass),
+        schoolAdmissionDate: Classroom.schoolAdmissionDate,
         studentEntryForm: AdmissionType.values.byId(
-          studentEnrollment.studentEntryForm,
+          Classroom.studentEntryForm,
         ),
         previousStageSituation: PreviousStageSituation.values.byId(
-          studentEnrollment.previousStageSituation,
+          Classroom.previousStageSituation,
         ),
       ),
     );
@@ -102,9 +100,9 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     switch (mode) {
       case EditMode.Create:
         final enrollment = StudentEnrollment(
-          schoolInepIdFk: schoolId,
+          schoolIdentification: schoolId,
           studentFk: studentId,
-          classroomFk: state.classroomId!,
+          classroom: state.classroomId!,
           currentStageSituation: state.currentStageSituation?.id,
           previousStageSituation: state.previousStageSituation?.id,
           schoolAdmissionDate: state.schoolAdmissionDate,
@@ -115,14 +113,14 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         await _create(enrollment);
         break;
       case EditMode.Edit:
-        final oldStudentEnrollment = state.studentEnrollment;
+        final oldStudentEnrollment = state.Classroom;
 
         if (oldStudentEnrollment == null) return submit(EditMode.Create);
 
         final enrollment = oldStudentEnrollment.copyWith(
-          schoolInepIdFk: schoolId,
+          schoolIdentification: schoolId,
           studentFk: studentId,
-          classroomFk: state.classroomId,
+          classroom: state.classroomId!,
           currentStageSituation: state.currentStageSituation?.id,
           previousStageSituation: state.previousStageSituation?.id,
           schoolAdmissionDate: state.schoolAdmissionDate,
@@ -146,8 +144,8 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       (error) => _enrollmentBloc.notifyError(
         error.toString(),
       ),
-      (studentEnrollment) {
-        _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
+      (Classroom) {
+        _enrollmentBloc.loadStudentsEnrollment(Classroom);
         _enrollmentBloc.notifySuccess(
           "Matricula realizadas com sucesso",
         );
@@ -167,8 +165,8 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       (error) => _enrollmentBloc.notifyError(
         error.toString(),
       ),
-      (studentEnrollment) {
-        _enrollmentBloc.loadStudentsEnrollment(studentEnrollment);
+      (Classroom) {
+        _enrollmentBloc.loadStudentsEnrollment(Classroom);
         _enrollmentBloc.notifySuccess(
           "Matricula atualizada com sucesso",
         );

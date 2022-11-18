@@ -58,7 +58,7 @@ class InstructorAddressState extends Equatable {
     bool? posCenso,
     Map<int, String>? cities,
     Map<int, String>? ufs,
-    StudentDocsAddress? docsAddress,
+    StudentDocsAndAddress? docsAddress,
   }) {
     return InstructorAddressState(
       cep: cep ?? this.cep,

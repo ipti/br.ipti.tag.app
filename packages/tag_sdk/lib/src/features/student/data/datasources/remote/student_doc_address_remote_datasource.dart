@@ -2,7 +2,7 @@ import 'package:tag_network/tag_network.dart';
 import 'package:tag_sdk/src/core/api/student_docs/get_student_docs_endpoint.dart';
 import 'package:tag_sdk/src/core/api/student_docs/post_student_docs_endpoint.dart';
 import 'package:tag_sdk/src/core/api/student_docs/put_student_docs_endpoint.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_docs_model.dart';
+import 'package:tag_sdk/src/features/student/domain/entities/student_documents.dart';
 
 class StudentDocumentsAndAddressRemoteDataSource {
   StudentDocumentsAndAddressRemoteDataSource(
@@ -11,22 +11,21 @@ class StudentDocumentsAndAddressRemoteDataSource {
 
   final RouterAPI _httpClient;
 
-  Future<List<StudentDocumentsAddressModel>> listAll() async {
+  Future<List<StudentDocsAndAddress>> listAll() async {
     final response = await _httpClient.requestListFrom(
       route: GetStudentDocsEndPoint(),
     );
 
     final mappedList = response.data!
         .map(
-          (e) =>
-              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+          (e) => StudentDocsAndAddress.fromJson(e as Map<String, dynamic>),
         )
         .toList();
 
     return mappedList;
   }
 
-  Future<StudentDocumentsAddressModel> getByStudentId(int studentId) async {
+  Future<StudentDocsAndAddress> getByStudentId(int studentId) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentDocsEndPoint(studentId: studentId),
     );
@@ -35,35 +34,34 @@ class StudentDocumentsAndAddressRemoteDataSource {
 
     final mappedList = data
         .map(
-          (e) =>
-              StudentDocumentsAddressModel.fromMap(e as Map<String, dynamic>),
+          (e) => StudentDocsAndAddress.fromJson(e as Map<String, dynamic>),
         )
         .toList();
 
     return mappedList.first;
   }
 
-  Future<StudentDocumentsAddressModel> create(
-    StudentDocumentsAddressModel model,
+  Future<StudentDocsAndAddress> create(
+    StudentDocsAndAddress model,
   ) async {
     final response = await _httpClient.request(
       route: PostStudentDocsEndPoint(model: model),
     );
 
-    final mappedValue = StudentDocumentsAddressModel.fromMap(response.data!);
+    final mappedValue = StudentDocsAndAddress.fromJson(response.data!);
 
     return mappedValue;
   }
 
-  Future<StudentDocumentsAddressModel> update(
+  Future<StudentDocsAndAddress> update(
     int id,
-    StudentDocumentsAddressModel model,
+    StudentDocsAndAddress model,
   ) async {
     final response = await _httpClient.request(
       route: PutStudentDocsEndPoint(id: id, model: model),
     );
 
-    final mappedValue = StudentDocumentsAddressModel.fromMap(response.data!);
+    final mappedValue = StudentDocsAndAddress.fromJson(response.data!);
 
     return mappedValue;
   }

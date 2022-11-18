@@ -3,7 +3,7 @@ import 'package:tag_sdk/tag_sdk.dart';
 
 class EnrollmentClassroomState extends Equatable {
   const EnrollmentClassroomState({
-    this.studentEnrollment,
+    this.Classroom,
     this.classrooms = const [],
     this.schoolAdmissionDate,
     this.unifiedClass,
@@ -18,7 +18,7 @@ class EnrollmentClassroomState extends Equatable {
   });
 
   final List<ClassroomEntity> classrooms;
-  final StudentEnrollment? studentEnrollment;
+  final StudentEnrollment? Classroom;
   final int? classroomId;
   final String? schoolAdmissionDate;
   final UnifiedClass? unifiedClass;
@@ -31,7 +31,7 @@ class EnrollmentClassroomState extends Equatable {
   final CurrentStageSituation? currentStageSituation;
 
   EnrollmentClassroomState copyWith({
-    StudentEnrollment? studentEnrollment,
+    StudentEnrollment? Classroom,
     List<ClassroomEntity>? classrooms,
     int? classroomId,
     String? schoolAdmissionDate,
@@ -45,7 +45,7 @@ class EnrollmentClassroomState extends Equatable {
     CurrentStageSituation? currentStageSituation,
   }) {
     return EnrollmentClassroomState(
-      studentEnrollment: studentEnrollment ?? this.studentEnrollment,
+      Classroom: Classroom ?? this.Classroom,
       classrooms: classrooms ?? this.classrooms,
       classroomId: classroomId ?? this.classroomId,
       schoolAdmissionDate: schoolAdmissionDate ?? this.schoolAdmissionDate,
@@ -67,7 +67,7 @@ class EnrollmentClassroomState extends Equatable {
   @override
   List<Object?> get props {
     return [
-      studentEnrollment.hashCode,
+      Classroom.hashCode,
       classrooms.hashCode,
       classroomId,
       schoolAdmissionDate,

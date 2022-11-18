@@ -9,17 +9,17 @@ class MockStudentEnrollmenrRemoteDataSource extends Mock
 
 void main() {
   group("When getById", () {
-    final studentEnrollmentModel = StudentEnrollmentModel(
-      schoolInepIdFk: "1",
+    final ClassroomModel = StudentEnrollment(
+      schoolIdentification: "1",
       studentFk: 1,
-      classroomFk: 1,
+      classroom: 1,
     );
     final datasource = MockStudentEnrollmenrRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
         () => datasource.getById(1),
       ).thenAnswer(
-        (invocation) => Future.value(studentEnrollmentModel),
+        (invocation) => Future.value(ClassroomModel),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
@@ -51,17 +51,17 @@ void main() {
     });
   });
   group("When getStudentById", () {
-    final studentEnrollmentModel = StudentEnrollmentModel(
-      schoolInepIdFk: "1",
+    final ClassroomModel = StudentEnrollment(
+      schoolIdentification: "1",
       studentFk: 1,
-      classroomFk: 1,
+      classroom: 1,
     );
     final datasource = MockStudentEnrollmenrRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
         () => datasource.getByStudentId(1),
       ).thenAnswer(
-        (invocation) => Future.value(studentEnrollmentModel),
+        (invocation) => Future.value(ClassroomModel),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
@@ -93,21 +93,21 @@ void main() {
     });
   });
   group("When create", () {
-    final studentEnrollmentModel = StudentEnrollmentModel(
-      schoolInepIdFk: "1",
+    final ClassroomModel = StudentEnrollment(
+      schoolIdentification: "1",
       studentFk: 1,
-      classroomFk: 1,
+      classroom: 1,
     );
     final datasource = MockStudentEnrollmenrRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
-        () => datasource.create(studentEnrollmentModel),
+        () => datasource.create(ClassroomModel),
       ).thenAnswer(
-        (invocation) => Future.value(studentEnrollmentModel),
+        (invocation) => Future.value(ClassroomModel),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
-      final params = await repository.create(studentEnrollmentModel);
+      final params = await repository.create(ClassroomModel);
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
@@ -118,13 +118,13 @@ void main() {
     });
     testWidgets("has left value", (tester) async {
       when(
-        () => datasource.create(studentEnrollmentModel),
+        () => datasource.create(ClassroomModel),
       ).thenThrow(
         (invocation) => Failure("Não foi possível listar"),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
-      final params = await repository.create(studentEnrollmentModel);
+      final params = await repository.create(ClassroomModel);
 
       expect(params.isLeft(), isTrue);
       final result = params.fold(id, id);
@@ -135,21 +135,21 @@ void main() {
     });
   });
   group("When update", () {
-    final studentEnrollmentModel = StudentEnrollmentModel(
-      schoolInepIdFk: "1",
+    final ClassroomModel = StudentEnrollment(
+      schoolIdentification: "1",
       studentFk: 1,
-      classroomFk: 1,
+      classroom: 1,
     );
     final datasource = MockStudentEnrollmenrRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
-        () => datasource.update(1, studentEnrollmentModel),
+        () => datasource.update(1, ClassroomModel),
       ).thenAnswer(
-        (invocation) => Future.value(studentEnrollmentModel),
+        (invocation) => Future.value(ClassroomModel),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
-      final params = await repository.update(1, studentEnrollmentModel);
+      final params = await repository.update(1, ClassroomModel);
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
@@ -160,13 +160,13 @@ void main() {
     });
     testWidgets("has left value", (tester) async {
       when(
-        () => datasource.update(1, studentEnrollmentModel),
+        () => datasource.update(1, ClassroomModel),
       ).thenThrow(
         (invocation) => Failure("Não foi possível listar"),
       );
 
       final repository = StudentEnrollmentRepositoryImpl(datasource);
-      final params = await repository.update(1, studentEnrollmentModel);
+      final params = await repository.update(1, ClassroomModel);
 
       expect(params.isLeft(), isTrue);
       final result = params.fold(id, id);

@@ -1,5 +1,5 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_enrollment_model.dart';
+import 'package:tag_sdk/src/features/student/domain/entities/enrollment.dart';
 
 class PutStudentEnrollmentEndPoint extends EndPointAPI {
   PutStudentEnrollmentEndPoint({
@@ -8,13 +8,13 @@ class PutStudentEnrollmentEndPoint extends EndPointAPI {
   });
 
   final int id;
-  final StudentEnrollmentModel model;
+  final StudentEnrollment model;
 
   @override
-  String get path => '/studentEnrollment/$id';
+  String get path => '/Classroom/$id';
 
   @override
-  Parameters? get bodyParameters => () => model.toMap();
+  Parameters? get bodyParameters => () => model.toJson();
 
   @override
   HTTPHeaders? get headers => null;

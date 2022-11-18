@@ -18,7 +18,7 @@ class EnrollmentAddressState extends Equatable {
   final String inepId;
   final bool bfParticipator;
   final bool posCenso;
-  final StudentDocsAddress? docsAddress;
+  final StudentDocsAndAddress? docsAddress;
 
   const EnrollmentAddressState({
     required this.cities,
@@ -73,7 +73,7 @@ class EnrollmentAddressState extends Equatable {
     bool? posCenso,
     Map<int, String>? cities,
     Map<int, String>? ufs,
-    StudentDocsAddress? docsAddress,
+    StudentDocsAndAddress? docsAddress,
   }) {
     return EnrollmentAddressState(
       cep: cep ?? this.cep,

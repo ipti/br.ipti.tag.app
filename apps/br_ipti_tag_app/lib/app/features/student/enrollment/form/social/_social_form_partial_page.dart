@@ -17,7 +17,7 @@ class SocialFormPage extends StatefulWidget {
     this.editMode = EditMode.Create,
   });
 
-  final StudentDocsAddress? model;
+  final StudentDocsAndAddress? model;
   final EditMode editMode;
 
   @override
@@ -31,7 +31,8 @@ class SocialFormPageState extends State<SocialFormPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    if (widget.model != null) controller.loadStudentDocsAddress(widget.model!);
+    if (widget.model != null)
+      controller.loadStudentDocsAndAddress(widget.model!);
     super.initState();
   }
 

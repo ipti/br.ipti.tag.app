@@ -13,32 +13,32 @@ class EnrollmentInitialState extends EnrollmentState {
 
 class EnrollmentLoadedState extends EnrollmentState {
   final StudentIdentification? student;
-  final StudentDocsAddress? studentDocs;
-  final StudentEnrollment? studentEnrollment;
+  final StudentDocsAndAddress? studentDocs;
+  final StudentEnrollment? classroom;
 
   const EnrollmentLoadedState({
     this.student,
     this.studentDocs,
-    this.studentEnrollment,
+    this.classroom,
   });
 
   @override
   List<Object> get props => [
         student.hashCode,
-        studentEnrollment.hashCode,
+        classroom.hashCode,
         studentDocs.hashCode,
       ];
 
   EnrollmentLoadedState copyWith({
     int tabIndex = 0,
     StudentIdentification? student,
-    StudentDocsAddress? studentDocs,
-    StudentEnrollment? studentEnrollment,
+    StudentDocsAndAddress? studentDocs,
+    StudentEnrollment? classroom,
   }) {
     return EnrollmentLoadedState(
       student: student ?? this.student,
       studentDocs: studentDocs ?? this.studentDocs,
-      studentEnrollment: studentEnrollment ?? this.studentEnrollment,
+      classroom: classroom ?? this.classroom,
     );
   }
 }

@@ -2,7 +2,7 @@
 
 import 'package:br_ipti_tag_app/app/features/student/domain/entities/student_documents.dart';
 
-class StudentDocumentsAddressModel extends StudentDocsAddress {
+class StudentDocumentsAddressModel extends StudentDocsAndAddress {
   StudentDocumentsAddressModel({
     super.id,
     super.registerType,
@@ -149,7 +149,7 @@ class StudentDocumentsAddressModel extends StudentDocsAddress {
   }
 
   factory StudentDocumentsAddressModel.fromEntity(
-    StudentDocsAddress studentDocuments,
+    StudentDocsAndAddress studentDocuments,
   ) {
     return StudentDocumentsAddressModel(
       id: studentDocuments.id,

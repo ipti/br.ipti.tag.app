@@ -1,18 +1,18 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_docs_model.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class PostStudentDocsEndPoint extends EndPointAPI {
   PostStudentDocsEndPoint({
     required this.model,
   });
 
-  final StudentDocumentsAddressModel model;
+  final StudentDocsAndAddress model;
 
   @override
   String get path => '/student-docs-and-address';
 
   @override
-  Parameters? get bodyParameters => () => model.toMap();
+  Parameters? get bodyParameters => () => model.toJson();
 
   @override
   HTTPHeaders? get headers => null;

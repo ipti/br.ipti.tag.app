@@ -6,15 +6,15 @@ import 'package:tag_sdk/src/features/student/domain/repositories/student_enrollm
 
 class LoadStudentEnrollmentUsecase
     implements Usecase<StudentEnrollment, LoadStudentEnrollmentParams> {
-  LoadStudentEnrollmentUsecase(this._studentEnrollmentRepository);
+  LoadStudentEnrollmentUsecase(this._ClassroomRepository);
 
-  final StudentEnrollmentRepository _studentEnrollmentRepository;
+  final StudentEnrollmentRepository _ClassroomRepository;
 
   @override
   Future<Either<Failure, StudentEnrollment>> call(
     LoadStudentEnrollmentParams params,
   ) async {
-    final result = await _studentEnrollmentRepository.getStudentById(
+    final result = await _ClassroomRepository.getStudentById(
       params.studentId,
     );
 

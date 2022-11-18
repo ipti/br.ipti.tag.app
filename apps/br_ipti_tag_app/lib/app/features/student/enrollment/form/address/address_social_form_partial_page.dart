@@ -18,7 +18,7 @@ class AddressFormPage extends StatefulWidget {
     this.model,
   });
 
-  final StudentDocsAddress? model;
+  final StudentDocsAndAddress? model;
   final EditMode editMode;
 
   @override
@@ -31,7 +31,8 @@ class AddressFormPageState extends State<AddressFormPage> {
   @override
   void initState() {
     controller.fetchUFs();
-    if (widget.model != null) controller.loadStudentDocsAddress(widget.model!);
+    if (widget.model != null)
+      controller.loadStudentDocsAndAddress(widget.model!);
     super.initState();
   }
 

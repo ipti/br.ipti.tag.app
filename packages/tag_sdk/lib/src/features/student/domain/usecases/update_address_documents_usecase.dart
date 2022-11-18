@@ -5,13 +5,13 @@ import 'package:tag_sdk/src/features/student/domain/entities/student_documents.d
 import 'package:tag_sdk/src/features/student/domain/repositories/student_doc_address_repositories.dart';
 
 class UpdateDocumentsAndAddressUsecase
-    implements Usecase<StudentDocsAddress, UpdateDocumentsAndAddressParams> {
+    implements Usecase<StudentDocsAndAddress, UpdateDocumentsAndAddressParams> {
   UpdateDocumentsAndAddressUsecase(this._documentsAddressRepository);
 
   final StudentDocumentsAddressRepository _documentsAddressRepository;
 
   @override
-  Future<Either<Failure, StudentDocsAddress>> call(
+  Future<Either<Failure, StudentDocsAndAddress>> call(
     UpdateDocumentsAndAddressParams params,
   ) async {
     final result = await _documentsAddressRepository.update(
@@ -24,7 +24,7 @@ class UpdateDocumentsAndAddressUsecase
 }
 
 class UpdateDocumentsAndAddressParams {
-  final StudentDocsAddress studentDocumentsAndAddress;
+  final StudentDocsAndAddress studentDocumentsAndAddress;
   final int studentDocsId;
 
   UpdateDocumentsAndAddressParams({

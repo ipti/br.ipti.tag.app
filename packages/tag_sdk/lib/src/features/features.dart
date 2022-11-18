@@ -111,7 +111,6 @@ export 'student/data/datasources/remote/student_enrollment_remote_datasource.dar
 export 'student/data/datasources/remote/student_remote_datasource.dart';
 export 'student/data/models/student_docs_model.dart';
 export 'student/data/models/student_enrollment_model.dart';
-export 'student/data/models/student_model.dart';
 export 'student/data/repositories/student_docs_addrs_repository_impl.dart';
 export 'student/data/repositories/student_enrollment_repository_impl.dart';
 export 'student/data/repositories/student_repository_impl.dart';

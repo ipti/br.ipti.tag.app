@@ -27,7 +27,7 @@ class GetStudentDocsEndPoint extends EndPointAPI {
   Parameters? get urlParameters => () {
         final params = <String, dynamic>{};
         if (studentId != null) {
-          params.addEntries([MapEntry("student", studentId)]);
+          params.addEntries([MapEntry("student_inep_id", studentId)]);
         }
 
         return params;

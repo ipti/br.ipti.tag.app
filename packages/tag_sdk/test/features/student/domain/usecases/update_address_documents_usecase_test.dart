@@ -11,8 +11,8 @@ void main() {
   testWidgets(
     "UpdateDocumentsAndAddressUsecase when update a right value",
     (tester) async {
-      final studentDocsAddress = StudentDocsAddress(
-        schoolInepIdFk: "schoolInepIdFk",
+      final studentDocsAddress = StudentDocsAndAddress(
+        schoolIdentification: "schoolIdentification",
         studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: 1,
@@ -37,15 +37,15 @@ void main() {
       final result = either.fold(id, id);
       expect(
         result,
-        isA<StudentDocsAddress>(),
+        isA<StudentDocsAndAddress>(),
       );
     },
   );
   testWidgets(
     "UpdateDocumentsAndAddressUsecase when update a left value",
     (tester) async {
-      final studentDocsAddress = StudentDocsAddress(
-        schoolInepIdFk: "schoolInepIdFk",
+      final studentDocsAddress = StudentDocsAndAddress(
+        schoolIdentification: "schoolIdentification",
         studentFk: 1,
         rgNumber: "rgNumber",
         edcensoUfFk: 1,

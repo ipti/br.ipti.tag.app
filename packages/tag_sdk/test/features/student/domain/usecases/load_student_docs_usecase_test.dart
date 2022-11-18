@@ -14,8 +14,8 @@ void main() {
       () => repository.getByStudentId(1),
     ).thenAnswer(
       (realInvocation) => Future.value(right(
-        StudentDocsAddress(
-          schoolInepIdFk: "schoolInepIdFk",
+        StudentDocsAndAddress(
+          schoolIdentification: "schoolInepIdFk",
           studentFk: 1,
           rgNumber: "rgNumber",
           edcensoUfFk: 1,
@@ -32,7 +32,7 @@ void main() {
     final result = either.fold(id, id);
     expect(
       result,
-      isA<StudentDocsAddress>(),
+      isA<StudentDocsAndAddress>(),
     );
   });
   testWidgets("LoadStudentDocsUsecase when load a left value", (tester) async {

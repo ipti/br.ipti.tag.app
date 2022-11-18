@@ -4,13 +4,13 @@ import 'package:br_ipti_tag_app/app/features/student/domain/repositories/student
 import 'package:dartz/dartz.dart';
 
 class UpdateDocumentsAndAddressUsecase
-    implements Usecase&lt;StudentDocsAddress, UpdateDocumentsAndAddressParams&gt; {
+    implements Usecase&lt;StudentDocsAndAddress, UpdateDocumentsAndAddressParams&gt; {
   UpdateDocumentsAndAddressUsecase(this._documentsAddressRepository);
 
   final StudentDocumentsAddressRepository _documentsAddressRepository;
 
   @override
-  Future&lt;Either&lt;Exception, StudentDocsAddress&gt;&gt; call(
+  Future&lt;Either&lt;Exception, StudentDocsAndAddress&gt;&gt; call(
     UpdateDocumentsAndAddressParams params,
   ) async {
     final result = await _documentsAddressRepository.update(
@@ -23,7 +23,7 @@ class UpdateDocumentsAndAddressUsecase
 }
 
 class UpdateDocumentsAndAddressParams {
-  final StudentDocsAddress studentDocumentsAndAddress;
+  final StudentDocsAndAddress studentDocumentsAndAddress;
   final String studentDocsId;
 
   UpdateDocumentsAndAddressParams({

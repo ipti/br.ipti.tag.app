@@ -118,7 +118,9 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     }
   }
 
-  Future loadStudentDocsAddress(StudentDocsAddress studentDocuments) async {
+  Future loadStudentDocsAndAddress(
+    StudentDocsAndAddress studentDocuments,
+  ) async {
     emit(
       state.copyWith(
         docsAddress: studentDocuments,
@@ -138,7 +140,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
   Future submitAddressForm(EditMode mode) async {
     switch (mode) {
       case EditMode.Create:
-        final studentDocuments = _buildStudentDocsAddress();
+        final studentDocuments = _buildStudentDocsAndAddress();
         _create(studentDocuments);
         break;
       case EditMode.Edit:
@@ -148,7 +150,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     }
   }
 
-  Future _create(StudentDocsAddress studentDocuments) async {
+  Future _create(StudentDocsAndAddress studentDocuments) async {
     final params = AddDocumentsAndAddressToStudentParams(
       studentDocumentsAddress: studentDocuments,
     );
@@ -168,7 +170,7 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     );
   }
 
-  Future _edit(StudentDocsAddress studentDocuments) async {
+  Future _edit(StudentDocsAndAddress studentDocuments) async {
     final newStudentDocs = studentDocuments.copyWith(
       edcensoUfFk: state.edcensoUfFk,
       edcensoCityFk: state.edcensoCityFk,
@@ -201,17 +203,18 @@ class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {
     );
   }
 
-  StudentDocsAddress _buildStudentDocsAddress() {
+  StudentDocsAndAddress _buildStudentDocsAndAddress() {
     final student = _enrollmentBloc.student!;
     final school = _session.state.currentSchool!;
 
-    return StudentDocsAddress(
+    return StudentDocsAndAddress(
       nis: state.nis,
-      schoolInepIdFk: school.inepId,
-      studentFk: student.id!,
+      schoolIdentification: school.inepId,
+      studentFk: student.id,
       rgNumber: '354511254',
-      edcensoUfFk: state.edcensoUfFk!,
-      edcensoCityFk: state.edcensoCityFk!,
+      edcensoUfFk: state.edcensoUfFk,
+      edcensoUfEdcensoUfTostudentDocumentsAndAddressRgNumberEdcensoUfFk:
+          state.edcensoCityFk,
       cep: state.cep,
       address: state.address,
       neighborhood: state.neighborhood,

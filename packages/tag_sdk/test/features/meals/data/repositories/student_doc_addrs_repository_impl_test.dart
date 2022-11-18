@@ -9,8 +9,8 @@ class MockStudentDocumentsAndAddressRemoteDataSource extends Mock
 
 void main() {
   group("When  ", () {
-    final studentDocsAddressModel = StudentDocumentsAddressModel(
-      schoolInepIdFk: "schoolInepIdFk",
+    final studentDocsAddressModel = StudentDocsAndAddress(
+      schoolIdentification: "schoolInepIdFk",
       studentFk: 1,
       rgNumber: "rgNumber",
       edcensoUfFk: 1,
@@ -31,7 +31,7 @@ void main() {
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentDocsAddress>(),
+        isA<StudentDocsAndAddress>(),
       );
     });
     testWidgets("getByStudentId has left value", (tester) async {
@@ -66,7 +66,7 @@ void main() {
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentDocsAddress>(),
+        isA<StudentDocsAndAddress>(),
       );
     });
     testWidgets("create has left value", (tester) async {
@@ -101,7 +101,7 @@ void main() {
       final result = params.fold(id, id);
       expect(
         result,
-        isA<StudentDocsAddress>(),
+        isA<StudentDocsAndAddress>(),
       );
     });
     testWidgets("alterar has left value", (tester) async {

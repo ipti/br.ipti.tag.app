@@ -11,24 +11,24 @@ void main() {
   testWidgets(
     "UpdateStudentEnrollmentUsecase when update a right value",
     (tester) async {
-      final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "1",
+      final Classroom = StudentEnrollment(
+        schoolIdentification: "1",
         studentFk: 1,
-        classroomFk: 1,
+        classroom: 1,
       );
 
       final repository = MockStudentEnrollmentRepository();
 
       when(
-        () => repository.update(any(), studentEnrollment),
+        () => repository.update(any(), Classroom),
       ).thenAnswer((invocation) => Future.value(
-            right(studentEnrollment),
+            right(Classroom),
           ));
 
       final usercase = UpdateStudentEnrollmentUsecase(repository);
       final params = UpdateStudentEnrollmentParams(
         enrollmentId: 1,
-        enrollment: studentEnrollment,
+        enrollment: Classroom,
       );
 
       final either = await usercase(params);
@@ -44,16 +44,16 @@ void main() {
   testWidgets(
     "UpdateStudentEnrollmentUsecase when update a left value",
     (tester) async {
-      final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "1",
+      final Classroom = StudentEnrollment(
+        schoolIdentification: "1",
         studentFk: 1,
-        classroomFk: 1,
+        classroom: 1,
       );
 
       final repository = MockStudentEnrollmentRepository();
 
       when(
-        () => repository.update(1, studentEnrollment),
+        () => repository.update(1, Classroom),
       ).thenAnswer(
         (invocation) => Future.value(left(
           const RestFailure("Ocorreu um erro"),
@@ -63,7 +63,7 @@ void main() {
       final usercase = UpdateStudentEnrollmentUsecase(repository);
       final params = UpdateStudentEnrollmentParams(
         enrollmentId: 1,
-        enrollment: studentEnrollment,
+        enrollment: Classroom,
       );
 
       final either = await usercase(params);

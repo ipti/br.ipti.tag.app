@@ -8,7 +8,7 @@ class DevConfig implements BaseConfig {
   bool get reportErrors => false;
 
   @override
-  bool get debugRequests => false;
+  bool get debugRequests => true;
 
   @override
   bool get reportPerformance => false;

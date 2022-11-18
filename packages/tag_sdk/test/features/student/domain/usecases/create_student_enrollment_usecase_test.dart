@@ -11,21 +11,20 @@ void main() {
   testWidgets(
     "CreateStudentEnrollmentUsecase when create a right value",
     (tester) async {
-      final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "1",
+      final Classroom = StudentEnrollment(
+        schoolIdentification: "1",
         studentFk: 1,
-        classroomFk: 1,
+        classroom: 1,
       );
       final repository = MockStudentEnrollmentRepository();
       when(
-        () => repository.create(studentEnrollment),
+        () => repository.create(Classroom),
       ).thenAnswer((invocation) => Future.value(
-            right(studentEnrollment),
+            right(Classroom),
           ));
 
       final usercase = CreateStudentEnrollmentUsecase(repository);
-      final params =
-          CreateStudentEnrollmentParams(enrollment: studentEnrollment);
+      final params = CreateStudentEnrollmentParams(enrollment: Classroom);
       final either = await usercase(params);
       final result = either.fold(id, id);
       expect(
@@ -37,14 +36,14 @@ void main() {
   testWidgets(
     "CreateStudentEnrollmentUsecase when create a left value",
     (tester) async {
-      final studentEnrollment = StudentEnrollment(
-        schoolInepIdFk: "1",
+      final Classroom = StudentEnrollment(
+        schoolIdentification: "1",
         studentFk: 1,
-        classroomFk: 1,
+        classroom: 1,
       );
       final repository = MockStudentEnrollmentRepository();
       when(
-        () => repository.create(studentEnrollment),
+        () => repository.create(Classroom),
       ).thenAnswer(
         (invocation) => Future.value(left(
           const RestFailure("Ocorreu um erro"),
@@ -52,8 +51,7 @@ void main() {
       );
 
       final usercase = CreateStudentEnrollmentUsecase(repository);
-      final params =
-          CreateStudentEnrollmentParams(enrollment: studentEnrollment);
+      final params = CreateStudentEnrollmentParams(enrollment: Classroom);
 
       final either = await usercase(params);
       final result = either.fold(id, id);

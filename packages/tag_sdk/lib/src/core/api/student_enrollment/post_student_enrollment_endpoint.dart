@@ -1,18 +1,18 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_enrollment_model.dart';
+import 'package:tag_sdk/src/features/student/domain/entities/enrollment.dart';
 
 class PostStudentEnrollmentEndPoint extends EndPointAPI {
   PostStudentEnrollmentEndPoint({
     required this.model,
   });
 
-  final StudentEnrollmentModel model;
+  final StudentEnrollment model;
 
   @override
-  String get path => '/studentEnrollment';
+  String get path => '/Classroom';
 
   @override
-  Parameters? get bodyParameters => () => model.toMap();
+  Parameters? get bodyParameters => () => model.toJson();
 
   @override
   HTTPHeaders? get headers => null;

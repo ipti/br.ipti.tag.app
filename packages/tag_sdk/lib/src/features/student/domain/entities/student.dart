@@ -73,6 +73,7 @@ class StudentIdentification with _$StudentIdentification {
     int? filiation2Scholarity,
     String? filiation2Job,
   }) = _StudentIdentification;
+
   factory StudentIdentification.fromJson(Map<String, Object?> json) =>
       _$StudentIdentificationFromJson(json);
 }

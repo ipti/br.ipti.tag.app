@@ -92,7 +92,6 @@ import 'package:tag_sdk/src/features/student/data/datasources/local/local.dart';
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_remote_datasource.dart';
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_doc_address_remote_datasource.dart';
 import 'package:tag_sdk/src/features/student/data/datasources/remote/student_enrollment_remote_datasource.dart';
-import 'package:tag_sdk/src/features/student/data/models/student_model.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_enrollment_model.dart';
 import 'package:tag_sdk/src/features/student/data/models/student_docs_model.dart';
 import 'package:tag_sdk/src/features/student/data/repositories/student_repository_impl.dart';
@@ -217,5 +216,6 @@ import 'package:tag_sdk/src/core/api/student_enrollment/student_enrollment.dart'
 import 'package:tag_sdk/src/core/api/student_enrollment/put_student_enrollment_endpoint.dart';
 import 'package:tag_sdk/src/core/api/student_enrollment/get_student_enrollment_endpoint.dart';
 import 'package:tag_sdk/src/core/api/student_enrollment/post_student_enrollment_endpoint.dart';
+
 // ignore: no-empty-block
-void main(){}
+void main() {}

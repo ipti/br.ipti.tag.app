@@ -67,7 +67,7 @@ jobs:
         run: flutter pub global run melos bootstrap
 
       - name: 🏃 Running coding genarate        
-        run: flutter pub global run melos run gen_code:sdk
+        run: flutter pub global run melos run gen:sdk
 
       - name: 🤖 Build Android App Bundle
         working-directory: ${{ steps.project-folder.outputs.download-path }}/apps/br_ipti_tag_app

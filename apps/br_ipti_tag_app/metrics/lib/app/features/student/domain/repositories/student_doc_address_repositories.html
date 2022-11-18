@@ -2,15 +2,15 @@
 import 'package:dartz/dartz.dart';
 
 abstract class StudentDocumentsAddressRepository {
-  Future&lt;Either&lt;Exception, StudentDocsAddress&gt;&gt; getByStudentId(
+  Future&lt;Either&lt;Exception, StudentDocsAndAddress&gt;&gt; getByStudentId(
     int id,
   );
-  Future&lt;Either&lt;Exception, StudentDocsAddress&gt;&gt; create(
-    StudentDocsAddress studentdosStudentDocuments,
+  Future&lt;Either&lt;Exception, StudentDocsAndAddress&gt;&gt; create(
+    StudentDocsAndAddress studentdosStudentDocuments,
   );
-  Future&lt;Either&lt;Exception, StudentDocsAddress&gt;&gt; update(
+  Future&lt;Either&lt;Exception, StudentDocsAndAddress&gt;&gt; update(
     String id,
-    StudentDocsAddress student,
+    StudentDocsAndAddress student,
   );
 }
 </pre></td></tr></tbody></table></pre><script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.min.js"></script><script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/lang-dart.min.js"></script></body></html>

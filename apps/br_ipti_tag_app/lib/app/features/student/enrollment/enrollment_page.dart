@@ -71,14 +71,14 @@ class EnrollmentPageState extends State<EnrollmentPage>
 
       controller.loadStudent(student);
 
-      // controller.fetchStudentDocs(
-      //   int.tryParse(student.inepId!) ?? 0,
-      //   student.schoolInepIdFk!,
-      // );
-      // controller.fetchStudentsEnrollment(
-      //   student.id!,
-      //   student.schoolInepIdFk!,
-      // );
+      controller.fetchStudentDocs(
+        int.parse(student.inepId ?? '0'),
+        student.schoolInepIdFk,
+      );
+      controller.fetchStudentsEnrollment(
+        student.id!,
+        student.schoolInepIdFk,
+      );
     }
 
     controller.stream.listen((state) {
@@ -165,7 +165,7 @@ class EnrollmentPageState extends State<EnrollmentPage>
           editMode: widget.editMode,
         ),
         ClassesFormPage(
-          model: state.studentEnrollment,
+          model: state.classroom,
           editMode: widget.editMode,
         ),
       ],
