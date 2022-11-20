@@ -31,8 +31,9 @@ class SocialFormPageState extends State<SocialFormPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
-    if (widget.model != null)
+    if (widget.model != null) {
       controller.loadStudentDocsAndAddress(widget.model!);
+    }
     super.initState();
   }
 

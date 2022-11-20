@@ -43,8 +43,8 @@ class EnrollmentBloc extends Cubit<EnrollmentState> {
     );
   }
 
-  void loadStudentsEnrollment(StudentEnrollment Classroom) {
-    this.classroom = Classroom;
+  void loadStudentsEnrollment(StudentEnrollment classroom) {
+    this.classroom = classroom;
     emit(
       EnrollmentLoadedState(
         student: student,

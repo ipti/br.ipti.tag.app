@@ -1,5 +1,5 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/teacher/data/models/instructor_model.dart';
+import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 
 class PutInstructorEndPoint extends EndPointAPI {
   PutInstructorEndPoint({
@@ -7,14 +7,14 @@ class PutInstructorEndPoint extends EndPointAPI {
     required this.model,
   });
 
-  final InstructorModel model;
+  final Instructor model;
   final int objectId;
 
   @override
   String get path => '/instructor/$objectId';
 
   @override
-  Parameters? get bodyParameters => () => model.toMap();
+  Parameters? get bodyParameters => () => model.toJson();
 
   @override
   HTTPHeaders? get headers => null;

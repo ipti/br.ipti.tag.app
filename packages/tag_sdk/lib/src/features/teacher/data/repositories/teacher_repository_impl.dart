@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/src/core/failures/failures.dart';
 
 import 'package:tag_sdk/src/features/teacher/data/datasources/remote/teacher_remote_datasource.dart';
-import 'package:tag_sdk/src/features/teacher/data/models/instructor_model.dart';
+
 import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 import 'package:tag_sdk/src/features/teacher/domain/repositories/instructor_repository.dart';
 
@@ -48,8 +48,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
   @override
   Future<Either<Failure, Instructor>> create(Instructor instructor) async {
     try {
-      final instructorModel = InstructorModel.fromEntity(instructor);
-      final results = await _instructorDataSource.create(instructorModel);
+      final results = await _instructorDataSource.create(instructor);
 
       return Right(results);
     } catch (e) {
@@ -69,8 +68,7 @@ class InstructorRepositoryImpl implements InstructorRepository {
     Instructor instructor,
   ) async {
     try {
-      final instructorModel = InstructorModel.fromEntity(instructor);
-      final results = await _instructorDataSource.update(id, instructorModel);
+      final results = await _instructorDataSource.update(id, instructor);
 
       return Right(results);
     } catch (e) {

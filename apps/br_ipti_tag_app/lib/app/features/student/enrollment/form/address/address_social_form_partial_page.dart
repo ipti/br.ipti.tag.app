@@ -31,8 +31,9 @@ class AddressFormPageState extends State<AddressFormPage> {
   @override
   void initState() {
     controller.fetchUFs();
-    if (widget.model != null)
+    if (widget.model != null) {
       controller.loadStudentDocsAndAddress(widget.model!);
+    }
     super.initState();
   }
 

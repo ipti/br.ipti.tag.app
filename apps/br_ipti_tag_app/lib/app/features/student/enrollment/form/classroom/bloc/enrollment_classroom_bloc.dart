@@ -54,24 +54,24 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         state.copyWith(unifiedClass: unifiedClass),
       );
 
-  void loadStudentEnrollment(StudentEnrollment Classroom) {
+  void loadStudentEnrollment(StudentEnrollment classroom) {
     emit(
       state.copyWith(
-        Classroom: Classroom,
-        classroomId: Classroom.classroom,
-        anotherScholarizationPlace: Classroom.anotherScholarizationPlace,
+        classroom: classroom,
+        classroomId: classroom.classroom,
+        anotherScholarizationPlace: classroom.anotherScholarizationPlace,
         currentStageSituation: CurrentStageSituation.values.byId(
-          Classroom.currentStageSituation,
+          classroom.currentStageSituation,
         ),
-        edcensoStageVsModalityFk: Classroom.edcensoStageVsModality,
-        // stage: Stage.values.byId(Classroom),
-        unifiedClass: UnifiedClass.values.byId(Classroom.unifiedClass),
-        schoolAdmissionDate: Classroom.schoolAdmissionDate,
+        edcensoStageVsModalityFk: classroom.edcensoStageVsModality,
+        // stage: Stage.values.byId(classroom),
+        unifiedClass: UnifiedClass.values.byId(classroom.unifiedClass),
+        schoolAdmissionDate: classroom.schoolAdmissionDate,
         studentEntryForm: AdmissionType.values.byId(
-          Classroom.studentEntryForm,
+          classroom.studentEntryForm,
         ),
         previousStageSituation: PreviousStageSituation.values.byId(
-          Classroom.previousStageSituation,
+          classroom.previousStageSituation,
         ),
       ),
     );
@@ -113,7 +113,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
         await _create(enrollment);
         break;
       case EditMode.Edit:
-        final oldStudentEnrollment = state.Classroom;
+        final oldStudentEnrollment = state.classroom;
 
         if (oldStudentEnrollment == null) return submit(EditMode.Create);
 
@@ -144,8 +144,8 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       (error) => _enrollmentBloc.notifyError(
         error.toString(),
       ),
-      (Classroom) {
-        _enrollmentBloc.loadStudentsEnrollment(Classroom);
+      (classroom) {
+        _enrollmentBloc.loadStudentsEnrollment(classroom);
         _enrollmentBloc.notifySuccess(
           "Matricula realizadas com sucesso",
         );
@@ -165,8 +165,8 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
       (error) => _enrollmentBloc.notifyError(
         error.toString(),
       ),
-      (Classroom) {
-        _enrollmentBloc.loadStudentsEnrollment(Classroom);
+      (classroom) {
+        _enrollmentBloc.loadStudentsEnrollment(classroom);
         _enrollmentBloc.notifySuccess(
           "Matricula atualizada com sucesso",
         );

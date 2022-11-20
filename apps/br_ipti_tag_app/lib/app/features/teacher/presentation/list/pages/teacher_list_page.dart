@@ -87,7 +87,7 @@ class TeacherDatatable extends DataTableSource {
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name!.toUpperCase(),
+        data[index].name.toUpperCase(),
       )),
       DataCell(
         Text(data[index].email ?? " - "),

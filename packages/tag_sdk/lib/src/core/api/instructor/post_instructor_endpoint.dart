@@ -1,18 +1,18 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/teacher/data/models/instructor_model.dart';
+import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 
 class PostInstructorEndPoint extends EndPointAPI {
   PostInstructorEndPoint({
     required this.model,
   });
 
-  final InstructorModel model;
+  final Instructor model;
 
   @override
   String get path => '/instructor';
 
   @override
-  Parameters? get bodyParameters => () => model.toMap();
+  Parameters? get bodyParameters => () => model.toJson();
 
   @override
   HTTPHeaders? get headers => null;

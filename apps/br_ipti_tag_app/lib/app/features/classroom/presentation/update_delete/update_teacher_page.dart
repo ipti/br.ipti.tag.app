@@ -140,7 +140,7 @@ class InstructorDatatable extends DataTableSource {
   DataRow getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        data[index].name!.toUpperCase(),
+        data[index].name.toUpperCase(),
       )),
       DataCell(Text(
         disciplines[index].map((e) => e.name).join(','),
