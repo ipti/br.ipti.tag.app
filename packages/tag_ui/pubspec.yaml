@@ -31,6 +31,21 @@ flutter:
     - packages/tag_ui/assets/logo/logo_grey_tag.svg
     - packages/tag_ui/assets/logo/logo_light_tag.svg
     - packages/tag_ui/assets/logo/logo_tag.svg
+    
+    
+    - packages/tag_ui/assets/icons/home/azul.svg
+    - packages/tag_ui/assets/icons/home/cinza.svg
+    - packages/tag_ui/assets/icons/pessoas/azul.svg
+    - packages/tag_ui/assets/icons/pessoas/cinza.svg
+    - packages/tag_ui/assets/icons/lapis/azul.svg
+    - packages/tag_ui/assets/icons/lapis/cinza.svg
+    - packages/tag_ui/assets/icons/onibus/azul.svg
+    - packages/tag_ui/assets/icons/onibus/cinza.svg
+    - packages/tag_ui/assets/icons/maca/azul.svg
+    - packages/tag_ui/assets/icons/maca/cinza.svg
+    - packages/tag_ui/assets/icons/info/info.svg
+    - packages/tag_ui/assets/icons/fechar/fechar.svg
+    - packages/tag_ui/assets/icons/impressora/impressora.svg
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
   #

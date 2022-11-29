@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:tag_ui/src/strings/file_paths.dart';
+
 import 'package:tag_ui/tag_ui.dart';
 
 import '../../helpers/methods/prepare_widget.dart';

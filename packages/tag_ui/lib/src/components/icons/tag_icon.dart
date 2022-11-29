@@ -35,6 +35,7 @@ class _TagIconState extends State<TagIcon> {
       ),
       child: SvgPicture.asset(
         path,
+        package: "tag_ui",
       ),
     );
   }
