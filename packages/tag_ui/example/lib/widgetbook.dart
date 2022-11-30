@@ -16,6 +16,10 @@ import 'package:example/components/tag_menu_story.dart';
 import 'package:example/components/tag_rainbow_bar_story.dart';
 import 'package:example/components/tag_scaffold_story.dart';
 import 'package:example/components/tag_text_field.dart';
+import 'package:example/components/templates/layout_left_and_body_story.dart';
+import 'package:example/components/templates/layout_left_body_right_story.dart';
+import 'package:example/components/templates/layout_topbar_and_body_story.dart';
+import 'package:example/components/templates/main_layout_adaptativy_story.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 
@@ -46,7 +50,11 @@ class WidgetbookHotReload extends StatelessWidget {
             menu(),
             rainbowBar(),
             scaffold(),
-            textField()
+            textField(),
+            layoutLeftAndBodyStory(),
+            layoutLeftBodyRightStory(),
+            layoutTopbarAndBodyStory(),
+            mainLayoutAdaptativyStory()
           ],
         ),
       ],
