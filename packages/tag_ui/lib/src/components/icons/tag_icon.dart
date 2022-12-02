@@ -9,11 +9,19 @@ class TagIcon extends StatefulWidget {
     required this.defaultVersionPath,
     required this.disabledVersionPath,
     this.disabled = false,
+    this.maxHeight = TagSizes.heightIconLarge,
+    this.maxWidth = TagSizes.widthIconLarge,
+    this.minHeight = TagSizes.heightIconSmall,
+    this.minWidth = TagSizes.widthIconSmall,
   });
 
   final String defaultVersionPath;
   final String disabledVersionPath;
   bool disabled;
+  final double maxHeight;
+  final double maxWidth;
+  final double minHeight;
+  final double minWidth;
 
   @override
   _TagIconState createState() => _TagIconState();
@@ -28,10 +36,10 @@ class _TagIconState extends State<TagIcon> {
 
     return Container(
       constraints: BoxConstraints(
-        maxHeight: TagSizes.heightIconLarge,
-        maxWidth: TagSizes.widthIconLarge,
-        minHeight: TagSizes.heightIconSmall,
-        minWidth: TagSizes.widthIconSmall,
+        maxHeight: widget.maxHeight,
+        maxWidth: widget.maxWidth,
+        minHeight: widget.minHeight,
+        minWidth: widget.minWidth,
       ),
       child: SvgPicture.asset(
         path,
