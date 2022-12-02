@@ -4,6 +4,11 @@ import 'dart:io';
 import 'package:br_ipti_tag_biometry_app/Screens/school_entrance.dart';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+String urlWebSocket = "http://localhost:5000";
+String urlWebSocketMobile = "wss//localhost:5000";
+IO.Socket? socket;
 
 void main() {
   runApp(const MyApp());
@@ -15,29 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     try {
-      var socket = IO.io('ws://localhost:5000', <String, dynamic>{
-        'transports': ['websocket'],
-        'autoConnect': true,
+      var uri = kIsWeb ? urlWebSocket : urlWebSocketMobile;
+      socket = IO.io(uri);
+      log(uri);
+      socket!.onConnectError((data) => log(data.toString()));
+      socket!.onConnect((_) {
+        // it firing 'join' event so that server can listen the request.
       });
-      socket.on('connect', (_) {
-        log('connect');
-        socket.emit('msg', 'test');
-      });
-      socket.on("connecting", (data) => log('connecting'));
-      socket.on('connect_error', (data) {
-        log(data.toString());
-        socket.emit('msg', 'test');
-      });
-      // IO.Socket socket = IO.io('http://localhost:5000', <String, dynamic>{
-      //   "transports": ["websocket"],
-      //   "autoConnect": false,
-      // });
-      // socket.connect();
-      // log(socket.connected.toString());
-      // socket.onConnectError((data) => log(data.toString()));
-      // socket.emit('message', 'StoreSendMessage');
     } catch (e) {
       log(e.toString());
+      log('message');
     }
     return MaterialApp(
         debugShowCheckedModeBanner: false,
