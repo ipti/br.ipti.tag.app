@@ -12,13 +12,25 @@ WidgetbookComponent datatable() => WidgetbookComponent(
                 home: TagDataTable(
                   columns: const [
                     DataColumn(
-                      label: Text("Nome"),
+                      label: Text(
+                        textAlign: TextAlign.center,
+                        "Nome",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
                     ),
                     DataColumn(
-                      label: Text("Etapa"),
+                      label: Text(
+                        textAlign: TextAlign.center,
+                        "Etapa",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
                     ),
                     DataColumn(
-                      label: Text("Horário "),
+                      label: Text(
+                        textAlign: TextAlign.center,
+                        "Horário",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      ),
                     ),
                   ],
                   source: DemoDatatable(),
@@ -35,14 +47,24 @@ class DemoDatatable extends DataTableSource {
       cells: [
         DataCell(
           Text(
-            "gdhfdhfdhfd",
+            "n1",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15, color: Colors.black),
           ),
         ),
         DataCell(
-          Text("gfdsgfdsgfds"),
+          Text(
+            "n2",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15, color: Colors.black),
+          ),
         ),
         DataCell(
-          Text("gggggggg"),
+          Text(
+            "n3",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 15, color: Colors.black),
+          ),
         ),
       ],
     );

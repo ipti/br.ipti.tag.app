@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:tag_ui/tag_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 WidgetbookComponent datepicker() => WidgetbookComponent(
@@ -7,10 +10,14 @@ WidgetbookComponent datepicker() => WidgetbookComponent(
         WidgetbookUseCase(
             name: 'DatePicker',
             builder: (context) {
-              return const MaterialApp(
+              return MaterialApp(
                 home: Scaffold(
-                    //  TagDatePickerField(label: context.knobs.text(label: 'gc')),
-                    ), //or your Page with Scaffold
+                  body: TagDatePickerField(
+                    label: 'Data',
+                    onChanged: (newValue) => log('message'),
+                  ),
+                  //  TagDatePickerField(label: context.knobs.text(label: 'gc')),
+                ), //or your Page with Scaffold
               );
             }),
       ],

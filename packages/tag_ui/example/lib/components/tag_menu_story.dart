@@ -13,7 +13,11 @@ WidgetbookComponent menu() => WidgetbookComponent(
               return MaterialApp(
                 home: Scaffold(
                     body: TagMenu(
-                  items: const [],
+                  items: const [
+                    TagMenuItemProps(path: TagPath("", "Alunos")),
+                    TagMenuItemProps(path: TagPath("", "Professores")),
+                    TagMenuItemProps(path: TagPath("", "Transporte")),
+                  ],
                   currentPathMenu: '/',
                   onTapDefault: (route) => log('message'),
                 )), //or your Page with Scaffold

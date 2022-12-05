@@ -17,15 +17,15 @@ WidgetbookComponent checkbox() => WidgetbookComponent(
                     TagCheckbox(
                         onChanged: (isChecked) => log('message'),
                         label: context.knobs.text(
-                            label: 'textCheckbox', initialValue: 'default')),
+                            label: 'textCheckbox1', initialValue: 'default')),
                     TagCheckbox(
                         onChanged: (isChecked) => log('message'),
                         label: context.knobs.text(
-                            label: 'textCheckbox', initialValue: 'default')),
+                            label: 'textCheckbox2', initialValue: 'default')),
                     TagCheckbox(
                         onChanged: (isChecked) => log('message'),
                         label: context.knobs.text(
-                            label: 'textCheckbox', initialValue: 'default')),
+                            label: 'textCheckbox3', initialValue: 'default')),
                   ],
                 ),
               );

@@ -1,3 +1,4 @@
+// ignore: implementation_imports
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:tag_ui/tag_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -16,7 +17,10 @@ WidgetbookComponent breadcrumb() => WidgetbookComponent(
                   rootItem: "Tag",
                   paths: const [
                     //  AppRoutes.alunos,
-                    TagPath("", "Matricula Rápida"),
+                    TagPath("", "Alunos"),
+                    TagPath("", "Documentos"),
+                    TagPath("", "Cadastros"),
+                    TagPath("", "Matricula Rápida")
                   ],
                 ),
               );

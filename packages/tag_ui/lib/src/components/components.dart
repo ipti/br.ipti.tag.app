@@ -22,5 +22,8 @@ export 'rainbow_bar/tag_rainbow_bar.dart';
 export 'shared/masks.dart';
 export 'scaffold/tag_scaffold.dart';
 export 'templates/main_layout_adaptativy.dart';
+export 'templates/layout_left_and_body.dart';
+export 'templates/layout_left_body_right.dart';
+export 'templates/layout_topbar_and_body.dart';
 export 'text_field/tag_text_field.dart';
 export 'shared/path.dart';

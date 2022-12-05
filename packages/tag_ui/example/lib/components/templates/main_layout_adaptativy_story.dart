@@ -7,8 +7,22 @@ WidgetbookComponent mainLayoutAdaptativyStory() =>
       WidgetbookUseCase(
           name: "MainLayoutAdaptativy",
           builder: (context) {
-            return const MaterialApp(
-              home: Scaffold(body: MainLayoutAdaptativy()),
+            return MaterialApp(
+              home: Scaffold(
+                  body: MainLayoutAdaptativy(
+                left: Container(
+                  color: const Color.fromARGB(249, 40, 72, 212),
+                  key: const Key("mobile"),
+                ),
+                body: Container(
+                  color: const Color.fromARGB(220, 252, 102, 2),
+                  key: const Key("mobile"),
+                ),
+                right: Container(
+                  color: const Color.fromARGB(251, 214, 17, 17),
+                  key: const Key("mobile"),
+                ),
+              )),
             );
           })
     ]);
