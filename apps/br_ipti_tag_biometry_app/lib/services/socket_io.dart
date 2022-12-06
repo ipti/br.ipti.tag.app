@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class BiometricsService {
-  final _urlWebSocket = "http://localhost:5000";
+  final _urlWebSocket = "http://192.168.15.29:5000";
 
   StreamSocket streamSocket = StreamSocket();
   late IO.Socket socket;
@@ -28,7 +28,7 @@ class BiometricsService {
 
     //When an event recieved from server, data is added to the stream
     socket.onAny((event, data) {
-      streamSocket.addResponse(data.toString());
+      streamSocket.addResponse(data);
     });
     socket.onDisconnect((_) => log('disconnect'));
   }
@@ -39,11 +39,11 @@ class BiometricsService {
 }
 
 class StreamSocket {
-  final _socketResponse = StreamController<String>.broadcast();
+  final _socketResponse = StreamController<Map?>.broadcast();
 
-  void Function(String) get addResponse => _socketResponse.sink.add;
+  void Function(Map?) get addResponse => _socketResponse.sink.add;
 
-  Stream<String> get getResponse => _socketResponse.stream;
+  Stream<Map?> get getResponse => _socketResponse.stream;
 
   void dispose() {
     _socketResponse.close();
