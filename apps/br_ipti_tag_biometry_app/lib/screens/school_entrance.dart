@@ -22,7 +22,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     biometricsService.streamSocket.getResponse.listen((event) {
       log(event);
     });
-    biometricsService.emit("message", "FakeSearch");
+    biometricsService.emit("message", "SearchSendMessage");
   }
 
   final mapBioStudent = {50: 2};
