@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -13,10 +12,22 @@ WidgetbookComponent menu() => WidgetbookComponent(
               return MaterialApp(
                 home: Scaffold(
                     body: TagMenu(
-                  items: const [
-                    TagMenuItemProps(path: TagPath("", "Alunos")),
-                    TagMenuItemProps(path: TagPath("", "Professores")),
-                    TagMenuItemProps(path: TagPath("", "Transporte")),
+                  items: [
+                    TagMenuItemProps(
+                      path: const TagPath("alunos", "Alunos"),
+                      isActive: true,
+                      onTap: (route) => log("Alunos"),
+                    ),
+                    TagMenuItemProps(
+                      path: const TagPath("professores", "Professores"),
+                      isActive: false,
+                      onTap: (route) => log("Professores"),
+                    ),
+                    TagMenuItemProps(
+                      path: const TagPath("transporte", "Transporte"),
+                      isActive: false,
+                      onTap: (route) => log("Transporte"),
+                    ),
                   ],
                   currentPathMenu: '/',
                   onTapDefault: (route) => log('message'),

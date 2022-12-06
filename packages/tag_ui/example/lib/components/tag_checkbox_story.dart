@@ -15,17 +15,24 @@ WidgetbookComponent checkbox() => WidgetbookComponent(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TagCheckbox(
-                        onChanged: (isChecked) => log('message'),
+                        onChanged: (isChecked) => log('Primeiro'),
+                        value: false,
                         label: context.knobs.text(
-                            label: 'textCheckbox1', initialValue: 'default')),
+                            label: 'Checkbox falso por padrão',
+                            initialValue: 'default')),
                     TagCheckbox(
-                        onChanged: (isChecked) => log('message'),
+                        onChanged: (isChecked) => log('Segundo'),
+                        value: true,
                         label: context.knobs.text(
-                            label: 'textCheckbox2', initialValue: 'default')),
+                            label: 'Checkbox verdadeiro por padrão',
+                            initialValue: 'default')),
                     TagCheckbox(
-                        onChanged: (isChecked) => log('message'),
+                        onChanged: (isChecked) => log('Terceiro'),
+                        disabled: true,
+                        value: false,
                         label: context.knobs.text(
-                            label: 'textCheckbox3', initialValue: 'default')),
+                            label: 'Checkbox desabilitado',
+                            initialValue: 'default')),
                   ],
                 ),
               );

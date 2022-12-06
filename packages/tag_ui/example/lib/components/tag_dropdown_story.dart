@@ -9,13 +9,15 @@ WidgetbookComponent dropdown() => WidgetbookComponent(
         WidgetbookUseCase(
             name: 'Dropdown',
             builder: (context) {
-              return MaterialApp(
-                home: TagDropdownField<String>(
-                  onChanged: (newValue) => log('message'),
-                  label: context.knobs.text(label: 'dropdown'),
-                  items: Map.fromEntries(
-                    ["d", "e", "s", "p", "a", "c", "i", "t", "o"].map(
-                      (e) => MapEntry(e, e),
+              return Center(
+                child: MaterialApp(
+                  home: TagDropdownField<String>(
+                    onChanged: (newValue) => log('message'),
+                    label: context.knobs.text(label: 'dropdown'),
+                    items: Map.fromEntries(
+                      ["d", "e", "s", "p", "a", "c", "i", "t", "o"].map(
+                        (e) => MapEntry(e, e),
+                      ),
                     ),
                   ),
                 ),

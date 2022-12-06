@@ -20,6 +20,7 @@ import 'package:example/components/templates/layout_left_and_body_story.dart';
 import 'package:example/components/templates/layout_left_body_right_story.dart';
 import 'package:example/components/templates/layout_topbar_and_body_story.dart';
 import 'package:example/components/templates/main_layout_adaptativy_story.dart';
+import 'package:example/components/tag_number_field_story.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 
@@ -48,6 +49,7 @@ class WidgetbookHotReload extends StatelessWidget {
             linkButton(),
             logo(),
             menu(),
+            numberField(),
             rainbowBar(),
             scaffold(),
             textField(),

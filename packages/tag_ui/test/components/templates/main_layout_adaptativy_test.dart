@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tag_ui/src/components/templates/layout_left_body_right.dart';
-import 'package:tag_ui/src/components/templates/layout_topbar_and_body.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import '../../helpers/methods/prepare_widget.dart';

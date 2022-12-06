@@ -17,10 +17,10 @@ WidgetbookComponent breadcrumb() => WidgetbookComponent(
                   rootItem: "Tag",
                   paths: const [
                     //  AppRoutes.alunos,
-                    TagPath("", "Alunos"),
-                    TagPath("", "Documentos"),
-                    TagPath("", "Cadastros"),
-                    TagPath("", "Matricula Rápida")
+                    TagPath("/alunos", "Alunos"),
+                    TagPath("/documentos", "Documentos"),
+                    TagPath("/cadastros", "Cadastros"),
+                    TagPath("/matriculaRapida", "Matricula Rápida")
                   ],
                 ),
               );

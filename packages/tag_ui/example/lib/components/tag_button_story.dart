@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 import 'package:widgetbook/widgetbook.dart';
@@ -22,7 +21,8 @@ WidgetbookComponent buttonStory() => WidgetbookComponent(
             builder: (context) {
               return Center(
                 child: TagButton(
-                    icon: FilePaths.LOGO_GREY_PATH_SVG,
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
+                    icon: FilePaths.ICON_APPLE_BLUE_SVG,
                     text: '',
                     onPressed: () => log("message")),
               );
