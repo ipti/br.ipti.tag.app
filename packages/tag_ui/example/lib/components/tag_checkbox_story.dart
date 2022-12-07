@@ -11,29 +11,31 @@ WidgetbookComponent checkbox() => WidgetbookComponent(
             name: 'Checkbox',
             builder: (context) {
               return MaterialApp(
-                home: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TagCheckbox(
-                        onChanged: (isChecked) => log('Primeiro'),
-                        value: false,
-                        label: context.knobs.text(
-                            label: 'Checkbox falso por padrão',
-                            initialValue: 'default')),
-                    TagCheckbox(
-                        onChanged: (isChecked) => log('Segundo'),
-                        value: true,
-                        label: context.knobs.text(
-                            label: 'Checkbox verdadeiro por padrão',
-                            initialValue: 'default')),
-                    TagCheckbox(
-                        onChanged: (isChecked) => log('Terceiro'),
-                        disabled: true,
-                        value: false,
-                        label: context.knobs.text(
-                            label: 'Checkbox desabilitado',
-                            initialValue: 'default')),
-                  ],
+                home: Scaffold(
+                  body: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TagCheckbox(
+                          onChanged: (isChecked) => log('Primeiro'),
+                          value: false,
+                          label: context.knobs.text(
+                              label: 'Checkbox falso por padrão',
+                              initialValue: 'default')),
+                      TagCheckbox(
+                          onChanged: (isChecked) => log('Segundo'),
+                          value: true,
+                          label: context.knobs.text(
+                              label: 'Checkbox verdadeiro por padrão',
+                              initialValue: 'default')),
+                      TagCheckbox(
+                          onChanged: (isChecked) => log('Terceiro'),
+                          disabled: true,
+                          value: false,
+                          label: context.knobs.text(
+                              label: 'Checkbox desabilitado',
+                              initialValue: 'default')),
+                    ],
+                  ),
                 ),
               );
             }),

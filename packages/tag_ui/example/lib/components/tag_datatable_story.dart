@@ -9,31 +9,33 @@ WidgetbookComponent datatable() => WidgetbookComponent(
             name: 'Datatable',
             builder: (context) {
               return MaterialApp(
-                home: TagDataTable(
-                  columns: const [
-                    DataColumn(
-                      label: Text(
-                        textAlign: TextAlign.center,
-                        "Nome",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                home: Scaffold(
+                  body: TagDataTable(
+                    columns: const [
+                      DataColumn(
+                        label: Text(
+                          textAlign: TextAlign.center,
+                          "Nome",
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        textAlign: TextAlign.center,
-                        "Etapa",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      DataColumn(
+                        label: Text(
+                          textAlign: TextAlign.center,
+                          "Etapa",
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        ),
                       ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        textAlign: TextAlign.center,
-                        "Horário",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                      DataColumn(
+                        label: Text(
+                          textAlign: TextAlign.center,
+                          "Horário",
+                          style: TextStyle(fontSize: 15, color: Colors.black),
+                        ),
                       ),
-                    ),
-                  ],
-                  source: DemoDatatable(),
+                    ],
+                    source: DemoDatatable(),
+                  ),
                 ),
               );
             }),

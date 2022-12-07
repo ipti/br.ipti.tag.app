@@ -14,7 +14,7 @@ WidgetbookComponent menu() => WidgetbookComponent(
                     body: TagMenu(
                   items: [
                     TagMenuItemProps(
-                      path: const TagPath("alunos", "Alunos"),
+                      path: const TagPath("", "Alunos"),
                       isActive: true,
                       onTap: (route) => log("Alunos"),
                     ),
