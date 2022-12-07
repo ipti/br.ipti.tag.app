@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
+import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
@@ -17,21 +19,19 @@ class SchoolEntrance extends StatefulWidget {
 
 class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsService = BiometricsService();
+  final biometricsController = ControllerBiometrics();
+
   String mensage = '';
   var identification;
   @override
   void initState() {
     super.initState();
+    biometricsController.dateBiometrics();
+
+    log(biometricsController.getResponseEvents.hashCode.toString());
     biometricsService.connectAndListen();
-    biometricsService.streamSocket.getResponse.listen((data) {
-      if (data != null) {
-        if (data['id'] == 202) {
-          identification = data['id_finger'];
-        }
-        if (data['id'] == 502) {
-          mensage = data['info'].toString();
-        }
-      }
+    biometricsController.getResponseEvents.listen((data) {
+      log(data.code.toString());
     });
     biometricsService.emit("message", "SearchSendMessage");
   }
@@ -50,23 +50,21 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
         body: Column(
           children: [
             const SchoolPanel(),
-            StreamBuilder<Map?>(
-              stream: biometricsService.streamSocket.getResponse,
+            StreamBuilder<BioEvents?>(
+              stream: biometricsController.getResponseEvents,
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(snapshot.data?['info']),
-                      ),
-                      if (snapshot.data?['id'] == 101)
-                        const WaitingBiometrics(),
-                      if (snapshot.data?['id'] == 202) const StudentInfo(),
-                    ],
-                  );
-                }
-                return const CircularProgressIndicator();
+                return Column(
+                  children: [
+                    if (snapshot.data?.code == 101) const WaitingBiometrics(),
+                    if (snapshot.data?.code == 102)
+                      FingerMensage(text: snapshot.data!.info),
+                    if (snapshot.data?.code == 104)
+                      FingerMensage(text: snapshot.data!.info),
+                    if (snapshot.data?.code == 202) const StudentInfo(),
+                    if (snapshot.data?.code == 502)
+                      FingerMensage(text: snapshot.data!.info),
+                  ],
+                );
               },
             ),
           ],
