@@ -1,0 +1,56 @@
+name: TAG
+
+repository: https://github.com/ipti/br.ipti.tag.app
+
+packages:
+  - packages/**
+  - apps/**
+
+scripts:
+  analyze:
+    run: melos exec -- "flutter analyze"
+    description: Run `flutter analyze` in all packages
+  
+  format:
+    run: melos exec -- "flutter format . --set-exit-if-changed"
+    description: Run `flutter format .` in all packages
+
+  test:selective_unit_test:
+    run: melos exec --dir-exists="test" --fail-fast -- flutter test --no-pub --coverage
+    description: Run Flutter tests for a specific package in this project.
+    select-package:      
+      dir-exists: test
+  
+  run:tag:web:
+    run: melos exec -- flutter run lib/main.dart
+    select-package:
+      scope: 'br_ipti_tag_app'
+  
+  run:tag:linux:
+    run: melos exec -- flutter run -d linux lib/main.dart
+    select-package:
+      scope: 'br_ipti_tag_app'
+
+  gen:sdk:
+    run: melos exec -- flutter pub run build_runner build -d
+    select-package:
+      scope: 'tag_sdk'
+
+  gen:watch:sdk:
+    run: melos exec -- flutter pub run build_runner watch -d
+    select-package:
+      scope: 'tag_sdk'
+  
+  gen_coverage: 
+    run:      
+      melos exec -c 1 -- "\$MELOS_ROOT_PATH/combine_coverage.sh"
+      & genhtml coverage_report/lcov.info -o coverage_report/html
+
+  prepare_coverage: melos exec -- "\$MELOS_ROOT_PATH/prepare_coverage.sh"
+
+
+command:
+  bootstrap:    
+    runPubGetInParallel: false
+  version:
+    branch: main

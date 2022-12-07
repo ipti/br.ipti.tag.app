@@ -1,0 +1,96 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'instructor.freezed.dart';
+part 'instructor.g.dart';
+
+@freezed
+class Instructor with _$Instructor {
+  const factory Instructor({
+    String? neighborhood,
+    String? complement,
+    String? addressNumber,
+    String? address,
+    String? cep,
+    String? diffLocation,
+    int? areaOfResidence,
+    String? cpf,
+    @Default(false) bool otherCoursesNone,
+    @Default(false) bool otherCoursesOther,
+    @Default(false) bool otherCoursesEthnicEducation,
+    @Default(false) bool otherCoursesChildAndTeenageRights,
+    @Default(false) bool otherCoursesSexualEducation,
+    @Default(false) bool otherCoursesHumanRightsEducation,
+    @Default(false) bool otherCoursesEnvironmentEducation,
+    @Default(false) bool otherCoursesFieldEducation,
+    @Default(false) bool otherCoursesNativeEducation,
+    @Default(false) bool otherCoursesSpecialEducation,
+    @Default(false) bool otherCoursesEducationOfYouthAndAdults,
+    @Default(false) bool otherCoursesHighSchool,
+    @Default(false) bool otherCoursesBasicEducationFinalYears,
+    @Default(false) bool otherCoursesBasicEducationInitialYears,
+    @Default(false) bool otherCoursesPreSchool,
+    @Default(false) bool otherCoursesNursery,
+    @Default(false) bool postGraduationNone,
+    @Default(false) bool postGraduationDoctorate,
+    @Default(false) bool postGraduationMaster,
+    @Default(false) bool postGraduationSpecialization,
+    @Default(false) bool highEducationInstitutionCode3Fk,
+    @Default(false) bool highEducationFinalYear3,
+    @Default(false) bool highEducationInitialYear3,
+    @Default(false) bool highEducationCourseCode3Fk,
+    @Default(false) bool highEducationFormation3,
+    @Default(false) bool highEducationSituation3,
+    @Default(false) bool highEducationInstitutionCode2Fk,
+    @Default(false) bool highEducationFinalYear2,
+    @Default(false) bool highEducationInitialYear2,
+    @Default(false) bool highEducationCourseCode2Fk,
+    @Default(false) bool highEducationFormation2,
+    @Default(false) bool highEducationSituation2,
+    @Default(false) bool highEducationInstitutionCode1Fk,
+    @Default(false) bool highEducationFinalYear1,
+    @Default(false) bool highEducationInitialYear1,
+    @Default(false) bool highEducationCourseCode1Fk,
+    @Default(false) bool highEducationFormation1,
+    @Default(false) bool highEducationSituation1,
+    String? hash,
+    @Default(false) bool deficiencyTypeGifted,
+    @Default(false) bool deficiencyTypeAutism,
+    @Default(false) bool deficiencyTypeMultipleDisabilities,
+    @Default(false) bool deficiencyTypeIntelectualDisability,
+    @Default(false) bool deficiencyTypePhisicalDisability,
+    @Default(false) bool deficiencyTypeDeafblindness,
+    @Default(false) bool deficiencyTypeDisabilityHearing,
+    @Default(false) bool deficiencyTypeDeafness,
+    @Default(false) bool deficiencyTypeLowVision,
+    @Default(false) bool deficiencyTypeBlindness,
+    String? filiation2,
+    String? filiation1,
+    int? filiation,
+    String? nis,
+    String? email,
+    String? inepId,
+    String? registerType,
+    int? id,
+    String? schoolInepIdFk,
+    required String name,
+    String? birthdayDate,
+    int? sex,
+    int? colorRace,
+    int? nationality,
+    int? edcensoNationFk,
+    int? edcensoUfFk,
+    int? edcensoCityFk,
+    @Default(false) bool deficiency,
+    int? scholarity,
+    String? createdAt,
+    String? updatedAt,
+  }) = _Instructor;
+
+  /// For custom getters and methods to work. Must not have any parameter.
+  // ignore: unused_element
+  const Instructor._();
+
+  /// Converts a JSON [Map] into a [Instructor] instance
+  factory Instructor.fromJson(Map<String, dynamic> json) =>
+      _$InstructorFromJson(json);
+}

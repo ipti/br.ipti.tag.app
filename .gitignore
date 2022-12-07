@@ -30,19 +30,25 @@
 .packages
 .pub-cache/
 .pub/
-/build/
+**/build/
 
 # Web related
-lib/generated_plugin_registrant.dart
+**/lib/generated_plugin_registrant.dart
 
 # Symbolication related
-app.*.symbols
+**/app.*.symbols
 
 # Obfuscation related
-app.*.map.json
+**/app.*.map.json
 
-br_ipti_tag_app/ios/firebase_app_id_file.json
-br_ipti_tag_app/.fvm/flutter_sdk
+**/br_ipti_tag_app/ios/firebase_app_id_file.json
+**/br_ipti_tag_app/.fvm/flutter_sdk
+**/br_ipti_tag_app/.fvm/fvm_config.json
 .fvm/flutter_sdk
-br_ipti_tag_app/.fvm/fvm_config.json
 .vscode/settings.json
+
+**/coverage_report
+**/coverage
+
+*.g.dart
+*.freezed.dart

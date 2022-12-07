@@ -60,6 +60,7 @@ jobs:
         working-directory: flutterfire
         run: |
           dart pub global activate --source="path" . --executable="flutterfire" --overwrite
+          
 
       - name: 👩‍🚒 Generate Firebase Configuration Files
         working-directory: ${{inputs.working_directory}}
@@ -71,5 +72,9 @@ jobs:
         with:
           name: project_folder
           path: |
-            br_ipti_tag_app
-            tag_ui
+            apps/br_ipti_tag_app
+            packages/tag_ui
+            packages/tag_sdk
+            packages/tag_network
+            melos.yaml
+            melos_tag.iml
