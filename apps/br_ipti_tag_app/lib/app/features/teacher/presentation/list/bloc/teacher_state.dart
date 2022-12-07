@@ -42,12 +42,12 @@ class LoadingState extends TeacherListState {
 
 class LoadedState extends TeacherListState {
   const LoadedState({
-    required List<Instructor> teachers,
-  }) : super(status: Status.success, message: "", teachers: teachers);
+    required super.teachers,
+  }) : super(status: Status.success, message: "");
 }
 
 class FailedState extends TeacherListState {
   const FailedState({
-    required String message,
-  }) : super(status: Status.failure, message: message, teachers: const []);
+    required super.message,
+  }) : super(status: Status.failure, teachers: const []);
 }

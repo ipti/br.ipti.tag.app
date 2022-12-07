@@ -143,7 +143,7 @@ class SchoolEditPageState extends State<SchoolEditPage>
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: Container(
+              child: ColoredBox(
                 color: TagColors.colorBaseWhiteNormal,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
