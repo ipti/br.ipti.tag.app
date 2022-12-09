@@ -14,23 +14,23 @@ WidgetbookComponent menu() => WidgetbookComponent(
                     body: TagMenu(
                   items: [
                     TagMenuItemProps(
-                      path: const TagPath("", "Alunos"),
-                      isActive: true,
-                      onTap: (route) => log("Alunos"),
+                      path: const TagPath("alunos", "Alunos"),
+                      onTap: (context) => log("Alunos"),
                     ),
                     TagMenuItemProps(
                       path: const TagPath("professores", "Professores"),
-                      isActive: false,
-                      onTap: (route) => log("Professores"),
+                      onTap: (context) => log("Professores"),
                     ),
                     TagMenuItemProps(
                       path: const TagPath("transporte", "Transporte"),
-                      isActive: false,
-                      onTap: (route) => log("Transporte"),
+                      onTap: (context) => log("Transporte"),
                     ),
                   ],
-                  currentPathMenu: '/',
-                  onTapDefault: (route) => log('message'),
+                  currentPathMenu:
+                      context.knobs.options(label: "PathMenu", options: [])
+                  // .text(label: 'PathMenu', initialValue: 'default')
+                  ,
+                  onTapDefault: (context) => log('message'),
                 )), //or your Page with Scaffold
               );
             }),

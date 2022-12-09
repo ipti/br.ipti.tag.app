@@ -30,6 +30,16 @@ class WidgetbookHotReload extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Widgetbook(
+      devices: [
+        Device.mobile(
+            name: "Celular",
+            resolution: Resolution.dimensions(
+                nativeWidth: 620, nativeHeight: 1200, scaleFactor: 1)),
+        Device.desktop(
+            name: "Desktop",
+            resolution: Resolution.dimensions(
+                nativeWidth: 1440, nativeHeight: 580, scaleFactor: 1))
+      ],
       categories: [
         WidgetbookCategory(
           name: 'material',
