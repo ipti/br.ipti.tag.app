@@ -3,8 +3,11 @@ import 'package:tag_ui/tag_ui.dart';
 
 class StudentInfo extends StatelessWidget {
   const StudentInfo({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+    required this.student,
+  });
+
+  final student;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,10 @@ class StudentInfo extends StatelessWidget {
               color: TagColors.colorBaseCloudDark,
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
-            child: const Icon(size: 256.0, Icons.person),
+            child: FittedBox(
+              child: Image.network(student['img']),
+              fit: BoxFit.fill,
+            ),
           ),
           const SizedBox(
             width: 120.0,
@@ -50,9 +56,9 @@ class StudentInfo extends StatelessWidget {
                   color: TagColors.colorBaseCloudDark,
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                child: const Text(
-                  'Gabriel Santos Silva',
-                  style: TextStyle(
+                child: Text(
+                  student['name'],
+                  style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -85,9 +91,9 @@ class StudentInfo extends StatelessWidget {
                   color: TagColors.colorBaseCloudDark,
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                child: const Text(
-                  '3B',
-                  style: TextStyle(
+                child: Text(
+                  student['turma'],
+                  style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,

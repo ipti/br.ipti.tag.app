@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_biometry_app/screens/biometrics_sign.dart';
 import 'package:br_ipti_tag_biometry_app/screens/school_entrance.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
           '/': (context) => const SchoolEntrance(),
+          '/Sign': (context) => const BiometricsSign()
         });
   }
 }

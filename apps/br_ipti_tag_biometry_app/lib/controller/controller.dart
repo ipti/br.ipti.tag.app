@@ -69,15 +69,25 @@ class ControllerBiometrics {
 
   Stream<BioEvents> get getResponseEvents => _socketResponse.stream;
 
+  var userIdentification = {};
   void dateBiometrics() {
     biometricsService.connectAndListen();
+
+    final user = [
+      {
+        'name': 'jonny',
+        'turma': '3A',
+        'id': '1',
+        'id_finger': 50,
+        'img':
+            'https://images.suamusica.com.br/ehQJ5PRLM5_B6G56VmLuTigVsTU=/240x240/filters:format(webp)/49091608/3331189/cd_cover.jpg'
+      },
+      {'name': 'Igor', 'turma': '3B', 'id': '50'},
+    ];
     biometricsService.streamSocket.getResponse.listen((data) {
       if (data != null) {
         if (data['id'] == 101) {
           addResponse(BioEvents.waiting);
-        }
-        if (data['id'] == 502) {
-          addResponse(BioEvents.fingerNotFound);
         }
         if (data['id'] == 102) {
           addResponse(BioEvents.modeling);
@@ -126,6 +136,13 @@ class ControllerBiometrics {
         }
         if (data['id'] == 202) {
           addResponse(BioEvents.fingerDected);
+          for (int i = 0; i < user.length; i++) {
+            if (user[i]['id_finger'] == data['id_finger']) {
+              userIdentification = user[i];
+            }
+          }
+          var timer = Timer(const Duration(seconds: 4),
+              () => biometricsService.emit("message", "SearchSendMessage"));
         }
         if (data['id'] == 203) {
           addResponse(BioEvents.emptylibrary);
@@ -144,6 +161,11 @@ class ControllerBiometrics {
         }
         if (data['id'] == 501) {
           addResponse(BioEvents.deleteFail);
+        }
+        if (data['id'] == 502) {
+          addResponse(BioEvents.fingerNotFound);
+          var timer = Timer(const Duration(seconds: 2),
+              () => biometricsService.emit("message", "SearchSendMessage"));
         }
         if (data['id'] == 503) {
           addResponse(BioEvents.emptyLibaryFail);

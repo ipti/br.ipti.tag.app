@@ -1,9 +1,6 @@
-import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
-import 'package:br_ipti_tag_biometry_app/screens/biometrics_sign.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
@@ -13,33 +10,38 @@ import 'package:flutter/material.dart';
 
 import 'dart:convert';
 
-import 'package:tag_ui/tag_ui.dart';
-
-class SchoolEntrance extends StatefulWidget {
-  const SchoolEntrance({super.key});
+class BiometricsSign extends StatefulWidget {
+  const BiometricsSign({super.key});
 
   @override
-  State<SchoolEntrance> createState() => _SchoolEntrancePageState();
+  State<BiometricsSign> createState() => _BiometricsSignPageState();
 }
 
-class _SchoolEntrancePageState extends State<SchoolEntrance> {
+class _BiometricsSignPageState extends State<BiometricsSign> {
   final biometricsService = BiometricsService();
   final biometricsController = ControllerBiometrics();
 
+  String mensage = '';
+  var identification;
   @override
   void initState() {
     super.initState();
     biometricsController.dateBiometrics();
 
+    log(biometricsController.getResponseEvents.hashCode.toString());
     biometricsService.connectAndListen();
-    biometricsService.streamSocket.getResponse.listen((data) {});
-    biometricsService.emit("message", "SearchSendMessage");
+    biometricsService.emit('IdStore', 60);
   }
 
   final mapBioStudent = {50: 2};
+  final user = [
+    {'name': 'jonny', 'turma': '3A', 'id': '1'},
+    {'name': 'Igor', 'turma': '3B', 'id': '50'},
+  ];
 
   @override
   Widget build(BuildContext context) {
+    mapBioStudent[50];
     return MaterialApp(
       home: Scaffold(
         body: Column(
@@ -51,29 +53,17 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 return Column(
                   children: [
                     if (snapshot.data?.code == 101) const WaitingBiometrics(),
-                    if (snapshot.data?.code == 102)
+                    if (snapshot.data?.code == 105)
                       FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 104)
+                    if (snapshot.data?.code == 108)
                       FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 202)
-                      StudentInfo(
-                          student: biometricsController.userIdentification),
+                    // if (snapshot.data?.code == 202) const StudentInfo(),
                     if (snapshot.data?.code == 502)
                       FingerMensage(text: snapshot.data!.info),
                   ],
                 );
               },
             ),
-            TagButton(
-              text: 'Cadastrar Biometria',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BiometricsSign()),
-                );
-              },
-            )
           ],
         ),
       ),

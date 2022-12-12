@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class BiometricsService {
-  final _urlWebSocket = "http://192.168.15.20:5000";
+  final _urlWebSocket = "http://192.168.15.11:5000";
 
   StreamSocket streamSocket = StreamSocket();
   late IO.Socket socket;
