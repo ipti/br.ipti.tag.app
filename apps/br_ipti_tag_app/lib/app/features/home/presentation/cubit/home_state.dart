@@ -62,24 +62,20 @@ class LoadingState extends HomeState {
 
 class LoadedState extends HomeState {
   const LoadedState({
-    required List<ClassroomEntity> classrooms,
-    required List<EdcensoDiscipline> disciplines,
-    required List<StudentIdentification> students,
+    required super.classrooms,
+    required super.disciplines,
+    required super.students,
   }) : super(
           status: Status.success,
           message: "",
-          classrooms: classrooms,
-          disciplines: disciplines,
-          students: students,
         );
 }
 
 class FailedState extends HomeState {
   const FailedState({
-    required String message,
+    required super.message,
   }) : super(
           status: Status.failure,
-          message: message,
           classrooms: const [],
           disciplines: const [],
           students: const [],

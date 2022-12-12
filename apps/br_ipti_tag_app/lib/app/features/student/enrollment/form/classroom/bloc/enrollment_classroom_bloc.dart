@@ -20,7 +20,7 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   final CreateStudentEnrollmentUsecase _createStudentEnrollmentUsecase;
   final UpdateStudentEnrollmentUsecase _updateStudentEnrollmentUsecase;
   final _session = Modular.get<SessionBloc>();
-  final _enrollmentBloc = Modular.get<EnrollmentBloc>();
+  final enrollmentBloc = Modular.get<EnrollmentBloc>();
 
   // Turma
   void setStudentClass(int? classroomid) => emit(
@@ -92,10 +92,10 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
   }
 
   Future submit(EditMode mode) async {
-    final _enrollmentBloc = Modular.get<EnrollmentBloc>();
+    final enrollmentBloc = Modular.get<EnrollmentBloc>();
 
     final schoolId = _session.state.currentSchool!.inepId;
-    final studentId = _enrollmentBloc.student!.id!;
+    final studentId = enrollmentBloc.student!.id!;
 
     switch (mode) {
       case EditMode.Create:
@@ -141,12 +141,12 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     final result = await _createStudentEnrollmentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(
+      (error) => enrollmentBloc.notifyError(
         error.toString(),
       ),
       (classroom) {
-        _enrollmentBloc.loadStudentsEnrollment(classroom);
-        _enrollmentBloc.notifySuccess(
+        enrollmentBloc.loadStudentsEnrollment(classroom);
+        enrollmentBloc.notifySuccess(
           "Matricula realizadas com sucesso",
         );
       },
@@ -162,12 +162,12 @@ class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {
     final result = await _updateStudentEnrollmentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(
+      (error) => enrollmentBloc.notifyError(
         error.toString(),
       ),
       (classroom) {
-        _enrollmentBloc.loadStudentsEnrollment(classroom);
-        _enrollmentBloc.notifySuccess(
+        enrollmentBloc.loadStudentsEnrollment(classroom);
+        enrollmentBloc.notifySuccess(
           "Matricula atualizada com sucesso",
         );
       },
