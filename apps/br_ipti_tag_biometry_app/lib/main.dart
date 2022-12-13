@@ -1,23 +1,14 @@
-import 'package:br_ipti_tag_biometry_app/screens/biometrics_sign.dart';
-import 'package:br_ipti_tag_biometry_app/screens/school_entrance.dart';
+import 'package:br_ipti_tag_biometry_app/app_module.dart';
+import 'package:br_ipti_tag_biometry_app/app_widget.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/biometrics_sign.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/school_entrance.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Biometria',
-        initialRoute: '/',
-        routes: <String, WidgetBuilder>{
-          '/': (context) => const SchoolEntrance(),
-          '/Sign': (context) => const BiometricsSign()
-        });
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(ModularApp(
+    module: AppModule(),
+    child: AppWidget(),
+  ));
 }

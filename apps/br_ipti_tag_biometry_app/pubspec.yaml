@@ -38,6 +38,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   tag_ui:
     path: ../../packages/tag_ui
+  tag_sdk:
+    path: ../../packages/tag_sdk
+  flutter_bloc: ^8.1.1
+  flutter_modular: ^5.0.3
   socket_io_client: ^2.0.0
   
 

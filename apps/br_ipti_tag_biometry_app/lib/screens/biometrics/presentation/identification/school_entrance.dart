@@ -3,13 +3,14 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
-import 'package:br_ipti_tag_biometry_app/screens/biometrics_sign.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/biometrics_sign.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'dart:convert';
 
@@ -32,7 +33,10 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     biometricsController.dateBiometrics();
 
     biometricsService.connectAndListen();
-    biometricsService.streamSocket.getResponse.listen((data) {});
+    biometricsService.streamSocket.getResponse.listen((data) {
+      log(data?['id']?.toString() ?? "");
+    });
+    ;
     biometricsService.emit("message", "SearchSendMessage");
   }
 
@@ -67,11 +71,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             TagButton(
               text: 'Cadastrar Biometria',
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const BiometricsSign()),
-                );
+                Modular.to.pushNamed("students");
               },
             )
           ],
