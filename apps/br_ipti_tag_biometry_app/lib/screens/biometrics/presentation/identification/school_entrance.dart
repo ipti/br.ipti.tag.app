@@ -11,6 +11,7 @@ import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 import 'dart:convert';
 
@@ -33,9 +34,6 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     biometricsController.dateBiometrics();
 
     biometricsService.connectAndListen();
-    biometricsService.streamSocket.getResponse.listen((data) {
-      log(data?['id']?.toString() ?? "");
-    });
     ;
     biometricsService.emit("message", "SearchSendMessage");
   }
@@ -72,6 +70,14 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
               text: 'Cadastrar Biometria',
               onPressed: () {
                 Modular.to.pushNamed("students");
+              },
+            ),
+            TagButton(
+              text: 'Sair',
+              onPressed: () {
+                final usecase = Modular.get<LogoutUsecase>();
+                usecase.call(EmptyParams());
+                Modular.to.pushNamed("/");
               },
             )
           ],

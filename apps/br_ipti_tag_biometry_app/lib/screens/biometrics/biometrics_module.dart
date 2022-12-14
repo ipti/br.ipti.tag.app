@@ -12,16 +12,13 @@ class BiometricsModule extends Module {
         AuthSDKModule(),
       ];
 
-  // @override
-  // final List<Bind> binds = [
-  //   // bloc
-  //   Bind.singleton(
-  //     (i) => LoginBloc(
-  //       i.get<AuthLoginUsecase>(),
-  //       // i.get<PackageInfoService>(),
-  //     ),
-  //   ),
-  // ];
+  @override
+  final List<Bind> binds = [
+    // bloc
+    Bind.singleton<LogoutUsecase>(
+      (i) => LogoutUsecase(i.get<AuthRepository>()),
+    ),
+  ];
 
   @override
   final List<ModularRoute> routes = [

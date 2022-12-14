@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:tag_network/tag_network.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
@@ -23,9 +24,7 @@ class AppModule extends Module {
             i.get<Dio>(),
           ),
         ),
-        // Bind.singleton<SessionService>(
-        //   (i) => SessionServiceImpl(),
-        // ),
+
         // BlocBind.singleton<SessionBloc>(
         //   (i) => SessionBloc(
         //     i.get<SessionService>(),

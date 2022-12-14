@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
+import 'package:br_ipti_tag_biometry_app/widgets/modal_biometrics.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
+
 import 'package:tag_sdk/tag_sdk.dart';
 
 import 'dart:convert';
@@ -29,15 +31,6 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
   @override
   void initState() {
     super.initState();
-    biometricsController.dateBiometrics();
-
-    log(biometricsController.getResponseEvents.hashCode.toString());
-    biometricsService.streamSocket.getResponse.listen((data) {
-      log(data!['id'].toString());
-      log(data['info'].toString());
-    });
-    biometricsService.connectAndListen();
-    biometricsService.emit('IdStore', 88);
   }
 
   final mapBioStudent = {50: 2};
@@ -49,42 +42,73 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
         body: Column(
           children: [
             const TagAppBar(),
-            Text(widget.student.name),
-            const Text('Foto do Aluno'),
-            Container(
-              height: 256.0,
-              width: 256.0,
-              decoration: const BoxDecoration(
-                color: TagColors.colorBaseCloudDark,
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.student.name),
+                      const Text('Foto do Aluno'),
+                      Padding(
+                        padding: const EdgeInsets.all(40.0),
+                        child: Container(
+                          height: 128.0,
+                          width: 128.0,
+                          decoration: const BoxDecoration(
+                              color: TagColors.colorBaseCloudDark,
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                      'https://images.suamusica.com.br/ehQJ5PRLM5_B6G56VmLuTigVsTU=/240x240/filters:format(webp)/49091608/3331189/cd_cover.jpg'))),
+                        ),
+                      ),
+                      const Text('Gerenciamento de Biometria'),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TagButton(
+                              text: 'Cadastrar',
+                              onPressed: () => {showCustomDialog(context)},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TagButton(
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              buttonStyle: TagButtonStyles.secondary,
+                              text: 'Excluir',
+                              onPressed: () => {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TagButton(
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              buttonStyle: TagButtonStyles.secondary,
+                              text: 'Salvar Image',
+                              onPressed: () => {},
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TagButton(
+                              textButtonColor: TagColors.colorBaseInkNormal,
+                              buttonStyle: TagButtonStyles.secondary,
+                              text: 'Limpar Biometrias Cadastradas',
+                              onPressed: () => {},
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              child: FittedBox(
-                child: Image.network(
-                    'https://images.suamusica.com.br/ehQJ5PRLM5_B6G56VmLuTigVsTU=/240x240/filters:format(webp)/49091608/3331189/cd_cover.jpg'),
-                fit: BoxFit.fill,
-              ),
-            ),
-            StreamBuilder<BioEvents?>(
-              stream: biometricsController.getResponseEvents,
-              builder: (context, snapshot) {
-                return Column(
-                  children: [
-                    if (snapshot.data?.code == 101) const WaitingBiometrics(),
-                    if (snapshot.data?.code == 102)
-                      FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 104)
-                      FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 105)
-                      FingerMensage(text: snapshot.data!.info),
-
-                    if (snapshot.data?.code == 108)
-                      FingerMensage(text: snapshot.data!.info),
-                    // if (snapshot.data?.code == 202) const StudentInfo(),
-                    if (snapshot.data?.code == 502)
-                      FingerMensage(text: snapshot.data!.info),
-                  ],
-                );
-              },
             ),
           ],
         ),

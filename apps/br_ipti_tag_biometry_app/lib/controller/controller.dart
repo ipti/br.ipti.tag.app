@@ -109,6 +109,8 @@ class ControllerBiometrics {
         }
         if (data['id'] == 108) {
           addResponse(BioEvents.waitingFinger);
+          var timer = Timer(const Duration(seconds: 4),
+              () => biometricsService.emit("IdStore", "message"));
         }
         if (data['id'] == 113) {
           addResponse(BioEvents.removeFinger);
