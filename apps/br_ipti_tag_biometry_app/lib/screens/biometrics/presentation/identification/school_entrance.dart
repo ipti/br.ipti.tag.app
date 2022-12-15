@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
+import 'package:br_ipti_tag_biometry_app/controller/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/controller/identification/controller.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/biometrics_sign.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
@@ -25,18 +26,22 @@ class SchoolEntrance extends StatefulWidget {
 }
 
 class _SchoolEntrancePageState extends State<SchoolEntrance> {
-  final biometricsService = BiometricsService();
-  final biometricsController = ControllerBiometrics();
+  final biometricsController = Modular.get<ControllerIdentification>();
 
   @override
   void initState() {
     super.initState();
     biometricsController.dateBiometrics();
 
-    biometricsService.connectAndListen();
-    ;
-    biometricsService.emit("message", "SearchSendMessage");
+    biometricsController.startIdentification();
   }
+
+  // @override
+  // void dispose() {
+  //   biometricsController.
+
+  //   super.dispose();
+  // }
 
   final mapBioStudent = {50: 2};
 
@@ -52,7 +57,8 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
               builder: (context, snapshot) {
                 return Column(
                   children: [
-                    if (snapshot.data?.code == 101) const WaitingBiometrics(),
+                    if (snapshot.data == BioEvents.waiting)
+                      const WaitingBiometrics(),
                     if (snapshot.data?.code == 102)
                       FingerMensage(text: snapshot.data!.info),
                     if (snapshot.data?.code == 104)
@@ -69,7 +75,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             TagButton(
               text: 'Cadastrar Biometria',
               onPressed: () {
-                Modular.to.pushNamed("students");
+                Modular.to.pushReplacementNamed("students");
               },
             ),
             TagButton(

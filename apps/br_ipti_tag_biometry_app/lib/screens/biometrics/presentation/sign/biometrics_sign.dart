@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
+import 'package:br_ipti_tag_biometry_app/controller/identification/controller.dart';
+import 'package:br_ipti_tag_biometry_app/controller/sign/controller.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/modal_biometrics.dart';
@@ -8,6 +9,7 @@ import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:tag_sdk/tag_sdk.dart';
 
@@ -25,12 +27,19 @@ class BiometricsSign extends StatefulWidget {
 }
 
 class _BiometricsSignPageState extends State<BiometricsSign> {
-  final biometricsService = BiometricsService();
-  final biometricsController = ControllerBiometrics();
+  final biometricsController = Modular.get<ControllerSign>();
 
   @override
   void initState() {
     super.initState();
+  }
+
+  void deleteBiometrics(BuildContext context) {
+    biometricsController.biometricsService.emit('IdDelete', 50);
+    biometricsController.biometricsService.streamSocket.getResponse
+        .listen((data) {
+      print(data?['id']?.toString() ?? "");
+    });
   }
 
   final mapBioStudent = {50: 2};
@@ -82,7 +91,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                               textButtonColor: TagColors.colorBaseInkNormal,
                               buttonStyle: TagButtonStyles.secondary,
                               text: 'Excluir',
-                              onPressed: () => {},
+                              onPressed: () => {deleteBiometrics(context)},
                             ),
                           ),
                           Padding(

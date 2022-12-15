@@ -1,21 +1,26 @@
-import 'package:br_ipti_tag_biometry_app/controller/controller.dart';
+import 'package:br_ipti_tag_biometry_app/controller/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/controller/identification/controller.dart';
+import 'package:br_ipti_tag_biometry_app/controller/sign/controller.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 void showCustomDialog(BuildContext context) {
-  final biometricsController = ControllerBiometrics();
-  final biometricsService = BiometricsService();
+  // final biometricsService = BiometricsService;
+  final biometricsController = Modular.get<ControllerSign>();
+  biometricsController.biometricsService.connectAndListen();
   biometricsController.dateBiometrics();
-  biometricsService.connectAndListen();
 
-  biometricsService.streamSocket.getResponse.listen((data) {
-    print(data?['id']?.toString() ?? "");
+  biometricsController.biometricsService.streamSocket.getResponse
+      .listen((data) {
+    print(data?['info']?.toString() ?? "");
   });
-
-  biometricsService.emit("IdStore", 122);
+  biometricsController.biometricsService.streamSocket.getResponse.drain();
+  biometricsController.biometricsService.emit('message', 'StoreSendMessage');
+  biometricsController.biometricsService.emit("IdStore", 80);
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",

@@ -4,26 +4,14 @@ import 'dart:developer';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class BiometricsService {
-  final _urlWebSocket = "http://192.168.15.29:5000";
+  final StreamSocket streamSocket;
+  final IO.Socket socket;
 
-  StreamSocket streamSocket = StreamSocket();
-  late IO.Socket socket;
+  BiometricsService(this.streamSocket, this.socket);
 
   void connectAndListen() {
-    socket = IO.io(
-        _urlWebSocket,
-        IO.OptionBuilder()
-            .enableReconnection()
-            .setPath('/socket.io')
-            .enableForceNew()
-            .enableForceNewConnection()
-            .setExtraHeaders(
-                {'Connection': 'Upgrade', 'Origin': '127.0.0.1'}) // optional
-            .setTransports(['websocket']).build());
-
     socket.onConnect((_) {
       print('connect');
-      socket.emit('msg', 'test');
     });
 
     //When an event recieved from server, data is added to the stream
@@ -33,7 +21,14 @@ class BiometricsService {
     socket.onDisconnect((_) => log('disconnect'));
   }
 
+  void send(event) {
+    log("EMIT | event $event}");
+    socket.send(event);
+  }
+
   void emit(event, data) {
+    log("EMIT | event $event with data: ${data.toString()}");
+    // log(data.toString());
     socket.emit(event, data);
   }
 }
