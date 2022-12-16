@@ -6,7 +6,7 @@ enum BioEvents {
   putfinger(code: 105, info: 'Coloque o dedo no sensor...'),
   putFingerAgain(code: 106, info: 'Coloque o mesmo dedo novamente...'),
   pictureTaken(code: 107, info: 'Coloque o mesmo dedo novamente...'),
-  waitingFinger(code: 108, info: '.'),
+  waitingFinger(code: 108, info: 'Aguardando Biometria'),
   removeFinger(code: 113, info: 'Remover dedo'),
   carrer(code: 114, info: 'Criado'),
   saving(code: 115, info: 'Salvando...'),

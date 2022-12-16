@@ -11,16 +11,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 void showCustomDialog(BuildContext context) {
   // final biometricsService = BiometricsService;
   final biometricsController = Modular.get<ControllerSign>();
-  biometricsController.biometricsService.connectAndListen();
+  // biometricsController.biometricsService.streamSocket.dispose();
+  biometricsController.startSign();
   biometricsController.dateBiometrics();
-
-  biometricsController.biometricsService.streamSocket.getResponse
-      .listen((data) {
-    print(data?['info']?.toString() ?? "");
-  });
-  biometricsController.biometricsService.streamSocket.getResponse.drain();
-  biometricsController.biometricsService.emit('message', 'StoreSendMessage');
-  biometricsController.biometricsService.emit("IdStore", 80);
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -46,19 +39,24 @@ void showCustomDialog(BuildContext context) {
                         builder: (context, snapshot) {
                           return Column(
                             children: [
-                              if (snapshot.data?.code == 101)
+                              if (snapshot.data?.code == BioEvents.waiting.code)
                                 const WaitingBiometrics(),
-                              if (snapshot.data?.code == 102)
+                              if (snapshot.data?.code ==
+                                  BioEvents.modeling.code)
+                                FingerMensage(text: BioEvents.modeling.info),
+                              if (snapshot.data?.code ==
+                                  BioEvents.searching.code)
                                 FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == 104)
+                              if (snapshot.data?.code ==
+                                  BioEvents.putfinger.code)
                                 FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == 105)
+                              if (snapshot.data?.code ==
+                                  BioEvents.waitingFinger.code)
                                 FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == 108)
+                              if (snapshot.data?.code == BioEvents.storeok.code)
                                 FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == 202)
-                                FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == 502)
+                              if (snapshot.data?.code ==
+                                  BioEvents.storeFail.code)
                                 FingerMensage(text: snapshot.data!.info),
                             ],
                           );

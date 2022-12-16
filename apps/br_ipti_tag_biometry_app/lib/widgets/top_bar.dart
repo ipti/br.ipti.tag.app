@@ -17,9 +17,10 @@ class TopBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            const TagAppBarBackIconButton(),
+            const SizedBox(
                 width: 256.0,
-                child: const TagTextField(
+                child: TagTextField(
                   label: '',
                   hint: "Digite o nome do Aluno",
                 )),

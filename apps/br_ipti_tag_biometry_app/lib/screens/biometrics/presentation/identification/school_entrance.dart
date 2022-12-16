@@ -36,12 +36,12 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     biometricsController.startIdentification();
   }
 
-  // @override
-  // void dispose() {
-  //   biometricsController.
+  @override
+  void dispose() {
+    biometricsController.dispose();
 
-  //   super.dispose();
-  // }
+    super.dispose();
+  }
 
   final mapBioStudent = {50: 2};
 
@@ -75,7 +75,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             TagButton(
               text: 'Cadastrar Biometria',
               onPressed: () {
-                Modular.to.pushReplacementNamed("students");
+                Modular.to.pushNamed("students");
               },
             ),
             TagButton(

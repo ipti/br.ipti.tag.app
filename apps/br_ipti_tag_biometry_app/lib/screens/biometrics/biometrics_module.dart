@@ -10,7 +10,7 @@ import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 class BiometricsModule extends Module {
-  static const _urlWebSocket = "http://192.168.15.30:5000";
+  static const _urlWebSocket = "http://192.168.15.23:5000";
 
   @override
   List<Module> get imports => [
@@ -25,7 +25,7 @@ class BiometricsModule extends Module {
       (i) => LogoutUsecase(i.get<AuthRepository>()),
     ),
     // controllers
-    Bind.singleton((i) => io(
+    Bind.singleton<Socket>((i) => io(
         _urlWebSocket,
         OptionBuilder()
             .enableReconnection()
@@ -39,7 +39,7 @@ class BiometricsModule extends Module {
     Bind.factory(
       (i) => StreamSocket(),
     ),
-    Bind.singleton(
+    Bind.factory(
       (i) => BiometricsService(i.get<StreamSocket>(), i.get<Socket>()),
     ),
 
@@ -48,10 +48,11 @@ class BiometricsModule extends Module {
             i.get<BiometricsService>(),
           )),
     ),
-    Bind.singleton(
-      ((i) => ControllerIdentification(
-            i.get<BiometricsService>(),
-          )),
+    Bind.singleton<ControllerIdentification>(
+      (i) => ControllerIdentification(
+        i.get<BiometricsService>(),
+      ),
+      onDispose: (bloc) => bloc.dispose(),
     )
   ];
 

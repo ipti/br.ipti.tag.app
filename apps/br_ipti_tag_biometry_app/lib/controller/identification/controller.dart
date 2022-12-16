@@ -3,9 +3,10 @@ import 'dart:developer';
 
 import 'package:br_ipti_tag_biometry_app/controller/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class ControllerIdentification extends Disposable {
+class ControllerIdentification extends ChangeNotifier implements Disposable {
   final BiometricsService _biometricsService;
 
   final _socketResponse = StreamController<BioEvents>.broadcast();
@@ -15,6 +16,8 @@ class ControllerIdentification extends Disposable {
   void Function(BioEvents) get addResponse => _socketResponse.sink.add;
 
   Stream<BioEvents> get getResponseEvents => _socketResponse.stream;
+
+  BioEvents curretEvent;
 
   var userIdentification = {};
 
@@ -30,7 +33,7 @@ class ControllerIdentification extends Disposable {
         'name': 'jonny',
         'turma': '3A',
         'id': '1',
-        'id_finger': 50,
+        'id_finger': 80,
         'img':
             'https://images.suamusica.com.br/ehQJ5PRLM5_B6G56VmLuTigVsTU=/240x240/filters:format(webp)/49091608/3331189/cd_cover.jpg'
       },
@@ -44,6 +47,7 @@ class ControllerIdentification extends Disposable {
       },
       {'name': 'Igor', 'turma': '3B', 'id': '50'},
     ];
+
     _biometricsService.streamSocket.getResponse.listen((data) {
       if (data != null) {
         if (data['id'] == BioEvents.waitingFinger.code) {
@@ -62,7 +66,8 @@ class ControllerIdentification extends Disposable {
           Timer(const Duration(seconds: 2),
               () => _biometricsService.emit("message", "SearchSendMessage"));
         } else {
-          addResponse(BioEvents.byCode(data['id']));
+          curretEvent = BioEvents.byCode(data['id']);
+          notifyListeners();
         }
       }
     });
@@ -73,6 +78,8 @@ class ControllerIdentification extends Disposable {
 
   @override
   void dispose() {
-    // _biometricsService.streamSocket.dispose();
+    log("DISPOSE CONTROLLER");
+    _socketResponse.close();
+    // _biometricsService.dispose();;
   }
 }

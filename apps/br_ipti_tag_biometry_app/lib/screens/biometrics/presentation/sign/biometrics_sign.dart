@@ -27,20 +27,29 @@ class BiometricsSign extends StatefulWidget {
 }
 
 class _BiometricsSignPageState extends State<BiometricsSign> {
-  final biometricsController = Modular.get<ControllerSign>();
-
   @override
   void initState() {
+    Modular.dispose<ControllerIdentification>();
     super.initState();
   }
 
-  void deleteBiometrics(BuildContext context) {
-    biometricsController.biometricsService.emit('IdDelete', 50);
-    biometricsController.biometricsService.streamSocket.getResponse
-        .listen((data) {
-      print(data?['id']?.toString() ?? "");
-    });
-  }
+  // void deleteBiometrics(BuildContext context) {
+  //   biometricsController.biometricsService.streamSocket.dispose();
+  //   biometricsController.biometricsService.emit('IdDelete', 80);
+  //   biometricsController.biometricsService.streamSocket.getResponse
+  //       .listen((data) {
+  //     print(data?['id']?.toString() ?? "");
+  //   });
+  // }
+
+  // void deleteAllBiometrics(BuildContext context) {
+  //   biometricsController.biometricsService.streamSocket.dispose();
+  //   biometricsController.biometricsService.emit('message', 'ClearSendMessage');
+  //   biometricsController.biometricsService.streamSocket.getResponse
+  //       .listen((data) {
+  //     print(data?['id']?.toString() ?? "");
+  //   });
+  // }
 
   final mapBioStudent = {50: 2};
 
@@ -50,7 +59,9 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
       home: Scaffold(
         body: Column(
           children: [
-            const TagAppBar(),
+            const TagAppBar(
+              leading: TagAppBarBackIconButton(),
+            ),
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Row(
@@ -91,7 +102,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                               textButtonColor: TagColors.colorBaseInkNormal,
                               buttonStyle: TagButtonStyles.secondary,
                               text: 'Excluir',
-                              onPressed: () => {deleteBiometrics(context)},
+                              onPressed: () => {},
                             ),
                           ),
                           Padding(
