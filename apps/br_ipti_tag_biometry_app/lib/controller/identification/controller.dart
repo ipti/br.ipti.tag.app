@@ -9,25 +9,22 @@ import 'package:flutter_modular/flutter_modular.dart';
 class ControllerIdentification extends ChangeNotifier implements Disposable {
   final BiometricsService _biometricsService;
 
-  final _socketResponse = StreamController<BioEvents>.broadcast();
+  final blocStream = StreamController<BioEvents>.broadcast();
 
   ControllerIdentification(this._biometricsService);
 
-  void Function(BioEvents) get addResponse => _socketResponse.sink.add;
+  void Function(BioEvents) get addResponse => blocStream.sink.add;
 
-  Stream<BioEvents> get getResponseEvents => _socketResponse.stream;
-
-  BioEvents curretEvent;
+  Stream<BioEvents> get getResponseEvents => blocStream.stream;
 
   var userIdentification = {};
 
   void startIdentification() {
+    _biometricsService.connectAndListen();
     _biometricsService.emit("message", "SearchSendMessage");
   }
 
   void dateBiometrics() {
-    _biometricsService.connectAndListen();
-
     final user = [
       {
         'name': 'jonny',
@@ -66,8 +63,7 @@ class ControllerIdentification extends ChangeNotifier implements Disposable {
           Timer(const Duration(seconds: 2),
               () => _biometricsService.emit("message", "SearchSendMessage"));
         } else {
-          curretEvent = BioEvents.byCode(data['id']);
-          notifyListeners();
+          addResponse(BioEvents.byCode(data['id']));
         }
       }
     });
@@ -79,7 +75,8 @@ class ControllerIdentification extends ChangeNotifier implements Disposable {
   @override
   void dispose() {
     log("DISPOSE CONTROLLER");
-    _socketResponse.close();
-    // _biometricsService.dispose();;
+    blocStream.close();
+    _biometricsService.off('SearchSendMessage', 'message');
+    _biometricsService.dispose();
   }
 }

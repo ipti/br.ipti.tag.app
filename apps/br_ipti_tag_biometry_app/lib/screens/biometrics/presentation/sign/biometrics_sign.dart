@@ -27,9 +27,9 @@ class BiometricsSign extends StatefulWidget {
 }
 
 class _BiometricsSignPageState extends State<BiometricsSign> {
+  final biometricsController = Modular.get<ControllerSign>();
   @override
   void initState() {
-    Modular.dispose<ControllerIdentification>();
     super.initState();
   }
 

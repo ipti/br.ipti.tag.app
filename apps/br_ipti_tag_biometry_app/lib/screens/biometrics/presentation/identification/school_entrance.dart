@@ -31,15 +31,13 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
   @override
   void initState() {
     super.initState();
-    biometricsController.dateBiometrics();
-
     biometricsController.startIdentification();
+    biometricsController.dateBiometrics();
   }
 
   @override
   void dispose() {
     biometricsController.dispose();
-
     super.dispose();
   }
 

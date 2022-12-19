@@ -13,15 +13,19 @@ class ControllerSign {
 
   Stream<BioEvents> get getResponseEvents => _socketResponse.stream;
 
+  void restart() {
+    _biometricsService.socket.on('SearchSendMessage', (data) => null);
+    //_biometricsService.connect();
+  }
+
   void startSign() {
+    _biometricsService.clearListen();
+    _biometricsService.connectAndListen();
     _biometricsService.emit('message', 'StoreSendMessage');
     _biometricsService.emit("IdStore", 90);
-    print('sdaadsjn');
   }
 
   void dateBiometrics() {
-    _biometricsService.connectAndListen();
-
     _biometricsService.streamSocket.getResponse.listen((data) {
       if (data != null) {
         addResponse(BioEvents.byCode(data['id']));

@@ -10,6 +10,16 @@ class BiometricsService implements Disposable {
 
   BiometricsService(this.streamSocket, this.socket);
 
+  void connect() {
+    socket.onConnect((_) {
+      print('connect');
+    });
+  }
+
+  void clearListen() {
+    socket.clearListeners();
+  }
+
   void connectAndListen() {
     socket.onConnect((_) {
       print('connect');
@@ -28,6 +38,11 @@ class BiometricsService implements Disposable {
     socket.send(event);
   }
 
+  void off(event, data) {
+    // socket.on(event, data);
+    socket.off(event, data);
+  }
+
   void emit(event, data) {
     log("EMIT | event $event with data: ${data.toString()}");
     // log(data.toString());
@@ -36,7 +51,8 @@ class BiometricsService implements Disposable {
 
   @override
   void dispose() {
-    streamSocket.dispose();
+    socket.disconnect();
+    //streamSocket.dispose();
   }
 }
 
