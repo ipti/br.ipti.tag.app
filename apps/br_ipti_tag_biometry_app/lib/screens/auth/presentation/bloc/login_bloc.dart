@@ -64,7 +64,7 @@ class LoginBloc extends Cubit<LoginState> {
           ),
         );
       },
-      (auth) => Modular.to.pushReplacementNamed("/biometrics"),
+      (auth) => Modular.to.pushReplacementNamed("/biometrics/identification"),
     );
   }
 }

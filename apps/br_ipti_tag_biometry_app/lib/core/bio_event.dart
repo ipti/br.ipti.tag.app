@@ -1,5 +1,5 @@
 enum BioEvents {
-  waiting(code: 101, info: 'Aguardando imagem...'),
+  waiting(code: 101, info: 'Coloque o dedo no sensor...'),
   modeling(code: 102, info: 'Modelagem...'),
   modeled(code: 103, info: 'Modelado'),
   searching(code: 104, info: 'Procurando...'),
@@ -49,7 +49,8 @@ enum BioEvents {
   badstorageLocation(code: 526, info: 'Não foi possível identificar recursos'),
   flashstorageError(code: 527, info: 'Erro de armazenamento flash'),
   savingError(code: 528, info: 'Erro de armazenamento flash'),
-  fingersNotMatch(code: 529, info: 'As impressões não correspondem');
+  fingersNotMatch(code: 529, info: 'As impressões não correspondem'),
+  finish(code: 0, info: 'null');
 
   const BioEvents({required this.code, required this.info});
 

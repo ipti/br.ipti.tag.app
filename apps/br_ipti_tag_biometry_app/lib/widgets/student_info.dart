@@ -12,7 +12,7 @@ class StudentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 128.0, left: 128.0),
+      padding: const EdgeInsets.only(top: 64.0, left: 128.0),
       child: Row(
         children: [
           Container(

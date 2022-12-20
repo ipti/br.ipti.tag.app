@@ -22,14 +22,10 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
     super.initState();
   }
 
-  // void deleteBiometrics(BuildContext context) {
-  //   signController.biometricsService.streamSocket.dispose();
-  //   signController.biometricsService.emit('IdDelete', 80);
-  //   signController.biometricsService.streamSocket.getResponse
-  //       .listen((data) {
-  //     print(data?['id']?.toString() ?? "");
-  //   });
-  // }
+  void deleteBiometrics(BuildContext context) {
+    signController.deleteFinger();
+    signController.dateBiometrics();
+  }
 
   // void deleteAllBiometrics(BuildContext context) {
   //   signController.biometricsService.streamSocket.dispose();
@@ -103,7 +99,8 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                           TagColors.colorBaseInkNormal,
                                       buttonStyle: TagButtonStyles.secondary,
                                       text: 'Excluir',
-                                      onPressed: () => {},
+                                      onPressed: () =>
+                                          {deleteBiometrics(context)},
                                     ),
                                   ),
                                   Padding(

@@ -53,6 +53,11 @@ class ControllerSign {
     biometricsService.emit("IdStore", 77);
   }
 
+  void deleteFinger() {
+    biometricsService.connectAndListen();
+    biometricsService.emit('IdDelete', 77);
+  }
+
   void dateBiometrics() {
     biometricsService.streamSocket.getResponse.listen((data) {
       if (data != null) {

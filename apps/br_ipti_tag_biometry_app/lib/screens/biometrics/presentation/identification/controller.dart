@@ -55,12 +55,12 @@ class ControllerIdentification implements Disposable {
               userIdentification = user[i];
             }
           }
-          // Timer(const Duration(seconds: 4),
-          //     () => _biometricsService.emit("message", "SearchSendMessage"));
+          Timer(
+              const Duration(seconds: 4), () => addResponse(BioEvents.finish));
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
           addResponse(BioEvents.fingerNotFound);
-          // Timer(const Duration(seconds: 2),
-          //     () => _biometricsService.emit("message", "SearchSendMessage"));
+          Timer(
+              const Duration(seconds: 2), () => addResponse(BioEvents.finish));
         } else {
           addResponse(BioEvents.byCode(data['id']));
         }

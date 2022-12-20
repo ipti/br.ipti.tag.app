@@ -27,6 +27,7 @@ void showCustomDialog(BuildContext context) {
             body: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     children: [
@@ -35,6 +36,7 @@ void showCustomDialog(BuildContext context) {
                         stream: biometricsController.getResponseEvents,
                         builder: (context, snapshot) {
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               if (snapshot.data?.code == BioEvents.waiting.code)
                                 const WaitingBiometrics(),

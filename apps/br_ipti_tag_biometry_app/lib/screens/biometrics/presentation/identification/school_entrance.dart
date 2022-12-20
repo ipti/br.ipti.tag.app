@@ -1,14 +1,11 @@
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/controller.dart';
-
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
-import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
 import 'package:tag_ui/tag_ui.dart';
 
 class SchoolEntrance extends StatefulWidget {
@@ -20,11 +17,8 @@ class SchoolEntrance extends StatefulWidget {
 
 class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsController = Modular.get<ControllerIdentification>();
-
   @override
   void initState() {
-    biometricsController.startIdentification();
-    biometricsController.dateBiometrics();
     super.initState();
   }
 
@@ -43,13 +37,48 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
         body: Column(
           children: [
             const SchoolPanel(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TagButton(
+                    text: 'Cadastrar Biometria',
+                    onPressed: () {
+                      Modular.to.pushReplacementNamed("/biometrics/students/");
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TagButton(
+                    text: 'Sair',
+                    onPressed: () {
+                      final usecase = Modular.get<LogoutUsecase>();
+                      usecase.call(EmptyParams());
+                      Modular.to.pushNamed("/");
+                    },
+                  ),
+                ),
+              ],
+            ),
             StreamBuilder<BioEvents?>(
               stream: biometricsController.getResponseEvents,
               builder: (context, snapshot) {
                 return Column(
                   children: [
-                    if (snapshot.data == BioEvents.waiting)
-                      const WaitingBiometrics(),
+                    if (snapshot.data == null ||
+                        BioEvents.finish.code == snapshot.data?.code)
+                      Center(
+                          heightFactor: 10.0,
+                          child: TagButton(
+                              text: 'Identificar Aluno',
+                              onPressed: (() => {
+                                    biometricsController.startIdentification(),
+                                    biometricsController.dateBiometrics(),
+                                  }))),
+                    if (snapshot.data?.code == BioEvents.waiting.code)
+                      FingerMensage(text: snapshot.data!.info),
                     if (snapshot.data?.code == 102)
                       FingerMensage(text: snapshot.data!.info),
                     if (snapshot.data?.code == 104)
@@ -63,20 +92,6 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 );
               },
             ),
-            TagButton(
-              text: 'Cadastrar Biometria',
-              onPressed: () {
-                Modular.to.pushReplacementNamed("/biometrics/students/");
-              },
-            ),
-            TagButton(
-              text: 'Sair',
-              onPressed: () {
-                final usecase = Modular.get<LogoutUsecase>();
-                usecase.call(EmptyParams());
-                Modular.to.pushNamed("/");
-              },
-            )
           ],
         ),
       ),
