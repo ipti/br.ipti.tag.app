@@ -1,10 +1,7 @@
-import 'package:br_ipti_tag_biometry_app/controller/bio_event.dart';
-import 'package:br_ipti_tag_biometry_app/controller/identification/controller.dart';
-import 'package:br_ipti_tag_biometry_app/controller/sign/controller.dart';
-import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
+import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

@@ -1,8 +1,7 @@
 import 'package:br_ipti_tag_biometry_app/core/status_page.dart';
-import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
@@ -55,8 +54,8 @@ class StudentPageState extends State<StudentPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: TagDataTable(
                       onTapRow: (index) => Modular.to.pushNamed(
-                          "/biometrics/sign",
-                          arguments: state.students[index]),
+                        "/biometrics/sign/${state.students[index].id}",
+                      ),
                       columns: const [
                         DataColumn(
                           label: Text(
@@ -93,34 +92,6 @@ class StudentPageState extends State<StudentPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _Actions extends StatelessWidget {
-  const _Actions();
-
-  @override
-  Widget build(BuildContext context) {
-    final isDesktop = MediaQuery.of(context).size.width > 992;
-
-    return RowToColumn(
-      columnCrossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Flexible(
-          child: Row(
-            children: [
-              Flexible(
-                fit: isDesktop ? FlexFit.loose : FlexFit.tight,
-                child: TagButton(
-                  text: "Matricula",
-                  onPressed: () => Modular.to.pushNamed("matricula/"),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
@@ -165,41 +136,4 @@ class StudentDatatable extends DataTableSource {
 
   @override
   int get selectedRowCount => 0;
-}
-
-class _SliverHeaderActionDelegate extends SliverPersistentHeaderDelegate {
-  _SliverHeaderActionDelegate({
-    required this.actionsHeader,
-  });
-
-  final Widget actionsHeader;
-
-  @override
-  double get maxExtent => 44;
-
-  @override
-  double get minExtent => 44;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return Container(
-      height: maxExtent,
-      color: TagColors.colorBaseWhiteNormal,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: actionsHeader,
-    );
-  }
-
-  @override
-  OverScrollHeaderStretchConfiguration get stretchConfiguration =>
-      OverScrollHeaderStretchConfiguration();
-
-  @override
-  bool shouldRebuild(_SliverHeaderActionDelegate oldDelegate) {
-    return false;
-  }
 }

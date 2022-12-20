@@ -18,6 +18,13 @@
             "flutterMode": "profile"
         },
         {
+            "name": "br_ipti_tag_biometry_app (debug)",
+            "cwd": "apps/br_ipti_tag_biometry_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
             "name": "br_ipti_tag_app (profile mode)",
             "cwd": "apps/br_ipti_tag_app",
             "request": "launch",

@@ -7,7 +7,7 @@ class StudentInfo extends StatelessWidget {
     required this.student,
   });
 
-  final student;
+  final Map<String, dynamic> student;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class StudentInfo extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             child: FittedBox(
-              child: Image.network(student['img']),
               fit: BoxFit.fill,
+              child: Image.network(student['img']),
             ),
           ),
           const SizedBox(

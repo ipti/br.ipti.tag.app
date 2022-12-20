@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:br_ipti_tag_biometry_app/core/status_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

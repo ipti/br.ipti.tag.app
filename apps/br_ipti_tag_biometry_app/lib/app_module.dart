@@ -1,15 +1,10 @@
 import 'package:br_ipti_tag_biometry_app/core/auth_interceptor.dart';
 import 'package:br_ipti_tag_biometry_app/screens/auth/auth_module.dart';
-import 'package:br_ipti_tag_biometry_app/screens/auth/presentation/pages/auth_login_page.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/biometrics_module.dart';
-import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/school_entrance.dart';
-import 'package:br_ipti_tag_biometry_app/screens/splashscreen/splashscreen.dart';
 import 'package:br_ipti_tag_biometry_app/screens/splashscreen/splashscreen_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/tag_sdk.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project

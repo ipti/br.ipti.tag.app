@@ -59,7 +59,7 @@ class LoginBloc extends Cubit<LoginState> {
           LoginLoadedState(
             username: username!,
             password: password!,
-            appVersion: appVersion!,
+            appVersion: appVersion,
             year: schoolYear!,
           ),
         );

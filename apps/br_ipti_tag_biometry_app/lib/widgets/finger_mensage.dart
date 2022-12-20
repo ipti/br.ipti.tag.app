@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tag_ui/tag_ui.dart';
 
 class FingerMensage extends StatelessWidget {
   const FingerMensage({

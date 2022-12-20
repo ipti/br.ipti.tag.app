@@ -2,7 +2,6 @@ import 'package:br_ipti_tag_biometry_app/screens/splashscreen/splashscreen_contr
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class SplashScreen extends StatefulWidget {

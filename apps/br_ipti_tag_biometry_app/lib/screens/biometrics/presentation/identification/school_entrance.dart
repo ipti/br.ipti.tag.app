@@ -1,11 +1,6 @@
-import 'dart:async';
-import 'dart:developer';
-import 'dart:io';
+import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/controller.dart';
 
-import 'package:br_ipti_tag_biometry_app/controller/bio_event.dart';
-import 'package:br_ipti_tag_biometry_app/controller/identification/controller.dart';
-import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/biometrics_sign.dart';
-import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
@@ -13,8 +8,6 @@ import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
-import 'dart:convert';
 
 import 'package:tag_ui/tag_ui.dart';
 
@@ -30,9 +23,9 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
 
   @override
   void initState() {
-    super.initState();
     biometricsController.startIdentification();
     biometricsController.dateBiometrics();
+    super.initState();
   }
 
   @override
@@ -73,7 +66,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             TagButton(
               text: 'Cadastrar Biometria',
               onPressed: () {
-                Modular.to.pushNamed("students");
+                Modular.to.pushReplacementNamed("/biometrics/students/");
               },
             ),
             TagButton(

@@ -12,7 +12,7 @@ class SplashScreenController {
     );
     result.fold(
       (error) => Modular.to.pushReplacementNamed("/auth/"),
-      (token) => Modular.to.pushReplacementNamed("/biometrics/"),
+      (token) => Modular.to.pushReplacementNamed("/biometrics/identification/"),
     );
   }
 }

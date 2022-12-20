@@ -2,18 +2,20 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart' as io;
 
 class BiometricsService implements Disposable {
   final StreamSocket streamSocket;
-  final IO.Socket socket;
+  final io.Socket socket;
 
   BiometricsService(this.streamSocket, this.socket);
 
   void connect() {
-    socket.onConnect((_) {
-      print('connect');
-    });
+    socket.connect();
+  }
+
+  void disconnect() {
+    socket.disconnect();
   }
 
   void clearListen() {
@@ -21,38 +23,26 @@ class BiometricsService implements Disposable {
   }
 
   void connectAndListen() {
-    socket.onConnect((_) {
-      print('connect');
-    });
-
+    socket.onConnect((_) {});
     //When an event recieved from server, data is added to the stream
     socket.onAny((event, data) {
+      log('RECEIVED | event $event with data: ${data.toString()}');
       streamSocket.addResponse(data);
     });
-
     socket.onDisconnect((_) => log('disconnect'));
-  }
-
-  void send(event) {
-    log("EMIT | event $event}");
-    socket.send(event);
-  }
-
-  void off(event, data) {
-    // socket.on(event, data);
-    socket.off(event, data);
   }
 
   void emit(event, data) {
     log("EMIT | event $event with data: ${data.toString()}");
-    // log(data.toString());
     socket.emit(event, data);
   }
 
   @override
   void dispose() {
-    socket.disconnect();
-    //streamSocket.dispose();
+    socket.clearListeners();
+    socket.dispose();
+    streamSocket.dispose();
+    log("DISPOSE socket");
   }
 }
 
@@ -64,6 +54,6 @@ class StreamSocket {
   Stream<Map?> get getResponse => _socketResponse.stream;
 
   void dispose() {
-    _socketResponse.stream.drain().then((value) => _socketResponse.close());
+    _socketResponse.close();
   }
 }

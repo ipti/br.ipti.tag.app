@@ -6,12 +6,12 @@ abstract class StudentRepository {
   Future<Either<Failure, List<StudentIdentification>>> listAll(
       {required String schoolId});
   Future<Either<Failure, StudentIdentification>> getById(
-    String id, {
+    int id, {
     required String schoolId,
   });
   Future<Either<Failure, StudentIdentification>> create(
       StudentIdentification student);
   Future<Either<Failure, StudentIdentification>> update(
       int id, StudentIdentification student);
-  Future<Either<Failure, bool>> delete(String id);
+  Future<Either<Failure, bool>> delete(int id);
 }

@@ -10,7 +10,7 @@ void main() {
   testWidgets("LoadStudentUsecase when load a right value", (tester) async {
     final repository = MockStudentRepository();
     when(
-      () => repository.getById('', schoolId: ''),
+      () => repository.getById(0, schoolId: ''),
     ).thenAnswer(
       (invocation) => Future.value(right(
         StudentIdentification(
@@ -26,7 +26,7 @@ void main() {
     );
 
     final usecase = LoadStudentUsecase(repository);
-    final params = LoadStudentParams("", "");
+    final params = LoadStudentParams(0, "");
 
     final either = await usecase(params);
     expect(either.isRight(), isTrue);
@@ -39,7 +39,7 @@ void main() {
   testWidgets("LoadStudentUsecase when load a left value", (tester) async {
     final repository = MockStudentRepository();
     when(
-      () => repository.getById('', schoolId: ''),
+      () => repository.getById(0, schoolId: ''),
     ).thenAnswer(
       (invocation) => Future.value(left(
         const RestFailure("Ocorreu um erro"),
@@ -47,7 +47,7 @@ void main() {
     );
 
     final usecase = LoadStudentUsecase(repository);
-    final params = LoadStudentParams("", "");
+    final params = LoadStudentParams(0, "");
 
     final either = await usecase(params);
     expect(either.isLeft(), isTrue);

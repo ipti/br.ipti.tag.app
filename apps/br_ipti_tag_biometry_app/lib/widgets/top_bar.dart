@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class TopBar extends StatelessWidget {
@@ -17,7 +18,14 @@ class TopBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const TagAppBarBackIconButton(),
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 24.0,
+              ),
+              onPressed: () =>
+                  Modular.to.pushNamed("/biometrics/identification"),
+            ),
             const SizedBox(
                 width: 256.0,
                 child: TagTextField(
