@@ -47,14 +47,13 @@ class ControllerSign {
   }
 
   void startSign() {
-    biometricsService.clearListen();
+    // biometricsService.clearListen();
     biometricsService.connectAndListen();
     // biometricsService.emit('message', 'StoreSendMessage');
     biometricsService.emit("IdStore", 77);
   }
 
   void deleteFinger() {
-    biometricsService.connectAndListen();
     biometricsService.emit('IdDelete', 77);
   }
 

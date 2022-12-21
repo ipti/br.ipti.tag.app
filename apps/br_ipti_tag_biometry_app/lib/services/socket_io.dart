@@ -40,7 +40,6 @@ class BiometricsService implements Disposable {
   @override
   void dispose() {
     socket.clearListeners();
-    socket.dispose();
     streamSocket.dispose();
     log("DISPOSE socket");
   }
