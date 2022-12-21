@@ -65,7 +65,6 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(snapshot.data?.name ?? ""),
                               const Text('Foto do Aluno'),
                               Padding(
                                 padding: const EdgeInsets.all(40.0),
@@ -80,6 +79,10 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                           image: NetworkImage(
                                               'https://images.suamusica.com.br/ehQJ5PRLM5_B6G56VmLuTigVsTU=/240x240/filters:format(webp)/49091608/3331189/cd_cover.jpg'))),
                                 ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(snapshot.data?.name ?? ""),
                               ),
                               const Text('Gerenciamento de Biometria'),
                               Row(

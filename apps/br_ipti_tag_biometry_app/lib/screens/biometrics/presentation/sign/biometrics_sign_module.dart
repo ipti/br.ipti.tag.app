@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_biometry_app/app_module.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/biometrics_sign.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
+import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:socket_io_client/socket_io_client.dart';
@@ -31,6 +32,7 @@ class BiometricsSignModule extends Module {
         authRepository: i.get<AuthRepository>(),
         biometricsService: i.get<BiometricsService>(),
         loadStudentUsecase: i.get<LoadStudentUsecase>(),
+        localStorageService: i.get<LocalStorageService>(),
       ),
     )
   ];

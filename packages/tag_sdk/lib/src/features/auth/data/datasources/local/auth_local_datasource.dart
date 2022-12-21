@@ -54,7 +54,6 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJson = user.toJson();
-
     final result = sharedPreferences.setString(
       KEY_SESSION_USER,
       userJson,

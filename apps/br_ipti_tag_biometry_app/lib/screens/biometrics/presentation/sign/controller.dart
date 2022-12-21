@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
@@ -8,10 +9,12 @@ class ControllerSign {
   final BiometricsService biometricsService;
   final AuthRepository authRepository;
   final LoadStudentUsecase loadStudentUsecase;
+  final LocalStorageService localStorageService;
   final bioEventStream = StreamController<BioEvents>.broadcast();
   final studentStream = StreamController<StudentIdentification>.broadcast();
-
+  late StudentIdentification studentCache;
   ControllerSign({
+    required this.localStorageService,
     required this.biometricsService,
     required this.authRepository,
     required this.loadStudentUsecase,
@@ -46,21 +49,35 @@ class ControllerSign {
     //biometricsService.connect();
   }
 
-  void startSign() {
-    // biometricsService.clearListen();
+  Future startSign() async {
     biometricsService.connectAndListen();
-    // biometricsService.emit('message', 'StoreSendMessage');
-    biometricsService.emit("IdStore", 77);
+    studentStream.stream.listen((event) {
+      studentCache = event;
+    });
+
+    final idStore = await localStorageService.IdStore();
+    biometricsService.emit('IdStore', idStore);
   }
 
   void deleteFinger() {
     biometricsService.emit('IdDelete', 77);
   }
 
-  void dateBiometrics() {
-    biometricsService.streamSocket.getResponse.listen((data) {
+  void deleteAllFinger() {
+    biometricsService.emit("ClearSendMessage", 'mensage');
+  }
+
+  void dateBiometrics() async {
+    biometricsService.streamSocket.getResponse.listen((data) async {
       if (data != null) {
-        addResponse(BioEvents.byCode(data['id']));
+        if (data['id'] == 200) {
+          addResponse(BioEvents.storeok);
+
+          await localStorageService.addStudentWithBiometricId(
+              student: studentCache);
+        } else {
+          addResponse(BioEvents.byCode(data['id']));
+        }
       }
     });
     final mape = {for (int i = 0; i < 150; i++) i: ""};

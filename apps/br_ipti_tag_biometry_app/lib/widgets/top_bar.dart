@@ -18,20 +18,26 @@ class TopBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                size: 24.0,
-              ),
-              onPressed: () =>
-                  Modular.to.pushNamed("/biometrics/identification"),
+            Row(
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 24.0,
+                  ),
+                  onPressed: () =>
+                      Modular.to.pushNamed("/biometrics/identification"),
+                ),
+                const Center(
+                  child: SizedBox(
+                      width: 256.0,
+                      child: TagTextField(
+                        label: '',
+                        hint: "Digite o nome do Aluno",
+                      )),
+                ),
+              ],
             ),
-            const SizedBox(
-                width: 256.0,
-                child: TagTextField(
-                  label: '',
-                  hint: "Digite o nome do Aluno",
-                )),
             Row(
               children: [
                 const Text('Escola',

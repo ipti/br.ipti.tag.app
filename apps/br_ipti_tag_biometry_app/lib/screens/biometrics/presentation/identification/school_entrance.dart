@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/controller.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
@@ -65,10 +67,10 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             StreamBuilder<BioEvents?>(
               stream: biometricsController.getResponseEvents,
               builder: (context, snapshot) {
+                log(snapshot.data.toString());
                 return Column(
                   children: [
-                    if (snapshot.data == null ||
-                        BioEvents.finish.code == snapshot.data?.code)
+                    if (snapshot.data == null)
                       Center(
                           heightFactor: 10.0,
                           child: TagButton(
@@ -84,8 +86,9 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                     if (snapshot.data?.code == 104)
                       FingerMensage(text: snapshot.data!.info),
                     if (snapshot.data?.code == 202)
-                      StudentInfo(
-                          student: biometricsController.userIdentification),
+                      FingerMensage(text: snapshot.data!.info),
+                    // StudentInfo(
+                    //     student: biometricsController.userIdentification),
                     if (snapshot.data?.code == 502)
                       FingerMensage(text: snapshot.data!.info),
                   ],

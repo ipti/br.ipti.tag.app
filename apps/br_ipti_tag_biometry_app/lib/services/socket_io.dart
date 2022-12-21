@@ -23,7 +23,9 @@ class BiometricsService implements Disposable {
   }
 
   void connectAndListen() {
-    socket.onConnect((_) {});
+    socket.onConnect((_) {
+      log('connect');
+    });
     //When an event recieved from server, data is added to the stream
     socket.onAny((event, data) {
       log('RECEIVED | event $event with data: ${data.toString()}');

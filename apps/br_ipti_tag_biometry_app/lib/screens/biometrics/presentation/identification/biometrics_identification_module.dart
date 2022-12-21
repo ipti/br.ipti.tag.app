@@ -1,9 +1,9 @@
 import 'package:br_ipti_tag_biometry_app/app_module.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/controller.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/school_entrance.dart';
+import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 class BiometricsidentificationModule extends Module {
@@ -24,6 +24,7 @@ class BiometricsidentificationModule extends Module {
     Bind.singleton<ControllerIdentification>(
       (i) => ControllerIdentification(
         i.get<BiometricsService>(),
+        i.get<LocalStorageService>(),
       ),
       onDispose: (bloc) => bloc.dispose(),
     )
