@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
 import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:tag_sdk/tag_sdk.dart';
@@ -10,8 +12,8 @@ class ControllerSign {
   final AuthRepository authRepository;
   final LoadStudentUsecase loadStudentUsecase;
   final LocalStorageService localStorageService;
-  final bioEventStream = StreamController<BioEvents>.broadcast();
-  final studentStream = StreamController<StudentIdentification>.broadcast();
+
+  final stateSignStream = StreamController<SignState>.broadcast();
   late StudentIdentification studentCache;
   ControllerSign({
     required this.localStorageService,
@@ -20,9 +22,13 @@ class ControllerSign {
     required this.loadStudentUsecase,
   });
 
-  void Function(BioEvents) get addResponse => bioEventStream.sink.add;
+  SignState currentState = const SignState(null, BioEvents.waiting);
 
-  Stream<BioEvents> get getResponseEvents => bioEventStream.stream;
+  void Function(SignState) get addSignResponse => stateSignStream.sink.add;
+
+  Stream<SignState> get getResponseSign => stateSignStream.stream;
+
+ 
 
   Future<void> fetchStudent(studentId) async {
     final maybeCurrentSchool = await authRepository.getCurrentUserSchools();
@@ -38,9 +44,11 @@ class ControllerSign {
       ),
     );
 
+
+
     student.fold(
-      (l) => studentStream.sink.addError(l),
-      (r) => studentStream.sink.add(r),
+      (error) => log(error.message),
+      (data) => {addSignResponse(currentState.copyWith(student: data))},
     );
   }
 
@@ -51,9 +59,12 @@ class ControllerSign {
 
   Future startSign() async {
     biometricsService.connectAndListen();
-    studentStream.stream.listen((event) {
-      studentCache = event;
+    stateSignStream.stream.listen((event) {
+      currentState = event;
+      log(currentState.toString());
     });
+
+
 
     final idStore = await localStorageService.IdStore();
     biometricsService.emit('IdStore', idStore);
@@ -71,12 +82,19 @@ class ControllerSign {
     biometricsService.streamSocket.getResponse.listen((data) async {
       if (data != null) {
         if (data['id'] == 200) {
-          addResponse(BioEvents.storeok);
-
-          await localStorageService.addStudentWithBiometricId(
-              student: studentCache);
+          addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+           getResponseSign.listen((event) {
+            log(event.toString());
+            if(event.student != null){
+            localStorageService.addStudentWithBiometricId(
+              student: event.student!);
+          }
+          });
+          
+          
         } else {
-          addResponse(BioEvents.byCode(data['id']));
+          addSignResponse(
+              currentState.copyWith(event: BioEvents.byCode(data["id"])));
         }
       }
     });

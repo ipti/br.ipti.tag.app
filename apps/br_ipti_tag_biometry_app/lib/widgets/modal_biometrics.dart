@@ -1,5 +1,6 @@
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
@@ -32,31 +33,31 @@ void showCustomDialog(BuildContext context) {
                   Column(
                     children: [
                       const Text('Cadastrar Biometria'),
-                      StreamBuilder<BioEvents?>(
-                        stream: biometricsController.getResponseEvents,
+                      StreamBuilder<SignState?>(
+                        stream: biometricsController.getResponseSign,
                         builder: (context, snapshot) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              if (snapshot.data?.code == BioEvents.waiting.code)
+                              if (snapshot.data?.event.code == BioEvents.waiting.code)
                                 const WaitingBiometrics(),
-                              if (snapshot.data?.code ==
+                              if (snapshot.data?.event.code ==
                                   BioEvents.modeling.code)
                                 FingerMensage(text: BioEvents.modeling.info),
-                              if (snapshot.data?.code ==
+                              if (snapshot.data?.event.code ==
                                   BioEvents.searching.code)
-                                FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code ==
+                                FingerMensage(text: snapshot.data!.event.info),
+                              if (snapshot.data?.event.code ==
                                   BioEvents.putfinger.code)
-                                FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code ==
+                                FingerMensage(text: snapshot.data!.event.info),
+                              if (snapshot.data?.event.code ==
                                   BioEvents.waitingFinger.code)
-                                FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code == BioEvents.storeok.code)
-                                FingerMensage(text: snapshot.data!.info),
-                              if (snapshot.data?.code ==
+                                FingerMensage(text: snapshot.data!.event.info),
+                              if (snapshot.data?.event.code == BioEvents.storeok.code)
+                                FingerMensage(text: snapshot.data!.event.info),
+                              if (snapshot.data?.event.code ==
                                   BioEvents.storeFail.code)
-                                FingerMensage(text: snapshot.data!.info),
+                                FingerMensage(text: snapshot.data!.event.info),
                             ],
                           );
                         },

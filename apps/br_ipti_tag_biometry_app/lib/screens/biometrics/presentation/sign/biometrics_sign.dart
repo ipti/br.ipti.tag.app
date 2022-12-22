@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/modal_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -53,8 +54,8 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                 onPressed: () => Modular.to.pop(),
               ),
             ),
-            StreamBuilder<StudentIdentification>(
-                stream: signController.studentStream.stream,
+            StreamBuilder<SignState>(
+                stream: signController.stateSignStream.stream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Padding(
@@ -82,7 +83,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(snapshot.data?.name ?? ""),
+                                child: Text(snapshot.data?.student?.name ?? ""),
                               ),
                               const Text('Gerenciamento de Biometria'),
                               Row(
@@ -134,8 +135,8 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                       ),
                     );
                   }
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return  Center(
+                    child: Text(snapshot.data?.event.info ?? ""),
                   );
                 }),
           ],

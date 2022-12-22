@@ -15,9 +15,9 @@ class LocalStorageService {
 
     final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO");
     log('opaaa');
-    log(localData!.first.toString());
+    //log(localData!.first.toString());
     if (localData != null) {
-      // log(localData.toString());
+       log(localData.toString());
 
       final student = localData.map(StudentBiometrics.fromJson).map((e) => {
             if (e.biometricId == biometricId) {e.student}
@@ -49,7 +49,7 @@ class LocalStorageService {
       {required StudentIdentification student}) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO");
-
+    log(localData.toString());
     if (localData != null) {
       var list = List<int>.generate(150, (i) => i + 1);
       final occupedIndex = localData
