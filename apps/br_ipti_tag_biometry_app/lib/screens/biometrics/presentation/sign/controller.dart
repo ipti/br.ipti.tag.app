@@ -28,8 +28,6 @@ class ControllerSign {
 
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
- 
-
   Future<void> fetchStudent(studentId) async {
     final maybeCurrentSchool = await authRepository.getCurrentUserSchools();
     final currentSchool = maybeCurrentSchool.fold(
@@ -44,8 +42,6 @@ class ControllerSign {
       ),
     );
 
-
-
     student.fold(
       (error) => log(error.message),
       (data) => {addSignResponse(currentState.copyWith(student: data))},
@@ -57,15 +53,14 @@ class ControllerSign {
     //biometricsService.connect();
   }
 
-  Future startSign() async {
+  Future init() async {
     biometricsService.connectAndListen();
     stateSignStream.stream.listen((event) {
       currentState = event;
-      log(currentState.toString());
     });
+  }
 
-
-
+  Future startSign() async {
     final idStore = await localStorageService.IdStore();
     biometricsService.emit('IdStore', idStore);
   }
@@ -78,27 +73,19 @@ class ControllerSign {
     biometricsService.emit("ClearSendMessage", 'mensage');
   }
 
-  void dateBiometrics() async {
-    biometricsService.streamSocket.getResponse.listen((data) async {
-      if (data != null) {
-        if (data['id'] == 200) {
-          addSignResponse(currentState.copyWith(event: BioEvents.storeok));
-           getResponseSign.listen((event) {
-            log(event.toString());
-            if(event.student != null){
-            localStorageService.addStudentWithBiometricId(
-              student: event.student!);
-          }
-          });
-          
-          
-        } else {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.byCode(data["id"])));
+  void dateBiometrics(data) async {
+    if (data != null) {
+      if (data['id'] == 200) {
+        addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+
+        if (currentState.student != null) {
+          localStorageService.addStudentWithBiometricId(
+              student: currentState.student!);
         }
+      } else {
+        addSignResponse(
+            currentState.copyWith(event: BioEvents.byCode(data["id"])));
       }
-    });
-    final mape = {for (int i = 0; i < 150; i++) i: ""};
-    mape.keys.where((element) => mape[element] == "");
+    }
   }
 }

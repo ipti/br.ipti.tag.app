@@ -21,6 +21,7 @@ class ControllerIdentification implements Disposable {
   var userIdentification = <String, dynamic>{};
 
   void startIdentification() {
+    
     _biometricsService.connectAndListen();
     _biometricsService.emit("message", "SearchSendMessage");
     addResponse(BioEvents.waiting);

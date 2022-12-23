@@ -19,13 +19,18 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
   final signController = Modular.get<ControllerSign>();
   @override
   void initState() {
+     signController.init();
+    signController.biometricsService.streamSocket.getResponse.listen((data) async {
+      signController.dateBiometrics(data);
+    });
     signController.fetchStudent(widget.studentId);
     super.initState();
   }
 
   void deleteBiometrics(BuildContext context) {
     signController.deleteFinger();
-    signController.dateBiometrics();
+    
+   // signController.dateBiometrics();
   }
 
   // void deleteAllBiometrics(BuildContext context) {

@@ -8,10 +8,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 void showCustomDialog(BuildContext context) {
   // final biometricsService = BiometricsService;
-  final biometricsController = Modular.get<ControllerSign>();
+  final signController = Modular.get<ControllerSign>();
   // biometricsController.biometricsService.streamSocket.dispose();
-  biometricsController.startSign();
-  biometricsController.dateBiometrics();
+ signController.startSign();
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -34,7 +33,7 @@ void showCustomDialog(BuildContext context) {
                     children: [
                       const Text('Cadastrar Biometria'),
                       StreamBuilder<SignState?>(
-                        stream: biometricsController.getResponseSign,
+                        stream: signController.getResponseSign,
                         builder: (context, snapshot) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
