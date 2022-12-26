@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/identification/controller.dart';
+import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
@@ -22,9 +23,9 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsController = Modular.get<ControllerIdentification>();
   @override
   void initState() {
-    // final sharedPreferences = SharedPreferences.getInstance().then((value) => value.clear()); 
+    // final sharedPreferences = SharedPreferences.getInstance().then((value) => value.clear());
     // biometricsController.deleteAllFinger();
-    
+
     super.initState();
   }
 
@@ -33,8 +34,6 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     biometricsController.dispose();
     super.dispose();
   }
-
-  final mapBioStudent = {50: 2};
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +67,8 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 ),
               ],
             ),
-            StreamBuilder<BioEvents?>(
-              stream: biometricsController.getResponseEvents,
+            StreamBuilder<SignState?>(
+              stream: biometricsController.stateSignStream.stream,
               builder: (context, snapshot) {
                 log(snapshot.data.toString());
                 return Column(
@@ -83,18 +82,18 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                     biometricsController.startIdentification(),
                                     biometricsController.dateBiometrics(),
                                   }))),
-                    if (snapshot.data?.code == BioEvents.waiting.code)
-                      FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 102)
-                      FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 104)
-                      FingerMensage(text: snapshot.data!.info),
-                    if (snapshot.data?.code == 202)
-                      FingerMensage(text: snapshot.data!.info),
-                    // StudentInfo(
-                    //     student: biometricsController.userIdentification),
-                    if (snapshot.data?.code == 502)
-                      FingerMensage(text: snapshot.data!.info),
+                    if (snapshot.data?.event == BioEvents.waiting)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code == BioEvents.modeling.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code == BioEvents.searching.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code ==
+                        BioEvents.fingerDected.code)
+                      StudentInfo(student: snapshot.data!.student),
+                    if (snapshot.data?.event.code ==
+                        BioEvents.fingerNotFound.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                   ],
                 );
               },

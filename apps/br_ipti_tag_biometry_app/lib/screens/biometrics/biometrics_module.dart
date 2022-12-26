@@ -8,7 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
-const _urlWebSocket = "http://192.168.0.100:5000";
+const _urlWebSocket = "http://192.168.0.102:5000";
 
 class BiometricsModule extends Module {
   @override

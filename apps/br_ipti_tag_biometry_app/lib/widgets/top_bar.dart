@@ -28,13 +28,18 @@ class TopBar extends StatelessWidget {
                   onPressed: () =>
                       Modular.to.pushNamed("/biometrics/identification"),
                 ),
-                const Center(
-                  child: SizedBox(
-                      width: 256.0,
-                      child: TagTextField(
-                        label: '',
-                        hint: "Digite o nome do Aluno",
-                      )),
+                Column(
+                  children: const [ 
+                    SizedBox(
+                          width: 256.0,
+                          child: TagTextField(
+                            label: '',
+                            hint: "Digite o nome do Aluno",
+                          )),
+                     SizedBox(
+                      height: 18.0,
+                     )   
+                  ],
                 ),
               ],
             ),

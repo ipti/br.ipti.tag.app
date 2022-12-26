@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class StudentInfo extends StatelessWidget {
@@ -7,7 +8,7 @@ class StudentInfo extends StatelessWidget {
     required this.student,
   });
 
-  final Map<String, dynamic> student;
+  final StudentIdentification? student;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class StudentInfo extends StatelessWidget {
               color: TagColors.colorBaseCloudDark,
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
-            child: FittedBox(
+            child: const FittedBox(
               fit: BoxFit.fill,
-              child: Image.network(student['img']),
+             child: Icon(Icons.person),
             ),
           ),
           const SizedBox(
@@ -57,7 +58,7 @@ class StudentInfo extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Text(
-                  student['name'],
+                  student!.name,
                   style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,
@@ -92,7 +93,7 @@ class StudentInfo extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Text(
-                  student['turma'],
+                  student!.registerType,
                   style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,

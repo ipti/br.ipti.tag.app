@@ -19,7 +19,8 @@ class LocalStorageService {
    // log(localData.toString());
     //log(localData!.first.toString());
       final studentBiomtrics = localData.map(StudentBiometrics.fromJson).toList().firstWhere((e) => e.biometricId == biometricId);
-       log(studentBiomtrics.student.toString());
+       log(studentBiomtrics.student
+       .toString());
        return studentBiomtrics.student;
   }
 

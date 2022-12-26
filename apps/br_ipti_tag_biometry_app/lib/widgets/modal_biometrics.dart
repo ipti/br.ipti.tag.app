@@ -38,25 +38,30 @@ void showCustomDialog(BuildContext context) {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              if (snapshot.data?.event.code == BioEvents.waiting.code)
-                                const WaitingBiometrics(),
                               if (snapshot.data?.event.code ==
                                   BioEvents.modeling.code)
-                                FingerMensage(text: BioEvents.modeling.info),
+                                FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
                               if (snapshot.data?.event.code ==
-                                  BioEvents.searching.code)
-                                FingerMensage(text: snapshot.data!.event.info),
+                                  BioEvents.modeled.code)
+                                FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
                               if (snapshot.data?.event.code ==
                                   BioEvents.putfinger.code)
-                                FingerMensage(text: snapshot.data!.event.info),
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code ==
+                                  BioEvents.pictureTaken.code)
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                               if (snapshot.data?.event.code ==
                                   BioEvents.waitingFinger.code)
-                                FingerMensage(text: snapshot.data!.event.info),
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                               if (snapshot.data?.event.code == BioEvents.storeok.code)
-                                FingerMensage(text: snapshot.data!.event.info),
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.carrer.code)
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.stored.code)
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                               if (snapshot.data?.event.code ==
                                   BioEvents.storeFail.code)
-                                FingerMensage(text: snapshot.data!.event.info),
+                                FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                             ],
                           );
                         },
