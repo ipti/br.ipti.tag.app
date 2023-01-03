@@ -36,7 +36,6 @@ final stateSignStream = StreamController<SignState>.broadcast();
   
     _biometricsService.streamSocket.getResponse.listen((data) async {
       if (data != null) {
-        log(data['id'].toString());
         if (data['id'] == BioEvents.waitingFinger.code) {
            addSignResponse(currentState.copyWith(event: BioEvents.waitingFinger));
         } else if (data['id'] == BioEvents.fingerDected.code) {
@@ -63,9 +62,6 @@ final stateSignStream = StreamController<SignState>.broadcast();
         }
       }
     });
-    // biometricsService.emit("message", "SearchSendMessage");
-    final mape = {for (int i = 0; i < 150; i++) i: ""};
-    mape.keys.where((element) => mape[element] == "");
   }
 
   @override

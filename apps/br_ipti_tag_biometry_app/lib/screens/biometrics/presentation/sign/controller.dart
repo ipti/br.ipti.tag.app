@@ -22,7 +22,7 @@ class ControllerSign {
     required this.loadStudentUsecase,
   });
 
-  SignState currentState = const SignState(null, BioEvents.waiting);
+  SignState currentState = const SignState(null, BioEvents.putfinger);
 
   void Function(SignState) get addSignResponse => stateSignStream.sink.add;
 
@@ -44,7 +44,7 @@ class ControllerSign {
 
     student.fold(
       (error) => log(error.message),
-      (data) => {addSignResponse(currentState.copyWith(student: data))},
+      (data) => {addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger))},
     );
   }
 
@@ -61,6 +61,7 @@ class ControllerSign {
   }
 
   Future startSign() async {
+    addSignResponse(currentState.copyWith(event: BioEvents.putfinger));
     final idStore = await localStorageService.IdStore();
     biometricsService.emit('IdStore', idStore);
   }

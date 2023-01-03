@@ -15,12 +15,8 @@ class LocalStorageService {
     final sharedPreferences = await SharedPreferences.getInstance();
     final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO") ?? [];
   
-    //log(localData.toString());
-   // log(localData.toString());
-    //log(localData!.first.toString());
       final studentBiomtrics = localData.map(StudentBiometrics.fromJson).toList().firstWhere((e) => e.biometricId == biometricId);
-       log(studentBiomtrics.student
-       .toString());
+
        return studentBiomtrics.student;
   }
 

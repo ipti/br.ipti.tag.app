@@ -48,6 +48,15 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TagButton(
+                      text: 'Recarregar',
+                      onPressed: (() => {
+                            biometricsController.startIdentification(),
+                            biometricsController.dateBiometrics(),
+                          })),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TagButton(
                     text: 'Cadastrar Biometria',
                     onPressed: () {
                       Modular.to.pushReplacementNamed("/biometrics/students/");
@@ -70,7 +79,6 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             StreamBuilder<SignState?>(
               stream: biometricsController.stateSignStream.stream,
               builder: (context, snapshot) {
-                log(snapshot.data.toString());
                 return Column(
                   children: [
                     if (snapshot.data == null)
@@ -83,17 +91,25 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                     biometricsController.dateBiometrics(),
                                   }))),
                     if (snapshot.data?.event == BioEvents.waiting)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code == BioEvents.modeling.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code == BioEvents.searching.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code ==
                         BioEvents.fingerDected.code)
                       StudentInfo(student: snapshot.data!.student),
                     if (snapshot.data?.event.code ==
                         BioEvents.fingerNotFound.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                   ],
                 );
               },

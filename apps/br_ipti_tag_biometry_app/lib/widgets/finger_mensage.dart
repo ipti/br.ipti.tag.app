@@ -4,11 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class FingerMensage extends StatelessWidget {
-  const FingerMensage({
-    super.key,
-    required this.text,
-    required this.code
-  });
+  const FingerMensage({super.key, required this.text, required this.code});
   final int? code;
   final String text;
 
@@ -16,7 +12,7 @@ class FingerMensage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 32.0),
+        const SizedBox(height: 64.0),
         SvgPicture.asset('assets/fingerprint.svg'),
         Center(
           heightFactor: 3.0,
@@ -26,11 +22,24 @@ class FingerMensage extends StatelessWidget {
                 height: 40.0,
                 width: 256.0,
                 decoration: BoxDecoration(
-                  color: code == BioEvents.fingerNotFound.code ? TagColors.colorRedDark : code == BioEvents.storeok.code ? TagColors.colorGreenLight : TagColors.colorBaseCloudDark,
+                  color: code == BioEvents.fingerNotFound.code
+                      ? TagColors.colorRedDark
+                      : code == BioEvents.storeok.code
+                          ? TagColors.colorGreenLight
+                          : TagColors.colorBaseCloudDark,
                   border: Border.all(color: TagColors.colorBaseInkLight),
                   borderRadius: const BorderRadius.all(Radius.circular(3.0)),
                 ),
-                child: Center(child: Text(text)),
+                child: Center(
+                    child: Text(text,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Inter',
+                            color: code == BioEvents.fingerNotFound.code
+                                ? TagColors.colorBaseCloudLight
+                                : code == BioEvents.storeok.code 
+                                ? TagColors.colorBaseCloudLight
+                                : TagColors.colorBaseInkLight))),
               )
             ],
           ),
