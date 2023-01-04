@@ -29,7 +29,7 @@ class BiometricsService implements Disposable {
     //When an event recieved from server, data is added to the stream
     socket.onAny((event, data) {
       log('RECEIVED | event $event with data: ${data.toString()}');
-      streamSocket.addResponse(data);
+      streamSocket.addResponse({"event": event, "data": data});
     });
     socket.onDisconnect((_) => log('disconnect'));
   }
@@ -48,11 +48,11 @@ class BiometricsService implements Disposable {
 }
 
 class StreamSocket {
-  final _socketResponse = StreamController<Map?>.broadcast();
+  final _socketResponse = StreamController<Map>.broadcast();
 
-  void Function(Map?) get addResponse => _socketResponse.sink.add;
+  void Function(Map) get addResponse => _socketResponse.sink.add;
 
-  Stream<Map?> get getResponse => _socketResponse.stream;
+  Stream<Map> get getResponse => _socketResponse.stream;
 
   void dispose() {
     _socketResponse.close();

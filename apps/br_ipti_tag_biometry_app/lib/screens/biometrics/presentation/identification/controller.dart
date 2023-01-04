@@ -10,11 +10,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 class ControllerIdentification implements Disposable {
   final BiometricsService _biometricsService;
   final LocalStorageService _localStorageService;
-final stateSignStream = StreamController<SignState>.broadcast();
+  final stateSignStream = StreamController<SignState>.broadcast();
   final blocStream = StreamController<BioEvents>.broadcast();
 
   ControllerIdentification(this._biometricsService, this._localStorageService);
-
 
   SignState currentState = const SignState(null, BioEvents.waiting);
 
@@ -23,42 +22,74 @@ final stateSignStream = StreamController<SignState>.broadcast();
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
   void startIdentification() {
-     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    _biometricsService.socket.dispose();
+    _biometricsService.connect();
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    // _biometricsService.connect();
     _biometricsService.connectAndListen();
-    _biometricsService.emit("message", "SearchSendMessage");
+ _biometricsService.emit("message", "SearchSendMessage");
+    // _biometricsService.emit("message", "SearchSendMessage");
+  }
+
+
+
+
+  void restart() {
+    _biometricsService.disconnect();
+     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    _biometricsService.connect();
+    // _biometricsService.emit("message", "SearchSendMessage");
   }
 
   void deleteAllFinger() {
     _biometricsService.emit("message", 'ClearSendMessage');
   }
 
+  bool timeout() {
+    return _biometricsService.socket.connected;
+  }
+
   void dateBiometrics() {
-  
-    _biometricsService.streamSocket.getResponse.listen((data) async {
+    _biometricsService.streamSocket.getResponse.listen((state) async {
+      final data = state["data"];
+      if (state["event"] == "connect") {
+        addSignResponse(
+                  currentState.copyWith(event: BioEvents.waiting));
+      }
+      log(data.toString());
       if (data != null) {
         if (data['id'] == BioEvents.waitingFinger.code) {
-           addSignResponse(currentState.copyWith(event: BioEvents.waitingFinger));
+          addSignResponse(
+              currentState.copyWith(event: BioEvents.waitingFinger));
         } else if (data['id'] == BioEvents.fingerDected.code) {
-          addSignResponse(currentState.copyWith(event: BioEvents.fingerDected, student: await _localStorageService.findStudent(data['id_finger'])));
-          Timer(
-              const Duration(seconds: 4),
-              () => {
-                    _biometricsService.emit(
-                      "message",
-                      "SearchSendMessage",
-                    ),
-                     addSignResponse(currentState.copyWith(event: BioEvents.waiting))
-                  });
+          try {
+            final student = await _localStorageService.findStudent(
+              data['id_finger'],
+            );
+            if (student != null) {
+              addSignResponse(
+                currentState.copyWith(
+                  event: BioEvents.fingerDected,
+                  student: student,
+                ),
+              );
+              
+            } else {
+              addSignResponse(
+                  currentState.copyWith(event: BioEvents.fingerNotFound));
+            }
+          } catch (e) {
+            stateSignStream.sink.addError(Exception('Aluno não encontrado'));
+          }
+
+         
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
-           addSignResponse(currentState.copyWith(event: BioEvents.fingerNotFound));
-          Timer(
-              const Duration(seconds: 2),
-              () => {
-                    _biometricsService.emit("message", "SearchSendMessage"),
-                    addSignResponse(currentState.copyWith(event: BioEvents.waiting))
-                  });
+          addSignResponse(
+              currentState.copyWith(event: BioEvents.fingerNotFound));
+        
         } else {
-           addSignResponse(currentState.copyWith(event: BioEvents.byCode(data['id'])));
+          addSignResponse(
+              currentState.copyWith(event: BioEvents.byCode(data['id'])));
         }
       }
     });

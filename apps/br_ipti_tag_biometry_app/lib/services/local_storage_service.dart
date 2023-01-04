@@ -11,13 +11,19 @@ import 'package:tag_sdk/tag_sdk.dart';
 const KEY_SESSION_USER = 'SESSION_USER';
 
 class LocalStorageService {
-  Future<StudentIdentification> findStudent(biometricId) async {
+  Future<StudentIdentification?> findStudent(biometricId) async {
     final sharedPreferences = await SharedPreferences.getInstance();
-    final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO") ?? [];
-  
-      final studentBiomtrics = localData.map(StudentBiometrics.fromJson).toList().firstWhere((e) => e.biometricId == biometricId);
+    final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO");
 
-       return studentBiomtrics.student;
+    if (localData != null) {
+      final studentBiomtrics = localData
+          .map(StudentBiometrics.fromJson)
+          .toList()
+          .firstWhere((e) => e.biometricId == biometricId);
+
+      return studentBiomtrics.student;
+    }
+    return null;
   }
 
   Future<int> IdStore() async {
@@ -47,7 +53,6 @@ class LocalStorageService {
     final localData =
         sharedPreferences.getStringList("STORAGE_STUDENTS_BIO") ?? [];
 
-    
     final studentBio = StudentBiometrics(student, localData.length);
 
     localData.add(jsonEncode(studentBio.toJson()));
@@ -63,7 +68,7 @@ class StudentBiometrics {
   final StudentIdentification student;
   final int biometricId;
 
-  Map <String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       "student": student.toJson(),
       "biometricId": biometricId,
