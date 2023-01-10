@@ -8,7 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
-const _urlWebSocket = "http://192.168.15.37:5000";
+const _urlWebSocket = "http://192.168.15.26:5000";
 
 class BiometricsModule extends Module {
   @override
@@ -25,6 +25,7 @@ class BiometricsModule extends Module {
             .enableReconnection()
             .setPath('/socket.io')
             .enableForceNew()
+            .setTimeout(300)
             .enableForceNewConnection()
             .setExtraHeaders(
                 {'Connection': 'Upgrade', 'Origin': '127.0.0.1'}) // optional

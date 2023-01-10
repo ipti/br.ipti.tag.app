@@ -22,23 +22,22 @@ class ControllerIdentification implements Disposable {
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
   void startIdentification() {
-    _biometricsService.socket.dispose();
     _biometricsService.connect();
     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     // _biometricsService.connect();
     _biometricsService.connectAndListen();
- _biometricsService.emit("message", "SearchSendMessage");
+    _biometricsService.emit("message", "SearchSendMessage");
     // _biometricsService.emit("message", "SearchSendMessage");
   }
 
-
-
-
   void restart() {
-    _biometricsService.disconnect();
-     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     _biometricsService.connect();
-    // _biometricsService.emit("message", "SearchSendMessage");
+    _biometricsService.emit("message", "SearchSendMessage");
+  }
+
+  void disconnect() {
+    _biometricsService.disconnect();
   }
 
   void deleteAllFinger() {
@@ -53,10 +52,24 @@ class ControllerIdentification implements Disposable {
     _biometricsService.streamSocket.getResponse.listen((state) async {
       final data = state["data"];
       if (state["event"] == "connect") {
-        addSignResponse(
-                  currentState.copyWith(event: BioEvents.waiting));
+        addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       }
-      log(data.toString());
+      if (data == "timeout") {
+        // log(data);
+        //  _biometricsService.connect();
+        //   _biometricsService.emit("message", "SearchSendMessage");
+        addSignResponse(currentState.copyWith(event: BioEvents.timeout));
+        _biometricsService.connect();
+        //startIdentification();
+      }
+      if (data == "ping timeout") {
+        // log(data);
+        //  _biometricsService.connect();
+        //   _biometricsService.emit("message", "SearchSendMessage");
+        addSignResponse(currentState.copyWith(event: BioEvents.timeout));
+        restart();
+        //startIdentification();
+      }
       if (data != null) {
         if (data['id'] == BioEvents.waitingFinger.code) {
           addSignResponse(
@@ -73,20 +86,26 @@ class ControllerIdentification implements Disposable {
                   student: student,
                 ),
               );
-              
+              // Timer(const Duration(seconds: 5), () {
+              //   restart();
+              // });
             } else {
               addSignResponse(
                   currentState.copyWith(event: BioEvents.fingerNotFound));
+            //       Timer(const Duration(seconds: 5), () {
+            //   restart();
+            // });
             }
           } catch (e) {
             stateSignStream.sink.addError(Exception('Aluno não encontrado'));
+            
           }
-
-         
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
           addSignResponse(
               currentState.copyWith(event: BioEvents.fingerNotFound));
-        
+          // Timer(const Duration(seconds: 3), () {
+          //   restart();
+          // });
         } else {
           addSignResponse(
               currentState.copyWith(event: BioEvents.byCode(data['id'])));

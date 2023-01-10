@@ -75,7 +75,12 @@ class ControllerSign {
   }
 
   void dateBiometrics(data) async {
-    if (data != null) {
+    biometricsService.streamSocket.getResponse.listen((state) async {
+      final data = state["data"];
+      if (state["event"] == "connect") {
+        addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+      }
+      if (data != null) {
       if (data['id'] == 200) {
         addSignResponse(currentState.copyWith(event: BioEvents.storeok));
 
@@ -88,5 +93,7 @@ class ControllerSign {
             currentState.copyWith(event: BioEvents.byCode(data["id"])));
       }
     }
+    });
+    
   }
 }

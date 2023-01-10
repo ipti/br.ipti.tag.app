@@ -48,7 +48,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TagButton(
-                      text: 'Recarregar',
+                      text: 'Identificar Biometria',
                       onPressed: (() => {
                             biometricsController.restart(),
                             biometricsController.dateBiometrics(),
@@ -84,6 +84,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                     child: Text(snapshot.error.toString()),
                   );
                 }
+                log(snapshot.data.toString());
                 log(biometricsController.timeout().toString());
                 if (snapshot.data == null) {
                   return Center(
@@ -95,14 +96,26 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                 biometricsController.dateBiometrics(),
                               })));
                 }
-                if(!biometricsController.timeout()){
-                  return const Center(
-                    child: Text('carregando...'),
-                  );
+                // if (!biometricsController.timeout()) {
+                //   return const Center(
+                //     child: Text('carregando...'),
+                //   );
+                // }
+                if (snapshot.data?.event.code == BioEvents.timeout.code) {
+                  biometricsController.disconnect();
+                  return Center(
+                      heightFactor: 10.0,
+                      child: TagButton(
+                          text: 'Identificar Aluno',
+                          onPressed: (() => {
+                                biometricsController.startIdentification(),
+                                biometricsController.dateBiometrics(),
+                              })));
                 }
                 return Column(
                   children: [
-                    if (snapshot.data?.event == BioEvents.waiting && biometricsController.timeout())
+                    if (snapshot.data?.event == BioEvents.waiting &&
+                        biometricsController.timeout())
                       FingerMensage(
                           text: snapshot.data!.event.info,
                           code: snapshot.data?.event.code),

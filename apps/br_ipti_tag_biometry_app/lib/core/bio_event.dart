@@ -50,7 +50,8 @@ enum BioEvents {
   flashstorageError(code: 527, info: 'Erro de armazenamento flash'),
   savingError(code: 528, info: 'Erro de armazenamento flash'),
   fingersNotMatch(code: 529, info: 'As impressões não correspondem'),
-  finish(code: 0, info: 'null');
+  finish(code: 0, info: 'null'),
+  timeout(code: 33, info: 'Tempo expirado');
 
   const BioEvents({required this.code, required this.info});
 
