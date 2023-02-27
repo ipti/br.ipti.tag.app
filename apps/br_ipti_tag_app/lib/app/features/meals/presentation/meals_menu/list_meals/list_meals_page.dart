@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
@@ -14,7 +16,7 @@ import 'bloc/list_meals_events.dart';
 import 'bloc/list_meals_states.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({super.key, this.title = 'Refeições'});
+  const ListMealsPage({super.key, this.title = 'Refeiçõesss'});
 
   final String title;
 
@@ -51,10 +53,11 @@ class ListMealsPageState extends State<ListMealsPage> {
         if (state is LoadedState) {
           tabs = state.mealsOfDay
               .map((e) => Tab(
-                    child: Text(DateFormat('EEEE', 'pt_BR')
-                        .format(DateTime.parse(e.fullnameDay!))),
+                    child: Text(
+                        "${DateFormat('EEEE', 'pt_BR').format(DateTime.parse(e.fullnameDay!))} \n       ${DateFormat('dd/MM', 'pt_BR').format(DateTime.parse(e.fullnameDay!))}"),
                   ))
               .toList();
+          log(tabs.toString());
           tabViews = state.mealsOfDay
               .map(
                 (e) => _DailyMeals(mealsOfDay: e),
@@ -72,10 +75,21 @@ class ListMealsPageState extends State<ListMealsPage> {
             ),
           ];
         }
-
         if (state is LoadingState) {
           tabs = [
-            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+            Tab(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+                  Text(
+                    DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
+                    style:
+                        const TextStyle(color: TagColors.colorBaseInkLight),
+                  ),
+                ],
+              ),
+            ),
           ];
           tabViews = [
             const Center(

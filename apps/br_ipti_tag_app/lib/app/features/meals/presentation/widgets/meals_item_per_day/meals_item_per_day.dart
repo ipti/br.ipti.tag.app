@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../../../../../core/strings/file_paths.dart';
+
 class MealsItemDay extends StatelessWidget {
   const MealsItemDay({
     super.key,
@@ -24,21 +26,42 @@ class MealsItemDay extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                DateFormat('EEEE', 'pt_BR')
-                    .format(DateTime.parse(fullnameDay!)),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+              Row(
+                children: [
+                  Text(
+                    DateFormat('EEEE', 'pt_BR')
+                        .format(DateTime.parse(fullnameDay!)),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    DateFormat(' dd/MM', 'pt_BR')
+                        .format(DateTime.parse(fullnameDay!)),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: TagColors.colorBaseInkLight,
+                    ),
+                  ),
+                  Text(
+                    " $currentDate",
+                    style: const TextStyle(
+                      color: TagColors.colorBaseInkLight,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                " $currentDate",
-                style: const TextStyle(
-                  color: TagColors.colorBaseInkLight,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  const Text('Filtros'),
+                  TagIcon( defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,),
+                ],
               ),
             ],
           ),

@@ -11,7 +11,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'app/app_module.dart';
 import 'app/app_widget.dart';
 import 'app/core/config/enviroment.dart';
-import 'firebase_options.dart';
+//import 'firebase_options.dart';
 
 void main() {
   // Initialize Environment
@@ -36,7 +36,7 @@ void _runAppWithFirebase() {
 
       // Initialize Firebase
       await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
+      //  options: DefaultFirebaseOptions.currentPlatform,
       );
 
       await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(
