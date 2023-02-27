@@ -38,7 +38,7 @@ class _FrequencyPageState extends State<FrequencyPage> {
   @override
   Widget build(BuildContext context) {
     return TagScaffold(
-      title: "Frequencia",
+      title: "Frequência",
       path: const [
         AppRoutes.frequencia,
       ],
@@ -94,18 +94,47 @@ class _FormFilter extends StatelessWidget {
 
     return RowToColumn(
       children: [
-        Flexible(
-          child: TagDropdownField<ClassroomEntity>(
-            onChanged: (e) => log(e.toString()),
-            label: "Turma",
-            items: classroomsItens,
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+          ),
+          child: Row(
+            children: [
+              TagButton(
+                text: '',
+                icon: 'assets/icons/impressora/impressora.svg',
+                backgroundColor: const Color(0xffEFF2F5),
+                onPressed: () {},
+              ),
+              const SizedBox(width: 30),
+              TagButton(
+                text: 'Relatório Bolsa Família',
+                icon: 'assets/icons/impressora/impressora.svg',
+                backgroundColor: const Color(0xffEFF2F5),
+                textButtonColor: Colors.black87,
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+                onPressed: () {},
+              ),
+            ],
           ),
         ),
-        Flexible(
-          child: TagDropdownField<EdcensoDiscipline>(
-            onChanged: (e) => log(e.toString()),
-            label: "Disciplinas",
-            items: disciplinesItens,
+        Padding(
+          padding: const EdgeInsets.only(
+            left: 16.0,
+            top: 30.0,
+            right: 16.0,
+          ),
+          child: Column(
+            children: const [
+              Icon(Icons.print),
+              Text(
+                'Professor(a):',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ),
       ],
