@@ -5,6 +5,7 @@ repository: https://github.com/ipti/br.ipti.tag.app
 packages:
   - packages/**
   - apps/**
+  - widgetbooks
 
 scripts:
   analyze:
@@ -28,6 +29,11 @@ scripts:
   
   run:tag:linux:
     run: melos exec -- flutter run -d linux lib/main.dart
+    select-package:
+      scope: 'br_ipti_tag_app'
+
+  run:tag:win:
+    run: melos exec -- flutter run -d windows lib/main.dart
     select-package:
       scope: 'br_ipti_tag_app'
 
