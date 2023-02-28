@@ -27,4 +27,5 @@ class TagColors {
 
   static const Color colorRedDark = const Color(0xFF970C0C);
   static const Color colorRedLight = const Color(0xFFFAEAEA);
+  static const Color colorGreenLight = Color.fromARGB(255, 46, 180, 25);
 }

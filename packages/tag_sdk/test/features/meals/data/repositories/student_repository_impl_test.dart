@@ -49,7 +49,7 @@ void main() {
     final datasource = MockStudentRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
-        () => datasource.getById('', schoolId: ''),
+        () => datasource.getById(0, schoolId: ''),
       ).thenAnswer(
         (invocation) => Future.value(
           StudentIdentification(
@@ -65,7 +65,7 @@ void main() {
       );
 
       final repository = StudentRepositoryImpl(datasource);
-      final params = await repository.getById('', schoolId: '');
+      final params = await repository.getById(0, schoolId: '');
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
@@ -76,13 +76,13 @@ void main() {
     });
     testWidgets("has left value", (tester) async {
       when(
-        () => datasource.getById('', schoolId: ''),
+        () => datasource.getById(0, schoolId: ''),
       ).thenThrow(
         (invocation) => Failure("Não foi possível listar"),
       );
 
       final repository = StudentRepositoryImpl(datasource);
-      final params = await repository.getById('', schoolId: '');
+      final params = await repository.getById(0, schoolId: '');
 
       expect(params.isLeft(), isTrue);
       final result = params.fold(id, id);
@@ -261,13 +261,13 @@ void main() {
     final datasource = MockStudentRemoteDataSource();
     testWidgets("has right value", (tester) async {
       when(
-        () => datasource.delete(""),
+        () => datasource.delete(0),
       ).thenAnswer(
         (invocation) => Future.value(true),
       );
 
       final repository = StudentRepositoryImpl(datasource);
-      final params = await repository.delete("");
+      final params = await repository.delete(0);
 
       expect(params.isRight(), isTrue);
       final result = params.fold(id, id);
@@ -275,13 +275,13 @@ void main() {
     });
     testWidgets("has left value", (tester) async {
       when(
-        () => datasource.delete(""),
+        () => datasource.delete(0),
       ).thenThrow(
         (invocation) => Failure("Não foi possível deletar estudante"),
       );
 
       final repository = StudentRepositoryImpl(datasource);
-      final params = await repository.delete("");
+      final params = await repository.delete(0);
 
       expect(params.isLeft(), isTrue);
       final result = params.fold(id, id);

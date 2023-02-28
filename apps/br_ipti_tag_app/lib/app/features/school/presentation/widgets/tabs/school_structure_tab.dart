@@ -7,13 +7,13 @@ class SchoolStructureTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _controllerStructure = ScrollController();
+    final ScrollController controllerStructure = ScrollController();
 
     return Scrollbar(
       thumbVisibility: true,
-      controller: _controllerStructure,
+      controller: controllerStructure,
       child: SingleChildScrollView(
-        controller: _controllerStructure,
+        controller: controllerStructure,
         child: Column(),
       ),
     );

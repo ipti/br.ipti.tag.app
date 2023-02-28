@@ -41,12 +41,12 @@ class LoadingState extends ClassroomListState {
 
 class LoadedState extends ClassroomListState {
   const LoadedState({
-    required List<ClassroomEntity> classrooms,
-  }) : super(status: Status.success, message: "", classrooms: classrooms);
+    required super.classrooms,
+  }) : super(status: Status.success, message: "");
 }
 
 class FailedState extends ClassroomListState {
   const FailedState({
-    required String message,
-  }) : super(status: Status.failure, message: message, classrooms: const []);
+    required super.message,
+  }) : super(status: Status.failure, classrooms: const []);
 }

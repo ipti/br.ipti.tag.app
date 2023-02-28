@@ -29,7 +29,7 @@ class StudentRemoteDataSource {
     return mappedList;
   }
 
-  Future<StudentIdentification> getById(String id,
+  Future<StudentIdentification> getById(int id,
       {required String schoolId}) async {
     final response = await _httpClient.request(
       route: GetStudentsEndPoint(id: id, schoolId: schoolId),
@@ -61,7 +61,7 @@ class StudentRemoteDataSource {
     return mappedValue;
   }
 
-  Future<bool> delete(String id) async {
+  Future<bool> delete(int id) async {
     final response = await _httpClient.request(
       route: DeleteStudentsEndPoint(id: id),
     );

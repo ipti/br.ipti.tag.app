@@ -17,13 +17,13 @@ class SchoolIdTab extends StatefulWidget {
 class _SchoolIdTabState extends State<SchoolIdTab> {
   @override
   Widget build(BuildContext context) {
-    final ScrollController _controllerId = ScrollController();
+    final ScrollController controllerId = ScrollController();
 
     return Scrollbar(
       thumbVisibility: true,
-      controller: _controllerId,
+      controller: controllerId,
       child: SingleChildScrollView(
-        controller: _controllerId,
+        controller: controllerId,
         child: Column(
           children: const <Widget>[
             SchoolBasicDataForm(),

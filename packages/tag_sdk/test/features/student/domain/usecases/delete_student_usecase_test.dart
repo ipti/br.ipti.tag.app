@@ -15,7 +15,7 @@ void main() {
           right(true),
         ));
     final usercase = DeleteStudentsUsecase(repository);
-    const params = DeleteStudentParams(id: "");
+    const params = DeleteStudentParams(id: 0);
     final either = await usercase(params);
     final result = either.fold(id, id);
     expect(result, isTrue);
@@ -24,8 +24,8 @@ void main() {
   testWidgets(
     "DeleteStudentsUsecase whenEmptyParams is equal value",
     (tester) async {
-      const params = DeleteStudentParams(id: "1");
-      const params2 = DeleteStudentParams(id: "1");
+      const params = DeleteStudentParams(id: 0);
+      const params2 = DeleteStudentParams(id: 0);
 
       expect(
         params,
@@ -43,7 +43,7 @@ void main() {
       )),
     );
     final usercase = DeleteStudentsUsecase(repository);
-    const params = DeleteStudentParams(id: "");
+    const params = DeleteStudentParams(id: 0);
     final either = await usercase(params);
     final result = either.fold(id, id);
     expect(

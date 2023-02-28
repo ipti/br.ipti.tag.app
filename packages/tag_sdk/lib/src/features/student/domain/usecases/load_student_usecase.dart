@@ -23,7 +23,7 @@ class LoadStudentUsecase
 }
 
 class LoadStudentParams {
-  final String studentId;
+  final int studentId;
   final String schoolId;
 
   LoadStudentParams(this.studentId, this.schoolId);

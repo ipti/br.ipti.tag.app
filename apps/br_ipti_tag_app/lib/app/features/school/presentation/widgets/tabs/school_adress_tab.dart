@@ -9,13 +9,13 @@ class SchoolAddressTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScrollController _controllerAddress = ScrollController();
+    final ScrollController controllerAddress = ScrollController();
 
     return Scrollbar(
       thumbVisibility: true,
-      controller: _controllerAddress,
+      controller: controllerAddress,
       child: SingleChildScrollView(
-        controller: _controllerAddress,
+        controller: controllerAddress,
         child: Column(
           children: const <Widget>[
             SchoolAdressDataForm(),
