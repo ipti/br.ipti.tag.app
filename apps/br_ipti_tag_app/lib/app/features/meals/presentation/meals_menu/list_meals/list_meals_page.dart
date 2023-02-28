@@ -16,7 +16,7 @@ import 'bloc/list_meals_events.dart';
 import 'bloc/list_meals_states.dart';
 
 class ListMealsPage extends StatefulWidget {
-  const ListMealsPage({super.key, this.title = 'Refeiçõesss'});
+  const ListMealsPage({super.key, this.title = 'Refeições'});
 
   final String title;
 
@@ -53,8 +53,19 @@ class ListMealsPageState extends State<ListMealsPage> {
         if (state is LoadedState) {
           tabs = state.mealsOfDay
               .map((e) => Tab(
-                    child: Text(
-                        "${DateFormat('EEEE', 'pt_BR').format(DateTime.parse(e.fullnameDay!))} \n       ${DateFormat('dd/MM', 'pt_BR').format(DateTime.parse(e.fullnameDay!))}"),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(DateFormat('EEEE', 'pt_BR')
+                            .format(DateTime.parse(e.fullnameDay!))),
+                        Text(
+                          DateFormat('dd/MM', 'pt_BR')
+                              .format(DateTime.parse(e.fullnameDay!)),
+                          style: const TextStyle(
+                              color: TagColors.colorBaseInkLight,),
+                        ),
+                      ],
+                    ),
                   ))
               .toList();
           log(tabs.toString());
@@ -84,8 +95,7 @@ class ListMealsPageState extends State<ListMealsPage> {
                   Text(DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
                   Text(
                     DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
-                    style:
-                        const TextStyle(color: TagColors.colorBaseInkLight),
+                    style: const TextStyle(color: TagColors.colorBaseInkLight),
                   ),
                 ],
               ),

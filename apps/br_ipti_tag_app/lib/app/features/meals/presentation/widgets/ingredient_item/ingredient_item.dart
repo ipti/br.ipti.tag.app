@@ -26,7 +26,7 @@ class IngredientItem extends StatelessWidget {
           contentPadding: const EdgeInsets.all(12),
           dense: true,
           horizontalTitleGap: 8,
-          title: Text(ingredient.name),
+          title: Text(ingredient.name, style: const TextStyle(fontWeight: FontWeight.bold),),
           trailing: const Icon(
             Icons.arrow_forward_ios,
             color: TagColors.colorBaseInkNormal,

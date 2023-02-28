@@ -1,3 +1,5 @@
+import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/tag_button_icon.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/filter_menu_dialog/filter_menu_dialog.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/meal_item/meal_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -56,12 +58,17 @@ class MealsItemDay extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  const Text('Filtros'),
-                  TagIcon( defaultVersionPath: FilePaths.ICON_PENCIL_BLUE_SVG,
-          disabledVersionPath: FilePaths.ICON_PENCIL_GREY_SVG,),
-                ],
+              TagButtonIcon(
+                label: "Filtros",
+                onPressed: () async {
+              final success = await showDialog(
+                context: context,
+                builder: (_) {
+                  return FilterMenuDialog();
+                },
+              );
+            },
+                icon: FilePaths.ICON_PENCIL_GREY_SVG,
               ),
             ],
           ),
