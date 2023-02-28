@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   tag_ui:
-    path: ../
+    path: ../packages/tag_ui
 
 
   # The following adds the Cupertino Icons font to your application.

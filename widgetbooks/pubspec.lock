@@ -241,7 +241,7 @@ packages:
   tag_ui:
     dependency: "direct main"
     description:
-      path: ".."
+      path: "../packages/tag_ui"
       relative: true
     source: path
     version: "0.26.0"

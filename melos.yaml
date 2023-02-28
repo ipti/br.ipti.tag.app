@@ -5,6 +5,7 @@ repository: https://github.com/ipti/br.ipti.tag.app
 packages:
   - packages/**
   - apps/**
+  - widgetbooks
 
 scripts:
   analyze:
