@@ -44,7 +44,10 @@ class ControllerSign {
 
     student.fold(
       (error) => log(error.message),
-      (data) => {addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger))},
+      (data) => {
+        addSignResponse(
+            currentState.copyWith(student: data, event: BioEvents.putfinger))
+      },
     );
   }
 
@@ -62,8 +65,8 @@ class ControllerSign {
 
   Future startSign() async {
     addSignResponse(currentState.copyWith(event: BioEvents.putfinger));
-    final idStore = await localStorageService.IdStore();
-    biometricsService.emit('IdStore', idStore);
+    final idStore = await localStorageService.idStore();
+    biometricsService.emit('idStore', idStore);
   }
 
   void deleteFinger() {
@@ -81,19 +84,18 @@ class ControllerSign {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       }
       if (data != null) {
-      if (data['id'] == 200) {
-        addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+        if (data['id'] == 200) {
+          addSignResponse(currentState.copyWith(event: BioEvents.storeok));
 
-        if (currentState.student != null) {
-          localStorageService.addStudentWithBiometricId(
-              student: currentState.student!);
+          if (currentState.student != null) {
+            localStorageService.addStudentWithBiometricId(
+                student: currentState.student!);
+          }
+        } else {
+          addSignResponse(
+              currentState.copyWith(event: BioEvents.byCode(data["id"])));
         }
-      } else {
-        addSignResponse(
-            currentState.copyWith(event: BioEvents.byCode(data["id"])));
       }
-    }
     });
-    
   }
 }

@@ -4,7 +4,6 @@ import 'package:br_ipti_tag_biometry_app/core/bio_event.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
 import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
-import 'package:br_ipti_tag_biometry_app/widgets/waiting_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -34,7 +33,9 @@ void showCustomDialog(BuildContext context) {
                 children: [
                   Column(
                     children: [
-                      const SizedBox(height: 5,),
+                      const SizedBox(
+                        height: 5,
+                      ),
                       const Text(
                         'Cadastrar Biometria',
                         style: TextStyle(

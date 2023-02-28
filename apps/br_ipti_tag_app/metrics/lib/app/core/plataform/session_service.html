@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
-const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
+const keySessionUser_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class SessionService {
@@ -31,7 +31,7 @@ class SessionServiceImpl extends SessionService {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
     final schoolsJsonString = _sharedPreferences.getStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
     );
 
     if (schoolsJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -52,7 +52,7 @@ class SessionServiceImpl extends SessionService {
     );
 
     final result = _sharedPreferences.setStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
       mappedSchools.toList(),
     );
 
@@ -117,7 +117,7 @@ class SessionServiceImpl extends SessionService {
   Future&lt;bool&gt; cleanCurrentUserSchools() async {
     final _sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.remove(KEY_SESSION_USER_SCHOOLS);
+    final result = _sharedPreferences.remove(keySessionUser_SCHOOLS);
 
     return result;
   }
