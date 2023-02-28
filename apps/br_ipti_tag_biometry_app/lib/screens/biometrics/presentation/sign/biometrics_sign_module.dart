@@ -4,7 +4,6 @@ import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/co
 import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 class BiometricsSignModule extends Module {

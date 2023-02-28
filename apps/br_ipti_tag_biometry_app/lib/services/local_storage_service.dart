@@ -1,14 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/controller.dart';
-import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/sign_state.dart';
-import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
-const KEY_SESSION_USER = 'SESSION_USER';
+const keySessionUser = 'SESSION_USER';
 
 class LocalStorageService {
   Future<StudentIdentification?> findStudent(biometricId) async {
@@ -26,13 +22,13 @@ class LocalStorageService {
     return null;
   }
 
-  Future<int> IdStore() async {
+  Future<int> idStore() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final localData =
         sharedPreferences.getStringList("STORAGE_STUDENTS_BIO") ?? [];
 
-    var list = List<int>.generate(150, (i) => i + 1);
+    // var list = List<int>.generate(150, (i) => i + 1);
     log(localData.length.toString());
     // if (localData != null) {
     //   final occupedIndex = localData

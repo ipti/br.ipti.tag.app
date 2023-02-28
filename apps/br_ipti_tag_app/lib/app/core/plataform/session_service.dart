@@ -5,8 +5,8 @@ import 'package:tag_sdk/tag_sdk.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
-const KEY_SESSION_USER = 'SESSION_USER';
-const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
+const keySessionUser = 'SESSION_USER';
+const keySessionUser_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class SessionService {
@@ -36,7 +36,7 @@ class SessionServiceImpl extends SessionService {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJsonString = sharedPreferences.getString(
-      KEY_SESSION_USER,
+      keySessionUser,
     );
 
     if (userJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -53,7 +53,7 @@ class SessionServiceImpl extends SessionService {
     final userJson = user.toJson();
 
     final result = sharedPreferences.setString(
-      KEY_SESSION_USER,
+      keySessionUser,
       userJson,
     );
 
@@ -65,7 +65,7 @@ class SessionServiceImpl extends SessionService {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final schoolsJsonString = sharedPreferences.getStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
     );
 
     if (schoolsJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -83,7 +83,7 @@ class SessionServiceImpl extends SessionService {
     final mappedSchools = schools.map((x) => jsonEncode(x));
 
     final result = sharedPreferences.setStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
       mappedSchools.toList(),
     );
 
@@ -148,7 +148,7 @@ class SessionServiceImpl extends SessionService {
   Future<bool> cleanCurrentUserSchools() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = sharedPreferences.remove(KEY_SESSION_USER_SCHOOLS);
+    final result = sharedPreferences.remove(keySessionUser_SCHOOLS);
 
     return result;
   }

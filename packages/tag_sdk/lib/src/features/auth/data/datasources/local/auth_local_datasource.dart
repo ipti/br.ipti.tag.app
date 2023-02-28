@@ -8,8 +8,8 @@ import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
-const KEY_SESSION_USER = 'SESSION_USER';
-const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
+const keySessionUser = 'SESSION_USER';
+const keySessionUser_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class AuthLocalDataSource {
@@ -39,7 +39,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJsonString = sharedPreferences.getString(
-      KEY_SESSION_USER,
+      keySessionUser,
     );
 
     if (userJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -55,7 +55,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
     final userJson = user.toJson();
     final result = sharedPreferences.setString(
-      KEY_SESSION_USER,
+      keySessionUser,
       userJson,
     );
 
@@ -67,7 +67,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final schoolsJsonString = sharedPreferences.getStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
     );
 
     if (schoolsJsonString != null) {
@@ -85,7 +85,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     final mappedSchools = schools.map((x) => jsonEncode(x.toJson()));
 
     final result = sharedPreferences.setStringList(
-      KEY_SESSION_USER_SCHOOLS,
+      keySessionUser_SCHOOLS,
       mappedSchools.toList(),
     );
 
@@ -150,7 +150,7 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   Future<bool> cleanCurrentUserSchools() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = sharedPreferences.remove(KEY_SESSION_USER_SCHOOLS);
+    final result = sharedPreferences.remove(keySessionUser_SCHOOLS);
 
     return result;
   }

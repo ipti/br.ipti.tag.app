@@ -5,7 +5,6 @@ import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/si
 import 'package:br_ipti_tag_biometry_app/widgets/modal_biometrics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class BiometricsSign extends StatefulWidget {
@@ -21,10 +20,10 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
   final signController = Modular.get<ControllerSign>();
   @override
   void initState() {
-      signController.init();
+    signController.init();
     signController.biometricsService.streamSocket.getResponse
         .listen((data) async {
-          log(data.toString());
+      log(data.toString());
       signController.dateBiometrics(data);
     });
     signController.fetchStudent(widget.studentId);
@@ -225,7 +224,9 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                     onPressed: () =>
                                         {showCustomDialog(context)},
                                   ),
-                                  const SizedBox(width: 32.0,),
+                                  const SizedBox(
+                                    width: 32.0,
+                                  ),
                                   TagButton(
                                     textButtonColor:
                                         TagColors.colorBaseInkNormal,
