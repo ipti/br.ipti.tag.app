@@ -162,6 +162,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+<<<<<<< HEAD
   cli_util:
     dependency: transitive
     description:
@@ -169,6 +170,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.5"
+=======
+>>>>>>> develop
   clock:
     dependency: transitive
     description:
@@ -176,6 +179,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
+<<<<<<< HEAD
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -190,6 +194,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.10"
+=======
+>>>>>>> develop
   code_builder:
     dependency: transitive
     description:
@@ -371,7 +377,11 @@ packages:
       name: firebase_performance_web
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "0.1.1+8"
+=======
+    version: "0.1.1+2"
+>>>>>>> develop
   fixnum:
     dependency: transitive
     description:
@@ -468,7 +478,11 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.1"
+=======
+    version: "2.1.0"
+>>>>>>> develop
   graphs:
     dependency: transitive
     description:
@@ -811,6 +825,7 @@ packages:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.1.3"
   pub_updater:
     dependency: transitive
@@ -826,6 +841,9 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+=======
+    version: "2.1.1"
+>>>>>>> develop
   pubspec_parse:
     dependency: transitive
     description:
@@ -833,6 +851,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+<<<<<<< HEAD
   quiver:
     dependency: transitive
     description:
@@ -840,6 +859,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.1"
+=======
+>>>>>>> develop
   shared_preferences:
     dependency: "direct main"
     description:
@@ -923,7 +944,11 @@ packages:
       name: shelf_web_socket
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.0.3"
+=======
+    version: "1.0.2"
+>>>>>>> develop
   simple_gesture_detector:
     dependency: transitive
     description:
@@ -1204,4 +1229,8 @@ packages:
     version: "2.0.3"
 sdks:
   dart: ">=2.18.2 <3.0.0"
+<<<<<<< HEAD
   flutter: ">=2.11.0-0.1.pre"
+=======
+  flutter: ">=2.8.0"
+>>>>>>> develop
