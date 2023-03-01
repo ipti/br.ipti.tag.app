@@ -12,7 +12,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DevicePreview(
       enabled: !kReleaseMode,
-      // tools: List.from(DevicePreview.defaultTools),
+      tools: List.from(DevicePreview.defaultTools),
       builder: (BuildContext context) => MaterialApp.router(
         useInheritedMediaQuery: true,
         locale: DevicePreview.locale(context),
