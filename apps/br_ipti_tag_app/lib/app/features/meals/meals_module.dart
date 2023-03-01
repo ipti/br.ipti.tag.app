@@ -59,6 +59,10 @@ class MealsModule extends Module {
       "/refeicoes",
       child: (_, args) => const ListMealsPage(),
     ),
+    ChildRoute(
+      "/refeicoes",
+      child: (_, args) => const ListMealsPage(),
+    ),
     ModuleRoute(
       "/estoque",
       module: StockModule(),

@@ -7,8 +7,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-class DetailsMealPage extends StatefulWidget {
-  const DetailsMealPage({
+class SubstitutionIngredient extends StatefulWidget {
+  const SubstitutionIngredient({
     super.key,
     required this.mealComponent,
   });
@@ -16,10 +16,10 @@ class DetailsMealPage extends StatefulWidget {
   final MealComponent mealComponent;
 
   @override
-  DetailsMealPageState createState() => DetailsMealPageState();
+  SubstitutionIngredientState createState() => SubstitutionIngredientState();
 }
 
-class DetailsMealPageState extends State<DetailsMealPage> {
+class SubstitutionIngredientState extends State<SubstitutionIngredient> {
   @override
   void initState() {
     super.initState();
