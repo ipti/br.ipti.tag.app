@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: TagColors.colorBaseWhiteNormal,
       child: Center(
         child: SizedBox(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tag_ui/src/components/templates/layout_topbar_and_body.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import '../../helpers/methods/prepare_widget.dart';

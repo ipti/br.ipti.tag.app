@@ -1,5 +1,4 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
-import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';

@@ -46,11 +46,10 @@ class SchoolInitialState extends SchoolState {
 
 class SchoolFailedState extends SchoolState {
   const SchoolFailedState({
-    required String message,
+    required super.message,
   }) : super(
           loading: false,
           sending: false,
-          message: message,
           messageColor: TagColors.colorRedLight,
           currentSchoolData: null,
         );

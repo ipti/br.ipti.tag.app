@@ -103,6 +103,7 @@ class _ButtonIconText extends StatelessWidget {
       onPressed: onPressed,
       icon: SvgPicture.asset(
         icon!,
+        package: 'tag_ui',
       ),
       label: Text(text, style: defaultTextStyle),
     );

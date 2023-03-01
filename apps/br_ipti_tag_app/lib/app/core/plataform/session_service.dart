@@ -5,8 +5,8 @@ import 'package:tag_sdk/tag_sdk.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
-const KEY_SESSION_USER = 'SESSION_USER';
-const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
+const keySessionUser = 'SESSION_USER';
+const keySessionUser_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class SessionService {
@@ -33,10 +33,10 @@ abstract class SessionService {
 class SessionServiceImpl extends SessionService {
   @override
   Future<User> getCurrentUser() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final userJsonString = _sharedPreferences.getString(
-      KEY_SESSION_USER,
+    final userJsonString = sharedPreferences.getString(
+      keySessionUser,
     );
 
     if (userJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -48,12 +48,12 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> setCurrentUser(UserModel user) async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJson = user.toJson();
 
-    final result = _sharedPreferences.setString(
-      KEY_SESSION_USER,
+    final result = sharedPreferences.setString(
+      keySessionUser,
       userJson,
     );
 
@@ -62,10 +62,10 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<List<AuthSchool>> getCurrentUserSchools() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final schoolsJsonString = _sharedPreferences.getStringList(
-      KEY_SESSION_USER_SCHOOLS,
+    final schoolsJsonString = sharedPreferences.getStringList(
+      keySessionUser_SCHOOLS,
     );
 
     if (schoolsJsonString == null) throw Exception("Não há escolas dispoíveis");
@@ -78,12 +78,12 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> setCurrentUserSchools(List<AuthSchool> schools) async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
     final mappedSchools = schools.map((x) => jsonEncode(x));
 
-    final result = _sharedPreferences.setStringList(
-      KEY_SESSION_USER_SCHOOLS,
+    final result = sharedPreferences.setStringList(
+      keySessionUser_SCHOOLS,
       mappedSchools.toList(),
     );
 
@@ -92,9 +92,9 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<String> getSchoolYear() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final schoolYearString = _sharedPreferences.getString(
+    final schoolYearString = sharedPreferences.getString(
       KEY_SESSION_SCHOOL_YEAR,
     );
 
@@ -107,9 +107,9 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> setSchoolYear(String year) async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.setString(
+    final result = sharedPreferences.setString(
       KEY_SESSION_SCHOOL_YEAR,
       year,
     );
@@ -119,9 +119,9 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<String> getToken() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final schoolYearString = _sharedPreferences.getString(
+    final schoolYearString = sharedPreferences.getString(
       KEY_SESSION_TOKEN,
     );
 
@@ -134,9 +134,9 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> setToken(String token) async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.setString(
+    final result = sharedPreferences.setString(
       KEY_SESSION_TOKEN,
       token,
     );
@@ -146,45 +146,45 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> cleanCurrentUserSchools() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.remove(KEY_SESSION_USER_SCHOOLS);
+    final result = sharedPreferences.remove(keySessionUser_SCHOOLS);
 
     return result;
   }
 
   @override
   Future<bool> cleanSchoolYear() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.remove(KEY_SESSION_SCHOOL_YEAR);
+    final result = sharedPreferences.remove(KEY_SESSION_SCHOOL_YEAR);
 
     return result;
   }
 
   @override
   Future<bool> cleanToken() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.remove(KEY_SESSION_TOKEN);
+    final result = sharedPreferences.remove(KEY_SESSION_TOKEN);
 
     return result;
   }
 
   @override
   Future<bool> cleanCurrentSchool() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.remove(KEY_SESSION_CURRENT_SCHOOL);
+    final result = sharedPreferences.remove(KEY_SESSION_CURRENT_SCHOOL);
 
     return result;
   }
 
   @override
   Future<AuthSchool> getCurrentSchool() async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.getString(KEY_SESSION_CURRENT_SCHOOL);
+    final result = sharedPreferences.getString(KEY_SESSION_CURRENT_SCHOOL);
 
     if (result != null) {
       final school = AuthSchool.fromJson(jsonDecode(result));
@@ -201,9 +201,9 @@ class SessionServiceImpl extends SessionService {
 
   @override
   Future<bool> setCurrentSchool(AuthSchool school) async {
-    final _sharedPreferences = await SharedPreferences.getInstance();
+    final sharedPreferences = await SharedPreferences.getInstance();
 
-    final result = _sharedPreferences.setString(
+    final result = sharedPreferences.setString(
       KEY_SESSION_CURRENT_SCHOOL,
       jsonEncode(school.toJson()),
     );
