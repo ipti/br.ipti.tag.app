@@ -121,20 +121,62 @@ class _FormFilter extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            top: 30.0,
-            right: 16.0,
-          ),
-          child: Column(
-            children: const [
-              Icon(Icons.print),
-              Text(
-                'Professor(a):',
-                style: TextStyle(fontWeight: FontWeight.bold),
+        const SizedBox(
+          height: 60,
+        ),
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: const Color(0xffE8EDF1),
               ),
-            ],
+            ),
+            child: Row(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16.0,
+                        top: 18.0,
+                        right: 16.0,
+                        bottom: 18.0,
+                      ),
+                      child: Row(
+                        children: [
+                          TagIcon(
+                            defaultVersionPath: 'assets/icons/pessoas/azul.svg',
+                            disabledVersionPath: 'disabledVersionPath',
+                          ),
+                          const SizedBox(width: 18),
+                          const Text(
+                            'Professor: Fernando José',
+                            style: TextStyle(
+                              color: Color(0XFF26298D),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 20),
+                    /* TagDropdownField<EdcensoDiscipline>(
+                      onChanged: (value) {
+                        // faz alguma coisa com o valor selecionado
+                        print('O valor selecionado é: $value');
+                      },
+                      label: 'Disciplinas',
+                      items: disciplinesItens,
+                    ), */
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],
