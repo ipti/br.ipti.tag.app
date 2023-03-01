@@ -14,10 +14,9 @@ class IngredientItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Modular.to.pushNamed(
-        "/merenda/estoque/ingrediente/",
-        arguments: ingredient,
-      ),
+      onTap: () => Modular.to.pushNamed("recomendacoes", arguments: {
+        'mealComponent': "",
+      }),
       child: TagBox(
         minHeight: 48,
         background: TagColors.colorBaseProductLighter,
@@ -26,7 +25,10 @@ class IngredientItem extends StatelessWidget {
           contentPadding: const EdgeInsets.all(12),
           dense: true,
           horizontalTitleGap: 8,
-          title: Text(ingredient.name, style: const TextStyle(fontWeight: FontWeight.bold),),
+          title: Text(
+            ingredient.name,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
           trailing: const Icon(
             Icons.arrow_forward_ios,
             color: TagColors.colorBaseInkNormal,

@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-import '../../../../../core/strings/file_paths.dart';
 
 class MealsItemDay extends StatelessWidget {
   const MealsItemDay({

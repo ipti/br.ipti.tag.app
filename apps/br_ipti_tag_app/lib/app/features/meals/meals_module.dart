@@ -1,4 +1,5 @@
 import 'package:br_ipti_tag_app/app/app_module.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/meals_menu/ingredient_substitution/details_meal_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
@@ -60,8 +61,8 @@ class MealsModule extends Module {
       child: (_, args) => const ListMealsPage(),
     ),
     ChildRoute(
-      "/refeicoes",
-      child: (_, args) => const ListMealsPage(),
+      "/recomendacoes",
+      child: (_, args) => SubstitutionIngredient( mealComponent: (args.data as Map)['mealComponent'],),
     ),
     ModuleRoute(
       "/estoque",

@@ -29,13 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.0"
-  ansi_styles:
-    dependency: transitive
-    description:
-      name: ansi_styles
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.2+1"
   ansicolor:
     dependency: transitive
     description:
@@ -183,13 +176,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
-  conventional_commit:
-    dependency: transitive
-    description:
-      name: conventional_commit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.0+1"
   convert:
     dependency: transitive
     description:
@@ -553,13 +539,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.5"
-  melos:
-    dependency: transitive
-    description:
-      name: melos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.9.0"
   meta:
     dependency: "direct main"
     description:
@@ -602,13 +581,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  mustache_template:
-    dependency: transitive
-    description:
-      name: mustache_template
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   nested:
     dependency: transitive
     description:
@@ -735,13 +707,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  prompts:
-    dependency: transitive
-    description:
-      name: prompts
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   provider:
     dependency: transitive
     description:
