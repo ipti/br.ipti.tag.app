@@ -34,7 +34,7 @@ class StudentRepositoryImpl implements StudentRepository {
 
   @override
   Future<Either<Failure, StudentIdentification>> getById(
-    String id, {
+    int id, {
     required String schoolId,
   }) async {
     try {
@@ -77,7 +77,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> delete(String id) async {
+  Future<Either<Failure, bool>> delete(int id) async {
     try {
       final result = await _studentDataSource.delete(id);
 

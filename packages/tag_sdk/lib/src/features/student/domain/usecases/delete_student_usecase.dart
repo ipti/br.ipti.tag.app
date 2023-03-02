@@ -21,5 +21,5 @@ class DeleteStudentParams {
     required this.id,
   });
 
-  final String id;
+  final int id;
 }

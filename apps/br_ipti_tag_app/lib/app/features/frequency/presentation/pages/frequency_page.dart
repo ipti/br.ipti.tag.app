@@ -80,10 +80,9 @@ class _FrequencyPageState extends State<FrequencyPage> {
 
 class _FormFilter extends StatelessWidget {
   const _FormFilter({
-    Key? key,
     required this.classrooms,
     required this.disciplines,
-  }) : super(key: key);
+  });
 
   final List<ClassroomEntity> classrooms;
   final List<EdcensoDiscipline> disciplines;

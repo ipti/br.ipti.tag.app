@@ -1,6 +1,5 @@
 //  app_widget.dart
 // ignore_for_file: avoid_redundant_argument_values
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 

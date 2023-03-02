@@ -5,7 +5,7 @@ class DeleteStudentsEndPoint extends EndPointAPI {
     required this.id,
   });
 
-  final String id;
+  final int id;
 
   @override
   String get path => '/student-identification/$id';

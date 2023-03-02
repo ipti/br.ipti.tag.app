@@ -3,7 +3,7 @@ import 'package:tag_network/tag_network.dart';
 class GetStudentsEndPoint extends EndPointAPI {
   GetStudentsEndPoint({this.id, required this.schoolId});
 
-  final String? id;
+  final int? id;
   final String schoolId;
 
   @override

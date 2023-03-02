@@ -1,5 +1,3 @@
-import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
-
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/update_teacher/update_teacher_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/update_teacher/update_teacher_states.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/add_teacher_dialog.dart';

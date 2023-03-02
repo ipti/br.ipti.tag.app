@@ -136,9 +136,9 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
       );
 
   Future<void> submitFiliationForm() async {
-    final _enrollmentBloc = Modular.get<EnrollmentBloc>();
+    final enrollmentBloc = Modular.get<EnrollmentBloc>();
 
-    final student = _enrollmentBloc.student;
+    final student = enrollmentBloc.student;
 
     final studentFiliation = student!.copyWith(
       filiation1: state.nameFiliation1,
@@ -166,15 +166,15 @@ class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {
     final result = await _changeFiliationStudentUsecase(params);
 
     result.fold(
-      (error) => _enrollmentBloc.notifyError(
+      (error) => enrollmentBloc.notifyError(
         error.toString(),
       ),
       (studentFiliation) {
-        _enrollmentBloc.loadStudent(studentFiliation);
-        _enrollmentBloc.notifySuccess(
+        enrollmentBloc.loadStudent(studentFiliation);
+        enrollmentBloc.notifySuccess(
           "Dados de filiação do aluno atualizadas com sucesso",
         );
-        _enrollmentBloc.nextTab();
+        enrollmentBloc.nextTab();
       },
     );
   }
