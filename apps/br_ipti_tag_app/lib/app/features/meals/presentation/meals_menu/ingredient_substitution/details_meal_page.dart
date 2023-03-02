@@ -1,5 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/choose_recommendation/choose_recommendation.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredient_substation/ingredient_substation.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredients_list/ingredients_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ class SubstitutionIngredientState extends State<SubstitutionIngredient> {
     const labelText = TextStyle(color: TagColors.colorBaseInkLight);
     const infoText = TextStyle(color: TagColors.colorBaseInkNormal, fontWeight: FontWeight.bold);
 
-    //  final ingredients = widget.mealComponent.ingredients;
+    final ingredients = widget.mealComponent;
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
@@ -106,9 +108,11 @@ class SubstitutionIngredientState extends State<SubstitutionIngredient> {
               ),
             ),
           ),
-          IngredientsList(
-            ingredients: [],
-          ),
+          const ChooseRecomendation(),
+          // IngredientSubstation(),
+          // // const IngredientsList(
+          // //   ingredients: [],
+          // // ),
         ],
       ),
     );
