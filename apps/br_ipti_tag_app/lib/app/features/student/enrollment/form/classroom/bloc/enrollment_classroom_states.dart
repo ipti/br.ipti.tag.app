@@ -23,7 +23,7 @@ class EnrollmentClassroomState extends Equatable {
   final String? schoolAdmissionDate;
   final UnifiedClass? unifiedClass;
   final Stage? stage;
-  final int? edcensoStageVsModalityFk;
+  final String? edcensoStageVsModalityFk;
   final AdmissionType? studentEntryForm;
   final int? status;
   final int? anotherScholarizationPlace;
@@ -37,7 +37,7 @@ class EnrollmentClassroomState extends Equatable {
     String? schoolAdmissionDate,
     UnifiedClass? unifiedClass,
     Stage? stage,
-    int? edcensoStageVsModalityFk,
+    String? edcensoStageVsModalityFk,
     AdmissionType? studentEntryForm,
     int? status,
     int? anotherScholarizationPlace,

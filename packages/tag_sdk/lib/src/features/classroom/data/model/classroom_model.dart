@@ -30,7 +30,7 @@ class ClassroomModel extends ClassroomEntity {
   factory ClassroomModel.fromJson(Map<String, dynamic> map) {
     return ClassroomModel(
       name: map['name'],
-      id: map['inep_id'],
+      id: int.tryParse(map['inep_id']) ?? 0,
       startTime: '${map['initial_hour']}:${map['initial_minute']}',
       endTime: '${map['final_hour']}:${map['final_minute']}',
       modalityId: map['modality'],
@@ -54,4 +54,32 @@ class ClassroomModel extends ClassroomEntity {
       moreEducationParticipator: map['mais_educacao_participator'] ?? false,
     );
   }
+
+// factory ClassroomModel.fromJson(Map<String, dynamic> map) {
+//   return ClassroomModel(
+//     name: map['name'],
+//     id: map['inep_id'],
+//     startTime: '${map['initial_hour']}:${map['initial_minute']}',
+//     endTime: '${map['final_hour']}:${map['final_minute']}',
+//     modalityId: map['modality'],
+//     typePedagogicMediationId: map['pedagogical_mediation_type'],
+//     stage: map['edcenso_stage_vs_modality_fk'],
+//     edcensoStageVsModalityFk: map['edcenso_stage_vs_modality_fk'],
+//     schooling: map['schooling'] ?? false,
+//     aee: map['aee'] ?? false,
+//     aeeAccessibleTeaching: map['aee_accessible_teaching'] ?? false,
+//     aeeAutonomousLife: map['aee_autonomous_life'] ?? false,
+//     aeeBraille: map['aee_braille'] ?? false,
+//     aeeCaa: map['aee_caa'] ?? false,
+//     aeeCognitiveFunctions: map['aee_cognitive_functions'] ?? false,
+//     aeeCurriculumEnrichment: map['aee_curriculum_enrichment'] ?? false,
+//     aeeLibras: map['aee_libras'] ?? false,
+//     aeeMobilityTechniques: map['aee_mobility_techniques'] ?? false,
+//     aeeOpticalNonOptical: map['aee_optical_nonoptical'] ?? false,
+//     aeePortuguese: map['aee_portuguese'] ?? false,
+//     aeeSoroban: map['aee_soroban'] ?? false,
+//     complementaryActivity: map['complementary_activity'] ?? false,
+//     moreEducationParticipator: map['mais_educacao_participator'] ?? false,
+//   );
+// }
 }
