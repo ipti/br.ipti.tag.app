@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:br_ipti_tag_app/app/core/strings/file_paths.dart';
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
@@ -147,7 +146,8 @@ class _FormFilter extends StatelessWidget {
                         child: Row(
                           children: [
                             TagIcon(
-                              defaultVersionPath: FilePaths.ICON_PERSONS_BLUE_SVG,
+                              defaultVersionPath:
+                                  FilePaths.ICON_PERSONS_BLUE_SVG,
                               disabledVersionPath: 'disabledVersionPath',
                             ),
                             const SizedBox(width: 18),
@@ -164,14 +164,18 @@ class _FormFilter extends StatelessWidget {
                     ],
                   ),
                 ),
-                 Flexible(
-                        child: TagDropdownField<EdcensoDiscipline>(
-                          onChanged: (value) {},
-                          label: 'Disciplinas',
-                          items: disciplinesItens,
-                          // value: disciplinesItens?.entries.first.key,
-                        ),
+                RowToColumn(
+                  children: [
+                    Flexible(
+                      child: TagDropdownField<EdcensoDiscipline>(
+                        onChanged: (value) {},
+                        label: 'Disciplinas',
+                        items: disciplinesItens,
+                        // value: disciplinesItens?.entries.first.key,
                       ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
