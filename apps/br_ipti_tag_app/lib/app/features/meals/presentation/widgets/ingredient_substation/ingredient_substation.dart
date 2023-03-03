@@ -1,7 +1,17 @@
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/choose_recommendation/choose_recommendation.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../update_ingredient_dialog/update_ingredient_dialog.dart';
+
 class IngredientSubstation extends StatelessWidget {
+  const IngredientSubstation({
+    super.key,
+    required this.recommendation,
+  });
+
+  final List<FoodMenu>? recommendation;
+
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -9,13 +19,33 @@ class IngredientSubstation extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(
-          children: const [
-            _Card(
-              ingredientAdd: "leite de soja",
-              ingredientRemove: "leite de vaca",
-              priority: 1,
-              select: true,
-            ),
+          children: [
+            InkWell(
+              onTap: () async {
+              final success = await showDialog(
+                context: context,
+                builder: (_) {
+                  return UpdateIngredientDialog();
+                },
+              );
+            },
+              child:  ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 200),
+              child: ListView.builder(
+                shrinkWrap: true, //just set this property
+                padding: const EdgeInsets.all(8.0),
+                itemCount: recommendation!.length,
+                itemBuilder: (context, index) {
+                  return _Card(
+                    ingredientAdd: recommendation![index].ingredientAdd,
+                    ingredientRemove: recommendation![index].ingredientRemove,
+                    priority: recommendation![index].priority,
+                    select: recommendation![index].select,
+                  );
+                },
+              ),
+            ),),
+           
           ],
         ),
       ),
@@ -63,7 +93,9 @@ class _Card extends StatelessWidget {
 
     return TagBox(
       minHeight: 100,
-      background: select ? TagColors.colorBaseProductNormal : TagColors.colorBaseCloudLight,
+      background: select
+          ? TagColors.colorBaseCloudLightActive
+          : TagColors.colorBaseCloudLight,
       padding: const EdgeInsets.all(16),
       child: Row(
         // crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,12 +109,22 @@ class _Card extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: Container(
-                        width: 16,
-                        height: 16,
+                        width: 18,
+                        height: 18,
                         decoration: BoxDecoration(
-                          color: priority == 1 ? Colors.blue : priority == 2 ? Colors.blue : null,
+                          color: priority == 1
+                              ? TagColors.colorGreenLight
+                              : priority == 2
+                                  ? TagColors.colorOrangeNormal
+                                  : TagColors.colorRedDark,
                           borderRadius: BorderRadius.circular(10),
                         ),
+                        child: Center(
+                            child: Text(
+                          priority.toString(),
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold,),
+                        ),),
                       ),
                     ),
                     const Text(
@@ -91,22 +133,28 @@ class _Card extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    const Text("remover: ", style: minText),
-                    Text(ingredientRemove, style: ingredientText),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    children: [
+                      const Text("remover: ", style: minText),
+                      Text(ingredientRemove, style: ingredientText),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    const Text("adicionar: ", style: minText),
-                    Text(ingredientAdd, style: ingredientText),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    children: [
+                      const Text("adicionar: ", style: minText),
+                      Text(ingredientAdd, style: ingredientText),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          const Icon(Icons.arrow_forward_ios),
+          // const Icon(Icons.arrow_forward_ios),
         ],
       ),
     );

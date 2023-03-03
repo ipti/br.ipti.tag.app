@@ -19,7 +19,7 @@ environment:
   sdk: '>=2.17.0 <3.0.0'
 
 dependencies:   
-  collection: ^1.15.0  
+  collection: ^1.15.0 
   dartz: any
   device_preview: 1.1.0
   dio: any
