@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../../widgets/widgets_list_items_stock/stock_list/stock_list.dart';
 import 'bloc/stock_bloc.dart';
 import 'bloc/stock_events.dart';
 import 'bloc/stock_states.dart';
@@ -32,6 +33,9 @@ class StockPageState extends State<StockPage> {
 
   @override
   Widget build(BuildContext context) {
+    const labelText = TextStyle(color: TagColors.colorBaseInkLight);
+    const ingredients = <Ingredients>[Ingredients(name: "Milho verde", stock: 10), Ingredients(name: "arroz", stock: 5)];
+
     return TagScaffold(
       menu: const TagVerticalMenu(),
       appBar: const CustomAppBar(),
@@ -39,18 +43,42 @@ class StockPageState extends State<StockPage> {
       path: [AppRoutes.merenda, TagPath("", widget.title)],
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       description: "Verifique o estoque de alimentos da escola",
-      body: BlocBuilder<StockBloc, ListStockState>(
-        bloc: controller,
-        builder: (context, state) {
-          if (state is LoadedState && state.ingredients.isNotEmpty) {
-            return IngredientsList(ingredients: state.ingredients);
-          }
-
-          return TagEmpty(
-            onPressedRetry: () => controller.add(GetListStockEvent()),
-          );
-        },
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text("Verifique o estoque de alimentos da escola",
+                style: labelText,),
+          ),
+           StockList(ingredients: ingredients),
+        ],
       ),
+     
+      // BlocBuilder<StockBloc, ListStockState>(
+      //   bloc: controller,
+      //   builder: (context, state) {
+      //     if (state is LoadedState && state.ingredients.isNotEmpty) {
+      //       return IngredientsList(ingredients: state.ingredients);
+      //     }
+
+      //     return TagEmpty(
+      //       onPressedRetry: () => controller.add(GetListStockEvent()),
+      //     );
+      //   },
+      // ),
     );
   }
+}
+
+class Ingredients {
+  const Ingredients ({
+    required this.name,
+    required this.stock,
+  });
+
+  final String name;
+  final int stock;
+
+ 
 }

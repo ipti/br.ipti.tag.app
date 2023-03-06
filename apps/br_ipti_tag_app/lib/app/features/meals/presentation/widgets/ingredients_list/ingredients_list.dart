@@ -43,8 +43,11 @@ class IngredientsList extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             itemCount: ingredients!.length,
             itemBuilder: (context, index) {
-              return IngredientItem(
-                ingredient: ingredients![index],
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IngredientItem(
+                  ingredient: ingredients![index],
+                ),
               );
             },
           ),

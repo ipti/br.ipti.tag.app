@@ -7,7 +7,7 @@ import 'package:tag_sdk/tag_sdk.dart';
 import 'presentation/meals_menu/details_meal/details_meal_page.dart';
 import 'presentation/meals_menu/list_meals/bloc/list_meals_bloc.dart';
 import 'presentation/meals_menu/list_meals/list_meals_page.dart';
-import 'presentation/select_action/select_action_meals_page.dart';
+import 'presentation/stock_food_list/select_action/select_action_meals_page.dart';
 import 'presentation/stock/stock_module.dart';
 
 class MealsModule extends Module {
