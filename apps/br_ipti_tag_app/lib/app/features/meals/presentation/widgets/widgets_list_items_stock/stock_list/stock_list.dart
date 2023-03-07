@@ -86,9 +86,8 @@ class StockList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: IgredientStock(
-                    name: ingredients![index].name,
-                    stock: ingredients![index].stock,
+                  child: IngredientStock(
+                    ingredient: ingredients![index],
                   ),
                 );
               },

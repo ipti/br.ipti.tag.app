@@ -1,21 +1,23 @@
 import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/list_items_stock/stock_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-class IgredientStock extends StatelessWidget {
+class IngredientStock extends StatelessWidget {
   
-  final String name;
+ 
 
-  final int stock;
+  final Ingredients ingredient;
 
-  const IgredientStock({super.key, required this.name, required this.stock});
+  const IngredientStock({super.key, required this.ingredient});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return InkWell(
-      onTap: () => {},
+      onTap: () => Modular.to.pushNamed("ingrediente", arguments: 
+         ingredient,
+      ),
       child: TagBox(
         minHeight: 48,
         background: TagColors.colorBaseProductLighter,
@@ -25,10 +27,10 @@ class IgredientStock extends StatelessWidget {
           dense: true,
           horizontalTitleGap: 8,
           title: Text(
-            name,
+            ingredient.name,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          trailing:Text(stock.toString(), style: const TextStyle(fontWeight: FontWeight.bold),),
+          trailing: Text(ingredient.stock.toString(), style: const TextStyle(fontWeight: FontWeight.bold),),
         ),
       ),
     );

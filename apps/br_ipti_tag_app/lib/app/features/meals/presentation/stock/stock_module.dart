@@ -1,10 +1,12 @@
 import 'package:br_ipti_tag_app/app/app_module.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/list_items_stock/stock_page.dart';
 
 import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/details_item_stock/details_item_stock_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'details_item_stock/details_item_stock_page.dart';
 import 'list_items_stock/bloc/stock_bloc.dart';
 import 'list_items_stock/stock_page.dart';
 
@@ -33,7 +35,7 @@ class StockModule extends Module {
     ChildRoute(
       "/ingrediente",
       child: (_, args) => DetailsItemStockPage(
-        ingredient: args.data as Ingredient,
+        ingredient: args.data as Ingredients,
       ),
     ),
   ];
