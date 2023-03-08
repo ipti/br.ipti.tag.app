@@ -3,6 +3,8 @@ import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/tag_button_icon.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/list_items_stock/stock_page.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/filter_details_item_stock/filter_details_item_stock.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/remove_warn/remove_warn.dart';
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/warn_absence/warn_absence.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/warn_to_miss/warn_to_miss_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +39,9 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
       fontSize: 14,
       fontWeight: FontWeight.bold,
     );
-    const textBold = TextStyle(
-      color: TagColors.colorBaseInkNormal,
-      fontWeight: FontWeight.bold,
-    );
+  
+
+    print(widget.ingredient.warn.toString());
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
@@ -58,62 +59,10 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
               "Estoque de item",
               style: labelText,
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: Text(
-                "Previsão de estoque",
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: SizedBox(
-                width: 128,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.ingredient.stock.toString(),
-                      style: textBold,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TagButton(
-                    text: "Avisar falta",
-                    onPressed: () async {
-                      final success = await showDialog(
-                        context: context,
-                        builder: (_) {
-                          return WarnToMiss();
-                        },
-                      );
-                    },
-                    backgroundColor: TagColors.colorBaseCloudLightActive,
-                    textStyle:
-                        const TextStyle(color: TagColors.colorBaseInkNormal),
-                  ),
-                  TagButtonIcon(
-                    label: "Filtro",
-                    onPressed: () async {
-                      final success = await showDialog(
-                        context: context,
-                        builder: (_) {
-                          return FilterDeatilsItemStock();
-                        },
-                      );
-                    },
-                    icon: FilePaths.ICON_PENCIL_GREY_SVG,
-                  ),
-                ],
-              ),
-            ),
+            if(!widget.ingredient.warn)
+              WarnAbsence(ingredient: widget.ingredient),
+            if(widget.ingredient.warn)
+              RemoveWarn(),
             Padding(
               padding:
                   const EdgeInsets.only(top: 16, bottom: 8, left: 16, right: 8),

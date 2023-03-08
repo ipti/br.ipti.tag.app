@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -5,6 +6,8 @@ import 'package:tag_ui/tag_ui.dart';
 class FilterStockDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    const foodGroup = <FoodGroup>[FoodGroup(name: "name")];
+
     return AlertDialog(
       contentPadding: EdgeInsets.zero,
       content: SingleChildScrollView(
@@ -28,33 +31,45 @@ class FilterStockDialog extends StatelessWidget {
                   ),
                 ],
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Filtrar por tipo alimento",
-                    style: TextStyle(fontWeight: FontWeight.w400),
+              TagDropdownField<FoodGroup>(
+                onChanged: (E) => {},
+                label: "Grupo de alimentos",
+                items: Map.fromEntries(
+                  foodGroup.map(
+                    (e) => MapEntry(e, e.name),
                   ),
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            right: 4.0, top: 4.0, bottom: 4.0),
-                        child:
-                            TagButton(text: "Perecível", onPressed: () => {}),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: TagButton(
-                            text: "Não-perecível", onPressed: () => {}),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4.0, bottom: 32.0),
-                    child: TagButton(text: "Congelados", onPressed: () => {}),
-                  ),
-                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Filtrar por tipo alimento",
+                      style: TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              right: 4.0, top: 4.0, bottom: 4.0,),
+                          child:
+                              TagButton(text: "Perecível", onPressed: () => {}),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: TagButton(
+                              text: "Não-perecível", onPressed: () => {},),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4.0, bottom: 32.0),
+                      child: TagButton(text: "Congelados", onPressed: () => {}),
+                    ),
+                  ],
+                ),
               ),
               TagButton(
                 text: "Aplicar filtros",
@@ -78,7 +93,7 @@ class FilterStockDialog extends StatelessWidget {
               ),
               TagButton(
                 text: "Limpar filtros",
-                textStyle: TextStyle(color: TagColors.colorBaseInkNormal),
+                textStyle: const TextStyle(color: TagColors.colorBaseInkNormal),
                 onPressed: () => {},
                 buttonStyle: ElevatedButton.styleFrom(
                   elevation: 0,
@@ -100,4 +115,12 @@ class FilterStockDialog extends StatelessWidget {
       ),
     );
   }
+}
+
+class FoodGroup {
+  const FoodGroup({
+    required this.name,
+  });
+
+  final String name;
 }

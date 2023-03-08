@@ -1,8 +1,27 @@
+import 'dart:developer';
+
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/warn_send/warn_send.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-class WarnToMiss extends StatelessWidget {
+class WarnToMiss extends StatefulWidget {
+  @override
+  State<WarnToMiss> createState() => _WarnToMissState();
+}
+
+class _WarnToMissState extends State<WarnToMiss> {
+  bool other = false;
+  void _handleOtherTrue() {
+    
+    setState(() {other = true;});
+  }
+
+  void _handleOtherFalse() {
+   
+    setState(() { other = false;});
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -33,7 +52,7 @@ class WarnToMiss extends StatelessWidget {
                 child: Column(
                   children: const [
                     Text(
-                        "Deseja mesmo avisar que o ingrediente abaixo acabou no estoque?"),
+                        "Deseja mesmo avisar que o ingrediente abaixo acabou no estoque?",),
                   ],
                 ),
               ),
@@ -41,9 +60,16 @@ class WarnToMiss extends StatelessWidget {
                 children: const [
                   Text(
                     "Ingrediente ",
-                    style: TextStyle(color: TagColors.colorBaseInkLight, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                        color: TagColors.colorBaseInkLight,
+                        fontWeight: FontWeight.w500,),
                   ),
-                  Text("data",  style: TextStyle(color: TagColors.colorBaseInkNormal, fontWeight: FontWeight.w500),),
+                  Text(
+                    "data",
+                    style: TextStyle(
+                        color: TagColors.colorBaseInkNormal,
+                        fontWeight: FontWeight.w500,),
+                  ),
                 ],
               ),
               Padding(
@@ -59,28 +85,40 @@ class WarnToMiss extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              right: 4.0, top: 4.0, bottom: 4.0),
-                          child: TagButton(text: "Estragou", onPressed: () => {}),
+                              right: 4.0, top: 4.0, bottom: 4.0,),
+                          child: TagButton(
+                              text: "Estragou", onPressed: _handleOtherFalse,),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: TagButton(text: "Em Falta", onPressed: () => {}),
+                          child: TagButton(
+                              text: "Em Falta", onPressed: _handleOtherFalse,),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: TagButton(text: "Outro", onPressed: () => {}),
+                          child: TagButton(
+                              text: "Outro", onPressed: _handleOtherTrue,),
                         ),
                       ],
                     ),
                   ],
                 ),
               ),
+              if (other) const TagTextField(label: "Motivo"),
               const SizedBox(
                 height: 32,
               ),
               TagButton(
                 text: "Alterar refeição",
-                onPressed: () => {},
+                onPressed: () async {
+                      Navigator.pop(context, false); 
+                      final success = await showDialog(
+                        context: context,
+                        builder: (_) {
+                          return WarnSend();
+                        },
+                      );
+                    },
                 buttonStyle: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: TagColors.colorRedDark,
@@ -100,7 +138,7 @@ class WarnToMiss extends StatelessWidget {
               ),
               TagButton(
                 text: "Voltar",
-                textStyle: TextStyle(color: TagColors.colorBaseInkNormal),
+                textStyle: const TextStyle(color: TagColors.colorBaseInkNormal),
                 onPressed: () => Navigator.pop(context, false),
                 buttonStyle: ElevatedButton.styleFrom(
                   elevation: 0,

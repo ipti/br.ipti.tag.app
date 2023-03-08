@@ -34,7 +34,7 @@ class StockPageState extends State<StockPage> {
   @override
   Widget build(BuildContext context) {
     const labelText = TextStyle(color: TagColors.colorBaseInkLight);
-    const ingredients = <Ingredients>[Ingredients(name: "Milho verde", stock: 10), Ingredients(name: "arroz", stock: 5)];
+    const ingredients = <Ingredients>[Ingredients(name: "Milho verde", stock: 10, warn: true), Ingredients(name: "arroz", stock: 5, warn: false)];
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
@@ -45,8 +45,8 @@ class StockPageState extends State<StockPage> {
       description: "Verifique o estoque de alimentos da escola",
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
+        children: const [
+          Padding(
             padding: EdgeInsets.only(left: 16.0),
             child: Text("Verifique o estoque de alimentos da escola",
                 style: labelText,),
@@ -75,10 +75,12 @@ class Ingredients {
   const Ingredients ({
     required this.name,
     required this.stock,
+    required this.warn,
   });
 
   final String name;
   final int stock;
+  final bool warn;
 
  
 }

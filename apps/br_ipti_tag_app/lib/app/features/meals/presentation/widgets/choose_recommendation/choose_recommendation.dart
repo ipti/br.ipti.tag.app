@@ -35,6 +35,7 @@ class ChooseRecomendation extends StatelessWidget {
         select: false,
       ),
     ];
+    
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

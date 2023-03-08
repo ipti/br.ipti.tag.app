@@ -32,7 +32,7 @@ class StockList extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TagTextField(label: "Buscar no estoque"),
+          const TagTextField(label: "Buscar no estoque"),
           Padding(
             padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
             child: Row(
