@@ -39,6 +39,7 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
       fontSize: 14,
       fontWeight: FontWeight.bold,
     );
+    
   
 
     print(widget.ingredient.warn.toString());
@@ -77,9 +78,12 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
                     "Quantidade",
                     style: itemSectionTitle,
                   ),
-                  Text(
-                    "Data",
-                    style: itemSectionTitle,
+                  Padding(
+                    padding: EdgeInsets.only(right:16.0),
+                    child: Text(
+                      "Data",
+                      style: itemSectionTitle,
+                    ),
                   ),
                 ],
               ),
@@ -87,6 +91,29 @@ class DetailsItemStockPageState extends State<DetailsItemStockPage> {
             Container(
               height: 1,
               color: TagColors.colorBaseInkLight,
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(top: 16, bottom: 8, left: 16, right: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Entrada",
+                    style: TextStyle(
+                      color: TagColors.colorGreenLight,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "12000kg",
+                  ),
+                  Text(
+                    "22/02/2023",
+                  ),
+                ],
+              ),
             ),
           ],
         ),

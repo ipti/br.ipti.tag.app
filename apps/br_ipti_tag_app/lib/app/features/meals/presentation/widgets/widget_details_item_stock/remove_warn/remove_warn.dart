@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/confirmation_remove_warn/confirmation_remove_warn.dart';
 import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/widget_details_item_stock/removed_warn/removed_warn.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -20,7 +21,7 @@ class RemoveWarn extends StatelessWidget {
                       final success = await showDialog(
                         context: context,
                         builder: (_) {
-                          return RemovedWarn();
+                          return ConfirmationRemoveWarn();
                         },
                       );
                     }, buttonStyle: ElevatedButton.styleFrom(

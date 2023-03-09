@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/confirmation_update_ingredient/confirmation_update_ingredient.dart';
 import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -85,7 +86,10 @@ class _UpdateIngredientDialog extends State<UpdateIngredientDialog> {
                   children: const [
                     Text(
                       "Remover",
-                      style: TextStyle(color: TagColors.colorRedDark, fontWeight: FontWeight.w500,),
+                      style: TextStyle(
+                        color: TagColors.colorRedDark,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 32.0),
@@ -100,7 +104,10 @@ class _UpdateIngredientDialog extends State<UpdateIngredientDialog> {
                   children: const [
                     Text(
                       "Adicionar",
-                      style: TextStyle(color: TagColors.colorGreenLight, fontWeight: FontWeight.w500,),
+                      style: TextStyle(
+                        color: TagColors.colorGreenLight,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 28.0),
@@ -117,7 +124,15 @@ class _UpdateIngredientDialog extends State<UpdateIngredientDialog> {
               ),
               TagButton(
                 text: "Alterar refeição",
-                onPressed: () => {},
+                onPressed: () async {
+                  Navigator.pop(context, false);
+                  final success = await showDialog(
+                    context: context,
+                    builder: (_) {
+                      return ConfirmationUpdateIngredient();
+                    },
+                  );
+                },
                 buttonStyle: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: TagColors.colorBaseProductNormal,
