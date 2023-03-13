@@ -32,7 +32,7 @@ class ClassroomUpdateDeleteBloc
         ));
     on<StageChanged>((event, emit) =>
         emit((state as ClassroomUpdateDeleteFormState).copyWith(
-          stageVsModalityFk: event.idEdcenso,
+          stageVsModalityFk: event.idEdcenso.toString(),
         )));
     on<TypePedagogicalMediationChanged>((event, emit) => emit((state
             as ClassroomUpdateDeleteFormState)
@@ -120,7 +120,7 @@ class ClassroomUpdateDeleteBloc
           schooling: event.schooling,
           registerType: '20',
           stageId: 1,
-          stageVsModalityFk: 1,
+          stageVsModalityFk: '1',
         )));
     on<SubmitUpdateClassroom>((event, emit) {
       final params = ClassroomCreateEntity(
