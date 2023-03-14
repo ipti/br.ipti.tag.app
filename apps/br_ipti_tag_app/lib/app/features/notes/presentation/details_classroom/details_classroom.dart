@@ -21,10 +21,15 @@ class DetailsClassroom extends StatefulWidget {
 class _DetailsClassroomState extends State<DetailsClassroom> {
   @override
   Widget build(BuildContext context) {
-    const alunos = <StudentClassRoom>[StudentClassRoom(name: "jonny"), StudentClassRoom(name: "aluno2"), StudentClassRoom(name: "aluno4")];
+    const alunos = <StudentClassRoom>[
+      StudentClassRoom(name: "jonny"),
+      StudentClassRoom(name: "aluno2"),
+      StudentClassRoom(name: "aluno4"),
+    ];
     const classroomTest = <ClassroomTest>[
       ClassroomTest(studentClassRoom: alunos, name: "name"),
     ];
+    const styleResult = TextStyle(color: TagColors.colorBaseBlueNormal, fontWeight: FontWeight.bold, fontSize: 16);
 
     return TagScaffold(
       title: widget.title,
@@ -44,10 +49,21 @@ class _DetailsClassroomState extends State<DetailsClassroom> {
                 ),
               ),
             ),
-
+             TagBox(
+              background: Color.fromARGB(255, 216, 219, 249),
+              padding: EdgeInsets.zero,
+              child: ListTile(
+                contentPadding: EdgeInsets.all(4),
+                dense: true,
+                title: Padding(
+                  padding: const EdgeInsets.only(left:8.0),
+                  child: Text("Exibindo 1-${alunos.length} de ${alunos.length} resultados.", style: styleResult,),
+                ),
+              ),
+            ),
             ListView.builder(
               itemCount: alunos.length,
-              shrinkWrap: true, 
+              shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
                 log(alunos.toString());
                 return StudentList(student: alunos[index]);
