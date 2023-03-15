@@ -15,7 +15,7 @@ class NotesModules extends Module {
   
   @override
   final List<ModularRoute> routes = [
-    ChildRoute("/", child: (_, args) =>  const DetailsNotes(student: StudentClassRoom(name: "jonny"))),
+    ChildRoute("/", child: (_, args) =>  const DetailsClassroom()),
     ChildRoute("/student", child: (_, args) =>  DetailsNotes(student: args.data as StudentClassRoom,)),
   ];
 }

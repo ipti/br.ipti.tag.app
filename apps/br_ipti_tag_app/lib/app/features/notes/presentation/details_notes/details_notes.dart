@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:br_ipti_tag_app/app/features/notes/presentation/details_classroom/details_classroom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import '../../../../core/util/routes/routes.dart';
@@ -37,7 +38,8 @@ class _DetailsNotesState extends State<DetailsNotes> {
 
     return TagScaffold(
       title: widget.student.name,
-      path: const [AppRoutes.notes],
+      path: const [AppRoutes.notes, TagPath("", "Aluno")],
+      onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       menu: const TagVerticalMenu(),
       appBar: const CustomAppBar(),
       body: Padding(
@@ -65,57 +67,71 @@ class _DetailsNotesState extends State<DetailsNotes> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top:  8.0),
               child: Container(
                 height: 1,
                 color: TagColors.colorBaseInkLight,
               ),
             ),
-            ListView.builder(
-              itemCount: materia.length,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(materia[index].name),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 1,
-                              width: 64,
-                              color: TagColors.colorBaseInkLight,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 1.2,
+                height: 512,
+                child: ListView.builder(
+                  itemCount: materia.length,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Row(
+                      children: [
+                        SizedBox(
+                          height: 90,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                               Container(
+                                 height: 0.4,
+                                 color: TagColors.colorBaseInkLight,
+                               ),
+                                Text(materia[index].name),
+                                Container(
+                                  height: 0.4,
+                                  width: 128,
+                                  color: TagColors.colorBaseInkLight,
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 32.0),
-                      child: Row(
-                        children: const [
-                          TagTextFieldNumber(
-                            label: "1º",
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 2.0),
+                          child: Row(
+                            children: const [
+                              TagTextFieldNumber(
+                                label: "1º",
+                              ),
+                              TagTextFieldNumber(
+                                label: "2º",
+                              ),
+                              TagTextFieldNumber(
+                                label: "3º",
+                              ),
+                              TagTextFieldNumber(
+                                label: "4º",
+                              ),
+                              TagTextFieldNumber(
+                                label: "4º",
+                              ),
+                            ],
                           ),
-                          TagTextFieldNumber(
-                            label: "2º",
-                          ),
-                          TagTextFieldNumber(
-                            label: "3º",
-                          ),
-                          TagTextFieldNumber(
-                            label: "4º",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0),

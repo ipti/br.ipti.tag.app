@@ -13,13 +13,13 @@ class StudentList extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Modular.to.pushNamed(
-        "/student",
+        "student",
         arguments: student,
       ),
       child: TagBox(
         minHeight: 48,
         background: TagColors.colorBaseProductLighter,
-        padding: EdgeInsets.zero,
+        padding: EdgeInsets.all(8.0),
         child: ListTile(
           contentPadding: const EdgeInsets.all(12),
           
