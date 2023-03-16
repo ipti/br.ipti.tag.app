@@ -17,4 +17,6 @@ abstract class AppRoutes {
   static const merenda = TagPath("/merenda/", "Merenda");
   // Logout
   static const logout = TagPath("/logout/", "Logout");
+  // classPlan
+  static const classPlan = TagPath("/classplan/", "Plano de aula");
 }

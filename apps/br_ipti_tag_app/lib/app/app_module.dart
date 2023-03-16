@@ -10,6 +10,7 @@ import 'package:tag_network/tag_network.dart';
 import 'core/network/custom_dio/custom_dio.dart';
 import 'core/plataform/pkg_info_service.dart';
 import 'features/auth/auth_module.dart';
+import 'features/class_plan/class_plan_module.dart';
 import 'features/classroom/classroom_module.dart';
 import 'features/frequency/frequency_module.dart';
 import 'features/home/home_module.dart';
@@ -90,6 +91,11 @@ class AppModule extends Module {
         ModuleRoute(
           "/frequencia",
           module: FrequencyModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/classplan",
+          module: ClassPlan(),
           transition: TransitionType.noTransition,
         ),
       ];
