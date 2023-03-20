@@ -1,5 +1,7 @@
-import 'package:br_ipti_tag_app/app/features/class_plan/presentation/list_plans/controller.dart';
+
+import 'package:br_ipti_tag_app/app/features/class_plan/class_plan_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
@@ -16,7 +18,7 @@ class ListPlans extends StatefulWidget {
 }
 
 class _ListPlansState extends State<ListPlans> {
-   //final planClass = Modular.get<ControllerPlanClass>();
+  final planClass = Modular.get<ControllerPlanClass>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,6 @@ class _ListPlansState extends State<ListPlans> {
         fontWeight: FontWeight.bold,
         fontSize: 16);
 
-   //  print(planClass.planClass.toString());
 
     return TagScaffold(
       menu: const TagVerticalMenu(),
@@ -39,7 +40,12 @@ class _ListPlansState extends State<ListPlans> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: TagButton(text: "Criar plano", onPressed: () => {}),
+              child: TagButton(
+                text: "Criar plano",
+                onPressed: () => Modular.to.pushNamed(
+                  "create",
+                ),
+              ),
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -59,17 +65,28 @@ class _ListPlansState extends State<ListPlans> {
                 ),
               ),
             ),
-            ListView.builder(
-              itemCount: 2,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return TagButton(
-                    text: 'text',
-                    onPressed: () => Modular.to.pushNamed(
-                          "create",
-                        ),);
-              },
-            ),
+            BlocBuilder<ControllerPlanClass, PlanClassState>(
+              bloc: planClass,
+              builder: (context, state) {
+               
+
+                return Column(
+                  children: [
+                      ListView.builder(
+                        itemCount: state.planClass.length,
+                        shrinkWrap: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return TagButton(
+                            text: state.planClass[index].name,
+                            onPressed: () => {},
+                          );
+                        },
+                      ),
+                  ],
+                );
+              }
+            ,),
+            
           ],
         ),
       ),
