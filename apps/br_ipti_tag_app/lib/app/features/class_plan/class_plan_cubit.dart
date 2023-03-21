@@ -32,6 +32,7 @@ class ControllerPlanClass extends Cubit<PlanClassState> {
   }
 
   openNew(){
+    print('oiii');
     emit(state.copyWith(newclass: true));
   }
 
