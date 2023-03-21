@@ -12,11 +12,13 @@ class TeacherRemoteDataSource {
   final RouterAPI _httpClient;
 
   Future<List<Instructor>> listAll() async {
-    final response = await _httpClient.requestListPaginatedFrom(
+    final response = await _httpClient.requestListFrom(
       route: GetInstructorEndPoint(),
     );
 
-    final responseData = response.data?.data ?? [];
+    print(response.data);
+
+    final responseData = response.data ?? [];
 
     final mappedList = responseData.map(
       (e) => Instructor.fromJson(e),

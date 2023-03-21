@@ -14,7 +14,7 @@ class InstructorPersonalState extends Equatable {
   final bool deficiencyTypeBlindness;
   final String? filiation2;
   final String? filiation1;
-  final int? filiation;
+  final bool? filiation;
   final String? nis;
   final String? email;
   final String? registerType;
@@ -106,7 +106,7 @@ class InstructorPersonalState extends Equatable {
     bool? deficiencyTypeBlindness,
     String? filiation2,
     String? filiation1,
-    int? filiation,
+    bool? filiation,
     String? nis,
     String? email,
     String? registerType,
@@ -125,23 +125,14 @@ class InstructorPersonalState extends Equatable {
       cpf: cpf ?? this.cpf,
       deficiencyTypeGifted: deficiencyTypeGifted ?? this.deficiencyTypeGifted,
       deficiencyTypeAutism: deficiencyTypeAutism ?? this.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ??
-          this.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          deficiencyTypeIntelectualDisability ??
-              this.deficiencyTypeIntelectualDisability,
-      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ??
-          this.deficiencyTypePhisicalDisability,
-      deficiencyTypeDeafblindness:
-          deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
-      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ??
-          this.deficiencyTypeDisabilityHearing,
-      deficiencyTypeDeafness:
-          deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
-      deficiencyTypeLowVision:
-          deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
-      deficiencyTypeBlindness:
-          deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
+      deficiencyTypeMultipleDisabilities: deficiencyTypeMultipleDisabilities ?? this.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: deficiencyTypeIntelectualDisability ?? this.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: deficiencyTypePhisicalDisability ?? this.deficiencyTypePhisicalDisability,
+      deficiencyTypeDeafblindness: deficiencyTypeDeafblindness ?? this.deficiencyTypeDeafblindness,
+      deficiencyTypeDisabilityHearing: deficiencyTypeDisabilityHearing ?? this.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDeafness: deficiencyTypeDeafness ?? this.deficiencyTypeDeafness,
+      deficiencyTypeLowVision: deficiencyTypeLowVision ?? this.deficiencyTypeLowVision,
+      deficiencyTypeBlindness: deficiencyTypeBlindness ?? this.deficiencyTypeBlindness,
       filiation2: filiation2 ?? this.filiation2,
       filiation1: filiation1 ?? this.filiation1,
       filiation: filiation ?? this.filiation,

@@ -4,8 +4,7 @@ import 'package:tag_sdk/src/core/failures/failures.dart';
 import 'package:tag_sdk/src/features/teacher/domain/entities/instructor.dart';
 import 'package:tag_sdk/src/features/teacher/domain/repositories/instructor_repository.dart';
 
-class CreateInstructorsUsecase
-    implements Usecase<Instructor, CreateInstructorParams> {
+class CreateInstructorsUsecase implements Usecase<Instructor, CreateInstructorParams> {
   CreateInstructorsUsecase(this._repositoryInstructor);
 
   final InstructorRepository _repositoryInstructor;
@@ -17,13 +16,11 @@ class CreateInstructorsUsecase
   ) async {
     final instructor = Instructor(
       schoolInepIdFk: params.schoolInepIdFk,
-      cpf: params.cpf,
+      // cpf: params.cpf,
       deficiencyTypeGifted: params.deficiencyTypeGifted,
       deficiencyTypeAutism: params.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          params.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          params.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities: params.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: params.deficiencyTypeIntelectualDisability,
       deficiencyTypePhisicalDisability: params.deficiencyTypePhisicalDisability,
       deficiencyTypeDeafblindness: params.deficiencyTypeDeafblindness,
       deficiencyTypeDisabilityHearing: params.deficiencyTypeDisabilityHearing,
@@ -45,41 +42,37 @@ class CreateInstructorsUsecase
       edcensoUfFk: params.edcensoUfFk,
       edcensoCityFk: params.edcensoCityFk,
       deficiency: params.deficiency,
-      scholarity: params.scholarity,
+      // scholarity: params.scholarity,
 
       // address
-      neighborhood: params.neighborhood,
-      complement: params.complement,
-      addressNumber: params.addressNumber,
-      address: params.address,
-      cep: params.cep,
-      areaOfResidence: params.areaOfResidence,
+      // neighborhood: params.neighborhood,
+      // complement: params.complement,
+      // addressNumber: params.addressNumber,
+      // address: params.address,
+      // cep: params.cep,
+      // areaOfResidence: params.areaOfResidence,
 
       // education
-      otherCoursesNone: params.otherCoursesNone,
-      otherCoursesOther: params.otherCoursesOther,
-      otherCoursesEthnicEducation: params.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          params.otherCoursesChildAndTeenageRights,
-      otherCoursesSexualEducation: params.otherCoursesSexualEducation,
-      otherCoursesHumanRightsEducation: params.otherCoursesHumanRightsEducation,
-      otherCoursesEnvironmentEducation: params.otherCoursesEnvironmentEducation,
-      otherCoursesFieldEducation: params.otherCoursesFieldEducation,
-      otherCoursesNativeEducation: params.otherCoursesNativeEducation,
-      otherCoursesSpecialEducation: params.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          params.otherCoursesEducationOfYouthAndAdults,
-      otherCoursesHighSchool: params.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          params.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          params.otherCoursesBasicEducationInitialYears,
-      otherCoursesPreSchool: params.otherCoursesPreSchool,
-      otherCoursesNursery: params.otherCoursesNursery,
-      postGraduationNone: params.postGraduationNone,
-      postGraduationDoctorate: params.postGraduationDoctorate,
-      postGraduationMaster: params.postGraduationMaster,
-      postGraduationSpecialization: params.postGraduationSpecialization,
+      // otherCoursesNone: params.otherCoursesNone,
+      // otherCoursesOther: params.otherCoursesOther,
+      // otherCoursesEthnicEducation: params.otherCoursesEthnicEducation,
+      // otherCoursesChildAndTeenageRights: params.otherCoursesChildAndTeenageRights,
+      // otherCoursesSexualEducation: params.otherCoursesSexualEducation,
+      // otherCoursesHumanRightsEducation: params.otherCoursesHumanRightsEducation,
+      // otherCoursesEnvironmentEducation: params.otherCoursesEnvironmentEducation,
+      // otherCoursesFieldEducation: params.otherCoursesFieldEducation,
+      // otherCoursesNativeEducation: params.otherCoursesNativeEducation,
+      // otherCoursesSpecialEducation: params.otherCoursesSpecialEducation,
+      // otherCoursesEducationOfYouthAndAdults: params.otherCoursesEducationOfYouthAndAdults,
+      // otherCoursesHighSchool: params.otherCoursesHighSchool,
+      // otherCoursesBasicEducationFinalYears: params.otherCoursesBasicEducationFinalYears,
+      // otherCoursesBasicEducationInitialYears: params.otherCoursesBasicEducationInitialYears,
+      // otherCoursesPreSchool: params.otherCoursesPreSchool,
+      // otherCoursesNursery: params.otherCoursesNursery,
+      // postGraduationNone: params.postGraduationNone,
+      // postGraduationDoctorate: params.postGraduationDoctorate,
+      // postGraduationMaster: params.postGraduationMaster,
+      // postGraduationSpecialization: params.postGraduationSpecialization,
     );
 
     final result = await _repositoryInstructor.create(instructor);
@@ -148,7 +141,7 @@ class CreateInstructorParams {
   bool deficiencyTypeBlindness = false;
   String? filiation2;
   String? filiation1;
-  int? filiation;
+  bool? filiation;
   String? nis;
   String? email;
   String? inepId;

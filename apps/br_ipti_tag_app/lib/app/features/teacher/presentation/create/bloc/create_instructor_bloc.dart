@@ -50,18 +50,14 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       status: InstructorFormStatus.Loaded,
       isValidPersonal: true,
       id: instructor.id,
-      cpf: instructor.cpf,
+      // cpf: instructor.cpf,
       deficiencyTypeGifted: instructor.deficiencyTypeGifted,
       deficiencyTypeAutism: instructor.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          instructor.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          instructor.deficiencyTypeIntelectualDisability,
-      deficiencyTypePhisicalDisability:
-          instructor.deficiencyTypePhisicalDisability,
+      deficiencyTypeMultipleDisabilities: instructor.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: instructor.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: instructor.deficiencyTypePhisicalDisability,
       deficiencyTypeDeafblindness: instructor.deficiencyTypeDeafblindness,
-      deficiencyTypeDisabilityHearing:
-          instructor.deficiencyTypeDisabilityHearing,
+      deficiencyTypeDisabilityHearing: instructor.deficiencyTypeDisabilityHearing,
       deficiencyTypeDeafness: instructor.deficiencyTypeDeafness,
       deficiencyTypeLowVision: instructor.deficiencyTypeLowVision,
       deficiencyTypeBlindness: instructor.deficiencyTypeBlindness,
@@ -80,41 +76,35 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       edcensoUfFk: instructor.edcensoUfFk,
       edcensoCityFk: instructor.edcensoCityFk,
       deficiency: instructor.deficiency,
-      scholarity: instructor.scholarity,
+      // scholarity: instructor.scholarity,
       isValidFormAddress: true,
-      neighborhood: instructor.neighborhood,
-      complement: instructor.complement,
-      addressNumber: instructor.addressNumber,
-      address: instructor.address,
-      cep: instructor.cep,
-      areaOfResidence: instructor.areaOfResidence,
+      // neighborhood: instructor.neighborhood,
+      // complement: instructor.complement,
+      // addressNumber: instructor.addressNumber,
+      // address: instructor.address,
+      // cep: instructor.cep,
+      // areaOfResidence: instructor.areaOfResidence,
       isValidFormEducation: true,
-      otherCoursesNone: instructor.otherCoursesNone,
-      otherCoursesOther: instructor.otherCoursesOther,
-      otherCoursesEthnicEducation: instructor.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          instructor.otherCoursesChildAndTeenageRights,
-      otherCoursesSexualEducation: instructor.otherCoursesSexualEducation,
-      otherCoursesHumanRightsEducation:
-          instructor.otherCoursesHumanRightsEducation,
-      otherCoursesEnvironmentEducation:
-          instructor.otherCoursesEnvironmentEducation,
-      otherCoursesFieldEducation: instructor.otherCoursesFieldEducation,
-      otherCoursesNativeEducation: instructor.otherCoursesNativeEducation,
-      otherCoursesSpecialEducation: instructor.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          instructor.otherCoursesEducationOfYouthAndAdults,
-      otherCoursesHighSchool: instructor.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          instructor.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          instructor.otherCoursesBasicEducationInitialYears,
-      otherCoursesPreSchool: instructor.otherCoursesPreSchool,
-      otherCoursesNursery: instructor.otherCoursesNursery,
-      postGraduationNone: instructor.postGraduationNone,
-      postGraduationDoctorate: instructor.postGraduationDoctorate,
-      postGraduationMaster: instructor.postGraduationMaster,
-      postGraduationSpecialization: instructor.postGraduationSpecialization,
+      // otherCoursesNone: instructor.otherCoursesNone,
+      // otherCoursesOther: instructor.otherCoursesOther,
+      // otherCoursesEthnicEducation: instructor.otherCoursesEthnicEducation,
+      // otherCoursesChildAndTeenageRights: instructor.otherCoursesChildAndTeenageRights,
+      // otherCoursesSexualEducation: instructor.otherCoursesSexualEducation,
+      // otherCoursesHumanRightsEducation: instructor.otherCoursesHumanRightsEducation,
+      // otherCoursesEnvironmentEducation: instructor.otherCoursesEnvironmentEducation,
+      // otherCoursesFieldEducation: instructor.otherCoursesFieldEducation,
+      // otherCoursesNativeEducation: instructor.otherCoursesNativeEducation,
+      // otherCoursesSpecialEducation: instructor.otherCoursesSpecialEducation,
+      // otherCoursesEducationOfYouthAndAdults: instructor.otherCoursesEducationOfYouthAndAdults,
+      // otherCoursesHighSchool: instructor.otherCoursesHighSchool,
+      // otherCoursesBasicEducationFinalYears: instructor.otherCoursesBasicEducationFinalYears,
+      // otherCoursesBasicEducationInitialYears: instructor.otherCoursesBasicEducationInitialYears,
+      // otherCoursesPreSchool: instructor.otherCoursesPreSchool,
+      // otherCoursesNursery: instructor.otherCoursesNursery,
+      // postGraduationNone: instructor.postGraduationNone,
+      // postGraduationDoctorate: instructor.postGraduationDoctorate,
+      // postGraduationMaster: instructor.postGraduationMaster,
+      // postGraduationSpecialization: instructor.postGraduationSpecialization,
     );
     emit(loadState);
   }
@@ -125,12 +115,9 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       cpf: personal.cpf,
       deficiencyTypeGifted: personal.deficiencyTypeGifted,
       deficiencyTypeAutism: personal.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          personal.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          personal.deficiencyTypeIntelectualDisability,
-      deficiencyTypePhisicalDisability:
-          personal.deficiencyTypePhisicalDisability,
+      deficiencyTypeMultipleDisabilities: personal.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: personal.deficiencyTypeIntelectualDisability,
+      deficiencyTypePhisicalDisability: personal.deficiencyTypePhisicalDisability,
       deficiencyTypeDeafblindness: personal.deficiencyTypeDeafblindness,
       deficiencyTypeDisabilityHearing: personal.deficiencyTypeDisabilityHearing,
       deficiencyTypeDeafness: personal.deficiencyTypeDeafness,
@@ -179,23 +166,17 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       otherCoursesNone: education.otherCoursesNone,
       otherCoursesOther: education.otherCoursesOther,
       otherCoursesEthnicEducation: education.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          education.otherCoursesChildAndTeenageRights,
+      otherCoursesChildAndTeenageRights: education.otherCoursesChildAndTeenageRights,
       otherCoursesSexualEducation: education.otherCoursesSexualEducation,
-      otherCoursesHumanRightsEducation:
-          education.otherCoursesHumanRightsEducation,
-      otherCoursesEnvironmentEducation:
-          education.otherCoursesEnvironmentEducation,
+      otherCoursesHumanRightsEducation: education.otherCoursesHumanRightsEducation,
+      otherCoursesEnvironmentEducation: education.otherCoursesEnvironmentEducation,
       otherCoursesFieldEducation: education.otherCoursesFieldEducation,
       otherCoursesNativeEducation: education.otherCoursesNativeEducation,
       otherCoursesSpecialEducation: education.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          education.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesEducationOfYouthAndAdults: education.otherCoursesEducationOfYouthAndAdults,
       otherCoursesHighSchool: education.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          education.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          education.otherCoursesBasicEducationInitialYears,
+      otherCoursesBasicEducationFinalYears: education.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears: education.otherCoursesBasicEducationInitialYears,
       otherCoursesPreSchool: education.otherCoursesPreSchool,
       otherCoursesNursery: education.otherCoursesNursery,
       postGraduationNone: education.postGraduationNone,
@@ -219,9 +200,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   }
 
   Future create() async {
-    if (!(state.isValidFormAddress &&
-        state.isValidPersonal &&
-        state.isValidFormEducation)) {
+    if (!(state.isValidFormAddress && state.isValidPersonal && state.isValidFormEducation)) {
       notifyError(
         "Verifique se todos os campos obrigatórios foram preenchidos",
       );
@@ -236,10 +215,8 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       cpf: state.cpf,
       deficiencyTypeGifted: state.deficiencyTypeGifted,
       deficiencyTypeAutism: state.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          state.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          state.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities: state.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: state.deficiencyTypeIntelectualDisability,
       deficiencyTypePhisicalDisability: state.deficiencyTypePhisicalDisability,
       deficiencyTypeDeafblindness: state.deficiencyTypeDeafblindness,
       deficiencyTypeDisabilityHearing: state.deficiencyTypeDisabilityHearing,
@@ -275,21 +252,17 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       otherCoursesNone: state.otherCoursesNone,
       otherCoursesOther: state.otherCoursesOther,
       otherCoursesEthnicEducation: state.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          state.otherCoursesChildAndTeenageRights,
+      otherCoursesChildAndTeenageRights: state.otherCoursesChildAndTeenageRights,
       otherCoursesSexualEducation: state.otherCoursesSexualEducation,
       otherCoursesHumanRightsEducation: state.otherCoursesHumanRightsEducation,
       otherCoursesEnvironmentEducation: state.otherCoursesEnvironmentEducation,
       otherCoursesFieldEducation: state.otherCoursesFieldEducation,
       otherCoursesNativeEducation: state.otherCoursesNativeEducation,
       otherCoursesSpecialEducation: state.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          state.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesEducationOfYouthAndAdults: state.otherCoursesEducationOfYouthAndAdults,
       otherCoursesHighSchool: state.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          state.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          state.otherCoursesBasicEducationInitialYears,
+      otherCoursesBasicEducationFinalYears: state.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears: state.otherCoursesBasicEducationInitialYears,
       otherCoursesPreSchool: state.otherCoursesPreSchool,
       otherCoursesNursery: state.otherCoursesNursery,
       postGraduationNone: state.postGraduationNone,
@@ -311,9 +284,7 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
   }
 
   Future edit() async {
-    if (!(state.isValidFormAddress &&
-        state.isValidPersonal &&
-        state.isValidFormEducation)) {
+    if (!(state.isValidFormAddress && state.isValidPersonal && state.isValidFormEducation)) {
       notifyError(
         "Verifique se todos os campos obrigatórios foram preenchidos",
       );
@@ -329,10 +300,8 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       cpf: state.cpf,
       deficiencyTypeGifted: state.deficiencyTypeGifted,
       deficiencyTypeAutism: state.deficiencyTypeAutism,
-      deficiencyTypeMultipleDisabilities:
-          state.deficiencyTypeMultipleDisabilities,
-      deficiencyTypeIntelectualDisability:
-          state.deficiencyTypeIntelectualDisability,
+      deficiencyTypeMultipleDisabilities: state.deficiencyTypeMultipleDisabilities,
+      deficiencyTypeIntelectualDisability: state.deficiencyTypeIntelectualDisability,
       deficiencyTypePhisicalDisability: state.deficiencyTypePhisicalDisability,
       deficiencyTypeDeafblindness: state.deficiencyTypeDeafblindness,
       deficiencyTypeDisabilityHearing: state.deficiencyTypeDisabilityHearing,
@@ -368,21 +337,17 @@ class CreateInstructorBloc extends Cubit<InstructorFormState> {
       otherCoursesNone: state.otherCoursesNone,
       otherCoursesOther: state.otherCoursesOther,
       otherCoursesEthnicEducation: state.otherCoursesEthnicEducation,
-      otherCoursesChildAndTeenageRights:
-          state.otherCoursesChildAndTeenageRights,
+      otherCoursesChildAndTeenageRights: state.otherCoursesChildAndTeenageRights,
       otherCoursesSexualEducation: state.otherCoursesSexualEducation,
       otherCoursesHumanRightsEducation: state.otherCoursesHumanRightsEducation,
       otherCoursesEnvironmentEducation: state.otherCoursesEnvironmentEducation,
       otherCoursesFieldEducation: state.otherCoursesFieldEducation,
       otherCoursesNativeEducation: state.otherCoursesNativeEducation,
       otherCoursesSpecialEducation: state.otherCoursesSpecialEducation,
-      otherCoursesEducationOfYouthAndAdults:
-          state.otherCoursesEducationOfYouthAndAdults,
+      otherCoursesEducationOfYouthAndAdults: state.otherCoursesEducationOfYouthAndAdults,
       otherCoursesHighSchool: state.otherCoursesHighSchool,
-      otherCoursesBasicEducationFinalYears:
-          state.otherCoursesBasicEducationFinalYears,
-      otherCoursesBasicEducationInitialYears:
-          state.otherCoursesBasicEducationInitialYears,
+      otherCoursesBasicEducationFinalYears: state.otherCoursesBasicEducationFinalYears,
+      otherCoursesBasicEducationInitialYears: state.otherCoursesBasicEducationInitialYears,
       otherCoursesPreSchool: state.otherCoursesPreSchool,
       otherCoursesNursery: state.otherCoursesNursery,
       postGraduationNone: state.postGraduationNone,
