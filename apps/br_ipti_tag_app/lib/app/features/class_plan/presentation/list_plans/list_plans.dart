@@ -1,5 +1,5 @@
 
-import 'package:br_ipti_tag_app/app/features/class_plan/class_plan_cubit.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_plan_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,6 +8,7 @@ import 'package:tag_ui/tag_ui.dart';
 import '../../../../core/util/routes/routes.dart';
 import '../../../../core/widgets/app_bar/custom_app_bar.dart';
 import '../../../../core/widgets/menu/vertical_menu.dart';
+import '../bloc/class_plan_state.dart';
 
 class ListPlans extends StatefulWidget {
   const ListPlans({super.key, this.title = "Plano de aula"});
@@ -65,7 +66,7 @@ class _ListPlansState extends State<ListPlans> {
                 ),
               ),
             ),
-            BlocBuilder<ControllerPlanClass, PlanClassState>(
+            BlocBuilder<ControllerPlanClass, ClassPlanState>(
               bloc: planClass,
               builder: (context, state) {
                

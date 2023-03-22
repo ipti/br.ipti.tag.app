@@ -1,5 +1,5 @@
 
-import 'package:br_ipti_tag_app/app/features/class_plan/class_plan_cubit.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_plan_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class_plans.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/list_plans/list_plans.dart';
 import 'package:flutter_modular/flutter_modular.dart';
