@@ -157,10 +157,10 @@ class StudentDatatable extends DataTableSource {
           ),
         ),
         DataCell(
-          Text(data[index].birthday),
+          Text(data[index].responsableCpf ?? ""),
         ),
         DataCell(
-          Text(data[index].responsableName ?? ""),
+          Text(data[index].birthday),
         ),
       ],
     );
