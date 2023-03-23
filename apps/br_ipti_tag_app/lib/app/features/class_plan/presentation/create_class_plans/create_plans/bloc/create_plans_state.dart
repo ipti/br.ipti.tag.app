@@ -9,13 +9,13 @@ class CreatePlansState extends Equatable {
   });
 
   final String name;
-  final Etapas etapa;
-  final Diciplinas diciplina;
+  final String etapa;
+  final String diciplina;
 
   CreatePlansState copyWith({
     String? name,
-    Etapas? etapa,
-    Diciplinas? diciplina,
+    String? etapa,
+    String? diciplina,
   }) {
     return CreatePlansState(
       name: name ?? this.name,
@@ -26,4 +26,9 @@ class CreatePlansState extends Equatable {
 
   @override
   List<Object> get props => [name, etapa, diciplina];
+}
+
+class CreatePlansIntialState extends CreatePlansState {
+  const CreatePlansIntialState() : super(diciplina: "", etapa: "", name: "");
+
 }

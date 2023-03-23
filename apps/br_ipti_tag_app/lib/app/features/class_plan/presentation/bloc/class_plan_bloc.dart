@@ -1,4 +1,6 @@
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_plan_state.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_state.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_plans/bloc/create_plans_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,17 +19,15 @@ class ControllerPlanClass extends Cubit<ClassPlanState> {
     // emit(state.copyWith(loading: true));
   }
 
+
+
+  loadPlanClasses(CreatePlansState statePlanClass){
+    
+  }
+
   void openNew() {
     emit(state.copyWith(newclass: true));
   }
-
-//  void nextTab() {
-//     emit(
-//       ClassPlanNextTabState(
-//         tabIndex: tabIndex + 1,
-//       ),
-//     );
-//   }
 
 }
 

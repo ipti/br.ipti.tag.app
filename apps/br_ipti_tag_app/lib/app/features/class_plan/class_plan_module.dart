@@ -1,5 +1,7 @@
 
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_plan_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_state.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class_plans.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/list_plans/list_plans.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,6 +19,7 @@ class ClassPlan extends Module {
   @override
   final List<Bind> binds = [
     BlocBind.singleton((i) => ControllerPlanClass()),
+    BlocBind.singleton((i) => CreateClassBloc()),
   ];
 
   
