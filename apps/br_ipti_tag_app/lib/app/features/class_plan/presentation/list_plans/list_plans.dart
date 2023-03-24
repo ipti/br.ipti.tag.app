@@ -1,5 +1,6 @@
 
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_plan_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/widget/planClass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -69,18 +70,13 @@ class _ListPlansState extends State<ListPlans> {
             BlocBuilder<ControllerPlanClass, ClassPlanState>(
               bloc: planClass,
               builder: (context, state) {
-               
-
                 return Column(
                   children: [
                       ListView.builder(
                         itemCount: state.planClass.length,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
-                          return TagButton(
-                            text: state.planClass[index].name,
-                            onPressed: () => {},
-                          );
+                          return CardPlanClass(listPlanclasses: state.planClass[index],);
                         },
                       ),
                   ],

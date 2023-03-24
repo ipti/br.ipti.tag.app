@@ -31,7 +31,7 @@ class ClassPlanState extends Equatable {
 
 class ClassPlanInitialState extends ClassPlanState {
   const ClassPlanInitialState({
-    super.planClass = const [PlanClass("name", Etapas(name: "nameEtapa"),
+    super.planClass = const [PlanClass("Letramento", Etapas(name: "Ensino Fundamental de 9° Ano - 1° Ano"),
               Diciplinas(name: "nameDiciplina"),)],
     super.newclass = false,
   });

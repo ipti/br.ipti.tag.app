@@ -33,13 +33,13 @@ class CreatePlansIntialState extends CreateClassState {
 
 class Classes {
    const Classes({
-    required this.name,
-    required this.etapa,
-    required this.diciplina,
+    required this.object,
+    required this.types,
+    required this.resource,
   });
 
-  final String name;
-  final String etapa;
-  final String diciplina;
+  final String object;
+  final String types;
+  final String resource;
 
 }

@@ -28,6 +28,13 @@ class AddAbility extends StatelessWidget {
                     ),
                   ],
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    height: 1,
+                    color: TagColors.colorBaseCloudLightHover,
+                  ),
+                ),
                 TagDropdownField(
                   onChanged: (e) => {},
                   label: "Campos de atuação",
@@ -58,51 +65,81 @@ class AddAbility extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  const Text('Habilidade'),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:8.0),
-                    child: Container(
-                      color: TagColors.colorBaseCloudLightActive,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        height: 1,
+                        color: TagColors.colorBaseCloudLightHover,
+                      ),
+                    ),
+                    const Text('Habilidades'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        height: 1,
+                        color: TagColors.colorBaseCloudLightHover,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           children: const [
-                            Text('+'),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("data"),
+                            SizedBox(child: Text('+'), width: 10),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "(EF01LP01) Reconhecer que textos são lidos e escritos da esquerda para a direita e de cima para baixo da página.",
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                ],),
+                  ],
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                  const Text('Selecionadas'),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical:8.0),
-                    child: Container(
-                      color: TagColors.colorBaseCloudLightActive,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        height: 1,
+                        color: TagColors.colorBaseCloudLightHover,
+                      ),
+                    ),
+                    const Text('Selecionadas'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        height: 1,
+                        color: TagColors.colorBaseCloudLightHover,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Row(
                           children: const [
-                            Text('-'),
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text("data"),
+                            SizedBox(child: Text('-'), width: 10),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "(EF01LP01) Reconhecer que textos são lidos e escritos da esquerda para a direita e de cima para baixo da página.",
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                  ),
-                ],),
+                  ],
+                ),
               ],
             ),
           ),

@@ -18,13 +18,6 @@ class NewClass extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Aula',
-                style: styleTitle,
-              ),
-            ),
             if(!controller.state.openForm) 
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -59,12 +52,11 @@ class NewClassForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TagTextField(label: "Objetivo"),
-        Padding(
+         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: TagButton(text: "Habilidades", onPressed:  () async {
+          child: TagButton(text: "+ Habilidades", onPressed:  () async {
                     final success = await showDialog(
                       context: context,
                       builder: (_) {
@@ -74,17 +66,56 @@ class NewClassForm extends StatelessWidget {
                   },
                 ),
         ),
+        const TagTextField(label: "Objetivo"),
         const TagTextField(label: "Tipo"),
-        const TagTextField(label: "Conteudo"),
         TagDropdownField(
           onChanged: (e) => {},
-          label: 'label',
+          label: 'Recurso(s)',
+          padding: EdgeInsets.all(5),
           items: Map.fromEntries(
             ["d", "e", "s", "p", "a", "c", "i", "t", "o"].map(
               (e) => MapEntry(e, e),
             ),
           ),
         ),
+        Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical:8.0),
+                      child: Container(height: 1, color: TagColors.colorBaseCloudLightHover,),
+                    ),
+                    const Text('Habilidades'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical:8.0),
+                      child: Container(height: 1, color: TagColors.colorBaseCloudLightHover,),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
+                          children: const [
+                            SizedBox(child: Text('+'), width: 10),
+                            Flexible(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                    "(EF01LP01) Reconhecer que textos são lidos e escritos da esquerda para a direita e de cima para baixo da página.", ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   children: [
+        //     TagButton(text: "+", onPressed: () => {}),
+        //   ],
+        // ),
       ],
     );
   }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CreateClassBloc extends Cubit<CreateClassState> {
   CreateClassBloc() : super(const CreateClassState(classes: [], openForm: false));
 
-  void newClass() => emit(state.copyWith(openForm: true) );
+  void newClass() => emit(state.copyWith(openForm: true));
    
 
 }
