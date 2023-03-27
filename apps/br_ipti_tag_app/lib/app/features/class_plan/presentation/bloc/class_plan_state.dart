@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_state.dart';
 import 'package:equatable/equatable.dart';
 
 import 'class_plan_bloc.dart';
@@ -32,7 +33,7 @@ class ClassPlanState extends Equatable {
 class ClassPlanInitialState extends ClassPlanState {
   const ClassPlanInitialState({
     super.planClass = const [PlanClass("Letramento", Etapas(name: "Ensino Fundamental de 9° Ano - 1° Ano"),
-              Diciplinas(name: "nameDiciplina"),)],
+              Diciplinas(name: "nameDiciplina"), [],)],
     super.newclass = false,
   });
 }

@@ -8,14 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ControllerPlanClass extends Cubit<ClassPlanState> {
   int tabIndex = 0;
 
-  ControllerPlanClass() : super(const ClassPlanInitialState());
+  ControllerPlanClass() : super(ClassPlanInitialState());
 
   void createPlans(String namePlan, String nameEtapa, String nameDiciplina) {
     // emit(state.copyWith(planClass:  [...state.planClass, PlanClass(namePlan, Etapas(name: nameEtapa),  Diciplinas(name: nameDiciplina))]));
-    emit(state.copyWith(
-        planClass: state.planClass
-          ..add(PlanClass(namePlan, Etapas(name: nameEtapa),
-              Diciplinas(name: nameDiciplina),)),));
+    // emit(state.copyWith(
+    //     planClass: state.planClass
+    //       ..add(PlanClass(namePlan, Etapas(name: nameEtapa),
+    //           Diciplinas(name: nameDiciplina),)),));
     // emit(state.copyWith(loading: true));
   }
 
@@ -35,11 +35,13 @@ class PlanClass {
   final String name;
   final Etapas etapas;
   final Diciplinas diciplinas;
+  final List<Classes> classes;
 
   const PlanClass(
     this.name,
     this.etapas,
     this.diciplinas,
+    this.classes,
   );
 }
 

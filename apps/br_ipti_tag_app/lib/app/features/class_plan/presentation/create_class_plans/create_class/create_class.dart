@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_bloc.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/create_class_plans/create_class/bloc/create_class_state.dart';
 import 'package:br_ipti_tag_app/app/features/class_plan/presentation/widget/add_ability.dart';
+import 'package:br_ipti_tag_app/app/features/class_plan/presentation/widget/expansion_plane/expansion_plane.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -34,7 +35,7 @@ class NewClass extends StatelessWidget {
                     ),
                   ),
                 ),
-            if (controller.state.openForm) NewClassForm(),
+            if (controller.state.openForm) const Steps(classes: [Classes([],'object', 'types', 'resource', false)]),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

@@ -3,19 +3,17 @@ import 'package:br_ipti_tag_app/app/features/class_plan/presentation/bloc/class_
 import 'package:equatable/equatable.dart';
 
 class CreateClassState extends Equatable {
-   const CreateClassState({
+  const CreateClassState({
     required this.classes,
     required this.openForm,
   });
-  
-   final bool openForm;
+
+  final bool openForm;
   final List<Classes> classes;
- 
 
   CreateClassState copyWith({
     List<Classes>? classes,
     bool? openForm,
-    
   }) {
     return CreateClassState(
       classes: classes ?? this.classes,
@@ -32,14 +30,23 @@ class CreatePlansIntialState extends CreateClassState {
 }
 
 class Classes {
-   const Classes({
-    required this.object,
-    required this.types,
-    required this.resource,
-  });
+   const Classes(
+    this.ability,
+    this.object,
+    this.types,
+    this.resource,
+    this.isExpanded,
+  );
 
-  final String object;
-  final String types;
-  final String resource;
+   final List<Ability> ability;
+   final String object;
+   final String types;
+   final String resource;
+   final bool isExpanded;
+}
 
+class Ability {
+  final String ability;
+
+  Ability(this.ability);
 }
