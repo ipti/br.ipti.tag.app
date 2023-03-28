@@ -18,10 +18,13 @@ class Steps extends StatefulWidget {
 
 class _StepsState extends State<Steps> {
   late List<Classes> _steps;
+  late bool open;
 
   @override
   void initState() {
     _steps = widget.classes;
+    open = false;
+
     super.initState();
   }
 
@@ -40,17 +43,18 @@ class _StepsState extends State<Steps> {
           _steps[index].isExpanded = !isExpanded;
         });
       },
-      children: _steps.map<ExpansionPanel>((Classes step) {
-        return ExpansionPanel(
+      children: [
+        for(int i = 0; i < _steps.length; i++) ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text("Aula" + context.hashCode.toString()),
+            return 
+             ListTile(
+              title: Text("Aula $i"),
             );
           },
-          body: NewClassForm(),
-          isExpanded: step.isExpanded,
-        );
-      }).toList(),
-    );
+          body: NewClassForm(index: i,),
+          isExpanded: _steps[i].isExpanded,
+          ),
+        ],
+      );
   }
 }

@@ -5,10 +5,8 @@ import 'package:equatable/equatable.dart';
 class CreateClassState extends Equatable {
   const CreateClassState({
     required this.classes,
-    required this.openForm,
   });
 
-  final bool openForm;
   final List<Classes> classes;
 
   CreateClassState copyWith({
@@ -17,32 +15,31 @@ class CreateClassState extends Equatable {
   }) {
     return CreateClassState(
       classes: classes ?? this.classes,
-      openForm: openForm ?? this.openForm,
     );
   }
 
   @override
-  List<Object> get props => [classes];
+  List<Object> get props => [classes.hashCode];
 }
 
 class CreatePlansIntialState extends CreateClassState {
-  const CreatePlansIntialState() : super(classes: const [], openForm: false);
+  const CreatePlansIntialState() : super(classes: const []);
 }
 
 class Classes {
-   const Classes(
-    this.ability,
-    this.object,
-    this.types,
-    this.resource,
-    this.isExpanded,
-  );
+    Classes({
+    required this.ability,
+    required this.object,
+    required this.types,
+    required this.resource,
+    this.isExpanded = false,
+  });
 
-   final List<Ability> ability;
-   final String object;
-   final String types;
-   final String resource;
-   final bool isExpanded;
+    List<Ability> ability;
+    String object;
+    String types;
+    String resource;
+    bool isExpanded;
 }
 
 class Ability {

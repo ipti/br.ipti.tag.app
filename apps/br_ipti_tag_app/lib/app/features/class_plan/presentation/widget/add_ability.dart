@@ -82,12 +82,21 @@ class AddAbility extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        color: TagColors.colorBaseCloudNormal,
                         child: Row(
-                          children: const [
-                            SizedBox(child: Text('+'), width: 10),
-                            Flexible(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                color: TagColors.colorGreenLight,
+                                child: Icon(Icons.add,
+                                    color: TagColors.colorBaseProductLighter,),
+                                width: 25,
+                                height: 25,
+                              ),
+                            ),
+                            const Flexible(
                               child: Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
@@ -121,12 +130,23 @@ class AddAbility extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Container(
+                        color: TagColors.colorBaseCloudNormal,
                         child: Row(
-                          children: const [
-                            SizedBox(child: Text('-'), width: 10),
-                            Flexible(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                color: TagColors.colorRedDark,
+                                width: 25,
+                                height: 25,
+                                child: Icon(
+                                  Icons.remove,
+                                  color: TagColors.colorBaseProductLighter,
+                                ),
+                              ),
+                            ),
+                            const Flexible(
                               child: Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(

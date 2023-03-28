@@ -93,14 +93,40 @@ class _CreateClassPlansState extends State<CreateClassPlans> {
           // onTap: (value) => controller.setTabIndex(value),
           tabs: _tabs,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: BlocBuilder<ControllerPlanClass, ClassPlanState>(
-            bloc: planClass,
-            builder: (context, state) {
-              return _buildWithoutData();
-            },
-          ),
+        body: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: BlocBuilder<ControllerPlanClass, ClassPlanState>(
+                bloc: planClass,
+                builder: (context, state) {
+                  return _buildWithoutData();
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ColoredBox(
+                  color: TagColors.colorBaseWhiteNormal,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      RowToColumn(children: [
+                        Flexible(
+                          child: TagButton(text: "Salvar", onPressed: () => {}),
+                        ),
+                      ]),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
