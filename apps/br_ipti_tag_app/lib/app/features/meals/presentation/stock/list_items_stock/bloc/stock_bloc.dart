@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
 import 'stock_events.dart';
 import 'stock_states.dart';
 

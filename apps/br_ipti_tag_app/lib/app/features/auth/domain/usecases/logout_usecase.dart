@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/core/defaults/params.dart';
-import 'package:tag_sdk/src/core/defaults/usecase.dart';
-import 'package:tag_sdk/src/core/failures/failures.dart';
-import 'package:tag_sdk/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class LogoutUsecase implements Usecase<void, EmptyParams> {
   LogoutUsecase(this._repository);

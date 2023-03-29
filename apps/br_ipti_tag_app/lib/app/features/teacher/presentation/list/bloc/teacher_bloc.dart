@@ -5,6 +5,7 @@ import 'package:br_ipti_tag_app/app/features/teacher/presentation/list/bloc/teac
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+
 class TeacherListBloc extends Cubit<TeacherListState> {
   TeacherListBloc(this._listTeachersUsecase)
       : super(

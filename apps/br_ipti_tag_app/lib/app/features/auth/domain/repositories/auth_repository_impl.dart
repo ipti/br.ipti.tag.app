@@ -2,16 +2,14 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/core/failures/failures.dart';
-import 'package:tag_sdk/src/features/auth/data/datasources/local/auth_local_datasource.dart';
-import 'package:tag_sdk/src/features/auth/data/datasources/remote/auth_remote_datasource.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_response.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
-import 'package:tag_sdk/src/features/auth/domain/repositories/auth_repository.dart';
+// import 'package:tag_sdk/src/features/auth/data/datasources/local/auth_local_datasource.dart';
+// import 'package:tag_sdk/src/features/auth/data/datasources/remote/auth_remote_datasource.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
-class AuthRespositoryImpl extends AuthRepository {
-  AuthRespositoryImpl({
+
+
+class AuthRepositoryImpl extends AuthRepository {
+  AuthRepositoryImpl({
     required this.authRemoteDataSource,
     required this.authLocalDataSource,
   });
@@ -20,7 +18,7 @@ class AuthRespositoryImpl extends AuthRepository {
   AuthLocalDataSource authLocalDataSource;
 
   @override
-  Future<Either<Failure, AuthResponse>> login(
+  Future<Either<Failure, AuthModel>> login(
     String username,
     String password,
   ) async {
@@ -104,9 +102,7 @@ class AuthRespositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> storeCurrentUserSchools(
-    List<AuthSchool> schools,
-  ) async {
+  Future<Either<Failure, bool>> storeCurrentUserSchools(List<AuthSchool> schools) async {
     try {
       final result = await authLocalDataSource.setCurrentUserSchools(schools);
 
@@ -130,7 +126,7 @@ class AuthRespositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, User>> fetchUserData() async {
+  Future<Either<Failure, UserModel>> fetchUserData() async {
     try {
       final result = await authLocalDataSource.getCurrentUser();
 

@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+
 class SessionBloc extends Cubit<SessionState> {
   SessionBloc(this._sessionService)
       : super(

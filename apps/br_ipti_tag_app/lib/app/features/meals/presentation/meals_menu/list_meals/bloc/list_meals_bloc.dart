@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
 import 'list_meals_events.dart';
 import 'list_meals_states.dart';
 
