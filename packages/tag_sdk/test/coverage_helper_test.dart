@@ -2,7 +2,6 @@
 // ignore_for_file: unused_import, directives_ordering
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_sdk/src/features/features.dart';
-import 'package:tag_sdk/src/features/classroom/check_discipline_id.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/classroom_create_entity.dart';
