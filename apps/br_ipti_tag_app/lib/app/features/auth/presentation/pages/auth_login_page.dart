@@ -261,7 +261,8 @@ class _Footer extends StatelessWidget {
                   style: footerStyle.copyWith(
                     decoration: TextDecoration.underline,
                   ),
-                  recognizer: TapGestureRecognizer()..onTap = () => launchUrlString("https://www.ipti.org.br/"),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => launchUrlString("https://www.ipti.org.br/"),
                 ),
                 const TextSpan(text: " ®"),
                 TextSpan(text: year),

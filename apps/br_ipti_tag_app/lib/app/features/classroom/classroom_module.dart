@@ -12,6 +12,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'domain/usecases/create_classroom_usecase.dart';
+import 'domain/usecases/create_instructor_teaching_data_usecase.dart';
+import 'domain/usecases/delete_classroom_usecase.dart';
+import 'domain/usecases/list_classrooms_usecase.dart';
+import 'domain/usecases/list_instructors_teaching_data_usecase.dart';
+import 'domain/usecases/update_classroom_usecase.dart';
+import 'domain/usecases/update_instructor_teaching_data_usecase.dart';
 import 'presentation/create/classroom_create_page.dart';
 import 'presentation/list/classroom_page.dart';
 
@@ -26,6 +33,53 @@ class ClassroomModule extends Module {
 
   @override
   final List<Bind> binds = [
+    // List
+    Bind.singleton(
+          (i) => ListClassroomsUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+
+    Bind.singleton(
+          (i) => ListInstructorsTeachingDataUseCase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+
+    // Create
+    Bind.singleton(
+          (i) => CreateClassroomUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+          (i) => CreateInstructorTeachingDataUseCase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+
+    //UpdateDelete
+    Bind.singleton(
+          (i) => UpdateClassroomUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+          (i) => DeleteClassroomUsecase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+          (i) => CreateInstructorTeachingDataUseCase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+    Bind.singleton(
+          (i) => UpdateInstructorTeachingDataUseCase(
+        i.get<ClassroomRepository>(),
+      ),
+    ),
+
     // Create
     BlocBind.singleton((i) => ClassroomCreateBloc(
           i.get<CreateClassroomUsecase>(),

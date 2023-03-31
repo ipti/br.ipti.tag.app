@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../../classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'enrollment_classroom_states.dart';
 
 class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {

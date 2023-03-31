@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
 import 'form/address/bloc/enrollment_address_bloc.dart';

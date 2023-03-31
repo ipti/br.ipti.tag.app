@@ -3,6 +3,7 @@ import 'package:br_ipti_tag_app/app/features/frequency/presentation/cubit/freque
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../classroom/domain/usecases/list_classrooms_usecase.dart';
 import 'presentation/pages/frequency_page.dart';
 
 class FrequencyModule extends Module {

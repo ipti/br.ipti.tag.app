@@ -6,7 +6,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 import 'domain/usecases/login_usecase.dart';
-import 'domain/usecases/verify_auth_usecase.dart';
 
 class AuthModule extends Module {
   @override

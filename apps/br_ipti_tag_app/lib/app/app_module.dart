@@ -10,7 +10,6 @@ import 'package:tag_sdk/tag_sdk.dart';
 import 'core/network/custom_dio/custom_dio.dart';
 import 'core/plataform/pkg_info_service.dart';
 import 'features/auth/auth_module.dart';
-import 'features/auth/domain/usecases/verify_auth_usecase.dart';
 import 'features/classroom/classroom_module.dart';
 import 'features/frequency/frequency_module.dart';
 import 'features/home/home_module.dart';

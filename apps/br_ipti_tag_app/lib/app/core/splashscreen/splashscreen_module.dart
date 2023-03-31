@@ -1,4 +1,3 @@
-import 'package:br_ipti_tag_app/app/app_module.dart';
 import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen.dart';
 import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen_controller.dart';
 import 'package:br_ipti_tag_app/app/features/auth/auth_module.dart';
