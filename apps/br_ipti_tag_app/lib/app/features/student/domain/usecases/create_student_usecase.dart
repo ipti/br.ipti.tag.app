@@ -11,8 +11,7 @@ class CreateStudentsUsecase
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Failure, StudentIdentification>> call(
-      CreateStudentParams params) async {
+  Future<Either<Failure, StudentIdentification>> call(CreateStudentParams params) async {
     final result = await _repositoryStudent.create(params.student);
 
     return result;

@@ -11,8 +11,7 @@ class LoadStudentUsecase
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Failure, StudentIdentification>> call(
-      LoadStudentParams params) async {
+  Future<Either<Failure, StudentIdentification>> call(LoadStudentParams params) async {
     final result = await _repositoryStudent.getById(
       params.studentId,
       schoolId: params.schoolId,

@@ -1,10 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/core/defaults/params.dart';
-import 'package:tag_sdk/src/core/defaults/usecase.dart';
-import 'package:tag_sdk/src/core/failures/failures.dart';
-
-import '../entities/meals_menu.dart';
-import '../repositories/meals_menu_repository.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class ListMealsMenuUsecase implements Usecase<List<MealsMenu>, EmptyParams> {
   ListMealsMenuUsecase(this._repositoryMealsMenu);

@@ -1,8 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/core/defaults/usecase.dart';
-import 'package:tag_sdk/src/core/failures/failures.dart';
-import 'package:tag_sdk/src/features/student/domain/entities/student_documents.dart';
-import 'package:tag_sdk/src/features/student/domain/repositories/student_doc_address_repositories.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class AddDocumentsAndAddressToStudentUsecase
     implements

@@ -9,8 +9,8 @@ import 'data/datasources/remote/stock_remote_datasource.dart';
 import 'data/repositories/ingredient_repository_impl.dart';
 import 'data/repositories/meals_menu_repository_impl.dart';
 import 'domain/repositories/meals_menu_repository.dart';
-import 'domain/usecases/list_ingredients_stock_usecase.dart';
-import 'domain/usecases/list_meals_menu_usecase.dart';
+// import 'domain/usecases/list_ingredients_stock_usecase.dart';
+// import 'domain/usecases/list_meals_menu_usecase.dart';
 import 'mappers/meal_menu_api_to_entity.dart';
 
 class MealsSDKModule extends Module {

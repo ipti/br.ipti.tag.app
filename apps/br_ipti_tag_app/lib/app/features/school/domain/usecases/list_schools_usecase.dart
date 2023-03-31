@@ -1,9 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:tag_sdk/src/core/defaults/params.dart';
-import 'package:tag_sdk/src/core/defaults/usecase.dart';
-import 'package:tag_sdk/src/core/failures/failures.dart';
-import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
-import 'package:tag_sdk/src/features/school/domain/repositories/school_repositories.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 class ListSchoolsUsecase implements Usecase<List<School>, EmptyParams> {
   ListSchoolsUsecase(this._repository);

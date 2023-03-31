@@ -12,6 +12,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../teacher/domain/usecases/list_teachers_usecase.dart';
 import 'domain/usecases/create_classroom_usecase.dart';
 import 'domain/usecases/create_instructor_teaching_data_usecase.dart';
 import 'domain/usecases/delete_classroom_usecase.dart';

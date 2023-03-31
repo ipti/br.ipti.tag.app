@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../domain/usecases/create_instructor_usecase.dart';
+import '../../../domain/usecases/get_teachers_usecase.dart';
+import '../../../domain/usecases/update_instructor_usecase.dart';
 import '../pages/address/bloc/instructor_address_states.dart';
 import '../pages/education/bloc/instructor_education_states.dart';
 import '../pages/personal/bloc/instructor_personal_states.dart';

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../domain/usecases/update_student_usecase.dart';
 import 'enrollment_filiation_states.dart';
 
 class EnrollmentFiliationBloc extends Cubit<EnrollmentFiliationState> {

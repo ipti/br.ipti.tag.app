@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'domain/usecases/list_teachers_usecase.dart';
 import 'presentation/create/create_instructor_module.dart';
 
 class TeacherModule extends Module {

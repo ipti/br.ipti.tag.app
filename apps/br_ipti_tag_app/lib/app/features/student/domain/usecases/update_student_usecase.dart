@@ -11,8 +11,7 @@ class UpdateStudentUsecase
   final StudentRepository _repositoryStudent;
 
   @override
-  Future<Either<Failure, StudentIdentification>> call(
-      UpdateStudentParams params) async {
+  Future<Either<Failure, StudentIdentification>> call(UpdateStudentParams params) async {
     final StudentIdentification student = params.student;
 
     final result = await _repositoryStudent.update(params.id, student);

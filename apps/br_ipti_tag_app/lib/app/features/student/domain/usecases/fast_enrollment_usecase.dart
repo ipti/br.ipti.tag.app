@@ -17,8 +17,7 @@ class FastEnrollmentUsecase
   final StudentRepository _service;
 
   @override
-  Future<Either<Failure, StudentIdentification>> call(
-      EnrollmentParams params) async {
+  Future<Either<Failure, StudentIdentification>> call(EnrollmentParams params) async {
     return _service.create(params.student);
   }
 }

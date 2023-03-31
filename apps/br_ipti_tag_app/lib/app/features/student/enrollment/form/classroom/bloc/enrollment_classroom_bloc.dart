@@ -6,6 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 import '../../../../../classroom/domain/usecases/list_classrooms_usecase.dart';
+import '../../../../domain/usecases/create_student_enrollment_usecase.dart';
+import '../../../../domain/usecases/update_student_enrollment_usecase.dart';
 import 'enrollment_classroom_states.dart';
 
 class EnrollmentClassroomBloc extends Cubit<EnrollmentClassroomState> {

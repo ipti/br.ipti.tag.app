@@ -5,6 +5,14 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 import '../../classroom/domain/usecases/list_classrooms_usecase.dart';
+import '../domain/usecases/create_documents_and_address.dart';
+import '../domain/usecases/create_student_enrollment_usecase.dart';
+import '../domain/usecases/create_student_usecase.dart';
+import '../domain/usecases/load_student_docs_usecase.dart';
+import '../domain/usecases/load_student_enrollment_usecase.dart';
+import '../domain/usecases/update_address_documents_usecase.dart';
+import '../domain/usecases/update_student_enrollment_usecase.dart';
+import '../domain/usecases/update_student_usecase.dart';
 import 'bloc/enrollment_bloc.dart';
 import 'enrollment_page.dart';
 import 'form/address/bloc/enrollment_address_bloc.dart';
