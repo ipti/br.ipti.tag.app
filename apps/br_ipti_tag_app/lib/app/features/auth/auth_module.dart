@@ -19,20 +19,14 @@ class AuthModule extends Module {
   final List<Bind> binds = [
     // usecases
     Bind.singleton(
-          (i) => AuthLoginUsecase(
+      (i) => AuthLoginUsecase(
         i.get<AuthRepositoryImpl>(),
       ),
-      export: true,
     ),
-    Bind.singleton(
-          (i) => VerifyAuthUsecase(
-        i.get<AuthRepositoryImpl>(),
-      ),
-      export: true,
-    ),
+
     // bloc
     Bind.singleton(
-          (i) => LoginBloc(
+      (i) => LoginBloc(
         i.get<AuthLoginUsecase>(),
         i.get<PackageInfoService>(),
       ),

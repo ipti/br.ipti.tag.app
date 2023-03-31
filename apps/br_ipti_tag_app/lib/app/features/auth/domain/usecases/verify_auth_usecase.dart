@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-// import 'package:tag_sdk/src/core/defaults/params.dart';
 
 class VerifyAuthUsecase implements Usecase<String, EmptyParams> {
   VerifyAuthUsecase(this._repository);
