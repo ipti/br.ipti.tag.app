@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'domain/usecases/list_ingredients_stock_usecase.dart';
 import 'domain/usecases/list_meals_menu_usecase.dart';
 import 'presentation/meals_menu/details_meal/details_meal_page.dart';
 import 'presentation/meals_menu/list_meals/bloc/list_meals_bloc.dart';
@@ -18,6 +19,18 @@ class MealsModule extends Module {
 
   @override
   final List<Bind> binds = [
+    Bind.singleton(
+          (i) => ListMealsMenuUsecase(
+        i.get<MealsMenuRepositoryImpl>(),
+      ),
+    ),
+
+    Bind.singleton(
+          (i) => ListIngredientUsecase(
+        i.get<IngredientRepositoryImpl>(),
+      ),
+    ),
+
     Bind.factory(
       (i) => MealsMenuEntityMapper(),
     ),

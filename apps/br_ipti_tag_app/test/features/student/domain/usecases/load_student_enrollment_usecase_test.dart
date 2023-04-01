@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/load_student_enrollment_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

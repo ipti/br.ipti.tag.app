@@ -42,60 +42,6 @@ class StudentSDKModule extends Module {
       ),
       export: true,
     ),
-    // Usecases
-    Bind.factory(
-      (i) => ListStudentsUsecase(
-        i.get<StudentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => UpdateStudentUsecase(
-        i.get<StudentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => CreateStudentsUsecase(
-        i.get<StudentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => LoadStudentEnrollmentUsecase(
-        i.get<StudentEnrollmentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => CreateStudentEnrollmentUsecase(
-        i.get<StudentEnrollmentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => UpdateStudentEnrollmentUsecase(
-        i.get<StudentEnrollmentRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => LoadStudentDocsUsecase(
-        i.get<StudentDocumentsAddressRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => UpdateDocumentsAndAddressUsecase(
-        i.get<StudentDocumentsAddressRepository>(),
-      ),
-      export: true,
-    ),
-    Bind.factory(
-      (i) => AddDocumentsAndAddressToStudentUsecase(
-        i.get<StudentDocumentsAddressRepository>(),
-      ),
-      export: true,
-    ),
+
   ];
 }

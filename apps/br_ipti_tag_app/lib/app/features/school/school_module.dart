@@ -16,6 +16,18 @@ class SchoolModule extends Module {
 
   @override
   List<Bind<Object>> get binds => [
+        // UseCases
+        Bind.singleton(
+          (i) => EditSchoolUsecase(
+            i.get<SchoolRepositoryImpl>(),
+          ),
+        ),
+        Bind.singleton(
+          (i) => ShowSchoolUsecase(
+            i.get(),
+          ),
+        ),
+
         // Datasources
         Bind.singleton((i) => SchoolRemoteDataSource(
               i.get(),

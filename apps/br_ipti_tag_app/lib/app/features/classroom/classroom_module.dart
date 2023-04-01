@@ -13,6 +13,7 @@ import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
 import '../teacher/domain/usecases/list_teachers_usecase.dart';
+import '../teacher/teacher_module.dart';
 import 'domain/usecases/create_classroom_usecase.dart';
 import 'domain/usecases/create_instructor_teaching_data_usecase.dart';
 import 'domain/usecases/delete_classroom_usecase.dart';
@@ -29,7 +30,7 @@ class ClassroomModule extends Module {
         AppModule(),
         EdcensoDiciplinesSDKModule(),
         ClassroomSDKModule(),
-        TeacherSDKModule(),
+        TeacherModule(),
       ];
 
   @override
@@ -37,47 +38,47 @@ class ClassroomModule extends Module {
     // List
     Bind.singleton(
           (i) => ListClassroomsUsecase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
 
     Bind.singleton(
           (i) => ListInstructorsTeachingDataUseCase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
 
     // Create
     Bind.singleton(
           (i) => CreateClassroomUsecase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
     Bind.singleton(
           (i) => CreateInstructorTeachingDataUseCase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
 
     //UpdateDelete
     Bind.singleton(
           (i) => UpdateClassroomUsecase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
     Bind.singleton(
           (i) => DeleteClassroomUsecase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
     Bind.singleton(
           (i) => CreateInstructorTeachingDataUseCase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
     Bind.singleton(
           (i) => UpdateInstructorTeachingDataUseCase(
-        i.get<ClassroomRepository>(),
+        i.get<ClassroomRepositoryImpl>(),
       ),
     ),
 

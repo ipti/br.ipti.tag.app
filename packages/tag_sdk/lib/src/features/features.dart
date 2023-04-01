@@ -8,6 +8,7 @@ export 'auth/data/repositories/auth_repository.dart';
 export 'auth/domain/repositories/auth_repository_impl.dart';
 export 'auth/data/models/auth_school.dart';
 export '../core/failures/failures.dart';
+export 'student/domain/entities/create_student_params.dart';
 // export 'auth/domain/entities/auth_login.dart';
 // export 'auth/domain/entities/auth_response.dart';
 // export 'auth/domain/entities/user.dart';

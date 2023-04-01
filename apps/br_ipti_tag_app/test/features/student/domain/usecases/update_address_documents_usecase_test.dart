@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_address_documents_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
