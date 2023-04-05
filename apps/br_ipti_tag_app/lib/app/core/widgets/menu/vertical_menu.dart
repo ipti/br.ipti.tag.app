@@ -61,6 +61,13 @@ class TagVerticalMenu extends StatelessWidget {
         ),
       ),
       TagMenuItemProps(
+        path: AppRoutes.classPlan,
+        icon: TagIcon(
+          defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
+          disabledVersionPath: FilePaths.ICON_APPLE_GREY_SVG,
+        ),
+      ),
+      TagMenuItemProps(
         path: AppRoutes.logout,
         icon: TagIcon(
           defaultVersionPath: FilePaths.ICON_APPLE_BLUE_SVG,
