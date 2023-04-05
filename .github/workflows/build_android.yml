@@ -61,7 +61,7 @@ jobs:
 
       - name: Setup Melos      
         run: |
-          flutter pub global activate melos
+          flutter pub global activate melos 2.9.0
 
       - name: 📦 Melos bootstrap
         run: flutter pub global run melos bootstrap
