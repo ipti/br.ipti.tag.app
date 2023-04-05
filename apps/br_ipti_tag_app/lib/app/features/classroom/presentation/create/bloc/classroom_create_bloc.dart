@@ -7,7 +7,7 @@ import 'classroom_states.dart';
 
 final _initialState = ClassroomCreateFormState(
   name: "",
-  stageVsModalityFk: 1,
+  stageVsModalityFk: "1",
   startTime: DateTime.now(),
   endTime: DateTime.now(),
   modalityId: 0,

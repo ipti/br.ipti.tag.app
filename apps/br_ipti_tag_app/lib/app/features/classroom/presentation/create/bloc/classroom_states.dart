@@ -50,7 +50,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
   final bool weekDaysThursday;
   final bool weekDaysFriday;
   final bool weekDaysSaturday;
-  final int stageVsModalityFk;
+  final String stageVsModalityFk;
   final int? schoolYear;
   final bool schooling;
   final bool complementaryActivity;
@@ -83,7 +83,7 @@ class ClassroomCreateFormState extends ClassroomCreateState {
     bool? weekDaysThursday,
     bool? weekDaysFriday,
     bool? weekDaysSaturday,
-    int? stageVsModalityFk,
+    String? stageVsModalityFk,
     int? schoolYear,
     bool? schooling,
     bool? complementaryActivity,
