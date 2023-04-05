@@ -15,7 +15,7 @@ class StudentEnrollment with _$StudentEnrollment {
     required int classroom,
     String? enrollmentId,
     int? unifiedClass,
-    int? edcensoStageVsModality,
+    String? edcensoStageVsModality,
     int? multi,
     int? anotherScholarizationPlace,
     bool? publicTransport,

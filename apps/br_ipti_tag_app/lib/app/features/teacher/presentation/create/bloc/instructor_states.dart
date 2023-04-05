@@ -67,7 +67,7 @@ class InstructorFormState extends Equatable {
   final bool deficiencyTypeBlindness;
   final String? filiation2;
   final String? filiation1;
-  final int? filiation;
+  final bool? filiation;
   final String? nis;
   final String? email;
   final String? inepId;
@@ -320,7 +320,7 @@ class InstructorFormState extends Equatable {
     bool? deficiencyTypeBlindness,
     String? filiation2,
     String? filiation1,
-    int? filiation,
+    bool? filiation,
     String? nis,
     String? email,
     String? inepId,

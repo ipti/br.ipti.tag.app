@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tag_sdk/src/features/auth/data/models/user_model.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
 import 'package:tag_sdk/src/features/school/domain/entities/school.dart';
+
+import '../../models/auth_school.dart';
 
 const KEY_SESSION_TOKEN = 'SESSION_TOKEN';
 const KEY_SESSION_SCHOOL_YEAR = 'SESSION_SCHOOL_YEAR';
@@ -13,7 +13,7 @@ const keySessionUser_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class AuthLocalDataSource {
-  Future<User> getCurrentUser();
+  Future<UserModel> getCurrentUser();
   Future<bool> setCurrentUser(UserModel user);
 
   Future<String> getToken();
@@ -35,7 +35,7 @@ abstract class AuthLocalDataSource {
 
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   @override
-  Future<User> getCurrentUser() async {
+  Future<UserModel> getCurrentUser() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJsonString = sharedPreferences.getString(

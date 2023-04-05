@@ -49,7 +49,7 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
         controller.add(
           UpdateClassroom(
             edcensoStageVsModalityFk:
-                widget.classroomEntity?.edcensoStageVsModalityFk ?? 1,
+                widget.classroomEntity?.edcensoStageVsModalityFk ?? '1',
             name: widget.classroomEntity?.name ?? 'NoName',
             startTime:
                 (widget.classroomEntity?.startTime ?? DateTime.now().toString())

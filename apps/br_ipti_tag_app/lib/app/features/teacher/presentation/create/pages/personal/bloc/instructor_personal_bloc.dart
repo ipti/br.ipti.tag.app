@@ -36,7 +36,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
 
   final filiationItems = Map.fromEntries(
     FilliationType.values.map(
-      (e) => MapEntry(e.id, e.name),
+      (e) => MapEntry(e.hasFiliation, e.name),
     ),
   );
 
@@ -55,7 +55,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
       birthdayDate: instructor.birthdayDate,
       sex: instructor.sex,
       colorRace: instructor.colorRace,
-      filiation: instructor.filiation,
+      filiation: instructor.filiation??false,
       nationality: instructor.nationality,
       deficiency: instructor.deficiency,
       deficiencyTypeBlindness: instructor.deficiencyTypeBlindness,
@@ -95,7 +95,7 @@ class InstructorPersonalBloc extends Cubit<InstructorPersonalState> {
   void setColorRace(int? value) => emit(
         state.copyWith(colorRace: value),
       );
-  void setFiliation(int? value) => emit(
+  void setFiliation(bool? value) => emit(
         state.copyWith(filiation: value),
       );
   void setNationality(int? value) => emit(

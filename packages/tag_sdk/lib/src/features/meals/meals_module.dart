@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/meals/domain/repositories/ingredient_repository.dart';
 
 import 'data/datasources/local/ingredient_dumb_datasource.dart';
 import 'data/datasources/local/meals_menu_dumb_datasource.dart';
@@ -8,9 +7,6 @@ import 'data/datasources/remote/meals_remote_datasource.dart';
 import 'data/datasources/remote/stock_remote_datasource.dart';
 import 'data/repositories/ingredient_repository_impl.dart';
 import 'data/repositories/meals_menu_repository_impl.dart';
-import 'domain/repositories/meals_menu_repository.dart';
-import 'domain/usecases/list_ingredients_stock_usecase.dart';
-import 'domain/usecases/list_meals_menu_usecase.dart';
 import 'mappers/meal_menu_api_to_entity.dart';
 
 class MealsSDKModule extends Module {
@@ -39,13 +35,6 @@ class MealsSDKModule extends Module {
       ),
       export: true,
     ),
-    Bind.singleton(
-      (i) => ListMealsMenuUsecase(
-        i.get<MealsMenuRepository>(),
-      ),
-      export: true,
-    ),
-
     // Stock
     Bind.singleton(
       (i) => IngredientDumbDataSourceImpl(),
@@ -61,13 +50,6 @@ class MealsSDKModule extends Module {
       (i) => IngredientRepositoryImpl(
         dumbDataSource: i.get<IngredientDumbDataSource>(),
         remoteDataSource: i.get<IngredientRemoteDataSource>(),
-      ),
-      export: true,
-    ),
-
-    Bind.singleton(
-      (i) => ListIngredientUsecase(
-        i.get<IngredientRepository>(),
       ),
       export: true,
     ),

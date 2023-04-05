@@ -4,7 +4,8 @@ import 'package:br_ipti_tag_app/app/core/util/util.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
+import '../../../classroom/domain/usecases/list_classrooms_usecase.dart';
+import '../../../student/domain/usecases/list_student_usecase.dart';
 import 'frequency_state.dart';
 
 class FrequencyCubit extends Cubit<FrequencyState> {

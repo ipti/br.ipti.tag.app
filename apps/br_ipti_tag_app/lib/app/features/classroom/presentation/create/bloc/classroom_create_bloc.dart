@@ -2,12 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
+import '../../../domain/usecases/create_classroom_usecase.dart';
 import 'classroom_create_events.dart';
 import 'classroom_states.dart';
 
 final _initialState = ClassroomCreateFormState(
   name: "",
-  stageVsModalityFk: 1,
+  stageVsModalityFk: "1",
   startTime: DateTime.now(),
   endTime: DateTime.now(),
   modalityId: 0,

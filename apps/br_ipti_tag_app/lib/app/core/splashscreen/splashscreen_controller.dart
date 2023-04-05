@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
+import '../../features/auth/domain/usecases/verify_auth_usecase.dart';
 
 class SplashScreenController {
   final VerifyAuthUsecase _verifyAuthUsecase;

@@ -2,6 +2,9 @@ import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delet
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../../teacher/domain/usecases/list_teachers_usecase.dart';
+import '../../../../domain/usecases/list_instructors_teaching_data_usecase.dart';
+
 final initialState = UpdateTeacherStateLoading();
 
 class UpdateTeacherBloc extends Cubit<UpdateTeacherState> {

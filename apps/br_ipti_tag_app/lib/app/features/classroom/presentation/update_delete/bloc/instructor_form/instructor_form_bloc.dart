@@ -1,7 +1,9 @@
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/update_delete/bloc/instructor_form/instructor_form_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
-
+import '../../../../../teacher/domain/usecases/list_teachers_usecase.dart';
+import '../../../../domain/usecases/create_instructor_teaching_data_usecase.dart';
+import '../../../../domain/usecases/update_instructor_teaching_data_usecase.dart';
 import 'instructor_form_events.dart';
 
 class InstructorFormBloc

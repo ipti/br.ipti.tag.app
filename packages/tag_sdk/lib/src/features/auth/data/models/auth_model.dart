@@ -1,12 +1,15 @@
 import 'dart:convert';
 
 import 'package:tag_sdk/src/features/auth/data/models/user_model.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_response.dart';
 
-class AuthModel extends AuthResponse {
+class AuthModel{
+  String? accessToken;
+  String? schoolYear;
+  UserModel? user;
+
   AuthModel({
-    super.accessToken,
-    super.user,
+    this.accessToken,
+    this.user,
   });
 
   AuthModel copyWith({
@@ -15,14 +18,14 @@ class AuthModel extends AuthResponse {
   }) {
     return AuthModel(
       accessToken: accessToken ?? this.accessToken,
-      user: user ?? this.user as UserModel?,
+      user: user ?? this.user,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'access_token': accessToken,
-      'user': (user as UserModel?)?.toMap(),
+      'user': user?.toMap(),
     };
   }
 

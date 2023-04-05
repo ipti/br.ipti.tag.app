@@ -50,7 +50,7 @@ class UpdateClassroom extends ClassroomUpdateDeleteEvent {
     this.aeePortuguese = false,
     this.aeeAutonomousLife = false,
   });
-  final int edcensoStageVsModalityFk;
+  final String edcensoStageVsModalityFk;
   final String name;
   final DateTime startTime;
   final DateTime endTime;

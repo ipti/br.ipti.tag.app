@@ -130,7 +130,7 @@ class _PersonalDataFormPageState extends State<PersonalDataFormPage> {
                     ),
                     Flexible(
                       child: _FiliationField(
-                        filiation: 1,
+                        filiation: state.filiation,
                         controller: controller,
                       ),
                     ),
@@ -244,19 +244,19 @@ class _FiliationField extends StatelessWidget {
     this.filiation,
   });
 
-  final int? filiation;
+  final bool? filiation;
   final InstructorPersonalBloc controller;
 
   @override
   Widget build(BuildContext context) {
-    return TagDropdownField<int>(
+    return TagDropdownField<bool>(
       key: const Key('INSTRUCTOR_PERSONAL_FILIATION'),
       label: 'Filiação',
       hint: "Selecione a filiação",
       items: controller.filiationItems,
       onChanged: controller.setFiliation,
       value: filiation,
-      validator: requiredDropdownValidator<int?>(),
+      validator: requiredDropdownValidator<bool?>(),
     );
   }
 }
