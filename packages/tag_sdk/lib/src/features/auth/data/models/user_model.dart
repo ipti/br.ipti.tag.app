@@ -1,16 +1,20 @@
 import 'dart:convert';
-
 import 'package:collection/collection.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_school.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
+import 'auth_school.dart';
 
-class UserModel extends User {
+class UserModel {
+  final int? id;
+  final String? name;
+  final List<AuthSchool>? schools;
+  final String? username;
+  final String? role;
+
   UserModel({
-    super.id,
-    super.name,
-    super.schools,
-    super.username,
-    super.active,
+    this.id,
+    this.name,
+    this.schools,
+    this.username,
+    this.role,
   });
 
   UserModel copyWith({
@@ -18,14 +22,14 @@ class UserModel extends User {
     String? name,
     List<AuthSchool>? schools,
     String? username,
-    int? active,
+    String? role,
   }) {
     return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       schools: schools ?? this.schools,
       username: username ?? this.username,
-      active: active ?? this.active,
+      role: role ?? this.role,
     );
   }
 
@@ -39,7 +43,7 @@ class UserModel extends User {
           )
           .toList(),
       'username': username,
-      'active': active,
+      'role': role,
     };
   }
 
@@ -55,7 +59,7 @@ class UserModel extends User {
         ),
       ),
       username: map['username'],
-      active: map['active'],
+      role: map['role'],
     );
   }
 
@@ -69,7 +73,7 @@ class UserModel extends User {
 
   @override
   String toString() {
-    return '''UserModel(id: $id, name: $name, schools: $schools, username: $username, active $active)''';
+    return '''UserModel(id: $id, name: $name, schools: $schools, username: $username, role $role)''';
   }
 
   @override
@@ -77,20 +81,11 @@ class UserModel extends User {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other is UserModel &&
-        other.id == id &&
-        other.name == name &&
-        listEquals(other.schools, schools) &&
-        other.username == username &&
-        other.active == active;
+    return other is UserModel && other.id == id && other.name == name && listEquals(other.schools, schools) && other.username == username && other.role == role;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-        name.hashCode ^
-        schools.hashCode ^
-        username.hashCode ^
-        active.hashCode;
+    return id.hashCode ^ name.hashCode ^ schools.hashCode ^ username.hashCode ^ role.hashCode;
   }
 }

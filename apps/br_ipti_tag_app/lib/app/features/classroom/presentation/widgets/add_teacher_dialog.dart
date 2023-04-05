@@ -109,7 +109,7 @@ class _AddTeacherDialogState extends State<AddTeacherDialog> {
                         TagDropdownField<int>(
                           items: Map.fromEntries(
                             state.instructors!.map(
-                              (e) => MapEntry(e.id!, e.name),
+                              (e) => MapEntry(e.id!, e.name??""),
                             ),
                           ),
                           hint: 'Selecione',

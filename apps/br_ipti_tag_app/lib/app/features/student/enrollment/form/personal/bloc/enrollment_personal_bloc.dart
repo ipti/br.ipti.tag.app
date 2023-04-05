@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../domain/usecases/create_student_usecase.dart';
+import '../../../../domain/usecases/update_student_usecase.dart';
 import 'enrollment_personal_states.dart';
 
 class EnrollmentPersonalBloc extends Cubit<EnrollmentPersonalState> {

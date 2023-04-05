@@ -5,6 +5,9 @@ import 'package:br_ipti_tag_app/app/features/school/presentation/pages/school_ed
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'domain/usecases/edit_school_usecase.dart';
+import 'domain/usecases/show_school_usecase.dart';
+
 class SchoolModule extends Module {
   @override
   List<Module> get imports => [
@@ -13,6 +16,18 @@ class SchoolModule extends Module {
 
   @override
   List<Bind<Object>> get binds => [
+        // UseCases
+        Bind.singleton(
+          (i) => EditSchoolUsecase(
+            i.get<SchoolRepositoryImpl>(),
+          ),
+        ),
+        Bind.singleton(
+          (i) => ShowSchoolUsecase(
+            i.get(),
+          ),
+        ),
+
         // Datasources
         Bind.singleton((i) => SchoolRemoteDataSource(
               i.get(),

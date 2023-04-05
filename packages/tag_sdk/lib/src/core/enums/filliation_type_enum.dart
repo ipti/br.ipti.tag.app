@@ -8,6 +8,10 @@ extension FilliationTypeExtension on FilliationType {
     return index + 1;
   }
 
+  bool get hasFiliation {
+    return this != FilliationType.NAO_POSSUI;
+  }
+
   String get name {
     switch (this) {
       case FilliationType.NAO_POSSUI:

@@ -12,7 +12,8 @@ import 'package:tag_sdk/src/features/classroom/data/model/instructor_teaching_da
 import 'package:tag_sdk/src/features/classroom/data/model/instructor_teaching_data_model.dart';
 import 'package:tag_sdk/src/features/classroom/data/model/instructor_teaching_data_update_model.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
-import 'package:tag_sdk/src/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
+
+import '../model/list_instructors_teaching_data_params.dart';
 
 class ClassroomRemoteDataSource {
   final RouterAPI _httpClient;

@@ -1,5 +1,5 @@
 import 'package:tag_network/tag_network.dart';
-import 'package:tag_sdk/src/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
+import 'package:tag_sdk/src/features/classroom/data/model/list_instructors_teaching_data_params.dart';
 
 class GetInstructorsTeachingDataEndPoint extends EndPointAPI {
   final ListInstructorsTeachingDataParams instructorTeachingDataQuery;

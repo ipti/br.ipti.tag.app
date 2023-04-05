@@ -8,7 +8,8 @@ import 'package:tag_sdk/src/features/classroom/domain/entities/instructor_teachi
 import 'package:tag_sdk/src/features/classroom/domain/entities/instructors_teaching_data_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/entities/update_instructor_teaching_data_entity.dart';
 import 'package:tag_sdk/src/features/classroom/domain/repositories/classroom_repository.dart';
-import 'package:tag_sdk/src/features/classroom/domain/usecases/list_instructors_teaching_data_usecase.dart';
+
+import '../model/list_instructors_teaching_data_params.dart';
 
 class ClassroomRepositoryImpl extends ClassroomRepository {
   final ClassroomRemoteDataSource classroomRemoteDataSource;

@@ -1,11 +1,11 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
-import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 import 'package:tag_network/tag_network.dart';
+import 'package:tag_sdk/tag_sdk.dart';
 
 import 'core/network/custom_dio/custom_dio.dart';
 import 'core/plataform/pkg_info_service.dart';
@@ -42,6 +42,7 @@ class AppModule extends Module {
         Bind.singleton(
           (i) => PackageInfoServiceImpl(),
         ),
+
       ];
 
   // Provide all the routes for your module
