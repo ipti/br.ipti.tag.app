@@ -47,8 +47,25 @@ class ListMealsPageState extends State<ListMealsPage> {
     return BlocBuilder<ListMealsBloc, ListMealsState>(
       bloc: controller,
       builder: (context, state) {
-        List<Widget> tabs = [];
-        List<Widget> tabViews = [];
+        List<Widget> tabs = [
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+                Text(
+                  DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
+                  style: const TextStyle(color: TagColors.colorBaseInkLight),
+                ),
+              ],
+            ),
+          ),
+        ];
+        List<Widget> tabViews = [
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ];
 
         if (state is LoadedState) {
           tabs = state.mealsOfDay
@@ -62,7 +79,8 @@ class ListMealsPageState extends State<ListMealsPage> {
                           DateFormat('dd/MM', 'pt_BR')
                               .format(DateTime.parse(e.fullnameDay!)),
                           style: const TextStyle(
-                              color: TagColors.colorBaseInkLight,),
+                            color: TagColors.colorBaseInkLight,
+                          ),
                         ),
                       ],
                     ),

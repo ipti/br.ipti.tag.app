@@ -39,7 +39,7 @@ class SessionServiceImpl extends SessionService {
       keySessionUser,
     );
 
-    if (userJsonString == null) throw Exception("Não há escolas dispoíveis");
+    if (userJsonString == null) throw Exception("Usuário não está logado");
 
     final result = UserModel.fromJson(userJsonString);
 
