@@ -21,53 +21,54 @@ class StudentModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        StudentSDKModule(),
       ];
 
   @override
   final List<Bind> binds = [
     // Usecases
     Bind.factory(
-          (i) => ListStudentsUsecase(
+      (i) => ListStudentsUsecase(
         i.get<StudentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => UpdateStudentUsecase(
+      (i) => UpdateStudentUsecase(
         i.get<StudentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => CreateStudentsUsecase(
+      (i) => CreateStudentsUsecase(
         i.get<StudentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => LoadStudentEnrollmentUsecase(
+      (i) => LoadStudentEnrollmentUsecase(
         i.get<StudentEnrollmentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => CreateStudentEnrollmentUsecase(
+      (i) => CreateStudentEnrollmentUsecase(
         i.get<StudentEnrollmentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => UpdateStudentEnrollmentUsecase(
+      (i) => UpdateStudentEnrollmentUsecase(
         i.get<StudentEnrollmentRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => LoadStudentDocsUsecase(
+      (i) => LoadStudentDocsUsecase(
         i.get<StudentDocumentsAddressRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => UpdateDocumentsAndAddressUsecase(
+      (i) => UpdateDocumentsAndAddressUsecase(
         i.get<StudentDocumentsAddressRepositoryImpl>(),
       ),
     ),
     Bind.factory(
-          (i) => AddDocumentsAndAddressToStudentUsecase(
+      (i) => AddDocumentsAndAddressToStudentUsecase(
         i.get<StudentDocumentsAddressRepositoryImpl>(),
       ),
     ),

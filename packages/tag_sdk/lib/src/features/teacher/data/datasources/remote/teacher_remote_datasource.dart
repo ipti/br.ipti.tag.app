@@ -16,8 +16,6 @@ class TeacherRemoteDataSource {
       route: GetInstructorEndPoint(),
     );
 
-    print(response.data);
-
     final responseData = response.data ?? [];
 
     final mappedList = responseData.map(

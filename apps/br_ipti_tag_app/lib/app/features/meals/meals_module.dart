@@ -15,46 +15,31 @@ class MealsModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        MealsSDKModule(),
       ];
 
   @override
   final List<Bind> binds = [
     Bind.singleton(
-          (i) => ListMealsMenuUsecase(
+      (i) => ListMealsMenuUsecase(
         i.get<MealsMenuRepositoryImpl>(),
       ),
     ),
-
     Bind.singleton(
-          (i) => ListIngredientUsecase(
+      (i) => ListIngredientUsecase(
         i.get<IngredientRepositoryImpl>(),
       ),
     ),
-
-    Bind.factory(
-      (i) => MealsMenuEntityMapper(),
-    ),
     Bind.singleton(
-      (i) => MealsMenuDumbDataSourceImpl(),
-    ),
-    Bind.singleton(
-      (i) => MealsMenuRemoteDataSource(
+      (i) => ListMealsMenuUsecase(
         i.get(),
       ),
     ),
-    Bind.singleton(
-      (i) => MealsMenuRepositoryImpl(
-        dumbDataSource: i.get(),
-        remoteDataSource: i.get(),
-        mapper: i.get(),
+    BlocBind.singleton(
+      (i) => ListMealsBloc(
+        i.get(),
       ),
     ),
-    Bind.singleton((i) => ListMealsMenuUsecase(
-          i.get(),
-        )),
-    BlocBind.singleton((i) => ListMealsBloc(
-          i.get(),
-        )),
   ];
 
   @override

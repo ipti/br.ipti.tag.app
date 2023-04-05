@@ -28,13 +28,20 @@ class ClassroomModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        TeacherSDKModule(),
         EdcensoDiciplinesSDKModule(),
         ClassroomSDKModule(),
-        TeacherModule(),
       ];
 
   @override
   final List<Bind> binds = [
+    // usecases
+    Bind.singleton(
+          (i) => ListInstructorsUsecase(
+        i.get<InstructorRepositoryImpl>(),
+      ),
+    ),
+
     // List
     Bind.singleton(
           (i) => ListClassroomsUsecase(

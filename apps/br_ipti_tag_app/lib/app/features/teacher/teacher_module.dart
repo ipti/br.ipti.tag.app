@@ -13,19 +13,17 @@ class TeacherModule extends Module {
   @override
   List<Module> get imports => [
         AppModule(),
+        TeacherSDKModule(),
       ];
 
   @override
   final List<Bind> binds = [
     // datasources
-    Bind.factory((i) => TeacherRemoteDataSource(
-      i.get<RouterAPI>(),
-    )),
-
-    // repositories
-    Bind.factory((i) => InstructorRepositoryImpl(
-      i.get<TeacherRemoteDataSource>(),
-    )),
+    Bind.factory(
+      (i) => TeacherRemoteDataSource(
+        i.get<RouterAPI>(),
+      ),
+    ),
 
     // usecases
     Bind.factory(
@@ -35,9 +33,11 @@ class TeacherModule extends Module {
     ),
 
     // list
-    BlocBind.factory((i) => TeacherListBloc(
-          i.get<ListInstructorsUsecase>(),
-        )),
+    BlocBind.factory(
+      (i) => TeacherListBloc(
+        i.get<ListInstructorsUsecase>(),
+      ),
+    ),
   ];
 
   @override
