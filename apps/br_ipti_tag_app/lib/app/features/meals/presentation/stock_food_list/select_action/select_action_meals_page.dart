@@ -21,6 +21,8 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
 
   @override
   Widget build(BuildContext context) {
+    const labelText = TextStyle(color: TagColors.colorBaseInkLight);
+
     return TagScaffold(
       menu: const TagVerticalMenu(),
       appBar: const CustomAppBar(),
@@ -34,6 +36,10 @@ class SelectActionMealsPageState extends State<SelectActionMealsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text("Verifique o estoque de alimentos da escola", style: labelText),
+          ),
             _SelectActionNavigatorItem(
               title: "Refeições",
               subtitle: "Cardápio semanal da escola",

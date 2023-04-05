@@ -1,22 +1,23 @@
+import 'package:br_ipti_tag_app/app/features/meals/presentation/stock/list_items_stock/stock_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-class IngredientItem extends StatelessWidget {
-  const IngredientItem({
-    super.key,
-    required this.ingredient,
-  });
+class IngredientStock extends StatelessWidget {
+  
+ 
 
-  final Ingredient ingredient;
+  final Ingredients ingredient;
+
+  const IngredientStock({super.key, required this.ingredient});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Modular.to.pushNamed("recomendacoes", arguments: {
-        'mealComponent': "",
-      }),
+      onTap: () => Modular.to.pushNamed("ingrediente", arguments: 
+         ingredient,
+      ),
       child: TagBox(
         minHeight: 48,
         background: TagColors.colorBaseProductLighter,
@@ -29,10 +30,7 @@ class IngredientItem extends StatelessWidget {
             ingredient.name,
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          trailing: const Icon(
-            Icons.arrow_forward_ios,
-            color: TagColors.colorBaseInkNormal,
-          ),
+          trailing: Text(ingredient.stock.toString(), style: const TextStyle(fontWeight: FontWeight.bold),),
         ),
       ),
     );

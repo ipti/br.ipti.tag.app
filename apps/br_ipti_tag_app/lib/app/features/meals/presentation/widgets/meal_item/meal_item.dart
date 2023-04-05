@@ -69,7 +69,6 @@ class _Card extends StatelessWidget {
                   clipBehavior: Clip.antiAlias,
                   children: [
                     Flexible(
-                      fit: FlexFit.tight,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: _MealTypeLabel(
@@ -78,7 +77,6 @@ class _Card extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      fit: FlexFit.tight,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: _LabelInfoTurnAndType(text: turn),
@@ -101,11 +99,14 @@ class _Card extends StatelessWidget {
                   height: 30,
                   child: Row(
                     children: [
-                      const Text(
-                        "Ingredientes ",
-                        style: TextStyle(
-                          color: TagColors.colorBaseInkLight,
-                          fontWeight: FontWeight.w400,
+                      const Padding(
+                        padding: EdgeInsets.only(left: 4.0),
+                        child: Text(
+                          "Ingredientes ",
+                          style: TextStyle(
+                            color: TagColors.colorBaseInkLight,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                       Text(
@@ -162,6 +163,7 @@ class _MealTypeLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return TagBox(
       minHeight: 28,
+      minWidth: 28,
       background: TagColors.colorBaseProductLightActive,
       child: Text(
         mealType!,
