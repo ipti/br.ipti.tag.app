@@ -11,6 +11,8 @@ import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 import '../cubit/home_state.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void didChangeDependencies() {
+    initializeDateFormatting();
     super.didChangeDependencies();
   }
 

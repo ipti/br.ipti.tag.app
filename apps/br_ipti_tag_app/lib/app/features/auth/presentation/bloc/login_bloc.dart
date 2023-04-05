@@ -65,7 +65,7 @@ class LoginBloc extends Cubit<LoginState> {
           ),
         );
       },
-      (auth) => Modular.to.pushReplacementNamed("/turmas/"),
+      (auth) => Modular.to.pushReplacementNamed("/home/"),
     );
   }
 }
