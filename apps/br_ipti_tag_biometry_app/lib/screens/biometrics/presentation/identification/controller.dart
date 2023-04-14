@@ -54,7 +54,7 @@ class ControllerIdentification implements Disposable {
       if (state["event"] == "connect") {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       }
-      if (data == "timeout") {
+      else if (data == "timeout") {
         // log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
@@ -62,7 +62,7 @@ class ControllerIdentification implements Disposable {
         _biometricsService.connect();
         //startIdentification();
       }
-      if (data == "ping timeout") {
+      else if (data == "ping timeout") {
         // log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
@@ -70,7 +70,8 @@ class ControllerIdentification implements Disposable {
         restart();
         //startIdentification();
       }
-      if (data != null) {
+      else if (data != null) {
+        print("DATA: $data");
         if (data['id'] == BioEvents.waitingFinger.code) {
           addSignResponse(
               currentState.copyWith(event: BioEvents.waitingFinger));
@@ -98,7 +99,7 @@ class ControllerIdentification implements Disposable {
             }
           } catch (e) {
             stateSignStream.sink.addError(Exception('Aluno não encontrado'));
-            
+
           }
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
           addSignResponse(

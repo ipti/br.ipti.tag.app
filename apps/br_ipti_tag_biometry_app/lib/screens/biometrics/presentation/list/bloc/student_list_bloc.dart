@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../student/domain/usecases/list_student_usecase.dart';
 import 'student_list_states.dart';
 
 class StudentListBloc extends Cubit<StudentListState> {

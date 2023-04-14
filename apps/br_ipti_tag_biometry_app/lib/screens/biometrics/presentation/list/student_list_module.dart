@@ -4,6 +4,8 @@ import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/list/st
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../student/domain/usecases/list_student_usecase.dart';
+
 class StudentListModule extends Module {
   @override
   List<Module> get imports => [
@@ -13,6 +15,12 @@ class StudentListModule extends Module {
 
   @override
   final List<Bind> binds = [
+    Bind.factory(
+          (i) => ListStudentsUsecase(
+        i.get<StudentRepositoryImpl>(),
+      ),
+    ),
+
     // list
     Bind.factory(
       (i) => StudentListBloc(

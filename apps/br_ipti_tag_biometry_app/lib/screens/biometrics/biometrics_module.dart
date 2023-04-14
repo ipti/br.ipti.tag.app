@@ -8,7 +8,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
-const _urlWebSocket = "http://192.168.15.26:5000";
+import '../auth/domain/usecases/logout_usecase.dart';
+
+const _urlWebSocket = "http://127.0.0.1:5000";
 
 class BiometricsModule extends Module {
   @override
@@ -27,8 +29,7 @@ class BiometricsModule extends Module {
             .enableForceNew()
             .setTimeout(300)
             .enableForceNewConnection()
-            .setExtraHeaders(
-                {'Connection': 'Upgrade', 'Origin': '127.0.0.1'}) // optional
+            .setExtraHeaders({'Connection': 'Upgrade', 'Origin': '127.0.0.1'}) // optional
             .setTransports(['websocket']).build())),
 
     Bind.factory(
@@ -42,7 +43,7 @@ class BiometricsModule extends Module {
 
     // bloc
     Bind.singleton<LogoutUsecase>(
-      (i) => LogoutUsecase(i.get<AuthRepository>()),
+      (i) => LogoutUsecase(i.get<AuthRepositoryImpl>()),
     ),
   ];
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../domain/usecases/login_usecase.dart';
 import 'login_state.dart';
 
 class LoginBloc extends Cubit<LoginState> {

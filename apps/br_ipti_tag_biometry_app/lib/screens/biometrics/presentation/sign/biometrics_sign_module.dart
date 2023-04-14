@@ -6,6 +6,9 @@ import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../auth/domain/usecases/logout_usecase.dart';
+import '../../../student/domain/usecases/load_student_usecase.dart';
+
 class BiometricsSignModule extends Module {
   @override
   List<Module> get imports => [

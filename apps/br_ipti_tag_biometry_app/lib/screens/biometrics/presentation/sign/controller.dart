@@ -7,6 +7,8 @@ import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../student/domain/usecases/load_student_usecase.dart';
+
 class ControllerSign {
   final BiometricsService biometricsService;
   final AuthRepository authRepository;
