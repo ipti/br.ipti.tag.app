@@ -55,6 +55,14 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                             biometricsController.restart(),
                             biometricsController.dateBiometrics(),
                           })),
+                ),Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TagButton(
+                      text: 'Cancelar busca',
+                      onPressed: (() => {
+                            biometricsController.restart(),
+                            biometricsController.cancelIdentification(),
+                          })),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -86,7 +94,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                     child: Text(snapshot.error.toString()),
                   );
                 }
-                log(snapshot.data.toString());
+                log("SchoolEntrace: ${snapshot.data.toString()}");
                 log(biometricsController.timeout().toString());
                 if (snapshot.data == null) {
                   return Center(

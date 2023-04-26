@@ -22,7 +22,7 @@ class AuthLoginUsecase implements Usecase<AuthModel, LoginParams> {
   }
 
   Future _cacheSessionValues(AuthModel response) async {
-    final service = Modular.get<SessionService>();
+    final service = Modular.get<SessionServiceImpl>();
 
     final token = response.accessToken;
     final year = response.schoolYear;

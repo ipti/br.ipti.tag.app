@@ -7,16 +7,13 @@ import '../../../../student/domain/usecases/list_student_usecase.dart';
 import 'student_list_states.dart';
 
 class StudentListBloc extends Cubit<StudentListState> {
-  StudentListBloc(this._listClassromsUsecase)
-      : super(const StudentListState(status: Status.initial, students: []));
+  StudentListBloc(this._listClassromsUsecase) : super(const StudentListState(status: Status.initial, students: []));
 
   final ListStudentsUsecase _listClassromsUsecase;
   final session = Modular.get<AuthRepository>();
 
   void startLoading() {
-    emit(
-      state.copyWith(status: Status.loading),
-    );
+    emit(state.copyWith(status: Status.loading));
   }
 
   Future<void> fetchListStudents() async {
@@ -24,31 +21,18 @@ class StudentListBloc extends Cubit<StudentListState> {
 
     final currentSchool = await session.getCurrentUserSchools();
 
+    currentSchool.fold((l) => print("Erro: ${l.message}"), (r) => print("Sucesso: ${r}"));
+
     currentSchool.fold(
-        (failure) => emit(
-              state.copyWith(
-                status: Status.failure,
-                error: failure.toString(),
-              ),
-            ), (schools) async {
-      final schoolId = schools.first.inepId;
-      final resultEither = await _listClassromsUsecase(
-        ListStudentsParams(schoolId),
-      );
-      resultEither.fold(
-        (failure) => emit(
-          state.copyWith(
-            status: Status.failure,
-            error: failure.toString(),
-          ),
-        ),
-        (students) => emit(
-          state.copyWith(
-            status: Status.success,
-            students: students,
-          ),
-        ),
-      );
-    });
+      (failure) => emit(state.copyWith(status: Status.failure, error: failure.toString())),
+      (schools) async {
+        final schoolId = schools.first.inepId;
+        final resultEither = await _listClassromsUsecase(ListStudentsParams(schoolId));//schoolId
+        resultEither.fold(
+          (failure) => emit(state.copyWith(status: Status.failure, error: failure.toString())),
+          (students) => emit(state.copyWith(status: Status.success, students: students)),
+        );
+      },
+    );
   }
 }

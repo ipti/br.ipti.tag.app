@@ -22,11 +22,23 @@ class ControllerIdentification implements Disposable {
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
   void startIdentification() {
+    log("fdsafdsafdsa");
+    _biometricsService.connect();
+    log("fdsafdsafdsa");
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    // _biometricsService.connect();
+
+    _biometricsService.connectAndListen();
+    _biometricsService.emit("message", "SearchSendMessage");
+    // _biometricsService.emit("message", "SearchSendMessage");
+  }
+
+  void cancelIdentification() {
     _biometricsService.connect();
     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     // _biometricsService.connect();
     _biometricsService.connectAndListen();
-    _biometricsService.emit("message", "SearchSendMessage");
+    _biometricsService.emit("message", "CancelMessage");
     // _biometricsService.emit("message", "SearchSendMessage");
   }
 
@@ -49,29 +61,31 @@ class ControllerIdentification implements Disposable {
   }
 
   void dateBiometrics() {
+    print("DATE BIOMETRICS");
     _biometricsService.streamSocket.getResponse.listen((state) async {
+      log("STATE: ${state}");
       final data = state["data"];
       if (state["event"] == "connect") {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       }
-      else if (data == "timeout") {
-        // log(data);
+      if (data == "timeout") {
+        log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
         _biometricsService.connect();
         //startIdentification();
       }
-      else if (data == "ping timeout") {
-        // log(data);
+      if (data == "ping timeout") {
+        log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
         restart();
         //startIdentification();
       }
-      else if (data != null) {
-        print("DATA: $data");
+      if (data != null) {
+        log("DATA: $data");
         if (data['id'] == BioEvents.waitingFinger.code) {
           addSignResponse(
               currentState.copyWith(event: BioEvents.waitingFinger));
@@ -102,12 +116,14 @@ class ControllerIdentification implements Disposable {
 
           }
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
+          log("NOT FOUND AAAAAA");
           addSignResponse(
               currentState.copyWith(event: BioEvents.fingerNotFound));
           // Timer(const Duration(seconds: 3), () {
           //   restart();
           // });
         } else {
+          log("AAAAAAAAAAAAAAAAAAAAAA");
           addSignResponse(
               currentState.copyWith(event: BioEvents.byCode(data['id'])));
         }

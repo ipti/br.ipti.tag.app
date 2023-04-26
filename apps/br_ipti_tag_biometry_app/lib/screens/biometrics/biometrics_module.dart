@@ -29,7 +29,7 @@ class BiometricsModule extends Module {
             .enableForceNew()
             .setTimeout(300)
             .enableForceNewConnection()
-            .setExtraHeaders({'Connection': 'Upgrade', 'Origin': '127.0.0.1'}) // optional
+            .setExtraHeaders({'Connection': 'Upgrade', 'Origin': '127.0.0.1:5000'}) // optional
             .setTransports(['websocket']).build())),
 
     Bind.factory(

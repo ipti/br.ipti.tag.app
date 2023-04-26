@@ -58,6 +58,7 @@ enum BioEvents {
   final int code;
   final String info;
 
-  static BioEvents byCode(code) =>
-      BioEvents.values.firstWhere((e) => e.code == code);
+  static BioEvents byCode(code) {
+    return BioEvents.values.firstWhere((e) => e.code == code);
+  }
 }

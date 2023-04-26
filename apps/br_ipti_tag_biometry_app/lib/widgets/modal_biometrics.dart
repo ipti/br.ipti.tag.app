@@ -47,7 +47,7 @@ void showCustomDialog(BuildContext context) {
                       StreamBuilder<SignState?>(
                         stream: signController.getResponseSign,
                         builder: (context, snapshot) {
-                          log(snapshot.data.toString());
+                          log("Modal: ${snapshot.data.toString()}");
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

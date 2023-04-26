@@ -23,7 +23,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
     signController.init();
     signController.biometricsService.streamSocket.getResponse
         .listen((data) async {
-      log(data.toString());
+      log("Biometrics sign: ${data.toString()}");
       signController.dateBiometrics(data);
     });
     signController.fetchStudent(widget.studentId);
