@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../identification/controller.dart';
+
 class BiometricsSign extends StatefulWidget {
   const BiometricsSign({super.key, required this.studentId});
 
@@ -17,6 +19,7 @@ class BiometricsSign extends StatefulWidget {
 }
 
 class _BiometricsSignPageState extends State<BiometricsSign> {
+  final biometricsController = Modular.get<ControllerIdentification>();
   final signController = Modular.get<ControllerSign>();
   @override
   void initState() {
@@ -222,7 +225,11 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                   TagButton(
                                     text: 'Cadastrar',
                                     onPressed: () =>
-                                        {showCustomDialog(context)},
+                                        {
+                                          biometricsController.restart(),
+                                          biometricsController.dateBiometrics(),
+                                          showCustomDialog(context)
+                                        },
                                   ),
                                   const SizedBox(
                                     width: 32.0,

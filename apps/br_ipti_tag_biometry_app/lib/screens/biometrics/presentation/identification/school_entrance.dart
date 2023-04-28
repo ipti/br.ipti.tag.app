@@ -24,14 +24,6 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsController = Modular.get<ControllerIdentification>();
 
   @override
-  void initState() {
-    // final sharedPreferences = SharedPreferences.getInstance().then((value) => value.clear());
-    // biometricsController.deleteAllFinger();
-
-    super.initState();
-  }
-
-  @override
   void dispose() {
     biometricsController.dispose();
     super.dispose();

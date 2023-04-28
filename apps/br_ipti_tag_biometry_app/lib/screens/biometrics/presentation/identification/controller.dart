@@ -22,9 +22,7 @@ class ControllerIdentification implements Disposable {
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
   void startIdentification() {
-    log("fdsafdsafdsa");
     _biometricsService.connect();
-    log("fdsafdsafdsa");
     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     // _biometricsService.connect();
 
@@ -116,14 +114,12 @@ class ControllerIdentification implements Disposable {
 
           }
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
-          log("NOT FOUND AAAAAA");
           addSignResponse(
               currentState.copyWith(event: BioEvents.fingerNotFound));
           // Timer(const Duration(seconds: 3), () {
           //   restart();
           // });
         } else {
-          log("AAAAAAAAAAAAAAAAAAAAAA");
           addSignResponse(
               currentState.copyWith(event: BioEvents.byCode(data['id'])));
         }
