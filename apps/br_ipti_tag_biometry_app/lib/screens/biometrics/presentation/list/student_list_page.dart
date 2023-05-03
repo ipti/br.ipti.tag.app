@@ -26,8 +26,6 @@ class StudentPageState extends State<StudentPage> {
   @override
   void initState() {
     controller.fetchListStudents();
-    // controller.fetchListStudents();
-
     super.initState();
   }
 
@@ -53,9 +51,7 @@ class StudentPageState extends State<StudentPage> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TagDataTable(
-                      onTapRow: (index) => Modular.to.pushNamed(
-                        "/biometrics/sign/${state.students[index].id}",
-                      ),
+                      onTapRow: (index) => Modular.to.pushNamed("/biometrics/sign/${state.students[index].id}"),
                       columns: const [
                         DataColumn(
                           label: Text(

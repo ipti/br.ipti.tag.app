@@ -21,6 +21,11 @@ class ControllerIdentification implements Disposable {
 
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
+  void startBiometricService() {
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    _biometricsService.connect();
+  }
+
   void startIdentification() {
     _biometricsService.connect();
     addSignResponse(currentState.copyWith(event: BioEvents.waiting));

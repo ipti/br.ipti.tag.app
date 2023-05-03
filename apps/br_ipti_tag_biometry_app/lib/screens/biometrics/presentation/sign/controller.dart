@@ -53,6 +53,10 @@ class ControllerSign {
     );
   }
 
+  void connect() {
+    biometricsService.connect();
+  }
+
   void restart() {
     biometricsService.socket.on('SearchSendMessage', (data) => null);
     //biometricsService.connect();
@@ -68,15 +72,16 @@ class ControllerSign {
   Future startSign() async {
     addSignResponse(currentState.copyWith(event: BioEvents.putfinger));
     final idStore = await localStorageService.idStore();
-    biometricsService.emit('idStore', idStore);
+    biometricsService.emit('IdStore', idStore);
   }
 
   void deleteFinger() {
     biometricsService.emit('IdDelete', 77);
   }
 
-  void deleteAllFinger() {
-    biometricsService.emit("ClearSendMessage", 'mensage');
+  Future deleteAllFinger() async {
+    await localStorageService.deleteAll();
+    biometricsService.emit("ClearSendMessage", 'message');
   }
 
   void dateBiometrics(data) async {
@@ -86,6 +91,7 @@ class ControllerSign {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       }
       if (data != null) {
+        print("Controller Sign: $data");
         if (data['id'] == 200) {
           addSignResponse(currentState.copyWith(event: BioEvents.storeok));
 

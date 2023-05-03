@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
-void showCustomDialog(BuildContext context) {
+import '../screens/biometrics/presentation/identification/controller.dart';
+
+void showCustomDialog(BuildContext context, ControllerIdentification biometricsController) {
   // final biometricsService = BiometricsService;
   final signController = Modular.get<ControllerSign>();
   // biometricsController.biometricsService.streamSocket.dispose();
@@ -38,11 +40,7 @@ void showCustomDialog(BuildContext context) {
                       ),
                       const Text(
                         'Cadastrar Biometria',
-                        style: TextStyle(
-                            color: TagColors.colorBaseInkLight,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Inter'),
+                        style: TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                       ),
                       StreamBuilder<SignState?>(
                         stream: signController.getResponseSign,
@@ -53,63 +51,34 @@ void showCustomDialog(BuildContext context) {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               if (snapshot.data == null)
-                                Center(
-                                  heightFactor: 9.0,
-                                  child: TagButton(
+                                Column(
+                                  children: [
+                                    TagButton(
                                       text: 'Começar',
-                                      onPressed: (() =>
-                                          {signController.startSign()})),
+                                      onPressed: () {
+                                        biometricsController.startBiometricService();
+                                        signController.startSign();
+                                      },
+                                    ),
+                                    TagButton(
+                                      text: 'Limpar',
+                                      onPressed: () {
+                                        biometricsController.startBiometricService();
+                                        signController.deleteAllFinger();
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.waiting.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.modeling.code)
-                                FingerMensage(
-                                    text: BioEvents.modeling.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.modeled.code)
-                                FingerMensage(
-                                    text: BioEvents.modeling.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.putfinger.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.pictureTaken.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.waitingFinger.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.storeok.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.carrer.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.stored.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code ==
-                                  BioEvents.storeFail.code)
-                                FingerMensage(
-                                    text: snapshot.data!.event.info,
-                                    code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.waiting.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.modeling.code) FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.modeled.code) FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.putfinger.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.pictureTaken.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.waitingFinger.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.storeok.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.carrer.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.stored.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                              if (snapshot.data?.event.code == BioEvents.storeFail.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                             ],
                           );
                         },
