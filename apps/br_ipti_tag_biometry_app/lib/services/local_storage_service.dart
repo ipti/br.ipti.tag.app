@@ -13,7 +13,8 @@ class LocalStorageService {
     final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO");
 
     if (localData != null) {
-      final studentBiomtrics = localData.map(StudentBiometrics.fromJson).toList().firstWhere((e) => e.biometricId == biometricId);
+      final studentBiomtrics =
+          localData.map(StudentBiometrics.fromJson).toList().firstWhere((e) => e.biometricId == biometricId);
 
       return studentBiomtrics.student;
     }
@@ -45,14 +46,11 @@ class LocalStorageService {
 
     final studentBio = StudentBiometrics(student, localData.length);
 
-    print("STUDENT BIO: ${studentBio.toJson()}");
+    print("STUDENT BIO: ${studentBio.biometricId}");
 
     localData.add(jsonEncode(studentBio.toJson()));
 
-    await sharedPreferences.setStringList(
-      "STORAGE_STUDENTS_BIO",
-      localData,
-    );
+    await sharedPreferences.setStringList("STORAGE_STUDENTS_BIO", localData);
   }
 }
 

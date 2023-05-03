@@ -17,6 +17,7 @@ class ControllerSign {
 
   final stateSignStream = StreamController<SignState>.broadcast();
   late StudentIdentification studentCache;
+
   ControllerSign({
     required this.localStorageService,
     required this.biometricsService,
@@ -46,15 +47,17 @@ class ControllerSign {
 
     student.fold(
       (error) => log("erro: ${error.message}"),
-      (data) => {
-        addSignResponse(
-            currentState.copyWith(student: data, event: BioEvents.putfinger))
-      },
+      (data) => {addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger))},
     );
   }
 
   void connect() {
     biometricsService.connect();
+  }
+
+  void disconnect(){
+    biometricsService.disconnect();
+    biometricsService.dispose();
   }
 
   void restart() {
@@ -84,26 +87,25 @@ class ControllerSign {
     biometricsService.emit("ClearSendMessage", 'message');
   }
 
-  void dateBiometrics(data) async {
-    biometricsService.streamSocket.getResponse.listen((state) async {
-      final data = state["data"];
-      if (state["event"] == "connect") {
-        addSignResponse(currentState.copyWith(event: BioEvents.waiting));
-      }
-      if (data != null) {
-        print("Controller Sign: $data");
-        if (data['id'] == 200) {
-          addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+  int lastEventId = 0;
 
-          if (currentState.student != null) {
-            localStorageService.addStudentWithBiometricId(
-                student: currentState.student!);
-          }
-        } else {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.byCode(data["id"])));
-        }
+  void dateBiometrics(state) async {
+    final data = state["data"];
+    if (state["event"] == "connect") {
+      addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    }
+    if (data != null) {
+      if (data == 'timeout' || data['id'] != 200 || data['id'] == lastEventId) {
+        addSignResponse(currentState.copyWith(event: BioEvents.byCode(data["id"])));
+        return;
       }
-    });
+
+      if (data['id'] == 200) addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+
+      if (currentState.student != null) {
+        localStorageService.addStudentWithBiometricId(student: currentState.student!);
+        disconnect();
+      }
+    }
   }
 }
