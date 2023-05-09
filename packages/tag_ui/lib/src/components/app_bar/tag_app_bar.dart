@@ -6,8 +6,10 @@ class TagAppBar extends StatelessWidget implements PreferredSize {
     super.key,
     this.title = const TagLogo(alignment: Alignment.centerLeft),
     this.leading = const TagAppBarMenuIconButton(),
+    this.actions
   });
 
+  final List<Widget>? actions;
   final Widget title;
   final Widget leading;
 
@@ -26,6 +28,7 @@ class TagAppBar extends StatelessWidget implements PreferredSize {
       iconTheme: iconTheme,
       leading: leading,
       title: TagAppbarTitle(title: title),
+      actions: actions,
       toolbarHeight: TagSizes.heightServiceLogoMedium + 28,
     );
   }
