@@ -88,7 +88,7 @@ class ControllerIdentification implements Disposable {
       if (data != null) {
         log("DATA: $data");
         if (data['id'] == BioEvents.waitingFinger.code) {
-          addSignResponse(currentState.copyWith(event: BioEvents.waitingFinger));
+          addSignResponse(currentState.copyWith(event: BioEvents.waiting));
         } else if (data['id'] == BioEvents.fingerDected.code) {
           try {
             final student = await _localStorageService.findStudent(
