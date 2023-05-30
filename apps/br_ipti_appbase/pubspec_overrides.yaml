@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: tag_network,tag_sdk,tag_ui
+dependency_overrides:
+  tag_network:
+    path: ..\\..\\packages\\tag_network
+  tag_sdk:
+    path: ..\\..\\packages\\tag_sdk
+  tag_ui:
+    path: ..\\..\\packages\\tag_ui

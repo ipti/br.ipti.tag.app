@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/class_diary/class_diary_module.dart';
 import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -97,6 +98,11 @@ class AppModule extends Module {
         ModuleRoute(
           "/classplan",
           module: ClassPlan(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/classdiary",
+          module: ClassDiary(),
           transition: TransitionType.noTransition,
         ),
       ];
