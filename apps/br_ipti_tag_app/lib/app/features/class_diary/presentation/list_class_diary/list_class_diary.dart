@@ -22,7 +22,7 @@ class _ListClassDiary extends State<ListClassDiary> {
       menu: const TagVerticalMenu(),
       appBar: const CustomAppBar(),
       title: widget.title,
-      path: [TagPath("", "Inicio"), AppRoutes.classPlan],
+      path: [TagPath("", "Inicio"), AppRoutes.classDiary],
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
@@ -44,7 +44,10 @@ class _ListClassDiary extends State<ListClassDiary> {
                   ),
                 ],
               ),
-              CardClassDiary(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CardClassDiary(),
+              ),
             ],
           ),),
     );

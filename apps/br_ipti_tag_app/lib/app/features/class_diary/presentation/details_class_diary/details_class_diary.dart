@@ -4,10 +4,11 @@ import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
 import 'package:br_ipti_tag_app/app/features/class_diary/presentation/widgets/list_students/list_students.dart';
 import 'package:br_ipti_tag_app/app/features/classroom/presentation/widgets/tag_button_icon.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tag_ui/tag_ui.dart';
 
 class DetailsClassDiary extends StatefulWidget {
-    final String title;
+  final String title;
 
   const DetailsClassDiary({super.key, this.title = "Diário de Classe"});
   @override
@@ -17,7 +18,7 @@ class DetailsClassDiary extends StatefulWidget {
 class _DetailsClassDiaryState extends State<DetailsClassDiary> {
   @override
   Widget build(BuildContext context) {
-
+    Size size = MediaQuery.of(context).size;
     const styleText = TextStyle(
         color: TagColors.colorBaseInkLight,
         fontWeight: FontWeight.w700,
@@ -27,40 +28,62 @@ class _DetailsClassDiaryState extends State<DetailsClassDiary> {
       menu: const TagVerticalMenu(),
       appBar: const CustomAppBar(),
       title: widget.title,
-      path: [TagPath("", "Inicio"), AppRoutes.classPlan],
-      body: Column(children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: TagButtonIcon(label: "Imprimir", onPressed: () => {}, icon: FilePaths.IMPRESSORA_ICON_SVG,),
+      path: [TagPath("", "Inicio"), AppRoutes.classDiary],
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                TagButtonIcon(
+                  label: "Imprimir",
+                  onPressed: () => {},
+                  icon: FilePaths.IMPRESSORA_ICON_SVG,
+                ),
+                SizedBox(width: 20),
+                TagButtonIcon(
+                  label: "Relatório Bolsa Família",
+                  onPressed: () => {},
+                  icon: FilePaths.IMPRESSORA_ICON_SVG,
+                ),
+              ],
             ),
-            TagButtonIcon(label: "Relatório Bolsa Família", onPressed: () => {}, icon: FilePaths.IMPRESSORA_ICON_SVG,),
-          ],),
-        ),
-        Container(height: 1, color: TagColors.colorBaseCloudDark),
+          ),
+          Container(height: 1, color: TagColors.colorBaseCloudDark),
 
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Container(
-            color: TagColors.colorBaseCloudDark,
-            child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                Text("Nome", style: styleText),
-                Text("Faltas", style: styleText),
-              ],),
+          // Row(
+          //   children: [
+          //     const TagTextField(label: "label"),
+
+          //   ],
+          // ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(
+              color: TagColors.colorBaseCloudDark,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16.0, horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text("Nome", style: styleText),
+                        Text("Faltas", style: styleText),
+                      ],
+                    ),
+                  ),
+                  Container(height: 2, color: TagColors.colorBaseInkLight),
+                ],
+              ),
             ),
-            Container(height: 2, color: TagColors.colorBaseInkLight),
-            
-          ],),),
-        ),
-         ListStudents(),
-      ],),
-      );
+          ),
+          ListStudents(),
+        ],
+      ),
+    );
   }
 }
