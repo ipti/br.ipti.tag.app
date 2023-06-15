@@ -1,3 +1,4 @@
+import 'package:br_ipti_tag_app/app/core/widgets/app_bar/tag_appbar_user_iconButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
@@ -13,14 +14,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
     const back = TagAppBarBackIconButton();
     const menu = TagAppBarMenuIconButton();
     final leading = isRoot ? back : menu;
+    const actions = <Widget>[TagAppBarUserIconButton()];
 
-    return TagAppBar(leading: leading);
+    return TagAppBar(leading: leading,actions: actions);
   }
 
   @override
   Widget get child => this;
 
   @override
-  Size get preferredSize =>
-      const Size.fromHeight(TagSizes.heightServiceLogoMedium + 28);
+  Size get preferredSize => const Size.fromHeight(TagSizes.heightServiceLogoMedium + 28);
 }
