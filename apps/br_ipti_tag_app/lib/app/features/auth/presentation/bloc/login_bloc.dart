@@ -1,8 +1,8 @@
 import 'package:br_ipti_tag_app/app/core/plataform/pkg_info_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../domain/usecases/login_usecase.dart';
 import 'login_state.dart';
 
 class LoginBloc extends Cubit<LoginState> {
@@ -65,7 +65,7 @@ class LoginBloc extends Cubit<LoginState> {
           ),
         );
       },
-      (auth) => Modular.to.pushReplacementNamed("/turmas/"),
+      (auth) => Modular.to.pushReplacementNamed("/home/"),
     );
   }
 }

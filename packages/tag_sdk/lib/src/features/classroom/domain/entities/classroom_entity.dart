@@ -32,7 +32,7 @@ class ClassroomEntity {
   final int? modalityId;
   final String stage;
   final int? typePedagogicMediationId;
-  final int edcensoStageVsModalityFk;
+  final String edcensoStageVsModalityFk;
   final bool schooling;
   final bool complementaryActivity;
   final bool aee;

@@ -45,7 +45,7 @@ class Classroom with _$Classroom {
     bool? aeePortuguese,
     bool? aeeAutonomousLife,
     int? modality,
-    int? edcensoStageVsModalityFk,
+    String? edcensoStageVsModalityFk,
     int? edcensoProfessionalEducationCourse,
     int? disciplineChemistry,
     int? disciplinePhysics,

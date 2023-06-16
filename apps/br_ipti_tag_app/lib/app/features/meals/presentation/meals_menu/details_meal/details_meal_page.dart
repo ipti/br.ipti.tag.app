@@ -5,8 +5,11 @@ import 'package:br_ipti_tag_app/app/features/meals/presentation/widgets/ingredie
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 import 'package:tag_ui/tag_ui.dart';
+
+import '../../../../../core/util/routes/routes.dart';
 
 class DetailsMealPage extends StatefulWidget {
   const DetailsMealPage({
@@ -29,7 +32,7 @@ class DetailsMealPageState extends State<DetailsMealPage> {
   @override
   Widget build(BuildContext context) {
     const labelText = TextStyle(color: TagColors.colorBaseInkLight);
-    const infoText = TextStyle(color: TagColors.colorBaseInkNormal);
+    const infoText = TextStyle(color: TagColors.colorBaseInkNormal, fontWeight: FontWeight.w700);
 
     final ingredients = widget.meal.ingredients;
 
@@ -38,46 +41,67 @@ class DetailsMealPageState extends State<DetailsMealPage> {
       appBar: const CustomAppBar(),
       title: widget.meal.description,
       description: "Ingredientes para a refeição",
-      path: const [],
+      path: const [AppRoutes.merenda, TagPath("", "Refeições")],
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          const Padding(
+            padding:  EdgeInsets.only(left: 16.0),
+            child: Text("Ingredientes para a refeição", style: labelText),
+          ),
           ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 100, maxHeight: 100),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(text: "Consistência ", style: labelText),
-                      TextSpan(
-                        text: "{widget.meal.consistence} ",
-                        style: infoText,
+            constraints: const BoxConstraints(minHeight: 100, maxHeight: 120),
+            child: Padding(
+              padding: const EdgeInsets.all(11.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: RichText(
+                      text: const TextSpan(
+                        children: [
+                          TextSpan(text: "Consistência ", style: labelText),
+                          TextSpan(
+                            text: "Pastosa ",
+                            style: infoText,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(text: "Data e hora  ", style: labelText),
-                      TextSpan(
-                        text: "{widget.meal.turn} ",
-                        style: infoText,
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(text: "Data e hora  ", style: labelText),
+                          TextSpan(
+                            text: DateFormat('EEEE ', 'pt_BR').format(DateTime.now()),
+                            style: infoText,
+                          ),
+                          TextSpan(
+                            text: DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
+                            style: infoText,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: const TextSpan(
-                    children: [
-                      TextSpan(text: "Tipo de Aluno ", style: labelText),
-                      TextSpan(text: "{widget.meal.studentType} "),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: RichText(
+                      text: const TextSpan(
+                        children: [
+                          TextSpan(text: "Tipo de Aluno ", style: labelText),
+                          TextSpan(text: "Fundamental", style: infoText),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           IngredientsList(

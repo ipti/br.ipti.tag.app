@@ -14,7 +14,7 @@ class IngredientsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const itemSectionTitle = TextStyle(
-      color: TagColors.colorBaseProductNormal,
+      color: TagColors.colorBaseInkLight,
       fontSize: 14,
       fontWeight: FontWeight.bold,
     );
@@ -23,15 +23,18 @@ class IngredientsList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: EdgeInsets.only(left: 16),
           child: Text(
             "Item",
             style: itemSectionTitle,
           ),
         ),
-        Container(
-          height: 1,
-          color: TagColors.colorBaseProductNormal,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 1,
+            color: TagColors.colorBaseInkLight,
+          ),
         ),
         ConstrainedBox(
           constraints: const BoxConstraints(minHeight: 200, maxHeight: 200),
@@ -40,8 +43,11 @@ class IngredientsList extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             itemCount: ingredients!.length,
             itemBuilder: (context, index) {
-              return IngredientItem(
-                ingredient: ingredients![index],
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IngredientItem(
+                  ingredient: ingredients![index],
+                ),
               );
             },
           ),

@@ -29,9 +29,6 @@ class StudentPageState extends State<StudentPage> {
   @override
   void initState() {
     controller.fetchListStudents();
-    session.stream.listen((state) {
-      controller.fetchListStudents();
-    });
 
     super.initState();
   }

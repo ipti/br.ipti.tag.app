@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../../domain/usecases/create_documents_and_address.dart';
+import '../../../../domain/usecases/update_address_documents_usecase.dart';
 import 'enrollment_address_states.dart';
 
 class EnrollmentAddressBloc extends Cubit<EnrollmentAddressState> {

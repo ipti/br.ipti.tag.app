@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../domain/usecases/fast_enrollment_usecase.dart';
 import 'fast_enrollment_states.dart';
 
 class FastEnrollmentBloc extends Cubit<FastEnrollmentState> {

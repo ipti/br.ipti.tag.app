@@ -1,0 +1,134 @@
+import 'package:br_ipti_tag_app/app/features/student/domain/usecases/update_student_usecase.dart';
+import 'package:dartz/dartz.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:tag_sdk/tag_sdk.dart';
+
+class MockStudentRepository extends Mock implements StudentRepository {}
+
+void main() {
+  testWidgets("UpdateStudentUsecase when update a right value", (tester) async {
+    final repository = MockStudentRepository();
+    when(() => repository.update(
+          any(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
+        )).thenAnswer(
+      (invocation) => Future.value(right(
+        StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
+      )),
+    );
+    final usercase = UpdateStudentUsecase(repository);
+    final params = UpdateStudentParams(
+      id: 1,
+      student: StudentIdentification(
+        registerType: "00",
+        schoolInepIdFk: "21212121",
+        name: "Aluno",
+        birthday: "2002-02-02",
+        sex: 1,
+        colorRace: 1,
+        filiation: 1,
+      ),
+    );
+    final either = await usercase(params);
+    expect(either.isRight(), isTrue);
+
+    final result = either.fold(id, id);
+    expect(
+      result,
+      isA<StudentIdentification>(),
+    );
+  });
+
+  testWidgets(
+    "UpdateStudentUsecase whenEmptyParams is equal value",
+    (tester) async {
+      final params = UpdateStudentParams(
+        id: 1,
+        student: StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
+      );
+      final params2 = UpdateStudentParams(
+        id: 1,
+        student: StudentIdentification(
+          registerType: "00",
+          schoolInepIdFk: "21212121",
+          name: "Aluno",
+          birthday: "2002-02-02",
+          sex: 1,
+          colorRace: 1,
+          filiation: 1,
+        ),
+      );
+
+      expect(
+        params,
+        equals(params2),
+      );
+    },
+  );
+
+  testWidgets("UpdateStudentUsecase when update a left value", (tester) async {
+    final repository = MockStudentRepository();
+    when(() => repository.update(
+          any(),
+          StudentIdentification(
+            registerType: "00",
+            schoolInepIdFk: "21212121",
+            name: "Aluno",
+            birthday: "2002-02-02",
+            sex: 1,
+            colorRace: 1,
+            filiation: 1,
+          ),
+        )).thenAnswer(
+      (invocation) => Future.value(left(
+        const RestFailure("Ocorreu um erro"),
+      )),
+    );
+    final usercase = UpdateStudentUsecase(repository);
+    final params = UpdateStudentParams(
+      id: 1,
+      student: StudentIdentification(
+        registerType: "00",
+        schoolInepIdFk: "21212121",
+        name: "Aluno",
+        birthday: "2002-02-02",
+        sex: 1,
+        colorRace: 1,
+        filiation: 1,
+      ),
+    );
+    final either = await usercase(params);
+    expect(either.isLeft(), isTrue);
+
+    final result = either.fold(id, id);
+    expect(
+      result,
+      isA<RestFailure>(),
+    );
+  });
+}

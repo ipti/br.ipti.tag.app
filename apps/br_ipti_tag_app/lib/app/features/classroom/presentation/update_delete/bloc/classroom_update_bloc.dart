@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../domain/usecases/delete_classroom_usecase.dart';
+import '../../../domain/usecases/update_classroom_usecase.dart';
 import 'classroom_states.dart';
 import 'classroom_update_events.dart';
 
@@ -32,7 +34,7 @@ class ClassroomUpdateDeleteBloc
         ));
     on<StageChanged>((event, emit) =>
         emit((state as ClassroomUpdateDeleteFormState).copyWith(
-          stageVsModalityFk: event.idEdcenso,
+          stageVsModalityFk: event.idEdcenso.toString(),
         )));
     on<TypePedagogicalMediationChanged>((event, emit) => emit((state
             as ClassroomUpdateDeleteFormState)
@@ -120,7 +122,7 @@ class ClassroomUpdateDeleteBloc
           schooling: event.schooling,
           registerType: '20',
           stageId: 1,
-          stageVsModalityFk: 1,
+          stageVsModalityFk: '1',
         )));
     on<SubmitUpdateClassroom>((event, emit) {
       final params = ClassroomCreateEntity(

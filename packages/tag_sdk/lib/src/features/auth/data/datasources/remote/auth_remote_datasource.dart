@@ -3,7 +3,6 @@ import 'package:tag_sdk/src/core/api/users/get_users_endpoint.dart';
 import 'package:tag_sdk/src/features/auth/data/models/auth_model.dart';
 import 'package:tag_network/tag_network.dart';
 import 'package:tag_sdk/src/features/auth/data/models/user_model.dart';
-import 'package:tag_sdk/src/features/auth/domain/entities/user.dart';
 
 abstract class AuthRemoteDataSource {
   Future<AuthModel> login(String username, String password);
@@ -29,7 +28,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     throw response.error ?? "Erro desconhecido";
   }
 
-  Future<User> fetchUserData() async {
+  Future<UserModel> fetchUserData() async {
     final response = await _httpClient.request(
       route: GetUserEndPoint(),
     );

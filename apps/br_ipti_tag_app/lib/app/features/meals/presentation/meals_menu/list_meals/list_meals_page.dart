@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:br_ipti_tag_app/app/core/util/routes/routes.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/app_bar/custom_app_bar.dart';
 import 'package:br_ipti_tag_app/app/core/widgets/menu/vertical_menu.dart';
@@ -45,16 +47,46 @@ class ListMealsPageState extends State<ListMealsPage> {
     return BlocBuilder<ListMealsBloc, ListMealsState>(
       bloc: controller,
       builder: (context, state) {
-        List<Widget> tabs = [];
-        List<Widget> tabViews = [];
+        List<Widget> tabs = [
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+                Text(
+                  DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
+                  style: const TextStyle(color: TagColors.colorBaseInkLight),
+                ),
+              ],
+            ),
+          ),
+        ];
+        List<Widget> tabViews = [
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ];
 
         if (state is LoadedState) {
           tabs = state.mealsOfDay
               .map((e) => Tab(
-                    child: Text(DateFormat('EEEE', 'pt_BR')
-                        .format(DateTime.parse(e.fullnameDay!))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(DateFormat('EEEE', 'pt_BR')
+                            .format(DateTime.parse(e.fullnameDay!))),
+                        Text(
+                          DateFormat('dd/MM', 'pt_BR')
+                              .format(DateTime.parse(e.fullnameDay!)),
+                          style: const TextStyle(
+                            color: TagColors.colorBaseInkLight,
+                          ),
+                        ),
+                      ],
+                    ),
                   ))
               .toList();
+          log(tabs.toString());
           tabViews = state.mealsOfDay
               .map(
                 (e) => _DailyMeals(mealsOfDay: e),
@@ -72,10 +104,20 @@ class ListMealsPageState extends State<ListMealsPage> {
             ),
           ];
         }
-
         if (state is LoadingState) {
           tabs = [
-            Tab(text: DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+            Tab(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(DateFormat('EEEE', 'pt_BR').format(DateTime.now())),
+                  Text(
+                    DateFormat('dd/MM', 'pt_BR').format(DateTime.now()),
+                    style: const TextStyle(color: TagColors.colorBaseInkLight),
+                  ),
+                ],
+              ),
+            ),
           ];
           tabViews = [
             const Center(

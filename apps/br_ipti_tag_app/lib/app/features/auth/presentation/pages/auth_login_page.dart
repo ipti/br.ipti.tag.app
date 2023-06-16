@@ -73,7 +73,6 @@ class AuthLoginPageState extends State<AuthLoginPage> {
                               year: state.year,
                             );
                           }
-
                           return _Footer(
                             version: "0.0.0",
                             year: controller.yearSequence.first.toString(),
@@ -120,6 +119,7 @@ class Body extends StatelessWidget {
     super.key,
     required this.controller,
   });
+
   final LoginBloc controller;
 
   static final _formKey = GlobalKey<FormState>();
@@ -136,6 +136,7 @@ class Body extends StatelessWidget {
         value: username,
         validator: requiredValidator,
       );
+
   Widget inputPassword(String? password) => TagTextField(
         label: "Senha",
         hint: "Digite sua senha",
@@ -260,8 +261,7 @@ class _Footer extends StatelessWidget {
                   style: footerStyle.copyWith(
                     decoration: TextDecoration.underline,
                   ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => launchUrlString("https://www.ipti.org.br/"),
+                  recognizer: TapGestureRecognizer()..onTap = () => launchUrlString("https://www.ipti.org.br/"),
                 ),
                 const TextSpan(text: " ®"),
                 TextSpan(text: year),

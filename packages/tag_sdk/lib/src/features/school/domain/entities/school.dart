@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'logo_file_content.dart';
+
 part 'school.freezed.dart';
 part 'school.g.dart';
 
@@ -62,7 +64,7 @@ class School with _$School {
     String? iesCode,
     String? logoFileName,
     String? logoFileType,
-    String? logoFileContent,
+    LogoFileContent? logoFileContent,
     String? actOfAcknowledgement,
   }) = _School;
 

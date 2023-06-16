@@ -17,22 +17,13 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for iOS - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -54,4 +45,32 @@ class DefaultFirebaseOptions {
         );
     }
   }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD6iyENmVrrcBls4I61pR2-JxNPF1p_VPc',
+    appId: '1:60043627213:web:47ccc4a325df3d72973784',
+    messagingSenderId: '60043627213',
+    projectId: 'br-org-ipti-tag',
+    authDomain: 'br-org-ipti-tag.firebaseapp.com',
+    storageBucket: 'br-org-ipti-tag.appspot.com',
+    measurementId: 'G-XKN8W6PZT1',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyDayaaQoVi0STvZTpllNJk1NYNNRfzww-Y',
+    appId: '1:60043627213:android:50acfb64097a9570973784',
+    messagingSenderId: '60043627213',
+    projectId: 'br-org-ipti-tag',
+    storageBucket: 'br-org-ipti-tag.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyA6xwddLBHWZpwrrXzUCnab-uguKEw3k70',
+    appId: '1:60043627213:ios:f2874bddd48ef723973784',
+    messagingSenderId: '60043627213',
+    projectId: 'br-org-ipti-tag',
+    storageBucket: 'br-org-ipti-tag.appspot.com',
+    iosClientId: '60043627213-gbrsdt7mb1ll6r0incdhpggkp04iuinl.apps.googleusercontent.com',
+    iosBundleId: 'br.org.ipti.tag',
+  );
 }

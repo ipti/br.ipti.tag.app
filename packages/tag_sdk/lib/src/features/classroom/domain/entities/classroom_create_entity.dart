@@ -14,7 +14,7 @@ class ClassroomCreateEntity {
   final bool weekDaysThursday;
   final bool weekDaysFriday;
   final bool weekDaysSaturday;
-  final int edcensoStageVsModalityFk;
+  final String edcensoStageVsModalityFk;
   final bool schooling;
   final bool complementaryActivity;
   final bool aee;

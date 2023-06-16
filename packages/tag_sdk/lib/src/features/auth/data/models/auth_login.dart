@@ -1,9 +1,13 @@
 import 'dart:convert';
 
-import 'package:tag_sdk/src/features/auth/domain/entities/auth_login.dart';
+class AuthLoginModel{
+  final String username;
+  final String password;
 
-class AuthLoginModel extends AuthLogin {
-  AuthLoginModel({required super.username, required super.password});
+  AuthLoginModel({
+    required this.username,
+    required this.password,
+  });
 
   Map<String, dynamic> toMap() {
     return {
@@ -27,11 +31,21 @@ class AuthLoginModel extends AuthLogin {
   @override
   String toString() => 'AuthLogin(username: $username, password: $password)';
 
+  AuthLoginModel copyWith({
+    String? username,
+    String? password,
+  }) {
+    return AuthLoginModel(
+      username: username ?? this.username,
+      password: password ?? this.password,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is AuthLogin &&
+    return other is AuthLoginModel &&
         other.username == username &&
         other.password == password;
   }

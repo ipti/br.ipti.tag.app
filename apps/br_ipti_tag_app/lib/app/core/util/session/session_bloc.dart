@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+
 class SessionBloc extends Cubit<SessionState> {
   SessionBloc(this._sessionService)
       : super(
@@ -19,13 +20,15 @@ class SessionBloc extends Cubit<SessionState> {
     );
   }
 
-  Future fetchSchools() async {
+  Future<List<AuthSchool>> fetchSchools() async {
     final schools = await _sessionService.getCurrentUserSchools();
     emit(
       state.copyWith(
         schools: schools,
       ),
     );
+
+    return schools;
   }
 
   Future<AuthSchool> fetchCurrentSchool() async {
