@@ -26,4 +26,5 @@ export 'templates/layout_left_and_body.dart';
 export 'templates/layout_left_body_right.dart';
 export 'templates/layout_topbar_and_body.dart';
 export 'text_field/tag_text_field.dart';
+export 'text_field_number/text_filed_number.dart';
 export 'shared/path.dart';
