@@ -2,8 +2,8 @@ class ClassroomEntity {
   ClassroomEntity({
     this.registerType,
     this.schoolInepFk,
-    required this.id,
-    required this.name,
+    this.id,
+    this.name,
     this.initialHour,
     this.initialMinute,
     this.finalHour,
@@ -36,7 +36,7 @@ class ClassroomEntity {
     this.aeeAccessibleTeaching,
     this.aeePortuguese,
     this.aeeAutonomousLife,
-    required this.modality,
+    this.modality,
     this.edcensoStageVsModalityFk,
     this.edcensoProfessionalEducationCourseFk,
     this.disciplineChemistry,
@@ -80,8 +80,8 @@ class ClassroomEntity {
 
   String? registerType;
   String? schoolInepFk;
-  final int id;
-  String name;
+  int? id;
+  String? name;
   String? initialHour;
   String? initialMinute;
   String? finalHour;
@@ -97,12 +97,12 @@ class ClassroomEntity {
   bool? aee;
   int? assistanceType;
   bool? maisEducacaoParticipator;
-  String? complementaryActivityType1;
-  String? complementaryActivityType2;
-  String? complementaryActivityType3;
-  String? complementaryActivityType4;
-  String? complementaryActivityType5;
-  String? complementaryActivityType6;
+  bool? complementaryActivityType1;
+  bool? complementaryActivityType2;
+  bool? complementaryActivityType3;
+  bool? complementaryActivityType4;
+  bool? complementaryActivityType5;
+  bool? complementaryActivityType6;
   bool? aeeBraille;
   bool? aeeOpticalNonoptical;
   bool? aeeCognitiveFunctions;
@@ -114,43 +114,43 @@ class ClassroomEntity {
   bool? aeeAccessibleTeaching;
   bool? aeePortuguese;
   bool? aeeAutonomousLife;
-  final int modality;
+  int? modality;
   String? edcensoStageVsModalityFk;
   String? edcensoProfessionalEducationCourseFk;
-  int? disciplineChemistry;
-  int? disciplinePhysics;
-  int? disciplineMathematics;
-  int? disciplineBiology;
-  int? disciplineScience;
-  int? disciplineLanguagePortugueseLiterature;
-  int? disciplineForeignLanguageEnglish;
-  int? disciplineForeignLanguageSpanish;
-  int? disciplineForeignLanguageFrench;
-  int? disciplineForeignLanguageOther;
-  int? disciplineArts;
-  int? disciplinePhysicalEducation;
-  int? disciplineHistory;
-  int? disciplineGeography;
-  int? disciplinePhilosophy;
-  int? disciplineSocialStudy;
-  int? disciplineSociology;
+  bool? disciplineChemistry;
+  bool? disciplinePhysics;
+  bool? disciplineMathematics;
+  bool? disciplineBiology;
+  bool? disciplineScience;
+  bool? disciplineLanguagePortugueseLiterature;
+  bool? disciplineForeignLanguageEnglish;
+  bool? disciplineForeignLanguageSpanish;
+  bool? disciplineForeignLanguageFrench;
+  bool? disciplineForeignLanguageOther;
+  bool? disciplineArts;
+  bool? disciplinePhysicalEducation;
+  bool? disciplineHistory;
+  bool? disciplineGeography;
+  bool? disciplinePhilosophy;
+  bool? disciplineSocialStudy;
+  bool? disciplineSociology;
   String? disciplinePortugueseSecondaryLanguage;
   String? disciplineCurricularStage;
-  int? disciplineInformatics;
-  int? disciplineProfessionalDisciplines;
-  int? disciplineSpecialEducationAndInclusivePractices;
-  int? disciplineSocioculturalDiversity;
-  int? disciplineLibras;
-  int? disciplinePedagogical;
-  int? disciplineReligious;
-  int? disciplineNativeLanguage;
-  int? disciplineOthers;
+  bool? disciplineInformatics;
+  bool? disciplineProfessionalDisciplines;
+  bool? disciplineSpecialEducationAndInclusivePractices;
+  bool? disciplineSocioculturalDiversity;
+  bool? disciplineLibras;
+  bool? disciplinePedagogical;
+  bool? disciplineReligious;
+  bool? disciplineNativeLanguage;
+  bool? disciplineOthers;
   int? schoolYear;
   String? turn;
   DateTime? createDate;
   String? hash;
   String? calendarFk;
-  String? schooling;
+  bool? schooling;
   String? diffLocation;
   String? course;
   int? vacancy;
