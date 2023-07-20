@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_ui/tag_ui.dart';
 
+import '../identification/controller.dart';
+
 class BiometricsSign extends StatefulWidget {
   const BiometricsSign({super.key, required this.studentId});
 
@@ -17,13 +19,14 @@ class BiometricsSign extends StatefulWidget {
 }
 
 class _BiometricsSignPageState extends State<BiometricsSign> {
+  final biometricsController = Modular.get<ControllerIdentification>();
   final signController = Modular.get<ControllerSign>();
+
   @override
   void initState() {
     signController.init();
-    signController.biometricsService.streamSocket.getResponse
-        .listen((data) async {
-      log(data.toString());
+    signController.biometricsService.streamSocket.getResponse.listen((data) async {
+      log("Biometrics sign: ${data.toString()}");
       signController.dateBiometrics(data);
     });
     signController.fetchStudent(widget.studentId);
@@ -32,18 +35,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
 
   void deleteBiometrics(BuildContext context) {
     signController.deleteFinger();
-
-    // signController.dateBiometrics();
   }
-
-  // void deleteAllBiometrics(BuildContext context) {
-  //   signController.biometricsService.streamSocket.dispose();
-  //   signController.biometricsService.emit('message', 'ClearSendMessage');
-  //   signController.biometricsService.streamSocket.getResponse
-  //       .listen((data) {
-  //     print(data?['id']?.toString() ?? "");
-  //   });
-  // }
 
   final mapBioStudent = {50: 2};
 
@@ -94,11 +86,7 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                               ),
                               const Text(
                                 'Identificação',
-                                style: TextStyle(
-                                    color: TagColors.colorBaseInkLight,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Inter'),
+                                style: TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                               ),
                               const SizedBox(height: 32.0),
                               Container(
@@ -106,43 +94,27 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                 padding: const EdgeInsets.all(10.0),
                                 decoration: const BoxDecoration(
                                   color: TagColors.colorBaseProductNormal,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       'Nome',
-                                      style: TextStyle(
-                                          color: TagColors.colorBaseCloudNormal,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Inter'),
+                                      style: TextStyle(color: TagColors.colorBaseCloudNormal, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                     ),
                                     Row(
                                       children: const [
                                         Text(
                                           'Data de Nascimento',
-                                          style: TextStyle(
-                                              color: TagColors
-                                                  .colorBaseCloudNormal,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter'),
+                                          style: TextStyle(color: TagColors.colorBaseCloudNormal, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                         ),
                                         SizedBox(
                                           width: 64.0,
                                         ),
                                         Text(
                                           'Sexo',
-                                          style: TextStyle(
-                                              color: TagColors
-                                                  .colorBaseCloudNormal,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter'),
+                                          style: TextStyle(color: TagColors.colorBaseCloudNormal, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                         ),
                                         SizedBox(
                                           width: 32.0,
@@ -157,46 +129,27 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                                 padding: const EdgeInsets.all(10.0),
                                 decoration: const BoxDecoration(
                                   color: TagColors.colorBaseCloudDark,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                                 ),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       snapshot.data?.student?.name ?? "",
-                                      style: const TextStyle(
-                                          color: TagColors.colorBaseInkLight,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'Inter'),
+                                      style: const TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                     ),
                                     Row(
                                       children: [
                                         Text(
-                                          snapshot.data?.student?.birthday ??
-                                              "",
-                                          style: const TextStyle(
-                                              color:
-                                                  TagColors.colorBaseInkLight,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter'),
+                                          snapshot.data?.student?.birthday ?? "",
+                                          style: const TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                         ),
                                         const SizedBox(
                                           width: 82.0,
                                         ),
                                         Text(
-                                          snapshot.data?.student?.sex == 1
-                                              ? "Masculino"
-                                              : "Feminino",
-                                          style: const TextStyle(
-                                              color:
-                                                  TagColors.colorBaseInkLight,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              fontFamily: 'Inter'),
+                                          snapshot.data?.student?.sex == 1 ? "Masculino" : "Feminino",
+                                          style: const TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                                         ),
                                         const SizedBox(
                                           width: 8.0,
@@ -210,30 +163,27 @@ class _BiometricsSignPageState extends State<BiometricsSign> {
                               const SizedBox(height: 64.0),
                               const Text(
                                 'Gerenciamento de Biometria',
-                                style: TextStyle(
-                                    color: TagColors.colorBaseInkLight,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: 'Inter'),
+                                style: TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                               ),
                               const SizedBox(height: 32.0),
                               Row(
                                 children: [
                                   TagButton(
                                     text: 'Cadastrar',
-                                    onPressed: () =>
-                                        {showCustomDialog(context)},
+                                    onPressed: () => {
+                                      // biometricsController.restart(),
+                                      // biometricsController.dateBiometrics(),
+                                      showCustomDialog(context, biometricsController)
+                                    },
                                   ),
                                   const SizedBox(
                                     width: 32.0,
                                   ),
                                   TagButton(
-                                    textButtonColor:
-                                        TagColors.colorBaseInkNormal,
+                                    textButtonColor: TagColors.colorBaseInkNormal,
                                     buttonStyle: TagButtonStyles.secondary,
                                     text: 'Excluir',
-                                    onPressed: () =>
-                                        {deleteBiometrics(context)},
+                                    onPressed: () => {deleteBiometrics(context)},
                                   ),
                                   // Padding(
                                   //   padding: const EdgeInsets.all(8.0),

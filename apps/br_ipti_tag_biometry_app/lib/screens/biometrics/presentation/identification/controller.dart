@@ -21,12 +21,27 @@ class ControllerIdentification implements Disposable {
 
   Stream<SignState> get getResponseSign => stateSignStream.stream;
 
+  void startBiometricService() {
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    _biometricsService.connect();
+  }
+
   void startIdentification() {
     _biometricsService.connect();
     addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     // _biometricsService.connect();
+
     _biometricsService.connectAndListen();
     _biometricsService.emit("message", "SearchSendMessage");
+    // _biometricsService.emit("message", "SearchSendMessage");
+  }
+
+  void cancelIdentification() {
+    _biometricsService.connect();
+    addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    // _biometricsService.connect();
+    _biometricsService.connectAndListen();
+    _biometricsService.emit("message", "CancelMessage");
     // _biometricsService.emit("message", "SearchSendMessage");
   }
 
@@ -49,21 +64,21 @@ class ControllerIdentification implements Disposable {
   }
 
   void dateBiometrics() {
+    print("DATE BIOMETRICS");
     _biometricsService.streamSocket.getResponse.listen((state) async {
+      log("STATE: ${state}");
       final data = state["data"];
       if (state["event"] == "connect") {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
-      }
-      if (data == "timeout") {
-        // log(data);
+      } else if (data == "timeout") {
+        log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
         _biometricsService.connect();
         //startIdentification();
-      }
-      if (data == "ping timeout") {
-        // log(data);
+      } else if (data == "ping timeout") {
+        log(data);
         //  _biometricsService.connect();
         //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
@@ -71,44 +86,29 @@ class ControllerIdentification implements Disposable {
         //startIdentification();
       }
       if (data != null) {
+        log("DATA: $data");
         if (data['id'] == BioEvents.waitingFinger.code) {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.waitingFinger));
+          addSignResponse(currentState.copyWith(event: BioEvents.waiting));
         } else if (data['id'] == BioEvents.fingerDected.code) {
           try {
             final student = await _localStorageService.findStudent(
               data['id_finger'],
             );
             if (student != null) {
-              addSignResponse(
-                currentState.copyWith(
-                  event: BioEvents.fingerDected,
-                  student: student,
-                ),
-              );
-              // Timer(const Duration(seconds: 5), () {
-              //   restart();
-              // });
+              addSignResponse(currentState.copyWith(event: BioEvents.fingerDected, student: student));
             } else {
-              addSignResponse(
-                  currentState.copyWith(event: BioEvents.fingerNotFound));
-            //       Timer(const Duration(seconds: 5), () {
-            //   restart();
-            // });
+              addSignResponse(currentState.copyWith(event: BioEvents.fingerNotFound));
             }
           } catch (e) {
             stateSignStream.sink.addError(Exception('Aluno não encontrado'));
-            
           }
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.fingerNotFound));
+          addSignResponse(currentState.copyWith(event: BioEvents.fingerNotFound));
           // Timer(const Duration(seconds: 3), () {
           //   restart();
           // });
         } else {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.byCode(data['id'])));
+          addSignResponse(currentState.copyWith(event: BioEvents.byCode(data['id'])));
         }
       }
     });

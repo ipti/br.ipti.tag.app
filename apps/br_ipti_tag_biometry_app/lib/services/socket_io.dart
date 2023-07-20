@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
@@ -26,6 +27,8 @@ class BiometricsService implements Disposable {
     socket.onConnect((_) {
       log('connect');
     });
+
+    socket.onError((data) => log(data));
     //When an event recieved from server, data is added to the stream
     socket.onAny((event, data) {
       log('RECEIVED | event $event with data: ${data.toString()}');

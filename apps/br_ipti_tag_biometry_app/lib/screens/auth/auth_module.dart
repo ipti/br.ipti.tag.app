@@ -4,6 +4,8 @@ import 'package:br_ipti_tag_biometry_app/screens/auth/presentation/pages/auth_lo
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import 'domain/usecases/login_usecase.dart';
+
 class AuthModule extends Module {
   @override
   List<Module> get imports => [
@@ -13,6 +15,12 @@ class AuthModule extends Module {
 
   @override
   final List<Bind> binds = [
+    Bind.singleton(
+          (i) => AuthLoginUsecase(
+        i.get<AuthRepositoryImpl>(),
+      ),
+    ),
+
     // bloc
     Bind.singleton(
       (i) => LoginBloc(

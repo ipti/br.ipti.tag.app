@@ -7,6 +7,8 @@ import 'package:br_ipti_tag_biometry_app/services/local_storage_service.dart';
 import 'package:br_ipti_tag_biometry_app/services/socket_io.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
+import '../../../student/domain/usecases/load_student_usecase.dart';
+
 class ControllerSign {
   final BiometricsService biometricsService;
   final AuthRepository authRepository;
@@ -15,6 +17,7 @@ class ControllerSign {
 
   final stateSignStream = StreamController<SignState>.broadcast();
   late StudentIdentification studentCache;
+
   ControllerSign({
     required this.localStorageService,
     required this.biometricsService,
@@ -43,12 +46,18 @@ class ControllerSign {
     );
 
     student.fold(
-      (error) => log(error.message),
-      (data) => {
-        addSignResponse(
-            currentState.copyWith(student: data, event: BioEvents.putfinger))
-      },
+      (error) => log("erro: ${error.message}"),
+      (data) => {addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger))},
     );
+  }
+
+  void connect() {
+    biometricsService.connect();
+  }
+
+  void disconnect(){
+    biometricsService.disconnect();
+    biometricsService.dispose();
   }
 
   void restart() {
@@ -66,36 +75,37 @@ class ControllerSign {
   Future startSign() async {
     addSignResponse(currentState.copyWith(event: BioEvents.putfinger));
     final idStore = await localStorageService.idStore();
-    biometricsService.emit('idStore', idStore);
+    biometricsService.emit('IdStore', idStore);
   }
 
   void deleteFinger() {
     biometricsService.emit('IdDelete', 77);
   }
 
-  void deleteAllFinger() {
-    biometricsService.emit("ClearSendMessage", 'mensage');
+  Future deleteAllFinger() async {
+    await localStorageService.deleteAll();
+    biometricsService.emit("ClearSendMessage", 'message');
   }
 
-  void dateBiometrics(data) async {
-    biometricsService.streamSocket.getResponse.listen((state) async {
-      final data = state["data"];
-      if (state["event"] == "connect") {
-        addSignResponse(currentState.copyWith(event: BioEvents.waiting));
-      }
-      if (data != null) {
-        if (data['id'] == 200) {
-          addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+  int lastEventId = 0;
 
-          if (currentState.student != null) {
-            localStorageService.addStudentWithBiometricId(
-                student: currentState.student!);
-          }
-        } else {
-          addSignResponse(
-              currentState.copyWith(event: BioEvents.byCode(data["id"])));
-        }
+  void dateBiometrics(state) async {
+    final data = state["data"];
+    if (state["event"] == "connect") {
+      addSignResponse(currentState.copyWith(event: BioEvents.waiting));
+    }
+    if (data != null) {
+      if (data == 'timeout' || data['id'] != 200 || data['id'] == lastEventId) {
+        addSignResponse(currentState.copyWith(event: BioEvents.byCode(data["id"])));
+        return;
       }
-    });
+
+      if (data['id'] == 200) addSignResponse(currentState.copyWith(event: BioEvents.storeok));
+
+      if (currentState.student != null) {
+        localStorageService.addStudentWithBiometricId(student: currentState.student!);
+        disconnect();
+      }
+    }
   }
 }
