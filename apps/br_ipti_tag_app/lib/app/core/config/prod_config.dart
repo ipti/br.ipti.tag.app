@@ -2,7 +2,7 @@ import 'base_config.dart';
 
 class ProdConfig implements BaseConfig {
   @override
-  String get apiHost => "https://tag-dev-v3.fly.dev";
+  String get apiHost => "https://apitag.azurewebsites.net/";
 
   @override
   bool get reportErrors => true;

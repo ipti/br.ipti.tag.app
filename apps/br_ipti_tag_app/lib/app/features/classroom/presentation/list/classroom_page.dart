@@ -13,7 +13,7 @@ import 'bloc/classroom_list_bloc.dart';
 import 'bloc/classroom_list_states.dart';
 
 class ClassroomPage extends StatefulWidget {
-  const ClassroomPage({super.key, this.title = 'Listagem de Turmas'});
+  const ClassroomPage({super.key, this.title = 'Turmas'});
 
   final String title;
 
@@ -37,7 +37,7 @@ class ClassroomPageState extends State<ClassroomPage> {
       appBar: const CustomAppBar(),
       title: widget.title,
       description: "",
-      path: [AppRoutes.turmas, TagPath("", widget.title)],
+      path: [AppRoutes.home, TagPath("", widget.title)],
       onTapBreadcrumb: (route) => Modular.to.pushNamed(route, forRoot: true),
       actionsHeader: _SliverHeaderActionDelegate(
         actionsHeader: const _Actions(),
@@ -121,12 +121,13 @@ class ClassroomDatatable extends DataTableSource {
     return DataRow(cells: [
       DataCell(Text(
         data[index].name.toUpperCase(),
+        style: const TextStyle(fontWeight: FontWeight.bold),
       )),
       DataCell(
-        Text(data[index].stage),
+        Text(data[index].turn ?? "Não definido",style: const TextStyle(fontWeight: FontWeight.w500)),
       ),
       DataCell(
-        Text('${data[index].startTime} - ${data[index].endTime}'),
+        Text('${data[index].createDate}',style: const TextStyle(fontWeight: FontWeight.w500)),
       ),
     ]);
   }

@@ -11,7 +11,8 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      enabled: !kReleaseMode,
+      // enabled: !kReleaseMode,
+      enabled: false,
       tools: List.from(DevicePreview.defaultTools),
       builder: (BuildContext context) => MaterialApp.router(
         useInheritedMediaQuery: true,

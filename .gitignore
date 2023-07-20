@@ -52,3 +52,5 @@
 
 *.g.dart
 *.freezed.dart
+
+apps/br_ipti_tag_app/windows/

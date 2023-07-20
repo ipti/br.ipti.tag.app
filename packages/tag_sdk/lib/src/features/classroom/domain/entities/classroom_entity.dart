@@ -1,51 +1,157 @@
 class ClassroomEntity {
   ClassroomEntity({
-    required this.name,
-    required this.startTime,
-    required this.endTime,
-    required this.modalityId,
-    required this.stage,
+    this.registerType,
+    this.schoolInepFk,
     required this.id,
-    required this.edcensoStageVsModalityFk,
-    this.typePedagogicMediationId,
-    this.schooling = false,
-    this.complementaryActivity = false,
-    this.aee = false,
-    this.aeeBraille = false,
-    this.aeeOpticalNonOptical = false,
-    this.aeeCognitiveFunctions = false,
-    this.aeeMobilityTechniques = false,
-    this.aeeLibras = false,
-    this.aeeCaa = false,
-    this.aeeCurriculumEnrichment = false,
-    this.aeeAccessibleTeaching = false,
-    this.aeePortuguese = false,
-    this.aeeSoroban = false,
-    this.aeeAutonomousLife = false,
-    this.moreEducationParticipator = false,
+    required this.name,
+    this.initialHour,
+    this.initialMinute,
+    this.finalHour,
+    this.finalMinute,
+    this.weekDaysSunday,
+    this.weekDaysMonday,
+    this.weekDaysTuesday,
+    this.weekDaysWednesday,
+    this.weekDaysThursday,
+    this.weekDaysFriday,
+    this.weekDaysSaturday,
+    this.complementaryActivity,
+    this.aee,
+    this.assistanceType,
+    this.maisEducacaoParticipator,
+    this.complementaryActivityType1,
+    this.complementaryActivityType2,
+    this.complementaryActivityType3,
+    this.complementaryActivityType4,
+    this.complementaryActivityType5,
+    this.complementaryActivityType6,
+    this.aeeBraille,
+    this.aeeOpticalNonoptical,
+    this.aeeCognitiveFunctions,
+    this.aeeMobilityTechniques,
+    this.aeeLibras,
+    this.aeeCaa,
+    this.aeeCurriculumEnrichment,
+    this.aeeSoroban,
+    this.aeeAccessibleTeaching,
+    this.aeePortuguese,
+    this.aeeAutonomousLife,
+    required this.modality,
+    this.edcensoStageVsModalityFk,
+    this.edcensoProfessionalEducationCourseFk,
+    this.disciplineChemistry,
+    this.disciplinePhysics,
+    this.disciplineMathematics,
+    this.disciplineBiology,
+    this.disciplineScience,
+    this.disciplineLanguagePortugueseLiterature,
+    this.disciplineForeignLanguageEnglish,
+    this.disciplineForeignLanguageSpanish,
+    this.disciplineForeignLanguageFrench,
+    this.disciplineForeignLanguageOther,
+    this.disciplineArts,
+    this.disciplinePhysicalEducation,
+    this.disciplineHistory,
+    this.disciplineGeography,
+    this.disciplinePhilosophy,
+    this.disciplineSocialStudy,
+    this.disciplineSociology,
+    this.disciplinePortugueseSecondaryLanguage,
+    this.disciplineCurricularStage,
+    this.disciplineInformatics,
+    this.disciplineProfessionalDisciplines,
+    this.disciplineSpecialEducationAndInclusivePractices,
+    this.disciplineSocioculturalDiversity,
+    this.disciplineLibras,
+    this.disciplinePedagogical,
+    this.disciplineReligious,
+    this.disciplineNativeLanguage,
+    this.disciplineOthers,
+    this.schoolYear,
+    this.turn,
+    this.createDate,
+    this.hash,
+    this.calendarFk,
+    this.schooling,
+    this.diffLocation,
+    this.course,
+    this.vacancy,
   });
 
-  final String name;
+  String? registerType;
+  String? schoolInepFk;
   final int id;
-  final String startTime;
-  final String endTime;
-  final int? modalityId;
-  final String stage;
-  final int? typePedagogicMediationId;
-  final String edcensoStageVsModalityFk;
-  final bool schooling;
-  final bool complementaryActivity;
-  final bool aee;
-  final bool aeeBraille;
-  final bool aeeOpticalNonOptical;
-  final bool aeeCognitiveFunctions;
-  final bool aeeMobilityTechniques;
-  final bool aeeLibras;
-  final bool aeeCaa;
-  final bool aeeCurriculumEnrichment;
-  final bool aeeAccessibleTeaching;
-  final bool aeePortuguese;
-  final bool aeeSoroban;
-  final bool aeeAutonomousLife;
-  final bool moreEducationParticipator;
+  String name;
+  String? initialHour;
+  String? initialMinute;
+  String? finalHour;
+  String? finalMinute;
+  bool? weekDaysSunday;
+  bool? weekDaysMonday;
+  bool? weekDaysTuesday;
+  bool? weekDaysWednesday;
+  bool? weekDaysThursday;
+  bool? weekDaysFriday;
+  bool? weekDaysSaturday;
+  bool? complementaryActivity;
+  bool? aee;
+  int? assistanceType;
+  bool? maisEducacaoParticipator;
+  String? complementaryActivityType1;
+  String? complementaryActivityType2;
+  String? complementaryActivityType3;
+  String? complementaryActivityType4;
+  String? complementaryActivityType5;
+  String? complementaryActivityType6;
+  bool? aeeBraille;
+  bool? aeeOpticalNonoptical;
+  bool? aeeCognitiveFunctions;
+  bool? aeeMobilityTechniques;
+  bool? aeeLibras;
+  bool? aeeCaa;
+  bool? aeeCurriculumEnrichment;
+  bool? aeeSoroban;
+  bool? aeeAccessibleTeaching;
+  bool? aeePortuguese;
+  bool? aeeAutonomousLife;
+  final int modality;
+  String? edcensoStageVsModalityFk;
+  String? edcensoProfessionalEducationCourseFk;
+  int? disciplineChemistry;
+  int? disciplinePhysics;
+  int? disciplineMathematics;
+  int? disciplineBiology;
+  int? disciplineScience;
+  int? disciplineLanguagePortugueseLiterature;
+  int? disciplineForeignLanguageEnglish;
+  int? disciplineForeignLanguageSpanish;
+  int? disciplineForeignLanguageFrench;
+  int? disciplineForeignLanguageOther;
+  int? disciplineArts;
+  int? disciplinePhysicalEducation;
+  int? disciplineHistory;
+  int? disciplineGeography;
+  int? disciplinePhilosophy;
+  int? disciplineSocialStudy;
+  int? disciplineSociology;
+  String? disciplinePortugueseSecondaryLanguage;
+  String? disciplineCurricularStage;
+  int? disciplineInformatics;
+  int? disciplineProfessionalDisciplines;
+  int? disciplineSpecialEducationAndInclusivePractices;
+  int? disciplineSocioculturalDiversity;
+  int? disciplineLibras;
+  int? disciplinePedagogical;
+  int? disciplineReligious;
+  int? disciplineNativeLanguage;
+  int? disciplineOthers;
+  int? schoolYear;
+  String? turn;
+  DateTime? createDate;
+  String? hash;
+  String? calendarFk;
+  String? schooling;
+  String? diffLocation;
+  String? course;
+  int? vacancy;
 }

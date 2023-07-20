@@ -46,47 +46,47 @@ class _ClassroomBasicDataFormState extends State<ClassroomBasicDataForm> {
     _session.fetchCurrentSchool();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.classroomEntity != null) {
-        controller.add(
-          UpdateClassroom(
-            edcensoStageVsModalityFk:
-                widget.classroomEntity?.edcensoStageVsModalityFk ?? '1',
-            name: widget.classroomEntity?.name ?? 'NoName',
-            startTime:
-                (widget.classroomEntity?.startTime ?? DateTime.now().toString())
-                    .parseDateTime,
-            endTime:
-                (widget.classroomEntity?.startTime ?? DateTime.now().toString())
-                    .parseDateTime,
-            modalityId: widget.classroomEntity?.modalityId ?? 0,
-            typePedagogicMeditationId:
-                widget.classroomEntity?.typePedagogicMediationId ?? 0,
-            stage: widget.classroomEntity?.stage ?? 'STAGE NOT DEFINED',
-            id: widget.classroomEntity?.id ?? 1,
-            schooling: widget.classroomEntity?.schooling ?? false,
-            aee: widget.classroomEntity?.aee ?? false,
-            aeeAccessibleTeaching:
-                widget.classroomEntity?.aeeAccessibleTeaching ?? false,
-            aeeAutonomousLife:
-                widget.classroomEntity?.aeeAutonomousLife ?? false,
-            aeeBraille: widget.classroomEntity?.aeeBraille ?? false,
-            aeeCaa: widget.classroomEntity?.aeeCaa ?? false,
-            aeeCognitiveFunction:
-                widget.classroomEntity?.aeeCognitiveFunctions ?? false,
-            aeeCurriculumEnrichment:
-                widget.classroomEntity?.aeeCurriculumEnrichment ?? false,
-            aeeLibras: widget.classroomEntity?.aeeLibras ?? false,
-            aeeMobilityTechniques:
-                widget.classroomEntity?.aeeMobilityTechniques ?? false,
-            aeeOpticalNonoptical:
-                widget.classroomEntity?.aeeOpticalNonOptical ?? false,
-            aeePortuguese: widget.classroomEntity?.aeePortuguese ?? false,
-            aeeSoroban: widget.classroomEntity?.aeeSoroban ?? false,
-            complementaryActivity:
-                widget.classroomEntity?.complementaryActivity ?? false,
-            moreEducationParticipator:
-                widget.classroomEntity?.moreEducationParticipator ?? false,
-          ),
-        );
+        // controller.add(
+        //   UpdateClassroom(
+        //     edcensoStageVsModalityFk:
+        //         widget.classroomEntity?.edcensoStageVsModalityFk ?? '1',
+        //     name: widget.classroomEntity?.name ?? 'NoName',
+        //     startTime:
+        //         (widget.classroomEntity?.startTime ?? DateTime.now().toString())
+        //             .parseDateTime,
+        //     endTime:
+        //         (widget.classroomEntity?.startTime ?? DateTime.now().toString())
+        //             .parseDateTime,
+        //     modalityId: widget.classroomEntity?.modalityId ?? 0,
+        //     typePedagogicMeditationId:
+        //         widget.classroomEntity?.typePedagogicMediationId ?? 0,
+        //     stage: widget.classroomEntity?.stage ?? 'STAGE NOT DEFINED',
+        //     id: widget.classroomEntity?.id ?? 1,
+        //     schooling: widget.classroomEntity?.schooling ?? false,
+        //     aee: widget.classroomEntity?.aee ?? false,
+        //     aeeAccessibleTeaching:
+        //         widget.classroomEntity?.aeeAccessibleTeaching ?? false,
+        //     aeeAutonomousLife:
+        //         widget.classroomEntity?.aeeAutonomousLife ?? false,
+        //     aeeBraille: widget.classroomEntity?.aeeBraille ?? false,
+        //     aeeCaa: widget.classroomEntity?.aeeCaa ?? false,
+        //     aeeCognitiveFunction:
+        //         widget.classroomEntity?.aeeCognitiveFunctions ?? false,
+        //     aeeCurriculumEnrichment:
+        //         widget.classroomEntity?.aeeCurriculumEnrichment ?? false,
+        //     aeeLibras: widget.classroomEntity?.aeeLibras ?? false,
+        //     aeeMobilityTechniques:
+        //         widget.classroomEntity?.aeeMobilityTechniques ?? false,
+        //     aeeOpticalNonoptical:
+        //         widget.classroomEntity?.aeeOpticalNonOptical ?? false,
+        //     aeePortuguese: widget.classroomEntity?.aeePortuguese ?? false,
+        //     aeeSoroban: widget.classroomEntity?.aeeSoroban ?? false,
+        //     complementaryActivity:
+        //         widget.classroomEntity?.complementaryActivity ?? false,
+        //     moreEducationParticipator:
+        //         widget.classroomEntity?.moreEducationParticipator ?? false,
+        //   ),
+        // );
       }
     });
     super.initState();
