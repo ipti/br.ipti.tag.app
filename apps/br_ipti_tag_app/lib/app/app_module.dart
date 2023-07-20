@@ -1,6 +1,7 @@
 import 'package:br_ipti_tag_app/app/core/plataform/session_service.dart';
 import 'package:br_ipti_tag_app/app/core/splashscreen/splashscreen_module.dart';
 import 'package:br_ipti_tag_app/app/core/util/session/session_bloc.dart';
+import 'package:br_ipti_tag_app/app/features/notes/notes_modules.dart';
 import 'package:br_ipti_tag_app/app/features/school/school_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -92,6 +93,11 @@ class AppModule extends Module {
         ModuleRoute(
           "/frequencia",
           module: FrequencyModule(),
+          transition: TransitionType.noTransition,
+        ),
+        ModuleRoute(
+          "/notas",
+          module: NotesModules(),
           transition: TransitionType.noTransition,
         ),
         ModuleRoute(
