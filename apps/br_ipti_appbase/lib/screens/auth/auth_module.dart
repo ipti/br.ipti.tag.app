@@ -1,9 +1,10 @@
-
 import 'package:br_ipti_appbase/app_module.dart';
 import 'package:br_ipti_appbase/screens/auth/presentation/bloc/login_bloc.dart';
 import 'package:br_ipti_appbase/screens/auth/presentation/pages/auth_login_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
+
+import '../../domain/auth/usecases/login_usecase.dart';
 
 class AuthModule extends Module {
   @override

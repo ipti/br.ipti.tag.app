@@ -10,7 +10,7 @@ const KEY_SESSION_USER_SCHOOLS = 'SESSION_USER_SCHOOLS';
 const KEY_SESSION_CURRENT_SCHOOL = 'SESSION_CURRENT_SCHOOL';
 
 abstract class SessionService {
-  Future<User> getCurrentUser();
+  Future<UserModel> getCurrentUser();
   Future<bool> setCurrentUser(UserModel user);
 
   Future<String> getToken();
@@ -32,7 +32,7 @@ abstract class SessionService {
 
 class SessionServiceImpl extends SessionService {
   @override
-  Future<User> getCurrentUser() async {
+  Future<UserModel> getCurrentUser() async {
     final sharedPreferences = await SharedPreferences.getInstance();
 
     final userJsonString = sharedPreferences.getString(

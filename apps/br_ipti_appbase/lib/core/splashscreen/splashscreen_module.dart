@@ -1,5 +1,6 @@
 import 'package:br_ipti_appbase/core/splashscreen/splashscreen.dart';
 import 'package:br_ipti_appbase/core/splashscreen/splashscreen_controller.dart';
+import 'package:br_ipti_appbase/domain/auth/usecases/verify_auth_usecase.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
 
