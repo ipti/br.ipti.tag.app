@@ -6,6 +6,7 @@ import 'package:br_ipti_tag_biometry_app/screens/biometrics/presentation/sign/si
 import 'package:br_ipti_tag_biometry_app/widgets/finger_mensage.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/school_panel.dart';
 import 'package:br_ipti_tag_biometry_app/widgets/student_info.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tag_sdk/tag_sdk.dart';
@@ -29,6 +30,17 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     super.dispose();
   }
 
+  Future<void> fingerPrintPressed(int id) async {
+    if (id == 0) return;
+    final dio = Modular.get<Dio>();
+    try {
+      Response response = await dio.post("/student-biometric", data: {"student_enrollment": id});
+      log(response.data.toString());
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,7 +59,8 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                             biometricsController.restart(),
                             biometricsController.dateBiometrics(),
                           })),
-                ),Padding(
+                ),
+                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TagButton(
                       text: 'Cancelar busca',
@@ -89,14 +102,16 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                 log("SchoolEntrace: ${snapshot.data.toString()}");
                 log(biometricsController.timeout().toString());
                 if (snapshot.data == null) {
-                  return Center(
-                      heightFactor: 10.0,
-                      child: TagButton(
-                          text: 'Identificar Aluno',
-                          onPressed: (() => {
-                                biometricsController.startIdentification(),
-                                biometricsController.dateBiometrics(),
-                              })));
+                  return Expanded(
+                    child: Center(
+                        // heightFactor: 10.0,
+                        child: TagButton(
+                            text: 'Identificar Aluno',
+                            onPressed: (() => {
+                                  biometricsController.startIdentification(),
+                                  biometricsController.dateBiometrics(),
+                                }))),
+                  );
                 }
                 if (!biometricsController.timeout()) {
                   return const Center(
@@ -114,13 +129,22 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                 biometricsController.dateBiometrics(),
                               })));
                 }
+
+                if (snapshot.data?.event.code == BioEvents.fingerDected.code) {
+                  fingerPrintPressed(snapshot.data!.student!.id ?? 0);
+                }
+
                 return Column(
                   children: [
-                    if (snapshot.data?.event == BioEvents.waiting && biometricsController.timeout()) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code == BioEvents.modeling.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code == BioEvents.searching.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event == BioEvents.waiting && biometricsController.timeout())
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code == BioEvents.modeling.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code == BioEvents.searching.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code == BioEvents.fingerDected.code) StudentInfo(student: snapshot.data!.student),
-                    if (snapshot.data?.event.code == BioEvents.fingerNotFound.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code == BioEvents.fingerNotFound.code)
+                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
                   ],
                 );
               },

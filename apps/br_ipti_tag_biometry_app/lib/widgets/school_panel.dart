@@ -13,7 +13,7 @@ class SchoolPanel extends StatelessWidget {
         color: TagColors.colorBaseCloudDark,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20  ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

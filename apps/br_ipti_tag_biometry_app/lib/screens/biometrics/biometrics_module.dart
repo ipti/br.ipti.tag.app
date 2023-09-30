@@ -10,7 +10,7 @@ import 'package:tag_sdk/tag_sdk.dart';
 
 import '../auth/domain/usecases/logout_usecase.dart';
 
-const _urlWebSocket = "http://127.0.0.1:5000";
+const _urlWebSocket = "http://192.168.2.1:5000";
 
 class BiometricsModule extends Module {
   @override
@@ -29,7 +29,7 @@ class BiometricsModule extends Module {
             .enableForceNew()
             .setTimeout(300)
             .enableForceNewConnection()
-            .setExtraHeaders({'Connection': 'Upgrade', 'Origin': '127.0.0.1:5000'}) // optional
+            .setExtraHeaders({'Connection': 'Upgrade', 'Origin': 'http://192.168.2.1:5000'}) // optional
             .setTransports(['websocket']).build())),
 
     Bind.factory(

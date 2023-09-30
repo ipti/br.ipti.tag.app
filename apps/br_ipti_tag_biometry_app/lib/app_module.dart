@@ -13,7 +13,7 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton<Dio>(
-          (i) => Dio(BaseOptions(baseUrl: "http://tag-api-loadbalance-772604107.us-east-1.elb.amazonaws.com:3000"))
+          (i) => Dio(BaseOptions(baseUrl: "http://192.168.2.1:3000"))
             ..interceptors.addAll(
               [
                 AuthInterceptor(),
