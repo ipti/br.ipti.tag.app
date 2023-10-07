@@ -31,7 +31,6 @@ class BiometricsModule extends Module {
             .enableForceNewConnection()
             .setExtraHeaders({'Connection': 'Upgrade', 'Origin': 'http://192.168.2.1:5000'}) // optional
             .setTransports(['websocket']).build())),
-
     Bind.factory(
       (i) => StreamSocket(),
     ),

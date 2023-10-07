@@ -24,17 +24,18 @@ class SchoolEntrance extends StatefulWidget {
 class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsController = Modular.get<ControllerIdentification>();
 
+
   @override
   void dispose() {
     biometricsController.dispose();
     super.dispose();
   }
 
-  Future<void> fingerPrintPressed(int id) async {
+  Future<void> fingerprintPressed(int id) async {
     if (id == 0) return;
-    final dio = Modular.get<Dio>();
     try {
-      Response response = await dio.post("/student-biometric", data: {"student_enrollment": id});
+      Dio dio = Dio()..options.baseUrl = "http://192.168.2.1:5000";
+      Response response = await dio.get("/increment-counter");
       log(response.data.toString());
     } catch (e) {
       log(e.toString());
@@ -45,6 +46,16 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        floatingActionButton:FloatingActionButton(onPressed: () async {
+          try{
+          Dio dio = Dio()..options.baseUrl = "http://192.168.2.1:5000";
+          Response response = await dio.get("/increment-counter");
+            print(response.statusCode);
+            print(response.data);
+          } on DioError catch(e){
+            print("ERRO: ${e.message}");
+          }
+        },),
         body: Column(
           children: [
             const SchoolPanel(),
@@ -129,22 +140,37 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                 biometricsController.dateBiometrics(),
                               })));
                 }
+                print(snapshot.data);
+                print("Foraaaaaaaaaaaa");
 
                 if (snapshot.data?.event.code == BioEvents.fingerDected.code) {
-                  fingerPrintPressed(snapshot.data!.student!.id ?? 0);
+                  print("ENTROU NO IFFFFFFFFFFFFFFF");
+                  fingerprintPressed(snapshot.data!.student!.id ?? 0);
                 }
 
                 return Column(
                   children: [
-                    if (snapshot.data?.event == BioEvents.waiting && biometricsController.timeout())
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                    if (snapshot.data?.event == BioEvents.waiting &&
+                        biometricsController.timeout())
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code == BioEvents.modeling.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                     if (snapshot.data?.event.code == BioEvents.searching.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code == BioEvents.fingerDected.code) StudentInfo(student: snapshot.data!.student),
-                    if (snapshot.data?.event.code == BioEvents.fingerNotFound.code)
-                      FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
+                    if (snapshot.data?.event.code ==
+                        BioEvents.fingerDected.code)
+                      StudentInfo(student: snapshot.data!.student),
+                    if (snapshot.data?.event.code ==
+                        BioEvents.fingerNotFound.code)
+                      FingerMensage(
+                          text: snapshot.data!.event.info,
+                          code: snapshot.data?.event.code),
                   ],
                 );
               },
