@@ -7,16 +7,12 @@ import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 import 'package:tag_sdk/src/features/student/domain/repositories/student_repositories.dart';
 
 class StudentRepositoryImpl implements StudentRepository {
-  StudentRepositoryImpl(
-    this._studentDataSource,
-  );
+  StudentRepositoryImpl(this._studentDataSource,);
 
   final StudentRemoteDataSource _studentDataSource;
 
   @override
-  Future<Either<Failure, List<StudentIdentification>>> listAll({
-    required String schoolId,
-  }) async {
+  Future<Either<Failure, List<StudentIdentification>>> listAll({ required String schoolId }) async {
     try {
       final results = await _studentDataSource.listAll(schoolId: schoolId);
 
@@ -33,8 +29,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, StudentIdentification>> getById(
-    int id, {
+  Future<Either<Failure, StudentIdentification>> getById(int id, {
     required String schoolId,
   }) async {
     try {
@@ -49,8 +44,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, StudentIdentification>> create(
-      StudentIdentification student) async {
+  Future<Either<Failure, StudentIdentification>> create(StudentIdentification student) async {
     try {
       final result = await _studentDataSource.create(student);
 
@@ -63,8 +57,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, StudentIdentification>> update(
-      int id, StudentIdentification student) async {
+  Future<Either<Failure, StudentIdentification>> update(int id, StudentIdentification student) async {
     try {
       final result = await _studentDataSource.update(id, student);
 

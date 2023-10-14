@@ -8,23 +8,25 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:tag_network/tag_network.dart';
 
+import 'constants.dart';
+
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
   @override
   List<Bind> get binds => [
         Bind.singleton<Dio>(
-          (i) => Dio(BaseOptions(baseUrl: "http://192.168.2.1:3000"))
+          (i) => Dio(BaseOptions(baseUrl: "$BASEURL:3000"))
             ..interceptors.addAll(
               [
                 AuthInterceptor(),
-                PrettyDioLogger(
-                    requestHeader: true,
-                    requestBody: true,
-                    responseBody: true,
-                    responseHeader: false,
-                    error: true,
-                    compact: true,
-                    maxWidth: 90)
+                // PrettyDioLogger(
+                //     requestHeader: true,
+                //     requestBody: true,
+                //     responseBody: true,
+                //     responseHeader: false,
+                //     error: true,
+                //     compact: true,
+                //     maxWidth: 90)
               ],
             ),
         ),
