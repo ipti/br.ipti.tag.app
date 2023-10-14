@@ -106,16 +106,16 @@ class StudentDatatable extends DataTableSource {
         DataCell(
           ToggleMobileDesktop(
             desktop: Text(
-              data[index].name.toUpperCase(),
+              (data[index].name ?? "Não definido").toUpperCase(),
             ),
             mobile: Text(
-              data[index].name.toUpperCase(),
+              (data[index].name ?? "Não definido").toUpperCase(),
               style: TagTextStyles.textTableColumnHeader,
             ),
           ),
         ),
         DataCell(
-          Text(data[index].birthday),
+          Text(data[index].birthday??"Não definido"),
         ),
         DataCell(
           Text(data[index].responsableName ?? ""),

@@ -24,7 +24,6 @@ class SchoolEntrance extends StatefulWidget {
 class _SchoolEntrancePageState extends State<SchoolEntrance> {
   final biometricsController = Modular.get<ControllerIdentification>();
 
-
   @override
   void dispose() {
     biometricsController.dispose();
@@ -42,20 +41,24 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
     }
   }
 
+  Widget child = Container();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton:FloatingActionButton(onPressed: () async {
-          try{
-          Dio dio = Dio()..options.baseUrl = "http://192.168.2.1:5000";
-          Response response = await dio.get("/increment-counter");
-            print(response.statusCode);
-            print(response.data);
-          } on DioError catch(e){
-            print("ERRO: ${e.message}");
-          }
-        },),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            try {
+              Dio dio1 = Dio()..options.baseUrl = "http://192.168.2.1:5000";
+              Response response = await dio1.get("/increment-counter");
+              print(response.statusCode);
+              print(response.data);
+            } on DioError catch (e) {
+              print("ERRO: ${e.message}");
+            }
+          },
+        ),
         body: Column(
           children: [
             const SchoolPanel(),
@@ -85,6 +88,8 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                   child: TagButton(
                     text: 'Cadastrar Biometria',
                     onPressed: () {
+                      biometricsController.restart();
+                      biometricsController.cancelIdentification();
                       Modular.to.pushReplacementNamed("/biometrics/students/");
                     },
                   ),
@@ -140,38 +145,28 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
                                 biometricsController.dateBiometrics(),
                               })));
                 }
-                print(snapshot.data);
-                print("Foraaaaaaaaaaaa");
-
                 if (snapshot.data?.event.code == BioEvents.fingerDected.code) {
-                  print("ENTROU NO IFFFFFFFFFFFFFFF");
                   fingerprintPressed(snapshot.data!.student!.id ?? 0);
                 }
 
+                if (snapshot.data?.event == BioEvents.waiting && biometricsController.timeout()) {
+                  child = FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
+                }
+                if (snapshot.data?.event.code == BioEvents.modeling.code) {
+                  child = FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
+                }
+                if (snapshot.data?.event.code == BioEvents.searching.code) {
+                  child = FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
+                }
+                if (snapshot.data?.event.code == BioEvents.fingerDected.code) {
+                  child = StudentInfo(student: snapshot.data!.student);
+                }
+                if (snapshot.data?.event.code == BioEvents.fingerNotFound.code) {
+                  child = FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
+                }
+
                 return Column(
-                  children: [
-                    if (snapshot.data?.event == BioEvents.waiting &&
-                        biometricsController.timeout())
-                      FingerMensage(
-                          text: snapshot.data!.event.info,
-                          code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code == BioEvents.modeling.code)
-                      FingerMensage(
-                          text: snapshot.data!.event.info,
-                          code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code == BioEvents.searching.code)
-                      FingerMensage(
-                          text: snapshot.data!.event.info,
-                          code: snapshot.data?.event.code),
-                    if (snapshot.data?.event.code ==
-                        BioEvents.fingerDected.code)
-                      StudentInfo(student: snapshot.data!.student),
-                    if (snapshot.data?.event.code ==
-                        BioEvents.fingerNotFound.code)
-                      FingerMensage(
-                          text: snapshot.data!.event.info,
-                          code: snapshot.data?.event.code),
-                  ],
+                  children: [child],
                 );
               },
             ),

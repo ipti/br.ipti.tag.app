@@ -58,7 +58,7 @@ class StudentInfo extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Text(
-                  student!.name,
+                  student!.name ?? "Não definido",
                   style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,
@@ -93,7 +93,7 @@ class StudentInfo extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
                 child: Text(
-                  student!.registerType,
+                  student!.registerType ?? "Não definido",
                   style: const TextStyle(
                       color: TagColors.colorBaseInkLight,
                       fontSize: 18,

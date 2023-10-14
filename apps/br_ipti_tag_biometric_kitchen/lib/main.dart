@@ -60,8 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     socket.onAny((event, data) => print("Event: $event, Data: $data"));
 
-    socket.on('message',
-            (data) => {if (data['event'] == 'INCREMENTCOUNTER') _incrementCounter()});
+    socket.on('message', (data) => {if (data['event'] == 'INCREMENTCOUNTER') _incrementCounter()});
   }
 
   @override

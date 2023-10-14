@@ -95,7 +95,7 @@ class ControllerSign {
       addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     }
     if (data != null) {
-      if (data == 'timeout' || data['id'] != 200 || data['id'] == lastEventId) {
+      if (data.toString() == 'timeout' || data['id'] != 200 || data['id'] == lastEventId) {
         addSignResponse(currentState.copyWith(event: BioEvents.byCode(data["id"])));
         return;
       }
