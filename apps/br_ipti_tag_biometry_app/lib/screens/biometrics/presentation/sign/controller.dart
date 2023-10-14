@@ -47,7 +47,7 @@ class ControllerSign {
 
     student.fold(
       (error) => log("erro: ${error.message}"),
-      (data) => {addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger))},
+      (data) => addSignResponse(currentState.copyWith(student: data, event: BioEvents.putfinger)),
     );
   }
 

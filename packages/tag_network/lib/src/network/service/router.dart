@@ -37,8 +37,9 @@ class RouterAPI implements NetworkRouter {
   }) async {
     try {
       final requestOptions = _buildRequest(route: route);
+      print("ANTES");
       final response = await _client.fetch(requestOptions);
-
+      print("Depois");
       return NetworkResponse(
         response.data as Iterable,
         response,

@@ -34,7 +34,7 @@ class AuthLoginUsecase implements Usecase<AuthModel, LoginParams> {
 
     await Future.wait([
       _repository.storeAccessToken(token!),
-      _repository.storeSchoolYear(year!),
+      _repository.storeSchoolYear(year),
       _repository.storeCurrentUserSchools(schools!),
     ]);
   }

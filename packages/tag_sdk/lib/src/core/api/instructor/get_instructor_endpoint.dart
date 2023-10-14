@@ -8,7 +8,7 @@ class GetInstructorEndPoint extends EndPointAPI {
   final int? id;
 
   @override
-  String get path => id == null ? '/instructor' : '/instructor/$id';
+  String get path => id == null ? '/direct/instructor' : '/direct/instructor/$id';
 
   @override
   Parameters? get bodyParameters => null;

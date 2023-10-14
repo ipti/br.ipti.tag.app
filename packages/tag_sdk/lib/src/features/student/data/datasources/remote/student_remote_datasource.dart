@@ -6,24 +6,23 @@ import 'package:tag_sdk/src/core/api/students/put_students_endpoint.dart';
 import 'package:tag_sdk/src/features/student/domain/entities/student.dart';
 
 class StudentRemoteDataSource {
-  StudentRemoteDataSource(
-    this._httpClient,
-  );
+  StudentRemoteDataSource(this._httpClient,);
 
   final RouterAPI _httpClient;
 
-  Future<List<StudentIdentification>> listAll(
-      {required String schoolId}) async {
+  Future<List<StudentIdentification>> listAll({required String schoolId}) async {
     final response = await _httpClient.requestListPaginatedFrom(
       route: GetStudentsEndPoint(schoolId: schoolId),
     );
+
+    print(response.data?.data);
 
     final data = response.data?.data ?? [];
 
     final mappedList = data
         .map(
           (e) => StudentIdentification.fromJson(e as Map<String, dynamic>),
-        )
+    )
         .toList();
 
     return mappedList;
@@ -50,8 +49,7 @@ class StudentRemoteDataSource {
     return mappedValue;
   }
 
-  Future<StudentIdentification> update(
-      int id, StudentIdentification model) async {
+  Future<StudentIdentification> update(int id, StudentIdentification model) async {
     final response = await _httpClient.request(
       route: PutStudentsEndPoint(id: id, model: model),
     );

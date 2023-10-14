@@ -6,7 +6,7 @@ class GetUserEndPoint extends EndPointAPI {
   final String? id;
 
   @override
-  String get path => id == null ? '/users' : '/users/$id';
+  String get path => id == null ? '/direct/users' : '/direct/users/$id';
 
   @override
   Parameters? get bodyParameters => null;

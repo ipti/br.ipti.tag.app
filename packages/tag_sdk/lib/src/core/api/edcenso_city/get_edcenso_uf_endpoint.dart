@@ -8,7 +8,7 @@ class GetEdcensoUfEndPoint extends EndPointAPI {
   final String? id;
 
   @override
-  String get path => id == null ? '/edcensoUf' : '/edcensoUf/{$id}';
+  String get path => id == null ? '/direct/edcensoUf' : '/direct/edcensoUf/{$id}';
 
   @override
   Parameters? get bodyParameters => null;
