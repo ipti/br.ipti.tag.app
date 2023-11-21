@@ -58,7 +58,7 @@ jobs:
 
       - name: 🔑 Decode Android keystore
         id: android_keystore
-        uses: timheuer/base64-to-file@v1.0.3
+        uses: timheuer/base64-to-file@v1.2
         with:
           fileName: key.jks
           fileDir: apps/br_ipti_tag_app/android
