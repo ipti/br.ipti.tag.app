@@ -61,6 +61,7 @@ jobs:
         uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: key.jks
+          fileDir: apps/br_ipti_tag_app/android
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
       
       - name: ⚙ Create key.properties
