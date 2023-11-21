@@ -56,6 +56,21 @@ jobs:
       - name: ❤️ Show Files
         run: ls -la
 
+      - name: 🔑 Decode Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      
+      - name: ⚙ Create key.properties
+        working-directory: apps/br_ipti_tag_app
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
+          
       - name: ❤️‍🔥 Setup Flutterfire
         working-directory: flutterfire
         run: |
