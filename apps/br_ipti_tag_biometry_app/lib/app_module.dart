@@ -30,12 +30,7 @@ class AppModule extends Module {
               ],
             ),
         ),
-        Bind.singleton<RouterAPI>(
-          (i) => RouterAPI(
-            i.get<Dio>(),
-          ),
-        ),
-
+        Bind.singleton<RouterAPI>((i) => RouterAPI(i.get<Dio>())),
         Bind.singleton((i) => SessionServiceImpl()),
 
         // BlocBind.singleton<SessionBloc>(

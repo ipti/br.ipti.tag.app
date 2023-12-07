@@ -52,6 +52,7 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
           onPressed: () async {
             try {
               Dio dio1 = Dio()..options.baseUrl = "http://192.168.2.1:5000";
+              // Dio dio1 = Dio()..options.baseUrl = "http://192.168.1.123:5000";
               Response response = await dio1.get("/increment-counter");
               print(response.statusCode);
               print(response.data);

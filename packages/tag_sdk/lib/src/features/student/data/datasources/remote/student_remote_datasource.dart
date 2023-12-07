@@ -11,21 +11,27 @@ class StudentRemoteDataSource {
   final RouterAPI _httpClient;
 
   Future<List<StudentIdentification>> listAll({required String schoolId}) async {
-    final response = await _httpClient.requestListPaginatedFrom(
+    final response = await _httpClient.requestListFrom(
       route: GetStudentsEndPoint(schoolId: schoolId),
     );
 
-    print(response.data?.data);
-
-    final data = response.data?.data ?? [];
-
+    // print("RES: ${response.data}");
+    // // print(response.data?.data);
+    // //
+    // // final data = response.data?.data ?? [];
+    final data = response.data ?? [];
+    //
     final mappedList = data
         .map(
-          (e) => StudentIdentification.fromJson(e as Map<String, dynamic>),
+          (e) {
+            print("RES: $e");
+            return StudentIdentification.fromJson(e as Map<String, dynamic>);
+          },
     )
         .toList();
 
     return mappedList;
+    // return [];
   }
 
   Future<StudentIdentification> getById(int id,
