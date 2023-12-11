@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.br_ipti_tag_biometry_app">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="br_ipti_tag_biometry_app"
         android:name="${applicationName}"
