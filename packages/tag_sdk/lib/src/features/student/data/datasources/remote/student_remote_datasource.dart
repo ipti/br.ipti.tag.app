@@ -24,7 +24,6 @@ class StudentRemoteDataSource {
     final mappedList = data
         .map(
           (e) {
-            print("RES: $e");
             return StudentIdentification.fromJson(e as Map<String, dynamic>);
           },
     )

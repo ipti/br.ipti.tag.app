@@ -10,11 +10,9 @@ class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: TagColors.colorBaseCloudDark,
-      ),
+      decoration: const BoxDecoration(color: TagColors.colorBaseCloudDark),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -25,48 +23,36 @@ class TopBar extends StatelessWidget {
                     Icons.arrow_back,
                     size: 24.0,
                   ),
-                  onPressed: () =>
-                      Modular.to.pushNamed("/biometrics/identification"),
+                  onPressed: () => Modular.to.pushNamed("/biometrics/identification"),
                 ),
-                Column(
-                  children: const [ 
+                const Column(
+                  children:  [
                     SizedBox(
-                          width: 256.0,
-                          child: TagTextField(
-                            label: '',
-                            hint: "Digite o nome do Aluno",
-                          )),
-                     SizedBox(
+                        width: 256.0,
+                        child: TagTextField(
+                          label: '',
+                          hint: "Digite o nome do Aluno",
+                        )),
+                    SizedBox(
                       height: 18.0,
-                     )   
+                    )
                   ],
                 ),
               ],
             ),
             Row(
               children: [
-                const Text('Escola',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Inter',
-                        color: TagColors.colorBaseProductLogo)),
-                const SizedBox(
-                  width: 15,
-                ),
+                const Text('Escola', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, fontFamily: 'Inter', color: TagColors.colorBaseProductLogo)),
+                const SizedBox(width: 15),
                 Container(
                   height: 64,
                   width: 64,
                   decoration: BoxDecoration(
                     color: TagColors.colorBaseWhiteNormal,
                     border: Border.all(color: TagColors.colorBaseProductLogo),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(100.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100.0)),
                   ),
-                  child: const Icon(
-                    Icons.logo_dev,
-                    size: 32,
-                  ),
+                  child: const Icon(Icons.logo_dev, size: 32),
                 ),
               ],
             ),

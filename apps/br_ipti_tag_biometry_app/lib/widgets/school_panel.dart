@@ -8,47 +8,41 @@ class SchoolPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
+      height: size.height * 0.15,
       decoration: const BoxDecoration(
         color: TagColors.colorBaseCloudDark,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20  ),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
                 Container(
-                  height: 128,
-                  width: 128,
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: TagColors.colorBaseWhiteNormal,
                     border: Border.all(color: TagColors.colorBaseProductLogo),
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(100.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(100.0)),
                   ),
-                  child: const Icon(
-                    Icons.logo_dev,
-                    size: 64,
+                  child: Icon(
+                    Icons.logo_dev,size: size.height * 0.08,
                   ),
                 ),
                 const SizedBox(
                   width: 15,
                 ),
-                const Text('Escola',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Inter',
-                        color: TagColors.colorBaseProductLogo)),
+                const Text('Escola', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, fontFamily: 'Inter', color: TagColors.colorBaseProductLogo)),
               ],
             ),
             TagIcon(
               defaultVersionPath: FilePaths.LOGO_PATH_SVG,
               disabledVersionPath: FilePaths.LOGO_PATH_SVG,
-              maxHeight: 100.0,
-              maxWidth: 100.0,
+              maxHeight: size.height * 0.13,
+              maxWidth: size.height * 0.13,
             ),
           ],
         ),

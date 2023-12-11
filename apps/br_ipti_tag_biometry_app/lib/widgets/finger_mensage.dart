@@ -5,46 +5,54 @@ import 'package:tag_ui/tag_ui.dart';
 
 class FingerMensage extends StatelessWidget {
   const FingerMensage({super.key, required this.text, required this.code});
+
   final int? code;
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 64.0),
-        SvgPicture.asset('assets/fingerprint.svg'),
-        Center(
-          heightFactor: 3.0,
-          child: Column(
-            children: [
-              Container(
-                height: 40.0,
-                width: 256.0,
-                decoration: BoxDecoration(
-                  color: code == BioEvents.fingerNotFound.code
-                      ? TagColors.colorRedDark
-                      : code == BioEvents.storeok.code
-                          ? TagColors.colorGreenLight
-                          : TagColors.colorBaseCloudDark,
-                  border: Border.all(color: TagColors.colorBaseInkLight),
-                  borderRadius: const BorderRadius.all(Radius.circular(3.0)),
-                ),
-                child: Center(
-                    child: Text(text,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Inter',
-                            color: code == BioEvents.fingerNotFound.code
-                                ? TagColors.colorBaseCloudLight
-                                : code == BioEvents.storeok.code 
-                                ? TagColors.colorBaseCloudLight
-                                : TagColors.colorBaseInkLight))),
-              )
-            ],
+    print(BioEvents.byCode(code));
+    print("code: $code | $text" );
+    print(code == BioEvents.waitingFinger.code);
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          code == BioEvents.putfinger.code || code == BioEvents.waiting.code ? SvgPicture.asset('assets/fingerprint_clean.svg') : SvgPicture.asset('assets/fingerprint.svg'),
+          Center(
+            heightFactor: 3.0,
+            child: Column(
+              children: [
+                Container(
+                  height: 40.0,
+                  width: 256.0,
+                  decoration: BoxDecoration(
+                    color: code == BioEvents.fingerNotFound.code
+                        ? TagColors.colorRedDark
+                        : code == BioEvents.removeFinger.code
+                            ? Colors.yellow
+                            : code == BioEvents.storeok.code
+                                ? TagColors.colorGreenLight
+                                : TagColors.colorBaseCloudDark,
+                    border: Border.all(color: TagColors.colorBaseInkLight),
+                    borderRadius: const BorderRadius.all(Radius.circular(3.0)),
+                  ),
+                  child: Center(
+                      child: Text(text,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontFamily: 'Inter',
+                              color: code == BioEvents.fingerNotFound.code
+                                  ? TagColors.colorBaseCloudLight : code == BioEvents.removeFinger.code ? TagColors.colorRedDark
+                                  : code == BioEvents.storeok.code
+                                      ? TagColors.colorBaseCloudLight
+                                      : TagColors.colorBaseInkLight))),
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -14,7 +14,6 @@ void showCustomDialog(BuildContext context, ControllerIdentification biometricsC
   // final biometricsService = BiometricsService;
   final signController = Modular.get<ControllerSign>();
   // biometricsController.biometricsService.streamSocket.dispose();
-
   showGeneralDialog(
     context: context,
     barrierLabel: "Barrier",
@@ -34,53 +33,50 @@ void showCustomDialog(BuildContext context, ControllerIdentification biometricsC
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 20),
                       const Text(
                         'Cadastrar Biometria',
                         style: TextStyle(color: TagColors.colorBaseInkLight, fontSize: 18, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
                       ),
+                      const SizedBox(height: 20),
                       StreamBuilder<SignState?>(
                         stream: signController.getResponseSign,
                         builder: (context, snapshot) {
-                          log("Modal: ${snapshot.data.toString()}");
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              if (snapshot.data == null)
-                                Column(
-                                  children: [
-                                    TagButton(
-                                      text: 'Começar',
-                                      onPressed: () {
-                                        biometricsController.startBiometricService();
-                                        signController.startSign();
-                                      },
-                                    ),
-                                    TagButton(
-                                      text: 'Limpar',
-                                      onPressed: () {
-                                        biometricsController.startBiometricService();
-                                        signController.deleteAllFinger();
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              if (snapshot.data?.event.code == BioEvents.waiting.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.modeling.code) FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.modeled.code) FingerMensage(text: BioEvents.modeling.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.putfinger.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.pictureTaken.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.waitingFinger.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.storeok.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.carrer.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.stored.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                              if (snapshot.data?.event.code == BioEvents.storeFail.code) FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code),
-                            ],
-                          );
+                          if (snapshot.data == null) {
+                            return TagButton(
+                              text: 'Começar',
+                              onPressed: () {
+                                biometricsController.startBiometricService();
+                                signController.startSign();
+                              },
+                            );
+                          }
+                          switch (snapshot.data!.event) {
+                            case BioEvents.putfinger:
+                              return FingerMensage(text: BioEvents.putfinger.info, code: BioEvents.putfinger.code);
+                            case BioEvents.putFingerAgain:
+                              return FingerMensage(text: BioEvents.putFingerAgain.info, code: BioEvents.putFingerAgain.code);
+                            case BioEvents.waitingFinger:
+                              return FingerMensage(text: BioEvents.waitingFinger.info, code: BioEvents.waitingFinger.code);
+                            case BioEvents.modeling:
+                              return FingerMensage(text: BioEvents.modeling.info, code: BioEvents.modeling.code);
+                            case BioEvents.modeled:
+                              return FingerMensage(text: BioEvents.modeled.info, code: BioEvents.modeled.code);
+                            case BioEvents.storeok:
+                              return FingerMensage(text: BioEvents.storeok.info, code: BioEvents.storeok.code);
+                            case BioEvents.carrer:
+                              return FingerMensage(text: BioEvents.carrer.info, code: BioEvents.carrer.code);
+                            case BioEvents.stored:
+                              return FingerMensage(text: BioEvents.stored.info, code: BioEvents.stored.code);
+                            case BioEvents.storeFail:
+                              return FingerMensage(text: BioEvents.storeFail.info, code: BioEvents.storeFail.code);
+                            case BioEvents.removeFinger:
+                              return FingerMensage(text: BioEvents.removeFinger.info, code: BioEvents.removeFinger.code);
+                            default:
+                              return const SizedBox();
+                          }
                         },
                       ),
                     ],

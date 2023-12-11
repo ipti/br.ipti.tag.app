@@ -64,9 +64,7 @@ class ControllerIdentification implements Disposable {
   }
 
   void dateBiometrics() {
-    print("DATE BIOMETRICS");
     _biometricsService.streamSocket.getResponse.listen((state) async {
-      log("STATE: ${state}");
       final data = state["data"];
       if (state["event"] == "connect") {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
@@ -86,7 +84,6 @@ class ControllerIdentification implements Disposable {
         //startIdentification();
       }
       if (data != null) {
-        log("DATA: $data");
         if (data['id'] == BioEvents.waitingFinger.code) {
           addSignResponse(currentState.copyWith(event: BioEvents.waiting));
         } else if (data['id'] == BioEvents.fingerDected.code) {
