@@ -76,4 +76,7 @@ class StudentIdentification with _$StudentIdentification {
 
   factory StudentIdentification.fromJson(Map<String, Object?> json) =>
       _$StudentIdentificationFromJson(json);
+
+  //empty
+
 }

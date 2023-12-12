@@ -7,7 +7,7 @@ import 'package:tag_sdk/tag_sdk.dart';
 const keySessionUser = 'SESSION_USER';
 
 class LocalStorageService {
-  Future<StudentIdentification?> findStudent(biometricId) async {
+  Future<StudentIdentification> findStudent(biometricId) async {
     print("================findStudent================");
     final sharedPreferences = await SharedPreferences.getInstance();
     final localData = sharedPreferences.getStringList("STORAGE_STUDENTS_BIO");
@@ -18,7 +18,7 @@ class LocalStorageService {
 
       return studentBiomtrics.student;
     }
-    return null;
+    return StudentIdentification();
   }
 
   Future<bool> deleteAll() async {

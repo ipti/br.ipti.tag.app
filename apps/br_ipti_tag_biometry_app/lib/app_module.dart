@@ -5,13 +5,11 @@ import 'package:br_ipti_tag_biometry_app/screens/biometrics/biometrics_module.da
 import 'package:br_ipti_tag_biometry_app/screens/splashscreen/splashscreen_module.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:tag_network/tag_network.dart';
 
 import 'constants.dart';
 
 class AppModule extends Module {
-  // Provide a list of dependencies to inject into your project
   @override
   List<Bind> get binds => [
         Bind.singleton<Dio>(

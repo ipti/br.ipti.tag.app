@@ -15,7 +15,7 @@ class StudentRepositoryImpl implements StudentRepository {
   Future<Either<Failure, List<StudentIdentification>>> listAll({ required String schoolId }) async {
     try {
       final results = await _studentDataSource.listAll(schoolId: schoolId);
-
+      results.sort((a, b) => (a.name??"").compareTo(b.name?? ""));
       return Right(results);
     } catch (e) {
       log(

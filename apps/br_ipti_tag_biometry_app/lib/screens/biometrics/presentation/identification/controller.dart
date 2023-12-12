@@ -88,14 +88,8 @@ class ControllerIdentification implements Disposable {
           addSignResponse(currentState.copyWith(event: BioEvents.waiting));
         } else if (data['id'] == BioEvents.fingerDected.code) {
           try {
-            final student = await _localStorageService.findStudent(
-              data['id_finger'],
-            );
-            if (student != null) {
-              addSignResponse(currentState.copyWith(event: BioEvents.fingerDected, student: student));
-            } else {
-              addSignResponse(currentState.copyWith(event: BioEvents.fingerNotFound));
-            }
+            final student = await _localStorageService.findStudent(data['id_finger']);
+            addSignResponse(currentState.copyWith(event: BioEvents.fingerDected, student: student));
           } catch (e) {
             stateSignStream.sink.addError(Exception('Aluno não encontrado'));
           }
