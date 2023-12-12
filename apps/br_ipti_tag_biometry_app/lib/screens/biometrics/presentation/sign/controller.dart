@@ -39,10 +39,7 @@ class ControllerSign {
     );
 
     final student = await loadStudentUsecase.call(
-      LoadStudentParams(
-        studentId,
-        currentSchool.inepId,
-      ),
+      LoadStudentParams(studentId, currentSchool.inepId),
     );
 
     student.fold(
@@ -55,21 +52,18 @@ class ControllerSign {
     biometricsService.connect();
   }
 
-  void disconnect(){
+  void disconnect() {
     biometricsService.disconnect();
     biometricsService.dispose();
   }
 
   void restart() {
     biometricsService.socket.on('SearchSendMessage', (data) => null);
-    //biometricsService.connect();
   }
 
   Future init() async {
     biometricsService.connectAndListen();
-    stateSignStream.stream.listen((event) {
-      currentState = event;
-    });
+    stateSignStream.stream.listen((event) => currentState = event);
   }
 
   Future startSign() async {
@@ -91,9 +85,8 @@ class ControllerSign {
 
   void dateBiometrics(state) async {
     final data = state["data"];
-    if (state["event"] == "connect") {
-      addSignResponse(currentState.copyWith(event: BioEvents.waiting));
-    }
+    if (data.toString() == "io client disconnect") return;
+    if (state["event"] == "connect") addSignResponse(currentState.copyWith(event: BioEvents.waiting));
     if (data != null) {
       if (data.toString() == 'timeout' || data['id'] != 200 || data['id'] == lastEventId) {
         addSignResponse(currentState.copyWith(event: BioEvents.byCode(data["id"])));

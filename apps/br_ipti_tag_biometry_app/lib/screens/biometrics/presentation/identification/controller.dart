@@ -70,18 +70,12 @@ class ControllerIdentification implements Disposable {
         addSignResponse(currentState.copyWith(event: BioEvents.waiting));
       } else if (data == "timeout") {
         log(data);
-        //  _biometricsService.connect();
-        //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
         _biometricsService.connect();
-        //startIdentification();
       } else if (data == "ping timeout") {
         log(data);
-        //  _biometricsService.connect();
-        //   _biometricsService.emit("message", "SearchSendMessage");
         addSignResponse(currentState.copyWith(event: BioEvents.timeout));
         restart();
-        //startIdentification();
       }
       if (data != null) {
         if (data['id'] == BioEvents.waitingFinger.code) {
@@ -95,9 +89,6 @@ class ControllerIdentification implements Disposable {
           }
         } else if (data['id'] == BioEvents.fingerNotFound.code) {
           addSignResponse(currentState.copyWith(event: BioEvents.fingerNotFound));
-          // Timer(const Duration(seconds: 3), () {
-          //   restart();
-          // });
         } else {
           addSignResponse(currentState.copyWith(event: BioEvents.byCode(data['id'])));
         }

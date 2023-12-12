@@ -99,26 +99,16 @@ class _SchoolEntrancePageState extends State<SchoolEntrance> {
             StreamBuilder<SignState?>(
               stream: biometricsController.stateSignStream.stream,
               builder: (context, snapshot) {
+                print("SNAPSHOT: ${snapshot.data}");
+                if(snapshot.data == null) return Container();
                 if (snapshot.data?.event == BioEvents.passverify) return studentData;
                 switch (snapshot.data?.event) {
                   case BioEvents.fingerDected:
                     fingerprintPressed();
                     studentData = StudentInfo(student: snapshot.data!.student);
                     return studentData;
-                  case BioEvents.fingerNotFound:
-                    return FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
-                  case BioEvents.searching:
-                    return FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
-                  case BioEvents.modeling:
-                    return FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
-                  case BioEvents.waiting:
-                    return FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
                   default:
-                    return Expanded(
-                      child: Center(
-                        child: TagButton(text: 'Identificar Aluno', onPressed: (() => {biometricsController.startIdentification(), biometricsController.dateBiometrics()})),
-                      ),
-                    );
+                    return FingerMensage(text: snapshot.data!.event.info, code: snapshot.data?.event.code);
                 }
               },
             ),
