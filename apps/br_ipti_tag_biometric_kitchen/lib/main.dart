@@ -21,21 +21,19 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const KitchenPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class KitchenPage extends StatefulWidget {
+  const KitchenPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<KitchenPage> createState() => _KitchenPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _KitchenPageState extends State<KitchenPage> {
   int _studentsCounter = 0;
   final dio = Dio();
 
@@ -51,16 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
             .setExtraHeaders({
           'Connection': 'Upgrade',
           'Origin': _urlWebSocket,
-        }) // optional
-            .setTransports(['websocket']).build());
+        }).setTransports(['websocket']).build());
 
-    socket.onConnect((_) {
-      print('connected');
-    });
-
-    socket.onAny((event, data) => print("Event: $event, Data: $data"));
-
-    socket.on('message', (data) => {if (data['event'] == 'INCREMENTCOUNTER') _incrementCounter()});
+    socket.on('message', (data) => (data['event'] == 'INCREMENTCOUNTER') ? _incrementCounter() : null);
   }
 
   @override
@@ -77,25 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
             .setExtraHeaders({
           'Connection': 'Upgrade',
           'Origin': _urlWebSocket,
-        }) // optional
-            .setTransports(['websocket']).build());
+        }).setTransports(['websocket']).build());
     connectAndListen();
   }
 
   late IO.Socket socket;
 
-
   void _incrementCounter() {
-    setState(() {
-      _studentsCounter++;
-    });
+    setState(() => _studentsCounter++);
   }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text("Alunos presentes hoje:",
-                style: TextStyle(fontSize: 40)),
-            Text('$_studentsCounter', style: TextStyle(fontSize: 80)),
+            const Text("Alunos presentes hoje:", style: TextStyle(fontSize: 40)),
+            Text('$_studentsCounter', style: const TextStyle(fontSize: 80)),
           ],
         ),
       ),
